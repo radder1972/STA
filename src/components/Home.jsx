@@ -1,4 +1,4 @@
-import { FileText, ClipboardList } from 'lucide-react'
+import { ClipboardIcon, BrainIcon } from './Icons'
 
 export default function Home({ onStart }) {
   return (
@@ -10,7 +10,7 @@ export default function Home({ onStart }) {
       
       <div className="home-cards">
         <div className="card glass-panel" onClick={() => onStart('ysq')}>
-          <FileText size={48} color="var(--primary)" style={{ margin: '0 auto 1rem' }} />
+          <ClipboardIcon size={48} color="var(--primary)" style={{ margin: '0 auto 1rem', display: 'block' }} />
           <h2>YSQ S3</h2>
           <p style={{ fontWeight: 'bold' }}>Young Schema Questionnaire</p>
           <p style={{ fontSize: '0.9rem', textAlign: 'left', marginTop: '1rem' }}>
@@ -20,7 +20,7 @@ export default function Home({ onStart }) {
         </div>
         
         <div className="card glass-panel" onClick={() => onStart('smi')}>
-          <ClipboardList size={48} color="var(--accent)" style={{ margin: '0 auto 1rem' }} />
+          <BrainIcon size={48} color="var(--accent)" style={{ margin: '0 auto 1rem', display: 'block' }} />
           <h2>SMI</h2>
           <p style={{ fontWeight: 'bold' }}>Schema Mode Inventory</p>
           <p style={{ fontSize: '0.9rem', textAlign: 'left', marginTop: '1rem' }}>

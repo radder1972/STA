@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
+import { ArrowLeftIcon, ArrowRightIcon, CheckIcon } from './Icons'
 
 export default function Questionnaire({ type, questions, onFinish, onCancel }) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -65,7 +65,7 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
     <div className="q-container">
       <div className="q-header">
         <button className="btn btn-outline" onClick={onCancel}>
-          <ArrowLeft size={18} /> Cancel
+          <ArrowLeftIcon size={18} /> Cancel
         </button>
         <span style={{color: 'var(--text-muted)'}}>Question {currentIndex + 1} of {total}</span>
         
@@ -75,7 +75,7 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
           </button>
           {isComplete && currentIndex === total - 1 && (
             <button className="btn" onClick={() => onFinish(answers)} style={{background: 'var(--accent)'}}>
-              <Check size={18} /> Finish
+              <CheckIcon size={18} /> Finish
             </button>
           )}
         </div>
@@ -110,7 +110,7 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
           onClick={handlePrev} 
           disabled={currentIndex === 0}
         >
-          <ArrowLeft size={18} /> Previous
+            <ArrowLeftIcon size={18} /> Previous
         </button>
         
         {currentIndex < total - 1 && (
@@ -118,13 +118,13 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
             className="btn btn-outline" 
             onClick={handleNext} 
           >
-            Next <ArrowRight size={18} />
+            Next <ArrowRightIcon size={18} />
           </button>
         )}
         
         {currentIndex === total - 1 && isComplete && (
           <button className="btn" onClick={() => onFinish(answers)} style={{background: 'var(--accent)'}}>
-            Finish <Check size={18} />
+            Finish <CheckIcon size={18} />
           </button>
         )}
       </div>

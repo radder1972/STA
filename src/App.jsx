@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Sun, Moon } from 'lucide-react'
+import { SunIcon, MoonIcon } from './components/Icons'
 import Home from './components/Home'
 import Questionnaire from './components/Questionnaire'
 import Results from './components/Results'
@@ -49,7 +49,7 @@ function App() {
         style={{ position: 'absolute', top: '1rem', right: '1rem', padding: '10px', borderRadius: '50%', zIndex: 100 }}
         title="Toggle Theme"
       >
-        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+        {theme === 'dark' ? <SunIcon size={20} /> : <MoonIcon size={20} />}
       </button>
       {currentView === 'home' && <Home onStart={handleStart} />}
       {currentView === 'questionnaire' && (

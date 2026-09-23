@@ -1,4 +1,4 @@
-import { Download, RefreshCcw, BarChart2 } from 'lucide-react'
+import { DownloadIcon, RefreshIcon, ChartIcon } from './Icons'
 import ysqScoring from '../data/ysq-scoring.json'
 import smiScoring from '../data/smi-scoring.json'
 import YsqVisualizer from './YsqVisualizer'
@@ -121,7 +121,7 @@ export default function Results({ type, answers, onRestart }) {
     <div className="results-container" style={{ width: '100%', maxWidth: '900px', margin: '0 auto', paddingBottom: '2rem' }}>
       <div className="results-box glass-panel" style={{ padding: '2rem', marginTop: '2rem' }}>
         <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-          <BarChart2 /> {title} Resultaten
+          <ChartIcon size={28} /> {title} Resultaten
         </h2>
         <p>Je hebt {totalAnswered} vragen beantwoord.</p>
 
@@ -161,10 +161,10 @@ export default function Results({ type, answers, onRestart }) {
         
         <div className="results-actions">
           <button className="btn" onClick={handleDownload}>
-            <Download size={18} /> Download JSON (Incl. ruwe data)
+            <DownloadIcon size={18} /> Download JSON (Incl. ruwe data)
           </button>
           <button className="btn btn-outline" onClick={onRestart}>
-            <RefreshCcw size={18} /> Opnieuw Beginnen
+            <RefreshIcon size={18} /> Opnieuw Beginnen
           </button>
         </div>
       </div>
