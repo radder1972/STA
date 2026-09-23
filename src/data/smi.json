@@ -1,0 +1,454 @@
+[
+  {
+    "id": 1,
+    "text": "Door anderen te laten merken dat met jou niet te spotten valt, dwing je respect af."
+  },
+  {
+    "id": 2,
+    "text": "Ik voel me geliefd en geaccepteerd."
+  },
+  {
+    "id": 3,
+    "text": "Ik gun mezelf geen plezier omdat ik het niet verdien."
+  },
+  {
+    "id": 4,
+    "text": "Ik voel me inadequaat, gebrekkig of waardeloos."
+  },
+  {
+    "id": 5,
+    "text": "Ik heb de neiging om mezelf te straffen door mezelf pijn te doen (bijvoorbeeld mezelf snijden)."
+  },
+  {
+    "id": 6,
+    "text": "Ik voel me verloren"
+  },
+  {
+    "id": 7,
+    "text": "Ik ben streng voor mezelf."
+  },
+  {
+    "id": 8,
+    "text": "Ik doe erg mijn best anderen te plezieren om conflicten, confrontatie of afwijzing te vermijden"
+  },
+  {
+    "id": 9,
+    "text": "Ik kan mezelf niet vergeven."
+  },
+  {
+    "id": 10,
+    "text": "Ik doe dingen om in het middelpunt van de belangstelling te staan."
+  },
+  {
+    "id": 11,
+    "text": "Ik raak geïrriteerd als mensen niet doen wat ik van hen vraag."
+  },
+  {
+    "id": 12,
+    "text": "Ik kan mijn impulsen slecht controleren."
+  },
+  {
+    "id": 13,
+    "text": "Als ik een doel niet kan bereiken, raak ik snel gefrustreerd en geef ik het op."
+  },
+  {
+    "id": 14,
+    "text": "Ik heb woedeaanvallen en driftbuien"
+  },
+  {
+    "id": 15,
+    "text": "Ik handel impulsief of ik uit emoties die me in de problemen brengen of die andere mensen kwetsen."
+  },
+  {
+    "id": 16,
+    "text": "Het is mijn schuld wanneer er iets ergs gebeurt."
+  },
+  {
+    "id": 17,
+    "text": "Ik voel me tevreden en kalm."
+  },
+  {
+    "id": 19,
+    "text": "Ik voel me verbonden met andere mensen."
+  },
+  {
+    "id": 20,
+    "text": "Als er problemen zijn, doe ik hard mijn best om ze zelf op te lossen."
+  },
+  {
+    "id": 21,
+    "text": "Ik dwing mezelf niet om routinematige of vervelende taken af te maken."
+  },
+  {
+    "id": 22,
+    "text": "Als ik niet vecht word ik misbruikt of verwaarloosd."
+  },
+  {
+    "id": 23,
+    "text": "Wie zich laat pesten is een mislukkeling."
+  },
+  {
+    "id": 24,
+    "text": "Ik val mensen fysiek aan als ik boos op hen ben."
+  },
+  {
+    "id": 25,
+    "text": "Als ik me eenmaal boos begin te voelen, houd ik het vaak niet onder controle en verlies ik mijn beheersing."
+  },
+  {
+    "id": 26,
+    "text": "Het is voor mij belangrijk nummer één te zijn (bijvoorbeeld de meest populaire, meest succesvolle, meest rijke, meest machtige)."
+  },
+  {
+    "id": 27,
+    "text": "Ik voel me onverschillig."
+  },
+  {
+    "id": 28,
+    "text": "Ik kan problemen rationeel oplossen zonder me door mijn emoties te laten overspoelen."
+  },
+  {
+    "id": 29,
+    "text": "Ik neem geen genoegen met het één na beste."
+  },
+  {
+    "id": 30,
+    "text": "Aanval is de beste verdediging."
+  },
+  {
+    "id": 31,
+    "text": "Ik voel me kil naar andere mensen toe."
+  },
+  {
+    "id": 32,
+    "text": "Ik voel me onthecht (geen contact met mezelf, mijn emoties en anderen)."
+  },
+  {
+    "id": 33,
+    "text": "Ik volg blindelings mijn emoties."
+  },
+  {
+    "id": 34,
+    "text": "Ik voel me wanhopig."
+  },
+  {
+    "id": 35,
+    "text": "Ik sta het toe dat andere mensen mij bekritiseren of kleineren."
+  },
+  {
+    "id": 36,
+    "text": "In relaties laat ik de andere persoon de overhand hebben."
+  },
+  {
+    "id": 37,
+    "text": "Ik voel me afstandelijk tegenover andere mensen."
+  },
+  {
+    "id": 38,
+    "text": "Ik denk niet na over wat ik zeg en breng daarmee mezelf in de problemen of kwets anderen."
+  },
+  {
+    "id": 39,
+    "text": "Ik werk of sport intensief om niet te hoeven denken aan vervelende dingen."
+  },
+  {
+    "id": 40,
+    "text": "Ik ben boos omdat mensen proberen mijn vrijheid en onafhankelijkheid van me af te pakken."
+  },
+  {
+    "id": 42,
+    "text": "Ik doe wat ik wil, ongeacht de behoeften en gevoelens van andere mensen."
+  },
+  {
+    "id": 43,
+    "text": "Ik geef mezelf niet de kans om te ontspannen of plezier te hebben, voordat ik alles heb afgemaakt wat ik moest doen."
+  },
+  {
+    "id": 44,
+    "text": "Ik gooi en smijt met dingen als ik boos ben."
+  },
+  {
+    "id": 45,
+    "text": "Ik ben woedend op iemand."
+  },
+  {
+    "id": 46,
+    "text": "Ik voel dat ik bij andere mensen hoor."
+  },
+  {
+    "id": 47,
+    "text": "Ik heb veel opgekropte boosheid die eruit moet."
+  },
+  {
+    "id": 48,
+    "text": "Ik voel me eenzaam."
+  },
+  {
+    "id": 49,
+    "text": "Ik doe graag iets opwindends of troostends om mijn gevoelens te vermijden (bijvoorbeeld eten, seksuele activiteiten, uitgaan, gokken of shoppen)."
+  },
+  {
+    "id": 50,
+    "text": "Gelijkwaardigheid bestaat niet, dus kan je maar het beste boven de ander staan."
+  },
+  {
+    "id": 51,
+    "text": "In mijn boosheid verlies ik de controle over mezelf en bedreig ik andere mensen."
+  },
+  {
+    "id": 52,
+    "text": "Ik laat andere mensen hun gang gaan, in plaats van mijn eigen behoeften te uiten."
+  },
+  {
+    "id": 53,
+    "text": "Wie niet voor me is, is tegen me."
+  },
+  {
+    "id": 54,
+    "text": "Om minder last te hebben van vervelende gedachten of gevoelens, zorg ik dat ik het altijd druk heb."
+  },
+  {
+    "id": 55,
+    "text": "Ik ben een slecht persoon als ik boos word op andere mensen."
+  },
+  {
+    "id": 56,
+    "text": "Ik wil niet betrokken raken bij andere mensen."
+  },
+  {
+    "id": 57,
+    "text": "Ik voel dat ik genoeg stabiliteit en zekerheid in mijn leven heb"
+  },
+  {
+    "id": 58,
+    "text": "Ik weet wanneer mijn emoties te uiten en wanneer niet."
+  },
+  {
+    "id": 59,
+    "text": "Ik ben boos op iemand omdat hij/ zij er niet voor me was of mij verliet."
+  },
+  {
+    "id": 60,
+    "text": "Ik voel me niet verbonden met andere mensen."
+  },
+  {
+    "id": 61,
+    "text": "Ik kan me er niet toe zetten dingen te doen die ik vervelend vind, ook al weet ik dat het voor mijn eigen bestwil is."
+  },
+  {
+    "id": 62,
+    "text": "Ik overtreed regels en heb er later spijt van."
+  },
+  {
+    "id": 63,
+    "text": "Ik voel me vernederd"
+  },
+  {
+    "id": 65,
+    "text": "Ik doe, en denk daarna pas."
+  },
+  {
+    "id": 66,
+    "text": "Ik raak makkelijk verveeld en verlies snel interesse in dingen."
+  },
+  {
+    "id": 67,
+    "text": "Ook als ik mensen om me heen heb, voel ik me eenzaam."
+  },
+  {
+    "id": 68,
+    "text": "Omdat ik slecht ben sta ik het mezelf niet toe om plezierige dingen te doen die andere mensen wel doen."
+  },
+  {
+    "id": 69,
+    "text": "Ik kom op voor wat ik wil, zonder daarin te overdrijven."
+  },
+  {
+    "id": 70,
+    "text": "Ik vind mezelf speciaal en beter dan de meeste andere mensen."
+  },
+  {
+    "id": 71,
+    "text": "Ik geef nergens om; niets is belangrijk voor me."
+  },
+  {
+    "id": 72,
+    "text": "Het maakt me boos wanneer iemand me vertelt hoe ik me zou moeten voelen of gedragen."
+  },
+  {
+    "id": 73,
+    "text": "Als je anderen niet overheerst, word je overheerst."
+  },
+  {
+    "id": 74,
+    "text": "Ik zeg wat ik voel of doe dingen impulsief, zonder over de gevolgen na te denken."
+  },
+  {
+    "id": 75,
+    "text": "Ik zou mensen een standje willen geven voor de manier waarop ze mij behandeld hebben."
+  },
+  {
+    "id": 76,
+    "text": "Ik ben in staat om voor mezelf te zorgen."
+  },
+  {
+    "id": 77,
+    "text": "Ik ben tamelijk kritisch tegenover andere mensen."
+  },
+  {
+    "id": 78,
+    "text": "Ik sta onder een constante druk om te presteren en dingen te bereiken."
+  },
+  {
+    "id": 79,
+    "text": "Ik probeer geen fouten te maken, anders ga ik mezelf naar beneden halen."
+  },
+  {
+    "id": 80,
+    "text": "Ik verdien het om gestraft te worden."
+  },
+  {
+    "id": 81,
+    "text": "Ik kan leren, groeien en veranderen."
+  },
+  {
+    "id": 82,
+    "text": "Ik wil mezelf afleiden van gedachten en gevoelens die mij van streek maken."
+  },
+  {
+    "id": 83,
+    "text": "Ik ben boos op mezelf."
+  },
+  {
+    "id": 84,
+    "text": "Ik voel me vlak."
+  },
+  {
+    "id": 85,
+    "text": "Ik moet de beste zijn in wat ik doe."
+  },
+  {
+    "id": 86,
+    "text": "Ik offer plezier, gezondheid of geluk op om aan mijn eigen eisen te voldoen."
+  },
+  {
+    "id": 88,
+    "text": "Als ik boos ben, kan het zo uit de hand lopen dat er gewonden vallen."
+  },
+  {
+    "id": 89,
+    "text": "Ik ben onaantastbaar."
+  },
+  {
+    "id": 90,
+    "text": "Ik ben een slecht persoon."
+  },
+  {
+    "id": 91,
+    "text": "Ik voel me veilig."
+  },
+  {
+    "id": 92,
+    "text": "Ik voel me gehoord, begrepen en gesteund."
+  },
+  {
+    "id": 93,
+    "text": "Het is voor mij onmogelijk mijn impulsen te controleren."
+  },
+  {
+    "id": 94,
+    "text": "Ik maak dingen kapot als ik boos ben."
+  },
+  {
+    "id": 95,
+    "text": "Door anderen te overheersen, kan je niets gebeuren."
+  },
+  {
+    "id": 96,
+    "text": "Ik gedraag me op een passieve manier, zelfs als ik het ergens niet mee eens ben."
+  },
+  {
+    "id": 97,
+    "text": "Mijn boosheid loopt uit de hand."
+  },
+  {
+    "id": 98,
+    "text": "Ik pest anderen."
+  },
+  {
+    "id": 99,
+    "text": "Ik zou iemand pijn willen doen voor wat hij/ zij me heeft aangedaan."
+  },
+  {
+    "id": 100,
+    "text": "Ik weet dat er een ‘goede’ en een ‘ slechte’ manier is om dingen te doen; ik doe hard mijn best om dingen op een goede manier te doen, anders bekritiseer ik mezelf."
+  },
+  {
+    "id": 101,
+    "text": "Ik voel me vaak alleen op de wereld."
+  },
+  {
+    "id": 102,
+    "text": "Ik voel me zwak en hulpeloos."
+  },
+  {
+    "id": 103,
+    "text": "Ik ben lui."
+  },
+  {
+    "id": 104,
+    "text": "Het is verstandig om alles te accepteren van mensen die belangrijk voor me zijn."
+  },
+  {
+    "id": 105,
+    "text": "Ik ben bedrogen of oneerlijk behandeld."
+  },
+  {
+    "id": 106,
+    "text": "Ik voel me buitengesloten."
+  },
+  {
+    "id": 107,
+    "text": "Ik kleineer anderen."
+  },
+  {
+    "id": 108,
+    "text": "Ik voel me optimistisch."
+  },
+  {
+    "id": 109,
+    "text": "Ik heb het gevoel dat ik mezelf niet aan dezelfde regels hoef te houden als andere mensen."
+  },
+  {
+    "id": 111,
+    "text": "Ik kan voor mezelf opkomen wanneer ik vind dat ik oneerlijk bekritiseerd, uitgebuit of misbruikt word."
+  },
+  {
+    "id": 112,
+    "text": "Ik verdien geen medelijden wanneer mij iets ergs overkomt."
+  },
+  {
+    "id": 113,
+    "text": "Ik heb het gevoel dat niemand van me houdt."
+  },
+  {
+    "id": 114,
+    "text": "Ik voel dat ik van nature een goed persoon ben."
+  },
+  {
+    "id": 115,
+    "text": "Als het nodig is maak ik saaie en routinematige taken af zodat ik dingen kan bereiken die ik waardeer."
+  },
+  {
+    "id": 116,
+    "text": "Ik voel me spontaan en speels."
+  },
+  {
+    "id": 117,
+    "text": "Ik kan zo woedend zijn dat ik in staat ben iemand te vermoorden."
+  },
+  {
+    "id": 118,
+    "text": "Ik heb een goed beeld van wie ik ben en wat ik nodig heb om mezelf gelukkig te maken."
+  }
+]

@@ -1,0 +1,346 @@
+[
+  {
+    "id": 1,
+    "text": "Meestal was er niemand die voor me zorgde, dingen met me deelde of die het echt kon schelen wat er met me gebeurde."
+  },
+  {
+    "id": 2,
+    "text": "Ik merk dat ik mij vastklamp aan mensen om wie ik veel geef, omdat ik bang ben dat ze me zullen verlaten."
+  },
+  {
+    "id": 3,
+    "text": "Ik denk dat mensen misbruik van me zullen maken."
+  },
+  {
+    "id": 5,
+    "text": "Geen enkele man of vrouw tot wie ik mij aangetrokken voel, zou nog van me kunnen houden, zodra hij of zij mijn tekortkomingen leert kennen."
+  },
+  {
+    "id": 6,
+    "text": "Bijna niets van wat ik doe in mijn werk (of studie) haalt het bij wat andere mensen kunnen."
+  },
+  {
+    "id": 7,
+    "text": "Ik voel me niet in staat me alleen te redden in het dagelijkse leven."
+  },
+  {
+    "id": 8,
+    "text": "Ik kan maar niet aan het gevoel ontkomen dat er iets ergs staat te gebeuren."
+  },
+  {
+    "id": 9,
+    "text": "Ik ben niet in staat geweest me los te maken van mijn ouder(s) zoals andere van mijn leeftijd dat wel lijken te hebben gedaan."
+  },
+  {
+    "id": 10,
+    "text": "Wanneer ik zou doen wat ik wil, vraag ik alleen maar om moeilijkheden."
+  },
+  {
+    "id": 11,
+    "text": "Uiteindelijk ben ik meestal degene die de zorg op zich neemt van mensen met wie ik me verbonden voel."
+  },
+  {
+    "id": 12,
+    "text": "Ik ben te verlegen om positieve gevoelens aan anderen te tonen (bv. genegenheid tonen, laten merken dat ik om iemand geef)."
+  },
+  {
+    "id": 13,
+    "text": "Ik moet de beste zijn in bijna alles wat ik doe; ik accepteer geen tweede plaats."
+  },
+  {
+    "id": 14,
+    "text": "Ik heb grote moeite een weigering te accepteren als ik iets van andere mensen wil."
+  },
+  {
+    "id": 15,
+    "text": "Ik kan er maar niet toe komen om routinewerk te doen of vervelende taken af te maken."
+  },
+  {
+    "id": 16,
+    "text": "Geld hebben en belangrijke mensen kennen zorgen ervoor dat ik me de moeite waard voel."
+  },
+  {
+    "id": 17,
+    "text": "Zelfs als het goed lijkt te gaan, heb ik het gevoel dat dat slechts tijdelijk is."
+  },
+  {
+    "id": 18,
+    "text": "Als ik een fout maak, verdien ik het om gestraft te worden."
+  },
+  {
+    "id": 19,
+    "text": "Over het algemeen was er niemand die mij warmte, geborgenheid en genegenheid gaf."
+  },
+  {
+    "id": 20,
+    "text": "Ik heb andere mensen zó hard nodig dat ik bang ben ze te verliezen."
+  },
+  {
+    "id": 21,
+    "text": "Ik moet bij andere mensen op mijn hoede blijven, anders zullen ze me opzettelijk kwetsen."
+  },
+  {
+    "id": 22,
+    "text": "Ik ben wezenlijk anders dan anderen."
+  },
+  {
+    "id": 23,
+    "text": "Niemand van de mensen tot wie ik me aangetrokken voel, zou nog bevriend met me willen zijn, als hij/zij me echt zou kennen."
+  },
+  {
+    "id": 24,
+    "text": "Zodra het op presteren aankomt, ben ik tot weinig in staat."
+  },
+  {
+    "id": 25,
+    "text": "Ik vind mijzelf in het dagelijks functioneren een afhankelijk persoon."
+  },
+  {
+    "id": 26,
+    "text": "Ik denk dat er ieder moment een ramp (in de natuur, of van criminele, financiële of medische aard) kan gebeuren."
+  },
+  {
+    "id": 28,
+    "text": "Als ik niet toegeef aan de wensen van anderen, pakken ze me op de één of andere manier terug of wijzen ze me af."
+  },
+  {
+    "id": 29,
+    "text": "Ik ben een goed mens omdat ik meer rekening houd met anderen dan met mezelf."
+  },
+  {
+    "id": 30,
+    "text": "Ik schaam me ervoor om mijn gevoelens naar anderen te uiten."
+  },
+  {
+    "id": 31,
+    "text": "Ik probeer mijn uiterste best te doen; ik neem geen genoegen met ‘goed genoeg’."
+  },
+  {
+    "id": 32,
+    "text": "Ik ben bijzonder en zou veel van de beperkingen, die voor andere mensen gelden, niet hoeven te accepteren."
+  },
+  {
+    "id": 33,
+    "text": "Als het me niet lukt een gesteld doel te halen, raak ik gemakkelijk gefrustreerd en geef ik het op."
+  },
+  {
+    "id": 34,
+    "text": "Prestaties zijn voor mij het meest waardevol als andere mensen ze opmerken."
+  },
+  {
+    "id": 35,
+    "text": "Als er iets goeds gebeurt, maak ik me zorgen dat er waarschijnlijk iets ergs zal volgen."
+  },
+  {
+    "id": 36,
+    "text": "Als ik niet mijn uiterste best doe, kan ik verwachten dat ik verlies zal lijden."
+  },
+  {
+    "id": 37,
+    "text": "Ik heb zelden het gevoel gehad dat ik bijzonder ben voor iemand."
+  },
+  {
+    "id": 38,
+    "text": "Ik maak me zorgen dat de mensen die me dierbaar zijn, mij in de steek zullen laten."
+  },
+  {
+    "id": 39,
+    "text": "Het is slechts een kwestie van tijd voordat iemand me bedriegt."
+  },
+  {
+    "id": 40,
+    "text": "Ik hoor nergens bij; ik ben een eenling."
+  },
+  {
+    "id": 41,
+    "text": "Ik ben de liefde, de aandacht en het respect van anderen niet waard."
+  },
+  {
+    "id": 42,
+    "text": "De meeste mensen kunnen meer dan ik op het gebied van werk en prestaties."
+  },
+  {
+    "id": 43,
+    "text": "Het ontbreekt mij aan gezond verstand."
+  },
+  {
+    "id": 44,
+    "text": "Ik ben bang aangevallen te worden."
+  },
+  {
+    "id": 45,
+    "text": "Het is voor mijn ouder(s) en mij erg moeilijk om zeer persoonlijke zaken voor onszelf te houden, zonder ons daarover schuldig of verraden te voelen."
+  },
+  {
+    "id": 46,
+    "text": "In relaties laat ik de ander de baas zijn."
+  },
+  {
+    "id": 47,
+    "text": "Ik ben zo druk met anderen om wie ik geef, dat ik weinig tijd voor mijzelf overhoud."
+  },
+  {
+    "id": 48,
+    "text": "Ik vind het moeilijk om warm en spontaan te zijn."
+  },
+  {
+    "id": 49,
+    "text": "Ik moet aan al mijn verantwoordelijkheden voldoen."
+  },
+  {
+    "id": 51,
+    "text": "Ik vind het erg moeilijk om iets aangenaams, wat ik meteen kan krijgen, op te offeren voor een doel dat nog ver weg is."
+  },
+  {
+    "id": 52,
+    "text": "Als ik weinig aandacht van anderen krijg voel ik me minder belangrijk."
+  },
+  {
+    "id": 53,
+    "text": "Je kunt niet voorzichtig genoeg zijn; er zal bijna altijd iets misgaan."
+  },
+  {
+    "id": 54,
+    "text": "Als ik mijn werk niet goed doe, moet ik de gevolgen daarvan ondergaan."
+  },
+  {
+    "id": 55,
+    "text": "Er zijn in mijn leven maar weinig mensen geweest die echt naar mij luisterden, me begrepen of die oog hadden voor mijn ware behoeften en gevoelens."
+  },
+  {
+    "id": 56,
+    "text": "Wanneer ik merk dat iemand om wie ik geef, afstand van me neemt, word ik wanhopig."
+  },
+  {
+    "id": 57,
+    "text": "Ik ben vrij wantrouwend over andermans motieven."
+  },
+  {
+    "id": 58,
+    "text": "Ik voel me vervreemd van andere mensen."
+  },
+  {
+    "id": 59,
+    "text": "Ik voel dat ik iemand ben waar niemand van kan houden."
+  },
+  {
+    "id": 60,
+    "text": "Ik heb niet zoveel talent als de meeste mensen in hun werk."
+  },
+  {
+    "id": 61,
+    "text": "Mijn oordeel in alledaagse situaties is niet betrouwbaar."
+  },
+  {
+    "id": 62,
+    "text": "Ik ben bang dat ik al mijn geld kwijtraak en arm word."
+  },
+  {
+    "id": 63,
+    "text": "Mijn ouder(s) zijn vaak zo overbetrokken en opdringerig, dat ik niet mijn eigen leven kan leiden."
+  },
+  {
+    "id": 64,
+    "text": "Ik heb altijd anderen keuzes voor me laten maken, dus ik weet werkelijk niet wat ik zelf wil."
+  },
+  {
+    "id": 65,
+    "text": "Ik ben altijd degene die luistert naar de problemen van anderen."
+  },
+  {
+    "id": 66,
+    "text": "Ik houd me zo in de hand, dat andere mensen denken dat ik geen gevoelens heb."
+  },
+  {
+    "id": 67,
+    "text": "Ik voel me constant onder druk staan om te presteren en dingen gedaan te krijgen."
+  },
+  {
+    "id": 68,
+    "text": "Ik vind dat ik niet hoef te voldoen aan de normale regels en afspraken."
+  },
+  {
+    "id": 69,
+    "text": "Ik kan mezelf er niet toe zetten dingen te doen die ik vervelend vind, ook al weet ik dat het voor mijn eigen bestwil is."
+  },
+  {
+    "id": 70,
+    "text": "Als ik opmerkingen maak tijdens een vergadering of voorgesteld word in een sociale situatie, vind ik het belangrijk om erkenning en bewondering te krijgen."
+  },
+  {
+    "id": 71,
+    "text": "Hoe hard ik ook werk, ik maak me zorgen dat ik financieel in de problemen kom en bijna alles verlies."
+  },
+  {
+    "id": 72,
+    "text": "Het maakt niet uit waarom ik een fout maak. Als ik iets verkeerd doe, moet ik daarvoor de prijs betalen."
+  },
+  {
+    "id": 74,
+    "text": "Soms ben ik zo bang dat mensen me verlaten, dat ik ze juist wegjaag."
+  },
+  {
+    "id": 75,
+    "text": "Meestal ben ik op mijn hoede voor de verborgen beweegredenen van mensen."
+  },
+  {
+    "id": 76,
+    "text": "Ik voel me in groepen altijd een buitenstaander."
+  },
+  {
+    "id": 77,
+    "text": "In mijn diepste wezen ben ik te verwerpelijk om mezelf aan anderen bloot te geven."
+  },
+  {
+    "id": 78,
+    "text": "In mijn werk of studie ben ik niet zo intelligent als de meeste mensen."
+  },
+  {
+    "id": 79,
+    "text": "Ik heb geen vertrouwen in mijn vermogen om alledaagse problemen op te lossen."
+  },
+  {
+    "id": 80,
+    "text": "Ik ben bang dat ik een ernstige ziekte onder de leden heb, ook al is er door de dokter niets ernstigs geconstateerd."
+  },
+  {
+    "id": 81,
+    "text": "Ik heb vaak het idee dat ik geen eigen identiteit heb ten opzichte van mijn ouder(s) of partner."
+  },
+  {
+    "id": 82,
+    "text": "Ik vind het erg moeilijk om te eisen dat mijn rechten worden gerespecteerd en dat er rekening wordt gehouden met mijn gevoelens."
+  },
+  {
+    "id": 83,
+    "text": "Andere mensen vinden dat ik teveel doe voor anderen en te weinig voor mijzelf."
+  },
+  {
+    "id": 84,
+    "text": "Mensen vinden mij emotioneel geremd."
+  },
+  {
+    "id": 85,
+    "text": "Ik ben erg streng voor mijzelf en vind het moeilijk om me mijn fouten te vergeven."
+  },
+  {
+    "id": 86,
+    "text": "Wat ik te bieden heb, is van meer waarde dan wat andere mensen bieden."
+  },
+  {
+    "id": 87,
+    "text": "Ik heb me bijna nooit aan mijn voornemens kunnen houden."
+  },
+  {
+    "id": 88,
+    "text": "Het krijgen van veel lof en complimenten zorgen ervoor dat ik me een waardevol persoon voel."
+  },
+  {
+    "id": 89,
+    "text": "Ik maak me zorgen dat een verkeerde beslissing tot een ramp kan leiden."
+  },
+  {
+    "id": 90,
+    "text": "Ik ben een slecht persoon die het verdient om gestraft te worden."
+  }
+]
