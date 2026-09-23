@@ -199,7 +199,8 @@ body {
 }
 
 .option-btn {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   padding: 1.25rem 0.5rem;
   color: var(--text-main);
   font-size: 1.25rem;
@@ -226,11 +227,14 @@ body {
   text-align: center;
   line-height: 1.3;
   width: 100%;
-  padding: 0 4px;
+  padding: 0 2px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex: 1;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .option-btn:hover {
