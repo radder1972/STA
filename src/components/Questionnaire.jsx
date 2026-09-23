@@ -69,7 +69,7 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
         </button>
         <span style={{color: 'var(--text-muted)'}}>Question {currentIndex + 1} of {total}</span>
         
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div style={{ display: 'flex', gap: '10px', paddingRight: '40px' }}>
           <button className="btn btn-outline" onClick={handleFillRandom} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
             Fill Randomly
           </button>
