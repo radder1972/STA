@@ -23,54 +23,46 @@ export default function SmiVisualizer({ groupedScores }) {
       
       <div className="smi-layout">
         {/* Top Level: Parents & Healthy */}
-        <div className="smi-row space-between">
-          <div className="smi-section parent-modes">
-            <h4 className="section-label">DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI</h4>
-            <div className="nodes-container">
-              {getGroup('DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI').map(renderModeNode)}
-            </div>
+        <div className="smi-section parent-modes">
+          <h4 className="section-label">DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI</h4>
+          <div className="nodes-container">
+            {getGroup('DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI').map(renderModeNode)}
           </div>
-          
-          <div className="smi-section healthy-modes">
-            <h4 className="section-label" style={{ color: '#10b981' }}>FUNCTIONELE MODI</h4>
-            <div className="nodes-container">
-              {getGroup('FUNCTIONELE MODI').map(renderModeNode)}
-            </div>
+        </div>
+        
+        <div className="smi-section healthy-modes">
+          <h4 className="section-label" style={{ color: '#10b981' }}>FUNCTIONELE MODI</h4>
+          <div className="nodes-container">
+            {getGroup('FUNCTIONELE MODI').map(renderModeNode)}
           </div>
         </div>
 
         {/* Middle Level: Coping */}
         <div className="smi-section coping-modes">
-          <h4 className="section-label">BESCHERMMODI</h4>
-          
-          <div className="coping-subgroups">
-            <div className="coping-column">
-              <h5>Omkering</h5>
-              <div className="nodes-container">
-                {getGroup('BESCHERMMODI - OMKERING').map(renderModeNode)}
-              </div>
-            </div>
-            
-            <div className="coping-column">
-              <h5>Vermijden</h5>
-              <div className="nodes-container">
-                {getGroup('BESCHERMMODI - VERMIJDEN').map(renderModeNode)}
-              </div>
-            </div>
-            
-            <div className="coping-column">
-              <h5>Overgave</h5>
-              <div className="nodes-container">
-                {getGroup('BESCHERMMODI - OVERGAVE').map(renderModeNode)}
-              </div>
-            </div>
+          <h4 className="section-label">BESCHERMMODI - OMKERING</h4>
+          <div className="nodes-container">
+            {getGroup('BESCHERMMODI - OMKERING').map(renderModeNode)}
+          </div>
+        </div>
+        
+        <div className="smi-section coping-modes">
+          <h4 className="section-label">BESCHERMMODI - VERMIJDEN</h4>
+          <div className="nodes-container">
+            {getGroup('BESCHERMMODI - VERMIJDEN').map(renderModeNode)}
+          </div>
+        </div>
+        
+        <div className="smi-section coping-modes">
+          <h4 className="section-label">BESCHERMMODI - OVERGAVE</h4>
+          <div className="nodes-container">
+            {getGroup('BESCHERMMODI - OVERGAVE').map(renderModeNode)}
           </div>
         </div>
 
         {/* Bottom Level: Child Modes */}
         <div className="smi-section child-modes">
           <h4 className="section-label">KINDMODI</h4>
-          <div className="nodes-container row-wrap">
+          <div className="nodes-container">
             {getGroup('KINDMODI').map(renderModeNode)}
           </div>
         </div>
