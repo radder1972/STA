@@ -3,6 +3,7 @@ import ysqScoring from '../data/ysq-scoring.json'
 import smiScoring from '../data/smi-scoring.json'
 import YsqVisualizer from './YsqVisualizer'
 import SmiVisualizer from './SmiVisualizer'
+import ScoreChart from './ScoreChart'
 import './Visualizers.css'
 
 const basisbehoeftenMap = {
@@ -145,6 +146,9 @@ export default function Results({ type, answers, onRestart }) {
             })}
           </div>
         </div>
+
+        {/* Full Chart Overview */}
+        <ScoreChart scores={calculatedScores} />
 
         <div style={{ marginTop: '3rem', marginBottom: '2rem' }}>
           <h3 style={{ textAlign: 'center', marginBottom: '1.5rem', color: 'var(--text-color)', letterSpacing: '1px' }}>Volledig Overzicht per Categorie</h3>
