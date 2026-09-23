@@ -1,4 +1,4 @@
-import { DownloadIcon, RefreshIcon, ChartIcon } from './Icons'
+import { DownloadIcon, RefreshIcon, ChartIcon, TrophyIcon } from './Icons'
 import ysqScoring from '../data/ysq-scoring.json'
 import smiScoring from '../data/smi-scoring.json'
 import YsqVisualizer from './YsqVisualizer'
@@ -127,7 +127,9 @@ export default function Results({ type, answers, onRestart }) {
 
         {/* Top 3 Scores Highlight */}
         <div className="top-scores-section glass-panel" style={{ padding: '1.5rem', marginTop: '2rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)', background: 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%)' }}>
-          <h3 style={{ color: 'var(--primary)', marginBottom: '1.5rem', textAlign: 'center', letterSpacing: '1px' }}>🏆 Jouw Top 3 Hoogste Scores</h3>
+          <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--primary)', marginBottom: '1.5rem', letterSpacing: '1px' }}>
+            <TrophyIcon size={24} color="#fbbf24" /> Jouw Top 3 Hoogste Scores
+          </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {top3.map((score, i) => {
               const group = type === 'smi' ? smiModesMap[score.id]?.group : basisbehoeftenMap[score.id];

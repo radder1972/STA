@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
   Cell
 } from 'recharts';
+import { ChartIcon } from './Icons';
 
 export default function ScoreChart({ scores }) {
   // Sort scores from highest to lowest
@@ -44,8 +45,8 @@ export default function ScoreChart({ scores }) {
 
   return (
     <div className="glass-panel" style={{ padding: '1.5rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)' }}>
-      <h3 style={{ textAlign: 'center', marginBottom: '1.5rem', color: 'var(--text-color)', letterSpacing: '1px' }}>
-        📊 Grafiekoverzicht (Van Hoog naar Laag)
+      <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '1.5rem', color: 'var(--text-color)', letterSpacing: '1px' }}>
+        <ChartIcon size={24} color="var(--primary)" /> Grafiekoverzicht (Van Hoog naar Laag)
       </h3>
       
       <div style={{ width: '100%', height: data.length > 10 ? '600px' : '400px' }}>
