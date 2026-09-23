@@ -128,7 +128,7 @@ export default function Results({ type, answers, onRestart }) {
         {/* Top 3 Scores Highlight */}
         <div className="top-scores-section glass-panel" style={{ padding: '1.5rem', marginTop: '2rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)', background: 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%)' }}>
           <h3 style={{ color: 'var(--primary)', marginBottom: '1.5rem', textAlign: 'center', letterSpacing: '1px' }}>🏆 Jouw Top 3 Hoogste Scores</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {top3.map((score, i) => {
               const group = type === 'smi' ? smiModesMap[score.id]?.group : basisbehoeftenMap[score.id];
               return (
@@ -136,8 +136,8 @@ export default function Results({ type, answers, onRestart }) {
                   <div style={{ fontSize: '2rem', fontWeight: 'bold', color: i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : '#b45309', width: '30px', textAlign: 'center' }}>
                     #{i + 1}
                   </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 'bold', fontSize: '1.05rem', lineHeight: '1.2', marginBottom: '4px' }}>{score.name}</div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: 'bold', fontSize: '1.05rem', lineHeight: '1.2', marginBottom: '4px', wordWrap: 'break-word' }}>{score.name}</div>
                     <div style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>{group || 'Overig'}</div>
                   </div>
                   <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--text-color)' }}>{score.mean}</div>
