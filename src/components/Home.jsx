@@ -42,7 +42,7 @@ export default function Home({ onStart, completedTests, onViewResults }) {
 
       <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-main)', maxWidth: '600px', margin: '4rem auto 1rem', padding: '1.5rem', background: 'var(--card-bg)', borderRadius: '12px', border: '1px solid var(--border-color)', boxShadow: 'var(--glass-shadow)' }}>
         <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.1rem' }}>
-          <InfoIcon size={20} color="var(--accent, #6366f1)" /> Meer weten over Schematherapie?
+          <InfoIcon size={24} useGradient={true} /> Meer weten over Schematherapie?
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '0.95rem' }}>
           Wilt u meer achtergrondinformatie over de theorie achter schema's en modi, of zoekt u een geregistreerde behandelaar? Bezoek dan de officiële website van de <strong>Nederlandse Vereniging voor Schematherapie</strong>.
