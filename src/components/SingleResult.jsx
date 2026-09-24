@@ -124,6 +124,13 @@ export default function SingleResult({ type, answers }) {
           <ChartIcon size={28} /> {title} Resultaten
         </h2>
 
+        <p className="no-print">Je hebt {totalAnswered} vragen beantwoord.</p>
+
+        {/* Full Chart Overview at the top */}
+        <div style={{ marginTop: '2rem' }}>
+          <ScoreChart scores={calculatedScores} />
+        </div>
+
         {/* Top 3 Scores Highlight */}
         <div className="top-scores-section glass-panel" style={{ padding: '1.5rem', marginTop: '2rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)', background: 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%)' }}>
           <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--primary)', marginBottom: '1.5rem', letterSpacing: '1px' }}>
@@ -133,7 +140,7 @@ export default function SingleResult({ type, answers }) {
             {top3.map((score, i) => {
               const group = type === 'smi' ? smiModesMap[score.id]?.group : basisbehoeftenMap[score.id];
               return (
-                <div key={score.id} style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px', borderLeft: `4px solid ${i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : '#b45309'}` }}>
+                <div key={score.id} className="top-score-card" style={{ borderLeft: `4px solid ${i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : '#b45309'}` }}>
                   <div style={{ fontSize: '2rem', fontWeight: 'bold', color: i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : '#b45309', width: '30px', textAlign: 'center' }}>
                     #{i + 1}
                   </div>
@@ -146,11 +153,6 @@ export default function SingleResult({ type, answers }) {
               );
             })}
           </div>
-        </div>
-
-        {/* Full Chart Overview (Hidden in print to save space) */}
-        <div className="no-print">
-          <ScoreChart scores={calculatedScores} />
         </div>
 
         <div style={{ marginTop: '3rem', marginBottom: '2rem' }}>

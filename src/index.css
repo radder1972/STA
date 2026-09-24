@@ -304,6 +304,19 @@ body {
   }
 }
 
+.top-score-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(0,0,0,0.2);
+  padding: 1rem;
+  border-radius: 8px;
+}
+[data-theme="light"] .top-score-card {
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
 /* Print Styles */
 @media print {
   @page { margin: 1cm; }
@@ -320,7 +333,7 @@ body {
   }
   
   /* Remove glass effects and gray backgrounds */
-  .glass-panel, .smi-section, .ysq-section, .mode-node, .top-scores-section {
+  .glass-panel, .smi-section, .ysq-section, .mode-node, .top-scores-section, .top-score-card {
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
@@ -365,11 +378,11 @@ body {
     background: black !important;
   }
 
-  /* Multi-column layouts to save vertical space */
+  /* Multi-column layouts to save vertical space (Reverted, keep 1 line) */
   .nodes-container {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.5rem 2rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
   }
   
   /* Top 3 layout compact */
