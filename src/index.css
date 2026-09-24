@@ -344,6 +344,12 @@ body {
 }
 
 /* Print Styles */
+@media screen {
+  .print-only {
+    display: none !important;
+  }
+}
+
 @media print {
   @page { margin: 1.5cm; }
   

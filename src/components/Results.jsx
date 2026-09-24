@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SingleResult from './SingleResult'
+import CombinedAnalysis from './CombinedAnalysis'
 import { DownloadIcon, RefreshIcon, ArrowLeftIcon } from './Icons'
 import ysqData from '../data/ysq-s3.json'
 import smiData from '../data/smi.json'
@@ -7,6 +8,9 @@ import smiData from '../data/smi.json'
 export default function Results({ completedTests, onRestart, onBack }) {
   const hasYsq = !!completedTests.ysq;
   const hasSmi = !!completedTests.smi;
+  
+  // Default to combined if both exist, otherwise the one that exists
+  const [activeTab, setActiveTab] = useState(hasYsq && hasSmi ? 'combined' : (hasYsq ? 'ysq' : 'smi'));
 
   const handlePrint = () => {
     window.print();
@@ -92,9 +96,48 @@ export default function Results({ completedTests, onRestart, onBack }) {
         </div>
       </div>
 
+      {hasYsq && hasSmi && (
+        <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
+          <button 
+            className={`btn ${activeTab === 'ysq' ? 'btn-gradient' : 'btn-outline'}`}
+            onClick={() => setActiveTab('ysq')}
+          >
+            YSQ (Schema's)
+          </button>
+          <button 
+            className={`btn ${activeTab === 'smi' ? 'btn-gradient' : 'btn-outline'}`}
+            onClick={() => setActiveTab('smi')}
+          >
+            SMI (Modi)
+          </button>
+          <button 
+            className={`btn ${activeTab === 'combined' ? 'btn-gradient' : 'btn-outline'}`}
+            onClick={() => setActiveTab('combined')}
+          >
+            Gecombineerde Analyse
+          </button>
+        </div>
+      )}
+
       <div id="print-area">
-        {hasYsq && <SingleResult type="ysq" answers={completedTests.ysq} />}
-        {hasSmi && <div style={{pageBreakBefore: 'always'}}><SingleResult type="smi" answers={completedTests.smi} /></div>}
+        {/* Render based on active tab, but for print we always render all available tests */}
+        {hasYsq && (
+          <div className={activeTab === 'ysq' ? 'print-visible' : 'print-only'}>
+            <SingleResult type="ysq" answers={completedTests.ysq} />
+          </div>
+        )}
+        
+        {hasSmi && (
+          <div className={activeTab === 'smi' ? 'print-visible' : 'print-only'} style={{pageBreakBefore: 'always'}}>
+            <SingleResult type="smi" answers={completedTests.smi} />
+          </div>
+        )}
+        
+        {hasYsq && hasSmi && (
+          <div className={activeTab === 'combined' ? 'print-visible' : 'print-only'} style={{pageBreakBefore: 'always', marginTop: activeTab === 'combined' ? '0' : '4rem'}}>
+            <CombinedAnalysis ysqAnswers={completedTests.ysq} smiAnswers={completedTests.smi} />
+          </div>
+        )}
       </div>
     </div>
   )
