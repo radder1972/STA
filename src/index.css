@@ -196,6 +196,10 @@ body {
   margin-bottom: 2rem;
   line-height: 1.5;
   text-align: center;
+  min-height: 4.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .options-grid {
