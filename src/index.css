@@ -376,13 +376,17 @@ body {
     background: black !important;
   }
 
-  /* Multi-column layouts to save vertical space (Reverted, keep 1 line) */
-  .nodes-container {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0 !important;
+  /* Fix WebKit CSS Grid page breaking bug which creates massive blank pages */
+  .ysq-grid, .smi-layout, .smi-row {
+    display: block !important;
   }
   
+  .ysq-section, .smi-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 1rem !important;
+  }
+
   /* Make Top 3 ultra compact */
   .top-scores-section > div {
     display: flex !important;
