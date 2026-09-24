@@ -60,7 +60,7 @@ export default function Home({ onStart, completedTests, onViewResults }) {
 
       <div style={{ marginTop: '2rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '2rem auto 1rem', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
         <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-          <ShieldIcon size={18} color="var(--success, #10b981)" /> Privacy & Veiligheid Gewaarborgd
+          <ShieldIcon size={20} useGradient={true} /> Privacy & Veiligheid Gewaarborgd
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '0.9rem' }}>
           Deze webapplicatie draait <strong>volledig lokaal</strong> in de browser op uw eigen apparaat. Uw gevoelige gegevens, testantwoorden en resultaten worden <strong>niet</strong> verzonden, <strong>niet</strong> opgeslagen op een server en <strong>nooit</strong> gedeeld met derden. Zodra u het venster sluit, zijn alle gegevens direct gewist. Sla uw rapport daarom altijd op via de Print-functie (als PDF), druk het direct af, of exporteer het als JSON-databestand voor uw eigen archief.
