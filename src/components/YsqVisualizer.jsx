@@ -8,7 +8,9 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onSelect }) {
 
     const schemasWithImages = [
       'Abandonment', 'Mistrust', 'Emotional deprivation', 'Social isolation/Alienation', 'Defectiveness/unlovability',
-      'Practical incompetence/Dependence', 'Vulnerability to harm/illness', 'Enmeshment', 'Failure to achieve', 'Self-sacrifice'
+      'Practical incompetence/Dependence', 'Vulnerability to harm/illness', 'Enmeshment', 'Failure to achieve', 'Self-sacrifice',
+      'Admiration/Recognition-seeking', 'Pessimism/Worry', 'Emotional inhibition', 'Unrelenting Standards', 'Self-punitiveness',
+      'Entitlement/Superiority', 'Insufficient self-control/self-discipline', 'Subjugation'
     ];
     const hasImage = schemasWithImages.includes(schema.id);
     const imgName = hasImage ? `${schema.id.replace('/', '_')}.png` : null;
@@ -27,7 +29,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onSelect }) {
         </div>
         {hasImage && (
           <div style={{ marginBottom: '1rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <img src={`/images/schemas/${imgName}`} alt={schema.name} style={{ maxWidth: '90px', borderRadius: '8px', mixBlendMode: 'multiply' }} />
+            <img src={`/images/schemas/${imgName}`} alt={schema.name} className="schema-img" style={{ maxWidth: '90px' }} />
           </div>
         )}
         <div style={{ marginTop: 'auto' }}>

@@ -165,7 +165,9 @@ export default function SingleResult({ type, answers }) {
               
               const schemasWithImages = [
                 'Abandonment', 'Mistrust', 'Emotional deprivation', 'Social isolation/Alienation', 'Defectiveness/unlovability',
-                'Practical incompetence/Dependence', 'Vulnerability to harm/illness', 'Enmeshment', 'Failure to achieve', 'Self-sacrifice'
+                'Practical incompetence/Dependence', 'Vulnerability to harm/illness', 'Enmeshment', 'Failure to achieve', 'Self-sacrifice',
+                'Admiration/Recognition-seeking', 'Pessimism/Worry', 'Emotional inhibition', 'Unrelenting Standards', 'Self-punitiveness',
+                'Entitlement/Superiority', 'Insufficient self-control/self-discipline', 'Subjugation'
               ];
               const hasImage = type === 'ysq' && schemasWithImages.includes(score.id);
               const imgName = hasImage ? `${score.id.replace('/', '_')}.png` : null;
@@ -183,7 +185,7 @@ export default function SingleResult({ type, answers }) {
                   </div>
                   {hasImage && (
                     <div style={{ marginBottom: '1rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                      <img src={`/images/schemas/${imgName}`} alt={score.name} style={{ maxWidth: '110px', borderRadius: '8px', mixBlendMode: 'multiply' }} />
+                      <img src={`/images/schemas/${imgName}`} alt={score.name} className="schema-img" style={{ maxWidth: '110px' }} />
                     </div>
                   )}
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', width: '100%' }}>
