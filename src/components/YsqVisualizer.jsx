@@ -44,7 +44,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onSelect }) {
         marginBottom: '1.5rem',
         boxShadow: 'var(--glass-shadow)'
       }}>
-        <h4 className="section-label" style={{ color: color, marginTop: 0, marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', fontSize: '1.1rem' }}>{title}</h4>
+        <h4 className="section-label" style={{ color: color, marginTop: 0, marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', fontSize: '1.1rem', minHeight: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{title}</h4>
         <div className="nodes-container">
           {schemas.map(renderSchemaNode)}
         </div>
