@@ -88,6 +88,21 @@ export default function ScoreChart({ scores }) {
     );
   };
   
+  const CustomRadarDot = (props) => {
+    const { cx, cy, payload } = props;
+    const rankIndex = sortedScores.findIndex(s => s.name === payload.name);
+    
+    if (rankIndex >= 0 && rankIndex < 3) {
+      const rankColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : '#b45309';
+      return (
+        <circle cx={cx} cy={cy} r={6} fill={rankColor} stroke="#1e293b" strokeWidth={2} />
+      );
+    }
+    
+    // Normal point
+    return <circle cx={cx} cy={cy} r={3} fill="var(--primary)" />;
+  };
+  
   // Format data for Recharts
   const data = sortedScores.map(score => ({
     name: score.name,
@@ -130,7 +145,7 @@ export default function ScoreChart({ scores }) {
               <PolarGrid stroke="var(--border-color)" />
               <PolarAngleAxis dataKey="name" tick={<CustomTick />} />
               <PolarRadiusAxis angle={90} domain={[1, 6]} tick={{ fill: 'var(--text-muted)' }} />
-              <Radar name="Score" dataKey="mean" stroke="var(--primary)" fill="var(--primary)" fillOpacity={0.4} />
+              <Radar name="Score" dataKey="mean" stroke="var(--primary)" fill="var(--primary)" fillOpacity={0.4} dot={<CustomRadarDot />} />
               <Tooltip content={<CustomTooltip />} />
             </RadarChart>
           </ResponsiveContainer>
