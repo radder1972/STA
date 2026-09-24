@@ -169,8 +169,12 @@ export default function SingleResult({ type, answers }) {
                 'Admiration/Recognition-seeking', 'Pessimism/Worry', 'Emotional inhibition', 'Unrelenting Standards', 'Self-punitiveness',
                 'Entitlement/Superiority', 'Insufficient self-control/self-discipline', 'Subjugation'
               ];
-              const hasImage = type === 'ysq' && schemasWithImages.includes(score.id);
-              const imgName = hasImage ? `${score.id.replace('/', '_')}.png` : null;
+              const modesWithImages = ['kk', 'rk', 'ik', 'wi', 'oz', 'ob', 'vo', 'so', 'wk', 'pa', 'zh', 'gv', 'bk', 'ok'];
+              
+              const isSchemaImg = type === 'ysq' && schemasWithImages.includes(score.id);
+              const isModeImg = type === 'smi' && modesWithImages.includes(score.id);
+              const hasImage = isSchemaImg || isModeImg;
+              const imgUrl = isSchemaImg ? `/images/schemas/${score.id.replace('/', '_')}.png` : (isModeImg ? `/images/modes/${score.id}.png` : null);
 
               return (
                 <div 
@@ -185,7 +189,7 @@ export default function SingleResult({ type, answers }) {
                   </div>
                   {hasImage && (
                     <div style={{ marginBottom: '1rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                      <img src={`/images/schemas/${imgName}`} alt={score.name} className="schema-img" style={{ maxWidth: '110px' }} />
+                      <img src={imgUrl} alt={score.name} className="schema-img" style={{ maxWidth: '110px' }} />
                     </div>
                   )}
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', width: '100%' }}>

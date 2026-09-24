@@ -19,6 +19,11 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onSelect }) {
           <span style={{ paddingRight: '10px' }}>{mode.name}</span>
           {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
         </div>
+        
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem', marginTop: '0.5rem' }}>
+          <img src={`/images/modes/${mode.id}.png`} alt={mode.name} className="schema-img" style={{ maxWidth: '100px' }} />
+        </div>
+
         <div style={{ marginTop: 'auto' }}>
           <div className="mode-score">
           {mode.mean} <span className="high-score-badge">≥5: {mode.highScores}x</span>
