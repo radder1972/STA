@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
-import { ysqSchemaNamesMap } from './SingleResult'; // We need this exported or just copy it
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Cell, LabelList, Legend } from 'recharts';
 
 // Duplicated maps for simplicity, as they are not exported from SingleResult
