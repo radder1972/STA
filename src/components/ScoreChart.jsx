@@ -51,7 +51,7 @@ export default function ScoreChart({ scores }) {
           <BarChart
             data={data}
             layout="vertical"
-            margin={{ top: 5, right: 30, left: 20, bottom: 15 }}
+            margin={{ top: 10, right: 30, left: 20, bottom: 30 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={true} vertical={false} />
             <XAxis 
@@ -69,6 +69,7 @@ export default function ScoreChart({ scores }) {
               stroke="var(--text-color)"
               tick={{ fontSize: 12, fill: 'var(--text-main)' }}
               tickMargin={15}
+              padding={{ top: 10, bottom: 20 }}
             />
             <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             
