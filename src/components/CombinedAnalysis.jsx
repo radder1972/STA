@@ -27,6 +27,21 @@ const ysqNamesMap = {
   'Pessimism/Worry': 'Pessimisme', 'Emotional inhibition': 'Emotionele geremdheid', 'Unrelenting Standards': 'Meedogenloze normen', 'Self-punitiveness': 'Bestraffendheid'
 };
 
+const schemaToModesHypothesis = {
+  'Abandonment': { modes: ['wi', 'ob', 'bk'], desc: 'Mensen met sterke verlatingsangst klampen zich soms wanhopig vast (Willoze Inschikkelijke) of stoten anderen juist uit voorzorg af (Onthechte Beschermer / Boze Kind).' },
+  'Mistrust': { modes: ['wk', 'ob'], desc: 'Bij wantrouwen staat men vaak chronisch op scherp (Wantrouwende Overcontroleerder) of trekt men een muur op (Onthechte Beschermer).' },
+  'Defectiveness/unlovability': { modes: ['ob', 'wk', 'zh'], desc: 'Gevoelens van tekortschieten worden vaak weggedrukt (Onthechte Beschermer) of overgecompenseerd door perfectionisme of arrogantie (Zelfverheerlijker / Overcontroleerder).' },
+  'Emotional deprivation': { modes: ['ob', 'oz', 'bk'], desc: 'Een emotioneel tekort leidt vaak tot vermijding en zelfsus-gedrag (Onthechte Beschermer / Zelfsusser), of juist tot woede (Boze kind).' },
+  'Subjugation': { modes: ['wi', 'bk'], desc: 'Onderwerping vertaalt zich logischerwijs vaak in de Willoze Inschikkelijke modus, maar kan uiteindelijk omslaan in opgekropte woede (Boze Kind).' },
+  'Entitlement/Superiority': { modes: ['zh', 'pa', 'ok'], desc: 'Veeleisendheid is verbonden met de Zelfverheerlijker of Pest- en Aanval-modus, en hangt soms samen met Ongedisciplineerd gedrag.' },
+  'Insufficient self-control/self-discipline': { modes: ['ik', 'ok'], desc: 'Onvoldoende zelfcontrole is het fundament onder het Impulsieve en Ongedisciplineerde Kind.' },
+  'Unrelenting Standards': { modes: ['vo', 'wk'], desc: 'Meedogenloze normen worden meestal aangestuurd door de Veeleisende Ouder en in stand gehouden door de Wantrouwende Overcontroleerder.' },
+  'Self-punitiveness': { modes: ['so'], desc: 'Bestraffendheid correspondeert vrijwel 1-op-1 met de aanwezigheid van de Straffende Oudermodus.' },
+  'Failure to achieve': { modes: ['ob', 'vo'], desc: 'De angst om te mislukken activeert vaak de Veeleisende Ouder (die falen afstraft) en leidt dan tot de Onthechte Beschermer (opgeven uit zelfbescherming).' },
+  'Vulnerability to harm/illness': { modes: ['wk', 'wi'], desc: 'Kwetsbaarheid leidt vaak tot obsessieve waakzaamheid (Overcontroleerder) of vastklampen aan anderen (Willoze Inschikkelijke).' },
+  'Social isolation/Alienation': { modes: ['ob', 'oz'], desc: 'Sociale isolatie wordt over het algemeen in stand gehouden door de Onthechte Beschermer of Zelfsusser.' }
+};
+
 const calculateScores = (answers, scoringData, type) => {
   return Object.entries(scoringData).map(([key, items]) => {
     let sum = 0; let answeredCount = 0;
@@ -177,6 +192,62 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
               ))}
             </tbody>
           </table>
+        </div>
+      </div>
+      
+      {/* OPTION D: Clinical Hypothesis Engine */}
+      <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
+        <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', textAlign: 'center' }}>4. Klinische Hypothese (AI-Analyse)</h2>
+        <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>
+          Deze analyse combineert de theorie van Schematherapie met uw specifieke scores om gepersonaliseerde hypothesen te genereren en te valideren.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          {top3Ysq.map(schema => {
+            const hypothesis = schemaToModesHypothesis[schema.id];
+            if (!hypothesis) return null;
+            // Check if patient actually uses these modes
+            const usedModes = hypothesis.modes.map(mId => smiScores.find(s => s.id === mId)).filter(m => m && m.mean >= 3.0);
+            
+            return (
+              <div key={schema.id} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', borderLeft: '4px solid var(--primary)', border: '1px solid var(--border-color)' }}>
+                <h4 style={{ color: '#ef4444', marginBottom: '0.5rem' }}>Hypothese rondom schema: {schema.name}</h4>
+                <p style={{ color: 'var(--text-main)', fontStyle: 'italic', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: '1.6' }}>"{hypothesis.desc}"</p>
+                
+                {/* Visual Connection Network for this specific Schema */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem', alignItems: 'center' }}>
+                   <div style={{ padding: '0.5rem 1rem', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid #ef4444', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold' }}>{schema.name}</div>
+                   <ArrowRightIcon size={16} color="var(--text-muted)" />
+                   {hypothesis.modes.map(mId => {
+                     const modeData = smiScores.find(s => s.id === mId);
+                     const isActive = modeData && modeData.mean >= 3.0;
+                     return (
+                       <div key={mId} style={{ 
+                         padding: '0.5rem 1rem', 
+                         background: isActive ? 'rgba(245, 158, 11, 0.2)' : 'transparent', 
+                         border: `1px solid ${isActive ? '#f59e0b' : 'var(--border-color)'}`, 
+                         color: isActive ? 'var(--text-main)' : 'var(--text-muted)',
+                         borderRadius: '20px', fontSize: '0.85rem' 
+                       }}>
+                         {modeData ? modeData.name : mId} {isActive && '✓'}
+                       </div>
+                     );
+                   })}
+                </div>
+
+                {usedModes.length > 0 ? (
+                  <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
+                    <strong style={{ color: '#10b981' }}>✓ Bevestiging in data:</strong> 
+                    <span style={{ color: 'var(--text-main)' }}> U scoort inderdaad ook bovengemiddeld (≥3) op de theoretisch gekoppelde coping-modi: <strong>{usedModes.map(m => m.name).join(', ')}</strong>. Dit wijst op een sterk patroon.</span>
+                  </div>
+                ) : (
+                  <div style={{ background: 'rgba(148, 163, 184, 0.1)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(148, 163, 184, 0.3)' }}>
+                    <strong style={{ color: '#94a3b8' }}>○ Geen sterke bevestiging:</strong> 
+                    <span style={{ color: 'var(--text-muted)' }}> U lijkt deze standaard coping-modi niet exceptioneel hoog in te zetten. U hanteert waarschijnlijk een andere overlevingsstrategie voor dit schema, of het schema is wel aanwezig maar u copt er niet actief op deze manier mee.</span>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
       
