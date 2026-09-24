@@ -336,7 +336,7 @@ body {
 
 /* Print Styles */
 @media print {
-  @page { margin: 0.5cm; }
+  @page { margin: 1.5cm; }
   
   .no-print {
     display: none !important;
@@ -442,7 +442,7 @@ body {
     border: none !important;
     box-shadow: none !important;
   }
-  .top-scores-section, .chart-section, .top-score-card {
+  .top-scores-section, .chart-section, .top-score-card, .ysq-section, .smi-section {
     border: 1px solid #ccc !important;
   }
   .chart-section {
@@ -483,7 +483,7 @@ body {
   }
 
   .chart-wrapper {
-    height: 360px !important;
+    height: 480px !important;
   }
 
   /* Ensure details section starts on a new page */

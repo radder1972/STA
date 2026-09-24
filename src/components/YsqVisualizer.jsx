@@ -16,14 +16,27 @@ export default function YsqVisualizer({ groupedScores }) {
     </div>
   );
 
-  const renderSection = (title, groupName, color) => (
-    <div className="ysq-section" style={{ borderColor: color }}>
-      <h4 className="section-label" style={{ color: color }}>{title}</h4>
-      <div className="nodes-container">
-        {getGroup(groupName).map(renderSchemaNode)}
+  const renderSection = (title, groupName, color) => {
+    const schemas = getGroup(groupName);
+    if (schemas.length === 0) return null;
+
+    return (
+      <div className="ysq-section glass-panel" style={{ 
+        border: `1px solid var(--border-color)`, 
+        borderTop: `5px solid ${color}`,
+        borderRadius: '12px',
+        padding: '1.5rem',
+        background: 'var(--card-bg)',
+        marginBottom: '1.5rem',
+        boxShadow: 'var(--glass-shadow)'
+      }}>
+        <h4 className="section-label" style={{ color: color, marginTop: 0, marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', fontSize: '1.1rem' }}>{title}</h4>
+        <div className="nodes-container">
+          {schemas.map(renderSchemaNode)}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="visualizer-container">
