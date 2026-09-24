@@ -31,7 +31,13 @@ export default function Home({ onStart, completedTests, onViewResults }) {
           <h2>YSQ S3 {isYsqDone && <CheckIcon size={24} color="var(--success, #10b981)" style={{display: 'inline', verticalAlign: 'middle'}} />}</h2>
           <p style={{ fontWeight: 'bold' }}>Young Schema Questionnaire</p>
           <p style={{ fontSize: '0.9rem', textAlign: 'left', marginTop: '1rem' }}>
-            {isYsqDone ? "U heeft deze vragenlijst reeds ingevuld! Klik om eventueel opnieuw te beginnen." : "In deze vragenlijst volgt een aantal beweringen die men kan gebruiken om zichzelf te beschrijven. Lees elke bewering en kijk hoe goed deze u, in het afgelopen jaar, beschrijft. Als u niet zeker bent van uw antwoord, baseer uw antwoord dan op wat u emotioneel voelt en niet op wat u denkt dat waar is. Een aantal beweringen vragen naar uw relaties met uw ouders of partner. Als één of meerdere van deze personen inmiddels overleden zijn, baseer dan uw antwoord op hoe uw relatie was toen zij nog leefden. Als u momenteel geen partner heeft, maar wel partners in het verleden hebt gehad, baseer dan uw antwoord op uw meest recente betekenisvolle partner. Kies vervolgens het antwoord uit de opties 1-6 dat op u van toepassing is."}
+            {isYsqDone ? "U heeft deze vragenlijst reeds ingevuld! Klik om eventueel opnieuw te beginnen." : (
+              <>
+                <span style={{ display: 'block', marginBottom: '0.8rem' }}>In deze vragenlijst volgt een aantal beweringen die men kan gebruiken om zichzelf te beschrijven. Lees elke bewering en kijk hoe goed deze u, in het afgelopen jaar, beschrijft. Als u niet zeker bent van uw antwoord, baseer uw antwoord dan op wat u emotioneel voelt en niet op wat u denkt dat waar is.</span>
+                <span style={{ display: 'block', marginBottom: '0.8rem' }}>Een aantal beweringen vragen naar uw relaties met uw ouders of partner. Als één of meerdere van deze personen inmiddels overleden zijn, baseer dan uw antwoord op hoe uw relatie was toen zij nog leefden. Als u momenteel geen partner heeft, maar wel partners in het verleden hebt gehad, baseer dan uw antwoord op uw meest recente betekenisvolle partner.</span>
+                <span style={{ display: 'block' }}>Kies vervolgens het antwoord uit de opties 1-6 dat op u van toepassing is.</span>
+              </>
+            )}
           </p>
         </div>
         
