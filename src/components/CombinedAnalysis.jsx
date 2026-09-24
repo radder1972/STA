@@ -30,8 +30,7 @@ const ysqNamesMap = {
 const calculateScores = (answers, scoringData, type) => {
   return Object.entries(scoringData).map(([key, items]) => {
     let sum = 0; let answeredCount = 0;
-    items.forEach(item => {
-      const qId = item.question;
+    items.forEach(qId => {
       if (answers && answers[qId]) {
         sum += answers[qId];
         answeredCount++;
