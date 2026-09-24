@@ -49,7 +49,8 @@ export default function Home({ onStart, completedTests, onViewResults }) {
           <div style={{ fontSize: '0.9rem', textAlign: 'left', marginTop: '1rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
              {isSmiDone ? <span style={{ display: 'block' }}>U heeft deze vragenlijst reeds ingevuld! Klik om eventueel opnieuw te beginnen.</span> : (
               <>
-                <span style={{ display: 'block', marginBottom: '1.5rem' }}>In deze vragenlijst staan uitspraken die mensen kunnen gebruiken om zichzelf te beschrijven. We willen u vragen van deze uitspraken de FREQUENTIE te beoordelen; dus hoe vaak u over het algemeen van de uitspraak overtuigd bent of hoe vaak het zo voelde.</span>
+                <span style={{ display: 'block', marginBottom: '0.8rem' }}>In deze vragenlijst staan uitspraken die mensen kunnen gebruiken om zichzelf te beschrijven. We willen u vragen van deze uitspraken de FREQUENTIE te beoordelen; dus hoe vaak u over het algemeen van de uitspraak overtuigd bent of hoe vaak het zo voelde.</span>
+                <span style={{ display: 'block', marginBottom: '1.5rem' }}>Kies vervolgens het antwoord uit de opties 1-6 dat op u van toepassing is.</span>
                 <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 'auto' }}>© 2007 Young, J., Arntz, A., Atkinson, T., Lobbestael, J., Weishaar, M., van Vreeswijk, M en Klokman, J.</span>
               </>
              )}
