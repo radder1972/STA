@@ -34,8 +34,8 @@ export default function Home({ onStart, completedTests, onViewResults }) {
 
       {hasAnyResult && (
         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-          <button className="btn" onClick={onViewResults} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.2rem', padding: '1rem 2rem' }}>
-            <ChartIcon size={24} /> Bekijk (Gecombineerd) Rapport
+          <button className="btn btn-gradient" onClick={onViewResults} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.2rem', padding: '1rem 2rem' }}>
+            <ChartIcon size={24} color="white" /> Bekijk (Gecombineerd) Rapport
           </button>
         </div>
       )}

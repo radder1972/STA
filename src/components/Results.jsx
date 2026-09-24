@@ -18,8 +18,8 @@ export default function Results({ completedTests, onRestart, onBack }) {
         </button>
         
         <div style={{ display: 'flex', gap: '1rem' }}>
-          <button className="btn" onClick={handlePrint} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <DownloadIcon size={18} /> Sla op als PDF / Print
+          <button className="btn btn-gradient" onClick={handlePrint} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <DownloadIcon size={18} color="white" /> Sla op als PDF / Print
           </button>
           <button className="btn btn-outline" onClick={onRestart} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <RefreshIcon size={18} /> Alles Wissen

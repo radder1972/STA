@@ -78,6 +78,19 @@ body {
   color: var(--text-main);
 }
 
+.btn-gradient {
+  background: linear-gradient(to right, #818cf8, #34d399);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(52, 211, 153, 0.2);
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(to right, #6366f1, #10b981);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 211, 153, 0.3);
+}
+
 .btn-outline:hover {
   background: rgba(255, 255, 255, 0.05);
   transform: translateY(-2px);
