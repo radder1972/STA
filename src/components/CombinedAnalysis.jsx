@@ -210,30 +210,11 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         </div>
       </div>
 
-      {/* OPTION B: Domain Comparison Chart */}
-      <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-        <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', textAlign: 'center' }}>3. Gecombineerde Domeinen Grafiek</h2>
-        <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>
-          Hoe verhouden de Schema-domeinen (YSQ) zich tot gerelateerde Modi-groepen (SMI)?
-        </p>
-        <div style={{ width: '100%', overflowX: 'auto', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ width: '800px', height: '400px' }}>
-            <BarChart width={800} height={400} data={domainAverages} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" vertical={false} />
-              <XAxis dataKey="name" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
-              <YAxis domain={[1, 6]} tick={{ fill: 'var(--text-muted)' }} />
-              <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} contentStyle={{ background: 'rgba(30, 41, 59, 0.9)', border: 'none', borderRadius: '8px', color: '#fff' }} />
-              <Legend wrapperStyle={{ paddingTop: '20px' }} />
-              <Bar dataKey="ysq" name="Schema Domein (YSQ)" fill="#ef4444" radius={[4, 4, 0, 0]} isAnimationActive={false} />
-              <Bar dataKey="smi" name="Gerelateerde Modi (SMI)" fill="#f59e0b" radius={[4, 4, 0, 0]} isAnimationActive={false} />
-            </BarChart>
-          </div>
-        </div>
-      </div>
+
 
       {/* OPTION C: Matrix Table */}
       <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-        <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', textAlign: 'center' }}>4. Kruisverbanden Matrix</h2>
+        <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', textAlign: 'center' }}>3. Kruisverbanden Matrix</h2>
         <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '1rem' }}>
           Ruwe data vergelijking: zijn de hoogste schema's terug te zien in het modusgebruik?
         </p>
