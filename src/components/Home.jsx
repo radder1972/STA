@@ -1,4 +1,4 @@
-import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon } from './Icons'
+import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon } from './Icons'
 
 export default function Home({ onStart, completedTests, onViewResults }) {
   const isYsqDone = !!completedTests.ysq;
@@ -40,7 +40,25 @@ export default function Home({ onStart, completedTests, onViewResults }) {
         </div>
       )}
 
-      <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '4rem auto 1rem', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
+      <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-main)', maxWidth: '600px', margin: '4rem auto 1rem', padding: '1.5rem', background: 'var(--card-bg)', borderRadius: '12px', border: '1px solid var(--border-color)', boxShadow: 'var(--glass-shadow)' }}>
+        <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.1rem' }}>
+          <InfoIcon size={20} color="var(--accent, #6366f1)" /> Meer weten over Schematherapie?
+        </p>
+        <p style={{ lineHeight: '1.6', fontSize: '0.95rem' }}>
+          Wilt u meer achtergrondinformatie over de theorie achter schema's en modi, of zoekt u een geregistreerde behandelaar? Bezoek dan de officiële website van de <strong>Nederlandse Vereniging voor Schematherapie</strong>.
+        </p>
+        <a 
+          href="https://www.schematherapie.nl/home" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="btn btn-outline"
+          style={{ display: 'inline-block', marginTop: '1rem', textDecoration: 'none' }}
+        >
+          Naar schematherapie.nl
+        </a>
+      </div>
+
+      <div style={{ marginTop: '2rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '2rem auto 1rem', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
         <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold' }}>
           <ShieldIcon size={18} color="var(--success, #10b981)" /> Privacy & Veiligheid Gewaarborgd
         </p>
