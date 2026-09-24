@@ -336,7 +336,7 @@ body {
 
 /* Print Styles */
 @media print {
-  @page { margin: 1cm; }
+  @page { margin: 0.5cm; }
   
   .no-print {
     display: none !important;
@@ -350,12 +350,36 @@ body {
   }
   
   /* Remove glass effects and gray backgrounds */
-  .glass-panel, .smi-section, .ysq-section, .mode-node, .top-scores-section, .top-score-card, .visualizer-container {
+  .glass-panel, .smi-section, .ysq-section, .mode-node, .visualizer-container {
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Make boxes visible and compact in print */
+  .results-box {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+  }
+  .top-scores-section, .chart-section, .top-score-card {
+    border: 1px solid #ccc !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .chart-section {
+    padding: 1rem !important;
+    margin-top: 1rem !important;
+  }
+  .top-scores-section {
+    padding: 1rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .top-scores-section h3 {
+    margin-bottom: 1.5rem !important;
   }
 
   /* Compact headings */
@@ -411,36 +435,55 @@ body {
     margin-bottom: 1rem !important;
   }
 
-  /* Make borders solid in print so boxes are visible */
+  /* Make borders solid in print so boxes are visible and reduce all margins/paddings */
+  .results-box {
+    padding: 0 !important;
+    margin-top: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
   .top-scores-section, .chart-section, .top-score-card {
     border: 1px solid #ccc !important;
   }
   .chart-section {
-    padding: 1rem !important;
-    margin-top: 0 !important;
+    padding: 0.5rem !important;
+    margin-top: 0.5rem !important;
   }
   .top-scores-section {
-    padding: 1rem !important;
+    padding: 0.5rem !important;
+    margin-top: 0.5rem !important;
     margin-bottom: 0.5rem !important;
+  }
+  .top-scores-section h3 {
+    margin-bottom: 0.5rem !important;
+    font-size: 1.2rem !important;
   }
 
   /* Compact Top 3 in print mode */
   .top-score-card {
     flex: 1 !important;
-    padding: 0.5rem !important;
+    padding: 0.2rem !important;
     margin-bottom: 0 !important;
   }
   .top-score-card > div:first-child {
-    font-size: 1.5rem !important;
-    margin-bottom: 0.5rem !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+  .top-score-card > div:nth-child(2) > div:first-child {
+    font-size: 0.8rem !important;
+    margin-bottom: 0 !important;
+  }
+  .top-score-card > div:nth-child(2) > div:last-child {
+    font-size: 0.6rem !important;
+    margin-bottom: 0.2rem !important;
   }
   .top-score-card > div:last-child {
-    font-size: 1.2rem !important;
+    font-size: 1rem !important;
     padding: 0 0.5rem !important;
   }
 
   .chart-wrapper {
-    height: 500px !important;
+    height: 360px !important;
   }
 
   /* Ensure details section starts on a new page */
