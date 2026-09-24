@@ -1,6 +1,8 @@
 import React from 'react'
 import SingleResult from './SingleResult'
 import { DownloadIcon, RefreshIcon, ArrowLeftIcon } from './Icons'
+import ysqData from '../data/ysq-s3.json'
+import smiData from '../data/smi.json'
 
 export default function Results({ completedTests, onRestart, onBack }) {
   const hasYsq = !!completedTests.ysq;
@@ -11,9 +13,24 @@ export default function Results({ completedTests, onRestart, onBack }) {
   }
 
   const handleExport = () => {
+    // Enrich JSON data with question text
+    const enrichedTests = {};
+    if (completedTests.ysq) {
+      enrichedTests.ysq = Object.keys(completedTests.ysq).map(qId => {
+        const question = ysqData.find(q => q.id.toString() === qId.toString());
+        return { id: qId, score: completedTests.ysq[qId], text: question ? question.text : '' };
+      });
+    }
+    if (completedTests.smi) {
+      enrichedTests.smi = Object.keys(completedTests.smi).map(qId => {
+        const question = smiData.find(q => q.id.toString() === qId.toString());
+        return { id: qId, score: completedTests.smi[qId], text: question ? question.text : '' };
+      });
+    }
+
     const exportData = {
       timestamp: new Date().toISOString(),
-      completedTests
+      results: enrichedTests
     };
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportData, null, 2));
     const downloadAnchorNode = document.createElement('a');
@@ -25,17 +42,21 @@ export default function Results({ completedTests, onRestart, onBack }) {
   }
 
   const handleExportCSV = () => {
-    let csvContent = "Vragenlijst,Vraag_ID,Antwoord_Score\n";
+    let csvContent = "Vragenlijst,Vraag_ID,Score,Vraag_Tekst\n";
     
     if (completedTests.ysq) {
       Object.entries(completedTests.ysq).forEach(([qId, score]) => {
-        csvContent += `YSQ,${qId},${score}\n`;
+        const question = ysqData.find(q => q.id.toString() === qId.toString());
+        const text = question ? `"${question.text.replace(/"/g, '""')}"` : "";
+        csvContent += `YSQ,${qId},${score},${text}\n`;
       });
     }
     
     if (completedTests.smi) {
       Object.entries(completedTests.smi).forEach(([qId, score]) => {
-        csvContent += `SMI,${qId},${score}\n`;
+        const question = smiData.find(q => q.id.toString() === qId.toString());
+        const text = question ? `"${question.text.replace(/"/g, '""')}"` : "";
+        csvContent += `SMI,${qId},${score},${text}\n`;
       });
     }
     
