@@ -29,15 +29,21 @@ export default function ScoreChart({ scores }) {
   });
 
   const categoryColors = {
+    // YSQ Domains
     'Verbondenheid & Veiligheid': '#ef4444',
     'Autonomie': '#f97316',
-    'Zelfexpressie & Spontaniteit': '#eab308',
-    'Grenzen & Zelfcontrole': '#22c55e',
-    'Spel & Ontspanning': '#3b82f6',
-    'Kindmodi': '#ef4444', 
-    'Oudermodi': '#8b5cf6',
-    'Copingmodi': '#f59e0b',
-    'Gezonde modi': '#10b981',
+    'Zelfexpressie': '#eab308',
+    'Realistische Grenzen': '#22c55e',
+    'Spontaniteit & Spel': '#3b82f6',
+    
+    // SMI Modes
+    'KINDMODI': '#ef4444', 
+    'BESCHERMMODI - OVERGAVE': '#f59e0b',
+    'BESCHERMMODI - VERMIJDEN': '#d97706',
+    'BESCHERMMODI - OMKERING': '#b45309',
+    'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI': '#8b5cf6',
+    'FUNCTIONELE MODI': '#10b981',
+    
     'Overig': '#94a3b8'
   };
 
