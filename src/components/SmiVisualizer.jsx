@@ -11,7 +11,8 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onSelect }) {
       <div 
         key={mode.id} 
         className="mode-node glass-panel interactive-card" 
-        onClick={() => onSelect && onSelect(mode.name)}
+        onMouseEnter={() => onSelect && onSelect(mode.name)}
+        onMouseLeave={() => onSelect && onSelect(null)}
         style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}) }}
       >
         <div className="mode-name" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', minHeight: '3.2rem' }}>
