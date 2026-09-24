@@ -25,22 +25,24 @@ export const schemaDescriptions = {
 
   // SMI Modes
   // Child Modes
-  'Kwetsbare kindmodus': 'Voelt zich eenzaam, verlaten, misbruikt, onbegrepen, niet gesteund, angstig of kwetsbaar. Draagt de pijn van vroege onvervulde behoeften.',
-  'Boze kindmodus': 'Voelt zich gefrustreerd, boos of woedend, omdat in basisbehoeften niet wordt voorzien. Kan opstandig of veeleisend overkomen.',
-  'Impulsieve/ongedisciplineerde kindmodus': 'Handelt impulsief op basis van onmiddellijke verlangens zonder rekening te houden met mogelijke gevolgen. Heeft moeite met grenzen.',
-  'Gelukkige kindmodus': 'Voelt zich geliefd, veilig, begrepen en speels. In deze modus zijn je basisbehoeften vervuld.',
+  'Kwetsbare kind': 'Voelt zich eenzaam, verlaten, misbruikt, onbegrepen, niet gesteund, angstig of kwetsbaar. Draagt de pijn van vroege onvervulde behoeften.',
+  'Razende kind': 'Ervaart intense woede of razernij, vaak als uiting van diepe pijn of het gevoel oneerlijk behandeld te zijn. Verliest de controle over emoties.',
+  'Boze kind': 'Voelt zich gefrustreerd, boos of koppig, omdat in basisbehoeften niet wordt voorzien. Kan opstandig, passief-agressief of veeleisend overkomen.',
+  'Impulsieve kind': 'Handelt impulsief op basis van onmiddellijke verlangens zonder rekening te houden met mogelijke gevolgen of gevoelens van anderen.',
+  'Ongedisciplineerde kind': 'Kan zichzelf niet aanzetten tot saaie of routinematige taken, geeft snel op en heeft grote moeite met frustratietolerantie.',
 
-  // Coping Modes
-  'Willige overgavemodus': 'Gedraagt zich passief, afhankelijk en onderdanig. Accepteert het schema als waar en handelt ernaar (bijv. toelaten dat anderen je slecht behandelen).',
-  'Onthechte beschermer': 'Sluit emoties af en isoleert zich psychologisch om pijn te vermijden. Kan zich leeg, verveeld of afgesneden van anderen voelen.',
-  'Zelfsussende beschermer': 'Zoekt afleiding door verslavende of dwangmatige activiteiten (gamen, eten, werk, middelen) om pijnlijke emoties niet te voelen.',
-  'Boze beschermer': 'Houdt anderen op afstand door boos, dreigend of cynisch gedrag te vertonen om kwetsbaarheid te verbergen.',
-  'Overcompenseerder': 'Gedraagt zich precies het tegenovergestelde van het onderliggende schema. Bijvoorbeeld: superieur doen om minderwaardigheid te verbergen, of controlerend zijn uit angst om de controle te verliezen.',
+  // Coping Modes (Overgave, Vermijden, Omkering)
+  'Willoze inschikkelijke': 'Gedraagt zich passief, afhankelijk en onderdanig. Accepteert het schema als waar en tolereert (emotioneel) misbruik om conflict of verlating te voorkomen.',
+  'Onthechte beschermer': 'Sluit emoties af en isoleert zich psychologisch om pijn te vermijden. Voelt zich vaak leeg, robotachtig, verveeld of afgesneden van anderen.',
+  'Onthechte zelfsusser': 'Zoekt afleiding door dwangmatige, sussende of verslavende activiteiten (gamen, eten, werk, middelen) om pijnlijke emoties niet te hoeven voelen.',
+  'Wantrouwende overcontroleerder': 'Houdt voortdurend de wacht tegen vermeende dreigingen. Controleert overmatig situaties of anderen om zichzelf te beschermen tegen kwaad.',
+  'Zelfverheerlijker': 'Gedraagt zich superieur, grandioos of competitief. Gebruikt status of macht om onderliggende gevoelens van minderwaardigheid of zwakte te overschreeuwen.',
+  'Pest en aanval': 'Valt anderen (psychologisch of fysiek) aan om te voorkomen dat men zelf gekwetst of gecontroleerd wordt. Handelt vanuit de overtuiging "eten of gegeten worden".',
 
   // Parent Modes
-  'Veeleisende oudermodus': 'Zet je voortdurend onder druk om aan onrealistisch hoge normen te voldoen en vindt dat alles perfect moet zijn.',
-  'Straffende oudermodus': 'Is hard, kritisch en bestraffend naar jezelf. Roept gevoelens op van schaamte, zelfhaat en de overtuiging dat je straf verdient.',
+  'Veeleisende ouder': 'Zet je voortdurend onder druk om aan onrealistisch hoge normen te voldoen (perfectie, altijd voor anderen zorgen) en vindt dat het nooit goed genoeg is.',
+  'Straffende ouder': 'Is hard, kritisch en bestraffend naar jezelf. Roept gevoelens op van schaamte, zelfhaat en de diepe overtuiging dat je straf verdient voor fouten.',
 
   // Healthy Adult
-  'Gezonde volwassene': 'Zorgt voor het kwetsbare kind, stelt grenzen aan het boze kind en de beschermmodi, en vecht tegen de disfunctionele oudermodi. Staat in contact met gevoelens en handelt rationeel en effectief.'
+  'Gezonde volwassene': 'Zorgt voor het kwetsbare kind, stelt grenzen aan het boze/impulsieve kind en de beschermmodi, en bestrijdt de disfunctionele oudermodi. Handelt rationeel, gezond en effectief.'
 };
