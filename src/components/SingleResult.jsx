@@ -27,6 +27,27 @@ const basisbehoeftenMap = {
   'Self-punitiveness': 'Spontaniteit & Spel'
 };
 
+const ysqSchemaNamesMap = {
+  'Abandonment': 'Verlating / Instabiliteit',
+  'Mistrust': 'Wantrouwen / Misbruik',
+  'Defectiveness/unlovability': 'Tekortschieten / Schaamte',
+  'Emotional deprivation': 'Emotioneel tekort',
+  'Social isolation/Alienation': 'Sociale isolatie / Vervreemding',
+  'Practical incompetence/Dependence': 'Afhankelijkheid / Incompetentie',
+  'Vulnerability to harm/illness': 'Kwetsbaarheid voor ziekte en gevaar',
+  'Enmeshment': 'Kluwen / Onderontwikkeld zelf',
+  'Failure to achieve': 'Mislukken',
+  'Insufficient self-control/self-discipline': 'Onvoldoende zelfcontrole',
+  'Entitlement/Superiority': 'Veeleisendheid / Grandiositeit',
+  'Subjugation': 'Onderwerping',
+  'Self-sacrifice': 'Zelfopoffering',
+  'Admiration/Recognition-seeking': 'Goedkeuring / Erkenning zoeken',
+  'Pessimism/Worry': 'Negativisme / Pessimisme',
+  'Emotional inhibition': 'Emotionele geremdheid',
+  'Unrelenting Standards': 'Meedogenloze normen',
+  'Self-punitiveness': 'Bestraffendheid'
+};
+
 const smiModesMap = {
   'kk': { name: 'Kwetsbare kind', group: 'KINDMODI' },
   'rk': { name: 'Razende kind', group: 'KINDMODI' },
@@ -65,10 +86,12 @@ export default function SingleResult({ type, answers }) {
     
     const mean = answeredCount > 0 ? (sum / answeredCount).toFixed(2) : 0;
     
-    // Map SMI abbreviations to full names
+    // Map abbreviations/English to Dutch names
     let displayKey = key;
     if (type === 'smi' && smiModesMap[key]) {
       displayKey = smiModesMap[key].name;
+    } else if (type === 'ysq' && ysqSchemaNamesMap[key]) {
+      displayKey = ysqSchemaNamesMap[key];
     }
     
     return { id: key, name: displayKey, mean, highScores, totalItems: items.length }
