@@ -333,14 +333,12 @@ body {
   }
   
   /* Remove glass effects and gray backgrounds */
-  .glass-panel, .smi-section, .ysq-section, .mode-node, .top-scores-section, .top-score-card {
+  .glass-panel, .smi-section, .ysq-section, .mode-node, .top-scores-section, .top-score-card, .visualizer-container {
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
   }
 
   /* Compact headings */
@@ -385,21 +383,27 @@ body {
     gap: 0 !important;
   }
   
-  /* Top 3 layout compact */
-  .top-scores-section > div {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 1rem !important;
+  /* Space between sections */
+  .visualizer-container {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
   }
-  .top-scores-section > div > div {
-    flex: 1 !important;
-    padding: 0.5rem !important;
-    border: 1px solid #eee !important;
-    border-left: 3px solid black !important;
+  
+  .top-scores-section {
+    margin-bottom: 2rem !important;
   }
   
   /* Hide unnecessary text */
   p { display: none !important; }
+
+  /* Fix recharts SVG colors in print */
+  .recharts-text, .recharts-cartesian-axis-tick-value {
+    fill: black !important;
+  }
+  .recharts-cartesian-axis-line, .recharts-cartesian-axis-tick-line {
+    stroke: black !important;
+  }
 
   * {
     -webkit-print-color-adjust: exact !important;
