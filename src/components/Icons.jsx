@@ -1,19 +1,26 @@
 import React from 'react';
 
-const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5 }) => (
+const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5, color="currentColor", useGradient = false, ...rest }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     width={size}
     height={size}
     fill="none"
-    stroke="currentColor"
+    stroke={useGradient ? "url(#blueGreenGrad)" : color}
     strokeWidth={strokeWidth}
     strokeLinecap="round"
     strokeLinejoin="round"
     className={`custom-icon ${className}`}
-    style={{ transition: 'all 0.3s ease' }}
+    style={{ transition: 'all 0.3s ease', ...rest.style }}
+    {...rest}
   >
+    <defs>
+      <linearGradient id="blueGreenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#818cf8" />
+        <stop offset="100%" stopColor="#34d399" />
+      </linearGradient>
+    </defs>
     {children}
   </svg>
 );

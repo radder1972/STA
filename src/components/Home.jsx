@@ -14,7 +14,7 @@ export default function Home({ onStart, completedTests, onViewResults }) {
       
       <div className="home-cards">
         <div className={`card glass-panel ${isYsqDone ? 'completed-card' : ''}`} onClick={() => onStart('ysq')}>
-          <ClipboardIcon size={48} color={isYsqDone ? 'var(--success, #10b981)' : 'var(--primary)'} style={{ margin: '0 auto 1rem', display: 'block' }} />
+          <ClipboardIcon size={48} useGradient={!isYsqDone} color={isYsqDone ? 'var(--success, #10b981)' : 'currentColor'} style={{ margin: '0 auto 1rem', display: 'block' }} />
           <h2>YSQ S3 {isYsqDone && <CheckIcon size={24} color="var(--success, #10b981)" style={{display: 'inline', verticalAlign: 'middle'}} />}</h2>
           <p style={{ fontWeight: 'bold' }}>Young Schema Questionnaire</p>
           <p style={{ fontSize: '0.9rem', textAlign: 'left', marginTop: '1rem' }}>
@@ -23,7 +23,7 @@ export default function Home({ onStart, completedTests, onViewResults }) {
         </div>
         
         <div className={`card glass-panel ${isSmiDone ? 'completed-card' : ''}`} onClick={() => onStart('smi')}>
-          <BrainIcon size={48} color={isSmiDone ? 'var(--success, #10b981)' : 'var(--accent)'} style={{ margin: '0 auto 1rem', display: 'block' }} />
+          <BrainIcon size={48} useGradient={!isSmiDone} color={isSmiDone ? 'var(--success, #10b981)' : 'currentColor'} style={{ margin: '0 auto 1rem', display: 'block' }} />
           <h2>SMI {isSmiDone && <CheckIcon size={24} color="var(--success, #10b981)" style={{display: 'inline', verticalAlign: 'middle'}} />}</h2>
           <p style={{ fontWeight: 'bold' }}>Schema Mode Inventory</p>
           <p style={{ fontSize: '0.9rem', textAlign: 'left', marginTop: '1rem' }}>
