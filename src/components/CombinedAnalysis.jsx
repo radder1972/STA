@@ -169,18 +169,28 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
       <div className="glass-panel print-avoid-break" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
         <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', textAlign: 'center' }}>2. Directe Top 3 Connectie</h2>
         <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>
-          De meest verhoogde schema's triggeren vaak direct de meest gehanteerde coping-modi. 
+          Voor uw meest verhoogde schema's laten we hier de hoogst scorende, theoretisch gekoppelde modus (SMI) zien.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
             <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'center', margin: 0 }}>Kwetsbaarheid (Top 3 Schema's)</h4>
             <div style={{ flex: '0 0 40px' }}></div>
-            <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'center', margin: 0 }}>Reactie (Top 3 Coping-Modi)</h4>
+            <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'center', margin: 0 }}>Reactie (Hoogste Gekoppelde Modus)</h4>
           </div>
 
           {[0, 1, 2].map(i => {
             const schema = top3Ysq[i];
-            const mode = top3Coping[i];
+            
+            // Vind de hoogst scorende modus die theorethisch aan dit schema gekoppeld is
+            let topLinkedMode = null;
+            if (schema) {
+              const hypothesis = schemaToModesHypothesis[schema.id];
+              if (hypothesis && hypothesis.modes) {
+                const linkedModesScores = smiScores.filter(s => hypothesis.modes.includes(s.id));
+                topLinkedMode = linkedModesScores[0]; // Al gesorteerd op mean descending
+              }
+            }
+
             const bg = ['rgba(251, 191, 36, 0.15)', 'rgba(148, 163, 184, 0.15)', 'rgba(180, 83, 9, 0.15)'][i] || 'transparent';
             const border = ['rgba(251, 191, 36, 0.4)', 'rgba(148, 163, 184, 0.4)', 'rgba(180, 83, 9, 0.4)'][i] || 'transparent';
             const iconColor = ['#fbbf24', '#94a3b8', '#b45309'][i] || 'var(--primary)';
@@ -202,7 +212,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
 
                 {/* Right Box */}
                 <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '4rem', background: bg, padding: '0.8rem 1.2rem', borderRadius: '12px', border: `1px solid ${border}` }}>
-                  <strong style={{ lineHeight: '1.2', fontSize: '1.05rem' }}>{mode?.name || '-'}</strong> <span style={{ fontWeight: 'bold' }}>{mode?.mean || '-'}</span>
+                  <strong style={{ lineHeight: '1.2', fontSize: '1.05rem' }}>{topLinkedMode?.name || 'Geen sterke link gevonden'}</strong> <span style={{ fontWeight: 'bold' }}>{topLinkedMode?.mean || '-'}</span>
                 </div>
               </div>
             );
