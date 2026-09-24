@@ -126,11 +126,6 @@ export default function SingleResult({ type, answers }) {
 
         <p className="no-print">Je hebt {totalAnswered} vragen beantwoord.</p>
 
-        {/* Full Chart Overview at the top */}
-        <div style={{ marginTop: '2rem' }}>
-          <ScoreChart scores={calculatedScores} />
-        </div>
-
         {/* Top 3 Scores Highlight */}
         <div className="top-scores-section glass-panel" style={{ padding: '1.5rem', marginTop: '2rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)', background: 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%)' }}>
           <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--primary)', marginBottom: '1.5rem', letterSpacing: '1px' }}>
@@ -155,7 +150,12 @@ export default function SingleResult({ type, answers }) {
           </div>
         </div>
 
-        <div style={{ marginTop: '3rem', marginBottom: '2rem' }}>
+        {/* Full Chart Overview */}
+        <div className="chart-section" style={{ marginTop: '2rem' }}>
+          <ScoreChart scores={calculatedScores} />
+        </div>
+
+        <div className="details-section" style={{ marginTop: '3rem', marginBottom: '2rem' }}>
           <h3 style={{ textAlign: 'center', marginBottom: '1.5rem', color: 'var(--text-color)', letterSpacing: '1px' }}>Volledig Overzicht per Categorie</h3>
           {type === 'ysq' ? (
             <YsqVisualizer groupedScores={groupedScores} />

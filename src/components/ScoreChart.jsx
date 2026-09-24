@@ -7,7 +7,8 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Cell
+  Cell,
+  LabelList
 } from 'recharts';
 import { ChartIcon } from './Icons';
 
@@ -73,6 +74,7 @@ export default function ScoreChart({ scores }) {
             <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             
             <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={20}>
+              <LabelList dataKey="score" position="right" fill="var(--text-main)" fontSize={11} fontWeight="bold" />
               {data.map((entry, index) => (
                 <Cell 
                   key={`cell-${index}`} 

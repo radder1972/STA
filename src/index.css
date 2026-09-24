@@ -383,6 +383,12 @@ body {
     gap: 0 !important;
   }
   
+  /* Ensure details section starts on a new page */
+  .details-section {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+  
   /* Space between sections */
   .visualizer-container {
     margin-top: 2rem !important;
