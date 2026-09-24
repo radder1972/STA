@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BarChart,
   Bar,
@@ -38,8 +38,28 @@ export default function ScoreChart({ scores }) {
       .sort((a, b) => b.score - a.score); // Sort highest first
   }, [scores]);
 
-  // Sort scores from highest to lowest for BarChart
-  const sortedScores = [...scores].sort((a, b) => b.mean - a.mean);
+  const [sortBy, setSortBy] = useState('score');
+
+  // Sort scores from highest to lowest for overall ranking (Top 3)
+  const overallRankedScores = React.useMemo(() => [...scores].sort((a, b) => b.mean - a.mean), [scores]);
+  
+  // Sort scores for BarChart display based on toggle
+  const displayScores = React.useMemo(() => {
+    let sorted = [...scores];
+    if (sortBy === 'score') {
+      sorted.sort((a, b) => b.mean - a.mean);
+    } else {
+      sorted.sort((a, b) => {
+        const catA = a.category || 'Overig';
+        const catB = b.category || 'Overig';
+        if (catA !== catB) {
+          return catA.localeCompare(catB);
+        }
+        return b.mean - a.mean;
+      });
+    }
+    return sorted;
+  }, [scores, sortBy]);
   
   // Sort scores by category for RadarChart to group related items
   const radarData = [...scores].sort((a, b) => {
@@ -73,7 +93,7 @@ export default function ScoreChart({ scores }) {
     const color = item ? (categoryColors[item.category] || 'var(--text-main)') : 'var(--text-main)';
     
     // Identify top 3 for special labeling
-    const rankIndex = sortedScores.findIndex(s => s.name === payload.value);
+    const rankIndex = overallRankedScores.findIndex(s => s.name === payload.value);
     const isTop3 = rankIndex >= 0 && rankIndex < 3;
     const rankText = isTop3 ? ` (#${rankIndex + 1})` : '';
     const rankColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : rankIndex === 2 ? '#b45309' : color;
@@ -90,7 +110,7 @@ export default function ScoreChart({ scores }) {
   
   const CustomRadarDot = (props) => {
     const { cx, cy, payload } = props;
-    const rankIndex = sortedScores.findIndex(s => s.name === payload.name);
+    const rankIndex = overallRankedScores.findIndex(s => s.name === payload.name);
     
     if (rankIndex >= 0 && rankIndex < 3) {
       const rankColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : '#b45309';
@@ -104,9 +124,10 @@ export default function ScoreChart({ scores }) {
   };
   
   // Format data for Recharts
-  const data = sortedScores.map(score => ({
+  const data = displayScores.map(score => ({
     name: score.name,
-    score: parseFloat(score.mean)
+    score: parseFloat(score.mean),
+    category: score.category
   }));
 
   // Custom tooltip to match glassmorphism style
@@ -135,7 +156,23 @@ export default function ScoreChart({ scores }) {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       {/* Detailed Bar Chart */}
       <div className="glass-panel" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)' }}>
-        <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-main)', textAlign: 'center', fontSize: '1.3rem' }}>Volledige Score Staafgrafiek</h3>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+          <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.3rem' }}>Volledige Score Staafgrafiek</h3>
+          <div className="no-print" style={{ display: 'flex', background: 'rgba(0,0,0,0.1)', borderRadius: '8px', padding: '4px' }}>
+            <button 
+              onClick={() => setSortBy('score')}
+              style={{ padding: '6px 12px', border: 'none', background: sortBy === 'score' ? 'var(--primary)' : 'transparent', color: sortBy === 'score' ? '#fff' : 'var(--text-muted)', borderRadius: '6px', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 'bold' }}
+            >
+              Hoog-Laag
+            </button>
+            <button 
+              onClick={() => setSortBy('domain')}
+              style={{ padding: '6px 12px', border: 'none', background: sortBy === 'domain' ? 'var(--primary)' : 'transparent', color: sortBy === 'domain' ? '#fff' : 'var(--text-muted)', borderRadius: '6px', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 'bold' }}
+            >
+              Per Domein
+            </button>
+          </div>
+        </div>
         <div className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
           <div style={{ width: '100%', height: data.length > 10 ? '550px' : '400px' }}>
             <ResponsiveContainer width="100%" height="100%">
@@ -166,12 +203,20 @@ export default function ScoreChart({ scores }) {
               
               <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={20} isAnimationActive={false}>
                 <LabelList dataKey="score" position="right" fill="var(--text-main)" fontSize={11} fontWeight="bold" />
-                {data.map((entry, index) => (
-                  <Cell 
-                    key={`cell-${index}`} 
-                    fill={index === 0 ? '#fbbf24' : index === 1 ? '#94a3b8' : index === 2 ? '#b45309' : 'var(--primary)'} 
-                  />
-                ))}
+                {data.map((entry, index) => {
+                  const rankIndex = overallRankedScores.findIndex(s => s.name === entry.name);
+                  const isTop3 = rankIndex >= 0 && rankIndex < 3;
+                  const medalColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : rankIndex === 2 ? '#b45309' : 'var(--primary)';
+                  const catColor = entry.category ? categoryColors[entry.category] : 'var(--primary)';
+                  const finalColor = sortBy === 'domain' && !isTop3 && catColor ? catColor : medalColor;
+                  
+                  return (
+                    <Cell 
+                      key={`cell-${index}`} 
+                      fill={finalColor} 
+                    />
+                  );
+                })}
               </Bar>
             </BarChart>
             </ResponsiveContainer>
