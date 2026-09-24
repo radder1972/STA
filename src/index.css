@@ -427,6 +427,11 @@ body {
     display: block !important;
   }
   
+  .print-avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
   .radar-container, .domain-container {
     transform-origin: top center;
     transform: scale(0.9);
@@ -440,6 +445,8 @@ body {
     margin: 0.5rem 0 !important;
     font-size: 1.1rem !important;
     color: black !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
   }
   
   /* Compact Nodes */

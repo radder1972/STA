@@ -166,7 +166,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
       </div>
       
       {/* OPTION A: Top 3 Visual Links */}
-      <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
+      <div className="glass-panel print-avoid-break" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
         <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', textAlign: 'center' }}>2. Directe Top 3 Connectie</h2>
         <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>
           De meest verhoogde schema's triggeren vaak direct de meest gehanteerde coping-modi. 
