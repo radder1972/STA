@@ -419,6 +419,20 @@ body {
     margin-bottom: 1.5rem !important;
   }
 
+  .print-block {
+    overflow: visible !important;
+    overflow-x: visible !important;
+    display: block !important;
+  }
+  
+  .radar-container, .domain-container {
+    transform-origin: top center;
+    transform: scale(0.9);
+  }
+  .chart-wrapper {
+    overflow: visible !important;
+  }
+
   /* Compact headings */
   h2, h3, h4 {
     margin: 0.5rem 0 !important;
