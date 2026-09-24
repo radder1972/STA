@@ -35,7 +35,8 @@ export default function Home({ onStart, completedTests, onViewResults }) {
               <>
                 <span style={{ display: 'block', marginBottom: '0.8rem' }}>In deze vragenlijst volgt een aantal beweringen die men kan gebruiken om zichzelf te beschrijven. Lees elke bewering en kijk hoe goed deze u, in het afgelopen jaar, beschrijft. Als u niet zeker bent van uw antwoord, baseer uw antwoord dan op wat u emotioneel voelt en niet op wat u denkt dat waar is.</span>
                 <span style={{ display: 'block', marginBottom: '0.8rem' }}>Een aantal beweringen vragen naar uw relaties met uw ouders of partner. Als één of meerdere van deze personen inmiddels overleden zijn, baseer dan uw antwoord op hoe uw relatie was toen zij nog leefden. Als u momenteel geen partner heeft, maar wel partners in het verleden hebt gehad, baseer dan uw antwoord op uw meest recente betekenisvolle partner.</span>
-                <span style={{ display: 'block' }}>Kies vervolgens het antwoord uit de opties 1-6 dat op u van toepassing is.</span>
+                <span style={{ display: 'block', marginBottom: '0.8rem' }}>Kies vervolgens het antwoord uit de opties 1-6 dat op u van toepassing is.</span>
+                <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)' }}>© 2020 Rijkeboer, M.M., Videler, A.C. , Rossi, G., van Alphen, S.P.J., & Legra, M.J.H. Nederlandse vertaling van de Young Schema Questionnaire - Short Form Version 3 (YSQ-3S) van Young, J.E., & Brown, G. (2005). Dutch translation approved by the International Society of Schema Therapy (ISST) and G. Brown, one of the original authors.</span>
               </>
             )}
           </p>
