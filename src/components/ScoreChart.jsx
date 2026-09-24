@@ -47,10 +47,10 @@ export default function ScoreChart({ scores }) {
   return (
     <div className="glass-panel" style={{ padding: '1.5rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)' }}>
       <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '1.5rem', color: 'var(--text-color)', letterSpacing: '1px' }}>
-        <ChartIcon size={24} color="var(--primary)" /> Grafiekoverzicht (Van Hoog naar Laag)
+        <ChartIcon size={24} color="var(--primary)" /> Alle Scores
       </h3>
       
-      <div style={{ width: '100%', height: data.length > 10 ? '600px' : '400px' }}>
+      <div className="chart-wrapper" style={{ width: '100%', height: data.length > 10 ? '600px' : '400px' }}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}

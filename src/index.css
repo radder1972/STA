@@ -383,6 +383,33 @@ body {
     gap: 0 !important;
   }
   
+  /* Make Top 3 ultra compact */
+  .top-scores-section > div {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.5rem !important;
+  }
+  .top-score-card {
+    flex: 1 !important;
+    padding: 0.2rem 0.5rem !important;
+    gap: 0.5rem !important;
+    margin-bottom: 0 !important;
+  }
+  .top-score-card > div:first-child {
+    font-size: 1.2rem !important;
+    width: 20px !important;
+  }
+  .top-score-card > div:nth-child(2) > div:first-child {
+    font-size: 0.8rem !important;
+  }
+  .top-score-card > div:last-child {
+    font-size: 1rem !important;
+  }
+
+  .chart-wrapper {
+    height: 500px !important;
+  }
+
   /* Ensure details section starts on a new page */
   .details-section {
     page-break-before: always !important;
