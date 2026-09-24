@@ -25,7 +25,7 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onSelect }) {
         <div className="mini-progress-bg">
           <div 
             className="mini-progress-fill" 
-            style={{ width: `${(mode.mean / 6) * 100}%` }}
+            style={{ width: `${(mode.mean / 6) * 100}%`, ...(isTop3 ? { background: medalColor } : {}) }}
           ></div>
         </div>
         </div>

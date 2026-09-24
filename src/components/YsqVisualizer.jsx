@@ -24,7 +24,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onSelect }) {
         <div className="mini-progress-bg">
           <div 
             className="mini-progress-fill" 
-            style={{ width: `${(schema.mean / 6) * 100}%` }}
+            style={{ width: `${(schema.mean / 6) * 100}%`, ...(isTop3 ? { background: medalColor } : {}) }}
           ></div>
         </div>
         </div>
