@@ -5,6 +5,7 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answers, setAnswers] = useState({})
   const [animateKey, setAnimateKey] = useState(0)
+  const [hasReachedEnd, setHasReachedEnd] = useState(false)
   
   const question = questions[currentIndex]
   const total = questions.length
@@ -13,7 +14,8 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
   // Optional: Trigger animation when question changes
   useEffect(() => {
     setAnimateKey(prev => prev + 1)
-  }, [currentIndex])
+    if (currentIndex === total - 1) setHasReachedEnd(true)
+  }, [currentIndex, total])
 
   const getNextIndex = (currentAnswers) => {
     // First, look for any unanswered question AFTER the current index
@@ -97,7 +99,16 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
       </div>
 
       {question && (
-        <div key={animateKey} className="question-box glass-panel">
+        <div 
+          key={animateKey} 
+          className="question-box glass-panel"
+          style={hasReachedEnd && answers[question.id] === undefined ? { border: '2px solid var(--accent, #6366f1)', boxShadow: '0 0 15px rgba(99, 102, 241, 0.4)' } : {}}
+        >
+          {hasReachedEnd && answers[question.id] === undefined && (
+            <div style={{ color: 'var(--accent, #6366f1)', fontWeight: 'bold', marginBottom: '1rem', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
+              ⚠️ Overgeslagen vraag
+            </div>
+          )}
           <h3>{question.text}</h3>
           
           <div className="options-grid">
@@ -148,7 +159,7 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
             }} 
             style={{ color: 'var(--error, #ef4444)', borderColor: 'var(--error, #ef4444)' }}
           >
-            Vraag overgeslagen? Ga terug
+            {total - Object.keys(answers).length} {(total - Object.keys(answers).length) === 1 ? 'Vraag' : 'Vragen'} overgeslagen? Ga terug
           </button>
         )}
       </div>
