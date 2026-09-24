@@ -216,9 +216,9 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>
           Hoe verhouden de Schema-domeinen (YSQ) zich tot gerelateerde Modi-groepen (SMI)?
         </p>
-        <div style={{ width: '100%', height: '400px' }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={domainAverages} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <div style={{ width: '100%', overflowX: 'auto', display: 'flex', justifyContent: 'center' }}>
+          <div style={{ width: '800px', height: '400px' }}>
+            <BarChart width={800} height={400} data={domainAverages} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" vertical={false} />
               <XAxis dataKey="name" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
               <YAxis domain={[1, 6]} tick={{ fill: 'var(--text-muted)' }} />
@@ -227,7 +227,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
               <Bar dataKey="ysq" name="Schema Domein (YSQ)" fill="#ef4444" radius={[4, 4, 0, 0]} isAnimationActive={false} />
               <Bar dataKey="smi" name="Gerelateerde Modi (SMI)" fill="#f59e0b" radius={[4, 4, 0, 0]} isAnimationActive={false} />
             </BarChart>
-          </ResponsiveContainer>
+          </div>
         </div>
       </div>
 

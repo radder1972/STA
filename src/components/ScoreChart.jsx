@@ -136,9 +136,11 @@ export default function ScoreChart({ scores }) {
       {/* Detailed Bar Chart */}
       <div className="glass-panel" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)' }}>
         <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-main)', textAlign: 'center', fontSize: '1.3rem' }}>Volledige Score Staafgrafiek</h3>
-        <div className="chart-wrapper" style={{ width: '100%', height: data.length > 10 ? '600px' : '400px', paddingBottom: '20px' }}>
-          <ResponsiveContainer width="100%" height="100%">
+        <div className="chart-wrapper" style={{ width: '100%', overflowX: 'auto', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
+          <div style={{ width: '800px', height: data.length > 10 ? '600px' : '400px' }}>
             <BarChart
+              width={800}
+              height={data.length > 10 ? 600 : 400}
               data={data}
               layout="vertical"
               margin={{ top: 10, right: 30, left: 20, bottom: 30 }}
@@ -173,7 +175,7 @@ export default function ScoreChart({ scores }) {
                 ))}
               </Bar>
             </BarChart>
-          </ResponsiveContainer>
+          </div>
         </div>
       </div>
 
@@ -183,16 +185,16 @@ export default function ScoreChart({ scores }) {
         <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem', maxWidth: '600px', margin: '0 auto 1.5rem auto' }}>
           Deze grafiek toont de verdeling van al uw scores. Punten die ver naar buiten uitschieten, zijn uw meest prominente patronen.
         </p>
-        <div className="chart-wrapper" style={{ width: '100%', height: data.length > 10 ? '550px' : '400px', maxWidth: '800px', margin: '0 auto' }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <RadarChart cx="50%" cy="50%" outerRadius="65%" data={radarData}>
+        <div className="chart-wrapper" style={{ width: '100%', overflowX: 'auto', display: 'flex', justifyContent: 'center' }}>
+          <div style={{ width: '800px', height: data.length > 10 ? '550px' : '400px' }}>
+            <RadarChart width={800} height={data.length > 10 ? 550 : 400} cx="50%" cy="50%" outerRadius="65%" data={radarData}>
               <PolarGrid stroke="var(--border-color)" />
               <PolarAngleAxis dataKey="name" tick={<CustomTick />} />
               <PolarRadiusAxis angle={90} domain={[1, 6]} tick={{ fill: 'var(--text-muted)' }} />
               <Radar name="Score" dataKey="mean" stroke="var(--primary)" fill="var(--primary)" fillOpacity={0.4} dot={<CustomRadarDot />} isAnimationActive={false} />
               <Tooltip content={<CustomTooltip />} />
             </RadarChart>
-          </ResponsiveContainer>
+          </div>
         </div>
       </div>
 
@@ -203,9 +205,11 @@ export default function ScoreChart({ scores }) {
           <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem', maxWidth: '600px', margin: '0 auto 1.5rem auto', textAlign: 'center' }}>
             Deze staafgrafiek toont uw gemiddelde score per hoofdcategorie. Dit helpt om patronen op een hoger niveau (helikopterview) te herkennen.
           </p>
-          <div className="chart-wrapper" style={{ width: '100%', height: `${Math.max(250, domainAverages.length * 40 + 60)}px`, paddingBottom: '20px' }}>
-            <ResponsiveContainer width="100%" height="100%">
+          <div className="chart-wrapper" style={{ width: '100%', overflowX: 'auto', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
+            <div style={{ width: '800px', height: `${Math.max(250, domainAverages.length * 40 + 60)}px` }}>
               <BarChart
+                width={800}
+                height={Math.max(250, domainAverages.length * 40 + 60)}
                 data={domainAverages}
                 layout="vertical"
                 margin={{ top: 10, right: 30, left: 20, bottom: 10 }}
@@ -239,7 +243,7 @@ export default function ScoreChart({ scores }) {
                   ))}
                 </Bar>
               </BarChart>
-            </ResponsiveContainer>
+            </div>
           </div>
         </div>
       )}
