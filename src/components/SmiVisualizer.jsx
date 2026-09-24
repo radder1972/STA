@@ -1,3 +1,5 @@
+import { schemaDescriptions } from '../data/descriptions';
+
 export default function SmiVisualizer({ groupedScores, top3 = [], onSelect }) {
   // Helper to get scores for a specific group safely
   const getGroup = (groupName) => groupedScores[groupName] || [];
@@ -22,6 +24,10 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onSelect }) {
         
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem', marginTop: '0.5rem' }}>
           <img src={`/images/modes/${mode.id}.png`} alt={mode.name} className="schema-img" style={{ maxWidth: '100px' }} />
+        </div>
+
+        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.4', marginBottom: '1rem', fontStyle: 'italic' }}>
+          {schemaDescriptions[mode.name] ? schemaDescriptions[mode.name] : ''}
         </div>
 
         <div style={{ marginTop: 'auto' }}>

@@ -1,3 +1,5 @@
+import { schemaDescriptions } from '../data/descriptions';
+
 export default function YsqVisualizer({ groupedScores, top3 = [], onSelect }) {
   const getGroup = (groupName) => groupedScores[groupName] || [];
 
@@ -32,6 +34,9 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onSelect }) {
             <img src={`/images/schemas/${imgName}`} alt={schema.name} className="schema-img" style={{ maxWidth: '90px' }} />
           </div>
         )}
+        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.4', marginBottom: '1rem', fontStyle: 'italic' }}>
+          {schemaDescriptions[schema.name] ? schemaDescriptions[schema.name] : ''}
+        </div>
         <div style={{ marginTop: 'auto' }}>
           <div className="mode-score">
           {schema.mean} <span className="high-score-badge">≥5: {schema.highScores}x</span>
