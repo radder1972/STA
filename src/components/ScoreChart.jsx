@@ -18,8 +18,42 @@ import {
 import { ChartIcon } from './Icons';
 
 export default function ScoreChart({ scores }) {
-  // Sort scores from highest to lowest
+  // Sort scores from highest to lowest for BarChart
   const sortedScores = [...scores].sort((a, b) => b.mean - a.mean);
+  
+  // Sort scores by category for RadarChart to group related items
+  const radarData = [...scores].sort((a, b) => {
+    const catA = a.category || 'Overig';
+    const catB = b.category || 'Overig';
+    return catA.localeCompare(catB);
+  });
+
+  const categoryColors = {
+    'Verbondenheid & Veiligheid': '#ef4444',
+    'Autonomie': '#f97316',
+    'Zelfexpressie & Spontaniteit': '#eab308',
+    'Grenzen & Zelfcontrole': '#22c55e',
+    'Spel & Ontspanning': '#3b82f6',
+    'Kindmodi': '#ef4444', 
+    'Oudermodi': '#8b5cf6',
+    'Copingmodi': '#f59e0b',
+    'Gezonde modi': '#10b981',
+    'Overig': '#94a3b8'
+  };
+
+  const CustomTick = (props) => {
+    const { payload, x, y, textAnchor, stroke, radius } = props;
+    const item = radarData.find(s => s.name === payload.value);
+    const color = item ? (categoryColors[item.category] || 'var(--text-main)') : 'var(--text-main)';
+    
+    return (
+      <g>
+        <text radius={radius} stroke="none" x={x} y={y} className="recharts-text recharts-polar-angle-axis-tick-value" textAnchor={textAnchor} fill={color} fontSize="10" fontWeight="bold">
+          <tspan x={x} dy="0em">{payload.value}</tspan>
+        </text>
+      </g>
+    );
+  };
   
   // Format data for Recharts
   const data = sortedScores.map(score => ({
@@ -59,9 +93,9 @@ export default function ScoreChart({ scores }) {
         </p>
         <div className="chart-wrapper" style={{ width: '100%', height: data.length > 10 ? '550px' : '400px', maxWidth: '800px', margin: '0 auto' }}>
           <ResponsiveContainer width="100%" height="100%">
-            <RadarChart cx="50%" cy="50%" outerRadius="70%" data={scores}>
+            <RadarChart cx="50%" cy="50%" outerRadius="65%" data={radarData}>
               <PolarGrid stroke="var(--border-color)" />
-              <PolarAngleAxis dataKey="name" tick={{ fill: 'var(--text-main)', fontSize: 10, fontWeight: 'bold' }} />
+              <PolarAngleAxis dataKey="name" tick={<CustomTick />} />
               <PolarRadiusAxis angle={90} domain={[1, 6]} tick={{ fill: 'var(--text-muted)' }} />
               <Radar name="Score" dataKey="mean" stroke="var(--primary)" fill="var(--primary)" fillOpacity={0.4} />
               <Tooltip content={<CustomTooltip />} />

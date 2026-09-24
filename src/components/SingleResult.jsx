@@ -185,7 +185,10 @@ export default function SingleResult({ type, answers }) {
 
         {/* Full Chart Overview */}
         <div className="chart-section glass-panel" style={{ marginTop: '1rem', padding: '1.5rem', border: '1px solid var(--border-color)', borderRadius: '16px', background: 'var(--card-bg)' }}>
-          <ScoreChart scores={calculatedScores} />
+          <ScoreChart scores={calculatedScores.map(score => ({
+            ...score,
+            category: type === 'smi' ? smiModesMap[score.id]?.group : basisbehoeftenMap[score.id]
+          }))} />
         </div>
 
         <div className="details-section" style={{ marginTop: '2rem', marginBottom: '2rem' }}>
