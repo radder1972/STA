@@ -52,10 +52,17 @@ export default function ScoreChart({ scores }) {
     const item = radarData.find(s => s.name === payload.value);
     const color = item ? (categoryColors[item.category] || 'var(--text-main)') : 'var(--text-main)';
     
+    // Identify top 3 for special labeling
+    const rankIndex = sortedScores.findIndex(s => s.name === payload.value);
+    const isTop3 = rankIndex >= 0 && rankIndex < 3;
+    const rankText = isTop3 ? ` (#${rankIndex + 1})` : '';
+    const rankColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : rankIndex === 2 ? '#b45309' : color;
+    
     return (
       <g>
         <text radius={radius} stroke="none" x={x} y={y} className="recharts-text recharts-polar-angle-axis-tick-value" textAnchor={textAnchor} fill={color} fontSize="10" fontWeight="bold">
           <tspan x={x} dy="0em">{payload.value}</tspan>
+          {isTop3 && <tspan fill={rankColor}>{rankText}</tspan>}
         </text>
       </g>
     );
