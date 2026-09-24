@@ -1,20 +1,29 @@
-export default function YsqVisualizer({ groupedScores }) {
+export default function YsqVisualizer({ groupedScores, top3 = [] }) {
   const getGroup = (groupName) => groupedScores[groupName] || [];
 
-  const renderSchemaNode = (schema) => (
-    <div key={schema.id} className="mode-node glass-panel">
-      <div className="mode-name">{schema.name}</div>
-      <div className="mode-score">
-        {schema.mean} <span className="high-score-badge">≥5: {schema.highScores}x</span>
+  const renderSchemaNode = (schema) => {
+    const top3Index = top3.findIndex(s => s.id === schema.id);
+    const isTop3 = top3Index !== -1;
+    const medalColor = top3Index === 0 ? '#fbbf24' : top3Index === 1 ? '#94a3b8' : top3Index === 2 ? '#b45309' : null;
+
+    return (
+      <div key={schema.id} className="mode-node glass-panel" style={isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}}>
+        <div className="mode-name" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          {schema.name}
+          {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>#{top3Index + 1}</span>}
+        </div>
+        <div className="mode-score">
+          {schema.mean} <span className="high-score-badge">≥5: {schema.highScores}x</span>
+        </div>
+        <div className="mini-progress-bg">
+          <div 
+            className="mini-progress-fill" 
+            style={{ width: `${(schema.mean / 6) * 100}%` }}
+          ></div>
+        </div>
       </div>
-      <div className="mini-progress-bg">
-        <div 
-          className="mini-progress-fill" 
-          style={{ width: `${(schema.mean / 6) * 100}%` }}
-        ></div>
-      </div>
-    </div>
-  );
+    );
+  };
 
   const renderSection = (title, groupName, color) => {
     const schemas = getGroup(groupName);

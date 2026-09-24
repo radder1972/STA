@@ -190,9 +190,9 @@ export default function SingleResult({ type, answers }) {
 
         <div className="details-section" style={{ marginTop: '2rem', marginBottom: '2rem' }}>
           {type === 'ysq' ? (
-            <YsqVisualizer groupedScores={groupedScores} />
+            <YsqVisualizer groupedScores={groupedScores} top3={top3} />
           ) : (
-            <SmiVisualizer groupedScores={groupedScores} />
+            <SmiVisualizer groupedScores={groupedScores} top3={top3} />
           )}
         </div>
       </div>

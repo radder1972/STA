@@ -1,21 +1,30 @@
-export default function SmiVisualizer({ groupedScores }) {
+export default function SmiVisualizer({ groupedScores, top3 = [] }) {
   // Helper to get scores for a specific group safely
   const getGroup = (groupName) => groupedScores[groupName] || [];
 
-  const renderModeNode = (mode) => (
-    <div key={mode.id} className="mode-node glass-panel">
-      <div className="mode-name">{mode.name}</div>
-      <div className="mode-score">
-        {mode.mean} <span className="high-score-badge">≥5: {mode.highScores}x</span>
+  const renderModeNode = (mode) => {
+    const top3Index = top3.findIndex(m => m.id === mode.id);
+    const isTop3 = top3Index !== -1;
+    const medalColor = top3Index === 0 ? '#fbbf24' : top3Index === 1 ? '#94a3b8' : top3Index === 2 ? '#b45309' : null;
+
+    return (
+      <div key={mode.id} className="mode-node glass-panel" style={isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}}>
+        <div className="mode-name" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          {mode.name}
+          {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>#{top3Index + 1}</span>}
+        </div>
+        <div className="mode-score">
+          {mode.mean} <span className="high-score-badge">≥5: {mode.highScores}x</span>
+        </div>
+        <div className="mini-progress-bg">
+          <div 
+            className="mini-progress-fill" 
+            style={{ width: `${(mode.mean / 6) * 100}%` }}
+          ></div>
+        </div>
       </div>
-      <div className="mini-progress-bg">
-        <div 
-          className="mini-progress-fill" 
-          style={{ width: `${(mode.mean / 6) * 100}%` }}
-        ></div>
-      </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="visualizer-container">
