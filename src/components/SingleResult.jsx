@@ -123,7 +123,6 @@ export default function SingleResult({ type, answers }) {
         <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
           <ChartIcon size={28} /> {title} Resultaten
         </h2>
-        <p>Je hebt {totalAnswered} vragen beantwoord.</p>
 
         {/* Top 3 Scores Highlight */}
         <div className="top-scores-section glass-panel" style={{ padding: '1.5rem', marginTop: '2rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)', background: 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%)' }}>
@@ -149,8 +148,10 @@ export default function SingleResult({ type, answers }) {
           </div>
         </div>
 
-        {/* Full Chart Overview */}
-        <ScoreChart scores={calculatedScores} />
+        {/* Full Chart Overview (Hidden in print to save space) */}
+        <div className="no-print">
+          <ScoreChart scores={calculatedScores} />
+        </div>
 
         <div style={{ marginTop: '3rem', marginBottom: '2rem' }}>
           <h3 style={{ textAlign: 'center', marginBottom: '1.5rem', color: 'var(--text-color)', letterSpacing: '1px' }}>Volledig Overzicht per Categorie</h3>

@@ -306,23 +306,88 @@ body {
 
 /* Print Styles */
 @media print {
+  @page { margin: 1cm; }
+  
   .no-print {
     display: none !important;
   }
-  body, .app-container {
+  
+  body, .app-container, .results-container, .combined-results-container {
     background: white !important;
     color: black !important;
     padding: 0 !important;
     margin: 0 !important;
   }
-  .glass-panel {
-    border: 1px solid #ccc !important;
+  
+  /* Remove glass effects and gray backgrounds */
+  .glass-panel, .smi-section, .ysq-section, .mode-node, .top-scores-section {
+    border: none !important;
     background: transparent !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
-  /* Force background colors to print */
+
+  /* Compact headings */
+  h2, h3, h4 {
+    margin: 0.5rem 0 !important;
+    font-size: 1.1rem !important;
+    color: black !important;
+  }
+  
+  /* Compact Nodes */
+  .mode-node {
+    margin-bottom: 0.25rem !important;
+    padding: 0.25rem 0 !important;
+    border-bottom: 1px solid #eee !important;
+    page-break-inside: avoid;
+  }
+  .mode-name {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.1rem !important;
+  }
+  .mode-score {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.1rem !important;
+  }
+  .high-score-badge {
+    background: none !important;
+    color: black !important;
+    padding: 0 !important;
+  }
+  .mini-progress-bg {
+    height: 3px !important;
+    background: #eee !important;
+  }
+  .mini-progress-fill {
+    background: black !important;
+  }
+
+  /* Multi-column layouts to save vertical space */
+  .nodes-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem 2rem !important;
+  }
+  
+  /* Top 3 layout compact */
+  .top-scores-section > div {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 1rem !important;
+  }
+  .top-scores-section > div > div {
+    flex: 1 !important;
+    padding: 0.5rem !important;
+    border: 1px solid #eee !important;
+    border-left: 3px solid black !important;
+  }
+  
+  /* Hide unnecessary text */
+  p { display: none !important; }
+
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
