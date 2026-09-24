@@ -74,8 +74,8 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
             Fill Randomly
           </button>
           {isComplete && currentIndex === total - 1 && (
-            <button className="btn" onClick={() => onFinish(answers)} style={{background: 'var(--accent)'}}>
-              <CheckIcon size={18} /> Finish
+            <button className="btn btn-gradient" onClick={() => onFinish(answers)} style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <CheckIcon size={18} /> Bekijk Resultaten
             </button>
           )}
         </div>
@@ -123,8 +123,21 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
         )}
         
         {currentIndex === total - 1 && isComplete && (
-          <button className="btn" onClick={() => onFinish(answers)} style={{background: 'var(--accent)'}}>
-            Finish <CheckIcon size={18} />
+          <button className="btn btn-gradient" onClick={() => onFinish(answers)} style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            Bekijk Resultaten <CheckIcon size={18} />
+          </button>
+        )}
+
+        {currentIndex === total - 1 && !isComplete && (
+          <button 
+            className="btn btn-outline" 
+            onClick={() => {
+              const firstMissing = questions.findIndex(q => answers[q.id] === undefined);
+              if (firstMissing !== -1) setCurrentIndex(firstMissing);
+            }} 
+            style={{ color: 'var(--error, #ef4444)', borderColor: 'var(--error, #ef4444)' }}
+          >
+            Vraag overgeslagen? Ga terug
           </button>
         )}
       </div>
