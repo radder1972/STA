@@ -1,4 +1,4 @@
-export default function SmiVisualizer({ groupedScores, top3 = [] }) {
+export default function SmiVisualizer({ groupedScores, top3 = [], onSelect }) {
   // Helper to get scores for a specific group safely
   const getGroup = (groupName) => groupedScores[groupName] || [];
 
@@ -8,7 +8,12 @@ export default function SmiVisualizer({ groupedScores, top3 = [] }) {
     const medalColor = top3Index === 0 ? '#fbbf24' : top3Index === 1 ? '#94a3b8' : top3Index === 2 ? '#b45309' : null;
 
     return (
-      <div key={mode.id} className="mode-node glass-panel" style={isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}}>
+      <div 
+        key={mode.id} 
+        className="mode-node glass-panel interactive-card" 
+        onClick={() => onSelect && onSelect(mode.name)}
+        style={{ cursor: 'pointer', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}) }}
+      >
         <div className="mode-name" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           {mode.name}
           {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>#{top3Index + 1}</span>}
