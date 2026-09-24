@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { DownloadIcon, RefreshIcon, ChartIcon, TrophyIcon } from './Icons'
 import ysqScoring from '../data/ysq-scoring.json'
 import smiScoring from '../data/smi-scoring.json'
 import YsqVisualizer from './YsqVisualizer'
 import SmiVisualizer from './SmiVisualizer'
 import ScoreChart from './ScoreChart'
+import { schemaDescriptions } from '../data/descriptions'
 import './Visualizers.css'
 
 const basisbehoeftenMap = {
@@ -68,6 +70,8 @@ const smiModesMap = {
 export default function SingleResult({ type, answers }) {
   const scoringData = type === 'ysq' ? ysqScoring : smiScoring;
   const title = type === 'ysq' ? 'YSQ S3' : 'SMI'
+  
+  const [selectedSchema, setSelectedSchema] = useState(null);
   
   // Calculate scores
   const calculatedScores = Object.entries(scoringData).map(([key, items]) => {
@@ -159,7 +163,12 @@ export default function SingleResult({ type, answers }) {
               const group = type === 'smi' ? smiModesMap[score.id]?.group : basisbehoeftenMap[score.id];
               const medalColor = i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : '#b45309';
               return (
-                <div key={score.id} className="top-score-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', borderTop: `6px solid ${medalColor}`, padding: '1.5rem 1rem 1rem 1rem', background: 'rgba(0,0,0,0.02)', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+                <div 
+                  key={score.id} 
+                  className="top-score-card interactive-card" 
+                  onClick={() => setSelectedSchema(score.name)}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', borderTop: `6px solid ${medalColor}`, padding: '1.5rem 1rem 1rem 1rem', background: 'rgba(0,0,0,0.02)', borderRadius: '12px', border: '1px solid var(--border-color)', cursor: 'pointer' }}
+                >
                   <div style={{ fontSize: '2.5rem', fontWeight: '900', color: medalColor, marginBottom: '1.5rem', lineHeight: '1' }}>
                     #{i + 1}
                   </div>
@@ -187,6 +196,30 @@ export default function SingleResult({ type, answers }) {
           )}
         </div>
       </div>
+      
+      {/* Modal for descriptions */}
+      {selectedSchema && (
+        <div className="modal-overlay no-print" onClick={() => setSelectedSchema(null)} style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, 
+          backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1000,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          backdropFilter: 'blur(4px)'
+        }}>
+          <div className="modal-content glass-panel" onClick={(e) => e.stopPropagation()} style={{
+            background: 'var(--bg-main)', padding: '2rem', borderRadius: '16px',
+            maxWidth: '500px', width: '90%', border: '1px solid var(--border-color)',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+          }}>
+            <h3 style={{ marginTop: 0, marginBottom: '1rem', color: 'var(--text-color)' }}>{selectedSchema}</h3>
+            <p style={{ lineHeight: '1.6', color: 'var(--text-main)', marginBottom: '2rem' }}>
+              {schemaDescriptions[selectedSchema] || 'Geen beschrijving beschikbaar.'}
+            </p>
+            <div style={{ textAlign: 'center' }}>
+              <button className="btn btn-outline" onClick={() => setSelectedSchema(null)}>Sluiten</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
