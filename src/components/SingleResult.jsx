@@ -150,8 +150,8 @@ export default function SingleResult({ type, answers }) {
         <p className="no-print">Je hebt {totalAnswered} vragen beantwoord.</p>
 
         {/* Top 3 Scores Highlight */}
-        <div className="top-scores-section glass-panel" style={{ padding: '2rem', marginTop: '2rem', marginBottom: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px', background: 'var(--card-bg)', boxShadow: 'var(--glass-shadow)' }}>
-          <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--text-color)', marginBottom: '2.5rem', letterSpacing: '1px', fontSize: '1.5rem' }}>
+        <div className="top-scores-section glass-panel" style={{ padding: '1.5rem', marginTop: '1rem', marginBottom: '1rem', border: '1px solid var(--border-color)', borderRadius: '16px', background: 'var(--card-bg)', boxShadow: 'var(--glass-shadow)' }}>
+          <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--text-color)', marginBottom: '3rem', letterSpacing: '1px', fontSize: '1.5rem' }}>
             <TrophyIcon size={28} color="#fbbf24" /> Jouw Top 3 Hoogste Scores
           </h3>
           <div className="top-scores-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
@@ -159,13 +159,13 @@ export default function SingleResult({ type, answers }) {
               const group = type === 'smi' ? smiModesMap[score.id]?.group : basisbehoeftenMap[score.id];
               const medalColor = i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : '#b45309';
               return (
-                <div key={score.id} className="top-score-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', borderTop: `6px solid ${medalColor}`, padding: '1.5rem 1rem', background: 'rgba(0,0,0,0.02)', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
-                  <div style={{ fontSize: '2.5rem', fontWeight: '900', color: medalColor, marginBottom: '1rem', lineHeight: '1' }}>
+                <div key={score.id} className="top-score-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', borderTop: `6px solid ${medalColor}`, padding: '1.5rem 1rem 1rem 1rem', background: 'rgba(0,0,0,0.02)', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+                  <div style={{ fontSize: '2.5rem', fontWeight: '900', color: medalColor, marginBottom: '1.5rem', lineHeight: '1' }}>
                     #{i + 1}
                   </div>
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%' }}>
-                    <div style={{ fontWeight: 'bold', fontSize: '1.1rem', lineHeight: '1.3', marginBottom: '0.5rem' }}>{score.name}</div>
-                    <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{group || 'Overig'}</div>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', width: '100%' }}>
+                    <div style={{ fontWeight: 'bold', fontSize: '1.1rem', lineHeight: '1.3', marginBottom: '0.25rem' }}>{score.name}</div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{group || 'Overig'}</div>
                   </div>
                   <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: 'var(--text-main)', background: 'var(--card-bg)', padding: '0.2rem 1.2rem', borderRadius: '20px', border: '1px solid var(--border-color)' }}>{score.mean}</div>
                 </div>
@@ -175,7 +175,7 @@ export default function SingleResult({ type, answers }) {
         </div>
 
         {/* Full Chart Overview */}
-        <div className="chart-section" style={{ marginTop: '2rem' }}>
+        <div className="chart-section glass-panel" style={{ marginTop: '1rem', padding: '1.5rem', border: '1px solid var(--border-color)', borderRadius: '16px', background: 'var(--card-bg)' }}>
           <ScoreChart scores={calculatedScores} />
         </div>
 

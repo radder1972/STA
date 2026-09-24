@@ -411,6 +411,19 @@ body {
     margin-bottom: 1rem !important;
   }
 
+  /* Make borders solid in print so boxes are visible */
+  .top-scores-section, .chart-section, .top-score-card {
+    border: 1px solid #ccc !important;
+  }
+  .chart-section {
+    padding: 1rem !important;
+    margin-top: 0 !important;
+  }
+  .top-scores-section {
+    padding: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
   /* Compact Top 3 in print mode */
   .top-score-card {
     flex: 1 !important;
