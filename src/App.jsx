@@ -39,6 +39,14 @@ function App() {
     setCompletedTests({ ysq: null, smi: null })
   }
 
+  const handleImport = (importedTests) => {
+    setCompletedTests(prev => ({
+      ysq: importedTests.ysq || prev.ysq,
+      smi: importedTests.smi || prev.smi
+    }))
+    setCurrentView('results')
+  }
+
   const getQuestionData = () => {
     if (currentQuestionnaire === 'ysq') return ysqData
     if (currentQuestionnaire === 'smi') return smiData
@@ -60,6 +68,7 @@ function App() {
           onStart={handleStart} 
           completedTests={completedTests} 
           onViewResults={viewResults} 
+          onImport={handleImport}
         />
       )}
       {currentView === 'questionnaire' && (

@@ -1,6 +1,9 @@
+import { useRef } from 'react'
 import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon } from './Icons'
 
-export default function Home({ onStart, completedTests, onViewResults }) {
+export default function Home({ onStart, completedTests, onViewResults, onImport }) {
+  const fileInputRef = useRef(null)
+  
   const isYsqDone = !!completedTests.ysq;
   const isSmiDone = !!completedTests.smi;
   const hasAnyResult = isYsqDone || isSmiDone;
@@ -17,6 +20,50 @@ export default function Home({ onStart, completedTests, onViewResults }) {
     }
     onViewResults();
   }
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const text = event.target.result;
+      const lines = text.split('\n');
+      let importedYsq = null;
+      let importedSmi = null;
+      
+      for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+        const parts = line.split(',');
+        if (parts.length >= 3) {
+          const type = parts[0];
+          const qId = parseInt(parts[1], 10);
+          const score = parseInt(parts[2], 10);
+          if (!isNaN(qId) && !isNaN(score)) {
+            if (type === 'YSQ') {
+              if (!importedYsq) importedYsq = {};
+              importedYsq[qId] = score;
+            } else if (type === 'SMI') {
+              if (!importedSmi) importedSmi = {};
+              importedSmi[qId] = score;
+            }
+          }
+        }
+      }
+      
+      if (importedYsq || importedSmi) {
+        onImport && onImport({ ysq: importedYsq, smi: importedSmi });
+      } else {
+        alert("Geen geldige scores gevonden in dit bestand.");
+      }
+      
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    };
+    reader.readAsText(file);
+  };
 
   return (
     <div className="home-container">
@@ -62,6 +109,26 @@ export default function Home({ onStart, completedTests, onViewResults }) {
         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
           <button className="btn btn-gradient" onClick={handleViewResults} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.2rem', padding: '1rem 2rem' }}>
             <ChartIcon size={24} color="white" /> Bekijk {isYsqDone && isSmiDone ? '(Gecombineerd)' : ''} Rapport
+          </button>
+        </div>
+      )}
+
+      {!hasAnyResult && (
+        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+          <input 
+            type="file" 
+            accept=".csv" 
+            ref={fileInputRef} 
+            style={{ display: 'none' }} 
+            onChange={handleFileUpload} 
+          />
+          <button 
+            className="btn btn-outline" 
+            onClick={() => fileInputRef.current?.click()}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '0.95rem' }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            Importeer eerdere score (CSV)
           </button>
         </div>
       )}
