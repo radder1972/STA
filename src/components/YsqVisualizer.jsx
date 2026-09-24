@@ -11,13 +11,14 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onSelect }) {
         key={schema.id} 
         className="mode-node glass-panel interactive-card" 
         onClick={() => onSelect && onSelect(schema.name)}
-        style={{ cursor: 'pointer', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}) }}
+        style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}) }}
       >
-        <div className="mode-name" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          {schema.name}
-          {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>#{top3Index + 1}</span>}
+        <div className="mode-name" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', minHeight: '3.2rem' }}>
+          <span style={{ paddingRight: '10px' }}>{schema.name}</span>
+          {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
         </div>
-        <div className="mode-score">
+        <div style={{ marginTop: 'auto' }}>
+          <div className="mode-score">
           {schema.mean} <span className="high-score-badge">≥5: {schema.highScores}x</span>
         </div>
         <div className="mini-progress-bg">
@@ -25,6 +26,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onSelect }) {
             className="mini-progress-fill" 
             style={{ width: `${(schema.mean / 6) * 100}%` }}
           ></div>
+        </div>
         </div>
       </div>
     );
