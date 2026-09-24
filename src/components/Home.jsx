@@ -5,6 +5,19 @@ export default function Home({ onStart, completedTests, onViewResults }) {
   const isSmiDone = !!completedTests.smi;
   const hasAnyResult = isYsqDone || isSmiDone;
 
+  const handleViewResults = () => {
+    if (isYsqDone && !isSmiDone) {
+      if (!window.confirm("Let op: U heeft tot nu toe alleen de YSQ (Schema's) ingevuld.\n\nHet rapport is het meest waardevol als u beide lijsten invult.\nWilt u toch nu al het rapport bekijken?\n\nKlik op 'OK' om te bekijken, of 'Annuleren' om ook de SMI in te vullen.")) {
+        return;
+      }
+    } else if (!isYsqDone && isSmiDone) {
+      if (!window.confirm("Let op: U heeft tot nu toe alleen de SMI (Modi) ingevuld.\n\nHet rapport is het meest waardevol als u beide lijsten invult.\nWilt u toch nu al het rapport bekijken?\n\nKlik op 'OK' om te bekijken, of 'Annuleren' om ook de YSQ in te vullen.")) {
+        return;
+      }
+    }
+    onViewResults();
+  }
+
   return (
     <div className="home-container">
       <div className="header">
@@ -34,8 +47,8 @@ export default function Home({ onStart, completedTests, onViewResults }) {
 
       {hasAnyResult && (
         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-          <button className="btn btn-gradient" onClick={onViewResults} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.2rem', padding: '1rem 2rem' }}>
-            <ChartIcon size={24} color="white" /> Bekijk (Gecombineerd) Rapport
+          <button className="btn btn-gradient" onClick={handleViewResults} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.2rem', padding: '1rem 2rem' }}>
+            <ChartIcon size={24} color="white" /> Bekijk {isYsqDone && isSmiDone ? '(Gecombineerd)' : ''} Rapport
           </button>
         </div>
       )}
