@@ -15,16 +15,27 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
     setAnimateKey(prev => prev + 1)
   }, [currentIndex])
 
+  const getNextIndex = (currentAnswers) => {
+    // First, look for any unanswered question AFTER the current index
+    for (let i = currentIndex + 1; i < total; i++) {
+      if (currentAnswers[questions[i].id] === undefined) return i;
+    }
+    // If none found after, loop back to the beginning
+    for (let i = 0; i < currentIndex; i++) {
+      if (currentAnswers[questions[i].id] === undefined) return i;
+    }
+    // If everything is answered, go to the final page to show the results button
+    return total - 1;
+  }
+
   const handleSelect = (val) => {
     const newAnswers = { ...answers, [question.id]: val }
     setAnswers(newAnswers)
     
-    // Auto-advance after brief delay
-    if (currentIndex < total - 1) {
-      setTimeout(() => {
-        setCurrentIndex(curr => curr + 1)
-      }, 300)
-    }
+    // Auto-advance after brief delay to the next logical question
+    setTimeout(() => {
+      setCurrentIndex(getNextIndex(newAnswers))
+    }, 300)
   }
 
   const handleNext = () => {
