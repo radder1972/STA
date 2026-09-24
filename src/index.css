@@ -351,6 +351,11 @@ body {
 }
 
 @media print {
+  .page-break {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
   :root {
     --bg-color: white !important;
     --text-main: black !important;
