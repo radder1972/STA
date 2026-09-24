@@ -46,7 +46,12 @@ export default function Home({ onStart, completedTests, onViewResults }) {
           <h2>SMI {isSmiDone && <CheckIcon size={24} color="var(--success, #10b981)" style={{display: 'inline', verticalAlign: 'middle'}} />}</h2>
           <p style={{ fontWeight: 'bold' }}>Schema Mode Inventory</p>
           <p style={{ fontSize: '0.9rem', textAlign: 'left', marginTop: '1rem' }}>
-             {isSmiDone ? "U heeft deze vragenlijst reeds ingevuld! Klik om eventueel opnieuw te beginnen." : "In deze vragenlijst staan uitspraken die mensen kunnen gebruiken om zichzelf te beschrijven. Beoordeel de FREQUENTIE; hoe vaak u overtuigd bent of het zo voelde."}
+             {isSmiDone ? "U heeft deze vragenlijst reeds ingevuld! Klik om eventueel opnieuw te beginnen." : (
+              <>
+                <span style={{ display: 'block', marginBottom: '0.8rem' }}>In deze vragenlijst staan uitspraken die mensen kunnen gebruiken om zichzelf te beschrijven. We willen u vragen van deze uitspraken de FREQUENTIE te beoordelen; dus hoe vaak u over het algemeen van de uitspraak overtuigd bent of hoe vaak het zo voelde.</span>
+                <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)' }}>(© 2007 Young, J., Arntz, A., Atkinson, T., Lobbestael, J., Weishaar, M., van Vreeswijk, M en Klokman, J.)</span>
+              </>
+             )}
           </p>
         </div>
       </div>
