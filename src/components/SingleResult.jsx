@@ -153,7 +153,9 @@ export default function SingleResult({ type, answers }) {
 
         <p className="no-print">Je hebt {totalAnswered} vragen beantwoord.</p>
 
-        {/* Top 3 Scores Highlight */}
+        {/* Wrapper to keep Top 3 and Chart on the same printed page */}
+        <div className="print-keep-together">
+          {/* Top 3 Scores Highlight */}
         <div className="top-scores-section glass-panel" style={{ padding: '1.5rem', marginTop: '3rem', marginBottom: '1rem', border: '1px solid var(--border-color)', borderRadius: '16px', background: 'var(--card-bg)', boxShadow: 'var(--glass-shadow)' }}>
           <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--text-color)', marginBottom: '3rem', letterSpacing: '1px', fontSize: '1.5rem' }}>
             <TrophyIcon size={28} color="#fbbf24" /> Jouw Top 3 {type === 'ysq' ? "Schema's" : "Modi"}
@@ -212,6 +214,7 @@ export default function SingleResult({ type, answers }) {
             ...score,
             category: type === 'smi' ? smiModesMap[score.id]?.group : basisbehoeftenMap[score.id]
           }))} />
+        </div>
         </div>
 
         <div className="details-section" style={{ marginTop: '2rem', marginBottom: '2rem' }}>

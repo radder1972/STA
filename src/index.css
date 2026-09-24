@@ -432,6 +432,19 @@ body {
     break-inside: avoid !important;
   }
   
+  .print-keep-together {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .chart-section {
+    margin-top: 0.5rem !important;
+    padding: 0.5rem !important;
+    transform: scale(0.9);
+    transform-origin: top center;
+  }
+  
   .radar-container, .domain-container {
     transform-origin: top center;
     transform: scale(0.9);
