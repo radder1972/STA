@@ -194,8 +194,8 @@ export default function SingleResult({ type, answers }) {
                   )}
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', width: '100%' }}>
                     <div style={{ fontWeight: 'bold', fontSize: '0.9rem', lineHeight: '1.3', marginBottom: '0.25rem', minHeight: '2.8rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>{score.name}</div>
-                    <div style={{ color: 'var(--text-muted)', fontSize: '0.7rem', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{group || 'Overig'}</div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.4', marginBottom: '1rem', fontStyle: 'italic' }}>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '0.7rem', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.5px', minHeight: '2rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>{group || 'Overig'}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.4', marginBottom: '1.5rem', fontStyle: 'italic', flex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
                       {schemaDescriptions[score.name] || ''}
                     </div>
                   </div>
