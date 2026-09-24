@@ -17,29 +17,33 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onSelect }) {
         onMouseLeave={() => onSelect && onSelect(null)}
         style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}) }}
       >
-        <div className="mode-name" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', minHeight: '3.2rem' }}>
-          <span style={{ paddingRight: '10px' }}>{mode.name}</span>
-          {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
-        </div>
-        
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem', marginTop: '0.5rem' }}>
-          <img src={`/images/modes/${mode.id}.png`} alt={mode.name} className="schema-img" style={{ maxWidth: '100px' }} />
-        </div>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
+          <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
+            <img src={`/images/modes/${mode.id}.png`} alt={mode.name} className="schema-img" style={{ maxWidth: '70px', borderRadius: '6px' }} />
+          </div>
+          
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className="mode-name" style={{ display: 'flex', alignItems: 'center', marginBottom: '0.25rem', minHeight: 'auto' }}>
+              <span style={{ paddingRight: '10px', fontWeight: 'bold' }}>{mode.name}</span>
+              {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
+            </div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.4', fontStyle: 'italic' }}>
+              {schemaDescriptions[mode.name] || ''}
+            </div>
+          </div>
 
-        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.4', marginBottom: '1rem', fontStyle: 'italic' }}>
-          {schemaDescriptions[mode.name] ? schemaDescriptions[mode.name] : ''}
-        </div>
-
-        <div style={{ marginTop: 'auto' }}>
-          <div className="mode-score">
-          {mode.mean} <span className="high-score-badge">≥5: {mode.highScores}x</span>
-        </div>
-        <div className="mini-progress-bg">
-          <div 
-            className="mini-progress-fill" 
-            style={{ width: `${(mode.mean / 6) * 100}%`, ...(isTop3 ? { background: medalColor } : {}) }}
-          ></div>
-        </div>
+          <div style={{ flexShrink: 0, width: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className="mode-score" style={{ marginBottom: '0.25rem' }}>
+              <span style={{ fontWeight: 'bold', fontSize: '1.1rem' }}>{mode.mean}</span> 
+              <span className="high-score-badge">≥5: {mode.highScores}x</span>
+            </div>
+            <div className="mini-progress-bg">
+              <div 
+                className="mini-progress-fill" 
+                style={{ width: `${(mode.mean / 6) * 100}%`, ...(isTop3 ? { background: medalColor } : {}) }}
+              ></div>
+            </div>
+          </div>
         </div>
       </div>
     );
