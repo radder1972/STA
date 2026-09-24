@@ -6,6 +6,13 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onSelect }) {
     const isTop3 = top3Index !== -1;
     const medalColor = top3Index === 0 ? '#fbbf24' : top3Index === 1 ? '#94a3b8' : top3Index === 2 ? '#b45309' : null;
 
+    const schemasWithImages = [
+      'Abandonment', 'Mistrust', 'Emotional deprivation', 'Social isolation/Alienation', 'Defectiveness/unlovability',
+      'Practical incompetence/Dependence', 'Vulnerability to harm/illness', 'Enmeshment', 'Failure to achieve', 'Self-sacrifice'
+    ];
+    const hasImage = schemasWithImages.includes(schema.id);
+    const imgName = hasImage ? `${schema.id.replace('/', '_')}.png` : null;
+
     return (
       <div 
         key={schema.id} 
@@ -18,6 +25,11 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onSelect }) {
           <span style={{ paddingRight: '10px' }}>{schema.name}</span>
           {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
         </div>
+        {hasImage && (
+          <div style={{ marginBottom: '1rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
+            <img src={`/images/schemas/${imgName}`} alt={schema.name} style={{ maxWidth: '90px', borderRadius: '8px', mixBlendMode: 'multiply' }} />
+          </div>
+        )}
         <div style={{ marginTop: 'auto' }}>
           <div className="mode-score">
           {schema.mean} <span className="high-score-badge">≥5: {schema.highScores}x</span>

@@ -162,6 +162,14 @@ export default function SingleResult({ type, answers }) {
             {top3.map((score, i) => {
               const group = type === 'smi' ? smiModesMap[score.id]?.group : basisbehoeftenMap[score.id];
               const medalColor = i === 0 ? '#fbbf24' : i === 1 ? '#94a3b8' : '#b45309';
+              
+              const schemasWithImages = [
+                'Abandonment', 'Mistrust', 'Emotional deprivation', 'Social isolation/Alienation', 'Defectiveness/unlovability',
+                'Practical incompetence/Dependence', 'Vulnerability to harm/illness', 'Enmeshment', 'Failure to achieve', 'Self-sacrifice'
+              ];
+              const hasImage = type === 'ysq' && schemasWithImages.includes(score.id);
+              const imgName = hasImage ? `${score.id.replace('/', '_')}.png` : null;
+
               return (
                 <div 
                   key={score.id} 
@@ -173,6 +181,11 @@ export default function SingleResult({ type, answers }) {
                   <div style={{ fontSize: '2rem', fontWeight: '900', color: medalColor, marginBottom: '1rem', lineHeight: '1' }}>
                     #{i + 1}
                   </div>
+                  {hasImage && (
+                    <div style={{ marginBottom: '1rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
+                      <img src={`/images/schemas/${imgName}`} alt={score.name} style={{ maxWidth: '110px', borderRadius: '8px', mixBlendMode: 'multiply' }} />
+                    </div>
+                  )}
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', width: '100%' }}>
                     <div style={{ fontWeight: 'bold', fontSize: '0.9rem', lineHeight: '1.3', marginBottom: '0.25rem', minHeight: '2.8rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>{score.name}</div>
                     <div style={{ color: 'var(--text-muted)', fontSize: '0.7rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{group || 'Overig'}</div>
