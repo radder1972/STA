@@ -18,6 +18,26 @@ import {
 import { ChartIcon } from './Icons';
 
 export default function ScoreChart({ scores }) {
+  // Calculate Domain Averages
+  const domainAverages = React.useMemo(() => {
+    const groups = {};
+    scores.forEach(score => {
+      const cat = score.category || 'Overig';
+      if (!groups[cat]) {
+        groups[cat] = { total: 0, count: 0, name: cat };
+      }
+      groups[cat].total += parseFloat(score.mean);
+      groups[cat].count += 1;
+    });
+    
+    return Object.values(groups)
+      .map(g => ({
+        name: g.name,
+        score: Number((g.total / g.count).toFixed(2))
+      }))
+      .sort((a, b) => b.score - a.score); // Sort highest first
+  }, [scores]);
+
   // Sort scores from highest to lowest for BarChart
   const sortedScores = [...scores].sort((a, b) => b.mean - a.mean);
   
@@ -117,7 +137,55 @@ export default function ScoreChart({ scores }) {
         </div>
       </div>
 
-      {/* Existing Bar Chart */}
+      {/* Domain Averages Chart */}
+      {domainAverages.length > 1 && (
+        <div className="glass-panel" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <h3 style={{ marginBottom: '0.5rem', color: 'var(--text-main)', textAlign: 'center', fontSize: '1.3rem' }}>Gemiddelde per Categorie / Domein</h3>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem', maxWidth: '600px', margin: '0 auto 1.5rem auto', textAlign: 'center' }}>
+            Deze staafgrafiek toont uw gemiddelde score per hoofdcategorie. Dit helpt om patronen op een hoger niveau (helikopterview) te herkennen.
+          </p>
+          <div className="chart-wrapper" style={{ width: '100%', height: `${Math.max(250, domainAverages.length * 40 + 60)}px`, paddingBottom: '20px' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={domainAverages}
+                layout="vertical"
+                margin={{ top: 10, right: 30, left: 20, bottom: 10 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" horizontal={true} vertical={false} />
+                <XAxis 
+                  type="number" 
+                  domain={[1, 6]} 
+                  ticks={[1, 2, 3, 4, 5, 6]}
+                  stroke="var(--text-muted)" 
+                  tickMargin={10}
+                  tick={{ fontSize: 10, fontWeight: 'bold', fill: 'var(--text-muted)' }}
+                />
+                <YAxis 
+                  type="category" 
+                  dataKey="name" 
+                  width={220} 
+                  stroke="var(--text-color)"
+                  tick={{ fontSize: 11, fill: 'var(--text-main)', fontWeight: 'bold' }}
+                  tickMargin={15}
+                />
+                <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(100,116,139,0.1)'}} />
+                
+                <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={24}>
+                  <LabelList dataKey="score" position="right" fill="var(--text-main)" fontSize={11} fontWeight="bold" />
+                  {domainAverages.map((entry, index) => (
+                    <Cell 
+                      key={`cell-${index}`} 
+                      fill={categoryColors[entry.name] || 'var(--primary)'} 
+                    />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      )}
+
+      {/* Existing Detailed Bar Chart */}
       <div className="glass-panel" style={{ padding: '1.5rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)' }}>
         <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-main)', textAlign: 'center', fontSize: '1.3rem' }}>Volledige Score Staafgrafiek</h3>
         <div className="chart-wrapper" style={{ width: '100%', height: data.length > 10 ? '600px' : '400px', paddingBottom: '20px' }}>
