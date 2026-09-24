@@ -137,8 +137,8 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
               <YAxis domain={[1, 6]} tick={{ fill: 'var(--text-muted)' }} />
               <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} contentStyle={{ background: 'rgba(30, 41, 59, 0.9)', border: 'none', borderRadius: '8px', color: '#fff' }} />
               <Legend wrapperStyle={{ paddingTop: '20px' }} />
-              <Bar dataKey="ysq" name="Schema Domein (YSQ)" fill="#ef4444" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="smi" name="Gerelateerde Modi (SMI)" fill="#f59e0b" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="ysq" name="Schema Domein (YSQ)" fill="#ef4444" radius={[4, 4, 0, 0]} isAnimationActive={false} />
+              <Bar dataKey="smi" name="Gerelateerde Modi (SMI)" fill="#f59e0b" radius={[4, 4, 0, 0]} isAnimationActive={false} />
             </BarChart>
           </ResponsiveContainer>
         </div>

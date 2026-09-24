@@ -353,6 +353,16 @@ body {
 @media print {
   @page { margin: 1.5cm; }
   
+  .recharts-responsive-container, .recharts-wrapper {
+    width: 100% !important;
+    height: 400px !important;
+    min-height: 400px !important;
+  }
+  .recharts-surface {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
   .no-print {
     display: none !important;
   }

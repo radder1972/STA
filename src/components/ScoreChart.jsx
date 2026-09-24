@@ -163,7 +163,7 @@ export default function ScoreChart({ scores }) {
               />
               <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(100,116,139,0.1)'}} />
               
-              <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={20}>
+              <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={20} isAnimationActive={false}>
                 <LabelList dataKey="score" position="right" fill="var(--text-main)" fontSize={11} fontWeight="bold" />
                 {data.map((entry, index) => (
                   <Cell 
@@ -189,7 +189,7 @@ export default function ScoreChart({ scores }) {
               <PolarGrid stroke="var(--border-color)" />
               <PolarAngleAxis dataKey="name" tick={<CustomTick />} />
               <PolarRadiusAxis angle={90} domain={[1, 6]} tick={{ fill: 'var(--text-muted)' }} />
-              <Radar name="Score" dataKey="mean" stroke="var(--primary)" fill="var(--primary)" fillOpacity={0.4} dot={<CustomRadarDot />} />
+              <Radar name="Score" dataKey="mean" stroke="var(--primary)" fill="var(--primary)" fillOpacity={0.4} dot={<CustomRadarDot />} isAnimationActive={false} />
               <Tooltip content={<CustomTooltip />} />
             </RadarChart>
           </ResponsiveContainer>
@@ -229,7 +229,7 @@ export default function ScoreChart({ scores }) {
                 />
                 <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(100,116,139,0.1)'}} />
                 
-                <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={24}>
+                <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={24} isAnimationActive={false}>
                   <LabelList dataKey="score" position="right" fill="var(--text-main)" fontSize={11} fontWeight="bold" />
                   {domainAverages.map((entry, index) => (
                     <Cell 
