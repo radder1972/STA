@@ -121,3 +121,9 @@ export const TrophyIcon = (props) => (
     <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" fill="currentColor" fillOpacity="0.1" />
   </IconBase>
 );
+
+export const ShieldIcon = (props) => (
+  <IconBase {...props}>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="currentColor" fillOpacity="0.1" />
+  </IconBase>
+);
