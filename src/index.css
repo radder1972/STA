@@ -351,6 +351,13 @@ body {
 }
 
 @media print {
+  :root {
+    --bg-color: white !important;
+    --text-main: black !important;
+    --text-muted: #333 !important;
+    --border-color: #ccc !important;
+    --card-bg: transparent !important;
+  }
   @page { margin: 1.5cm; }
   
   .recharts-responsive-container, .recharts-wrapper {
@@ -528,8 +535,10 @@ body {
     margin-bottom: 2rem !important;
   }
   
-  /* Hide unnecessary text */
-  p { display: none !important; }
+  /* Ensure all text is dark enough to read on white paper */
+  p, span, div, strong, td, th {
+    color: black !important;
+  }
 
   /* Fix recharts SVG colors in print */
   .recharts-text, .recharts-cartesian-axis-tick-value {
