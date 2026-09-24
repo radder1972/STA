@@ -107,20 +107,29 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
           Deze analyse combineert de theorie van Schematherapie met uw specifieke scores om gepersonaliseerde hypothesen te genereren en te valideren.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          {top3Ysq.map(schema => {
+          {top3Ysq.map((schema, index) => {
             const hypothesis = schemaToModesHypothesis[schema.id];
             if (!hypothesis) return null;
             // Check if patient actually uses these modes
             const usedModes = hypothesis.modes.map(mId => smiScores.find(s => s.id === mId)).filter(m => m && m.mean >= 3.0);
             
+            const medalColors = ['#fbbf24', '#94a3b8', '#b45309'];
+            const medalNames = ['#1 (Goud)', '#2 (Zilver)', '#3 (Brons)'];
+            const medalColor = medalColors[index] || 'var(--primary)';
+            const medalName = medalNames[index] || `#${index + 1}`;
+
             return (
-              <div key={schema.id} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', borderLeft: '4px solid var(--primary)', border: '1px solid var(--border-color)' }}>
-                <h4 style={{ color: '#ef4444', marginBottom: '0.5rem' }}>Hypothese rondom schema: {schema.name}</h4>
+              <div key={schema.id} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', borderLeft: `4px solid ${medalColor}`, border: '1px solid var(--border-color)', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '4px', background: medalColor }}></div>
+                <h4 style={{ color: medalColor, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ background: medalColor, color: '#fff', padding: '2px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 'bold', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{medalName}</span>
+                  Hypothese rondom schema: {schema.name}
+                </h4>
                 <p style={{ color: 'var(--text-main)', fontStyle: 'italic', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: '1.6' }}>"{hypothesis.desc}"</p>
                 
                 {/* Visual Connection Network for this specific Schema */}
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem', alignItems: 'center' }}>
-                   <div style={{ padding: '0.5rem 1rem', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid #ef4444', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold' }}>{schema.name}</div>
+                   <div style={{ padding: '0.5rem 1rem', background: `rgba(${index === 0 ? '251, 191, 36' : index === 1 ? '148, 163, 184' : '180, 83, 9'}, 0.1)`, border: `1px solid ${medalColor}`, borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold', color: medalColor }}>{schema.name}</div>
                    <ArrowRightIcon size={16} color="var(--text-muted)" />
                    {hypothesis.modes.map(mId => {
                      const modeData = smiScores.find(s => s.id === mId);
