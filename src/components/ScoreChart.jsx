@@ -46,7 +46,7 @@ export default function ScoreChart({ scores }) {
 
   return (
     <div className="glass-panel" style={{ padding: '1.5rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)' }}>
-      <div className="chart-wrapper" style={{ width: '100%', height: data.length > 10 ? '600px' : '400px' }}>
+      <div className="chart-wrapper" style={{ width: '100%', height: data.length > 10 ? '600px' : '400px', paddingBottom: '20px' }}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
@@ -60,13 +60,15 @@ export default function ScoreChart({ scores }) {
               ticks={[1, 2, 3, 4, 5, 6]}
               stroke="var(--text-muted)" 
               tickMargin={10}
+              tick={{ fontSize: 10, fontWeight: 'bold', fill: 'var(--text-muted)' }}
             />
             <YAxis 
               type="category" 
               dataKey="name" 
-              width={180} 
+              width={200} 
               stroke="var(--text-color)"
               tick={{ fontSize: 12, fill: 'var(--text-main)' }}
+              tickMargin={15}
             />
             <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             

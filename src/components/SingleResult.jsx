@@ -152,7 +152,7 @@ export default function SingleResult({ type, answers }) {
         {/* Top 3 Scores Highlight */}
         <div className="top-scores-section glass-panel" style={{ padding: '1.5rem', marginTop: '3rem', marginBottom: '1rem', border: '1px solid var(--border-color)', borderRadius: '16px', background: 'var(--card-bg)', boxShadow: 'var(--glass-shadow)' }}>
           <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--text-color)', marginBottom: '3rem', letterSpacing: '1px', fontSize: '1.5rem' }}>
-            <TrophyIcon size={28} color="#fbbf24" /> Jouw Top 3 Hoogste Scores
+            <TrophyIcon size={28} color="#fbbf24" /> Jouw Top 3 {type === 'ysq' ? "Schema's" : "Modi"}
           </h3>
           <div className="top-scores-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
             {top3.map((score, i) => {
