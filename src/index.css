@@ -401,14 +401,16 @@ body {
     margin: 0 !important;
     border: none !important;
   }
-  .top-scores-section, .chart-section, .top-score-card {
+  .top-scores-section, .top-score-card {
     border: 1px solid #ccc !important;
     background: transparent !important;
     box-shadow: none !important;
   }
   .chart-section {
-    padding: 1rem !important;
+    padding: 0 !important;
     margin-top: 1rem !important;
+    border: none !important;
+    background: transparent !important;
   }
   .top-scores-section {
     padding: 1rem !important;
@@ -493,12 +495,13 @@ body {
     border: none !important;
     box-shadow: none !important;
   }
-  .top-scores-section, .chart-section, .top-score-card, .ysq-section, .smi-section {
+  .top-scores-section, .top-score-card, .ysq-section, .smi-section {
     border: 1px solid #ccc !important;
   }
   .chart-section {
-    padding: 1rem !important;
+    padding: 0 !important;
     margin-top: 0 !important;
+    border: none !important;
   }
   .top-scores-section {
     padding: 1rem !important;
