@@ -429,7 +429,7 @@ body {
     gap: 0.5rem !important;
   }
   
-  .ysq-section, .smi-section, .top-score-card {
+  .ysq-section, .smi-section, .top-score-card, .chart-section {
     page-break-inside: avoid;
     break-inside: avoid;
     margin-bottom: 1rem !important;
@@ -447,22 +447,22 @@ body {
   }
   .chart-section {
     padding: 0.5rem !important;
-    margin-top: 0.5rem !important;
+    margin-top: 0 !important;
   }
   .top-scores-section {
     padding: 0.5rem !important;
-    margin-top: 0.5rem !important;
-    margin-bottom: 0.5rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.2rem !important;
   }
   .top-scores-section h3 {
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 1rem !important;
     font-size: 1.2rem !important;
   }
 
   /* Compact Top 3 in print mode */
   .top-score-card {
     flex: 1 !important;
-    padding: 0.2rem !important;
+    padding: 0.5rem 0.2rem !important;
     margin-bottom: 0 !important;
   }
   .top-score-card > div:first-child {

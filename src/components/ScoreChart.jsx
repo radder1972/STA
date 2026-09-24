@@ -55,7 +55,7 @@ export default function ScoreChart({ scores }) {
           <BarChart
             data={data}
             layout="vertical"
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            margin={{ top: 5, right: 30, left: 20, bottom: 15 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={true} vertical={false} />
             <XAxis 
@@ -63,6 +63,7 @@ export default function ScoreChart({ scores }) {
               domain={[1, 6]} 
               ticks={[1, 2, 3, 4, 5, 6]}
               stroke="var(--text-muted)" 
+              tickMargin={10}
             />
             <YAxis 
               type="category" 
