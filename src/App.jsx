@@ -9,7 +9,7 @@ import smiData from './data/smi.json'
 function App() {
   const [currentView, setCurrentView] = useState('home')
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState(null)
-  const [answers, setAnswers] = useState({})
+  const [completedTests, setCompletedTests] = useState({ ysq: null, smi: null })
   const [theme, setTheme] = useState('dark')
 
   const toggleTheme = () => {
@@ -20,19 +20,23 @@ function App() {
 
   const handleStart = (type) => {
     setCurrentQuestionnaire(type)
-    setAnswers({})
     setCurrentView('questionnaire')
   }
 
   const handleFinish = (finalAnswers) => {
-    setAnswers(finalAnswers)
+    setCompletedTests(prev => ({ ...prev, [currentQuestionnaire]: finalAnswers }))
+    setCurrentView('home')
+    setCurrentQuestionnaire(null)
+  }
+
+  const viewResults = () => {
     setCurrentView('results')
   }
 
   const handleRestart = () => {
     setCurrentView('home')
     setCurrentQuestionnaire(null)
-    setAnswers({})
+    setCompletedTests({ ysq: null, smi: null })
   }
 
   const getQuestionData = () => {
@@ -51,7 +55,13 @@ function App() {
       >
         {theme === 'dark' ? <SunIcon size={20} /> : <MoonIcon size={20} />}
       </button>
-      {currentView === 'home' && <Home onStart={handleStart} />}
+      {currentView === 'home' && (
+        <Home 
+          onStart={handleStart} 
+          completedTests={completedTests} 
+          onViewResults={viewResults} 
+        />
+      )}
       {currentView === 'questionnaire' && (
         <Questionnaire 
           type={currentQuestionnaire} 
@@ -62,9 +72,9 @@ function App() {
       )}
       {currentView === 'results' && (
         <Results 
-          type={currentQuestionnaire}
-          answers={answers}
+          completedTests={completedTests}
           onRestart={handleRestart}
+          onBack={() => setCurrentView('home')}
         />
       )}
 
