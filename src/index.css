@@ -583,14 +583,18 @@ body {
   }
 }
 
-/* Schema Images with Transparency */
+/* Schema Images */
 .schema-img {
   border-radius: 8px;
-  transition: filter 0.3s ease;
+  background-color: white;
+  padding: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
 [data-theme="dark"] .schema-img {
-  filter: invert(1);
+  /* Keep background white and lines black, just dim it slightly for dark mode if desired, or keep as is */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 @media print {
