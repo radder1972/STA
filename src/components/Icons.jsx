@@ -132,7 +132,7 @@ export const ShieldIcon = (props) => (
 export const InfoIcon = (props) => (
   <IconBase {...props}>
     <circle cx="12" cy="12" r="10" />
-    <path d="M12 16v-5" />
+    <line x1="12" y1="11" x2="12" y2="16" />
     <circle cx="12" cy="7.5" r="1" />
   </IconBase>
 );
