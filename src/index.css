@@ -583,15 +583,14 @@ body {
   }
 }
 
-/* Schema Images with Transparency & Accents */
+/* Schema Images with Transparency */
 .schema-img {
   border-radius: 8px;
-  filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.4));
   transition: filter 0.3s ease;
 }
 
 [data-theme="dark"] .schema-img {
-  filter: invert(1) drop-shadow(0 0 6px rgba(16, 185, 129, 0.8));
+  filter: invert(1);
 }
 
 @media print {
