@@ -26,54 +26,40 @@ export default function SmiVisualizer({ groupedScores, top3 = [] }) {
     );
   };
 
+  const renderSection = (title, groupName, color) => {
+    const modes = getGroup(groupName);
+    if (modes.length === 0) return null;
+
+    return (
+      <div className="ysq-section glass-panel" style={{ 
+        border: `1px solid var(--border-color)`, 
+        borderTop: `5px solid ${color}`,
+        borderRadius: '12px',
+        padding: '1.5rem',
+        background: 'var(--card-bg)',
+        marginBottom: '1.5rem',
+        boxShadow: 'var(--glass-shadow)'
+      }}>
+        <h4 className="section-label" style={{ color: color, marginTop: 0, marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', fontSize: '1.1rem' }}>{title}</h4>
+        <div className="nodes-container">
+          {modes.map(renderModeNode)}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="visualizer-container">
       <h3 className="visualizer-title">Modi Overzicht</h3>
       
-      <div className="smi-layout">
-        {/* Top Level: Parents & Healthy */}
-        <div className="smi-section parent-modes">
-          <h4 className="section-label">DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI</h4>
-          <div className="nodes-container">
-            {getGroup('DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI').map(renderModeNode)}
-          </div>
-        </div>
-        
-        <div className="smi-section healthy-modes">
-          <h4 className="section-label" style={{ color: '#10b981' }}>FUNCTIONELE MODI</h4>
-          <div className="nodes-container">
-            {getGroup('FUNCTIONELE MODI').map(renderModeNode)}
-          </div>
-        </div>
-
-        {/* Middle Level: Coping */}
-        <div className="smi-section coping-modes">
-          <h4 className="section-label">BESCHERMMODI - OMKERING</h4>
-          <div className="nodes-container">
-            {getGroup('BESCHERMMODI - OMKERING').map(renderModeNode)}
-          </div>
-        </div>
-        
-        <div className="smi-section coping-modes">
-          <h4 className="section-label">BESCHERMMODI - VERMIJDEN</h4>
-          <div className="nodes-container">
-            {getGroup('BESCHERMMODI - VERMIJDEN').map(renderModeNode)}
-          </div>
-        </div>
-        
-        <div className="smi-section coping-modes">
-          <h4 className="section-label">BESCHERMMODI - OVERGAVE</h4>
-          <div className="nodes-container">
-            {getGroup('BESCHERMMODI - OVERGAVE').map(renderModeNode)}
-          </div>
-        </div>
-
-        {/* Bottom Level: Child Modes */}
-        <div className="smi-section child-modes">
-          <h4 className="section-label">KINDMODI</h4>
-          <div className="nodes-container">
-            {getGroup('KINDMODI').map(renderModeNode)}
-          </div>
+      <div className="ysq-layout">
+        <div className="ysq-grid">
+          {renderSection('DISFUNCTIONELE OUDERMODI', 'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI', '#ef4444')}
+          {renderSection('FUNCTIONELE MODI', 'FUNCTIONELE MODI', '#10b981')}
+          {renderSection('BESCHERMMODI - OMKERING', 'BESCHERMMODI - OMKERING', '#eab308')}
+          {renderSection('BESCHERMMODI - VERMIJDEN', 'BESCHERMMODI - VERMIJDEN', '#f59e0b')}
+          {renderSection('BESCHERMMODI - OVERGAVE', 'BESCHERMMODI - OVERGAVE', '#d97706')}
+          {renderSection('KINDMODI', 'KINDMODI', '#3b82f6')}
         </div>
       </div>
     </div>
