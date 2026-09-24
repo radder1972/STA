@@ -1,6 +1,6 @@
 import { schemaDescriptions } from '../data/descriptions';
 
-export default function SmiVisualizer({ groupedScores, top3 = [], onSelect }) {
+export default function SmiVisualizer({ groupedScores, top3 = [] }) {
   // Helper to get scores for a specific group safely
   const getGroup = (groupName) => groupedScores[groupName] || [];
 
@@ -12,10 +12,8 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onSelect }) {
     return (
       <div 
         key={mode.id} 
-        className="mode-node glass-panel interactive-card" 
-        onMouseEnter={() => onSelect && onSelect(mode.name)}
-        onMouseLeave={() => onSelect && onSelect(null)}
-        style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}) }}
+        className="mode-node glass-panel" 
+        style={{ display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}) }}
       >
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
           <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>

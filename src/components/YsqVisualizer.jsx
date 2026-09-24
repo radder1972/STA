@@ -1,6 +1,6 @@
 import { schemaDescriptions } from '../data/descriptions';
 
-export default function YsqVisualizer({ groupedScores, top3 = [], onSelect }) {
+export default function YsqVisualizer({ groupedScores, top3 = [] }) {
   const getGroup = (groupName) => groupedScores[groupName] || [];
 
   const renderSchemaNode = (schema) => {
@@ -20,10 +20,8 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onSelect }) {
     return (
       <div 
         key={schema.id} 
-        className="mode-node glass-panel interactive-card" 
-        onMouseEnter={() => onSelect && onSelect(schema.name)}
-        onMouseLeave={() => onSelect && onSelect(null)}
-        style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}) }}
+        className="mode-node glass-panel" 
+        style={{ display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}) }}
       >
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
           {hasImage && (

@@ -71,8 +71,6 @@ export default function SingleResult({ type, answers }) {
   const scoringData = type === 'ysq' ? ysqScoring : smiScoring;
   const title = type === 'ysq' ? 'YSQ S3' : 'SMI'
   
-  const [selectedSchema, setSelectedSchema] = useState(null);
-  
   // Calculate scores
   const calculatedScores = Object.entries(scoringData).map(([key, items]) => {
     let sum = 0;
@@ -181,10 +179,8 @@ export default function SingleResult({ type, answers }) {
               return (
                 <div 
                   key={score.id} 
-                  className="top-score-card interactive-card" 
-                  onMouseEnter={() => setSelectedSchema(score.name)}
-                  onMouseLeave={() => setSelectedSchema(null)}
-                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', borderTop: `6px solid ${medalColor}`, padding: '1rem', background: 'rgba(0,0,0,0.02)', borderRadius: '12px', border: '1px solid var(--border-color)', cursor: 'pointer' }}
+                  className="top-score-card glass-panel" 
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', borderTop: `6px solid ${medalColor}`, padding: '1rem', background: 'rgba(0,0,0,0.02)', borderRadius: '12px', border: '1px solid var(--border-color)' }}
                 >
                   <div style={{ fontSize: '2rem', fontWeight: '900', color: medalColor, marginBottom: '1rem', lineHeight: '1' }}>
                     #{i + 1}
@@ -219,34 +215,12 @@ export default function SingleResult({ type, answers }) {
 
         <div className="details-section" style={{ marginTop: '2rem', marginBottom: '2rem' }}>
           {type === 'ysq' ? (
-            <YsqVisualizer groupedScores={groupedScores} top3={top3} onSelect={setSelectedSchema} />
+            <YsqVisualizer groupedScores={groupedScores} top3={top3} />
           ) : (
-            <SmiVisualizer groupedScores={groupedScores} top3={top3} onSelect={setSelectedSchema} />
+            <SmiVisualizer groupedScores={groupedScores} top3={top3} />
           )}
         </div>
       </div>
-      
-      {/* Modal for descriptions */}
-      {selectedSchema && (
-        <div className="modal-overlay no-print" style={{
-          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, 
-          backgroundColor: 'rgba(0,0,0,0.2)', zIndex: 1000,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          backdropFilter: 'blur(2px)',
-          pointerEvents: 'none' /* Prevents modal from stealing mouse hover */
-        }}>
-          <div className="modal-content glass-panel" style={{
-            background: 'var(--bg-main)', padding: '2rem', borderRadius: '16px',
-            maxWidth: '500px', width: '90%', border: '1px solid var(--border-color)',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
-          }}>
-            <h3 style={{ marginTop: 0, marginBottom: '1rem', color: 'var(--text-color)' }}>{selectedSchema}</h3>
-            <p style={{ lineHeight: '1.6', color: 'var(--text-main)', marginBottom: 0 }}>
-              {schemaDescriptions[selectedSchema] || 'Geen beschrijving beschikbaar.'}
-            </p>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
