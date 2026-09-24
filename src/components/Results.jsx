@@ -24,6 +24,30 @@ export default function Results({ completedTests, onRestart, onBack }) {
     downloadAnchorNode.remove();
   }
 
+  const handleExportCSV = () => {
+    let csvContent = "Vragenlijst,Vraag_ID,Antwoord_Score\n";
+    
+    if (completedTests.ysq) {
+      Object.entries(completedTests.ysq).forEach(([qId, score]) => {
+        csvContent += `YSQ,${qId},${score}\n`;
+      });
+    }
+    
+    if (completedTests.smi) {
+      Object.entries(completedTests.smi).forEach(([qId, score]) => {
+        csvContent += `SMI,${qId},${score}\n`;
+      });
+    }
+    
+    const dataStr = "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent);
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", `schema_therapy_results.csv`);
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  }
+
   return (
     <div className="combined-results-container">
       <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem', maxWidth: '900px', margin: '0 auto', flexWrap: 'wrap', gap: '1rem' }}>
@@ -33,7 +57,10 @@ export default function Results({ completedTests, onRestart, onBack }) {
         
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <button className="btn btn-outline" onClick={handleExport} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <DownloadIcon size={18} /> Exporteer (JSON)
+            <DownloadIcon size={18} /> JSON
+          </button>
+          <button className="btn btn-outline" onClick={handleExportCSV} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <DownloadIcon size={18} /> CSV
           </button>
           <button className="btn btn-gradient" onClick={handlePrint} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <DownloadIcon size={18} color="white" /> Sla op als PDF / Print
