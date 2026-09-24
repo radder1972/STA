@@ -171,41 +171,42 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>
           De meest verhoogde schema's triggeren vaak direct de meest gehanteerde coping-modi. 
         </p>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'nowrap', gap: '1rem', width: '100%', overflowX: 'auto' }}>
-          <div style={{ flex: 1, minWidth: '200px' }}>
-            <h4 style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '1rem' }}>Kwetsbaarheid (Top 3 Schema's)</h4>
-            {top3Ysq.map((schema, i) => {
-              const bg = ['rgba(251, 191, 36, 0.15)', 'rgba(148, 163, 184, 0.15)', 'rgba(180, 83, 9, 0.15)'][i] || 'transparent';
-              const border = ['rgba(251, 191, 36, 0.4)', 'rgba(148, 163, 184, 0.4)', 'rgba(180, 83, 9, 0.4)'][i] || 'transparent';
-              return (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '3.5rem', background: bg, padding: '0.8rem 1rem', borderRadius: '8px', marginBottom: '0.5rem', border: `1px solid ${border}` }}>
-                  <strong style={{ lineHeight: '1.2' }}>{schema.name}</strong> <span>{schema.mean}</span>
-                </div>
-              );
-            })}
-          </div>
-          
-          <div style={{ flex: '0 0 40px', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '2rem' }}>
-            {/* 3 Arrows to connect each row visually */}
-            {[0, 1, 2].map(i => (
-              <div key={i} style={{ minHeight: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem' }}>
-                <ArrowRightIcon size={24} color="var(--primary)" />
-              </div>
-            ))}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+            <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'center', margin: 0 }}>Kwetsbaarheid (Top 3 Schema's)</h4>
+            <div style={{ flex: '0 0 40px' }}></div>
+            <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'center', margin: 0 }}>Reactie (Top 3 Coping-Modi)</h4>
           </div>
 
-          <div style={{ flex: 1, minWidth: '200px' }}>
-            <h4 style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '1rem' }}>Reactie (Top 3 Coping-Modi)</h4>
-            {top3Coping.map((mode, i) => {
-              const bg = ['rgba(251, 191, 36, 0.15)', 'rgba(148, 163, 184, 0.15)', 'rgba(180, 83, 9, 0.15)'][i] || 'transparent';
-              const border = ['rgba(251, 191, 36, 0.4)', 'rgba(148, 163, 184, 0.4)', 'rgba(180, 83, 9, 0.4)'][i] || 'transparent';
-              return (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '3.5rem', background: bg, padding: '0.8rem 1rem', borderRadius: '8px', marginBottom: '0.5rem', border: `1px solid ${border}` }}>
-                  <strong style={{ lineHeight: '1.2' }}>{mode.name}</strong> <span>{mode.mean}</span>
+          {[0, 1, 2].map(i => {
+            const schema = top3Ysq[i];
+            const mode = top3Coping[i];
+            const bg = ['rgba(251, 191, 36, 0.15)', 'rgba(148, 163, 184, 0.15)', 'rgba(180, 83, 9, 0.15)'][i] || 'transparent';
+            const border = ['rgba(251, 191, 36, 0.4)', 'rgba(148, 163, 184, 0.4)', 'rgba(180, 83, 9, 0.4)'][i] || 'transparent';
+            const iconColor = ['#fbbf24', '#94a3b8', '#b45309'][i] || 'var(--primary)';
+            const iconBg = ['rgba(251,191,36,0.2)', 'rgba(148,163,184,0.2)', 'rgba(180,83,9,0.2)'][i];
+            
+            return (
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', width: '100%' }}>
+                {/* Left Box */}
+                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '4rem', background: bg, padding: '0.8rem 1.2rem', borderRadius: '12px', border: `1px solid ${border}` }}>
+                  <strong style={{ lineHeight: '1.2', fontSize: '1.05rem' }}>{schema?.name || '-'}</strong> <span style={{ fontWeight: 'bold' }}>{schema?.mean || '-'}</span>
                 </div>
-              );
-            })}
-          </div>
+                
+                {/* Center Arrow */}
+                <div style={{ flex: '0 0 40px', display: 'flex', justifyContent: 'center' }}>
+                  <div style={{ background: iconBg, padding: '8px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${border}` }}>
+                    <ArrowRightIcon size={20} color={iconColor} />
+                  </div>
+                </div>
+
+                {/* Right Box */}
+                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '4rem', background: bg, padding: '0.8rem 1.2rem', borderRadius: '12px', border: `1px solid ${border}` }}>
+                  <strong style={{ lineHeight: '1.2', fontSize: '1.05rem' }}>{mode?.name || '-'}</strong> <span style={{ fontWeight: 'bold' }}>{mode?.mean || '-'}</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
