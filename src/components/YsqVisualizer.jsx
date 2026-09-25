@@ -3,7 +3,7 @@ import { schemaDescriptions } from '../data/descriptions';
 export default function YsqVisualizer({ groupedScores, top3 = [] }) {
   const getGroup = (groupName) => groupedScores[groupName] || [];
 
-  const renderSchemaNode = (schema) => {
+  const renderSchemaNode = (schema, index) => {
     const top3Index = top3.findIndex(s => s.id === schema.id);
     const isTop3 = top3Index !== -1;
     const medalColor = top3Index === 0 ? '#fbbf24' : top3Index === 1 ? '#94a3b8' : top3Index === 2 ? '#b45309' : null;
@@ -26,7 +26,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [] }) {
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
           {hasImage && (
             <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-              <div className="schema-img" style={{ width: '100px', height: '120px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+              <div className="schema-img playing-card" style={{ width: '100px', height: '120px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', transform: `rotate(${(index * 7) % 8 - 4}deg)`, boxShadow: '2px 4px 10px rgba(0,0,0,0.3)', border: '3px solid white', background: 'white' }}>
                 <img src={`/images/schemas/${imgName}`} alt={schema.name} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
               </div>
             </div>
