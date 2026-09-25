@@ -187,6 +187,37 @@ export default function ScoreChart({ scores }) {
     return null;
   };
 
+  // Custom bar shape to draw both the bar and the badge accurately
+  const CustomBarWithBadge = (props) => {
+    const { x, y, width, height, payload } = props;
+    
+    if (!payload || !payload.name) {
+      return <Rectangle x={x} y={y} width={width} height={height} fill="var(--primary)" radius={[0, 4, 4, 0]} />;
+    }
+    
+    const rankIndex = overallRankedScores.findIndex(s => s.name === payload.name);
+    const isTop3 = rankIndex >= 0 && rankIndex < 3;
+    const medalColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : '#b45309';
+    const catColor = payload.category ? categoryColors[payload.category] : 'var(--primary)';
+    
+    // In domain view, use category color. In high-low view, use medal colors for top 3 and primary color for the rest.
+    const finalColor = sortBy === 'domain' ? catColor : (isTop3 ? medalColor : 'var(--primary)');
+
+    return (
+      <g>
+        <Rectangle x={x} y={y} width={width} height={height} fill={finalColor} radius={[0, 4, 4, 0]} />
+        {sortBy === 'domain' && isTop3 && (
+          <g transform={`translate(${x + width + 35}, ${y + height / 2 - 8})`}>
+            <rect width="24" height="16" rx="4" fill={medalColor} />
+            <text x="12" y="11.5" fill="#fff" fontSize="10" fontWeight="bold" textAnchor="middle">
+              #{rankIndex + 1}
+            </text>
+          </g>
+        )}
+      </g>
+    );
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       {/* Detailed Bar Chart */}
