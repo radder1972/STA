@@ -17,7 +17,9 @@ export default function SmiVisualizer({ groupedScores, top3 = [] }) {
       >
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
           <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-            <img src={`/images/modes/${mode.id}.png`} alt={mode.name} className="schema-img" style={{ maxWidth: '100px', borderRadius: '6px' }} />
+            <div className="schema-img" style={{ width: '100px', height: '120px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+              <img src={`/images/modes/${mode.id}.png`} alt={mode.name} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: mode.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
+            </div>
           </div>
           
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>

@@ -26,7 +26,9 @@ export default function YsqVisualizer({ groupedScores, top3 = [] }) {
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
           {hasImage && (
             <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-              <img src={`/images/schemas/${imgName}`} alt={schema.name} className="schema-img" style={{ maxWidth: '100px', borderRadius: '6px', transform: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.3)' : 'none' }} />
+              <div className="schema-img" style={{ width: '100px', height: '120px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                <img src={`/images/schemas/${imgName}`} alt={schema.name} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
+              </div>
             </div>
           )}
           

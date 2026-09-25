@@ -186,7 +186,9 @@ export default function SingleResult({ type, answers }) {
                   </div>
                   {hasImage && (
                     <div style={{ marginBottom: '1rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                      <img src={imgUrl} alt={score.name} className="schema-img" style={{ maxWidth: '130px', transform: score.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.2)' : 'none' }} />
+                      <div className="schema-img" style={{ width: '130px', height: '155px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                        <img src={imgUrl} alt={score.name} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: score.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
+                      </div>
                     </div>
                   )}
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', width: '100%' }}>
