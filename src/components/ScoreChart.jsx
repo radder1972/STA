@@ -125,7 +125,7 @@ export default function ScoreChart({ scores }) {
     
     return (
       <g>
-        <text radius={radius} stroke="none" x={x} y={y} className="recharts-text recharts-polar-angle-axis-tick-value" textAnchor={textAnchor} fill={color} fontSize="10" fontWeight="bold">
+        <text radius={radius} stroke="none" x={x} y={y} className="recharts-text recharts-polar-angle-axis-tick-value" textAnchor={textAnchor} fill={color} fontSize="9" fontWeight="bold">
           <tspan x={x} dy="0em">{payload.value}</tspan>
           {isTop3 && <tspan fill={rankColor}>{rankText}</tspan>}
         </text>
@@ -205,7 +205,7 @@ export default function ScoreChart({ scores }) {
               height={data.length > 10 ? 550 : 400}
               data={data}
               layout="vertical"
-              margin={{ top: 10, right: 30, left: 20, bottom: 30 }}
+              margin={{ top: 10, right: 30, left: 0, bottom: 30 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" horizontal={true} vertical={false} />
               <XAxis 
@@ -219,9 +219,9 @@ export default function ScoreChart({ scores }) {
               <YAxis 
                 type="category" 
                 dataKey="name" 
-                width={320} 
+                width={250} 
                 stroke="var(--text-color)"
-                tick={{ fontSize: 12, fill: 'var(--text-main)' }}
+                tick={{ fontSize: 11, fill: 'var(--text-main)' }}
                 tickMargin={15}
                 padding={{ top: 10, bottom: 20 }}
               />
@@ -282,7 +282,7 @@ export default function ScoreChart({ scores }) {
                 height={Math.max(200, domainAverages.length * 40 + 40)}
                 data={domainAverages}
                 layout="vertical"
-                margin={{ top: 10, right: 30, left: 20, bottom: 10 }}
+                margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" horizontal={true} vertical={false} />
                 <XAxis 
@@ -296,7 +296,7 @@ export default function ScoreChart({ scores }) {
                 <YAxis 
                   type="category" 
                   dataKey="name" 
-                  width={220} 
+                  width={200} 
                   stroke="var(--text-color)"
                   tick={{ fontSize: 11, fill: 'var(--text-main)', fontWeight: 'bold' }}
                   tickMargin={15}
