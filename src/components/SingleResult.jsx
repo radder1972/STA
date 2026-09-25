@@ -6,6 +6,7 @@ import YsqVisualizer from './YsqVisualizer'
 import SmiVisualizer from './SmiVisualizer'
 import ScoreChart from './ScoreChart'
 import { schemaDescriptions } from '../data/descriptions'
+import { getSchemaImage, getModeImage } from '../utils/images'
 import './Visualizers.css'
 
 const basisbehoeftenMap = {
@@ -173,7 +174,7 @@ export default function SingleResult({ type, answers }) {
               const isSchemaImg = type === 'ysq' && schemasWithImages.includes(score.id);
               const isModeImg = type === 'smi' && modesWithImages.includes(score.id);
               const hasImage = isSchemaImg || isModeImg;
-              const imgUrl = isSchemaImg ? `/images/schemas/${score.id.replace('/', '_')}.png` : (isModeImg ? `/images/modes/${score.id}.png` : null);
+              const imgUrl = isSchemaImg ? getSchemaImage(score.id) : (isModeImg ? getModeImage(score.id) : null);
 
               return (
                 <div 
