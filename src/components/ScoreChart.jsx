@@ -13,7 +13,8 @@ import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis
+  PolarRadiusAxis,
+  Rectangle
 } from 'recharts';
 import { ChartIcon } from './Icons';
 
@@ -236,49 +237,8 @@ export default function ScoreChart({ scores }) {
               />
               <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(100,116,139,0.1)'}} />
               
-              <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={20} isAnimationActive={false}>
-                <LabelList dataKey="score" content={(props) => {
-                  const { x, y, width, height, value, index, payload } = props;
-                  // Use payload to get the exact data item, falling back to data array
-                  const itemName = payload && payload.name ? payload.name : (data[index] ? data[index].name : null);
-                  if (!itemName) return null;
-                  
-                  const rankIndex = overallRankedScores.findIndex(s => s.name === itemName);
-                  const isTop3 = rankIndex >= 0 && rankIndex < 3;
-                  const medalColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : '#b45309';
-                  
-                  return (
-                    <g>
-                      <text x={x + width + 8} y={y + height / 2 + 4} fill="var(--text-main)" fontSize={11} fontWeight="bold">
-                        {value}
-                      </text>
-                      {sortBy === 'domain' && isTop3 && (
-                        <g transform={`translate(${x + width + 35}, ${y + height / 2 - 8})`}>
-                          <rect width="24" height="16" rx="4" fill={medalColor} />
-                          <text x="12" y="12" fill="#fff" fontSize="10" fontWeight="bold" textAnchor="middle">
-                            #{rankIndex + 1}
-                          </text>
-                        </g>
-                      )}
-                    </g>
-                  );
-                }} />
-                {data.map((entry, index) => {
-                  const rankIndex = overallRankedScores.findIndex(s => s.name === entry.name);
-                  const isTop3 = rankIndex >= 0 && rankIndex < 3;
-                  const medalColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : rankIndex === 2 ? '#b45309' : 'var(--primary)';
-                  const catColor = entry.category ? categoryColors[entry.category] : 'var(--primary)';
-                  
-                  // In domain view, use category color. In high-low view, use medal colors for top 3 and primary color for the rest.
-                  const finalColor = sortBy === 'domain' ? catColor : (isTop3 ? medalColor : 'var(--primary)');
-                  
-                  return (
-                    <Cell 
-                      key={`cell-${index}`} 
-                      fill={finalColor} 
-                    />
-                  );
-                })}
+              <Bar dataKey="score" shape={<CustomBarWithBadge />} isAnimationActive={false}>
+                <LabelList dataKey="score" position="right" fill="var(--text-main)" fontSize={11} fontWeight="bold" />
               </Bar>
             </BarChart>
           </div>
