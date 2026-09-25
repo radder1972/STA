@@ -445,6 +445,16 @@ body {
     transform-origin: top center;
   }
   
+  /* Force fixed width for Recharts in print to prevent disappearing */
+  .recharts-responsive-container {
+    width: 750px !important;
+    min-width: 750px !important;
+  }
+  .chart-wrapper > div {
+    width: 750px !important;
+    min-width: 750px !important;
+  }
+  
   .radar-container, .domain-container {
     transform-origin: top center;
     transform: scale(0.9);
