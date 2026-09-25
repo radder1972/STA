@@ -41,17 +41,20 @@ export default function ScoreChart({ scores }) {
   const [sortBy, setSortBy] = useState('score');
   const [chartWidth, setChartWidth] = useState(800);
 
+  const wrapperRef = React.useRef(null);
+
   React.useEffect(() => {
     const handleResize = () => {
-      const container = document.querySelector('.results-container') || document.body;
-      const availableWidth = container.clientWidth - 40; // account for padding
-      setChartWidth(Math.min(800, availableWidth));
+      if (wrapperRef.current) {
+        setChartWidth(wrapperRef.current.clientWidth);
+      }
     };
-    handleResize();
+    // Use a small timeout to ensure the DOM has settled
+    setTimeout(handleResize, 10);
     window.addEventListener('resize', handleResize);
     
-    // Crucial for printing: force width to 750px synchronously before print layout
-    const beforePrint = () => setChartWidth(750);
+    // Crucial for printing: force width to 700px synchronously before print layout
+    const beforePrint = () => setChartWidth(700);
     window.addEventListener('beforeprint', beforePrint);
     window.addEventListener('afterprint', handleResize);
     
@@ -195,7 +198,7 @@ export default function ScoreChart({ scores }) {
             </button>
           </div>
         </div>
-        <div className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
+        <div ref={wrapperRef} className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
           <div style={{ width: '100%', height: data.length > 10 ? '550px' : '400px' }}>
             <BarChart
               width={chartWidth}
