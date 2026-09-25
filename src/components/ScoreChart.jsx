@@ -214,7 +214,7 @@ export default function ScoreChart({ scores }) {
               height={data.length > 10 ? 550 : 400}
               data={data}
               layout="vertical"
-              margin={{ top: 10, right: 30, left: 0, bottom: 30 }}
+              margin={{ top: 10, right: 70, left: 0, bottom: 30 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" horizontal={true} vertical={false} />
               <XAxis 
@@ -237,13 +237,39 @@ export default function ScoreChart({ scores }) {
               <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(100,116,139,0.1)'}} />
               
               <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={20} isAnimationActive={false}>
-                <LabelList dataKey="score" position="right" fill="var(--text-main)" fontSize={11} fontWeight="bold" />
+                <LabelList dataKey="score" content={(props) => {
+                  const { x, y, width, height, value, index } = props;
+                  const entry = data[index];
+                  if (!entry) return null;
+                  
+                  const rankIndex = overallRankedScores.findIndex(s => s.name === entry.name);
+                  const isTop3 = rankIndex >= 0 && rankIndex < 3;
+                  const medalColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : '#b45309';
+                  
+                  return (
+                    <g>
+                      <text x={x + width + 8} y={y + height / 2 + 4} fill="var(--text-main)" fontSize={11} fontWeight="bold">
+                        {value}
+                      </text>
+                      {sortBy === 'domain' && isTop3 && (
+                        <g transform={`translate(${x + width + 35}, ${y + height / 2 - 8})`}>
+                          <rect width="24" height="16" rx="4" fill={medalColor} />
+                          <text x="12" y="12" fill="#fff" fontSize="10" fontWeight="bold" textAnchor="middle">
+                            #{rankIndex + 1}
+                          </text>
+                        </g>
+                      )}
+                    </g>
+                  );
+                }} />
                 {data.map((entry, index) => {
                   const rankIndex = overallRankedScores.findIndex(s => s.name === entry.name);
                   const isTop3 = rankIndex >= 0 && rankIndex < 3;
                   const medalColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : rankIndex === 2 ? '#b45309' : 'var(--primary)';
                   const catColor = entry.category ? categoryColors[entry.category] : 'var(--primary)';
-                  const finalColor = sortBy === 'domain' && !isTop3 && catColor ? catColor : medalColor;
+                  
+                  // If sorted by domain, ALWAYS use the category color. Otherwise use medal colors for top 3.
+                  const finalColor = sortBy === 'domain' ? catColor : (isTop3 ? medalColor : catColor);
                   
                   return (
                     <Cell 
