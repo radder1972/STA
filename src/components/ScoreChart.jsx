@@ -39,6 +39,28 @@ export default function ScoreChart({ scores }) {
   }, [scores]);
 
   const [sortBy, setSortBy] = useState('score');
+  const [chartWidth, setChartWidth] = useState(800);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      const container = document.querySelector('.results-container') || document.body;
+      const availableWidth = container.clientWidth - 40; // account for padding
+      setChartWidth(Math.min(800, availableWidth));
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    // Crucial for printing: force width to 750px synchronously before print layout
+    const beforePrint = () => setChartWidth(750);
+    window.addEventListener('beforeprint', beforePrint);
+    window.addEventListener('afterprint', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('beforeprint', beforePrint);
+      window.removeEventListener('afterprint', handleResize);
+    };
+  }, []);
 
   // Sort scores from highest to lowest for overall ranking (Top 3)
   const overallRankedScores = React.useMemo(() => [...scores].sort((a, b) => b.mean - a.mean), [scores]);
@@ -175,8 +197,9 @@ export default function ScoreChart({ scores }) {
         </div>
         <div className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
           <div style={{ width: '100%', height: data.length > 10 ? '550px' : '400px' }}>
-            <ResponsiveContainer width="100%" height="100%">
             <BarChart
+              width={chartWidth}
+              height={data.length > 10 ? 550 : 400}
               data={data}
               layout="vertical"
               margin={{ top: 10, right: 30, left: 20, bottom: 30 }}
@@ -219,7 +242,6 @@ export default function ScoreChart({ scores }) {
                 })}
               </Bar>
             </BarChart>
-            </ResponsiveContainer>
           </div>
         </div>
       </div>
@@ -232,15 +254,13 @@ export default function ScoreChart({ scores }) {
         </p>
         <div className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
           <div className="radar-container" style={{ width: '100%', height: data.length > 10 ? '450px' : '400px' }}>
-            <ResponsiveContainer width="100%" height="100%">
-            <RadarChart cx="50%" cy="50%" outerRadius="65%" data={radarData}>
+            <RadarChart width={chartWidth} height={data.length > 10 ? 450 : 400} cx="50%" cy="50%" outerRadius="65%" data={radarData}>
               <PolarGrid stroke="var(--border-color)" />
               <PolarAngleAxis dataKey="name" tick={<CustomTick />} />
               <PolarRadiusAxis angle={90} domain={[1, 6]} tick={{ fill: 'var(--text-muted)' }} />
               <Radar name="Score" dataKey="mean" stroke="var(--primary)" fill="var(--primary)" fillOpacity={0.4} dot={<CustomRadarDot />} isAnimationActive={false} />
               <Tooltip content={<CustomTooltip />} />
             </RadarChart>
-            </ResponsiveContainer>
           </div>
         </div>
       </div>
@@ -254,8 +274,9 @@ export default function ScoreChart({ scores }) {
           </p>
           <div className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
             <div className="domain-container" style={{ width: '100%', height: `${Math.max(200, domainAverages.length * 40 + 40)}px` }}>
-              <ResponsiveContainer width="100%" height="100%">
               <BarChart
+                width={chartWidth}
+                height={Math.max(200, domainAverages.length * 40 + 40)}
                 data={domainAverages}
                 layout="vertical"
                 margin={{ top: 10, right: 30, left: 20, bottom: 10 }}
@@ -289,7 +310,6 @@ export default function ScoreChart({ scores }) {
                   ))}
                 </Bar>
               </BarChart>
-              </ResponsiveContainer>
             </div>
           </div>
         </div>
