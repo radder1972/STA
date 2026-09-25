@@ -21,11 +21,11 @@ export default function SmiVisualizer({ groupedScores, top3 = [] }) {
           </div>
           
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <div className="mode-name" style={{ display: 'flex', alignItems: 'center', marginBottom: '0.25rem', minHeight: 'auto' }}>
+            <div className="mode-name" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.25rem', minHeight: 'auto' }}>
               <span style={{ paddingRight: '10px', fontWeight: 'bold' }}>{mode.name}</span>
               {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
             </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.4', fontStyle: 'italic' }}>
+            <div style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.4', fontStyle: 'italic' }}>
               {schemaDescriptions[mode.name] || ''}
             </div>
           </div>
