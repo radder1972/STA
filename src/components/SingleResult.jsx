@@ -187,7 +187,7 @@ export default function SingleResult({ type, answers }) {
                   </div>
                   {hasImage && (
                     <div style={{ marginBottom: '1rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                      <img src={imgUrl} alt={score.name} className="schema-img" style={{ maxWidth: '110px' }} />
+                      <img src={imgUrl} alt={score.name} className="schema-img" style={{ maxWidth: '130px' }} />
                     </div>
                   )}
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', width: '100%' }}>

@@ -26,7 +26,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [] }) {
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
           {hasImage && (
             <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-              <img src={`/images/schemas/${imgName}`} alt={schema.name} className="schema-img" style={{ maxWidth: '70px', borderRadius: '6px' }} />
+              <img src={`/images/schemas/${imgName}`} alt={schema.name} className="schema-img" style={{ maxWidth: '100px', borderRadius: '6px' }} />
             </div>
           )}
           
