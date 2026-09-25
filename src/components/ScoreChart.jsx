@@ -44,24 +44,33 @@ export default function ScoreChart({ scores }) {
   const wrapperRef = React.useRef(null);
 
   React.useEffect(() => {
-    const handleResize = () => {
-      if (wrapperRef.current) {
-        setChartWidth(wrapperRef.current.clientWidth);
-      }
-    };
-    // Use a small timeout to ensure the DOM has settled
-    setTimeout(handleResize, 10);
-    window.addEventListener('resize', handleResize);
+    let observer;
+    if (wrapperRef.current) {
+      observer = new ResizeObserver(entries => {
+        for (let entry of entries) {
+          if (entry.contentRect.width > 100) {
+            setChartWidth(entry.contentRect.width);
+          }
+        }
+      });
+      observer.observe(wrapperRef.current);
+    }
     
     // Crucial for printing: force width to 700px synchronously before print layout
     const beforePrint = () => setChartWidth(700);
+    const afterPrint = () => {
+      if (wrapperRef.current && wrapperRef.current.clientWidth > 100) {
+        setChartWidth(wrapperRef.current.clientWidth);
+      }
+    };
+    
     window.addEventListener('beforeprint', beforePrint);
-    window.addEventListener('afterprint', handleResize);
+    window.addEventListener('afterprint', afterPrint);
     
     return () => {
-      window.removeEventListener('resize', handleResize);
+      if (observer) observer.disconnect();
       window.removeEventListener('beforeprint', beforePrint);
-      window.removeEventListener('afterprint', handleResize);
+      window.removeEventListener('afterprint', afterPrint);
     };
   }, []);
 
