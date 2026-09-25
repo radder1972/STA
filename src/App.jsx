@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { SunIcon, MoonIcon } from './components/Icons'
 import Home from './components/Home'
 import Questionnaire from './components/Questionnaire'
@@ -10,7 +10,11 @@ function App() {
   const [currentView, setCurrentView] = useState('home')
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState(null)
   const [completedTests, setCompletedTests] = useState({ ysq: null, smi: null })
-  const [theme, setTheme] = useState('dark')
+  const [theme, setTheme] = useState('light')
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'light')
+  }, [])
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark'
