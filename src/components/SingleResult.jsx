@@ -156,8 +156,8 @@ export default function SingleResult({ type, answers }) {
   return (
     <div className="results-container" style={{ width: '100%', maxWidth: '900px', margin: '0 auto', paddingBottom: '2rem' }}>
       <div className="results-box glass-panel" style={{ padding: '2rem', marginTop: '2rem' }}>
-        <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-          <ChartIcon size={28} /> {title} Resultaten
+        <h2 className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+          <ChartIcon size={28} useGradient={true} /> {title} Resultaten
         </h2>
 
         <p className="no-print">Je hebt {totalAnswered} vragen beantwoord.</p>

@@ -48,7 +48,7 @@ export default function Results({ completedTests, onRestart, onBack }) {
   return (
     <div className="combined-results-container">
       <div className="header" style={{ marginTop: '1rem' }}>
-        <h1>Schema Therapy Questionnaires</h1>
+        <h1 className="text-gradient">Schema Therapy Questionnaires</h1>
         <p>Rapportage & Analyse</p>
       </div>
 
