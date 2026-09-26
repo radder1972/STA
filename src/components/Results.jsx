@@ -75,10 +75,16 @@ export default function Results({ completedTests, onRestart, onBack }) {
 
   return (
     <div className="combined-results-container">
-      <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem', maxWidth: '900px', margin: '0 auto', flexWrap: 'wrap', gap: '1rem' }}>
-        <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <ArrowLeftIcon size={18} /> Terug naar Menu
-        </button>
+      {/* 1. Top Navigation (Actions) */}
+      <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem', maxWidth: '1200px', margin: '0 auto', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '1rem' }}>
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <ArrowLeftIcon size={18} /> Terug naar Menu
+          </button>
+          <button className="btn btn-outline" onClick={onRestart} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <RefreshIcon size={18} /> Alles Wissen
+          </button>
+        </div>
         
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <button className="btn btn-outline" onClick={handleExport} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -90,32 +96,40 @@ export default function Results({ completedTests, onRestart, onBack }) {
           <button className="btn btn-gradient" onClick={handlePrint} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <DownloadIcon size={18} color="white" /> Sla op als PDF / Print
           </button>
-          <button className="btn btn-outline" onClick={onRestart} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <RefreshIcon size={18} /> Alles Wissen
-          </button>
         </div>
       </div>
 
+      {/* 2. Clear Page Title */}
+      <h2 style={{ textAlign: 'center', marginTop: '1rem', marginBottom: '1.5rem', color: 'var(--text-main)', fontSize: '1.8rem', fontWeight: 'bold' }}>
+        Rapportage & Analyse
+      </h2>
+
+      {/* 3. The View Toggles */}
       {hasYsq && hasSmi && (
-        <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
-          <button 
-            className={`btn ${activeTab === 'ysq' ? 'btn-gradient' : 'btn-outline'}`}
-            onClick={() => setActiveTab('ysq')}
-          >
-            YSQ (Schema's)
-          </button>
-          <button 
-            className={`btn ${activeTab === 'smi' ? 'btn-gradient' : 'btn-outline'}`}
-            onClick={() => setActiveTab('smi')}
-          >
-            SMI (Modi)
-          </button>
-          <button 
-            className={`btn ${activeTab === 'combined' ? 'btn-gradient' : 'btn-outline'}`}
-            onClick={() => setActiveTab('combined')}
-          >
-            Gecombineerde Analyse
-          </button>
+        <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem' }}>
+          <div style={{ display: 'flex', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px' }}>
+            <button 
+              className={`btn ${activeTab === 'ysq' ? 'btn-gradient' : 'btn-outline'}`}
+              onClick={() => setActiveTab('ysq')}
+              style={{ margin: 0, border: 'none', background: activeTab === 'ysq' ? 'var(--primary)' : 'transparent', color: activeTab === 'ysq' ? 'white' : 'var(--text-muted)' }}
+            >
+              YSQ (Schema's)
+            </button>
+            <button 
+              className={`btn ${activeTab === 'smi' ? 'btn-gradient' : 'btn-outline'}`}
+              onClick={() => setActiveTab('smi')}
+              style={{ margin: 0, border: 'none', background: activeTab === 'smi' ? 'var(--primary)' : 'transparent', color: activeTab === 'smi' ? 'white' : 'var(--text-muted)' }}
+            >
+              SMI (Modi)
+            </button>
+            <button 
+              className={`btn ${activeTab === 'combined' ? 'btn-gradient' : 'btn-outline'}`}
+              onClick={() => setActiveTab('combined')}
+              style={{ margin: 0, border: 'none', background: activeTab === 'combined' ? 'var(--primary)' : 'transparent', color: activeTab === 'combined' ? 'white' : 'var(--text-muted)' }}
+            >
+              Gecombineerde Analyse
+            </button>
+          </div>
         </div>
       )}
 
