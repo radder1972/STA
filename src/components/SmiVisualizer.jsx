@@ -1,7 +1,14 @@
+import React, { useState } from 'react';
 import { schemaDescriptions } from '../data/descriptions';
 import { getModeImage } from '../utils/images';
 
 export default function SmiVisualizer({ groupedScores, top3 = [] }) {
+  const [expandedNodes, setExpandedNodes] = useState({});
+  
+  const toggleNode = (id) => {
+    setExpandedNodes(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
   // Helper to get scores for a specific group safely
   const getGroup = (groupName) => groupedScores[groupName] || [];
 
@@ -46,6 +53,54 @@ export default function SmiVisualizer({ groupedScores, top3 = [] }) {
             </div>
           </div>
         </div>
+        
+        {/* Toggle details button */}
+        <button 
+          onClick={() => toggleNode(mode.id)}
+          style={{
+            marginTop: '1rem',
+            background: 'transparent',
+            border: '1px solid var(--border-color)',
+            color: 'var(--text-muted)',
+            padding: '4px 12px',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            fontSize: '0.75rem',
+            fontWeight: 'bold',
+            alignSelf: 'center',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            transition: 'all 0.2s'
+          }}
+        >
+          {expandedNodes[mode.id] ? '▲ Verberg antwoorden' : '▼ Bekijk antwoorden'}
+        </button>
+        
+        {/* Expanded questions list */}
+        {expandedNodes[mode.id] && mode.questionDetails && mode.questionDetails.length > 0 && (
+          <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', fontSize: '0.85rem', textAlign: 'left', width: '100%', animation: 'fadeIn 0.3s ease-in-out' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              {mode.questionDetails.map(q => (
+                <li key={q.id} style={{ display: 'flex', gap: '10px', marginBottom: '10px', alignItems: 'flex-start' }}>
+                  <span style={{ 
+                    fontWeight: 'bold', 
+                    color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
+                    background: q.score >= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(0,0,0,0.05)',
+                    padding: '2px 8px',
+                    borderRadius: '6px',
+                    minWidth: '28px',
+                    textAlign: 'center',
+                    border: `1px solid ${q.score >= 5 ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)'}`
+                  }}>
+                    {q.score}
+                  </span>
+                  <span style={{ color: 'var(--text-muted)', lineHeight: '1.4' }}>{q.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     );
   };

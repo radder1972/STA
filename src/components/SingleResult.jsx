@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { DownloadIcon, RefreshIcon, ChartIcon, TrophyIcon } from './Icons'
 import ysqScoring from '../data/ysq-scoring.json'
 import smiScoring from '../data/smi-scoring.json'
+import ysqQuestions from '../data/ysq-s3.json'
+import smiQuestions from '../data/smi.json'
 import YsqVisualizer from './YsqVisualizer'
 import SmiVisualizer from './SmiVisualizer'
 import ScoreChart from './ScoreChart'
@@ -97,7 +99,15 @@ export default function SingleResult({ type, answers }) {
       displayKey = ysqSchemaNamesMap[key];
     }
     
-    return { id: key, name: displayKey, mean, highScores, totalItems: items.length }
+    const questionBank = type === 'ysq' ? ysqQuestions : smiQuestions;
+    const questionDetails = items.map(qId => {
+      const val = answers[qId];
+      if (val === undefined) return null;
+      const qObj = questionBank.find(q => q.id === parseInt(qId));
+      return { id: qId, score: val, text: qObj ? qObj.text : `Vraag ${qId}` };
+    }).filter(Boolean);
+    
+    return { id: key, name: displayKey, mean, highScores, totalItems: items.length, questionDetails }
   })
   
   const handleDownload = () => {
