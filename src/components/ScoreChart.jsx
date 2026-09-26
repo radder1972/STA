@@ -260,7 +260,7 @@ export default function ScoreChart({ scores }) {
               <YAxis 
                 type="category" 
                 dataKey="name" 
-                width={250} 
+                width={300} 
                 stroke="var(--text-color)"
                 tick={{ fontSize: 11, fill: 'var(--text-main)' }}
                 tickMargin={15}
