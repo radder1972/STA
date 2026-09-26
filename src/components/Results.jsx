@@ -5,7 +5,7 @@ import { DownloadIcon, RefreshIcon, ArrowLeftIcon } from './Icons'
 import ysqData from '../data/ysq-s3.json'
 import smiData from '../data/smi.json'
 
-export default function Results({ completedTests, onRestart, onBack }) {
+export default function Results({ completedTests, onRestart, onBack, onUpdateAnswer }) {
   const hasYsq = !!completedTests.ysq;
   const hasSmi = !!completedTests.smi;
   
@@ -103,13 +103,13 @@ export default function Results({ completedTests, onRestart, onBack }) {
         {/* Render based on active tab, but for print we always render all available tests */}
         {hasYsq && (
           <div className={activeTab === 'ysq' ? 'print-visible' : 'print-only'}>
-            <SingleResult type="ysq" answers={completedTests.ysq} />
+            <SingleResult type="ysq" answers={completedTests.ysq} onUpdateAnswer={onUpdateAnswer} />
           </div>
         )}
         
         {hasSmi && (
           <div className={activeTab === 'smi' ? 'print-visible' : 'print-only'} style={{pageBreakBefore: 'always'}}>
-            <SingleResult type="smi" answers={completedTests.smi} />
+            <SingleResult type="smi" answers={completedTests.smi} onUpdateAnswer={onUpdateAnswer} />
           </div>
         )}
         

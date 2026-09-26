@@ -37,6 +37,16 @@ function App() {
     setCurrentView('results')
   }
 
+  const handleUpdateAnswer = (type, questionId, newScore) => {
+    setCompletedTests(prev => ({
+      ...prev,
+      [type]: {
+        ...prev[type],
+        [questionId]: parseInt(newScore, 10)
+      }
+    }))
+  }
+
   const handleRestart = () => {
     setCurrentView('home')
     setCurrentQuestionnaire(null)
@@ -88,6 +98,7 @@ function App() {
           completedTests={completedTests}
           onRestart={handleRestart}
           onBack={() => setCurrentView('home')}
+          onUpdateAnswer={handleUpdateAnswer}
         />
       )}
 

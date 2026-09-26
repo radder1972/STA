@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { schemaDescriptions } from '../data/descriptions';
 import { getModeImage } from '../utils/images';
 
-export default function SmiVisualizer({ groupedScores, top3 = [] }) {
+export default function SmiVisualizer({ groupedScores, top3 = [], onUpdateAnswer }) {
   const [expandedNodes, setExpandedNodes] = useState({});
   
   const toggleNode = (id) => {
@@ -85,21 +85,62 @@ export default function SmiVisualizer({ groupedScores, top3 = [] }) {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {mode.questionDetails.map(q => (
                 <li key={q.id} style={{ display: 'flex', gap: '12px', padding: '10px 0', borderBottom: '1px solid var(--border-color)', alignItems: 'center', minHeight: '60px' }}>
-                  <span style={{ 
-                    fontWeight: 'bold', 
-                    color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
-                    background: q.score >= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(0,0,0,0.05)',
-                    borderRadius: '6px',
-                    width: '28px',
-                    height: '28px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    border: `1px solid ${q.score >= 5 ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)'}`
-                  }}>
-                    {q.score}
-                  </span>
+                  {onUpdateAnswer ? (
+                    <>
+                      <select
+                        className="no-print"
+                        value={q.score}
+                        onChange={(e) => onUpdateAnswer(q.id, parseInt(e.target.value, 10))}
+                        style={{
+                          fontWeight: 'bold', 
+                          color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
+                          background: q.score >= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(0,0,0,0.05)',
+                          borderRadius: '6px',
+                          width: '40px',
+                          height: '28px',
+                          textAlign: 'center',
+                          flexShrink: 0,
+                          border: `1px solid ${q.score >= 5 ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)'}`,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        {[1,2,3,4,5,6].map(num => (
+                          <option key={num} value={num}>{num}</option>
+                        ))}
+                      </select>
+                      <span className="print-only" style={{ 
+                        fontWeight: 'bold', 
+                        color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
+                        background: q.score >= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(0,0,0,0.05)',
+                        borderRadius: '6px',
+                        width: '28px',
+                        height: '28px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                        border: `1px solid ${q.score >= 5 ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)'}`
+                      }}>
+                        {q.score}
+                      </span>
+                    </>
+                  ) : (
+                    <span style={{ 
+                      fontWeight: 'bold', 
+                      color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
+                      background: q.score >= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(0,0,0,0.05)',
+                      borderRadius: '6px',
+                      width: '28px',
+                      height: '28px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      border: `1px solid ${q.score >= 5 ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)'}`
+                    }}>
+                      {q.score}
+                    </span>
+                  )}
                   <span style={{ color: 'var(--text-muted)', lineHeight: '1.4' }}>
                     <span style={{ fontWeight: 'bold', marginRight: '8px', opacity: 0.5 }}>#{q.id}</span>
                     {q.text}

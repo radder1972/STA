@@ -70,7 +70,7 @@ const smiModesMap = {
   'gv': { name: 'Gezonde volwassene', group: 'FUNCTIONELE MODI' }
 };
 
-export default function SingleResult({ type, answers }) {
+export default function SingleResult({ type, answers, onUpdateAnswer }) {
   const scoringData = type === 'ysq' ? ysqScoring : smiScoring;
   const title = type === 'ysq' ? 'YSQ S3' : 'SMI'
   
@@ -235,9 +235,9 @@ export default function SingleResult({ type, answers }) {
 
         <div className="details-section" style={{ marginTop: '2rem', marginBottom: '2rem' }}>
           {type === 'ysq' ? (
-            <YsqVisualizer groupedScores={groupedScores} top3={top3} />
+            <YsqVisualizer groupedScores={groupedScores} top3={top3} onUpdateAnswer={(qId, val) => onUpdateAnswer && onUpdateAnswer(type, qId, val)} />
           ) : (
-            <SmiVisualizer groupedScores={groupedScores} top3={top3} />
+            <SmiVisualizer groupedScores={groupedScores} top3={top3} onUpdateAnswer={(qId, val) => onUpdateAnswer && onUpdateAnswer(type, qId, val)} />
           )}
         </div>
       </div>
