@@ -76,8 +76,8 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
         <div className={`card glass-panel ${isYsqDone ? 'completed-card' : ''}`} onClick={() => onStart('ysq')} style={{ display: 'flex', flexDirection: 'column' }}>
           <ClipboardIcon size={48} useGradient={!isYsqDone} color={isYsqDone ? 'var(--success, #10b981)' : 'currentColor'} style={{ margin: '0 auto 1rem', display: 'block' }} />
           <h2>YSQ S3 {isYsqDone && <CheckIcon size={24} color="var(--success, #10b981)" style={{display: 'inline', verticalAlign: 'middle'}} />}</h2>
-          <p style={{ fontWeight: 'bold' }}>Young Schema Questionnaire</p>
-          <div style={{ fontSize: '0.9rem', textAlign: 'left', marginTop: '1rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Young Schema Questionnaire</p>
+          <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6', textAlign: 'left', marginTop: '1rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
             {isYsqDone ? <span style={{ display: 'block' }}>U heeft deze vragenlijst reeds ingevuld! Klik om eventueel opnieuw te beginnen.</span> : (
               <>
                 <span style={{ display: 'block', marginBottom: '0.8rem' }}>In deze vragenlijst volgt een aantal beweringen die men kan gebruiken om zichzelf te beschrijven. Lees elke bewering en kijk hoe goed deze u, in het afgelopen jaar, beschrijft. Als u niet zeker bent van uw antwoord, baseer uw antwoord dan op wat u emotioneel voelt en niet op wat u denkt dat waar is.</span>
@@ -92,8 +92,8 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
         <div className={`card glass-panel ${isSmiDone ? 'completed-card' : ''}`} onClick={() => onStart('smi')} style={{ display: 'flex', flexDirection: 'column' }}>
           <BrainIcon size={48} useGradient={!isSmiDone} color={isSmiDone ? 'var(--success, #10b981)' : 'currentColor'} style={{ margin: '0 auto 1rem', display: 'block' }} />
           <h2>SMI {isSmiDone && <CheckIcon size={24} color="var(--success, #10b981)" style={{display: 'inline', verticalAlign: 'middle'}} />}</h2>
-          <p style={{ fontWeight: 'bold' }}>Schema Mode Inventory</p>
-          <div style={{ fontSize: '0.9rem', textAlign: 'left', marginTop: '1rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Schema Mode Inventory</p>
+          <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6', textAlign: 'left', marginTop: '1rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
              {isSmiDone ? <span style={{ display: 'block' }}>U heeft deze vragenlijst reeds ingevuld! Klik om eventueel opnieuw te beginnen.</span> : (
               <>
                 <span style={{ display: 'block', marginBottom: '0.8rem' }}>In deze vragenlijst staan uitspraken die mensen kunnen gebruiken om zichzelf te beschrijven. We willen u vragen van deze uitspraken de FREQUENTIE te beoordelen; dus hoe vaak u over het algemeen van de uitspraak overtuigd bent of hoe vaak het zo voelde.</span>
