@@ -80,8 +80,12 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
         <button className="btn btn-outline" onClick={onCancel}>
           <ArrowLeftIcon size={18} /> Cancel
         </button>
-        <span style={{color: 'var(--text-muted)'}}>Question {currentIndex + 1} of {total}</span>
-        
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <span style={{ fontWeight: 'bold', color: 'var(--text-main)', fontSize: '1.1rem', marginBottom: '4px' }}>
+            {type === 'ysq' ? "Young Schema Questionnaire (YSQ S3)" : "Schema Mode Inventory (SMI)"}
+          </span>
+          <span style={{color: 'var(--text-muted)'}}>Vraag {currentIndex + 1} van {total}</span>
+        </div>        
         <div style={{ display: 'flex', gap: '10px', paddingRight: '40px' }}>
           <button className="btn btn-outline" onClick={handleFillRandom} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
             Fill Randomly
