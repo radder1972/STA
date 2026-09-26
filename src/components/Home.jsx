@@ -131,7 +131,6 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
           <button 
             className="btn btn-outline" 
             onClick={() => fileInputRef.current?.click()}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '0.95rem' }}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
             Importeer eerdere score (CSV)
@@ -151,7 +150,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
           target="_blank" 
           rel="noopener noreferrer"
           className="btn btn-outline"
-          style={{ display: 'inline-block', marginTop: '1rem', textDecoration: 'none' }}
+          style={{ marginTop: '1rem', textDecoration: 'none' }}
         >
           Naar schematherapie.nl
         </a>
