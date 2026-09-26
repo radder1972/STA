@@ -354,6 +354,10 @@ body {
   }
 }
 
+@page {
+  margin: 2cm;
+}
+
 @media print {
   * {
     -webkit-print-color-adjust: exact !important;
@@ -377,9 +381,7 @@ body {
     font-size: 80% !important; /* Scale down entire app by 20% in print */
   }
 
-  @page { 
-    margin: 2cm; 
-  }
+
   
   .app-container, .results-container, .visualizer-container, .combined-results-container, .details-section {
     border: none !important;
