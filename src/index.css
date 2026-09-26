@@ -652,6 +652,11 @@ body {
     stroke: black !important;
   }
   
+  /* Fix SVG Icons with gradients disappearing in print */
+  svg[stroke^="url"] {
+    stroke: #6366f1 !important; /* solid fallback color */
+  }
+  
   /* FORCE RECHARTS VISIBILITY IN PRINT */
   .recharts-wrapper, 
   .recharts-wrapper svg.recharts-surface {
