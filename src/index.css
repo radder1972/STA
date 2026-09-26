@@ -22,6 +22,10 @@
   --accent: #bdbdbd;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
