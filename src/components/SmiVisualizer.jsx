@@ -182,7 +182,7 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onUpdateAnswer
       
       <div className="ysq-layout">
         <div className="ysq-grid">
-          {renderSection('Disfunctionele oudermodi', 'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI', '#ef4444')}
+          {renderSection('Disfunctionele geïnternaliseerde oudermodi', 'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI', '#ef4444')}
           {renderSection('Functionele modi', 'FUNCTIONELE MODI', '#10b981')}
           {renderSection('Beschermmodi - omkering', 'BESCHERMMODI - OMKERING', '#eab308')}
           {renderSection('Beschermmodi - vermijden', 'BESCHERMMODI - VERMIJDEN', '#f59e0b')}
