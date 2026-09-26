@@ -50,7 +50,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
     
     try {
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
       
       const result = await model.generateContent(formatPrompt());
       const response = await result.response;
