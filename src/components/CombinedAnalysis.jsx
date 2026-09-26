@@ -256,8 +256,21 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
             </tbody>
           </table>
         </div>
+
+        {/* Matrix Explanation */}
+        <div className="no-print" style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.02)', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+          <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '1rem', color: 'var(--text-main)' }}>
+            <span style={{ fontSize: '1.2rem' }}>💡</span> Wat zegt deze matrix?
+          </h4>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>
+            In de schematherapie is er een theoretisch verband tussen uw onderliggende gevoeligheden (schema's) en uw huidige gedrag (modi). Deze matrix legt de score van een groep schema's direct naast de score van de bijbehorende groep modi om te zien of deze in balans zijn.
+          </p>
+          <ul style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6', margin: 0, paddingLeft: '1.5rem' }}>
+            <li style={{ marginBottom: '0.5rem' }}><strong>In balans:</strong> Een vergelijkbare score betekent dat uw gedrag logisch aansluit bij uw onderliggende gevoel.</li>
+            <li><strong>Uit balans (Discrepantie):</strong> Lopen de scores sterk uiteen? Dan drukt u uw kwetsbaarheid mogelijk extreem goed weg via coping (bijv. een lage schema-score, maar héél hoog vermijdend gedrag), óf u voelt de pijn wel (hoge schema-score) maar het uit zich niet in actief gedrag. Dit is voor een behandelaar een belangrijk inzicht.</li>
+          </ul>
+        </div>
       </div>
-      
     </div>
   );
 }
