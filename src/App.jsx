@@ -65,7 +65,7 @@ function App() {
         style={{ position: 'absolute', top: '1rem', right: '1rem', padding: '10px', borderRadius: '50%', zIndex: 100 }}
         title="Toggle Theme"
       >
-        {theme === 'dark' ? <SunIcon size={20} /> : <MoonIcon size={20} />}
+        {theme === 'dark' ? <SunIcon size={20} useGradient={true} /> : <MoonIcon size={20} useGradient={true} />}
       </button>
       {currentView === 'home' && (
         <Home 
