@@ -192,11 +192,11 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
       
       <div className="ysq-layout">
         <div className="ysq-grid">
-          {renderSection('VERBONDENHEID & VEILIGHEID', 'Verbondenheid & veiligheid', '#10b981')}
-          {renderSection('AUTONOMIE', 'Autonomie', '#3b82f6')}
-          {renderSection('ZELFEXPRESSIE', 'Zelfexpressie', '#eab308')}
-          {renderSection('REALISTISCHE GRENZEN', 'Realistische grenzen', '#ef4444')}
-          {renderSection('SPONTANITEIT & SPEL', 'Spontaniteit & spel', '#f97316')}
+          {renderSection('Verbondenheid & veiligheid', 'VERBONDENHEID & VEILIGHEID', '#10b981')}
+          {renderSection('Autonomie', 'AUTONOMIE', '#3b82f6')}
+          {renderSection('Zelfexpressie', 'ZELFEXPRESSIE', '#eab308')}
+          {renderSection('Realistische grenzen', 'REALISTISCHE GRENZEN', '#ef4444')}
+          {renderSection('Spontaniteit & spel', 'SPONTANITEIT & SPEL', '#f97316')}
         </div>
       </div>
     </div>
