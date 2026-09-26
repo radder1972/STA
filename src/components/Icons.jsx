@@ -152,3 +152,40 @@ export const LightbulbIcon = (props) => (
     <path d="M10 22h4" />
   </IconBase>
 );
+
+export const Number1Icon = (props) => (
+  <IconBase {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M10 8l2-2v10" />
+  </IconBase>
+);
+
+export const Number2Icon = (props) => (
+  <IconBase {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M9 9.5a3 3 0 1 1 6 0c0 2.5-5 5-5 5h5" />
+  </IconBase>
+);
+
+export const Number3Icon = (props) => (
+  <IconBase {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M9 8h4.5a2.5 2.5 0 0 1 0 5H12" />
+    <path d="M12 13h1.5a2.5 2.5 0 0 1 0 5H9" />
+  </IconBase>
+);
+
+export const CpuChipIcon = (props) => (
+  <IconBase {...props}>
+    <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
+    <rect x="9" y="9" width="6" height="6" />
+    <line x1="9" y1="1" x2="9" y2="4" />
+    <line x1="15" y1="1" x2="15" y2="4" />
+    <line x1="9" y1="20" x2="9" y2="23" />
+    <line x1="15" y1="20" x2="15" y2="23" />
+    <line x1="20" y1="9" x2="23" y2="9" />
+    <line x1="20" y1="14" x2="23" y2="14" />
+    <line x1="1" y1="9" x2="4" y2="9" />
+    <line x1="1" y1="14" x2="4" y2="14" />
+  </IconBase>
+);

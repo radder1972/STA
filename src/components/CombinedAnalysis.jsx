@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Cell, LabelList, Legend } from 'recharts';
-import { ArrowRightIcon, LightbulbIcon } from './Icons';
+import { ArrowRightIcon, LightbulbIcon, Number1Icon, Number2Icon, Number3Icon } from './Icons';
 import AiAnalysis from './AiAnalysis';
 
 // Duplicated maps for simplicity, as they are not exported from SingleResult
@@ -117,13 +117,14 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
             const medalColors = ['#fbbf24', '#94a3b8', '#b45309'];
             const medalNames = ['#1', '#2', '#3'];
             const medalColor = medalColors[index] || 'var(--primary)';
-            const medalName = medalNames[index] || `#${index + 1}`;
+            const medalIcons = [Number1Icon, Number2Icon, Number3Icon];
+            const MedalIcon = medalIcons[index] || Number3Icon;
 
             return (
               <div key={schema.id} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', borderLeft: `4px solid ${medalColor}`, border: '1px solid var(--border-color)', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '4px', background: medalColor }}></div>
                 <h4 style={{ color: medalColor, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span style={{ background: medalColor, color: '#fff', padding: '2px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 'bold', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{medalName}</span>
+                  <MedalIcon size={24} color={medalColor} />
                   Hypothese rondom schema: {schema.name}
                 </h4>
                 <p style={{ color: 'var(--text-main)', fontStyle: 'italic', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: '1.6' }}>"{hypothesis.desc}"</p>

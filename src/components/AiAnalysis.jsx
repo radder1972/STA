@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { BrainIcon, AlertTriangleIcon } from './Icons';
+import { CpuChipIcon, AlertTriangleIcon } from './Icons';
 
 export default function AiAnalysis({ ysqData, smiData }) {
   // Obfuscate key to bypass GitHub's aggressive secret scanner (prevents esbuild from statically evaluating it)
@@ -91,7 +91,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
   return (
     <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px', marginTop: '3rem' }}>
       <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <BrainIcon size={28} useGradient={true} /> AI Klinische Analyse
+        <CpuChipIcon size={28} useGradient={true} /> AI Klinische Analyse
       </h2>
       
       <p className="no-print" style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
