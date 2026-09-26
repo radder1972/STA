@@ -114,7 +114,13 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
       )}
 
       {!hasAnyResult && (
-        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <div style={{ textAlign: 'center', maxWidth: '600px', margin: '3rem auto 0 auto', padding: '1.5rem', background: 'var(--card-bg)', borderRadius: '12px', border: '1px solid var(--border-color)', boxShadow: 'var(--glass-shadow)' }}>
+          <p style={{ color: 'var(--text-main)', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+            Let op: Uw antwoorden worden nergens opgeslagen!
+          </p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
+            Omdat de applicatie lokaal draait, bent u na het afsluiten van de pagina uw gegevens kwijt. U kunt na het invullen uw resultaten vastleggen door het rapport op te slaan als <strong>PDF of CSV</strong>. Heeft u al een CSV-bestand? Laad deze dan hieronder in.
+          </p>
           <input 
             type="file" 
             accept=".csv" 
