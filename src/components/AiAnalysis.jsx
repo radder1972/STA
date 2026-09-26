@@ -49,35 +49,9 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
     setError('');
     
     try {
-      // Auto-discover the best available model for this API key to avoid 404 errors
-      const modelsResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
-      if (!modelsResponse.ok) {
-        const errText = await modelsResponse.text().catch(() => '');
-        throw new Error(`Kan modellenlijst niet ophalen (HTTP ${modelsResponse.status}). Is de sleutel geldig? ${errText}`);
-      }
-      const modelsData = await modelsResponse.json();
-      
-      const availableModels = (modelsData.models || []).filter(m => 
-        m.supportedGenerationMethods && 
-        m.supportedGenerationMethods.includes("generateContent") &&
-        m.name.includes("gemini")
-      );
-      
-      if (availableModels.length === 0) {
-        throw new Error("Er zijn geen Gemini-modellen beschikbaar voor deze API-sleutel (of ze ondersteunen geen tekstgeneratie).");
-      }
-      
-      // Prefer a 'flash' model for speed, otherwise just pick the first one
-      let selectedModel = availableModels[0].name;
-      const flashModel = availableModels.find(m => m.name.includes("flash"));
-      if (flashModel) selectedModel = flashModel.name;
-      
-      // The SDK expects just the name without the 'models/' prefix
-      const cleanModelName = selectedModel.replace('models/', '');
-      console.log("Auto-selected Gemini model:", cleanModelName);
-
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: cleanModelName });
+      // Hardcode to gemini-3.8-flash as per Google's explicit error recommendation for new API keys
+      const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
       
       const result = await model.generateContent(formatPrompt());
       const response = await result.response;
