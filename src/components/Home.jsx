@@ -136,7 +136,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
         </button>
       </div>
 
-      <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '4rem auto 1rem', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
+      <div style={{ marginTop: '2rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '2rem auto 1rem', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.05rem' }}>
           <InfoIcon size={24} useGradient={true} /> Meer weten over Schematherapie?
         </p>
