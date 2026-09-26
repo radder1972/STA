@@ -245,13 +245,13 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
             <tbody>
               {domainAverages.map((row, i) => (
                 <tr key={i} style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.3)' }}>
-                  <td style={{ padding: '8px 0', color: 'var(--text-main)', fontSize: '0.9rem' }}>{row.name}</td>
-                  <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-main)', fontSize: '0.9rem' }}>
+                  <td style={{ padding: '8px 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{row.name}</td>
+                  <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
                     <span style={{ fontWeight: row.ysq >= 4 ? 'bold' : 'normal', color: row.ysq >= 4 ? 'var(--text-main)' : 'var(--text-muted)' }}>
                       {row.ysq}
                     </span>
                   </td>
-                  <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-main)', fontSize: '0.9rem' }}>
+                  <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
                     <span style={{ fontWeight: row.smi >= 4 ? 'bold' : 'normal', color: row.smi >= 4 ? 'var(--text-main)' : 'var(--text-muted)' }}>
                       {row.smi}
                     </span>
