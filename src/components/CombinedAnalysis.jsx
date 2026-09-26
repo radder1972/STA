@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Cell, LabelList, Legend } from 'recharts';
-import { ArrowRightIcon } from './Icons';
+import { ArrowRightIcon, LightbulbIcon } from './Icons';
 
 // Duplicated maps for simplicity, as they are not exported from SingleResult
 const basisbehoeftenMap = {
@@ -260,7 +260,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         {/* Matrix Explanation */}
         <div className="no-print" style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.02)', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
           <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '1rem', color: 'var(--text-main)' }}>
-            <span style={{ fontSize: '1.2rem' }}>💡</span> Wat zegt deze matrix?
+            <LightbulbIcon size={24} useGradient={true} /> Wat zegt deze matrix?
           </h4>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>
             In de schematherapie is er een theoretisch verband tussen uw onderliggende gevoeligheden (schema's) en uw huidige gedrag (modi). Deze matrix legt de score van een groep schema's direct naast de score van de bijbehorende groep modi om te zien of deze in balans zijn.
