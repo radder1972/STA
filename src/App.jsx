@@ -61,7 +61,7 @@ function App() {
     <div className="app-container" style={{ position: 'relative' }}>
       <button 
         onClick={toggleTheme} 
-        className="btn btn-outline" 
+        className="btn btn-outline no-print" 
         style={{ position: 'absolute', top: '1rem', right: '1rem', padding: '10px', borderRadius: '50%', zIndex: 100 }}
         title="Toggle Theme"
       >
