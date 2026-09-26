@@ -364,7 +364,7 @@ body {
 }
 
 @page {
-  margin: 0;
+  margin: 10mm;
   size: A4;
 }
 
@@ -390,7 +390,6 @@ body {
   
   html, body {
     font-size: 80% !important; /* Scale down entire app by 20% in print */
-    padding: 1.5cm !important; /* Create our own margins so the browser header/footer isn't used */
   }
 
 
