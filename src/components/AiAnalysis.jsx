@@ -32,15 +32,15 @@ export default function AiAnalysis({ ysqData, smiData }) {
   };
 
   const formatPrompt = () => {
-    const topYsq = ysqData?.slice(0, 3).map(s => `${s.name} (Score: ${s.mean})`).join(', ') || 'Geen YSQ data';
-    const topSmi = smiData?.slice(0, 3).map(s => `${s.name} (Score: ${s.mean})`).join(', ') || 'Geen SMI data';
+    const allYsq = ysqData?.map(s => `${s.name} (Score: ${s.mean})`).join(', ') || 'Geen YSQ data';
+    const allSmi = smiData?.map(s => `${s.name} (Score: ${s.mean})`).join(', ') || 'Geen SMI data';
 
-    return `Je bent een empathische en professionele expert in schematherapie. Hier zijn de hoogst scorende schema's en modi van een cliënt:
+    return `Je bent een empathische en professionele expert in schematherapie. Hier zijn alle scores van de schema's en modi van een cliënt, gerangschikt van hoog naar laag:
 
-Top 3 Schema's (YSQ): ${topYsq}
-Top 3 Modi (SMI): ${topSmi}
+Schema's (YSQ): ${allYsq}
+Modi (SMI): ${allSmi}
 
-Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waarschijnlijke wisselwerking tussen deze specifieke schema's en modi. Hoe triggeren deze schema's dit specifieke coping/modus gedrag? Gebruik begrijpelijke, professionele taal in het Nederlands. Formatteer de tekst in simpele alinea's (gebruik eventueel dikgedrukt voor namen van schema's/modi). Geef GEEN disclaimers over dat je een AI bent, spreek direct als de expert.`;
+Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waarschijnlijke wisselwerking tussen de hoogst scorende schema's en modi. Hoe triggeren deze kernschema's het specifieke coping/modus gedrag dat we bovenaan zien? Gebruik begrijpelijke, professionele taal in het Nederlands. Formatteer de tekst in simpele alinea's (gebruik eventueel dikgedrukt voor namen van schema's/modi). Geef GEEN disclaimers over dat je een AI bent, spreek direct als de expert.`;
   };
 
   const generateAnalysis = async () => {
@@ -138,7 +138,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
               <AlertTriangleIcon size={24} color="#0ea5e9" /> Privacywaarschuwing
             </h4>
             <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-              Deze analyse wordt gegenereerd door Google Gemini AI. Hiervoor worden uitsluitend uw anonieme Top 3 scores naar de servers van Google gestuurd. Er worden <strong>nooit</strong> namen of persoonsgegevens gedeeld en uw data wordt niet gebruikt om modellen te trainen.
+              Deze analyse wordt gegenereerd door Google Gemini AI. Hiervoor worden uitsluitend uw anonieme vragenlijstscores naar de servers van Google gestuurd. Er worden <strong>nooit</strong> namen of persoonsgegevens gedeeld en uw data wordt niet gebruikt om modellen te trainen.
             </p>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
