@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon } from './Icons'
+import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon } from './Icons'
 
 export default function Home({ onStart, completedTests, onViewResults, onImport }) {
   const fileInputRef = useRef(null)
@@ -115,8 +115,8 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
 
       {!hasAnyResult && (
         <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '4rem auto 2rem auto', padding: '2rem 1rem 1rem 1rem', borderTop: '1px solid var(--border-color)' }}>
-          <p className="text-gradient" style={{ fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            Let op: Uw antwoorden worden nergens opgeslagen!
+          <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+            <AlertTriangleIcon size={24} useGradient={true} /> Let op: Uw antwoorden worden nergens opgeslagen!
           </p>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
             Omdat de applicatie lokaal draait, bent u na het afsluiten van de pagina uw gegevens kwijt. U kunt na het invullen uw resultaten vastleggen door het rapport op te slaan als <strong>PDF of CSV</strong>. Heeft u al een CSV-bestand? Laad deze dan hieronder in.
