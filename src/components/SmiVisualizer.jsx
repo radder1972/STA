@@ -178,7 +178,7 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onUpdateAnswer
 
   return (
     <div className="visualizer-container">
-      <h3 className="visualizer-title">Modi Overzicht</h3>
+      <h3 className="visualizer-title text-gradient">Modi Overzicht</h3>
       
       <div className="ysq-layout">
         <div className="ysq-grid">

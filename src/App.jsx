@@ -103,7 +103,7 @@ function App() {
       )}
 
       <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-        v1.5.25
+        v1.5.26
       </div>
     </div>
   )
