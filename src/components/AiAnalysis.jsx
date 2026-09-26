@@ -76,7 +76,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
       // Handle simple bold parsing **bold**
       const parts = paragraph.split(/(\*\*.*?\*\*)/g);
       return (
-        <p key={index} style={{ marginBottom: '1rem', lineHeight: '1.6', color: 'var(--text-main)' }}>
+        <p key={index} style={{ marginBottom: '1rem', lineHeight: '1.6', color: 'var(--text-muted)' }}>
           {parts.map((part, i) => {
             if (part.startsWith('**') && part.endsWith('**')) {
               return <strong key={i}>{part.slice(2, -2)}</strong>;
