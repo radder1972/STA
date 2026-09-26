@@ -486,7 +486,7 @@ body {
   /* Compact Nodes */
   .mode-node {
     margin-bottom: 0.25rem !important;
-    padding: 0.25rem 0 !important;
+    padding: 0.25rem 0.5rem !important;
     border-bottom: 1px solid #eee !important;
     page-break-inside: avoid;
   }
@@ -512,8 +512,7 @@ body {
   }
 
   /* Fix WebKit CSS Grid page breaking bug which creates massive blank pages */
-  /* Fix WebKit CSS Grid page breaking bug which creates massive blank pages */
-  .ysq-grid, .smi-layout, .smi-row {
+  .ysq-grid, .smi-layout, .smi-row, .nodes-container {
     display: block !important;
   }
   
@@ -523,9 +522,13 @@ body {
     gap: 0.5rem !important;
   }
   
-  .ysq-section, .smi-section, .top-score-card, .chart-section {
+  .top-score-card, .chart-section {
     page-break-inside: avoid;
     break-inside: avoid;
+    margin-bottom: 1rem !important;
+  }
+  
+  .ysq-section, .smi-section {
     margin-bottom: 1rem !important;
   }
 
@@ -610,6 +613,22 @@ body {
   .recharts-cartesian-axis-line, .recharts-cartesian-axis-tick-line {
     stroke: black !important;
   }
+  
+  /* FORCE RECHARTS VISIBILITY IN PRINT */
+  .recharts-wrapper, 
+  .recharts-wrapper svg.recharts-surface {
+    width: 700px !important;
+    min-width: 700px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  .chart-wrapper {
+    display: block !important;
+    width: 700px !important;
+    min-width: 700px !important;
+    overflow: visible !important;
+  }
 
   * {
     -webkit-print-color-adjust: exact !important;
@@ -636,5 +655,8 @@ body {
     filter: none !important;
     transform: none !important;
     box-shadow: none !important;
+    width: 65px !important;
+    height: 80px !important;
+    border-width: 2px !important;
   }
 }
