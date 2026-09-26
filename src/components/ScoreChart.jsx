@@ -128,10 +128,16 @@ export default function ScoreChart({ scores, type }) {
     'Overig': '#94a3b8'
   };
 
+  const getCategoryColor = (catName) => {
+    if (!catName) return 'var(--text-main)';
+    const key = Object.keys(categoryColors).find(k => k.toLowerCase() === catName.toLowerCase());
+    return key ? categoryColors[key] : 'var(--text-main)';
+  };
+
   const CustomTick = (props) => {
     const { payload, x, y, textAnchor, stroke, radius } = props;
     const item = radarData.find(s => s.name === payload.value);
-    const color = item ? (categoryColors[item.category] || 'var(--text-main)') : 'var(--text-main)';
+    const color = item ? getCategoryColor(item.category) : 'var(--text-main)';
     
     // Identify top 3 for special labeling
     const rankIndex = overallRankedScores.findIndex(s => s.name === payload.value);
@@ -349,7 +355,7 @@ export default function ScoreChart({ scores, type }) {
                   {domainAverages.map((entry, index) => (
                     <Cell 
                       key={`cell-${index}`} 
-                      fill={categoryColors[entry.name] || 'var(--primary)'} 
+                      fill={getCategoryColor(entry.name) !== 'var(--text-main)' ? getCategoryColor(entry.name) : 'var(--primary)'} 
                     />
                   ))}
                 </Bar>
