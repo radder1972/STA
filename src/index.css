@@ -385,10 +385,19 @@ body {
   
   .app-container, .results-container, .visualizer-container, .combined-results-container, .details-section {
     border: none !important;
+    border-color: transparent !important;
+    border-style: hidden !important;
+    outline: none !important;
     box-shadow: none !important;
     background: transparent !important;
     margin: 0 !important;
     padding: 0 !important;
+  }
+
+  .app-container {
+    transform: scale(0.85) !important;
+    transform-origin: top center !important;
+    width: 117% !important; /* compensate for scale so it still fills the page width */
   }
   
   .recharts-responsive-container, .recharts-wrapper {
