@@ -81,7 +81,7 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
           <ArrowLeftIcon size={18} /> Cancel
         </button>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <span style={{ fontWeight: 'bold', color: 'var(--text-main)', fontSize: '1.1rem', marginBottom: '4px' }}>
+          <span className="text-gradient" style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '4px' }}>
             {type === 'ysq' ? "Young Schema Questionnaire (YSQ S3)" : "Schema Mode Inventory (SMI)"}
           </span>
           <span style={{color: 'var(--text-muted)'}}>Vraag {currentIndex + 1} van {total}</span>
