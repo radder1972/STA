@@ -66,6 +66,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [] }) {
         
         {/* Toggle details button */}
         <button 
+          className="no-print"
           onClick={() => toggleNode(schema.id)}
           style={{
             marginTop: '1rem',

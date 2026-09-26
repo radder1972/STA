@@ -56,6 +56,7 @@ export default function SmiVisualizer({ groupedScores, top3 = [] }) {
         
         {/* Toggle details button */}
         <button 
+          className="no-print"
           onClick={() => toggleNode(mode.id)}
           style={{
             marginTop: '1rem',
