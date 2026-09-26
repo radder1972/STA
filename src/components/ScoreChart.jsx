@@ -222,22 +222,8 @@ export default function ScoreChart({ scores }) {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       {/* Detailed Bar Chart */}
       <div className="glass-panel" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
           <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.3rem' }}>Volledige Score Staafgrafiek</h3>
-          <div className="no-print" style={{ display: 'flex', background: 'rgba(0,0,0,0.1)', borderRadius: '8px', padding: '4px' }}>
-            <button 
-              onClick={() => setSortBy('score')}
-              style={{ padding: '6px 12px', border: 'none', background: sortBy === 'score' ? 'var(--primary)' : 'transparent', color: sortBy === 'score' ? '#fff' : 'var(--text-muted)', borderRadius: '6px', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 'bold' }}
-            >
-              Hoog-Laag
-            </button>
-            <button 
-              onClick={() => setSortBy('domain')}
-              style={{ padding: '6px 12px', border: 'none', background: sortBy === 'domain' ? 'var(--primary)' : 'transparent', color: sortBy === 'domain' ? '#fff' : 'var(--text-muted)', borderRadius: '6px', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 'bold' }}
-            >
-              Per Domein
-            </button>
-          </div>
         </div>
         <div ref={wrapperRef} className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
           <div style={{ width: '100%', height: data.length > 10 ? '550px' : '400px' }}>
@@ -272,6 +258,22 @@ export default function ScoreChart({ scores }) {
                 <LabelList dataKey="score" position="right" fill="var(--text-main)" fontSize={11} fontWeight="bold" />
               </Bar>
             </BarChart>
+          </div>
+        </div>
+        <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
+          <div style={{ display: 'flex', background: 'rgba(0,0,0,0.05)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '4px' }}>
+            <button 
+              onClick={() => setSortBy('score')}
+              style={{ padding: '6px 12px', border: 'none', background: sortBy === 'score' ? 'var(--primary)' : 'transparent', color: sortBy === 'score' ? '#fff' : 'var(--text-muted)', borderRadius: '6px', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 'bold' }}
+            >
+              Hoog-Laag
+            </button>
+            <button 
+              onClick={() => setSortBy('domain')}
+              style={{ padding: '6px 12px', border: 'none', background: sortBy === 'domain' ? 'var(--primary)' : 'transparent', color: sortBy === 'domain' ? '#fff' : 'var(--text-muted)', borderRadius: '6px', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 'bold' }}
+            >
+              Per Domein
+            </button>
           </div>
         </div>
       </div>
