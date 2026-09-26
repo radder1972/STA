@@ -145,10 +145,15 @@ export default function ScoreChart({ scores, type }) {
     const rankText = isTop3 ? ` (#${rankIndex + 1})` : '';
     const rankColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : rankIndex === 2 ? '#b45309' : color;
     
-    // Add some breathing room for the vertical axis labels
+    // Add some breathing room for the vertical axis labels (top and bottom)
     let adjustedY = y;
-    if (payload.value.includes('Afhankelijkheid')) adjustedY -= 12;
-    if (payload.value.includes('Bestraffendheid')) adjustedY += 12;
+    if (textAnchor === 'middle') {
+      if (y < 250) {
+        adjustedY -= 12; // Top label
+      } else {
+        adjustedY += 12; // Bottom label
+      }
+    }
 
     return (
       <g>
