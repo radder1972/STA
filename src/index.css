@@ -516,10 +516,11 @@ body {
     overflow: visible !important;
   }
 
-  /* Retain heading page breaks but preserve screen styles */
-  h2, h3, h4 {
+  /* Retain heading page breaks and enforce black color */
+  h1, h2, h3, h4, h5, h6 {
     page-break-after: avoid !important;
     break-after: avoid !important;
+    color: black !important;
   }
   
   /* Compact Nodes */
@@ -654,7 +655,7 @@ body {
   
   /* Fix SVG Icons with gradients disappearing in print */
   svg[stroke^="url"] {
-    stroke: #6366f1 !important; /* solid fallback color */
+    stroke: black !important; /* solid fallback color */
   }
   
   /* Fix text-gradient rendering glitches in PDF */
@@ -662,7 +663,7 @@ body {
     background: none !important;
     -webkit-background-clip: initial !important;
     -webkit-text-fill-color: initial !important;
-    color: var(--primary, #4f46e5) !important;
+    color: black !important;
   }
   
   /* FORCE RECHARTS VISIBILITY IN PRINT */
