@@ -516,11 +516,8 @@ body {
     overflow: visible !important;
   }
 
-  /* Compact headings */
+  /* Retain heading page breaks but preserve screen styles */
   h2, h3, h4 {
-    margin: 0.5rem 0 !important;
-    font-size: 1.1rem !important;
-    color: black !important;
     page-break-after: avoid !important;
     break-after: avoid !important;
   }
@@ -628,10 +625,10 @@ body {
     height: 480px !important;
   }
 
-  /* Ensure details section doesn't break in awkward places */
+  /* Ensure details section can break across pages to prevent massive white gaps */
   .details-section {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
   }
   
   /* Space between sections */
@@ -645,10 +642,7 @@ body {
     margin-bottom: 2rem !important;
   }
   
-  /* Ensure all text is dark enough to read on white paper */
-  p, span, div, strong, td, th {
-    color: black !important;
-  }
+  /* (Removed aggressive black color override to preserve screen colors) */
 
   /* Fix recharts SVG colors in print */
   .recharts-text, .recharts-cartesian-axis-tick-value {
