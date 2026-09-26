@@ -32,10 +32,16 @@ export default function ScoreChart({ scores, type }) {
     });
     
     return Object.values(groups)
-      .map(g => ({
-        name: g.name,
-        score: Number((g.total / g.count).toFixed(2))
-      }))
+      .map(g => {
+        let displayName = g.name;
+        if (displayName === displayName.toUpperCase() && displayName.length > 3) {
+          displayName = displayName.charAt(0).toUpperCase() + displayName.slice(1).toLowerCase();
+        }
+        return {
+          name: displayName,
+          score: Number((g.total / g.count).toFixed(2))
+        };
+      })
       .sort((a, b) => b.score - a.score); // Sort highest first
   }, [scores]);
 
