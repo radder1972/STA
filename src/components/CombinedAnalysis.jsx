@@ -196,28 +196,26 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
               }
             }
 
-            const bg = ['rgba(251, 191, 36, 0.15)', 'rgba(148, 163, 184, 0.15)', 'rgba(180, 83, 9, 0.15)'][i] || 'transparent';
-            const border = ['rgba(251, 191, 36, 0.4)', 'rgba(148, 163, 184, 0.4)', 'rgba(180, 83, 9, 0.4)'][i] || 'transparent';
-            const iconColor = ['#fbbf24', '#94a3b8', '#b45309'][i] || 'var(--primary)';
-            const iconBg = ['rgba(251,191,36,0.2)', 'rgba(148,163,184,0.2)', 'rgba(180,83,9,0.2)'][i];
+            const bg = 'transparent';
+            const border = 'var(--border-color)';
+            const iconColor = 'var(--text-muted)';
+            const iconBg = 'transparent';
             
             return (
-              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', width: '100%' }}>
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', width: '100%', padding: '0.5rem 0', borderBottom: i < 2 ? '1px solid var(--border-color)' : 'none' }}>
                 {/* Left Box */}
-                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '4rem', background: bg, padding: '0.8rem 1.2rem', borderRadius: '12px', border: `1px solid ${border}` }}>
-                  <strong style={{ lineHeight: '1.2', fontSize: '1.05rem' }}>{schema?.name || '-'}</strong> <span style={{ fontWeight: 'bold' }}>{schema?.mean || '-'}</span>
+                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '3rem', background: bg, padding: '0.5rem 0' }}>
+                  <span style={{ lineHeight: '1.2', fontSize: '1rem', color: 'var(--text-main)' }}>{schema?.name || '-'}</span> <span style={{ color: 'var(--text-muted)' }}>{schema?.mean || '-'}</span>
                 </div>
                 
                 {/* Center Arrow */}
                 <div style={{ flex: '0 0 40px', display: 'flex', justifyContent: 'center' }}>
-                  <div style={{ background: iconBg, padding: '8px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${border}` }}>
-                    <ArrowRightIcon size={20} color={iconColor} />
-                  </div>
+                  <ArrowRightIcon size={18} color={iconColor} />
                 </div>
 
                 {/* Right Box */}
-                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '4rem', background: bg, padding: '0.8rem 1.2rem', borderRadius: '12px', border: `1px solid ${border}` }}>
-                  <strong style={{ lineHeight: '1.2', fontSize: '1.05rem' }}>{topLinkedMode?.name || 'Geen sterke link gevonden'}</strong> <span style={{ fontWeight: 'bold' }}>{topLinkedMode?.mean || '-'}</span>
+                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '3rem', background: bg, padding: '0.5rem 0' }}>
+                  <span style={{ lineHeight: '1.2', fontSize: '1rem', color: 'var(--text-main)' }}>{topLinkedMode?.name || 'Geen sterke link gevonden'}</span> <span style={{ color: 'var(--text-muted)' }}>{topLinkedMode?.mean || '-'}</span>
                 </div>
               </div>
             );
@@ -238,25 +236,25 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem' }}>
             <thead>
-              <tr style={{ borderBottom: '2px solid var(--border-color)' }}>
-                <th style={{ padding: '12px', textAlign: 'left', color: 'var(--text-main)' }}>Theoretisch Vlak</th>
-                <th style={{ padding: '12px', textAlign: 'center', color: '#ef4444' }}>YSQ Domein Score</th>
-                <th style={{ padding: '12px', textAlign: 'center', color: '#f59e0b' }}>SMI Groep Score</th>
+              <tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                <th style={{ padding: '12px 0', textAlign: 'left', fontWeight: 'normal' }}>Theoretisch Vlak</th>
+                <th style={{ padding: '12px 0', textAlign: 'center', fontWeight: 'normal' }}>YSQ Domein Score</th>
+                <th style={{ padding: '12px 0', textAlign: 'center', fontWeight: 'normal' }}>SMI Groep Score</th>
               </tr>
             </thead>
             <tbody>
               {domainAverages.map((row, i) => (
                 <tr key={i} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                  <td style={{ padding: '12px', color: 'var(--text-main)', fontWeight: 'bold' }}>{row.name}</td>
-                  <td style={{ padding: '12px', textAlign: 'center', color: 'var(--text-main)' }}>
-                    <div style={{ display: 'inline-block', background: row.ysq >= 4 ? 'rgba(239, 68, 68, 0.2)' : 'transparent', padding: '4px 12px', borderRadius: '12px', fontWeight: row.ysq >= 4 ? 'bold' : 'normal' }}>
+                  <td style={{ padding: '16px 0', color: 'var(--text-main)', fontSize: '0.95rem' }}>{row.name}</td>
+                  <td style={{ padding: '16px 0', textAlign: 'center', color: 'var(--text-main)' }}>
+                    <span style={{ fontWeight: row.ysq >= 4 ? 'bold' : 'normal', color: row.ysq >= 4 ? 'var(--text-main)' : 'var(--text-muted)' }}>
                       {row.ysq}
-                    </div>
+                    </span>
                   </td>
-                  <td style={{ padding: '12px', textAlign: 'center', color: 'var(--text-main)' }}>
-                    <div style={{ display: 'inline-block', background: row.smi >= 4 ? 'rgba(245, 158, 11, 0.2)' : 'transparent', padding: '4px 12px', borderRadius: '12px', fontWeight: row.smi >= 4 ? 'bold' : 'normal' }}>
+                  <td style={{ padding: '16px 0', textAlign: 'center', color: 'var(--text-main)' }}>
+                    <span style={{ fontWeight: row.smi >= 4 ? 'bold' : 'normal', color: row.smi >= 4 ? 'var(--text-main)' : 'var(--text-muted)' }}>
                       {row.smi}
-                    </div>
+                    </span>
                   </td>
                 </tr>
               ))}
