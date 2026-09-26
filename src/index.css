@@ -387,6 +387,8 @@ body {
   *, *::before, *::after {
     box-shadow: none !important;
     outline: none !important;
+    border: none !important;
+    border-color: transparent !important;
   }
   
   /* specifically nuke borders on all structural containers */
@@ -398,10 +400,11 @@ body {
   }
 
   .app-container {
-    transform: scale(0.9) !important;
+    transform: scale(0.85) !important;
     transform-origin: top center !important;
-    width: 111% !important;
-    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
     padding: 0 !important;
   }
   
