@@ -113,7 +113,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
         </div>
       )}
 
-      <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '4rem auto 2rem auto', padding: '2rem 1rem 1rem 1rem', borderTop: '1px solid var(--border-color)' }}>
+      <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '4rem auto 2rem auto', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '0.5rem', fontWeight: 'bold' }}>
           <AlertTriangleIcon size={24} useGradient={true} /> Let op: Uw antwoorden worden nergens opgeslagen!
         </p>
