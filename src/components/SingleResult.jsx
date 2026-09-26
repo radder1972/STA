@@ -213,7 +213,7 @@ export default function SingleResult({ type, answers, onUpdateAnswer }) {
                         <span>{score.name}</span>
                       )}
                     </div>
-                    <div style={{ color: 'var(--text-muted)', fontSize: '0.7rem', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.5px', minHeight: '2rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>{group || 'Overig'}</div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginBottom: '1.5rem', letterSpacing: '0.5px', minHeight: '2rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>{group || 'Overig'}</div>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.4', marginBottom: '1.5rem', fontStyle: 'italic', flex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
                       {schemaDescriptions[score.name] || ''}
                     </div>
