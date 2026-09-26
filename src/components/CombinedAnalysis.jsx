@@ -176,50 +176,43 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
           Voor uw meest verhoogde schema's laten we hier de hoogst scorende, theoretisch gekoppelde modus (SMI) zien.
         </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', marginBottom: '0.25rem' }}>
-            <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'left', margin: 0, fontWeight: 'bold', fontSize: '0.95rem' }}>Kwetsbaarheid (Top 3 Schema's)</h4>
-            <div style={{ flex: '0 0 20px' }}></div>
-            <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'left', margin: 0, fontWeight: 'bold', fontSize: '0.95rem' }}>Reactie (Hoogste Gekoppelde Modus)</h4>
-          </div>
-
-          {[0, 1, 2].map(i => {
-            const schema = top3Ysq[i];
-            
-            // Vind de hoogst scorende modus die theorethisch aan dit schema gekoppeld is
-            let topLinkedMode = null;
-            if (schema) {
-              const hypothesis = schemaToModesHypothesis[schema.id];
-              if (hypothesis && hypothesis.modes) {
-                const linkedModesScores = smiScores.filter(s => hypothesis.modes.includes(s.id));
-                topLinkedMode = linkedModesScores[0]; // Al gesorteerd op mean descending
-              }
-            }
-
-            const bg = 'transparent';
-            const border = 'var(--border-color)';
-            const iconColor = 'var(--text-muted)';
-            const iconBg = 'transparent';
-            
-            return (
-              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', width: '100%', padding: '0.25rem 0', borderBottom: i < 2 ? '1px solid rgba(14, 165, 233, 0.3)' : 'none' }}>
-                {/* Left Box */}
-                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '2rem' }}>
-                  <span style={{ lineHeight: '1.2', fontSize: '0.9rem', color: 'var(--text-main)' }}>{schema?.name || '-'}</span> <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{schema?.mean || '-'}</span>
-                </div>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.5)', color: 'var(--text-main)', fontSize: '0.9rem' }}>
+                <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }} colSpan="2">Kwetsbaarheid (Top 3 Schema's)</th>
+                <th style={{ padding: '8px 0', textAlign: 'center', width: '40px' }}></th>
+                <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }} colSpan="2">Reactie (Hoogste Gekoppelde Modus)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[0, 1, 2].map(i => {
+                const schema = top3Ysq[i];
                 
-                {/* Center Arrow */}
-                <div style={{ flex: '0 0 20px', display: 'flex', justifyContent: 'center' }}>
-                  <ArrowRightIcon size={14} color={iconColor} />
-                </div>
+                // Vind de hoogst scorende modus die theorethisch aan dit schema gekoppeld is
+                let topLinkedMode = null;
+                if (schema) {
+                  const hypothesis = schemaToModesHypothesis[schema.id];
+                  if (hypothesis && hypothesis.modes) {
+                    const linkedModesScores = smiScores.filter(s => hypothesis.modes.includes(s.id));
+                    topLinkedMode = linkedModesScores[0]; // Al gesorteerd op mean descending
+                  }
+                }
 
-                {/* Right Box */}
-                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '2rem' }}>
-                  <span style={{ lineHeight: '1.2', fontSize: '0.9rem', color: 'var(--text-main)' }}>{topLinkedMode?.name || 'Geen sterke link gevonden'}</span> <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{topLinkedMode?.mean || '-'}</span>
-                </div>
-              </div>
-            );
-          })}
+                return (
+                  <tr key={i} style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.3)' }}>
+                    <td style={{ padding: '8px 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{schema?.name || '-'}</td>
+                    <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{schema?.mean || '-'}</td>
+                    <td style={{ padding: '8px 0', textAlign: 'center' }}>
+                      {schema && topLinkedMode && <ArrowRightIcon size={14} color="var(--text-muted)" />}
+                    </td>
+                    <td style={{ padding: '8px 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{topLinkedMode?.name || 'Geen sterke link gevonden'}</td>
+                    <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{topLinkedMode?.mean || '-'}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
 
