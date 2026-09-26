@@ -69,10 +69,10 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
     <div className="home-container">
       <div className="header">
         <h1>Schema Therapy Questionnaires</h1>
-        <p>
-          Welkom! Hieronder vindt u twee belangrijke vragenlijsten die worden ingezet binnen de schematherapie. 
+        <p style={{ fontSize: '1rem', lineHeight: '1.6' }}>
+          Hieronder vindt u twee belangrijke vragenlijsten die worden ingezet binnen de schematherapie. 
           Door deze in te vullen krijgt u waardevolle inzichten in uw onderliggende gevoeligheden (schema's) en uw huidige gedragspatronen (modi). 
-          U kunt ervoor kiezen om één vragenlijst te starten, of vul ze allebei in voor een uitgebreid en gecombineerd analyserapport.
+          Vul beide vragenlijsten in voor een uitgebreid en gecombineerd analyserapport.
         </p>
       </div>
       
@@ -81,13 +81,13 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
           <ClipboardIcon size={48} useGradient={!isYsqDone} color={isYsqDone ? 'var(--success, #10b981)' : 'currentColor'} style={{ margin: '0 auto 1rem', display: 'block' }} />
           <h2>YSQ S3 {isYsqDone && <CheckIcon size={24} color="var(--success, #10b981)" style={{display: 'inline', verticalAlign: 'middle'}} />}</h2>
           <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Young Schema Questionnaire</p>
-          <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6', textAlign: 'left', marginTop: '1rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <div style={{ fontSize: '1rem', color: 'var(--text-muted)', lineHeight: '1.6', textAlign: 'left', marginTop: '1rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
             {isYsqDone ? <span style={{ display: 'block' }}>U heeft deze vragenlijst reeds ingevuld! Klik om eventueel opnieuw te beginnen.</span> : (
               <>
                 <span style={{ display: 'block', marginBottom: '0.8rem' }}>In deze vragenlijst volgt een aantal beweringen die men kan gebruiken om zichzelf te beschrijven. Lees elke bewering en kijk hoe goed deze u, in het afgelopen jaar, beschrijft. Als u niet zeker bent van uw antwoord, baseer uw antwoord dan op wat u emotioneel voelt en niet op wat u denkt dat waar is.</span>
                 <span style={{ display: 'block', marginBottom: '0.8rem' }}>Een aantal beweringen gaat over uw relaties met uw ouders of partner. Als één of meerdere van deze personen inmiddels overleden zijn, baseer dan uw antwoord op hoe uw relatie was toen zij nog leefden. Als u momenteel geen partner heeft, maar wel partners in het verleden hebt gehad, baseer dan uw antwoord op uw meest recente betekenisvolle partner.</span>
                 <span style={{ display: 'block', marginBottom: '1.5rem' }}>Kies vervolgens het antwoord uit de opties 1-6 dat op u van toepassing is.</span>
-                <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 'auto' }}>© 2020 Rijkeboer, M.M., Videler, A.C. , Rossi, G., van Alphen, S.P.J., & Legra, M.J.H. Nederlandse vertaling van de Young Schema Questionnaire - Short Form Version 3 (YSQ-3S) van Young, J.E., & Brown, G. (2005). Dutch translation approved by the International Society of Schema Therapy (ISST) and G. Brown, one of the original authors.</span>
+                <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: 'auto' }}>© 2020 Rijkeboer, M.M., Videler, A.C. , Rossi, G., van Alphen, S.P.J., & Legra, M.J.H. Nederlandse vertaling van de Young Schema Questionnaire - Short Form Version 3 (YSQ-3S) van Young, J.E., & Brown, G. (2005). Dutch translation approved by the International Society of Schema Therapy (ISST) and G. Brown, one of the original authors.</span>
               </>
             )}
           </div>
@@ -97,12 +97,12 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
           <BrainIcon size={48} useGradient={!isSmiDone} color={isSmiDone ? 'var(--success, #10b981)' : 'currentColor'} style={{ margin: '0 auto 1rem', display: 'block' }} />
           <h2>SMI {isSmiDone && <CheckIcon size={24} color="var(--success, #10b981)" style={{display: 'inline', verticalAlign: 'middle'}} />}</h2>
           <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Schema Mode Inventory</p>
-          <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6', textAlign: 'left', marginTop: '1rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <div style={{ fontSize: '1rem', color: 'var(--text-muted)', lineHeight: '1.6', textAlign: 'left', marginTop: '1rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
              {isSmiDone ? <span style={{ display: 'block' }}>U heeft deze vragenlijst reeds ingevuld! Klik om eventueel opnieuw te beginnen.</span> : (
               <>
                 <span style={{ display: 'block', marginBottom: '0.8rem' }}>In deze vragenlijst staan uitspraken die mensen kunnen gebruiken om zichzelf te beschrijven. We willen u vragen van deze uitspraken de FREQUENTIE te beoordelen; dus hoe vaak u over het algemeen van de uitspraak overtuigd bent of hoe vaak het zo voelde.</span>
                 <span style={{ display: 'block', marginBottom: '1.5rem' }}>Kies vervolgens het antwoord uit de opties 1-6 dat op u van toepassing is.</span>
-                <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 'auto' }}>© 2007 Young, J., Arntz, A., Atkinson, T., Lobbestael, J., Weishaar, M., van Vreeswijk, M en Klokman, J.</span>
+                <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: 'auto' }}>© 2007 Young, J., Arntz, A., Atkinson, T., Lobbestael, J., Weishaar, M., van Vreeswijk, M en Klokman, J.</span>
               </>
              )}
           </div>
