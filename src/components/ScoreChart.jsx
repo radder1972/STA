@@ -307,10 +307,10 @@ export default function ScoreChart({ scores, type }) {
             Deze staafgrafiek toont uw gemiddelde score per hoofdcategorie. Dit helpt om patronen op een hoger niveau (helikopterview) te herkennen.
           </p>
           <div className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
-            <div className="domain-container" style={{ width: '100%', height: `${Math.max(200, domainAverages.length * 40 + 40)}px` }}>
+            <div className="domain-container" style={{ width: '100%', height: `${Math.max(200, domainAverages.length * 40 + 70)}px` }}>
               <BarChart
                 width={chartWidth}
-                height={Math.max(200, domainAverages.length * 40 + 40)}
+                height={Math.max(200, domainAverages.length * 40 + 70)}
                 data={domainAverages}
                 layout="vertical"
                 margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
@@ -331,6 +331,7 @@ export default function ScoreChart({ scores, type }) {
                   stroke="var(--text-color)"
                   tick={{ fontSize: 11, fill: 'var(--text-main)', fontWeight: 'bold' }}
                   tickMargin={15}
+                  padding={{ top: 20, bottom: 20 }}
                 />
                 <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(100,116,139,0.1)'}} />
                 
