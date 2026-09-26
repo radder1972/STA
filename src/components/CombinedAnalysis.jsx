@@ -3,6 +3,7 @@ import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Cell, LabelList, Legend } from 'recharts';
 import { ArrowRightIcon, LightbulbIcon } from './Icons';
+import AiAnalysis from './AiAnalysis';
 
 // Duplicated maps for simplicity, as they are not exported from SingleResult
 const basisbehoeftenMap = {
@@ -271,6 +272,8 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
           </ul>
         </div>
       </div>
+      
+      <AiAnalysis ysqData={ysqScores} smiData={smiScores} />
     </div>
   );
 }
