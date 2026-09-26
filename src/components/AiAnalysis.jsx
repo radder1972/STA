@@ -134,7 +134,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
       ) : (
         <div className="no-print" style={{ marginBottom: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
-            <InfoIcon size={20} color="var(--text-muted)" style={{ flexShrink: 0, marginTop: '2px' }} />
+            <AlertTriangleIcon size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
             <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
               <strong>Privacywaarschuwing:</strong> Deze analyse wordt gegenereerd door Google Gemini AI. Hiervoor worden uitsluitend uw anonieme Top 3 scores naar de servers van Google gestuurd. Er worden <strong>nooit</strong> namen of persoonsgegevens gedeeld en uw data wordt niet gebruikt om modellen te trainen.
             </p>
