@@ -17,7 +17,7 @@ const basisbehoeftenMap = {
 const smiModesMap = {
   'kk': { name: 'Kwetsbare kind', group: 'KINDMODI' }, 'rk': { name: 'Razende kind', group: 'KINDMODI' }, 'ik': { name: 'Impulsieve kind', group: 'KINDMODI' }, 'ok': { name: 'Ongedisciplineerde kind', group: 'KINDMODI' }, 'bk': { name: 'Boze kind', group: 'KINDMODI' },
   'wi': { name: 'Willoze inschikkelijke', group: 'BESCHERMMODI - OVERGAVE' }, 'ob': { name: 'Onthechte beschermer', group: 'BESCHERMMODI - VERMIJDEN' }, 'oz': { name: 'Onthechte zelfsusser', group: 'BESCHERMMODI - VERMIJDEN' }, 'wk': { name: 'Wantrouwende overcontroleerder', group: 'BESCHERMMODI - OMKERING' }, 'zh': { name: 'Zelfverheerlijker', group: 'BESCHERMMODI - OMKERING' }, 'pa': { name: 'Pest en aanval', group: 'BESCHERMMODI - OMKERING' },
-  'so': { name: 'Straffende ouder', group: 'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI' }, 'vo': { name: 'Veeleisende ouder', group: 'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI' }, 'gv': { name: 'Gezonde volwassene', group: 'FUNCTIONELE MODI' }
+  'so': { name: 'Straffende ouder', group: 'DISFUNCTIONELE OUDERMODI' }, 'vo': { name: 'Veeleisende ouder', group: 'DISFUNCTIONELE OUDERMODI' }, 'gv': { name: 'Gezonde volwassene', group: 'FUNCTIONELE MODI' }
 };
 
 const ysqNamesMap = {
@@ -90,7 +90,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
 
     const combined = [
       { name: 'Verbondenheid / Kindmodi', ysq: ysqGroups['Verbondenheid & Veiligheid']?.sum / ysqGroups['Verbondenheid & Veiligheid']?.count || 0, smi: smiGroups['KINDMODI']?.sum / smiGroups['KINDMODI']?.count || 0 },
-      { name: 'Grenzen / Oudermodi', ysq: ysqGroups['Realistische Grenzen']?.sum / ysqGroups['Realistische Grenzen']?.count || 0, smi: smiGroups['DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI']?.sum / smiGroups['DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI']?.count || 0 },
+      { name: 'Grenzen / Oudermodi', ysq: ysqGroups['Realistische Grenzen']?.sum / ysqGroups['Realistische Grenzen']?.count || 0, smi: smiGroups['DISFUNCTIONELE OUDERMODI']?.sum / smiGroups['DISFUNCTIONELE OUDERMODI']?.count || 0 },
       { name: 'Autonomie / Coping (Vermijden)', ysq: ysqGroups['Autonomie']?.sum / ysqGroups['Autonomie']?.count || 0, smi: smiGroups['BESCHERMMODI - VERMIJDEN']?.sum / smiGroups['BESCHERMMODI - VERMIJDEN']?.count || 0 },
       { name: 'Zelfexpressie / Coping (Overgave)', ysq: ysqGroups['Zelfexpressie']?.sum / ysqGroups['Zelfexpressie']?.count || 0, smi: smiGroups['BESCHERMMODI - OVERGAVE']?.sum / smiGroups['BESCHERMMODI - OVERGAVE']?.count || 0 },
       { name: 'Spel / Coping (Omkering)', ysq: ysqGroups['Spontaniteit & Spel']?.sum / ysqGroups['Spontaniteit & Spel']?.count || 0, smi: smiGroups['BESCHERMMODI - OMKERING']?.sum / smiGroups['BESCHERMMODI - OMKERING']?.count || 0 }

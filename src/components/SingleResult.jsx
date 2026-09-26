@@ -65,8 +65,8 @@ const smiModesMap = {
   'wk': { name: 'Wantrouwende overcontroleerder', group: 'BESCHERMMODI - OMKERING' },
   'zh': { name: 'Zelfverheerlijker', group: 'BESCHERMMODI - OMKERING' },
   'pa': { name: 'Pest en aanval', group: 'BESCHERMMODI - OMKERING' },
-  'so': { name: 'Straffende ouder', group: 'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI' },
-  'vo': { name: 'Veeleisende ouder', group: 'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI' },
+  'so': { name: 'Straffende ouder', group: 'DISFUNCTIONELE OUDERMODI' },
+  'vo': { name: 'Veeleisende ouder', group: 'DISFUNCTIONELE OUDERMODI' },
   'gv': { name: 'Gezonde volwassene', group: 'FUNCTIONELE MODI' }
 };
 

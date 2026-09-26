@@ -122,7 +122,7 @@ export default function ScoreChart({ scores, type }) {
     'BESCHERMMODI - OVERGAVE': '#f59e0b',
     'BESCHERMMODI - VERMIJDEN': '#d97706',
     'BESCHERMMODI - OMKERING': '#b45309',
-    'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI': '#8b5cf6',
+    'DISFUNCTIONELE OUDERMODI': '#8b5cf6',
     'FUNCTIONELE MODI': '#10b981',
     
     'Overig': '#94a3b8'
