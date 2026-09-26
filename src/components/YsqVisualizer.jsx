@@ -92,7 +92,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [] }) {
           <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', fontSize: '0.85rem', textAlign: 'left', width: '100%', animation: 'fadeIn 0.3s ease-in-out' }}>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {schema.questionDetails.map(q => (
-                <li key={q.id} style={{ display: 'flex', gap: '10px', marginBottom: '10px', alignItems: 'flex-start' }}>
+                <li key={q.id} style={{ display: 'flex', gap: '12px', padding: '10px 0', borderBottom: '1px solid var(--border-color)', alignItems: 'center', minHeight: '60px' }}>
                   <span style={{ 
                     fontWeight: 'bold', 
                     color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
@@ -108,7 +108,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [] }) {
                   }}>
                     {q.score}
                   </span>
-                  <span style={{ color: 'var(--text-muted)', lineHeight: '1.5', paddingTop: '4px' }}>{q.text}</span>
+                  <span style={{ color: 'var(--text-muted)', lineHeight: '1.4' }}>{q.text}</span>
                 </li>
               ))}
             </ul>
