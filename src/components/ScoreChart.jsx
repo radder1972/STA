@@ -145,9 +145,14 @@ export default function ScoreChart({ scores, type }) {
     const rankText = isTop3 ? ` (#${rankIndex + 1})` : '';
     const rankColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : rankIndex === 2 ? '#b45309' : color;
     
+    // Add some breathing room for the vertical axis labels
+    let adjustedY = y;
+    if (payload.value.includes('Afhankelijkheid')) adjustedY -= 12;
+    if (payload.value.includes('Bestraffendheid')) adjustedY += 12;
+
     return (
       <g>
-        <text radius={radius} stroke="none" x={x} y={y} className="recharts-text recharts-polar-angle-axis-tick-value" textAnchor={textAnchor} fill={color} fontSize="9" fontWeight="bold">
+        <text radius={radius} stroke="none" x={x} y={adjustedY} className="recharts-text recharts-polar-angle-axis-tick-value" textAnchor={textAnchor} fill={color} fontSize="9" fontWeight="bold">
           <tspan x={x} dy="0em">{payload.value}</tspan>
           {isTop3 && <tspan fill={rankColor}>{rankText}</tspan>}
         </text>
