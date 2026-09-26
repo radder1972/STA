@@ -74,7 +74,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
       }
     } catch (err) {
       console.error(err);
-      setError('Er is een fout opgetreden bij het genereren van de analyse. Controleer uw API-sleutel of internetverbinding.');
+      setError(`Fout: ${err.message || 'Onbekende fout'}. Controleer de console (F12) voor meer details.`);
     } finally {
       setLoading(false);
     }
