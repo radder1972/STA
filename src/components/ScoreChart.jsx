@@ -223,7 +223,7 @@ export default function ScoreChart({ scores, type }) {
       {/* Detailed Bar Chart */}
       <div className="glass-panel" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)' }}>
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-          <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.3rem' }}>Alle scores</h3>
+          <h3 className="text-gradient" style={{ margin: 0, fontSize: '1.3rem' }}>Alle scores</h3>
         </div>
         <div ref={wrapperRef} className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
           <div style={{ width: '100%', height: data.length > 10 ? '550px' : '400px' }}>
@@ -300,7 +300,7 @@ export default function ScoreChart({ scores, type }) {
       {/* Domain Averages Chart */}
       {domainAverages.length > 1 && (
         <div className="glass-panel" style={{ padding: '1.5rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)' }}>
-          <h3 style={{ marginBottom: '0.5rem', color: 'var(--text-main)', textAlign: 'center', fontSize: '1.3rem' }}>
+          <h3 className="text-gradient" style={{ marginBottom: '0.5rem', textAlign: 'center', fontSize: '1.3rem' }}>
             {type === 'ysq' ? 'Score per Emotionele basisbehoefte' : 'Gemiddelde per Categorie'}
           </h3>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem', maxWidth: '600px', margin: '0 auto 1.5rem auto', textAlign: 'center' }}>

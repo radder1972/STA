@@ -102,7 +102,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
       
       {/* OPTION D: Clinical Hypothesis Engine */}
       <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-        <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', textAlign: 'center' }}>1. Klinische Hypothese (AI-Analyse)</h2>
+        <h2 className="text-gradient" style={{ marginBottom: '1rem', textAlign: 'center' }}>1. Klinische Hypothese (AI-Analyse)</h2>
         <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>
           Deze analyse combineert de theorie van Schematherapie met uw specifieke scores om gepersonaliseerde hypothesen te genereren en te valideren.
         </p>
@@ -167,7 +167,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
       
       {/* OPTION A: Top 3 Visual Links */}
       <div className="glass-panel print-avoid-break" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-        <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', textAlign: 'center' }}>2. Directe Top 3 Connectie</h2>
+        <h2 className="text-gradient" style={{ marginBottom: '1rem', textAlign: 'center' }}>2. Directe Top 3 Connectie</h2>
         <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>
           Voor uw meest verhoogde schema's laten we hier de hoogst scorende, theoretisch gekoppelde modus (SMI) zien.
         </p>
@@ -224,7 +224,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
 
       {/* OPTION C: Matrix Table */}
       <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-        <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', textAlign: 'center' }}>3. Kruisverbanden Matrix</h2>
+        <h2 className="text-gradient" style={{ marginBottom: '1rem', textAlign: 'center' }}>3. Kruisverbanden Matrix</h2>
         <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '1rem' }}>
           Ruwe data vergelijking: zijn de hoogste schema's terug te zien in het modusgebruik?
         </p>

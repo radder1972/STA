@@ -115,7 +115,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
 
       {!hasAnyResult && (
         <div style={{ textAlign: 'center', maxWidth: '600px', margin: '3rem auto 0 auto', padding: '1.5rem', background: 'var(--card-bg)', borderRadius: '12px', border: '1px solid var(--border-color)', boxShadow: 'var(--glass-shadow)' }}>
-          <p style={{ color: 'var(--text-main)', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+          <p className="text-gradient" style={{ fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '0.5rem', fontWeight: 'bold' }}>
             Let op: Uw antwoorden worden nergens opgeslagen!
           </p>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
@@ -140,7 +140,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
       )}
 
       <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '4rem auto 1rem', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
-        <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+        <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.05rem' }}>
           <InfoIcon size={24} useGradient={true} /> Meer weten over Schematherapie?
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '0.9rem' }}>
@@ -158,7 +158,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
       </div>
 
       <div style={{ marginTop: '2rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '2rem auto 1rem', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
-        <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+        <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.05rem' }}>
           <ShieldIcon size={24} useGradient={true} /> Privacy & Veiligheid Gewaarborgd
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '0.9rem' }}>
