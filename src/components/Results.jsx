@@ -64,8 +64,8 @@ export default function Results({ completedTests, onRestart, onBack }) {
           <button className="btn btn-outline" onClick={handleExportCSV} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <DownloadIcon size={18} /> CSV
           </button>
-          <button className="btn btn-gradient" onClick={handlePrint} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <DownloadIcon size={18} color="white" /> PDF / Print
+          <button className="btn btn-outline" onClick={handlePrint} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <DownloadIcon size={18} /> PDF / Print
           </button>
         </div>
       </div>
@@ -77,21 +77,21 @@ export default function Results({ completedTests, onRestart, onBack }) {
             <button 
               className={`btn ${activeTab === 'ysq' ? 'btn-gradient' : 'btn-outline'}`}
               onClick={() => setActiveTab('ysq')}
-              style={{ margin: 0, border: 'none', background: activeTab === 'ysq' ? 'var(--primary)' : 'transparent', color: activeTab === 'ysq' ? 'white' : 'var(--text-muted)' }}
+              style={{ margin: 0, border: 'none' }}
             >
               YSQ (Schema's)
             </button>
             <button 
               className={`btn ${activeTab === 'smi' ? 'btn-gradient' : 'btn-outline'}`}
               onClick={() => setActiveTab('smi')}
-              style={{ margin: 0, border: 'none', background: activeTab === 'smi' ? 'var(--primary)' : 'transparent', color: activeTab === 'smi' ? 'white' : 'var(--text-muted)' }}
+              style={{ margin: 0, border: 'none' }}
             >
               SMI (Modi)
             </button>
             <button 
               className={`btn ${activeTab === 'combined' ? 'btn-gradient' : 'btn-outline'}`}
               onClick={() => setActiveTab('combined')}
-              style={{ margin: 0, border: 'none', background: activeTab === 'combined' ? 'var(--primary)' : 'transparent', color: activeTab === 'combined' ? 'white' : 'var(--text-muted)' }}
+              style={{ margin: 0, border: 'none' }}
             >
               Gecombineerde Analyse
             </button>
