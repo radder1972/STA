@@ -383,21 +383,26 @@ body {
 
 
   
-  .app-container, .results-container, .visualizer-container, .combined-results-container, .details-section {
+  /* NUKE ALL BORDERS BY DEFAULT IN PRINT */
+  *, *::before, *::after {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+  
+  /* specifically nuke borders on all structural containers */
+  html, body, #root, .app-container, .combined-results-container, .results-container, .visualizer-container, .details-section, .glass-panel, .no-print, header, main, footer {
     border: none !important;
     border-color: transparent !important;
     border-style: hidden !important;
-    outline: none !important;
-    box-shadow: none !important;
     background: transparent !important;
-    margin: 0 !important;
-    padding: 0 !important;
   }
 
   .app-container {
-    transform: scale(0.85) !important;
+    transform: scale(0.9) !important;
     transform-origin: top center !important;
-    width: 117% !important; /* compensate for scale so it still fills the page width */
+    width: 111% !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
   .recharts-responsive-container, .recharts-wrapper {
