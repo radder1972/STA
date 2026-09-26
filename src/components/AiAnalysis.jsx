@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { CpuChipIcon, AlertTriangleIcon } from './Icons';
+import { CpuChipIcon, AlertTriangleIcon, InfoIcon } from './Icons';
 
 export default function AiAnalysis({ ysqData, smiData }) {
   // Obfuscate key to bypass GitHub's aggressive secret scanner (prevents esbuild from statically evaluating it)
@@ -123,7 +123,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
               style={{ flex: 1, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'var(--bg-color)', color: 'var(--text-main)' }}
             />
             <button 
-              className="btn btn-primary" 
+              className="btn btn-gradient" 
               onClick={handleSaveKey}
               disabled={!apiKey.trim()}
             >
@@ -132,12 +132,19 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
           </div>
         </div>
       ) : (
-        <div className="no-print" style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-            ✓ API sleutel gekoppeld
-          </span>
-          <div style={{ display: 'flex', gap: '10px' }}>
-            <button 
+        <div className="no-print" style={{ marginBottom: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+            <InfoIcon size={20} color="var(--text-muted)" style={{ flexShrink: 0, marginTop: '2px' }} />
+            <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
+              <strong>Privacywaarschuwing:</strong> Deze analyse wordt gegenereerd door Google Gemini AI. Hiervoor worden uitsluitend uw anonieme Top 3 scores naar de servers van Google gestuurd. Er worden <strong>nooit</strong> namen of persoonsgegevens gedeeld en uw data wordt niet gebruikt om modellen te trainen.
+            </p>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+              ✓ API sleutel gekoppeld
+            </span>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button 
               className="btn btn-outline"
               onClick={handleClearKey}
               style={{ padding: '8px 16px', fontSize: '0.9rem' }}
@@ -145,7 +152,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
               Wissen
             </button>
             <button 
-              className="btn btn-primary"
+              className="btn btn-gradient"
               onClick={generateAnalysis}
               disabled={loading}
               style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
@@ -160,6 +167,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
               )}
             </button>
           </div>
+        </div>
         </div>
       )}
 
