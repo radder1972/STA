@@ -153,25 +153,32 @@ export const LightbulbIcon = (props) => (
   </IconBase>
 );
 
-export const Number1Icon = (props) => (
+export const HypothesisIcon = (props) => (
   <IconBase {...props}>
-    <circle cx="12" cy="12" r="10" />
-    <path d="M10 8l2-2v10" />
+    <path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-4" />
+    <path d="M9 1h6v4H9z" />
+    <circle cx="12" cy="13" r="3" />
+    <line x1="14.12" y1="15.12" x2="17" y2="18" />
   </IconBase>
 );
 
-export const Number2Icon = (props) => (
+export const ConnectionIcon = (props) => (
   <IconBase {...props}>
-    <circle cx="12" cy="12" r="10" />
-    <path d="M9 9.5a3 3 0 1 1 6 0c0 2.5-5 5-5 5h5" />
+    <circle cx="18" cy="5" r="3" />
+    <circle cx="6" cy="12" r="3" />
+    <circle cx="18" cy="19" r="3" />
+    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
   </IconBase>
 );
 
-export const Number3Icon = (props) => (
+export const MatrixIcon = (props) => (
   <IconBase {...props}>
-    <circle cx="12" cy="12" r="10" />
-    <path d="M9 8h4.5a2.5 2.5 0 0 1 0 5H12" />
-    <path d="M12 13h1.5a2.5 2.5 0 0 1 0 5H9" />
+    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+    <line x1="3" y1="9" x2="21" y2="9" />
+    <line x1="3" y1="15" x2="21" y2="15" />
+    <line x1="9" y1="3" x2="9" y2="21" />
+    <line x1="15" y1="3" x2="15" y2="21" />
   </IconBase>
 );
 

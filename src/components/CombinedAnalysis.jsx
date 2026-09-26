@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Cell, LabelList, Legend } from 'recharts';
-import { ArrowRightIcon, LightbulbIcon, Number1Icon, Number2Icon, Number3Icon } from './Icons';
+import { ArrowRightIcon, LightbulbIcon, HypothesisIcon, ConnectionIcon, MatrixIcon } from './Icons';
 import AiAnalysis from './AiAnalysis';
 
 // Duplicated maps for simplicity, as they are not exported from SingleResult
@@ -104,7 +104,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
       {/* OPTION D: Clinical Hypothesis Engine */}
       <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
         <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <Number1Icon size={28} useGradient={true} /> Klinische Hypothese
+          <HypothesisIcon size={28} useGradient={true} /> Klinische Hypothese
         </h2>
         <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
           Deze analyse combineert de theorie van Schematherapie met uw specifieke scores om gepersonaliseerde hypothesen te genereren en te valideren.
@@ -117,16 +117,15 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
             const usedModes = hypothesis.modes.map(mId => smiScores.find(s => s.id === mId)).filter(m => m && m.mean >= 3.0);
             
             const medalColors = ['#fbbf24', '#94a3b8', '#b45309'];
-            const medalNames = ['#1', '#2', '#3'];
             const medalColor = medalColors[index] || 'var(--primary)';
-            const medalIcons = [Number1Icon, Number2Icon, Number3Icon];
-            const MedalIcon = medalIcons[index] || Number3Icon;
+            const medalNames = ['#1', '#2', '#3'];
+            const medalName = medalNames[index] || `#${index + 1}`;
 
             return (
               <div key={schema.id} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', borderLeft: `4px solid ${medalColor}`, border: '1px solid var(--border-color)', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '4px', background: medalColor }}></div>
                 <h4 style={{ color: medalColor, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <MedalIcon size={24} color={medalColor} />
+                  <span style={{ background: medalColor, color: '#fff', padding: '2px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 'bold', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{medalName}</span>
                   Hypothese rondom schema: {schema.name}
                 </h4>
                 <p style={{ color: 'var(--text-main)', fontStyle: 'italic', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: '1.6' }}>"{hypothesis.desc}"</p>
@@ -172,7 +171,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
       {/* OPTION A: Top 3 Visual Links */}
       <div className="glass-panel print-avoid-break" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
         <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <Number2Icon size={28} useGradient={true} /> Directe Top 3 Connectie
+          <ConnectionIcon size={28} useGradient={true} /> Directe Top 3 Connectie
         </h2>
         <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
           Voor uw meest verhoogde schema's laten we hier de hoogst scorende, theoretisch gekoppelde modus (SMI) zien.
@@ -231,7 +230,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
       {/* OPTION C: Matrix Table */}
       <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
         <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <Number3Icon size={28} useGradient={true} /> Kruisverbanden Matrix
+          <MatrixIcon size={28} useGradient={true} /> Kruisverbanden Matrix
         </h2>
         <p style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}>
           Ruwe data vergelijking: zijn de hoogste schema's terug te zien in het modusgebruik?
