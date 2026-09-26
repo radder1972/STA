@@ -61,7 +61,14 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
       });
 
       if (!response.ok) {
-        throw new Error(`API Error: ${response.status}`);
+        let errorText = '';
+        try {
+          const errorJson = await response.json();
+          errorText = errorJson.error?.message || JSON.stringify(errorJson);
+        } catch (e) {
+          errorText = await response.text();
+        }
+        throw new Error(`HTTP ${response.status}: ${errorText}`);
       }
 
       const data = await response.json();
