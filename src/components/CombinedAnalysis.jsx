@@ -152,13 +152,13 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                 </div>
 
                 {usedModes.length > 0 ? (
-                  <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
-                    <strong style={{ color: '#10b981' }}>✓ Bevestiging in data:</strong> 
-                    <span style={{ color: 'var(--text-main)' }}> U scoort inderdaad ook bovengemiddeld (≥3) op de theoretisch gekoppelde coping-modi: <strong>{usedModes.map(m => m.name).join(', ')}</strong>. Dit wijst op een sterk patroon.</span>
+                  <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+                    <strong style={{ color: 'var(--text-main)' }}>✓ Bevestiging in data:</strong> 
+                    <span style={{ color: 'var(--text-muted)' }}> U scoort inderdaad ook bovengemiddeld (≥3) op de theoretisch gekoppelde coping-modi: <strong>{usedModes.map(m => m.name).join(', ')}</strong>. Dit wijst op een sterk patroon.</span>
                   </div>
                 ) : (
-                  <div style={{ background: 'rgba(148, 163, 184, 0.1)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(148, 163, 184, 0.3)' }}>
-                    <strong style={{ color: '#94a3b8' }}>○ Geen sterke bevestiging:</strong> 
+                  <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+                    <strong style={{ color: 'var(--text-main)' }}>○ Geen sterke bevestiging:</strong> 
                     <span style={{ color: 'var(--text-muted)' }}> U lijkt deze standaard coping-modi niet exceptioneel hoog in te zetten. U hanteert waarschijnlijk een andere overlevingsstrategie voor dit schema, of het schema is wel aanwezig maar u copt er niet actief op deze manier mee.</span>
                   </div>
                 )}
