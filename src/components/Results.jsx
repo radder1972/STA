@@ -53,7 +53,7 @@ export default function Results({ completedTests, onRestart, onBack }) {
       </div>
 
       {/* 1. Top Navigation (Actions) */}
-      <div className="no-print" style={{ display: 'flex', justifyContent: 'center', padding: '1rem', margin: '0 auto', flexWrap: 'nowrap', gap: '0.5rem', marginBottom: '2rem', overflowX: 'auto' }}>
+      <div className="no-print" style={{ display: 'flex', justifyContent: 'center', padding: '1rem', margin: '0 auto', flexWrap: 'nowrap', gap: '0.5rem', marginBottom: '2rem' }}>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'nowrap', justifyItems: 'center', whiteSpace: 'nowrap' }}>
           <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <ArrowLeftIcon size={18} /> Terug naar Start
@@ -65,7 +65,7 @@ export default function Results({ completedTests, onRestart, onBack }) {
             <DownloadIcon size={18} /> CSV
           </button>
           <button className="btn btn-gradient" onClick={handlePrint} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <DownloadIcon size={18} color="white" /> Sla op als PDF / Print
+            <DownloadIcon size={18} color="white" /> PDF / Print
           </button>
         </div>
       </div>
