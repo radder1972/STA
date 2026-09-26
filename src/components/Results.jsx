@@ -47,18 +47,20 @@ export default function Results({ completedTests, onRestart, onBack }) {
 
   return (
     <div className="combined-results-container">
+      <div className="header" style={{ marginTop: '1rem' }}>
+        <h1>Schema Therapy Questionnaires</h1>
+        <p>Rapportage & Analyse</p>
+      </div>
+
       {/* 1. Top Navigation (Actions) */}
-      <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem', maxWidth: '1200px', margin: '0 auto', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '1rem' }}>
-        <div style={{ display: 'flex', gap: '1rem' }}>
+      <div className="no-print" style={{ display: 'flex', justifyContent: 'center', padding: '1rem', margin: '0 auto', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyItems: 'center' }}>
           <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <ArrowLeftIcon size={18} /> Terug naar Start
           </button>
           <button className="btn btn-outline" onClick={onRestart} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <RefreshIcon size={18} /> Alles Wissen
           </button>
-        </div>
-        
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <button className="btn btn-outline" onClick={handleExportCSV} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <DownloadIcon size={18} /> CSV
           </button>
@@ -66,11 +68,6 @@ export default function Results({ completedTests, onRestart, onBack }) {
             <DownloadIcon size={18} color="white" /> Sla op als PDF / Print
           </button>
         </div>
-      </div>
-
-      <div className="header">
-        <h1>Schema Therapy Questionnaires</h1>
-        <p>Rapportage & Analyse</p>
       </div>
 
       {/* 3. The View Toggles */}
