@@ -177,10 +177,10 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
           Voor uw meest verhoogde schema's laten we hier de hoogst scorende, theoretisch gekoppelde modus (SMI) zien.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
-            <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'center', margin: 0 }}>Kwetsbaarheid (Top 3 Schema's)</h4>
-            <div style={{ flex: '0 0 40px' }}></div>
-            <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'center', margin: 0 }}>Reactie (Hoogste Gekoppelde Modus)</h4>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', marginBottom: '0.25rem' }}>
+            <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'left', margin: 0, fontWeight: 'bold', fontSize: '0.95rem' }}>Kwetsbaarheid (Top 3 Schema's)</h4>
+            <div style={{ flex: '0 0 20px' }}></div>
+            <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'left', margin: 0, fontWeight: 'bold', fontSize: '0.95rem' }}>Reactie (Hoogste Gekoppelde Modus)</h4>
           </div>
 
           {[0, 1, 2].map(i => {
@@ -202,20 +202,20 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
             const iconBg = 'transparent';
             
             return (
-              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', width: '100%', padding: '0.5rem 0', borderBottom: i < 2 ? '1px solid var(--border-color)' : 'none' }}>
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', width: '100%', padding: '0.25rem 0', borderBottom: i < 2 ? '1px solid rgba(14, 165, 233, 0.3)' : 'none' }}>
                 {/* Left Box */}
-                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '3rem', background: bg, padding: '0.5rem 0' }}>
-                  <span style={{ lineHeight: '1.2', fontSize: '1rem', color: 'var(--text-main)' }}>{schema?.name || '-'}</span> <span style={{ color: 'var(--text-muted)' }}>{schema?.mean || '-'}</span>
+                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '2rem' }}>
+                  <span style={{ lineHeight: '1.2', fontSize: '0.9rem', color: 'var(--text-main)' }}>{schema?.name || '-'}</span> <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{schema?.mean || '-'}</span>
                 </div>
                 
                 {/* Center Arrow */}
-                <div style={{ flex: '0 0 40px', display: 'flex', justifyContent: 'center' }}>
-                  <ArrowRightIcon size={18} color={iconColor} />
+                <div style={{ flex: '0 0 20px', display: 'flex', justifyContent: 'center' }}>
+                  <ArrowRightIcon size={14} color={iconColor} />
                 </div>
 
                 {/* Right Box */}
-                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '3rem', background: bg, padding: '0.5rem 0' }}>
-                  <span style={{ lineHeight: '1.2', fontSize: '1rem', color: 'var(--text-main)' }}>{topLinkedMode?.name || 'Geen sterke link gevonden'}</span> <span style={{ color: 'var(--text-muted)' }}>{topLinkedMode?.mean || '-'}</span>
+                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '2rem' }}>
+                  <span style={{ lineHeight: '1.2', fontSize: '0.9rem', color: 'var(--text-main)' }}>{topLinkedMode?.name || 'Geen sterke link gevonden'}</span> <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{topLinkedMode?.mean || '-'}</span>
                 </div>
               </div>
             );
@@ -236,22 +236,22 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                <th style={{ padding: '12px 0', textAlign: 'left', fontWeight: 'normal' }}>Theoretisch Vlak</th>
-                <th style={{ padding: '12px 0', textAlign: 'center', fontWeight: 'normal' }}>YSQ Domein Score</th>
-                <th style={{ padding: '12px 0', textAlign: 'center', fontWeight: 'normal' }}>SMI Groep Score</th>
+              <tr style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.5)', color: 'var(--text-main)', fontSize: '0.9rem' }}>
+                <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }}>Theoretisch Vlak</th>
+                <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }}>YSQ Domein Score</th>
+                <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }}>SMI Groep Score</th>
               </tr>
             </thead>
             <tbody>
               {domainAverages.map((row, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                  <td style={{ padding: '16px 0', color: 'var(--text-main)', fontSize: '0.95rem' }}>{row.name}</td>
-                  <td style={{ padding: '16px 0', textAlign: 'center', color: 'var(--text-main)' }}>
+                <tr key={i} style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.3)' }}>
+                  <td style={{ padding: '8px 0', color: 'var(--text-main)', fontSize: '0.9rem' }}>{row.name}</td>
+                  <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-main)', fontSize: '0.9rem' }}>
                     <span style={{ fontWeight: row.ysq >= 4 ? 'bold' : 'normal', color: row.ysq >= 4 ? 'var(--text-main)' : 'var(--text-muted)' }}>
                       {row.ysq}
                     </span>
                   </td>
-                  <td style={{ padding: '16px 0', textAlign: 'center', color: 'var(--text-main)' }}>
+                  <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-main)', fontSize: '0.9rem' }}>
                     <span style={{ fontWeight: row.smi >= 4 ? 'bold' : 'normal', color: row.smi >= 4 ? 'var(--text-main)' : 'var(--text-muted)' }}>
                       {row.smi}
                     </span>
