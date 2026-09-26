@@ -18,7 +18,7 @@ import {
 } from 'recharts';
 import { ChartIcon } from './Icons';
 
-export default function ScoreChart({ scores }) {
+export default function ScoreChart({ scores, type }) {
   // Calculate Domain Averages
   const domainAverages = React.useMemo(() => {
     const groups = {};
@@ -300,7 +300,9 @@ export default function ScoreChart({ scores }) {
       {/* Domain Averages Chart */}
       {domainAverages.length > 1 && (
         <div className="glass-panel" style={{ padding: '1.5rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)' }}>
-          <h3 style={{ marginBottom: '0.5rem', color: 'var(--text-main)', textAlign: 'center', fontSize: '1.3rem' }}>Score per Emotionele basisbehoefte</h3>
+          <h3 style={{ marginBottom: '0.5rem', color: 'var(--text-main)', textAlign: 'center', fontSize: '1.3rem' }}>
+            {type === 'ysq' ? 'Score per Emotionele basisbehoefte' : 'Gemiddelde per Categorie'}
+          </h3>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem', maxWidth: '600px', margin: '0 auto 1.5rem auto', textAlign: 'center' }}>
             Deze staafgrafiek toont uw gemiddelde score per hoofdcategorie. Dit helpt om patronen op een hoger niveau (helikopterview) te herkennen.
           </p>
