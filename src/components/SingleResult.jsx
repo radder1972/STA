@@ -203,7 +203,16 @@ export default function SingleResult({ type, answers }) {
                     </div>
                   )}
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', width: '100%' }}>
-                    <div style={{ fontWeight: 'bold', fontSize: '0.9rem', lineHeight: '1.3', marginBottom: '0.25rem', minHeight: '2.8rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>{score.name}</div>
+                    <div style={{ fontWeight: 'bold', fontSize: '0.9rem', lineHeight: '1.3', marginBottom: '0.25rem', minHeight: '2.8rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', textAlign: 'center' }}>
+                      {score.name.includes(' ') ? (
+                        <>
+                          <span>{score.name.substring(0, score.name.indexOf(' '))}</span>
+                          <span>{score.name.substring(score.name.indexOf(' ') + 1)}</span>
+                        </>
+                      ) : (
+                        <span>{score.name}</span>
+                      )}
+                    </div>
                     <div style={{ color: 'var(--text-muted)', fontSize: '0.7rem', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.5px', minHeight: '2rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>{group || 'Overig'}</div>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.4', marginBottom: '1.5rem', fontStyle: 'italic', flex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
                       {schemaDescriptions[score.name] || ''}
