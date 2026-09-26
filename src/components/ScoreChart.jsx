@@ -304,7 +304,7 @@ export default function ScoreChart({ scores, type }) {
             <RadarChart width={chartWidth} height={data.length > 10 ? 450 : 400} cx="50%" cy="50%" outerRadius="65%" data={radarData}>
               <PolarGrid stroke="var(--border-color)" />
               <PolarAngleAxis dataKey="name" tick={<CustomTick />} />
-              <PolarRadiusAxis angle={90} domain={[1, 6]} tick={{ fill: 'var(--text-muted)' }} />
+              <PolarRadiusAxis angle={90} domain={[1, 6]} ticks={[1, 2, 3, 4, 5, 6]} tick={{ fill: 'black', fontSize: 9, fontWeight: 'bold' }} />
               <Radar name="Score" dataKey="mean" stroke="var(--primary)" fill="var(--primary)" fillOpacity={0.4} dot={<CustomRadarDot />} isAnimationActive={false} />
               <Tooltip content={<CustomTooltip />} />
             </RadarChart>
