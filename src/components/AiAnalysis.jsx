@@ -48,7 +48,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
     setError('');
     
     try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -120,7 +120,11 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
             </div>
           </div>
           
-          <div style={{ display: 'flex', gap: '10px', marginTop: '1.5rem' }}>
+          <div style={{ marginTop: '0.5rem', marginBottom: '1.5rem', fontSize: '0.9rem' }}>
+            Heeft u nog geen sleutel? <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noreferrer" style={{ color: '#0ea5e9', textDecoration: 'underline' }}>Haal hier gratis een Gemini API sleutel op</a>.
+          </div>
+          
+          <div style={{ display: 'flex', gap: '10px' }}>
             <input 
               type="password" 
               placeholder="Plak uw Gemini API Key hier..." 
