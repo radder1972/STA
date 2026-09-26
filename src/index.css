@@ -657,6 +657,14 @@ body {
     stroke: #6366f1 !important; /* solid fallback color */
   }
   
+  /* Fix text-gradient rendering glitches in PDF */
+  .text-gradient, .card h2 {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    color: var(--primary, #4f46e5) !important;
+  }
+  
   /* FORCE RECHARTS VISIBILITY IN PRINT */
   .recharts-wrapper, 
   .recharts-wrapper svg.recharts-surface {
