@@ -69,7 +69,11 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
     <div className="home-container">
       <div className="header">
         <h1>Schema Therapy Questionnaires</h1>
-        <p>Kies een vragenlijst. U kunt beide lijsten invullen voor een gecombineerd rapport.</p>
+        <p>
+          Welkom! Hieronder vindt u twee belangrijke vragenlijsten die worden ingezet binnen de schematherapie. 
+          Door deze in te vullen krijgt u waardevolle inzichten in uw onderliggende gevoeligheden (schema's) en uw huidige gedragspatronen (modi). 
+          U kunt ervoor kiezen om één vragenlijst te starten, of vul ze allebei in voor een uitgebreid en gecombineerd analyserapport.
+        </p>
       </div>
       
       <div className="home-cards">
