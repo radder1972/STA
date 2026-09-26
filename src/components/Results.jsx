@@ -16,34 +16,6 @@ export default function Results({ completedTests, onRestart, onBack }) {
     window.print();
   }
 
-  const handleExport = () => {
-    // Enrich JSON data with question text
-    const enrichedTests = {};
-    if (completedTests.ysq) {
-      enrichedTests.ysq = Object.keys(completedTests.ysq).map(qId => {
-        const question = ysqData.find(q => q.id.toString() === qId.toString());
-        return { id: qId, score: completedTests.ysq[qId], text: question ? question.text : '' };
-      });
-    }
-    if (completedTests.smi) {
-      enrichedTests.smi = Object.keys(completedTests.smi).map(qId => {
-        const question = smiData.find(q => q.id.toString() === qId.toString());
-        return { id: qId, score: completedTests.smi[qId], text: question ? question.text : '' };
-      });
-    }
-
-    const exportData = {
-      timestamp: new Date().toISOString(),
-      results: enrichedTests
-    };
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportData, null, 2));
-    const downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", `schema_therapy_results.json`);
-    document.body.appendChild(downloadAnchorNode);
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
-  }
 
   const handleExportCSV = () => {
     let csvContent = "Vragenlijst,Vraag_ID,Score,Vraag_Tekst\n";
@@ -79,7 +51,7 @@ export default function Results({ completedTests, onRestart, onBack }) {
       <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem', maxWidth: '1200px', margin: '0 auto', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '1rem' }}>
         <div style={{ display: 'flex', gap: '1rem' }}>
           <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <ArrowLeftIcon size={18} /> Terug naar Menu
+            <ArrowLeftIcon size={18} /> Terug naar Start
           </button>
           <button className="btn btn-outline" onClick={onRestart} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <RefreshIcon size={18} /> Alles Wissen
@@ -87,9 +59,6 @@ export default function Results({ completedTests, onRestart, onBack }) {
         </div>
         
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          <button className="btn btn-outline" onClick={handleExport} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <DownloadIcon size={18} /> JSON
-          </button>
           <button className="btn btn-outline" onClick={handleExportCSV} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <DownloadIcon size={18} /> CSV
           </button>
@@ -99,10 +68,10 @@ export default function Results({ completedTests, onRestart, onBack }) {
         </div>
       </div>
 
-      {/* 2. Clear Page Title */}
-      <h2 style={{ textAlign: 'center', marginTop: '1rem', marginBottom: '1.5rem', color: 'var(--text-main)', fontSize: '1.8rem', fontWeight: 'bold' }}>
-        Rapportage & Analyse
-      </h2>
+      <div className="header">
+        <h1>Schema Therapy Questionnaires</h1>
+        <p>Rapportage & Analyse</p>
+      </div>
 
       {/* 3. The View Toggles */}
       {hasYsq && hasSmi && (
