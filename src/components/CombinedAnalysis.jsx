@@ -115,7 +115,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
             const usedModes = hypothesis.modes.map(mId => smiScores.find(s => s.id === mId)).filter(m => m && m.mean >= 3.0);
             
             const medalColors = ['#fbbf24', '#94a3b8', '#b45309'];
-            const medalNames = ['#1 (Goud)', '#2 (Zilver)', '#3 (Brons)'];
+            const medalNames = ['#1', '#2', '#3'];
             const medalColor = medalColors[index] || 'var(--primary)';
             const medalName = medalNames[index] || `#${index + 1}`;
 
