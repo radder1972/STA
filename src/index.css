@@ -364,13 +364,15 @@ body {
 }
 
 @page {
-  margin: 2cm;
+  margin: 0;
+  size: A4;
 }
 
 @media print {
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
   }
   
   .page-break {
@@ -388,6 +390,7 @@ body {
   
   html, body {
     font-size: 80% !important; /* Scale down entire app by 20% in print */
+    padding: 1.5cm !important; /* Create our own margins so the browser header/footer isn't used */
   }
 
 
@@ -625,10 +628,10 @@ body {
     height: 480px !important;
   }
 
-  /* Ensure details section starts on a new page */
+  /* Ensure details section doesn't break in awkward places */
   .details-section {
-    page-break-before: always !important;
-    break-before: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
   
   /* Space between sections */
