@@ -139,7 +139,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
               <strong>Privacywaarschuwing:</strong> Deze analyse wordt gegenereerd door Google Gemini AI. Hiervoor worden uitsluitend uw anonieme Top 3 scores naar de servers van Google gestuurd. Er worden <strong>nooit</strong> namen of persoonsgegevens gedeeld en uw data wordt niet gebruikt om modellen te trainen.
             </p>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <button 
               className="btn btn-gradient"
               onClick={generateAnalysis}

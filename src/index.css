@@ -55,6 +55,7 @@ body {
 }
 
 .btn {
+  font-family: inherit;
   background: var(--primary);
   color: white;
   border: none;
