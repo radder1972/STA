@@ -97,15 +97,18 @@ export default function YsqVisualizer({ groupedScores, top3 = [] }) {
                     fontWeight: 'bold', 
                     color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
                     background: q.score >= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(0,0,0,0.05)',
-                    padding: '2px 8px',
                     borderRadius: '6px',
-                    minWidth: '28px',
-                    textAlign: 'center',
+                    width: '28px',
+                    height: '28px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
                     border: `1px solid ${q.score >= 5 ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)'}`
                   }}>
                     {q.score}
                   </span>
-                  <span style={{ color: 'var(--text-muted)', lineHeight: '1.4' }}>{q.text}</span>
+                  <span style={{ color: 'var(--text-muted)', lineHeight: '1.5', paddingTop: '4px' }}>{q.text}</span>
                 </li>
               ))}
             </ul>
