@@ -139,18 +139,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
               <strong>Privacywaarschuwing:</strong> Deze analyse wordt gegenereerd door Google Gemini AI. Hiervoor worden uitsluitend uw anonieme Top 3 scores naar de servers van Google gestuurd. Er worden <strong>nooit</strong> namen of persoonsgegevens gedeeld en uw data wordt niet gebruikt om modellen te trainen.
             </p>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-              ✓ API sleutel gekoppeld
-            </span>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button 
-              className="btn btn-outline"
-              onClick={handleClearKey}
-              style={{ padding: '8px 16px', fontSize: '0.9rem' }}
-            >
-              Wissen
-            </button>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
             <button 
               className="btn btn-gradient"
               onClick={generateAnalysis}
@@ -167,7 +156,6 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
               )}
             </button>
           </div>
-        </div>
         </div>
       )}
 
