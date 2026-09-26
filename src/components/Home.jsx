@@ -113,30 +113,28 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
         </div>
       )}
 
-      {!hasAnyResult && (
-        <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '4rem auto 2rem auto', padding: '2rem 1rem 1rem 1rem', borderTop: '1px solid var(--border-color)' }}>
-          <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-            <AlertTriangleIcon size={24} useGradient={true} /> Let op: Uw antwoorden worden nergens opgeslagen!
-          </p>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
-            Omdat de applicatie lokaal draait, bent u na het afsluiten van de pagina uw gegevens kwijt. U kunt na het invullen uw resultaten vastleggen door het rapport op te slaan als <strong>PDF of CSV</strong>. Heeft u al een CSV-bestand? Laad deze dan hieronder in.
-          </p>
-          <input 
-            type="file" 
-            accept=".csv" 
-            ref={fileInputRef} 
-            style={{ display: 'none' }} 
-            onChange={handleFileUpload} 
-          />
-          <button 
-            className="btn btn-outline" 
-            onClick={() => fileInputRef.current?.click()}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-            Importeer eerdere score (CSV)
-          </button>
-        </div>
-      )}
+      <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '4rem auto 2rem auto', padding: '2rem 1rem 1rem 1rem', borderTop: '1px solid var(--border-color)' }}>
+        <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+          <AlertTriangleIcon size={24} useGradient={true} /> Let op: Uw antwoorden worden nergens opgeslagen!
+        </p>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
+          Omdat de applicatie lokaal draait, bent u na het afsluiten van de pagina uw gegevens kwijt. U kunt na het invullen uw resultaten vastleggen door het rapport op te slaan als <strong>PDF of CSV</strong>. Heeft u al een CSV-bestand? Laad deze dan hieronder in.
+        </p>
+        <input 
+          type="file" 
+          accept=".csv" 
+          ref={fileInputRef} 
+          style={{ display: 'none' }} 
+          onChange={handleFileUpload} 
+        />
+        <button 
+          className="btn btn-outline" 
+          onClick={() => fileInputRef.current?.click()}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          Importeer eerdere score (CSV)
+        </button>
+      </div>
 
       <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '4rem auto 1rem', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.05rem' }}>
