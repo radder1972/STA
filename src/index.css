@@ -372,7 +372,22 @@ body {
     --border-color: #ccc !important;
     --card-bg: transparent !important;
   }
-  @page { margin: 1.5cm; }
+  
+  html, body {
+    font-size: 80% !important; /* Scale down entire app by 20% in print */
+  }
+
+  @page { 
+    margin: 2cm; 
+  }
+  
+  .app-container, .results-container, .visualizer-container, .combined-results-container, .details-section {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
   
   .recharts-responsive-container, .recharts-wrapper {
     width: 100% !important;
@@ -388,11 +403,9 @@ body {
     display: none !important;
   }
   
-  body, .app-container, .results-container, .combined-results-container {
+  body, .app-container {
     background: white !important;
     color: black !important;
-    padding: 0 !important;
-    margin: 0 !important;
   }
   
   /* Remove glass effects and gray backgrounds */
@@ -402,12 +415,6 @@ body {
     box-shadow: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-  }
-  
-  .visualizer-container {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
   }
   
   /* Make boxes visible and compact in print */
