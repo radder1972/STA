@@ -223,7 +223,7 @@ export default function ScoreChart({ scores }) {
       {/* Detailed Bar Chart */}
       <div className="glass-panel" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)' }}>
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-          <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.3rem' }}>Volledige Score Staafgrafiek</h3>
+          <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.3rem' }}>Alle scores</h3>
         </div>
         <div ref={wrapperRef} className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
           <div style={{ width: '100%', height: data.length > 10 ? '550px' : '400px' }}>
@@ -300,7 +300,7 @@ export default function ScoreChart({ scores }) {
       {/* Domain Averages Chart */}
       {domainAverages.length > 1 && (
         <div className="glass-panel" style={{ padding: '1.5rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)' }}>
-          <h3 style={{ marginBottom: '0.5rem', color: 'var(--text-main)', textAlign: 'center', fontSize: '1.3rem' }}>Gemiddelde per Categorie / Domein</h3>
+          <h3 style={{ marginBottom: '0.5rem', color: 'var(--text-main)', textAlign: 'center', fontSize: '1.3rem' }}>Score per Emotionele basisbehoefte</h3>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem', maxWidth: '600px', margin: '0 auto 1.5rem auto', textAlign: 'center' }}>
             Deze staafgrafiek toont uw gemiddelde score per hoofdcategorie. Dit helpt om patronen op een hoger niveau (helikopterview) te herkennen.
           </p>
