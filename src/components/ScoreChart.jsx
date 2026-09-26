@@ -223,7 +223,10 @@ export default function ScoreChart({ scores, type }) {
       {/* Detailed Bar Chart */}
       <div className="glass-panel" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)' }}>
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-          <h3 className="text-gradient" style={{ margin: 0, fontSize: '1.3rem' }}>Alle scores</h3>
+          <h3 className="text-gradient" style={{ margin: 0, fontSize: '1.3rem', marginBottom: '0.5rem' }}>Alle scores</h3>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', maxWidth: '600px', margin: '0 auto' }}>
+            Dit is het complete overzicht van al uw individuele scores. Scroll verder naar beneden om te wisselen naar de helikopterview per categorie.
+          </p>
         </div>
         <div ref={wrapperRef} className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
           <div style={{ width: '100%', height: data.length > 10 ? '550px' : '400px' }}>
