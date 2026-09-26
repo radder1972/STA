@@ -98,7 +98,10 @@ export default function SmiVisualizer({ groupedScores, top3 = [] }) {
                   }}>
                     {q.score}
                   </span>
-                  <span style={{ color: 'var(--text-muted)', lineHeight: '1.4' }}>{q.text}</span>
+                  <span style={{ color: 'var(--text-muted)', lineHeight: '1.4' }}>
+                    <span style={{ fontWeight: 'bold', marginRight: '8px', opacity: 0.5 }}>#{q.id}</span>
+                    {q.text}
+                  </span>
                 </li>
               ))}
             </ul>
