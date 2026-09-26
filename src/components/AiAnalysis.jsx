@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { BrainIcon, AlertTriangleIcon } from './Icons';
 
 export default function AiAnalysis({ ysqData, smiData }) {
@@ -48,31 +49,12 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
     setError('');
     
     try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{ text: formatPrompt() }]
-          }]
-        })
-      });
-
-      if (!response.ok) {
-        let errorText = '';
-        try {
-          const errorJson = await response.json();
-          errorText = errorJson.error?.message || JSON.stringify(errorJson);
-        } catch (e) {
-          errorText = await response.text();
-        }
-        throw new Error(`HTTP ${response.status}: ${errorText}`);
-      }
-
-      const data = await response.json();
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      
+      const result = await model.generateContent(formatPrompt());
+      const response = await result.response;
+      const text = response.text();
       
       if (text) {
         setAnalysisResult(text);
@@ -81,7 +63,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
       }
     } catch (err) {
       console.error(err);
-      setError(`Fout: ${err.message || 'Onbekende fout'}. Controleer de console (F12) voor meer details.`);
+      setError(`Fout: ${err.message || 'Onbekende fout'}. Controleer uw API-sleutel.`);
     } finally {
       setLoading(false);
     }
