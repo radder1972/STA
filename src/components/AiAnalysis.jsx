@@ -170,8 +170,8 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
       )}
 
       {analysisResult && (
-        <div className="ai-result-box" style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(56, 189, 248, 0.05)', border: '1px solid rgba(56, 189, 248, 0.3)', borderRadius: '12px' }}>
-          <h3 style={{ color: '#0ea5e9', marginBottom: '1.5rem', marginTop: 0, fontSize: '1.2rem' }}>Klinische Interpretatie</h3>
+        <div className="ai-result-box" style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.02)', border: '1px solid var(--border-color)', borderRadius: '12px' }}>
+          <h3 className="text-gradient" style={{ marginBottom: '1.5rem', marginTop: 0, fontSize: '1.2rem' }}>Klinische Interpretatie</h3>
           <div className="ai-content">
             {renderFormattedText(analysisResult)}
           </div>
