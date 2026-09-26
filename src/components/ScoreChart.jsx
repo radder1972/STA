@@ -283,7 +283,7 @@ export default function ScoreChart({ scores, type }) {
 
       {/* Radar Chart */}
       <div className="glass-panel page-break" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
-        <h3 style={{ marginBottom: '0.5rem', color: 'var(--text-main)', fontSize: '1.3rem' }}>Spinnenweb Overzicht</h3>
+        <h3 className="text-gradient" style={{ marginBottom: '0.5rem', fontSize: '1.3rem' }}>Spinnenweb Overzicht</h3>
         <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem', maxWidth: '600px', margin: '0 auto 1.5rem auto' }}>
           Deze grafiek toont de verdeling van al uw scores. Punten die ver naar buiten uitschieten, zijn uw meest prominente patronen.
         </p>
