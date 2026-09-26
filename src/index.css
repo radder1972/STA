@@ -553,6 +553,7 @@ body {
     margin-top: 0 !important;
     border: none !important;
     box-shadow: none !important;
+  }
   .top-scores-section, .top-score-card {
     border: 1px solid #ccc !important;
   }
