@@ -416,7 +416,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
               <div style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '0.5rem' }}>Grenzen stellen & Zorgen</div>
               <p style={{ fontSize: '0.95rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '1rem', lineHeight: '1.5' }}>
-                De Gezonde Volwassene helpt je om op een constructieve manier met deze situatie om te gaan. Enerzijds door begrip en zorg te tonen voor je kwetsbare kant (je onvervulde behoefte), en anderzijds door gezonde grenzen te stellen aan automatische, disfunctionele reacties. Wat zou de Gezonde Volwassene nu zeggen of doen?
+                De Gezonde Volwassene stelt grenzen aan disfunctionele reacties en biedt zorg voor onvervulde behoeften. Wat zou deze in deze situatie zeggen of doen?
               </p>
               <textarea 
                 placeholder="" 
