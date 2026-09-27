@@ -799,7 +799,7 @@ body {
 
 .card-face-back {
   transform: rotateY(180deg);
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
   text-align: center;
 }
 
