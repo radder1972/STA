@@ -115,10 +115,10 @@ export default function KaartenOverzicht({ onBack }) {
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyItems: 'center', justifyContent: 'center', padding: '1rem', marginBottom: '3rem' }}>
       {cards.map((card, idx) => (
         <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div className="card-scene" onClick={() => handleFlip(card.title)}>
+          <div className="card-scene">
             <div className={`card-flip-container ${flippedCards[card.title] ? 'flipped' : ''}`}>
               
-              <div className="card-face-front schema-img playing-card" style={{ padding: '16px', boxSizing: 'border-box' }}>
+              <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(card.title)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer' }}>
                 <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                   <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
                 </div>
@@ -128,14 +128,14 @@ export default function KaartenOverzicht({ onBack }) {
               </div>
               
               <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
+                <div onClick={() => handleFlip(card.title)} style={{ flex: 1, cursor: 'pointer' }}>
                   <h4>{card.title}</h4>
                   <p>{card.description || 'Geen theorie beschikbaar.'}</p>
                 </div>
                 <button 
                   className="btn btn-outline" 
-                  onClick={(e) => { e.stopPropagation(); setSelectedCard(card); }}
-                  style={{ fontSize: '0.75rem', padding: '6px 12px', marginTop: '10px', alignSelf: 'center', width: '90%' }}
+                  onClick={() => setSelectedCard(card)}
+                  style={{ fontSize: '0.75rem', padding: '6px 12px', marginTop: '10px', alignSelf: 'center', width: '90%', zIndex: 20, position: 'relative' }}
                 >
                   Praktijkvoorbeeld & Tips
                 </button>

@@ -9,6 +9,13 @@ import KaartenOverzicht from './components/KaartenOverzicht'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 
+window.addEventListener('error', function(event) {
+  alert("Error: " + event.message + "\nFile: " + event.filename + "\nLine: " + event.lineno);
+});
+window.addEventListener('unhandledrejection', function(event) {
+  alert("Promise Error: " + event.reason);
+});
+
 function App() {
   const [currentView, setCurrentView] = useState('home')
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState(null)
@@ -119,7 +126,7 @@ function App() {
 
       {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v1.7.0
+          v1.7.1
         </div>
       )}
     </div>
