@@ -197,7 +197,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
             <div style={{ background: 'transparent', color: 'var(--primary)', padding: '10px', borderRadius: '50%', marginBottom: '1rem' }}>
               <CardsIcon size={56} useGradient={true} />
             </div>
-            <h3 style={{ margin: '0 0 1rem 0' }}>Tafelopstelling</h3>
+            <h2 style={{ margin: '0 0 1rem 0' }}>Tafelopstelling</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem', flex: 1, margin: 0 }}>
               Interactief canvas om fysiek (digitaal) je eigen triggers in kaart te brengen. Sleep Modus, Schema en Basisbehoefte bij elkaar op tafel.
             </p>
