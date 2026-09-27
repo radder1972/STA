@@ -91,7 +91,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                   style={{ display: 'block', marginBottom: ysqExpanded ? '0.8rem' : 'auto', cursor: 'pointer' }}
                 >
                   In deze vragenlijst volgt een aantal beweringen die men kan gebruiken om zichzelf te beschrijven.
-                  {!ysqExpanded && <span style={{ color: 'var(--primary)', fontWeight: 'bold', marginLeft: '5px' }}>Lees meer...</span>}
+                  {!ysqExpanded && <span style={{ color: '#14b8a6', fontWeight: 'bold', marginLeft: '5px' }}>Lees meer...</span>}
                 </span>
                 
                 {ysqExpanded && (
@@ -101,7 +101,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                     <span style={{ display: 'block', marginBottom: '1.5rem' }}>Kies vervolgens het antwoord uit de opties 1-6 dat op u van toepassing is.</span>
                     <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: 'auto' }}>
                       © 2020 Rijkeboer, M.M., Videler, A.C. , Rossi, G., van Alphen, S.P.J., & Legra, M.J.H. Nederlandse vertaling van de Young Schema Questionnaire - Short Form Version 3 (YSQ-3S) van Young, J.E., & Brown, G. (2005). Dutch translation approved by the International Society of Schema Therapy (ISST) and G. Brown, one of the original authors.
-                      <span onClick={() => setYsqExpanded(false)} style={{ display: 'block', marginTop: '8px', color: 'var(--primary)', cursor: 'pointer', fontWeight: 'bold' }}>Toon minder</span>
+                      <span onClick={() => setYsqExpanded(false)} style={{ display: 'block', marginTop: '8px', color: '#14b8a6', cursor: 'pointer', fontWeight: 'bold' }}>Toon minder</span>
                     </span>
                   </div>
                 )}
@@ -122,7 +122,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                   style={{ display: 'block', marginBottom: smiExpanded ? '0.8rem' : 'auto', cursor: 'pointer' }}
                 >
                   In deze vragenlijst staan uitspraken die mensen kunnen gebruiken om zichzelf te beschrijven.
-                  {!smiExpanded && <span style={{ color: 'var(--primary)', fontWeight: 'bold', marginLeft: '5px' }}>Lees meer...</span>}
+                  {!smiExpanded && <span style={{ color: '#14b8a6', fontWeight: 'bold', marginLeft: '5px' }}>Lees meer...</span>}
                 </span>
                 
                 {smiExpanded && (
@@ -131,7 +131,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                     <span style={{ display: 'block', marginBottom: '1.5rem' }}>Kies vervolgens het antwoord uit de opties 1-6 dat op u van toepassing is.</span>
                     <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: 'auto' }}>
                       © 2007 Young, J., Arntz, A., Atkinson, T., Lobbestael, J., Weishaar, M., van Vreeswijk, M en Klokman, J.
-                      <span onClick={() => setSmiExpanded(false)} style={{ display: 'block', marginTop: '8px', color: 'var(--primary)', cursor: 'pointer', fontWeight: 'bold' }}>Toon minder</span>
+                      <span onClick={() => setSmiExpanded(false)} style={{ display: 'block', marginTop: '8px', color: '#14b8a6', cursor: 'pointer', fontWeight: 'bold' }}>Toon minder</span>
                     </span>
                   </div>
                 )}
