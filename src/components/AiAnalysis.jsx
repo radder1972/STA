@@ -91,7 +91,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
   return (
     <div className="glass-panel page-break" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
       <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <CpuChipIcon size={28} useGradient={true} /> AI Klinische Analyse
+        <CpuChipIcon size={28} useGradient={true} /> AI Analyse
       </h2>
       
       <p className="no-print" style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
