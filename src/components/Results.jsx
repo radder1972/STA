@@ -10,8 +10,8 @@ export default function Results({ completedTests, onRestart, onBack, onUpdateAns
   const hasYsq = !!completedTests.ysq;
   const hasSmi = !!completedTests.smi;
   
-  // Default to combined if both exist, otherwise the one that exists
-  const [activeTab, setActiveTab] = useState(hasYsq && hasSmi ? 'combined' : (hasYsq ? 'ysq' : 'smi'));
+  // Default to YSQ if it exists, otherwise SMI
+  const [activeTab, setActiveTab] = useState(hasYsq ? 'ysq' : 'smi');
 
   const handlePrint = () => {
     window.print();
