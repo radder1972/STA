@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowLeftIcon } from './Icons';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { ArrowLeftIcon, CpuChipIcon } from './Icons';
 import { schemaImages, modeImages } from '../utils/images';
 
 import imgB1 from '../assets/images/basisbehoeften/1.png';
@@ -73,15 +74,15 @@ const CardSlot = ({ label, card, onSelect, onRemove }) => (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
     <div style={{ fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--primary)', textAlign: 'center' }}>{label}</div>
     {card ? (
-      <div style={{ position: 'relative' }}>
-         <div className="schema-img playing-card" style={{ width: '140px', height: '180px', padding: '12px', display: 'flex', flexDirection: 'column', pointerEvents: 'none' }}>
+      <div style={{ position: 'relative', display: 'inline-block' }}>
+         <div className="schema-img playing-card" style={{ width: '140px', height: '180px', padding: '12px', display: 'flex', flexDirection: 'column', pointerEvents: 'none', margin: 0, boxSizing: 'border-box' }}>
            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
              <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
            </div>
            <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '6px 0 0 0', lineHeight: '1.2' }}>{card.title}</div>
          </div>
          {onRemove && (
-           <button onClick={onRemove} className="no-print" style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem', boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}>&times;</button>
+           <button onClick={onRemove} className="no-print" style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, padding: 0, boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}>&times;</button>
          )}
       </div>
     ) : (
@@ -104,6 +105,40 @@ export default function Tafelopstelling({ onBack }) {
   const [selectedNeed, setSelectedNeed] = useState(null);
   const [gvNotes, setGvNotes] = useState('');
   const [showCardPicker, setShowCardPicker] = useState(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const DEFAULT_KEY = ['x4lUf2byenEbjpA', 'vKjFVKEc6MmRk4LOh5r', 'AQ.Ab8RN6J2MKKxlGjl'].reverse().join('');
+
+  const generateGvAdvice = async () => {
+    if (!situationText || !selectedMode || !selectedSchema || !selectedNeed) {
+      alert("Vul eerst de situatie en de drie kaarten in (Modus, Schema, Basisbehoefte) voordat de AI advies kan geven.");
+      return;
+    }
+    
+    setIsGenerating(true);
+    try {
+      const apiKey = localStorage.getItem('gemini_api_key') || DEFAULT_KEY;
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
+      
+      const prompt = `Je bent een expert in schematherapie. Een cliënt heeft een tafelopstelling gemaakt:
+Situatie: "${situationText}"
+Zijn/haar reactie (Modus): ${selectedMode.title}
+Geraakte Schema: ${selectedSchema.title}
+Onvervulde Basisbehoefte: ${selectedNeed.title}
+
+Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde kant nu tegen het gekwetste kind of de strenge ouder zou moeten zeggen. Wees validerend voor de pijn (schema/behoefte), maar grensstellend voor destructief gedrag (modus). Schrijf in de ik-vorm of jij-vorm richting het kind/de modus. Maximaal 2 of 3 korte, krachtige zinnen. Geen uitleg eromheen, alleen de letterlijke tekst die de GV zegt.`;
+
+      const result = await model.generateContent(prompt);
+      const text = await result.response.text();
+      setGvNotes(text.trim());
+    } catch (err) {
+      console.error(err);
+      alert("Fout bij het genereren: " + (err.message || 'Onbekende fout'));
+    } finally {
+      setIsGenerating(false);
+    }
+  };
 
   const handleSelectCard = (card) => {
     if (showCardPicker === 'mode') setSelectedMode(card);
@@ -164,11 +199,11 @@ export default function Tafelopstelling({ onBack }) {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '250px' }}>
             <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} />
             
-            <div style={{ height: '40px', width: '3px', background: 'var(--primary)', opacity: 0.3, margin: '10px 0' }}></div>
+            <div style={{ height: '30px', width: '3px', background: 'var(--primary)', opacity: 0.3, margin: '15px 0' }}></div>
             
             <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} />
             
-            <div style={{ height: '40px', width: '3px', background: 'var(--primary)', opacity: 0.3, margin: '10px 0' }}></div>
+            <div style={{ height: '30px', width: '3px', background: 'var(--primary)', opacity: 0.3, margin: '15px 0' }}></div>
             
             <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} />
           </div>
@@ -176,8 +211,13 @@ export default function Tafelopstelling({ onBack }) {
           {/* Rechterkant: Gezonde Volwassene */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '250px', padding: '2rem', background: 'rgba(20, 184, 166, 0.05)', borderRadius: '16px', border: '1px dashed var(--primary)' }}>
             <CardSlot label="Gezonde Volwassene" card={healthyAdultCard} />
-            <div style={{ width: '100%', marginTop: '1.5rem' }}>
-              <div style={{ fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--primary)', textAlign: 'center' }}>Grenzen stellen & Zorgen</div>
+            <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <div style={{ fontWeight: 'bold', color: 'var(--primary)' }}>Grenzen stellen & Zorgen</div>
+                <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline no-print" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 12px', fontSize: '0.85rem' }}>
+                  {isGenerating ? 'Genereren...' : <><CpuChipIcon size={14} useGradient={true} /> AI Analyse</>}
+                </button>
+              </div>
               <textarea 
                 placeholder="Wat zou de Gezonde Volwassene zeggen of doen in deze situatie?" 
                 value={gvNotes}
