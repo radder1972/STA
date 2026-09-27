@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { ArrowLeftIcon, ArrowRightIcon, CheckIcon } from './Icons'
 
-export default function Questionnaire({ type, questions, onFinish, onCancel }) {
+export default function Questionnaire({ type, questions, initialAnswers, onFinish, onCancel }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answers, setAnswers] = useState({})
   const [animateKey, setAnimateKey] = useState(0)
@@ -9,6 +9,23 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
   const fileInputRef = useRef(null)
 
   useEffect(() => {
+    if (initialAnswers && Object.keys(initialAnswers).length > 0) {
+      setAnswers(initialAnswers);
+      let firstUnanswered = 0;
+      for (let i = 0; i < questions.length; i++) {
+        if (initialAnswers[questions[i].id] === undefined) {
+          firstUnanswered = i;
+          break;
+        }
+      }
+      if (firstUnanswered === 0 && Object.keys(initialAnswers).length === questions.length) {
+          setCurrentIndex(0); // If fully answered, start at the beginning for review
+      } else {
+          setCurrentIndex(firstUnanswered);
+      }
+      return;
+    }
+
     const saved = localStorage.getItem(`schemaApp_progress_${type}`);
     if (saved) {
       try {
@@ -24,7 +41,7 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
         console.error("Error loading progress", e);
       }
     }
-  }, [type, questions]);
+  }, [type, questions, initialAnswers]);
 
   useEffect(() => {
     if (Object.keys(answers).length > 0) {
