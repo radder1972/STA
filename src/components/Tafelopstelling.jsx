@@ -230,6 +230,10 @@ Geef je antwoord ALLEEN als een geldig JSON object in dit exacte formaat, zonder
       setSelectedSchema(foundSchema);
       setSelectedNeed(foundNeed);
 
+      // Auto-generate analyses using the newly found cards
+      generateGvAdvice(foundMode, foundSchema, foundNeed);
+      generateDeepAnalysis(foundMode, foundSchema, foundNeed);
+
     } catch (err) {
       console.error(err);
       alert("Fout bij het voorspellen van de kaarten: " + (err.message || 'Onbekende fout'));
@@ -240,8 +244,12 @@ Geef je antwoord ALLEEN als een geldig JSON object in dit exacte formaat, zonder
 
   const DEFAULT_KEY = ['x4lUf2byenEbjpA', 'vKjFVKEc6MmRk4LOh5r', 'AQ.Ab8RN6J2MKKxlGjl'].reverse().join('');
 
-  const generateGvAdvice = async () => {
-    if (!situationText || !selectedMode || !selectedSchema || !selectedNeed) {
+  const generateGvAdvice = async (overrideMode = null, overrideSchema = null, overrideNeed = null) => {
+    const m = overrideMode || selectedMode;
+    const s = overrideSchema || selectedSchema;
+    const n = overrideNeed || selectedNeed;
+
+    if (!situationText || !m || !s || !n) {
       alert("Vul eerst de situatie en de drie kaarten in (Modus, Schema, Basisbehoefte) voordat de AI advies kan geven.");
       return;
     }
@@ -254,9 +262,9 @@ Geef je antwoord ALLEEN als een geldig JSON object in dit exacte formaat, zonder
       
       const prompt = `Je bent een expert in schematherapie. Een cliënt heeft een tafelopstelling gemaakt:
 Situatie: "${situationText}"
-Zijn/haar reactie (Modus): ${selectedMode.title}
-Geraakte Schema: ${selectedSchema.title}
-Onvervulde Basisbehoefte: ${selectedNeed.title}
+Zijn/haar reactie (Modus): ${m.title}
+Geraakte Schema: ${s.title}
+Onvervulde Basisbehoefte: ${n.title}
 
 Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde kant nu tegen het gekwetste kind of de strenge ouder zou moeten zeggen. Wees validerend voor de pijn (schema/behoefte), maar grensstellend voor destructief gedrag (modus). Schrijf in de ik-vorm of jij-vorm richting het kind/de modus. Maximaal 2 of 3 korte, krachtige zinnen. Geen uitleg eromheen, alleen de letterlijke tekst die de GV zegt.`;
 
@@ -271,8 +279,12 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
     }
   };
 
-  const generateDeepAnalysis = async () => {
-    if (!situationText || !selectedMode || !selectedSchema || !selectedNeed) {
+  const generateDeepAnalysis = async (overrideMode = null, overrideSchema = null, overrideNeed = null) => {
+    const m = overrideMode || selectedMode;
+    const s = overrideSchema || selectedSchema;
+    const n = overrideNeed || selectedNeed;
+
+    if (!situationText || !m || !s || !n) {
       alert("Vul eerst de situatie en de drie kaarten in (Modus, Schema, Basisbehoefte) voordat de AI een analyse kan maken.");
       return;
     }
@@ -285,9 +297,9 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
       
       const prompt = `Je bent een expert in schematherapie. Een cliënt heeft een tafelopstelling gemaakt:
 Situatie: "${situationText}"
-Zijn/haar reactie (Modus): ${selectedMode.title}
-Geraakte Schema: ${selectedSchema.title}
-Onvervulde Basisbehoefte: ${selectedNeed.title}
+Zijn/haar reactie (Modus): ${m.title}
+Geraakte Schema: ${s.title}
+Onvervulde Basisbehoefte: ${n.title}
 
 Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten werkt. Leg uit waarom deze specifieke trigger, via deze onvervulde behoefte en dit geraakte schema, leidt tot deze specifieke modus. Geef 2 concrete tips voor de cliënt om hier in de toekomst bewuster mee om te gaan. Richt je direct tot de cliënt op een steunende toon (gebruik 'je'). Gebruik maximaal 3 alinea's en maak het concreet. BELANGRIJK: Gebruik uitsluitend platte tekst. Gebruik GEEN markdown (zoals ** of *) om woorden te accentueren.`;
 
@@ -354,13 +366,26 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 fontFamily: 'inherit', fontSize: '1rem', resize: 'vertical' 
               }}
             />
-            <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
+            
+            <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem', background: 'var(--bg-color)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.5rem', textAlign: 'center' }}>
+                Laat de AI de kaarten voor je op tafel leggen op basis van de situatie.
+              </p>
+              
+              <div style={{ fontSize: '0.85rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                {(completedTests?.ysq && completedTests?.smi) ? (
+                  <span style={{ color: '#10b981', display: 'flex', alignItems: 'center', gap: '4px' }}>✅ Vragenlijsten ingevuld (Persoonlijke voorspelling)</span>
+                ) : (
+                  <span style={{ color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '4px' }}>⚠️ Vragenlijsten niet ingevuld (Algemene voorspelling)</span>
+                )}
+              </div>
+
               <button 
                 className="btn btn-outline" 
                 onClick={predictCards} 
                 disabled={isPredicting || !situationText}
                 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.95rem' }}
-                title={!completedTests?.ysq ? "Tip: vul eerst de tests in voor een persoonlijkere voorspelling!" : "Voorspel de kaarten op basis van je situatie en testresultaten"}
+                title="Voorspel de kaarten op basis van je situatie en testresultaten"
               >
                 {isPredicting ? 'Bezig met voorspellen...' : <><CpuChipIcon size={16} useGradient={true} /> 🪄 AI: Voorspel de kaarten</>}
               </button>
