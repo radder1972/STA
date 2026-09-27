@@ -157,13 +157,17 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
               <div style={{ padding: '1.5rem', background: 'rgba(20, 184, 166, 0.05)', borderRadius: '12px', border: '1px solid rgba(20, 184, 166, 0.1)' }}>
-                <h4 className="text-gradient" style={{ marginBottom: '1rem', fontSize: '1.05rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem', minHeight: '2.8rem' }}>YSQ: De Wonden & Overtuigingen</h4>
+                <div style={{ minHeight: '3.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '1rem', paddingBottom: '0.5rem', display: 'flex', alignItems: 'flex-end' }}>
+                  <h4 className="text-gradient" style={{ fontSize: '1.05rem', margin: 0 }}>YSQ: De Wonden & Overtuigingen</h4>
+                </div>
                 <p style={{ marginBottom: '0.8rem' }}><strong style={{ color: 'var(--text-main)' }}>Wat het meet:</strong> Vroege maladaptieve schema's. Dit zijn de diepgewortelde, vastgeroeste overtuigingen over jezelf en de wereld.</p>
                 <p style={{ marginBottom: '0.8rem' }}><strong style={{ color: 'var(--text-main)' }}>Karakter:</strong> Chronisch, stabiel en altijd op de achtergrond aanwezig (te vergelijken met je 'klimaat'). Ze zijn ontstaan door tekorten in de kindertijd en vormen de kern van je kwetsbaarheid.</p>
                 <p><strong style={{ color: 'var(--text-main)' }}>Voorbeeld:</strong> De hardnekkige overtuiging "Niemand zal er ooit echt voor mij zijn" of "Ik mag geen fouten maken". Dit is de knop die kan worden ingedrukt.</p>
               </div>
               <div style={{ padding: '1.5rem', background: 'rgba(20, 184, 166, 0.05)', borderRadius: '12px', border: '1px solid rgba(20, 184, 166, 0.1)' }}>
-                <h4 className="text-gradient" style={{ marginBottom: '1rem', fontSize: '1.05rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem', minHeight: '2.8rem' }}>SMI: De Reacties & Staten</h4>
+                <div style={{ minHeight: '3.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '1rem', paddingBottom: '0.5rem', display: 'flex', alignItems: 'flex-end' }}>
+                  <h4 className="text-gradient" style={{ fontSize: '1.05rem', margin: 0 }}>SMI: De Reacties & Staten</h4>
+                </div>
                 <p style={{ marginBottom: '0.8rem' }}><strong style={{ color: 'var(--text-main)' }}>Wat het meet:</strong> Schemamodi. Dit zijn de actuele, wisselende emotionele toestanden, interne stemmen en gedragingen in het hier-en-nu.</p>
                 <p style={{ marginBottom: '0.8rem' }}><strong style={{ color: 'var(--text-main)' }}>Karakter:</strong> Tijdelijk, veranderlijk en situatie-afhankelijk (te vergelijken met het 'weer'). Een modus is de acute overlevingsstand of emotie die direct 'aanspringt' zodra een oude wond uit de YSQ wordt geraakt.</p>
                 <p><strong style={{ color: 'var(--text-main)' }}>Voorbeeld:</strong> Je trekt je terug, verdooft jezelf met werk of afleiding, of weigert nog iets uit te voeren (luiheid). Dit is niet wie je fundamenteel bént, maar de tijdelijke verdedigingslinie (zoals de Onthechte Zelfsusser of het Ongedisciplineerde Kind) die actief wordt om de pijn van het schema niet te voelen.</p>
