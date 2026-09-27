@@ -118,7 +118,7 @@ const formatCardTitle = (title) => {
 
 const CardSlot = ({ label, card, onSelect, onRemove }) => (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <div style={{ fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--primary)', textAlign: 'center' }}>{label}</div>
+    <div style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>
     {card ? (
       <div style={{ position: 'relative', display: 'inline-block' }}>
          <div className="schema-img playing-card" style={{ width: '140px', height: '180px', padding: '12px', display: 'flex', flexDirection: 'column', pointerEvents: 'none', margin: 0, boxSizing: 'border-box' }}>
@@ -360,23 +360,26 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               value={situationText}
               onChange={e => setSituationText(e.target.value)}
               style={{ 
-                width: '100%', minHeight: '80px', padding: '1rem', 
+                width: '100%', minHeight: '120px', padding: '1rem', 
                 borderRadius: '12px', border: '1px solid var(--border-color)', 
                 background: 'rgba(0,0,0,0.02)', color: 'var(--text-main)', 
                 fontFamily: 'inherit', fontSize: '1rem', resize: 'vertical' 
               }}
             />
             
-            <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem', background: 'var(--bg-color)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
-              <p style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '0.5rem', textAlign: 'center' }}>
-                Laat de AI de kaarten voor je op tafel leggen op basis van de situatie.
+            <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem', background: 'var(--bg-color)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)', width: '100%', boxSizing: 'border-box' }}>
+              <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '0.5rem', textAlign: 'center', maxWidth: '600px' }}>
+                Laat de AI de kaarten voor je op tafel leggen op basis van de situatie. Als je de vragenlijsten hebt ingevuld, gebruikt de AI jouw persoonlijke profiel voor een veel accuratere voorspelling.
               </p>
               
-              <div style={{ fontSize: '1rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{ fontSize: '1rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 {(completedTests?.ysq && completedTests?.smi) ? (
                   <span style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '4px' }}><CheckIcon size={16} useGradient={true} /> Vragenlijsten ingevuld (Persoonlijke voorspelling)</span>
                 ) : (
-                  <span style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '4px' }}><AlertTriangleIcon size={16} useGradient={true} /> Vragenlijsten niet ingevuld (Algemene voorspelling)</span>
+                  <span style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <AlertTriangleIcon size={16} useGradient={true} /> Vragenlijsten niet ingevuld (Algemene voorspelling) - 
+                    <span onClick={onBack} style={{ color: 'var(--primary)', cursor: 'pointer', textDecoration: 'underline', fontWeight: 'bold' }}>Nu invullen</span>
+                  </span>
                 )}
               </div>
 
@@ -395,7 +398,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '3rem', alignItems: 'stretch' }}>
           
           {/* Linkerkant: De Keten */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '250px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '300px', padding: '2rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
             <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} />
             
             <div style={{ height: '30px', width: '3px', background: 'var(--primary)', opacity: 0.3, margin: '15px 0' }}></div>
@@ -408,10 +411,10 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           </div>
 
           {/* Rechterkant: Gezonde Volwassene */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '300px', padding: '2rem', background: 'rgba(20, 184, 166, 0.05)', borderRadius: '16px', border: '1px dashed var(--primary)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '300px', padding: '2rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
             <CardSlot label="Gezonde Volwassene" card={healthyAdultCard} />
             <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-              <div style={{ fontWeight: 'bold', color: 'var(--primary)', whiteSpace: 'nowrap', marginBottom: '0.5rem' }}>Grenzen stellen & Zorgen</div>
+              <div style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '0.8rem' }}>Grenzen stellen & Zorgen</div>
               <textarea 
                 placeholder="Wat zou de Gezonde Volwassene zeggen of doen in deze situatie?" 
                 value={gvNotes}
