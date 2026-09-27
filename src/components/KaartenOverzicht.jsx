@@ -84,12 +84,12 @@ export default function KaartenOverzicht({ onBack }) {
     return { src: modeImages[path], title, style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' } };
   })
 
-  const renderCardList = (cards) => (
+  const renderCardList = (cards, defaultImageStyle = {}) => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyItems: 'center', justifyContent: 'center', padding: '1rem', marginBottom: '3rem' }}>
       {cards.map((card, idx) => (
         <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
           <div className="schema-img playing-card" style={{ width: '200px', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
+            <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
           </div>
           <div style={{ fontWeight: 'bold', color: 'var(--text-main)', textAlign: 'center', maxWidth: '200px' }}>
             {card.title}
@@ -114,13 +114,13 @@ export default function KaartenOverzicht({ onBack }) {
 
       <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
         <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem' }}>Schema Domeinen (Basisbehoeften)</h2>
-        {renderCardList(schemaCards)}
+        {renderCardList(schemaCards, { transform: 'scale(0.85)' })}
 
         <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: '2rem' }}>Individuele Schema's (18)</h2>
         {renderCardList(detailedSchemaCards)}
 
         <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: '2rem' }}>Modi Categorieën</h2>
-        {renderCardList(modiCards)}
+        {renderCardList(modiCards, { transform: 'scale(0.85)' })}
 
         <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: '2rem' }}>Individuele Modi (14)</h2>
         {renderCardList(detailedModeCards)}
