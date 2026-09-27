@@ -381,13 +381,13 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               </div>
 
               <button 
-                className="btn btn-outline" 
+                className="btn btn-gradient" 
                 onClick={predictCards} 
                 disabled={isPredicting || !situationText}
-                style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1rem' }}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.2rem', padding: '1rem 2rem' }}
                 title="Voorspel de kaarten op basis van je situatie en testresultaten"
               >
-                {isPredicting ? 'Bezig met voorspellen...' : <><WandIcon size={16} useGradient={true} /> AI: Voorspel de kaarten</>}
+                {isPredicting ? 'Bezig met voorspellen...' : <><WandIcon size={24} color="currentColor" /> AI: Voorspel de kaarten</>}
               </button>
             </div>
           </div>
