@@ -144,12 +144,12 @@ export default function KaartenOverzicht({ onBack }) {
         padding: '8px 16px',
         borderRadius: '20px',
         border: filter === id ? 'none' : '1px solid var(--border-color)',
-        background: filter === id ? '#10b981' : 'transparent',
+        background: filter === id ? '#14b8a6' : 'transparent',
         color: filter === id ? 'white' : 'var(--text-main)',
         fontWeight: filter === id ? 'bold' : 'normal',
         cursor: 'pointer',
         transition: 'all 0.2s ease',
-        boxShadow: filter === id ? '0 4px 12px rgba(16, 185, 129, 0.3)' : 'none'
+        boxShadow: filter === id ? '0 4px 12px rgba(20, 184, 166, 0.3)' : 'none'
       }}
     >
       {label}
