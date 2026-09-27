@@ -91,7 +91,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                   style={{ display: 'block', marginBottom: ysqExpanded ? '0.8rem' : 'auto', cursor: 'pointer' }}
                 >
                   In deze vragenlijst volgt een aantal beweringen die men kan gebruiken om zichzelf te beschrijven.
-                  {!ysqExpanded && <span style={{ color: '#14b8a6', fontWeight: 'bold', marginLeft: '5px' }}>Lees meer...</span>}
+                  {!ysqExpanded && <span style={{ display: 'block', marginTop: '8px', color: '#14b8a6', fontWeight: 'bold' }}>Lees meer...</span>}
                 </span>
                 
                 {ysqExpanded && (
@@ -122,7 +122,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                   style={{ display: 'block', marginBottom: smiExpanded ? '0.8rem' : 'auto', cursor: 'pointer' }}
                 >
                   In deze vragenlijst staan uitspraken die mensen kunnen gebruiken om zichzelf te beschrijven.
-                  {!smiExpanded && <span style={{ color: '#14b8a6', fontWeight: 'bold', marginLeft: '5px' }}>Lees meer...</span>}
+                  {!smiExpanded && <span style={{ display: 'block', marginTop: '8px', color: '#14b8a6', fontWeight: 'bold' }}>Lees meer...</span>}
                 </span>
                 
                 {smiExpanded && (
