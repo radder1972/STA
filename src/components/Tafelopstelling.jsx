@@ -118,7 +118,7 @@ const formatCardTitle = (title) => {
 
 const CardSlot = ({ label, card, onSelect, onRemove }) => (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <div style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>
+    <div style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>
     {card ? (
       <div style={{ position: 'relative', display: 'inline-block' }}>
          <div className="schema-img playing-card" style={{ width: '140px', height: '180px', padding: '12px', display: 'flex', flexDirection: 'column', pointerEvents: 'none', margin: 0, boxSizing: 'border-box' }}>
@@ -374,7 +374,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
       {embedded && (
         <div className="no-print" style={{ marginBottom: '2rem', textAlign: 'center' }}>
-          <p style={{ color: 'var(--text-muted)', maxWidth: '700px', margin: '0 auto 1.5rem auto', lineHeight: '1.6' }}>
+          <p style={{ color: 'var(--text-main)', maxWidth: '700px', margin: '0 auto 1.5rem auto', lineHeight: '1.6', fontSize: '1rem' }}>
             De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen. Sleep jouw schema's, modi en basisbehoeften op tafel om inzicht te krijgen in wat er op dat moment gebeurt.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
@@ -400,12 +400,13 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 width: '100%', minHeight: '120px', padding: '1rem', 
                 borderRadius: '12px', border: '1px solid var(--border-color)', 
                 background: 'rgba(0,0,0,0.02)', color: 'var(--text-main)', 
-                fontFamily: 'inherit', fontSize: '1rem', resize: 'vertical' 
+                fontFamily: 'inherit', fontSize: '1rem', resize: 'vertical',
+                lineHeight: '1.6'
               }}
             />
             
             <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem', background: 'var(--bg-color)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)', width: '100%', boxSizing: 'border-box' }}>
-              <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: '1.5rem', textAlign: 'center', maxWidth: '650px', lineHeight: '1.5' }}>
+              <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '1.5rem', textAlign: 'center', maxWidth: '650px', lineHeight: '1.6' }}>
                 Laat de AI de kaarten voor je op tafel leggen op basis van de situatie. Jouw persoonlijke schema- en modiprofiel worden hierbij gebruikt voor een accurate voorspelling.
               </p>
 
@@ -440,8 +441,8 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '300px', padding: '2rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
             <CardSlot label="Gezonde Volwassene" card={healthyAdultCard} />
             <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-              <div style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '0.5rem' }}>Grenzen stellen & Zorgen</div>
-              <p style={{ fontSize: '0.95rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '1rem', lineHeight: '1.5' }}>
+              <div style={{ fontWeight: 'bold', fontSize: '1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '0.5rem' }}>Grenzen stellen & Zorgen</div>
+              <p style={{ fontSize: '1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '1rem', lineHeight: '1.6' }}>
                 De Gezonde Volwassene stelt grenzen aan disfunctionele reacties en biedt zorg voor onvervulde behoeften. Wat zou deze in deze situatie zeggen of doen?
               </p>
               <textarea 
@@ -498,11 +499,11 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                   borderRadius: '12px', border: '1px solid var(--border-color)', 
                   background: 'var(--bg-color)', color: 'var(--text-main)', 
                   fontFamily: 'inherit', fontSize: '1rem', resize: 'vertical',
-                  lineHeight: '1.7',
+                  lineHeight: '1.6',
                   boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)'
                 }}
               />
-              <div className="print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.7', fontSize: '1rem', color: 'black' }}>
+              <div className="print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)' }}>
                 {analysisText}
               </div>
             </>
