@@ -160,7 +160,7 @@ export default function Questionnaire({ type, questions, initialAnswers, onFinis
           <span className="text-gradient" style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '4px' }}>
             {type === 'ysq' ? "Young Schema Questionnaire (YSQ S3)" : "Schema Mode Inventory (SMI)"}
           </span>
-          <span style={{color: 'var(--text-muted)'}}>Vraag {currentIndex + 1} van {total}</span>
+          <span style={{color: 'var(--text-main)'}}>Vraag {currentIndex + 1} van {total}</span>
         </div>        
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center', paddingRight: '50px' }}>
           <input 
@@ -195,7 +195,7 @@ export default function Questionnaire({ type, questions, initialAnswers, onFinis
           style={hasReachedEnd && answers[question.id] === undefined ? { border: '2px solid var(--accent, #6366f1)', boxShadow: '0 0 15px rgba(99, 102, 241, 0.4)' } : {}}
         >
           {hasReachedEnd && answers[question.id] === undefined && (
-            <div style={{ color: 'var(--accent, #6366f1)', fontWeight: 'bold', marginBottom: '1rem', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <div style={{ color: 'var(--accent, #6366f1)', fontWeight: 'bold', marginBottom: '1rem', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
               ⚠️ Overgeslagen vraag
             </div>
           )}

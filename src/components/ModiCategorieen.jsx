@@ -24,7 +24,7 @@ const ModiCategorieen = ({ onBack }) => {
 
       <h1 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>De 4 Modi Categorieën</h1>
       
-      <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--text-main)', marginBottom: '3rem' }}>
+      <p style={{ fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--text-main)', marginBottom: '3rem' }}>
         Binnen de schematherapie worden de modi ingedeeld in vier hoofdcategorieën:
       </p>
 
@@ -32,7 +32,7 @@ const ModiCategorieen = ({ onBack }) => {
       <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
           <h2 style={{ color: '#10b981', marginBottom: '1rem', fontSize: '1.5rem' }}>1. Kindmodi</h2>
-          <p style={{ lineHeight: '1.6', color: 'var(--text-muted)' }}>
+          <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit zijn de intense, oorspronkelijke emoties en behoeften die iemand als kind ervoer en die in het heden weer opspelen bij een trigger. Voorbeelden zijn het Kwetsbare kind, het Boze kind, het Impulsieve/Ongedisciplineerde kind en het Blije/Gezonde kind.
           </p>
         </div>
@@ -45,7 +45,7 @@ const ModiCategorieen = ({ onBack }) => {
       <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
         <div style={{ flex: '1 1 300px' }}>
           <h2 style={{ color: '#3b82f6', marginBottom: '1rem', fontSize: '1.5rem' }}>2. Disfunctionele oudermodi</h2>
-          <p style={{ lineHeight: '1.6', color: 'var(--text-muted)' }}>
+          <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit zijn de geïnternaliseerde, negatieve stemmen en houdingen van belangrijke figuren uit de jeugd. Voorbeelden zijn de Straffende ouder, de Veeleisende ouder en de Schuldinducerende ouder.
           </p>
         </div>
@@ -58,10 +58,10 @@ const ModiCategorieen = ({ onBack }) => {
       <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
           <h2 style={{ color: '#eab308', marginBottom: '1rem', fontSize: '1.5rem' }}>3. Copingmodi</h2>
-          <p style={{ lineHeight: '1.6', color: 'var(--text-muted)' }}>
+          <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit zijn de overlevingsstrategieën (afweermechanismen) die in de jeugd zijn aangeleerd om pijn en druk te vermijden. Ze zijn gebaseerd op de biologische reacties van vechten, vluchten en bevriezen:
           </p>
-          <ul style={{ lineHeight: '1.6', color: 'var(--text-muted)', paddingLeft: '1.5rem', margin: '0.5rem 0' }}>
+          <ul style={{ lineHeight: '1.6', color: 'var(--text-main)', paddingLeft: '1.5rem', margin: '0.5rem 0' }}>
             <li style={{ marginBottom: '0.5rem' }}><strong>Overgave (meebewegen/onderwerpen):</strong> Bijvoorbeeld de Willoze inschikker.</li>
             <li style={{ marginBottom: '0.5rem' }}><strong>Vermijding (vluchten/afsluiten):</strong> Bijvoorbeeld de Onthechte beschermer of de Onthechte zelfsusser.</li>
             <li><strong>Overcompensatie (vechten/tegenaanval):</strong> Bijvoorbeeld de Grandioze overcompensator of de Pest-en-aanvalmodus.</li>
@@ -84,7 +84,7 @@ const ModiCategorieen = ({ onBack }) => {
       <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
         <div style={{ flex: '1 1 300px' }}>
           <h2 style={{ color: '#f97316', marginBottom: '1rem', fontSize: '1.5rem' }}>4. De Gezonde Volwassene</h2>
-          <p style={{ lineHeight: '1.6', color: 'var(--text-muted)' }}>
+          <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit is de gebalanceerde, rationele en zorgzame kant. Deze modus neemt de regie, troost het Kwetsbare kind, stelt grenzen aan de disfunctionele oudermodi en vervangt automatische copingmodi door effectieve, bewuste keuzes.
           </p>
         </div>

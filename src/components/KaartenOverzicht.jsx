@@ -142,7 +142,7 @@ export default function KaartenOverzicht({ onBack }) {
                 <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                   <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
                 </div>
-                <div style={{ fontWeight: 'bold', color: '#333', textAlign: 'center', fontSize: '0.85rem', lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40px', marginTop: '4px', zIndex: 1 }}>
+                <div style={{ fontWeight: 'bold', color: '#333', textAlign: 'center', fontSize: '1rem', lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40px', marginTop: '4px', zIndex: 1 }}>
                   {card.title}
                 </div>
               </div>
@@ -153,8 +153,8 @@ export default function KaartenOverzicht({ onBack }) {
                   style={{ flex: 1, cursor: 'pointer', overflowY: 'auto', marginBottom: '5px', paddingRight: '2px' }}
                   className="hide-scrollbar"
                 >
-                  <h4 style={{ fontSize: '0.9rem', marginBottom: '0.5rem', lineHeight: '1.2' }}>{card.title}</h4>
-                  <p style={{ fontSize: '0.75rem', lineHeight: '1.4' }}>{card.description || 'Geen theorie beschikbaar.'}</p>
+                  <h4 style={{ fontSize: '1rem', marginBottom: '0.5rem', lineHeight: '1.2' }}>{card.title}</h4>
+                  <p style={{ fontSize: '0.75rem', lineHeight: '1.6' }}>{card.description || 'Geen theorie beschikbaar.'}</p>
                 </div>
                 <button 
                   className="btn btn-card" 

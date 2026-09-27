@@ -485,7 +485,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             <CpuChipIcon size={24} useGradient={true} /> Diepgaande Analyse van de Keten
           </h3>
           {isGeneratingAnalysis ? (
-            <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>
+            <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-main)' }}>
               De AI analyseert momenteel jouw opstelling...
             </div>
           ) : (
@@ -538,7 +538,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                   
                   return (
                     <div key={groupIdx} style={{ marginBottom: '1.5rem' }}>
-                      <h4 style={{ color: 'var(--text-muted)', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1rem', textAlign: 'left' }}>{group.group}</h4>
+                      <h4 style={{ color: 'var(--text-main)', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1rem', textAlign: 'left' }}>{group.group}</h4>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'flex-start' }}>
                         {groupCards.map((card, idx) => (
                           <div key={idx} className="schema-img playing-card" onClick={() => handleSelectCard(card)} style={{ width: '120px', height: '160px', padding: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>

@@ -76,7 +76,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
       // Handle simple bold parsing **bold**
       const parts = paragraph.split(/(\*\*.*?\*\*)/g);
       return (
-        <p key={index} style={{ marginBottom: '1rem', lineHeight: '1.6', color: 'var(--text-muted)' }}>
+        <p key={index} style={{ marginBottom: '1rem', lineHeight: '1.6', color: 'var(--text-main)' }}>
           {parts.map((part, i) => {
             if (part.startsWith('**') && part.endsWith('**')) {
               return <strong key={i}>{part.slice(2, -2)}</strong>;
@@ -94,7 +94,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
         <CpuChipIcon size={28} useGradient={true} /> AI Analyse
       </h2>
       
-      <p className="no-print" style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
+      <p className="no-print" style={{ color: 'var(--text-main)', marginBottom: '2rem' }}>
         Genereer een interpretatie van de wisselwerking tussen de schema's en modi met behulp van AI.
       </p>
 
@@ -104,13 +104,13 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
             <AlertTriangleIcon size={24} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
             <div>
               <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--text-main)' }}>Privacy & Bring Your Own Key</h4>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
+              <p style={{ fontSize: '1rem', color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
                 Om uw privacy te garanderen, draait deze app volledig lokaal. Om de AI te gebruiken, moet u eenmalig uw eigen (gratis) Google Gemini API-sleutel invoeren. Deze wordt veilig opgeslagen in uw eigen browser. Zodra u genereert, worden enkel uw Top 3 scores (geen persoonsgegevens) naar Google gestuurd.
               </p>
             </div>
           </div>
           
-          <div style={{ marginTop: '0.5rem', marginBottom: '1.5rem', fontSize: '0.9rem' }}>
+          <div style={{ marginTop: '0.5rem', marginBottom: '1.5rem', fontSize: '1rem' }}>
             Heeft u nog geen sleutel? <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noreferrer" style={{ color: '#0ea5e9', textDecoration: 'underline' }}>Haal hier gratis een Gemini API sleutel op</a>.
           </div>
           
@@ -137,7 +137,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
             <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '1rem', color: 'var(--text-main)' }}>
               <AlertTriangleIcon size={24} color="#0ea5e9" /> Privacywaarschuwing
             </h4>
-            <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+            <p style={{ margin: 0, fontSize: '1rem', color: 'var(--text-main)', lineHeight: '1.6' }}>
               Deze analyse wordt gegenereerd door Google Gemini AI. Hiervoor worden uitsluitend uw anonieme vragenlijstscores naar de servers van Google gestuurd. Er worden <strong>nooit</strong> namen of persoonsgegevens gedeeld en uw data wordt niet gebruikt om modellen te trainen.
             </p>
           </div>

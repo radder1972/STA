@@ -46,7 +46,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
               <span style={{ paddingRight: '10px', fontWeight: 'bold' }}>{schema.name}</span>
               {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
             </div>
-            <div style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.4', fontStyle: 'italic' }}>
+            <div style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-main)', lineHeight: '1.6', fontStyle: 'italic' }}>
               {schemaDescriptions[schema.name] || ''}
             </div>
           </div>
@@ -73,7 +73,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
             marginTop: '1rem',
             background: 'transparent',
             border: '1px solid var(--border-color)',
-            color: 'var(--text-muted)',
+            color: 'var(--text-main)',
             padding: '4px 12px',
             borderRadius: '20px',
             cursor: 'pointer',
@@ -91,7 +91,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
         
         {/* Expanded questions list */}
         {expandedNodes[schema.id] && schema.questionDetails && schema.questionDetails.length > 0 && (
-          <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', fontSize: '0.85rem', textAlign: 'left', width: '100%', animation: 'fadeIn 0.3s ease-in-out' }}>
+          <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', fontSize: '1rem', textAlign: 'left', width: '100%', animation: 'fadeIn 0.3s ease-in-out' }}>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {schema.questionDetails.map(q => (
                 <li key={q.id} style={{ display: 'flex', gap: '12px', padding: '10px 0', borderBottom: '1px solid var(--border-color)', alignItems: 'center', minHeight: '60px' }}>
@@ -151,7 +151,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
                       {q.score}
                     </span>
                   )}
-                  <span style={{ color: 'var(--text-muted)', lineHeight: '1.4' }}>
+                  <span style={{ color: 'var(--text-main)', lineHeight: '1.6' }}>
                     <span style={{ fontWeight: 'bold', marginRight: '8px', opacity: 0.5 }}>#{q.id}</span>
                     {q.text}
                   </span>

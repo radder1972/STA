@@ -106,13 +106,13 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <ConnectionIcon size={28} useGradient={true} /> Directe Top 3 Connectie
         </h2>
-        <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
+        <p style={{ color: 'var(--text-main)', marginBottom: '2rem' }}>
           Voor uw meest verhoogde schema's laten we hier de hoogst scorende, theoretisch gekoppelde modus (SMI) zien.
         </p>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.5)', color: 'var(--text-main)', fontSize: '0.9rem' }}>
+              <tr style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.5)', color: 'var(--text-main)', fontSize: '1rem' }}>
                 <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }} colSpan="2">Kwetsbaarheid (Top 3 Schema's)</th>
                 <th style={{ padding: '8px 0', textAlign: 'center', width: '40px' }}></th>
                 <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }} colSpan="2">Reactie (Hoogste Gekoppelde Modus)</th>
@@ -134,13 +134,13 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
 
                 return (
                   <tr key={i} style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.3)' }}>
-                    <td style={{ padding: '8px 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{schema?.name || '-'}</td>
-                    <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{schema?.mean || '-'}</td>
+                    <td style={{ padding: '8px 0', color: 'var(--text-main)', fontSize: '1rem' }}>{schema?.name || '-'}</td>
+                    <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-main)', fontSize: '1rem' }}>{schema?.mean || '-'}</td>
                     <td style={{ padding: '8px 0', textAlign: 'center' }}>
                       {schema && topLinkedMode && <ArrowRightIcon size={14} color="var(--text-muted)" />}
                     </td>
-                    <td style={{ padding: '8px 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{topLinkedMode?.name || 'Geen sterke link gevonden'}</td>
-                    <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{topLinkedMode?.mean || '-'}</td>
+                    <td style={{ padding: '8px 0', color: 'var(--text-main)', fontSize: '1rem' }}>{topLinkedMode?.name || 'Geen sterke link gevonden'}</td>
+                    <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-main)', fontSize: '1rem' }}>{topLinkedMode?.mean || '-'}</td>
                   </tr>
                 );
               })}
@@ -156,13 +156,13 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <MatrixIcon size={28} useGradient={true} /> Kruisverbanden Matrix
         </h2>
-        <p style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}>
+        <p style={{ color: 'var(--text-main)', marginBottom: '1rem' }}>
           Ruwe data vergelijking: zijn de hoogste schema's terug te zien in het modusgebruik?
         </p>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.5)', color: 'var(--text-main)', fontSize: '0.9rem' }}>
+              <tr style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.5)', color: 'var(--text-main)', fontSize: '1rem' }}>
                 <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }}>Theoretisch Vlak</th>
                 <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }}>YSQ Domein Score</th>
                 <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }}>SMI Groep Score</th>
@@ -171,13 +171,13 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
             <tbody>
               {domainAverages.map((row, i) => (
                 <tr key={i} style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.3)' }}>
-                  <td style={{ padding: '8px 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{row.name}</td>
-                  <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                  <td style={{ padding: '8px 0', color: 'var(--text-main)', fontSize: '1rem' }}>{row.name}</td>
+                  <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-main)', fontSize: '1rem' }}>
                     <span style={{ fontWeight: row.ysq >= 4 ? 'bold' : 'normal', color: row.ysq >= 4 ? 'var(--text-main)' : 'var(--text-muted)' }}>
                       {row.ysq}
                     </span>
                   </td>
-                  <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                  <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-main)', fontSize: '1rem' }}>
                     <span style={{ fontWeight: row.smi >= 4 ? 'bold' : 'normal', color: row.smi >= 4 ? 'var(--text-main)' : 'var(--text-muted)' }}>
                       {row.smi}
                     </span>
@@ -193,10 +193,10 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
           <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '1rem', color: 'var(--text-main)' }}>
             <LightbulbIcon size={24} useGradient={true} /> Wat zegt deze matrix?
           </h4>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>
+          <p style={{ fontSize: '1rem', color: 'var(--text-main)', lineHeight: '1.6', marginBottom: '1rem' }}>
             In de schematherapie is er een theoretisch verband tussen uw onderliggende gevoeligheden (schema's) en uw huidige gedrag (modi). Deze matrix legt de score van een groep schema's direct naast de score van de bijbehorende groep modi om te zien of deze in balans zijn.
           </p>
-          <ul style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6', margin: 0, paddingLeft: '1.5rem' }}>
+          <ul style={{ fontSize: '1rem', color: 'var(--text-main)', lineHeight: '1.6', margin: 0, paddingLeft: '1.5rem' }}>
             <li style={{ marginBottom: '0.5rem' }}><strong>In balans:</strong> Een vergelijkbare score betekent dat uw gedrag logisch aansluit bij uw onderliggende gevoel.</li>
             <li><strong>Uit balans (Discrepantie):</strong> Lopen de scores sterk uiteen? Dan drukt u uw kwetsbaarheid mogelijk extreem goed weg via coping (bijv. een lage schema-score, maar héél hoog vermijdend gedrag), óf u voelt de pijn wel (hoge schema-score) maar het uit zich niet in actief gedrag. Dit is voor een behandelaar een belangrijk inzicht.</li>
           </ul>
@@ -208,7 +208,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <HypothesisIcon size={28} useGradient={true} /> Klinische Hypothese
         </h2>
-        <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
+        <p style={{ color: 'var(--text-main)', marginBottom: '2rem' }}>
           Deze analyse combineert de theorie van Schematherapie met uw specifieke scores om gepersonaliseerde hypothesen te genereren en te valideren.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -230,11 +230,11 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                   <span style={{ background: medalColor, color: '#fff', padding: '2px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 'bold', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{medalName}</span>
                   Hypothese rondom schema: {schema.name}
                 </h4>
-                <p style={{ color: 'var(--text-main)', fontStyle: 'italic', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: '1.6' }}>"{hypothesis.desc}"</p>
+                <p style={{ color: 'var(--text-main)', fontStyle: 'italic', marginBottom: '1.5rem', fontSize: '1rem', lineHeight: '1.6' }}>"{hypothesis.desc}"</p>
                 
                 {/* Visual Connection Network for this specific Schema */}
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem', alignItems: 'center' }}>
-                   <div style={{ padding: '0.5rem 1rem', background: `rgba(${index === 0 ? '251, 191, 36' : index === 1 ? '148, 163, 184' : '180, 83, 9'}, 0.1)`, border: `1px solid ${medalColor}`, borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold', color: medalColor }}>{schema.name}</div>
+                   <div style={{ padding: '0.5rem 1rem', background: `rgba(${index === 0 ? '251, 191, 36' : index === 1 ? '148, 163, 184' : '180, 83, 9'}, 0.1)`, border: `1px solid ${medalColor}`, borderRadius: '20px', fontSize: '1rem', fontWeight: 'bold', color: medalColor }}>{schema.name}</div>
                    <ArrowRightIcon size={16} color="var(--text-muted)" />
                    {hypothesis.modes.map(mId => {
                      const modeData = smiScores.find(s => s.id === mId);
@@ -245,7 +245,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                          background: isActive ? 'rgba(245, 158, 11, 0.2)' : 'transparent', 
                          border: `1px solid ${isActive ? '#f59e0b' : 'var(--border-color)'}`, 
                          color: isActive ? 'var(--text-main)' : 'var(--text-muted)',
-                         borderRadius: '20px', fontSize: '0.85rem' 
+                         borderRadius: '20px', fontSize: '1rem' 
                        }}>
                          {modeData ? modeData.name : mId} {isActive && '✓'}
                        </div>
@@ -256,12 +256,12 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                 {usedModes.length > 0 ? (
                   <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
                     <strong style={{ color: 'var(--text-main)' }}>✓ Bevestiging in data:</strong> 
-                    <span style={{ color: 'var(--text-muted)' }}> U scoort inderdaad ook bovengemiddeld (≥3) op de theoretisch gekoppelde coping-modi: <strong>{usedModes.map(m => m.name).join(', ')}</strong>. Dit wijst op een sterk patroon.</span>
+                    <span style={{ color: 'var(--text-main)' }}> U scoort inderdaad ook bovengemiddeld (≥3) op de theoretisch gekoppelde coping-modi: <strong>{usedModes.map(m => m.name).join(', ')}</strong>. Dit wijst op een sterk patroon.</span>
                   </div>
                 ) : (
                   <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
                     <strong style={{ color: 'var(--text-main)' }}>○ Geen sterke bevestiging:</strong> 
-                    <span style={{ color: 'var(--text-muted)' }}> U lijkt deze standaard coping-modi niet exceptioneel hoog in te zetten. U hanteert waarschijnlijk een andere overlevingsstrategie voor dit schema, of het schema is wel aanwezig maar u copt er niet actief op deze manier mee.</span>
+                    <span style={{ color: 'var(--text-main)' }}> U lijkt deze standaard coping-modi niet exceptioneel hoog in te zetten. U hanteert waarschijnlijk een andere overlevingsstrategie voor dit schema, of het schema is wel aanwezig maar u copt er niet actief op deze manier mee.</span>
                   </div>
                 )}
               </div>
