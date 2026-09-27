@@ -100,13 +100,13 @@ export default function KaartenOverzicht({ onBack }) {
   const detailedSchemaCards = Object.keys(schemaImages).map(path => {
     const filename = path.split('/').pop().replace('.png', '');
     const title = ysqSchemaNamesMap[filename] || filename.replace(/_/g, ' ');
-    return { src: schemaImages[path], title, description: schemaDescriptions[title] };
+    return { src: schemaImages[path], title, description: schemaDescriptions[title], style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' } };
   })
 
   const detailedModeCards = Object.keys(modeImages).map(path => {
     const filename = path.split('/').pop().replace('.png', '');
     const title = smiModesMap[filename] || filename;
-    return { src: modeImages[path], title, description: schemaDescriptions[title], style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' } };
+    return { src: modeImages[path], title, description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
   })
 
   const renderCardList = (cards, defaultImageStyle = {}) => (
