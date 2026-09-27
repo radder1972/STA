@@ -791,18 +791,6 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-.card-face-front::after, .card-face-back::after {
-  content: '';
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  right: 6px;
-  bottom: 6px;
-  border: 1px solid rgba(15, 23, 42, 0.2); /* Iets donkerder zodat hij op beide achtergronden strak toont */
-  border-radius: 10px; /* Extra ronde hoeken zodat het overduidelijk meeloopt */
-  pointer-events: none;
-  z-index: 50;
-}
 
 .card-face-back {
   transform: rotateY(180deg);
