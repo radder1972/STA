@@ -6,7 +6,6 @@ import Results from './components/Results'
 import Basisbehoeften from './components/Basisbehoeften'
 import ModiCategorieen from './components/ModiCategorieen'
 import KaartenOverzicht from './components/KaartenOverzicht'
-import Tafelopstelling from './components/Tafelopstelling'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 
@@ -95,7 +94,6 @@ function App() {
           onViewResults={viewResults} 
           onImport={handleImport}
           onViewKaartenOverzicht={() => setCurrentView('kaartenoverzicht')}
-          onViewTafelopstelling={() => setCurrentView('tafelopstelling')}
         />
       )}
       {currentView === 'questionnaire' && (
@@ -125,13 +123,10 @@ function App() {
       {currentView === 'kaartenoverzicht' && (
         <KaartenOverzicht onBack={() => setCurrentView('home')} />
       )}
-      {currentView === 'tafelopstelling' && (
-        <Tafelopstelling onBack={() => setCurrentView('home')} completedTests={completedTests} />
-      )}
 
-      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'tafelopstelling' && (
+      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v2.6.17
+          v2.6.18
         </div>
       )}
     </div>

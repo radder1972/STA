@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon, CardsIcon } from './Icons'
 
-export default function Home({ onStart, completedTests, onViewResults, onImport, onViewKaartenOverzicht, onViewTafelopstelling }) {
+export default function Home({ onStart, completedTests, onViewResults, onImport, onViewKaartenOverzicht }) {
   const fileInputRef = useRef(null)
   const [ysqExpanded, setYsqExpanded] = useState(false);
   const [smiExpanded, setSmiExpanded] = useState(false);
@@ -197,20 +197,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
         )}
       </div>
 
-      <div style={{ maxWidth: '900px', margin: '3rem auto 2rem', padding: '0 1rem' }}>
-        <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Therapeutische Tools</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}>
-          <div className="card glass-panel" onClick={onViewTafelopstelling} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '320px', padding: '2rem', cursor: 'pointer' }}>
-            <div style={{ background: 'transparent', color: 'var(--primary)', padding: '10px', borderRadius: '50%', marginBottom: '1rem' }}>
-              <CardsIcon size={56} useGradient={true} />
-            </div>
-            <p style={{ fontWeight: 'bold', color: 'var(--text-main)', margin: '0 0 0.5rem 0' }}>Tafelopstelling</p>
-            <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '1rem', flex: 1, margin: 0 }}>
-              Interactief canvas om fysiek (digitaal) je eigen triggers in kaart te brengen. Sleep Modus, Schema en Basisbehoefte bij elkaar op tafel.
-            </p>
-          </div>
-        </div>
-      </div>
+
 
 
       <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '4rem auto 2rem auto', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>

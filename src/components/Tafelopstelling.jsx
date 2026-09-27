@@ -144,7 +144,7 @@ const CardSlot = ({ label, card, onSelect, onRemove }) => (
   </div>
 );
 
-export default function Tafelopstelling({ onBack, completedTests }) {
+export default function Tafelopstelling({ onBack, completedTests, embedded = false }) {
   const [situationText, setSituationText] = useState('');
   const [selectedMode, setSelectedMode] = useState(null);
   const [selectedSchema, setSelectedSchema] = useState(null);
@@ -333,23 +333,35 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
   };
 
   return (
-    <div className="view-container">
-      <div className="header no-print" style={{ marginBottom: '2rem' }}>
-        <h1 className="text-gradient">Digitale Tafelopstelling</h1>
-        <p>Visualiseer je psychologische reactiepatroon op een specifieke trigger.</p>
-      </div>
-      
-      <div className="no-print" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
-        <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <ArrowLeftIcon size={18} /> Terug naar Start
-        </button>
-        <button className="btn btn-outline" onClick={() => window.print()} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          PDF / Printen
-        </button>
-        <button className="btn btn-outline" onClick={clearTable} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          Tafel Leegmaken
-        </button>
-      </div>
+    <div className={embedded ? "" : "view-container"}>
+      {!embedded && (
+        <>
+          <div className="header no-print" style={{ marginBottom: '2rem' }}>
+            <h1 className="text-gradient">Digitale Tafelopstelling</h1>
+            <p>Visualiseer je psychologische reactiepatroon op een specifieke trigger.</p>
+          </div>
+          
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
+            <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <ArrowLeftIcon size={18} /> Terug naar Start
+            </button>
+            <button className="btn btn-outline" onClick={() => window.print()} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              PDF / Printen
+            </button>
+            <button className="btn btn-outline" onClick={clearTable} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              Tafel Leegmaken
+            </button>
+          </div>
+        </>
+      )}
+
+      {embedded && (
+        <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+          <button className="btn btn-outline" onClick={clearTable} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            Tafel Leegmaken
+          </button>
+        </div>
+      )}
 
       <div className="glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '0 auto', background: 'var(--card-bg)' }}>
         <div style={{ maxWidth: '850px', margin: '0 auto' }}>
