@@ -75,7 +75,7 @@ body {
 .btn:hover {
   background: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4);
 }
 
 .btn-outline {
@@ -109,8 +109,11 @@ body {
 }
 
 .btn-card:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(20, 184, 166, 0.08);
+  color: var(--primary);
+  border-color: var(--primary);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);
 }
 
 .btn:disabled {
@@ -145,8 +148,8 @@ body {
 
 .card:hover {
   transform: translateY(-5px) scale(1.02);
-  border-color: rgba(79, 70, 229, 0.5);
-  box-shadow: 0 10px 40px rgba(79, 70, 229, 0.2);
+  border-color: rgba(20, 184, 166, 0.5);
+  box-shadow: 0 10px 40px rgba(20, 184, 166, 0.2);
 }
 
 .card h2 {
