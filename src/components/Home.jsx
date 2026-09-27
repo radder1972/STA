@@ -121,8 +121,8 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '0.5rem', fontWeight: 'bold' }}>
           <AlertTriangleIcon size={24} useGradient={true} /> Let op: Uw antwoorden worden nergens opgeslagen!
         </p>
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
-          Omdat de applicatie lokaal draait, bent u na het afsluiten van de pagina uw gegevens kwijt. U kunt na het invullen uw resultaten vastleggen door het rapport op te slaan als <strong>PDF of CSV</strong>. Heeft u al een CSV-bestand? Laad deze dan hieronder in.
+        <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
+          Omdat de applicatie lokaal draait, bent u na het afsluiten van de pagina uw gegevens kwijt. U kunt na het invullen uw resultaten vastleggen door het rapport op te slaan als <strong>PDF of CSV</strong>. Heeft u al een CSV-bestand? Laad deze dan hieronder&nbsp;in.
         </p>
         <input 
           type="file" 
@@ -144,7 +144,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.05rem' }}>
           <InfoIcon size={24} useGradient={true} /> Meer weten over Schematherapie?
         </p>
-        <p style={{ lineHeight: '1.6', fontSize: '0.9rem' }}>
+        <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
           Wilt u meer achtergrondinformatie over de theorie achter schema's en modi, of zoekt u een geregistreerde behandelaar? Bezoek dan de officiële website van de <strong>Nederlandse Vereniging voor Schematherapie</strong>.
         </p>
         <a 
