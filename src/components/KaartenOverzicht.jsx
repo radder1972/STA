@@ -228,10 +228,21 @@ export default function KaartenOverzicht({ onBack }) {
         {renderCardList(filteredCards, isSchema ? 'schema-ind' : 'modi-ind')}
 
         {selectedCard && (
-          <div className="modal-overlay" onClick={() => setSelectedCard(null)}>
-            <div className="modal-content" onClick={e => e.stopPropagation()}>
-              <button className="modal-close" onClick={() => setSelectedCard(null)}>&times;</button>
-              <h2 className="text-gradient" style={{ marginBottom: '1.5rem' }}>{selectedCard.title}</h2>
+          <div style={{
+            position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, 
+            backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 9999,
+            display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem'
+          }} onClick={() => setSelectedCard(null)}>
+            <div className="glass-panel" style={{
+              background: 'var(--bg-color)', maxWidth: '600px', width: '100%', 
+              maxHeight: '90vh', overflowY: 'auto', padding: '2rem', position: 'relative',
+              borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: '0 10px 40px rgba(0,0,0,0.3)'
+            }} onClick={e => e.stopPropagation()}>
+              <button 
+                onClick={() => setSelectedCard(null)} 
+                style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}
+              >×</button>
+              <h2 className="text-gradient" style={{ marginBottom: '0.5rem' }}>{selectedCard.title}</h2>
               <h4 style={{ color: 'var(--primary)', marginBottom: '1.5rem' }}>Praktijkvoorbeeld & Tips</h4>
               
               <div style={{ marginBottom: '1.5rem' }}>
@@ -248,6 +259,12 @@ export default function KaartenOverzicht({ onBack }) {
                     <li key={idx} style={{ marginBottom: '0.5rem' }}>{tip}</li>
                   ))}
                 </ul>
+              </div>
+              
+              <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+                <button className="btn btn-gradient" onClick={() => setSelectedCard(null)} style={{ color: 'white' }}>
+                  Sluiten
+                </button>
               </div>
             </div>
           </div>
@@ -316,8 +333,9 @@ export default function KaartenOverzicht({ onBack }) {
           display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem'
         }} onClick={() => setSelectedCard(null)}>
           <div className="glass-panel" style={{
-            background: 'var(--card-bg)', maxWidth: '600px', width: '100%', 
-            maxHeight: '90vh', overflowY: 'auto', padding: '2rem', position: 'relative'
+            background: 'var(--bg-color)', maxWidth: '600px', width: '100%', 
+            maxHeight: '90vh', overflowY: 'auto', padding: '2rem', position: 'relative',
+            borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: '0 10px 40px rgba(0,0,0,0.3)'
           }} onClick={e => e.stopPropagation()}>
             <button 
               onClick={() => setSelectedCard(null)} 
