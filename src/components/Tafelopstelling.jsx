@@ -378,7 +378,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 ) : (
                   <span style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <AlertTriangleIcon size={16} useGradient={true} /> Vragenlijsten niet ingevuld (Algemene voorspelling) - 
-                    <span onClick={onBack} style={{ color: 'var(--primary)', cursor: 'pointer', textDecoration: 'underline', fontWeight: 'bold' }}>Nu invullen</span>
+                    <span onClick={onBack} className="text-gradient" style={{ cursor: 'pointer', textDecoration: 'underline', fontWeight: 'bold' }}>Nu invullen</span>
                   </span>
                 )}
               </div>

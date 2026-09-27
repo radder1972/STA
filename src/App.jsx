@@ -131,7 +131,7 @@ function App() {
 
       {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'tafelopstelling' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v2.6.8
+          v2.6.9
         </div>
       )}
     </div>
