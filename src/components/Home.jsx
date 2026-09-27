@@ -147,8 +147,8 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
         <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Therapeutische Tools</h2>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}>
           <div className="card glass-panel" onClick={onViewTafelopstelling} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '320px', padding: '2rem', cursor: 'pointer' }}>
-            <div style={{ background: 'var(--primary)', color: 'white', padding: '15px', borderRadius: '50%', marginBottom: '1rem' }}>
-              <CardsIcon size={32} color="white" />
+            <div style={{ background: 'transparent', color: 'var(--primary)', padding: '10px', borderRadius: '50%', marginBottom: '1rem' }}>
+              <CardsIcon size={56} useGradient={true} />
             </div>
             <h3 style={{ margin: '0 0 1rem 0' }}>Tafelopstelling</h3>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem', flex: 1, margin: 0 }}>
