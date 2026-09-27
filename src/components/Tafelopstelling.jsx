@@ -148,8 +148,10 @@ export default function Tafelopstelling({ onBack }) {
   const [selectedSchema, setSelectedSchema] = useState(null);
   const [selectedNeed, setSelectedNeed] = useState(null);
   const [gvNotes, setGvNotes] = useState('');
+  const [analysisText, setAnalysisText] = useState('');
   const [showCardPicker, setShowCardPicker] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isGeneratingAnalysis, setIsGeneratingAnalysis] = useState(false);
 
   const DEFAULT_KEY = ['x4lUf2byenEbjpA', 'vKjFVKEc6MmRk4LOh5r', 'AQ.Ab8RN6J2MKKxlGjl'].reverse().join('');
 
@@ -184,6 +186,37 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
     }
   };
 
+  const generateDeepAnalysis = async () => {
+    if (!situationText || !selectedMode || !selectedSchema || !selectedNeed) {
+      alert("Vul eerst de situatie en de drie kaarten in (Modus, Schema, Basisbehoefte) voordat de AI een analyse kan maken.");
+      return;
+    }
+    
+    setIsGeneratingAnalysis(true);
+    try {
+      const apiKey = localStorage.getItem('gemini_api_key') || DEFAULT_KEY;
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: "gemini-3.8-pro" });
+      
+      const prompt = `Je bent een expert in schematherapie. Een cliënt heeft een tafelopstelling gemaakt:
+Situatie: "${situationText}"
+Zijn/haar reactie (Modus): ${selectedMode.title}
+Geraakte Schema: ${selectedSchema.title}
+Onvervulde Basisbehoefte: ${selectedNeed.title}
+
+Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten werkt. Leg uit waarom deze specifieke trigger, via deze onvervulde behoefte en dit geraakte schema, leidt tot deze specifieke modus. Geef 2 concrete tips voor de cliënt om hier in de toekomst bewuster mee om te gaan. Richt je direct tot de cliënt op een steunende toon (gebruik 'je'). Gebruik maximaal 3 alinea's en maak het concreet.`;
+
+      const result = await model.generateContent(prompt);
+      const text = await result.response.text();
+      setAnalysisText(text.trim());
+    } catch (err) {
+      console.error(err);
+      alert("Fout bij het genereren: " + (err.message || 'Onbekende fout'));
+    } finally {
+      setIsGeneratingAnalysis(false);
+    }
+  };
+
   const handleSelectCard = (card) => {
     if (showCardPicker === 'mode') setSelectedMode(card);
     if (showCardPicker === 'schema') setSelectedSchema(card);
@@ -198,6 +231,7 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
       setSelectedSchema(null);
       setSelectedNeed(null);
       setGvNotes('');
+      setAnalysisText('');
     }
   };
 
@@ -211,6 +245,9 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
       <div className="no-print" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
         <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <ArrowLeftIcon size={18} /> Terug naar Start
+        </button>
+        <button className="btn btn-outline" onClick={generateDeepAnalysis} disabled={isGeneratingAnalysis} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {isGeneratingAnalysis ? 'Analyseren...' : <><CpuChipIcon size={16} useGradient={true} /> Diepgaande AI Analyse</>}
         </button>
         <button className="btn btn-outline" onClick={() => window.print()} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           PDF / Printen
@@ -281,6 +318,33 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
           </div>
         </div>
       </div>
+
+      {/* Diepgaande Analyse Weergave */}
+      {(analysisText || isGeneratingAnalysis) && (
+        <div className="glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '2rem auto 0 auto', background: 'var(--card-bg)' }}>
+          <h3 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+            <CpuChipIcon size={24} useGradient={true} /> Diepgaande Analyse van de Keten
+          </h3>
+          {isGeneratingAnalysis ? (
+            <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>
+              De AI analyseert momenteel jouw opstelling...
+            </div>
+          ) : (
+            <textarea 
+              value={analysisText}
+              onChange={e => setAnalysisText(e.target.value)}
+              style={{ 
+                width: '100%', minHeight: '200px', padding: '1.5rem', 
+                borderRadius: '12px', border: '1px solid var(--border-color)', 
+                background: 'var(--bg-color)', color: 'var(--text-main)', 
+                fontFamily: 'inherit', fontSize: '1rem', resize: 'vertical',
+                lineHeight: '1.7',
+                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)'
+              }}
+            />
+          )}
+        </div>
+      )}
 
       {showCardPicker && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 9999, display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1rem' }} onClick={() => setShowCardPicker(null)}>
