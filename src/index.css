@@ -798,10 +798,10 @@ body {
   left: 6px;
   right: 6px;
   bottom: 6px;
-  border: 1px solid rgba(15, 23, 42, 0.12); /* Transparant donkerblauw past zich visueel perfect aan de achtergrond aan */
-  border-radius: 6px; /* 12px buitenrand - 6px marge = 6px binnenrand */
+  border: 1px solid rgba(15, 23, 42, 0.2); /* Iets donkerder zodat hij op beide achtergronden strak toont */
+  border-radius: 10px; /* Extra ronde hoeken zodat het overduidelijk meeloopt */
   pointer-events: none;
-  z-index: 10;
+  z-index: 50;
 }
 
 .card-face-back {
