@@ -126,12 +126,12 @@ function App() {
         <KaartenOverzicht onBack={() => setCurrentView('home')} />
       )}
       {currentView === 'tafelopstelling' && (
-        <Tafelopstelling onBack={() => setCurrentView('home')} />
+        <Tafelopstelling onBack={() => setCurrentView('home')} completedTests={completedTests} />
       )}
 
       {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'tafelopstelling' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v2.5.6
+          v2.6.0
         </div>
       )}
     </div>

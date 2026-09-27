@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ArrowLeftIcon, CpuChipIcon } from './Icons';
 import { schemaImages, modeImages } from '../utils/images';
+import ysqScoring from '../data/ysq-scoring.json';
+import smiScoring from '../data/smi-scoring.json';
 
 import imgB1 from '../assets/images/basisbehoeften/1.png';
 import imgB2 from '../assets/images/basisbehoeften/2.png';
@@ -142,7 +144,7 @@ const CardSlot = ({ label, card, onSelect, onRemove }) => (
   </div>
 );
 
-export default function Tafelopstelling({ onBack }) {
+export default function Tafelopstelling({ onBack, completedTests }) {
   const [situationText, setSituationText] = useState('');
   const [selectedMode, setSelectedMode] = useState(null);
   const [selectedSchema, setSelectedSchema] = useState(null);
@@ -152,6 +154,89 @@ export default function Tafelopstelling({ onBack }) {
   const [showCardPicker, setShowCardPicker] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isGeneratingAnalysis, setIsGeneratingAnalysis] = useState(false);
+  const [isPredicting, setIsPredicting] = useState(false);
+
+  const calculateTopScores = (answers, scoringData, mapDict) => {
+    if (!answers) return [];
+    return Object.entries(scoringData).map(([key, items]) => {
+      let sum = 0; let answeredCount = 0;
+      items.forEach(qId => {
+        if (answers[qId]) {
+          sum += answers[qId];
+          answeredCount++;
+        }
+      });
+      const mean = answeredCount > 0 ? sum / answeredCount : 0;
+      const name = mapDict[key] || key;
+      return { name, mean };
+    }).sort((a, b) => b.mean - a.mean).slice(0, 5).map(s => s.name);
+  };
+
+  const predictCards = async () => {
+    if (!situationText) {
+      alert("Beschrijf eerst kort de situatie/trigger in het tekstvak.");
+      return;
+    }
+
+    setIsPredicting(true);
+    try {
+      const topSchemas = completedTests?.ysq ? calculateTopScores(completedTests.ysq, ysqScoring, ysqSchemaNamesMap).join(', ') : 'Onbekend';
+      const topModes = completedTests?.smi ? calculateTopScores(completedTests.smi, smiScoring, smiModesMap).join(', ') : 'Onbekend';
+
+      const apiKey = localStorage.getItem('gemini_api_key') || DEFAULT_KEY;
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
+
+      const availableModes = modeCards.map(c => c.title).join(', ');
+      const availableSchemas = schemaCards.map(c => c.title).join(', ');
+      const availableNeeds = needCards.map(c => c.title).join(', ');
+
+      const prompt = `Je bent een expert in schematherapie. De cliënt heeft de volgende situatie/trigger meegemaakt:
+"${situationText}"
+
+Profiel van deze cliënt (hoogst scorende schema's en modi uit hun test):
+Top Schema's: ${topSchemas}
+Top Modi: ${topModes}
+
+Kies de best passende Modus, Schema en Onvervulde Basisbehoefte voor deze situatie, bij voorkeur rekening houdend met hun profiel (kies de schema's/modi uit hun profiel als ze passen bij de situatie, maar wijk af als de situatie overduidelijk om een andere kaart vraagt).
+Je MOET kiezen uit deze exacte lijsten:
+Beschikbare Modi: ${availableModes}
+Beschikbare Schema's: ${availableSchemas}
+Beschikbare Behoeften: ${availableNeeds}
+
+Geef je antwoord ALLEEN als een geldig JSON object in dit exacte formaat, zonder extra tekst of markdown eromheen:
+{
+  "mode": "exacte titel uit de lijst",
+  "schema": "exacte titel uit de lijst",
+  "need": "exacte titel uit de lijst"
+}`;
+
+      const result = await model.generateContent(prompt);
+      let text = await result.response.text();
+      text = text.trim();
+      if (text.startsWith('\`\`\`json')) {
+        text = text.replace(/^\`\`\`json/, '').replace(/\`\`\`$/, '').trim();
+      } else if (text.startsWith('\`\`\`')) {
+        text = text.replace(/^\`\`\`/, '').replace(/\`\`\`$/, '').trim();
+      }
+      
+      const parsed = JSON.parse(text);
+      
+      const foundMode = modeCards.find(c => c.title === parsed.mode) || modeCards[0];
+      const foundSchema = schemaCards.find(c => c.title === parsed.schema) || schemaCards[0];
+      const foundNeed = needCards.find(c => c.title === parsed.need) || needCards[0];
+
+      setSelectedMode(foundMode);
+      setSelectedSchema(foundSchema);
+      setSelectedNeed(foundNeed);
+
+    } catch (err) {
+      console.error(err);
+      alert("Fout bij het voorspellen van de kaarten: " + (err.message || 'Onbekende fout'));
+    } finally {
+      setIsPredicting(false);
+    }
+  };
 
   const DEFAULT_KEY = ['x4lUf2byenEbjpA', 'vKjFVKEc6MmRk4LOh5r', 'AQ.Ab8RN6J2MKKxlGjl'].reverse().join('');
 
@@ -269,6 +354,17 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 fontFamily: 'inherit', fontSize: '1rem', resize: 'vertical' 
               }}
             />
+            <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
+              <button 
+                className="btn btn-outline" 
+                onClick={predictCards} 
+                disabled={isPredicting || !situationText}
+                style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.95rem' }}
+                title={!completedTests?.ysq ? "Tip: vul eerst de tests in voor een persoonlijkere voorspelling!" : "Voorspel de kaarten op basis van je situatie en testresultaten"}
+              >
+                {isPredicting ? 'Bezig met voorspellen...' : <><CpuChipIcon size={16} useGradient={true} /> 🪄 AI: Voorspel de kaarten</>}
+              </button>
+            </div>
           </div>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '3rem', alignItems: 'stretch' }}>
