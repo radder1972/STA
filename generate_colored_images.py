@@ -13,9 +13,21 @@ def tint_image(input_path, output_path, target_color_hex):
     new_data = []
     for item in data:
         r, g, b, a = item
-        # Detect grey pixels
-        if a > 0 and r > 30 and r < 230 and abs(r - g) < 25 and abs(g - b) < 25:
-            new_data.append((target_r, target_g, target_b, a))
+        # If it's not transparent and not purely white
+        if a > 0 and (r < 240 or g < 240 or b < 240):
+            # Calculate luminance (0.0 to 1.0)
+            luminance = (r + g + b) / (3.0 * 255.0)
+            
+            # Map black to target color, white to white
+            new_r = int(target_r * (1 - luminance) + 255 * luminance)
+            new_g = int(target_g * (1 - luminance) + 255 * luminance)
+            new_b = int(target_b * (1 - luminance) + 255 * luminance)
+            
+            new_r = min(255, max(0, new_r))
+            new_g = min(255, max(0, new_g))
+            new_b = min(255, max(0, new_b))
+            
+            new_data.append((new_r, new_g, new_b, a))
         else:
             new_data.append(item)
             
@@ -23,7 +35,7 @@ def tint_image(input_path, output_path, target_color_hex):
     img.save(output_path)
 
 base_dir = 'src/assets/images'
-target_color = '#14b8a6' # Light teal
+target_color = '#0d9488' # Slightly deeper teal (teal-600) so lines are visible
 
 for root, dirs, files in os.walk(base_dir):
     for file in files:
@@ -31,5 +43,6 @@ for root, dirs, files in os.walk(base_dir):
             input_path = os.path.join(root, file)
             output_path = os.path.join(root, file.replace('.png', '_teal.png'))
             tint_image(input_path, output_path, target_color)
+            print(f"Generated full tint for {output_path}")
 
-print("Done generating teal images.")
+print("Done generating full teal tint images.")
