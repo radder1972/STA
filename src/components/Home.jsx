@@ -198,7 +198,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
               <CardsIcon size={56} useGradient={true} />
             </div>
             <h2 style={{ margin: '0 0 1rem 0' }}>Tafelopstelling</h2>
-            <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem', flex: 1, margin: 0 }}>
+            <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '1rem', flex: 1, margin: 0 }}>
               Interactief canvas om fysiek (digitaal) je eigen triggers in kaart te brengen. Sleep Modus, Schema en Basisbehoefte bij elkaar op tafel.
             </p>
           </div>
@@ -267,7 +267,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.05rem' }}>
           <ShieldIcon size={24} useGradient={true} /> Privacy & Veiligheid Gewaarborgd
         </p>
-        <p style={{ lineHeight: '1.6', fontSize: '0.9rem' }}>
+        <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
           Deze webapplicatie draait <strong>volledig lokaal</strong> in de browser op uw eigen apparaat. Uw gevoelige gegevens, testantwoorden en resultaten worden <strong>niet</strong> verzonden, <strong>niet</strong> opgeslagen op een server en <strong>nooit</strong> gedeeld met derden. Zodra u het venster sluit, zijn alle gegevens direct gewist. Sla uw rapport daarom altijd op via de PDF/Print functie, druk het direct af, of exporteer het als CSV-databestand voor uw eigen archief.
         </p>
       </div>
