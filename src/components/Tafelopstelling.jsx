@@ -414,9 +414,10 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '300px', padding: '2rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
             <CardSlot label="Gezonde Volwassene" card={healthyAdultCard} />
             <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-              <div style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '0.8rem' }}>Grenzen stellen & Zorgen</div>
+              <div style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '0.2rem' }}>Grenzen stellen & Zorgen</div>
+              <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', textAlign: 'center', marginBottom: '1rem' }}>Wat zou de Gezonde Volwassene zeggen of doen in deze situatie?</div>
               <textarea 
-                placeholder="Wat zou de Gezonde Volwassene zeggen of doen in deze situatie?" 
+                placeholder="" 
                 value={gvNotes}
                 onChange={e => setGvNotes(e.target.value)}
                 style={{ 
