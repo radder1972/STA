@@ -118,7 +118,7 @@ export default function KaartenOverzicht({ onBack }) {
           <div className="card-scene">
             <div className={`card-flip-container ${flippedCards[card.title] ? 'flipped' : ''}`}>
               
-              <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(card.title)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer' }}>
+              <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(card.title)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[card.title] ? 'none' : 'auto' }}>
                 <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                   <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
                 </div>
@@ -127,14 +127,14 @@ export default function KaartenOverzicht({ onBack }) {
                 </div>
               </div>
               
-              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: flippedCards[card.title] ? 'auto' : 'none' }}>
                 <div onClick={() => handleFlip(card.title)} style={{ flex: 1, cursor: 'pointer' }}>
                   <h4>{card.title}</h4>
                   <p>{card.description || 'Geen theorie beschikbaar.'}</p>
                 </div>
                 <button 
                   className="btn btn-outline" 
-                  onClick={() => setSelectedCard(card)}
+                  onClick={(e) => { e.stopPropagation(); e.preventDefault(); setSelectedCard(card); }}
                   style={{ fontSize: '0.75rem', padding: '6px 12px', marginTop: '10px', alignSelf: 'center', width: '90%', zIndex: 20, position: 'relative' }}
                 >
                   Praktijkvoorbeeld & Tips
