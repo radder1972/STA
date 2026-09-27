@@ -191,7 +191,7 @@ export default function KaartenOverzicht({ onBack }) {
         padding: '8px 16px',
         borderRadius: '20px',
         border: filter === id ? 'none' : '1px solid var(--border-color)',
-        background: filter === id ? '#14b8a6' : 'transparent',
+        background: filter === id ? 'var(--primary)' : 'var(--card-bg)',
         color: filter === id ? 'white' : 'var(--text-main)',
         fontWeight: filter === id ? 'bold' : 'normal',
         cursor: 'pointer',
