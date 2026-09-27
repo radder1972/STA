@@ -138,7 +138,7 @@ export default function KaartenOverzicht({ onBack }) {
           <div className="card-scene">
             <div className={`card-flip-container ${flippedCards[uniqueKey] ? 'flipped' : ''}`}>
               
-              <div className="card-face-front schema-img" onClick={() => handleFlip(uniqueKey)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[uniqueKey] ? 'none' : 'auto' }}>
+              <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(uniqueKey)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[uniqueKey] ? 'none' : 'auto' }}>
                 <div className="inner-border"></div>
                 <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                   <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
