@@ -64,6 +64,14 @@ const basisbehoeftenText = {
   '5. Realistische grenzen': 'Kaders om te leren omgaan met frustratie. Leren dat je niet altijd je zin kunt krijgen en rekening moet houden met anderen.'
 };
 
+const basisbehoeftenToSchemas = {
+  '1. Veilige hechting': ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotioneel tekort', 'Tekortschieten / Schaamte', 'Sociale isolatie / Vervreemding'],
+  '2. Autonomie': ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'],
+  '3. Vrije expressie': ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'],
+  '4. Spontaniteit en spel': ['Negativisme / Pessimisme', 'Emotionele geremdheid', 'Meedogenloze normen', 'Bestraffendheid'],
+  '5. Realistische grenzen': ['Veeleisendheid / Grandiositeit', 'Onvoldoende zelfcontrole']
+};
+
 const categorieText = {
   'Kindmodi': 'De modus waarin je je kwetsbaar, eenzaam, boos of impulsief voelt, net als een kind van vroeger dat iets tekortkwam.',
   'Oudermodi': 'De geïnternaliseerde stem van een veeleisende of straffende ouder. Een innerlijke criticus die zegt dat je tekortschiet.',
@@ -73,10 +81,20 @@ const categorieText = {
   'Gezonde volwassene': 'De gezonde kant die zorgt voor het kwetsbare kind, gezonde grenzen stelt en de strenge oudermodi bestrijdt.'
 };
 
+const categorieToModi = {
+  'Kindmodi': ['Kwetsbare kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind', 'Boze kind'],
+  'Oudermodi': ['Straffende ouder', 'Veeleisende ouder'],
+  'Coping: Overgave': ['Willoze inschikkelijke'],
+  'Coping: Vermijding': ['Onthechte beschermer', 'Onthechte zelfsusser'],
+  'Coping: Overcompensatie': ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval'],
+  'Gezonde volwassene': ['Gezonde volwassene']
+};
+
 export default function KaartenOverzicht({ onBack }) {
   const [filter, setFilter] = useState('all');
   const [flippedCards, setFlippedCards] = useState({});
   const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const handleFlip = (title) => {
     setFlippedCards(prev => ({ ...prev, [title]: !prev[title] }));
@@ -147,6 +165,17 @@ export default function KaartenOverzicht({ onBack }) {
                 >
                   <span className="btn-text">Praktijkvoorbeeld & Tips</span>
                 </button>
+                {(listName === 'schema-cat' || listName === 'modi-cat') && (
+                  <button 
+                    className="btn btn-card" 
+                    onClick={(e) => { e.stopPropagation(); e.preventDefault(); setSelectedCategory(card); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                    style={{ fontSize: '0.75rem', padding: '6px 12px', alignSelf: 'center', width: '100%', zIndex: 20, position: 'relative', flexShrink: 0, marginTop: '0.5rem' }}
+                  >
+                    <span className="btn-text">
+                      {listName === 'schema-cat' ? "Bekijk bijbehorende schema's" : "Bekijk bijbehorende modi"}
+                    </span>
+                  </button>
+                )}
               </div>
 
             </div>
@@ -175,6 +204,47 @@ export default function KaartenOverzicht({ onBack }) {
       {label}
     </button>
   );
+
+  if (selectedCategory) {
+    const isSchema = !!basisbehoeftenToSchemas[selectedCategory.title];
+    const mapping = isSchema ? basisbehoeftenToSchemas[selectedCategory.title] : categorieToModi[selectedCategory.title];
+    const fullList = isSchema ? detailedSchemaCards : detailedModeCards;
+    const filteredCards = fullList.filter(c => mapping && mapping.includes(c.title));
+
+    return (
+      <div className="view-container">
+        <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+          <button onClick={() => setSelectedCategory(null)} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <ArrowLeftIcon size={18} /> Terug naar Overzicht
+          </button>
+        </div>
+        
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '3rem' }}>
+          <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem' }}>Geselecteerde Categorie</h2>
+          {renderCardList([selectedCategory], isSchema ? 'schema-cat' : 'modi-cat', isSchema ? { transform: 'scale(0.85)' } : { transform: 'scale(0.85)' })}
+        </div>
+
+        <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+          Bijbehorende {isSchema ? "Schema's" : 'Modi'}
+        </h2>
+        {renderCardList(filteredCards, isSchema ? 'schema-ind' : 'modi-ind')}
+
+        {selectedCard && (
+          <div className="modal-overlay" onClick={() => setSelectedCard(null)}>
+            <div className="modal-content" onClick={e => e.stopPropagation()}>
+              <button className="modal-close" onClick={() => setSelectedCard(null)}>&times;</button>
+              <h2 className="text-gradient" style={{ marginBottom: '1.5rem' }}>{selectedCard.title}</h2>
+              {getVerdieping(selectedCard.title) ? (
+                <div dangerouslySetInnerHTML={{ __html: getVerdieping(selectedCard.title) }} className="verdieping-content" />
+              ) : (
+                <p>Uitgebreide praktijkvoorbeelden en tips voor deze kaart worden binnenkort toegevoegd.</p>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="view-container">
