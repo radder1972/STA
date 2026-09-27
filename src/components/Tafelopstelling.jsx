@@ -335,18 +335,24 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               De AI analyseert momenteel jouw opstelling...
             </div>
           ) : (
-            <textarea 
-              value={analysisText}
-              onChange={e => setAnalysisText(e.target.value)}
-              style={{ 
-                width: '100%', minHeight: '400px', padding: '1.5rem', 
-                borderRadius: '12px', border: '1px solid var(--border-color)', 
-                background: 'var(--bg-color)', color: 'var(--text-main)', 
-                fontFamily: 'inherit', fontSize: '1rem', resize: 'vertical',
-                lineHeight: '1.7',
-                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)'
-              }}
-            />
+            <>
+              <textarea 
+                className="no-print"
+                value={analysisText}
+                onChange={e => setAnalysisText(e.target.value)}
+                style={{ 
+                  width: '100%', minHeight: '400px', padding: '1.5rem', 
+                  borderRadius: '12px', border: '1px solid var(--border-color)', 
+                  background: 'var(--bg-color)', color: 'var(--text-main)', 
+                  fontFamily: 'inherit', fontSize: '1rem', resize: 'vertical',
+                  lineHeight: '1.7',
+                  boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)'
+                }}
+              />
+              <div className="print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.7', fontSize: '1rem', color: 'black' }}>
+                {analysisText}
+              </div>
+            </>
           )}
         </div>
       )}
