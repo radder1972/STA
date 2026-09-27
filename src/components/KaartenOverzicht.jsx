@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ArrowLeftIcon } from './Icons'
 
 import imgB1 from '../assets/images/basisbehoeften/1.png'
@@ -15,6 +15,7 @@ import imgM3c from '../assets/images/modicategorieen/coping_overcompensatie.png'
 import imgM4 from '../assets/images/modicategorieen/4.png'
 
 import { schemaImages, modeImages } from '../utils/images'
+import { schemaDescriptions } from '../data/descriptions'
 
 const ysqSchemaNamesMap = {
   'Abandonment': 'Verlating / Instabiliteit',
@@ -54,46 +55,82 @@ const smiModesMap = {
   'gv': 'Gezonde volwassene'
 };
 
+const basisbehoeftenText = {
+  '1. Veilige hechting': 'Veiligheid, stabiliteit, verzorging en onvoorwaardelijke acceptatie. Een thuishaven zonder angst voor verlating of afwijzing.',
+  '2. Autonomie': 'Ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen als onafhankelijk individu.',
+  '3. Vrije expressie': 'Ruimte om je vrij uit te drukken. Eigen gevoelens (ook boosheid of verdriet) en behoeften zijn geldig en belangrijk.',
+  '4. Spontaniteit en spel': 'Ruimte voor plezier, creativiteit en onbezorgdheid. Niet alles hoeft nuttig, perfect of efficiënt te zijn.',
+  '5. Realistische grenzen': 'Kaders om te leren omgaan met frustratie. Leren dat je niet altijd je zin kunt krijgen en rekening moet houden met anderen.'
+};
+
+const categorieText = {
+  'Kindmodi': 'De modus waarin je je kwetsbaar, eenzaam, boos of impulsief voelt, net als een kind van vroeger dat iets tekortkwam.',
+  'Oudermodi': 'De geïnternaliseerde stem van een veeleisende of straffende ouder. Een innerlijke criticus die zegt dat je tekortschiet.',
+  'Coping: Overgave': 'Je gedraagt je alsof het schema 100% waar is. Je past je aan en ondergaat de situatie passief.',
+  'Coping: Vermijding': 'Je vermijdt de emotionele pijn van het schema door situaties uit de weg te gaan of jezelf af te leiden/verdoven.',
+  'Coping: Overcompensatie': 'Je vecht tegen het schema door je precies tegenovergesteld te gedragen aan wat het schema dicteert.',
+  'Gezonde volwassene': 'De gezonde kant die zorgt voor het kwetsbare kind, gezonde grenzen stelt en de strenge oudermodi bestrijdt.'
+};
+
 export default function KaartenOverzicht({ onBack }) {
+  const [filter, setFilter] = useState('all');
+  const [flippedCards, setFlippedCards] = useState({});
+
+  const handleFlip = (title) => {
+    setFlippedCards(prev => ({ ...prev, [title]: !prev[title] }));
+  }
+
   const schemaCards = [
-    { src: imgB1, title: '1. Veilige hechting' },
-    { src: imgB2, title: '2. Autonomie' },
-    { src: imgB3, title: '3. Vrije expressie' },
-    { src: imgB4, title: '4. Spontaniteit en spel' },
-    { src: imgB5, title: '5. Realistische grenzen' },
+    { src: imgB1, title: '1. Veilige hechting', description: basisbehoeftenText['1. Veilige hechting'] },
+    { src: imgB2, title: '2. Autonomie', description: basisbehoeftenText['2. Autonomie'] },
+    { src: imgB3, title: '3. Vrije expressie', description: basisbehoeftenText['3. Vrije expressie'] },
+    { src: imgB4, title: '4. Spontaniteit en spel', description: basisbehoeftenText['4. Spontaniteit en spel'] },
+    { src: imgB5, title: '5. Realistische grenzen', description: basisbehoeftenText['5. Realistische grenzen'] },
   ]
 
   const modiCards = [
-    { src: imgM1, title: 'Kindmodi' },
-    { src: imgM2, title: 'Oudermodi' },
-    { src: imgM3a, title: 'Coping: Overgave' },
-    { src: imgM3b, title: 'Coping: Vermijding', style: { width: '80%', height: '80%' } },
-    { src: imgM3c, title: 'Coping: Overcompensatie' },
-    { src: imgM4, title: 'Gezonde volwassene' },
+    { src: imgM1, title: 'Kindmodi', description: categorieText['Kindmodi'] },
+    { src: imgM2, title: 'Oudermodi', description: categorieText['Oudermodi'] },
+    { src: imgM3a, title: 'Coping: Overgave', description: categorieText['Coping: Overgave'] },
+    { src: imgM3b, title: 'Coping: Vermijding', description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' } },
+    { src: imgM3c, title: 'Coping: Overcompensatie', description: categorieText['Coping: Overcompensatie'] },
+    { src: imgM4, title: 'Gezonde volwassene', description: categorieText['Gezonde volwassene'] },
   ]
 
   const detailedSchemaCards = Object.keys(schemaImages).map(path => {
     const filename = path.split('/').pop().replace('.png', '');
     const title = ysqSchemaNamesMap[filename] || filename.replace(/_/g, ' ');
-    return { src: schemaImages[path], title };
+    return { src: schemaImages[path], title, description: schemaDescriptions[title] };
   })
 
   const detailedModeCards = Object.keys(modeImages).map(path => {
     const filename = path.split('/').pop().replace('.png', '');
     const title = smiModesMap[filename] || filename;
-    return { src: modeImages[path], title, style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' } };
+    return { src: modeImages[path], title, description: schemaDescriptions[title], style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' } };
   })
 
   const renderCardList = (cards, defaultImageStyle = {}) => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyItems: 'center', justifyContent: 'center', padding: '1rem', marginBottom: '3rem' }}>
       {cards.map((card, idx) => (
         <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div className="schema-img playing-card" style={{ width: '200px', height: '240px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: '16px', boxSizing: 'border-box' }}>
-            <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-              <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
-            </div>
-            <div style={{ fontWeight: 'bold', color: '#333', textAlign: 'center', fontSize: '0.85rem', lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40px', marginTop: '4px', zIndex: 1 }}>
-              {card.title}
+          <div className="card-scene" onClick={() => handleFlip(card.title)}>
+            <div className={`card-flip-container ${flippedCards[card.title] ? 'flipped' : ''}`}>
+              
+              <div className="card-face-front schema-img playing-card" style={{ padding: '16px', boxSizing: 'border-box' }}>
+                <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                  <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
+                </div>
+                <div style={{ fontWeight: 'bold', color: '#333', textAlign: 'center', fontSize: '0.85rem', lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40px', marginTop: '4px', zIndex: 1 }}>
+                  {card.title}
+                </div>
+              </div>
+              
+              <div className="card-face-back">
+                <h4>{card.title}</h4>
+                <p>{card.description || 'Geen theorie beschikbaar.'}</p>
+                <div style={{ fontSize: '0.7rem', color: '#9ca3af', marginTop: 'auto', borderTop: '1px solid #e5e7eb', width: '100%', paddingTop: '4px' }}>Klik om terug te draaien</div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -101,11 +138,30 @@ export default function KaartenOverzicht({ onBack }) {
     </div>
   )
 
+  const FilterButton = ({ id, label }) => (
+    <button 
+      onClick={() => setFilter(id)}
+      style={{
+        padding: '8px 16px',
+        borderRadius: '20px',
+        border: filter === id ? 'none' : '1px solid var(--border-color)',
+        background: filter === id ? 'var(--primary-color)' : 'transparent',
+        color: filter === id ? 'white' : 'var(--text-main)',
+        fontWeight: filter === id ? 'bold' : 'normal',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease',
+        boxShadow: filter === id ? '0 4px 12px rgba(16, 185, 129, 0.3)' : 'none'
+      }}
+    >
+      {label}
+    </button>
+  );
+
   return (
     <div className="view-container">
       <div className="header" style={{ marginBottom: '2rem' }}>
         <h1 className="text-gradient">Kaarten Overzicht</h1>
-        <p>Alle illustraties uit de theorie op een rij</p>
+        <p>Alle illustraties uit de theorie op een rij. Klik op een kaart om de theorie te lezen!</p>
       </div>
       
       <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
@@ -114,18 +170,44 @@ export default function KaartenOverzicht({ onBack }) {
         </button>
       </div>
 
+      <div className="no-print" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px', marginBottom: '3rem' }}>
+        <FilterButton id="all" label="Toon Alles" />
+        <FilterButton id="domeinen" label="Basisbehoeften" />
+        <FilterButton id="schemas" label="Individuele Schema's" />
+        <FilterButton id="modicats" label="Modi Categorieën" />
+        <FilterButton id="modi" label="Individuele Modi" />
+      </div>
+
       <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
-        <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem' }}>Schema Domeinen (Basisbehoeften)</h2>
-        {renderCardList(schemaCards, { transform: 'scale(0.85)' })}
+        
+        {(filter === 'all' || filter === 'domeinen') && (
+          <div>
+            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem' }}>Schema Domeinen (Basisbehoeften)</h2>
+            {renderCardList(schemaCards, { transform: 'scale(0.85)' })}
+          </div>
+        )}
 
-        <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: '2rem' }}>Individuele Schema's (18)</h2>
-        {renderCardList(detailedSchemaCards)}
+        {(filter === 'all' || filter === 'schemas') && (
+          <div>
+            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '2rem' : '0' }}>Individuele Schema's (18)</h2>
+            {renderCardList(detailedSchemaCards)}
+          </div>
+        )}
 
-        <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: '2rem' }}>Modi Categorieën</h2>
-        {renderCardList(modiCards, { transform: 'scale(0.85)' })}
+        {(filter === 'all' || filter === 'modicats') && (
+          <div>
+            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '2rem' : '0' }}>Modi Categorieën</h2>
+            {renderCardList(modiCards, { transform: 'scale(0.85)' })}
+          </div>
+        )}
 
-        <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: '2rem' }}>Individuele Modi (14)</h2>
-        {renderCardList(detailedModeCards)}
+        {(filter === 'all' || filter === 'modi') && (
+          <div>
+            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '2rem' : '0' }}>Individuele Modi (14)</h2>
+            {renderCardList(detailedModeCards)}
+          </div>
+        )}
+
       </div>
     </div>
   )
