@@ -142,6 +142,13 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
         </div>
       </div>
 
+      {hasAnyResult && (
+        <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+          <button className="btn btn-gradient" onClick={handleViewResults} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.2rem', padding: '1rem 2rem' }}>
+            <ChartIcon size={24} color="white" /> Bekijk {isYsqDone && isSmiDone ? '(Gecombineerd)' : ''} Rapport
+          </button>
+        </div>
+      )}
 
       <div style={{ color: 'var(--text-muted)', padding: '2rem', background: 'var(--glass-bg, rgba(255, 255, 255, 0.05))', borderRadius: '16px', border: '1px solid var(--border-color)', textAlign: 'left', lineHeight: '1.6', fontSize: '0.95rem', maxWidth: '900px', margin: '3rem auto 2rem' }}>
         <h3 className="text-gradient" style={{ marginBottom: '1rem', fontSize: '1.2rem', textAlign: 'center' }}>Het verschil tussen de YSQ en de SMI</h3>
@@ -205,13 +212,6 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
         </div>
       </div>
 
-      {hasAnyResult && (
-        <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-          <button className="btn btn-gradient" onClick={handleViewResults} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.2rem', padding: '1rem 2rem' }}>
-            <ChartIcon size={24} color="white" /> Bekijk {isYsqDone && isSmiDone ? '(Gecombineerd)' : ''} Rapport
-          </button>
-        </div>
-      )}
 
       <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '4rem auto 2rem auto', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '0.5rem', fontWeight: 'bold' }}>
