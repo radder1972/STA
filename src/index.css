@@ -743,8 +743,7 @@ body {
   backface-visibility: hidden;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e7eb;
-  transition: box-shadow 0.6s cubic-bezier(0.4, 0.2, 0.2, 1), border-color 0.6s ease;
+  transition: box-shadow 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -792,6 +791,16 @@ body {
 .card-scene:hover .card-face-front,
 .card-scene:hover .card-face-back {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-face-front::after, .card-face-back::after {
+  content: '';
+  position: absolute;
+  top: 6px; left: 6px; right: 6px; bottom: 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 10;
 }
 
 .card-face-back {
