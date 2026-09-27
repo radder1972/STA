@@ -812,6 +812,7 @@ body {
   border: 1px solid #d1d5db;
   border-radius: 8px;
   pointer-events: none;
+  z-index: 10;
 }
 
 .card-face-back {
