@@ -101,73 +101,6 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
   return (
     <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
       
-      {/* OPTION D: Clinical Hypothesis Engine */}
-      <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-        <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <HypothesisIcon size={28} useGradient={true} /> Klinische Hypothese
-        </h2>
-        <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-          Deze analyse combineert de theorie van Schematherapie met uw specifieke scores om gepersonaliseerde hypothesen te genereren en te valideren.
-        </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          {top3Ysq.map((schema, index) => {
-            const hypothesis = schemaToModesHypothesis[schema.id];
-            if (!hypothesis) return null;
-            // Check if patient actually uses these modes
-            const usedModes = hypothesis.modes.map(mId => smiScores.find(s => s.id === mId)).filter(m => m && m.mean >= 3.0);
-            
-            const medalColors = ['#fbbf24', '#94a3b8', '#b45309'];
-            const medalColor = medalColors[index] || 'var(--primary)';
-            const medalNames = ['#1', '#2', '#3'];
-            const medalName = medalNames[index] || `#${index + 1}`;
-
-            return (
-              <div key={schema.id} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', borderLeft: `4px solid ${medalColor}`, border: '1px solid var(--border-color)', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '4px', background: medalColor }}></div>
-                <h4 style={{ color: medalColor, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span style={{ background: medalColor, color: '#fff', padding: '2px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 'bold', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{medalName}</span>
-                  Hypothese rondom schema: {schema.name}
-                </h4>
-                <p style={{ color: 'var(--text-main)', fontStyle: 'italic', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: '1.6' }}>"{hypothesis.desc}"</p>
-                
-                {/* Visual Connection Network for this specific Schema */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem', alignItems: 'center' }}>
-                   <div style={{ padding: '0.5rem 1rem', background: `rgba(${index === 0 ? '251, 191, 36' : index === 1 ? '148, 163, 184' : '180, 83, 9'}, 0.1)`, border: `1px solid ${medalColor}`, borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold', color: medalColor }}>{schema.name}</div>
-                   <ArrowRightIcon size={16} color="var(--text-muted)" />
-                   {hypothesis.modes.map(mId => {
-                     const modeData = smiScores.find(s => s.id === mId);
-                     const isActive = modeData && modeData.mean >= 3.0;
-                     return (
-                       <div key={mId} style={{ 
-                         padding: '0.5rem 1rem', 
-                         background: isActive ? 'rgba(245, 158, 11, 0.2)' : 'transparent', 
-                         border: `1px solid ${isActive ? '#f59e0b' : 'var(--border-color)'}`, 
-                         color: isActive ? 'var(--text-main)' : 'var(--text-muted)',
-                         borderRadius: '20px', fontSize: '0.85rem' 
-                       }}>
-                         {modeData ? modeData.name : mId} {isActive && '✓'}
-                       </div>
-                     );
-                   })}
-                </div>
-
-                {usedModes.length > 0 ? (
-                  <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
-                    <strong style={{ color: 'var(--text-main)' }}>✓ Bevestiging in data:</strong> 
-                    <span style={{ color: 'var(--text-muted)' }}> U scoort inderdaad ook bovengemiddeld (≥3) op de theoretisch gekoppelde coping-modi: <strong>{usedModes.map(m => m.name).join(', ')}</strong>. Dit wijst op een sterk patroon.</span>
-                  </div>
-                ) : (
-                  <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
-                    <strong style={{ color: 'var(--text-main)' }}>○ Geen sterke bevestiging:</strong> 
-                    <span style={{ color: 'var(--text-muted)' }}> U lijkt deze standaard coping-modi niet exceptioneel hoog in te zetten. U hanteert waarschijnlijk een andere overlevingsstrategie voor dit schema, of het schema is wel aanwezig maar u copt er niet actief op deze manier mee.</span>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      
       {/* OPTION A: Top 3 Visual Links */}
       <div className="glass-panel print-avoid-break" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
         <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -269,6 +202,74 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
           </ul>
         </div>
       </div>
+      
+      {/* OPTION D: Clinical Hypothesis Engine */}
+      <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
+        <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <HypothesisIcon size={28} useGradient={true} /> Klinische Hypothese
+        </h2>
+        <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
+          Deze analyse combineert de theorie van Schematherapie met uw specifieke scores om gepersonaliseerde hypothesen te genereren en te valideren.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          {top3Ysq.map((schema, index) => {
+            const hypothesis = schemaToModesHypothesis[schema.id];
+            if (!hypothesis) return null;
+            // Check if patient actually uses these modes
+            const usedModes = hypothesis.modes.map(mId => smiScores.find(s => s.id === mId)).filter(m => m && m.mean >= 3.0);
+            
+            const medalColors = ['#fbbf24', '#94a3b8', '#b45309'];
+            const medalColor = medalColors[index] || 'var(--primary)';
+            const medalNames = ['#1', '#2', '#3'];
+            const medalName = medalNames[index] || `#${index + 1}`;
+
+            return (
+              <div key={schema.id} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', borderLeft: `4px solid ${medalColor}`, border: '1px solid var(--border-color)', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '4px', background: medalColor }}></div>
+                <h4 style={{ color: medalColor, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ background: medalColor, color: '#fff', padding: '2px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 'bold', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{medalName}</span>
+                  Hypothese rondom schema: {schema.name}
+                </h4>
+                <p style={{ color: 'var(--text-main)', fontStyle: 'italic', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: '1.6' }}>"{hypothesis.desc}"</p>
+                
+                {/* Visual Connection Network for this specific Schema */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem', alignItems: 'center' }}>
+                   <div style={{ padding: '0.5rem 1rem', background: `rgba(${index === 0 ? '251, 191, 36' : index === 1 ? '148, 163, 184' : '180, 83, 9'}, 0.1)`, border: `1px solid ${medalColor}`, borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold', color: medalColor }}>{schema.name}</div>
+                   <ArrowRightIcon size={16} color="var(--text-muted)" />
+                   {hypothesis.modes.map(mId => {
+                     const modeData = smiScores.find(s => s.id === mId);
+                     const isActive = modeData && modeData.mean >= 3.0;
+                     return (
+                       <div key={mId} style={{ 
+                         padding: '0.5rem 1rem', 
+                         background: isActive ? 'rgba(245, 158, 11, 0.2)' : 'transparent', 
+                         border: `1px solid ${isActive ? '#f59e0b' : 'var(--border-color)'}`, 
+                         color: isActive ? 'var(--text-main)' : 'var(--text-muted)',
+                         borderRadius: '20px', fontSize: '0.85rem' 
+                       }}>
+                         {modeData ? modeData.name : mId} {isActive && '✓'}
+                       </div>
+                     );
+                   })}
+                </div>
+
+                {usedModes.length > 0 ? (
+                  <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+                    <strong style={{ color: 'var(--text-main)' }}>✓ Bevestiging in data:</strong> 
+                    <span style={{ color: 'var(--text-muted)' }}> U scoort inderdaad ook bovengemiddeld (≥3) op de theoretisch gekoppelde coping-modi: <strong>{usedModes.map(m => m.name).join(', ')}</strong>. Dit wijst op een sterk patroon.</span>
+                  </div>
+                ) : (
+                  <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+                    <strong style={{ color: 'var(--text-main)' }}>○ Geen sterke bevestiging:</strong> 
+                    <span style={{ color: 'var(--text-muted)' }}> U lijkt deze standaard coping-modi niet exceptioneel hoog in te zetten. U hanteert waarschijnlijk een andere overlevingsstrategie voor dit schema, of het schema is wel aanwezig maar u copt er niet actief op deze manier mee.</span>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      
       
       <AiAnalysis ysqData={ysqScores} smiData={smiScores} />
     </div>
