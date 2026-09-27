@@ -91,7 +91,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                   onClick={(e) => { e.stopPropagation(); setYsqExpanded(!ysqExpanded); }}
                   style={{ display: 'block', marginBottom: ysqExpanded ? '0.8rem' : 'auto', cursor: 'pointer' }}
                 >
-                  In deze vragenlijst volgt een aantal beweringen die men kan gebruiken om zichzelf te beschrijven.
+                  Breng je onderliggende kwetsbaarheden en patronen (schema's) in kaart. Deze vragenlijst helpt je ontdekken welke diepgewortelde overtuigingen over jezelf en de wereld bij jou een rol spelen.
                   {!ysqExpanded && <span style={{ display: 'block', marginTop: '8px', color: '#14b8a6', fontWeight: 'bold' }}>Lees meer...</span>}
                 </span>
                 
@@ -122,7 +122,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                   onClick={(e) => { e.stopPropagation(); setSmiExpanded(!smiExpanded); }}
                   style={{ display: 'block', marginBottom: smiExpanded ? '0.8rem' : 'auto', cursor: 'pointer' }}
                 >
-                  In deze vragenlijst staan uitspraken die mensen kunnen gebruiken om zichzelf te beschrijven.
+                  Breng je actuele overlevingsmechanismen en gemoedstoestanden (modi) in kaart. Deze vragenlijst laat zien op welke manier je in het dagelijks leven reageert wanneer je geraakt wordt.
                   {!smiExpanded && <span style={{ display: 'block', marginTop: '8px', color: '#14b8a6', fontWeight: 'bold' }}>Lees meer...</span>}
                 </span>
                 
