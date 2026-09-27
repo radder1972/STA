@@ -232,11 +232,23 @@ export default function KaartenOverzicht({ onBack }) {
             <div className="modal-content" onClick={e => e.stopPropagation()}>
               <button className="modal-close" onClick={() => setSelectedCard(null)}>&times;</button>
               <h2 className="text-gradient" style={{ marginBottom: '1.5rem' }}>{selectedCard.title}</h2>
-              {getVerdieping(selectedCard.title) ? (
-                <div dangerouslySetInnerHTML={{ __html: getVerdieping(selectedCard.title) }} className="verdieping-content" />
-              ) : (
-                <p>Uitgebreide praktijkvoorbeelden en tips voor deze kaart worden binnenkort toegevoegd.</p>
-              )}
+              <h4 style={{ color: 'var(--primary)', marginBottom: '1.5rem' }}>Praktijkvoorbeeld & Tips</h4>
+              
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h5 style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>Herkenbaar Praktijkvoorbeeld</h5>
+                <p style={{ lineHeight: '1.6', background: 'rgba(20, 184, 166, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)' }}>
+                  {getVerdieping(selectedCard.title).casus}
+                </p>
+              </div>
+
+              <div>
+                <h5 style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>Concrete Tips & Handvatten</h5>
+                <ul style={{ paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+                  {getVerdieping(selectedCard.title).tips.map((tip, idx) => (
+                    <li key={idx} style={{ marginBottom: '0.5rem' }}>{tip}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         )}
