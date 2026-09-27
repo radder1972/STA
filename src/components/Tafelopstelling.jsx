@@ -193,7 +193,7 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
           />
         </div>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '4rem', alignItems: 'flex-start' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '4rem', alignItems: 'stretch' }}>
           
           {/* Linkerkant: De Keten */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '250px' }}>
@@ -211,7 +211,7 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
           {/* Rechterkant: Gezonde Volwassene */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '250px', padding: '2rem', background: 'rgba(20, 184, 166, 0.05)', borderRadius: '16px', border: '1px dashed var(--primary)' }}>
             <CardSlot label="Gezonde Volwassene" card={healthyAdultCard} />
-            <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                 <div style={{ fontWeight: 'bold', color: 'var(--primary)' }}>Grenzen stellen & Zorgen</div>
                 <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline no-print" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 12px', fontSize: '0.85rem' }}>
@@ -223,10 +223,10 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
                 value={gvNotes}
                 onChange={e => setGvNotes(e.target.value)}
                 style={{ 
-                  width: '100%', minHeight: '180px', padding: '1rem', 
+                  width: '100%', flex: 1, minHeight: '180px', padding: '1rem', 
                   borderRadius: '12px', border: '1px solid var(--border-color)', 
                   background: 'var(--bg-color)', color: 'var(--text-main)', 
-                  fontFamily: 'inherit', fontSize: '0.95rem', resize: 'vertical',
+                  fontFamily: 'inherit', fontSize: '0.95rem', resize: 'none',
                   boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)'
                 }}
               />
