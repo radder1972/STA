@@ -5,6 +5,7 @@ import Questionnaire from './components/Questionnaire'
 import Results from './components/Results'
 import Basisbehoeften from './components/Basisbehoeften'
 import ModiCategorieen from './components/ModiCategorieen'
+import KaartenOverzicht from './components/KaartenOverzicht'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 
@@ -85,6 +86,7 @@ function App() {
           completedTests={completedTests} 
           onViewResults={viewResults} 
           onImport={handleImport}
+          onViewKaartenOverzicht={() => setCurrentView('kaartenoverzicht')}
         />
       )}
       {currentView === 'questionnaire' && (
@@ -111,10 +113,13 @@ function App() {
       {currentView === 'modicategorieen' && (
         <ModiCategorieen onBack={() => setCurrentView('results')} />
       )}
+      {currentView === 'kaartenoverzicht' && (
+        <KaartenOverzicht onBack={() => setCurrentView('home')} />
+      )}
 
-      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && (
+      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v1.5.49
+          v1.5.51
         </div>
       )}
     </div>

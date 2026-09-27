@@ -1,7 +1,7 @@
 {
   "name": "schema-therapy-app",
   "private": true,
-  "version": "1.5.49",
+  "version": "1.5.51",
   "type": "module",
   "scripts": {
     "dev": "vite",

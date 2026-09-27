@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon } from './Icons'
 
-export default function Home({ onStart, completedTests, onViewResults, onImport }) {
+export default function Home({ onStart, completedTests, onViewResults, onImport, onViewKaartenOverzicht }) {
   const fileInputRef = useRef(null)
   
   const isYsqDone = !!completedTests.ysq;
@@ -147,15 +147,24 @@ export default function Home({ onStart, completedTests, onViewResults, onImport 
         <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
           Wilt u meer achtergrondinformatie over de theorie achter schema's en modi, of zoekt u een geregistreerde behandelaar? Bezoek dan de officiële website van de <strong>Nederlandse Vereniging voor Schematherapie</strong>.
         </p>
-        <a 
-          href="https://www.schematherapie.nl/home" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="btn btn-outline"
-          style={{ marginTop: '1rem', textDecoration: 'none' }}
-        >
-          Naar schematherapie.nl
-        </a>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
+          <button 
+            onClick={onViewKaartenOverzicht}
+            className="btn btn-outline"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg> Bekijk alle theoriekaarten
+          </button>
+          <a 
+            href="https://www.schematherapie.nl/home" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="btn btn-outline"
+            style={{ textDecoration: 'none' }}
+          >
+            Naar schematherapie.nl
+          </a>
+        </div>
       </div>
 
       <div style={{ marginTop: '2rem', textAlign: 'center', color: 'var(--text-muted)', maxWidth: '600px', margin: '2rem auto 1rem', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
