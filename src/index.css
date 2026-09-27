@@ -110,10 +110,16 @@ body {
 
 .btn-card:hover {
   background: white;
-  color: var(--primary);
   border-color: var(--primary);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);
+}
+
+.btn-card:hover .btn-text {
+  background: linear-gradient(to right, #3b82f6, #14b8a6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .btn:disabled {

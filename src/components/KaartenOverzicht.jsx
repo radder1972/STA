@@ -143,7 +143,7 @@ export default function KaartenOverzicht({ onBack }) {
                   onClick={(e) => { e.stopPropagation(); e.preventDefault(); setSelectedCard(card); }}
                   style={{ fontSize: '0.75rem', padding: '6px 12px', alignSelf: 'center', width: '100%', zIndex: 20, position: 'relative', flexShrink: 0 }}
                 >
-                  Praktijkvoorbeeld & Tips
+                  <span className="btn-text">Praktijkvoorbeeld & Tips</span>
                 </button>
               </div>
 
