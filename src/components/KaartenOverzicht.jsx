@@ -58,9 +58,9 @@ export default function KaartenOverzicht({ onBack }) {
   const schemaCards = [
     { src: imgB1, title: '1. Veilige hechting' },
     { src: imgB2, title: '2. Autonomie' },
-    { src: imgB3, title: '3. Realistische grenzen' },
-    { src: imgB4, title: '4. Vrije expressie' },
-    { src: imgB5, title: '5. Spontaniteit en spel' },
+    { src: imgB3, title: '3. Vrije expressie' },
+    { src: imgB4, title: '4. Spontaniteit en spel' },
+    { src: imgB5, title: '5. Realistische grenzen' },
   ]
 
   const modiCards = [
