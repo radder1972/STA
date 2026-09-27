@@ -128,7 +128,7 @@ export default function Results({ completedTests, onRestart, onBack, onUpdateAns
           </div>
         )}
         
-        <div className={activeTab === 'tafelopstelling' ? 'print-visible' : 'print-none'} style={{ display: activeTab === 'tafelopstelling' ? 'block' : 'none', pageBreakBefore: 'always', marginTop: activeTab === 'tafelopstelling' ? '0' : '4rem'}}>
+        <div className={`tafelopstelling-wrapper ${activeTab === 'tafelopstelling' ? 'print-visible' : 'print-none'}`} style={{ display: activeTab === 'tafelopstelling' ? 'block' : 'none', pageBreakBefore: 'always', marginTop: activeTab === 'tafelopstelling' ? '0' : '4rem'}}>
           <Tafelopstelling onBack={onBack} completedTests={completedTests} embedded={true} />
         </div>
       </div>

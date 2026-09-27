@@ -321,6 +321,23 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
     setShowCardPicker(null);
   };
 
+  const handlePrintTafel = () => {
+    document.body.classList.add('printing-tafel');
+    
+    const afterPrint = () => {
+      document.body.classList.remove('printing-tafel');
+      window.removeEventListener('afterprint', afterPrint);
+    };
+    window.addEventListener('afterprint', afterPrint);
+    
+    window.print();
+    
+    setTimeout(() => {
+      document.body.classList.remove('printing-tafel');
+      window.removeEventListener('afterprint', afterPrint);
+    }, 1000);
+  };
+
   const clearTable = () => {
     if (window.confirm('Weet je zeker dat je de tafel wilt leegmaken?')) {
       setSituationText('');
@@ -345,7 +362,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <ArrowLeftIcon size={18} /> Terug naar Start
             </button>
-            <button className="btn btn-outline" onClick={() => window.print()} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <button className="btn btn-outline" onClick={handlePrintTafel} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               PDF / Printen
             </button>
             <button className="btn btn-outline" onClick={clearTable} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -360,7 +377,10 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <p style={{ color: 'var(--text-muted)', maxWidth: '700px', margin: '0 auto 1.5rem auto', lineHeight: '1.6' }}>
             De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen. Sleep jouw schema's, modi en basisbehoeften op tafel om inzicht te krijgen in wat er op dat moment gebeurt.
           </p>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+            <button className="btn btn-outline" onClick={handlePrintTafel} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              PDF / Printen
+            </button>
             <button className="btn btn-outline" onClick={clearTable} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               Tafel Leegmaken
             </button>
