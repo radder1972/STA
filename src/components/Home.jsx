@@ -152,16 +152,16 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
 
       <div style={{ color: 'var(--text-muted)', padding: '2rem', background: 'var(--glass-bg, rgba(255, 255, 255, 0.05))', borderRadius: '16px', border: '1px solid var(--border-color)', textAlign: 'left', lineHeight: '1.6', fontSize: '0.95rem', maxWidth: '900px', margin: hasAnyResult ? '0 auto 2rem' : '3rem auto 2rem' }}>
         <h3 className="text-gradient" style={{ marginBottom: '1rem', fontSize: '1.2rem', textAlign: 'center' }}>Het verschil tussen de YSQ en de SMI</h3>
-        <p style={{ marginBottom: theoryExpanded ? '1.5rem' : '0', textAlign: 'center', maxWidth: '750px', margin: '0 auto' }}>
+        <p style={{ marginBottom: '1rem', textAlign: 'center', maxWidth: '750px', margin: '0 auto 1rem auto' }}>
           Het belangrijkste verschil tussen de YSQ en de SMI zit in de diepte en de tijdelijkheid van wat ze meten.
+        </p>
+        <p style={{ marginBottom: theoryExpanded ? '2rem' : '0', textAlign: 'center', maxWidth: '750px', margin: '0 auto' }}>
+          De YSQ meet je chronische kwetsbaarheden (de littekens), terwijl de SMI meet hoe je op dit moment reageert als die kwetsbaarheden worden geraakt (de overlevingsmechanismen).
           {!theoryExpanded && <span onClick={() => setTheoryExpanded(true)} style={{ display: 'block', marginTop: '8px', color: '#14b8a6', cursor: 'pointer', fontWeight: 'bold' }}>Lees meer...</span>}
         </p>
         
         {theoryExpanded && (
           <>
-            <p style={{ marginBottom: '1.5rem', textAlign: 'center', maxWidth: '750px', margin: '0 auto 2rem' }}>
-              De YSQ meet je chronische kwetsbaarheden (de littekens), terwijl de SMI meet hoe je op dit moment reageert als die kwetsbaarheden worden geraakt (de overlevingsmechanismen).
-            </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
               <div style={{ padding: '1.5rem', background: 'rgba(20, 184, 166, 0.05)', borderRadius: '12px', border: '1px solid rgba(20, 184, 166, 0.1)' }}>
