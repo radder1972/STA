@@ -368,15 +368,15 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             />
             
             <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem', background: 'var(--bg-color)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)', width: '100%', boxSizing: 'border-box' }}>
-              <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '0.5rem', textAlign: 'center', maxWidth: '600px' }}>
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: '0.8rem', textAlign: 'center', maxWidth: '650px', lineHeight: '1.5' }}>
                 Laat de AI de kaarten voor je op tafel leggen op basis van de situatie. Als je de vragenlijsten hebt ingevuld, gebruikt de AI jouw persoonlijke profiel voor een veel accuratere voorspelling.
               </p>
               
-              <div style={{ fontSize: '1rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'center' }}>
                 {(completedTests?.ysq && completedTests?.smi) ? (
-                  <span style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '4px' }}><CheckIcon size={16} useGradient={true} /> Vragenlijsten ingevuld (Persoonlijke voorspelling)</span>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><CheckIcon size={16} useGradient={true} /> Vragenlijsten ingevuld (Persoonlijke voorspelling)</span>
                 ) : (
-                  <span style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <AlertTriangleIcon size={16} useGradient={true} /> Vragenlijsten niet ingevuld (Algemene voorspelling) - 
                     <span onClick={onBack} className="text-gradient" style={{ cursor: 'pointer', fontWeight: 'bold' }}>Nu invullen</span>
                   </span>
