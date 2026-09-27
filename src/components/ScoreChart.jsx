@@ -18,7 +18,7 @@ import {
 } from 'recharts';
 import { ChartIcon } from './Icons';
 
-export default function ScoreChart({ scores, type }) {
+export default function ScoreChart({ scores, type, onViewBasisbehoeften }) {
   // Calculate Domain Averages
   const domainAverages = React.useMemo(() => {
     const groups = {};
@@ -372,6 +372,18 @@ export default function ScoreChart({ scores, type }) {
               </BarChart>
             </div>
           </div>
+          
+          {type === 'ysq' && onViewBasisbehoeften && (
+            <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+              <button 
+                onClick={onViewBasisbehoeften}
+                className="btn btn-outline"
+                style={{ padding: '10px 20px', fontSize: '1rem' }}
+              >
+                Meer over de 5 emotionele basisbehoeften
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -3,6 +3,7 @@ import { SunIcon, MoonIcon } from './components/Icons'
 import Home from './components/Home'
 import Questionnaire from './components/Questionnaire'
 import Results from './components/Results'
+import Basisbehoeften from './components/Basisbehoeften'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 
@@ -98,13 +99,17 @@ function App() {
           completedTests={completedTests}
           onRestart={handleRestart}
           onBack={() => setCurrentView('home')}
+          onViewBasisbehoeften={() => setCurrentView('basisbehoeften')}
           onUpdateAnswer={handleUpdateAnswer}
         />
       )}
+      {currentView === 'basisbehoeften' && (
+        <Basisbehoeften onBack={() => setCurrentView('results')} />
+      )}
 
-      {currentView !== 'questionnaire' && (
+      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v1.5.35
+          v1.5.36
         </div>
       )}
     </div>

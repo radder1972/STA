@@ -70,7 +70,7 @@ const smiModesMap = {
   'gv': { name: 'Gezonde volwassene', group: 'FUNCTIONELE MODI' }
 };
 
-export default function SingleResult({ type, answers, onUpdateAnswer }) {
+export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasisbehoeften }) {
   const scoringData = type === 'ysq' ? ysqScoring : smiScoring;
   const title = type === 'ysq' ? 'YSQ S3' : 'SMI'
   
@@ -230,7 +230,7 @@ export default function SingleResult({ type, answers, onUpdateAnswer }) {
           <ScoreChart type={type} scores={calculatedScores.map(score => ({
             ...score,
             category: type === 'smi' ? smiModesMap[score.id]?.group : basisbehoeftenMap[score.id]
-          }))} />
+          }))} onViewBasisbehoeften={onViewBasisbehoeften} />
         </div>
 
         <div className="details-section" style={{ marginTop: '2rem', marginBottom: '2rem' }}>
