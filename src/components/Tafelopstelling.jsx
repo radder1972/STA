@@ -185,24 +185,24 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
         </button>
       </div>
 
-      <div className="glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '900px', margin: '0 auto', background: 'var(--card-bg)' }}>
-        
-        <div style={{ marginBottom: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <h3 className="text-gradient" style={{ marginBottom: '1rem' }}>Wat was de situatie / trigger?</h3>
-          <textarea 
-            placeholder="Beschrijf hier kort de situatie (bijv. 'Tijdens een overleg werd mijn idee genegeerd...')" 
-            value={situationText}
-            onChange={e => setSituationText(e.target.value)}
-            style={{ 
-              width: '100%', maxWidth: '600px', minHeight: '80px', padding: '1rem', 
-              borderRadius: '12px', border: '1px solid var(--border-color)', 
-              background: 'rgba(0,0,0,0.02)', color: 'var(--text-main)', 
-              fontFamily: 'inherit', fontSize: '1rem', resize: 'vertical' 
-            }}
-          />
-        </div>
+      <div className="glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '0 auto', background: 'var(--card-bg)' }}>
+        <div style={{ maxWidth: '850px', margin: '0 auto' }}>
+          <div style={{ marginBottom: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h3 className="text-gradient" style={{ marginBottom: '1rem' }}>Wat was de situatie / trigger?</h3>
+            <textarea 
+              placeholder="Beschrijf hier kort de situatie (bijv. 'Tijdens een overleg werd mijn idee genegeerd...')" 
+              value={situationText}
+              onChange={e => setSituationText(e.target.value)}
+              style={{ 
+                width: '100%', minHeight: '80px', padding: '1rem', 
+                borderRadius: '12px', border: '1px solid var(--border-color)', 
+                background: 'rgba(0,0,0,0.02)', color: 'var(--text-main)', 
+                fontFamily: 'inherit', fontSize: '1rem', resize: 'vertical' 
+              }}
+            />
+          </div>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '4rem', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '3rem', alignItems: 'stretch' }}>
           
           {/* Linkerkant: De Keten */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '250px' }}>
@@ -243,6 +243,7 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
             </div>
           </div>
 
+          </div>
         </div>
       </div>
 
