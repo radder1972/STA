@@ -451,9 +451,8 @@ body {
   }
   
   .playing-card img, .schema-img img {
-    /* If mix-blend-mode fails in PDF export, this filter forces near-white to pure white while keeping blacks dark */
-    filter: contrast(1.5) brightness(1.1) grayscale(1) !important;
-    mix-blend-mode: multiply !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
     background: transparent !important;
   }
 
