@@ -49,11 +49,11 @@ const smiModesMap = {
 };
 
 const needCards = [
-  { src: imgB1, title: '1. Veilige hechting', type: 'need' },
-  { src: imgB2, title: '2. Autonomie', type: 'need' },
-  { src: imgB3, title: '3. Vrije expressie', type: 'need' },
-  { src: imgB4, title: '4. Spontaniteit en spel', type: 'need' },
-  { src: imgB5, title: '5. Realistische grenzen', type: 'need' },
+  { src: imgB1, title: 'Veilige hechting', type: 'need' },
+  { src: imgB2, title: 'Autonomie', type: 'need' },
+  { src: imgB3, title: 'Vrije expressie', type: 'need' },
+  { src: imgB4, title: 'Spontaniteit en spel', type: 'need' },
+  { src: imgB5, title: 'Realistische grenzen', type: 'need' },
 ];
 
 const schemaCards = Object.keys(schemaImages).map(path => {
