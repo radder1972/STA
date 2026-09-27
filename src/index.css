@@ -102,6 +102,18 @@ body {
   transform: translateY(-2px);
 }
 
+.btn-card {
+  background: transparent;
+  border: 1px solid #d1d5db;
+  color: #1f2937;
+}
+
+.btn-card:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;

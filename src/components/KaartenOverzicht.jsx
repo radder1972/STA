@@ -137,7 +137,7 @@ export default function KaartenOverzicht({ onBack }) {
                   <p style={{ fontSize: '0.75rem', lineHeight: '1.4' }}>{card.description || 'Geen theorie beschikbaar.'}</p>
                 </div>
                 <button 
-                  className="btn btn-outline" 
+                  className="btn btn-card" 
                   onClick={(e) => { e.stopPropagation(); e.preventDefault(); setSelectedCard(card); }}
                   style={{ fontSize: '0.75rem', padding: '6px 12px', alignSelf: 'center', width: '100%', zIndex: 20, position: 'relative', flexShrink: 0 }}
                 >
