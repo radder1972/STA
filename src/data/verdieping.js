@@ -257,6 +257,90 @@ export const verdiepingData = {
       "Oefen regelmatig met de vraag: 'Wat zou mijn Gezonde Volwassene nu doen of zeggen?'",
       "Versterk deze modus door successen, kalme momenten en compassievolle beslissingen bewust te vieren."
     ]
+  },
+
+  // BASISBEHOEFTEN (5)
+  '1. Veilige hechting': {
+    casus: "Zodra Tim's vrienden zonder hem afspreken, raakt hij in paniek. Vroeger was er thuis veel onvoorspelbaarheid, waardoor zijn basisbehoefte aan veiligheid en hechting niet vervuld is. Nu zoekt hij die absolute zekerheid krampachtig in al zijn relaties.",
+    tips: [
+      "Erken dat je sterke reactie voortkomt uit een oude, onvervulde basisbehoefte en niet per se uit de huidige situatie.",
+      "Oefen met het geven van vertrouwen in kleine stapjes, aan mensen die hebben laten zien dat ze betrouwbaar zijn.",
+      "Probeer in het hier-en-nu je eigen veilige basis te zijn door kalmerende gedachten tegen jezelf uit te spreken."
+    ]
+  },
+  '2. Autonomie': {
+    casus: "Maaike vindt het verschrikkelijk om zelf keuzes te maken, van wat ze eet tot welke baan ze neemt. Ze is nooit aangemoedigd om zelfstandig te zijn en leunt daarom voor elke beslissing zwaar op haar partner.",
+    tips: [
+      "Begin met het zelfstandig nemen van hele kleine, onbelangrijke beslissingen in het dagelijks leven.",
+      "Sta jezelf toe om fouten te maken; dat is de enige manier om te leren vertrouwen op je eigen oordeel.",
+      "Vraag jezelf regelmatig: 'Wat vind ik hier zélf eigenlijk van?' voordat je de mening van een ander peilt."
+    ]
+  },
+  '3. Vrije expressie': {
+    casus: "Op het werk is Jeroen het vaak oneens met de koers van het team, maar hij slikt zijn mening altijd in. Thuis leerde hij dat zijn mening er niet toe deed. Hij raakt hierdoor gefrustreerd en burn-out.",
+    tips: [
+      "Realiseer je dat jouw behoeften en gevoelens evenveel waarde hebben als die van ieder ander.",
+      "Oefen in veilige situaties met het uiten van lichte irritatie of een afwijkende mening ('Ik zie dat toch net even anders').",
+      "Merk op wat er in je lichaam gebeurt als je je inhoudt, en gebruik dat als signaal om toch ruimte in te nemen."
+    ]
+  },
+  '4. Spontaniteit en spel': {
+    casus: "Saskia's agenda staat ramvol met 'moetjes'. Zelfs in het weekend plant ze het huishouden strak in. Ze is vergeten hoe ze moet ontspannen of gewoon 'leuk' kan doen zonder dat het nuttig is.",
+    tips: [
+      "Plan wekelijks bewust een uur in voor iets dat uitsluitend leuk of ontspannend is, zonder enig doel.",
+      "Oefen met het loslaten van de drang dat alles efficiënt of perfect moet zijn.",
+      "Sta jezelf toe om af en toe 'kinderlijk' onbezorgd te zijn en te lachen om kleine dingen."
+    ]
+  },
+  '5. Realistische grenzen': {
+    casus: "Als Thomas moet wachten in de rij bij de supermarkt, wordt hij extreem driftig. Hij is gewend geraakt dat alles altijd om hem draait, waardoor hij niet geleerd heeft om te gaan met normale grenzen of frustraties.",
+    tips: [
+      "Erken dat regels en grenzen er zijn voor iedereen, inclusief jezelf, om samenleven mogelijk te maken.",
+      "Probeer bewust de empathie voor anderen te vergroten; zij hebben ook haast of belangrijke afspraken.",
+      "Oefen met het verdragen van de frustratie zonder direct uit te vallen of je privileges op te eisen."
+    ]
+  },
+
+  // MODI CATEGORIEËN (5)
+  'Kindmodi': {
+    casus: "Wanneer je in een Kindmodus schiet, ben je even niet meer de volwassene van nu, maar voel je de intense emoties (angst, eenzaamheid of blinde woede) van vroeger. Het rationele denken staat uit.",
+    tips: [
+      "Leer de signalen in je lichaam herkennen wanneer een Kindmodus het stuur overneemt.",
+      "Roep je Gezonde Volwassene erbij om dit kind te troosten, gerust te stellen of grenzen te geven.",
+      "Neem een 'time-out' voordat je vanuit een Kindmodus reageert of belangrijke beslissingen neemt."
+    ]
+  },
+  'Oudermodi': {
+    casus: "De Oudermodus is als een strenge, straffende of extreem veeleisende stem in je hoofd die continu commentaar levert op alles wat je doet, waardoor je je klein of waardeloos voelt.",
+    tips: [
+      "Herken deze stem als de 'geïnternaliseerde criticus' en níét als de feitelijke waarheid.",
+      "Ga het debat aan met deze stem: is dit echt fair of behulpzaam?",
+      "Oefen om jezelf toe te spreken met dezelfde compassie die je voor een goede vriend(in) zou hebben."
+    ]
+  },
+  'Coping: Overgave': {
+    casus: "Bij overgave geloof je heilig dat het oude schema waar is en gedraag je je ernaar. Als je gelooft dat je waardeloos bent, kies je onbewust partners die je ook zo behandelen, waardoor het schema bevestigd wordt.",
+    tips: [
+      "Onderzoek in welke situaties je het schema zomaar voor 'waar' aanneemt en je ernaar schikt.",
+      "Realiseer je dat deze passieve houding het schema in stand houdt.",
+      "Probeer kleine stappen te zetten om de regie terug te pakken, in plaats van de situatie lijdzaam te ondergaan."
+    ]
+  },
+  'Coping: Vermijding': {
+    casus: "Om de pijn van een schema niet te hoeven voelen, ga je situaties uit de weg (zoals relaties of uitdagingen) of verdoof je jezelf met werk, alcohol, eten of eindeloos scrollen op je telefoon.",
+    tips: [
+      "Sta stil bij de momenten waarop je de neiging hebt om te vluchten of te verdoven.",
+      "Oefen met 'surfen op de emotie': probeer het ongemakkelijke gevoel even toe te laten zonder direct weg te rennen.",
+      "Bedenk wat je op de lange termijn misloopt door de korte termijn vermijding (bijv. echte verbinding)."
+    ]
+  },
+  'Coping: Overcompensatie': {
+    casus: "Bij overcompensatie vecht je hard tegen het schema door precies het tegenovergestelde te doen. Als je je diep van binnen minderwaardig voelt, gedraag je je uiterst arrogant en perfect om dat te maskeren.",
+    tips: [
+      "Kijk eerlijk naar het gedrag dat overdreven of extreem voelt; welke onderliggende angst probeer je hiermee te verbergen?",
+      "Besef dat overcompensatie vaak leidt tot conflicten en anderen afstoot, wat uiteindelijk ook pijn doet.",
+      "Oefen met het tonen van kleine beetjes kwetsbaarheid; de wereld stort niet in als je niet perfect bent."
+    ]
   }
 };
 
