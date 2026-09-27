@@ -96,7 +96,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                 </span>
                 
                 {ysqExpanded && (
-                  <div onClick={(e) => e.stopPropagation()} style={{ cursor: 'default' }}>
+                  <div onClick={(e) => e.stopPropagation()} style={{ cursor: 'default', display: 'flex', flexDirection: 'column', flex: 1 }}>
                     <span style={{ display: 'block', marginBottom: '0.8rem' }}>Lees elke bewering en kijk hoe goed deze u, in het afgelopen jaar, beschrijft. Als u niet zeker bent van uw antwoord, baseer uw antwoord dan op wat u emotioneel voelt en niet op wat u denkt dat waar is.</span>
                     <span style={{ display: 'block', marginBottom: '0.8rem' }}>Een aantal beweringen gaat over uw relaties met uw ouders of partner. Als één of meerdere van deze personen inmiddels overleden zijn, baseer dan uw antwoord op hoe uw relatie was toen zij nog leefden. Als u momenteel geen partner heeft, maar wel partners in het verleden hebt gehad, baseer dan uw antwoord op uw meest recente betekenisvolle partner.</span>
                     <span style={{ display: 'block', marginBottom: '1.5rem' }}>Kies vervolgens het antwoord uit de opties 1-6 dat op u van toepassing is.</span>
@@ -127,7 +127,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                 </span>
                 
                 {smiExpanded && (
-                  <div onClick={(e) => e.stopPropagation()} style={{ cursor: 'default' }}>
+                  <div onClick={(e) => e.stopPropagation()} style={{ cursor: 'default', display: 'flex', flexDirection: 'column', flex: 1 }}>
                     <span style={{ display: 'block', marginBottom: '0.8rem' }}>We willen u vragen van deze uitspraken de FREQUENTIE te beoordelen; dus hoe vaak u over het algemeen van de uitspraak overtuigd bent of hoe vaak het zo voelde.</span>
                     <span style={{ display: 'block', marginBottom: '1.5rem' }}>Kies vervolgens het antwoord uit de opties 1-6 dat op u van toepassing is.</span>
                     <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: 'auto' }}>
