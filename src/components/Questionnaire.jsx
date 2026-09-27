@@ -145,7 +145,7 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
           </span>
           <span style={{color: 'var(--text-muted)'}}>Vraag {currentIndex + 1} van {total}</span>
         </div>        
-        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center', paddingRight: '50px' }}>
           <input 
             type="file" 
             accept=".json" 
@@ -153,7 +153,7 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
             ref={fileInputRef} 
             onChange={handleResumeFile} 
           />
-          <button className="btn btn-outline" onClick={() => fileInputRef.current && fileInputRef.current.click()} style={{ fontSize: '0.8rem', padding: '8px 12px', border: '1px dashed var(--primary)' }}>
+          <button className="btn btn-outline" onClick={() => fileInputRef.current && fileInputRef.current.click()} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
             Hervatten
           </button>
           <button className="btn btn-outline" onClick={handleSaveFile} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
