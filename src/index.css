@@ -689,17 +689,7 @@ body {
   position: relative;
 }
 
-.schema-img::after {
-  content: "";
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  right: 6px;
-  bottom: 6px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  pointer-events: none;
-}
+
 
 [data-theme="dark"] .schema-img {
   /* Keep background white and lines black, just dim it slightly for dark mode if desired, or keep as is */
@@ -783,9 +773,10 @@ body {
   content: '';
   position: absolute;
   top: 6px; left: 6px; right: 6px; bottom: 6px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: 1px solid #cbd5e1; /* Solid kleur! Geen rgba ivm achtergrondverschil */
+  border-radius: 10px; /* Perfecte optische afronding */
   pointer-events: none;
+  z-index: 10;
 }
 
 .card-face-back {
