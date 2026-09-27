@@ -56,16 +56,68 @@ const needCards = [
   { src: imgB5, title: 'Realistische grenzen', type: 'need' },
 ];
 
+const schemaSortOrder = [
+  'Verlating / Instabiliteit',
+  'Wantrouwen / Misbruik',
+  'Emotioneel tekort',
+  'Tekortschieten / Schaamte',
+  'Sociale isolatie / Vervreemding',
+  'Afhankelijkheid / Incompetentie',
+  'Kwetsbaarheid voor ziekte en gevaar',
+  'Kluwen / Onderontwikkeld zelf',
+  'Mislukken',
+  'Onderwerping',
+  'Zelfopoffering',
+  'Goedkeuring / Erkenning zoeken',
+  'Onvoldoende zelfcontrole',
+  'Veeleisendheid / Grandiositeit',
+  'Emotionele geremdheid',
+  'Meedogenloze normen',
+  'Negativisme / Pessimisme',
+  'Bestraffendheid'
+];
+
 const schemaCards = Object.keys(schemaImages).map(path => {
   const filename = path.split('/').pop().replace('.png', '');
   const title = ysqSchemaNamesMap[filename] || filename.replace(/_/g, ' ');
   return { src: schemaImages[path], title, type: 'schema', style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' } };
+}).sort((a, b) => {
+  const indexA = schemaSortOrder.indexOf(a.title);
+  const indexB = schemaSortOrder.indexOf(b.title);
+  if (indexA === -1 && indexB === -1) return a.title.localeCompare(b.title);
+  if (indexA === -1) return 1;
+  if (indexB === -1) return -1;
+  return indexA - indexB;
 });
+
+const modeSortOrder = [
+  'Kwetsbare kind',
+  'Boze kind',
+  'Razende kind',
+  'Impulsieve kind',
+  'Ongedisciplineerde kind',
+  'Straffende ouder',
+  'Veeleisende ouder',
+  'Willoze inschikkelijke',
+  'Onthechte beschermer',
+  'Onthechte zelfsusser',
+  'Wantrouwende overcontroleerder',
+  'Zelfverheerlijker',
+  'Pest en aanval',
+  'Gezonde volwassene'
+];
 
 const modeCards = Object.keys(modeImages).map(path => {
   const filename = path.split('/').pop().replace('.png', '');
   const title = smiModesMap[filename] || filename;
   return { src: modeImages[path], title, type: 'mode', style: { transform: 'scale(1.1)' } };
+}).sort((a, b) => {
+  const indexA = modeSortOrder.indexOf(a.title);
+  const indexB = modeSortOrder.indexOf(b.title);
+  if (indexA === -1 && indexB === -1) return a.title.localeCompare(b.title);
+  if (indexA === -1) return 1;
+  if (indexB === -1) return -1;
+  return indexA - indexB;
 });
 
 const healthyAdultCard = { src: imgM4, title: 'Gezonde volwassene', type: 'mode', style: { transform: 'scale(1.1)' } };
