@@ -14,6 +14,46 @@ import imgM3b from '../assets/images/modicategorieen/coping_vermijding.png'
 import imgM3c from '../assets/images/modicategorieen/coping_overcompensatie.png'
 import imgM4 from '../assets/images/modicategorieen/4.png'
 
+import { schemaImages, modeImages } from '../utils/images'
+
+const ysqSchemaNamesMap = {
+  'Abandonment': 'Verlating / Instabiliteit',
+  'Mistrust': 'Wantrouwen / Misbruik',
+  'Defectiveness_unlovability': 'Tekortschieten / Schaamte',
+  'Emotional deprivation': 'Emotioneel tekort',
+  'Social isolation_Alienation': 'Sociale isolatie / Vervreemding',
+  'Practical incompetence_Dependence': 'Afhankelijkheid / Incompetentie',
+  'Vulnerability to harm_illness': 'Kwetsbaarheid voor ziekte en gevaar',
+  'Enmeshment': 'Kluwen / Onderontwikkeld zelf',
+  'Failure to achieve': 'Mislukken',
+  'Insufficient self-control_self-discipline': 'Onvoldoende zelfcontrole',
+  'Entitlement_Superiority': 'Veeleisendheid / Grandiositeit',
+  'Subjugation': 'Onderwerping',
+  'Self-sacrifice': 'Zelfopoffering',
+  'Admiration_Recognition-seeking': 'Goedkeuring / Erkenning zoeken',
+  'Pessimism_Worry': 'Negativisme / Pessimisme',
+  'Emotional inhibition': 'Emotionele geremdheid',
+  'Unrelenting Standards': 'Meedogenloze normen',
+  'Self-punitiveness': 'Bestraffendheid'
+};
+
+const smiModesMap = {
+  'kk': 'Kwetsbare kind',
+  'rk': 'Razende kind',
+  'ik': 'Impulsieve kind',
+  'ok': 'Ongedisciplineerde kind',
+  'bk': 'Boze kind',
+  'wi': 'Willoze inschikkelijke',
+  'ob': 'Onthechte beschermer',
+  'oz': 'Onthechte zelfsusser',
+  'wk': 'Wantrouwende overcontroleerder',
+  'zh': 'Zelfverheerlijker',
+  'pa': 'Pest en aanval',
+  'so': 'Straffende ouder',
+  'vo': 'Veeleisende ouder',
+  'gv': 'Gezonde volwassene'
+};
+
 export default function KaartenOverzicht({ onBack }) {
   const schemaCards = [
     { src: imgB1, title: '1. Veilige hechting' },
@@ -31,6 +71,18 @@ export default function KaartenOverzicht({ onBack }) {
     { src: imgM3c, title: 'Coping: Overcompensatie' },
     { src: imgM4, title: 'Gezonde volwassene' },
   ]
+
+  const detailedSchemaCards = Object.keys(schemaImages).map(path => {
+    const filename = path.split('/').pop().replace('.png', '');
+    const title = ysqSchemaNamesMap[filename] || filename.replace(/_/g, ' ');
+    return { src: schemaImages[path], title };
+  })
+
+  const detailedModeCards = Object.keys(modeImages).map(path => {
+    const filename = path.split('/').pop().replace('.png', '');
+    const title = smiModesMap[filename] || filename;
+    return { src: modeImages[path], title, style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' } };
+  })
 
   const renderCardList = (cards) => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyItems: 'center', justifyContent: 'center', padding: '1rem', marginBottom: '3rem' }}>
@@ -64,8 +116,14 @@ export default function KaartenOverzicht({ onBack }) {
         <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem' }}>Schema Domeinen (Basisbehoeften)</h2>
         {renderCardList(schemaCards)}
 
+        <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: '2rem' }}>Individuele Schema's (18)</h2>
+        {renderCardList(detailedSchemaCards)}
+
         <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: '2rem' }}>Modi Categorieën</h2>
         {renderCardList(modiCards)}
+
+        <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: '2rem' }}>Individuele Modi (14)</h2>
+        {renderCardList(detailedModeCards)}
       </div>
     </div>
   )
