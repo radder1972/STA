@@ -56,26 +56,15 @@ const needCards = [
   { src: imgB5, title: 'Realistische grenzen', type: 'need' },
 ];
 
-const schemaSortOrder = [
-  'Verlating / Instabiliteit',
-  'Wantrouwen / Misbruik',
-  'Emotioneel tekort',
-  'Tekortschieten / Schaamte',
-  'Sociale isolatie / Vervreemding',
-  'Afhankelijkheid / Incompetentie',
-  'Kwetsbaarheid voor ziekte en gevaar',
-  'Kluwen / Onderontwikkeld zelf',
-  'Mislukken',
-  'Onderwerping',
-  'Zelfopoffering',
-  'Goedkeuring / Erkenning zoeken',
-  'Onvoldoende zelfcontrole',
-  'Veeleisendheid / Grandiositeit',
-  'Emotionele geremdheid',
-  'Meedogenloze normen',
-  'Negativisme / Pessimisme',
-  'Bestraffendheid'
+const schemaGroups = [
+  { group: 'I. Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotioneel tekort', 'Tekortschieten / Schaamte', 'Sociale isolatie / Vervreemding'] },
+  { group: 'II. Verzwakte Autonomie', titles: ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'] },
+  { group: 'III. Verzwakte Grenzen', titles: ['Onvoldoende zelfcontrole', 'Veeleisendheid / Grandiositeit'] },
+  { group: 'IV. Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'] },
+  { group: 'V. Overmatige Waakzaamheid', titles: ['Emotionele geremdheid', 'Meedogenloze normen', 'Negativisme / Pessimisme', 'Bestraffendheid'] }
 ];
+
+const schemaSortOrder = schemaGroups.flatMap(g => g.titles);
 
 const schemaCards = Object.keys(schemaImages).map(path => {
   const filename = path.split('/').pop().replace('.png', '');
@@ -90,22 +79,16 @@ const schemaCards = Object.keys(schemaImages).map(path => {
   return indexA - indexB;
 });
 
-const modeSortOrder = [
-  'Kwetsbare kind',
-  'Boze kind',
-  'Razende kind',
-  'Impulsieve kind',
-  'Ongedisciplineerde kind',
-  'Straffende ouder',
-  'Veeleisende ouder',
-  'Willoze inschikkelijke',
-  'Onthechte beschermer',
-  'Onthechte zelfsusser',
-  'Wantrouwende overcontroleerder',
-  'Zelfverheerlijker',
-  'Pest en aanval',
-  'Gezonde volwassene'
+const modeGroups = [
+  { group: 'Kindmodi', titles: ['Kwetsbare kind', 'Boze kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind'] },
+  { group: 'Coping: Overgave', titles: ['Willoze inschikkelijke'] },
+  { group: 'Coping: Vermijding', titles: ['Onthechte beschermer', 'Onthechte zelfsusser'] },
+  { group: 'Coping: Overcompensatie', titles: ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval'] },
+  { group: 'Oudermodi', titles: ['Straffende ouder', 'Veeleisende ouder'] },
+  { group: 'Gezonde Volwassene', titles: ['Gezonde volwassene'] }
 ];
+
+const modeSortOrder = modeGroups.flatMap(g => g.titles);
 
 const modeCards = Object.keys(modeImages).map(path => {
   const filename = path.split('/').pop().replace('.png', '');
@@ -306,15 +289,41 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
             <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '2rem' }}>
               {showCardPicker === 'mode' ? 'Kies een Modus' : showCardPicker === 'schema' ? 'Kies een Schema' : 'Kies een Basisbehoefte'}
             </h2>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
-              {(showCardPicker === 'mode' ? modeCards : showCardPicker === 'schema' ? schemaCards : needCards).map((card, idx) => (
-                <div key={idx} className="schema-img playing-card" onClick={() => handleSelectCard(card)} style={{ width: '120px', height: '160px', padding: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                    <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
-                  </div>
-                  <div style={{ textAlign: 'center', fontSize: '0.7rem', fontWeight: 'bold', margin: '6px 0 8px 0', lineHeight: '1.2' }}>{formatCardTitle(card.title)}</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {showCardPicker === 'need' ? (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+                  {needCards.map((card, idx) => (
+                    <div key={idx} className="schema-img playing-card" onClick={() => handleSelectCard(card)} style={{ width: '120px', height: '160px', padding: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
+                      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                        <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
+                      </div>
+                      <div style={{ textAlign: 'center', fontSize: '0.7rem', fontWeight: 'bold', margin: '6px 0 8px 0', lineHeight: '1.2' }}>{formatCardTitle(card.title)}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              ) : (
+                (showCardPicker === 'schema' ? schemaGroups : modeGroups).map((group, groupIdx) => {
+                  const cards = showCardPicker === 'schema' ? schemaCards : modeCards;
+                  const groupCards = group.titles.map(title => cards.find(c => c.title === title)).filter(Boolean);
+                  if (groupCards.length === 0) return null;
+                  
+                  return (
+                    <div key={groupIdx} style={{ marginBottom: '1.5rem' }}>
+                      <h4 style={{ color: 'var(--text-muted)', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1rem', textAlign: 'left' }}>{group.group}</h4>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'flex-start' }}>
+                        {groupCards.map((card, idx) => (
+                          <div key={idx} className="schema-img playing-card" onClick={() => handleSelectCard(card)} style={{ width: '120px', height: '160px', padding: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
+                            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                              <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
+                            </div>
+                            <div style={{ textAlign: 'center', fontSize: '0.7rem', fontWeight: 'bold', margin: '6px 0 8px 0', lineHeight: '1.2' }}>{formatCardTitle(card.title)}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
         </div>
