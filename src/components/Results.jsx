@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SingleResult from './SingleResult'
 import CombinedAnalysis from './CombinedAnalysis'
 import Tafelopstelling from './Tafelopstelling'
@@ -12,6 +12,10 @@ export default function Results({ completedTests, onRestart, onBack, onUpdateAns
   
   // Default to YSQ if it exists, otherwise SMI
   const [activeTab, setActiveTab] = useState(hasYsq ? 'ysq' : 'smi');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handlePrint = () => {
     window.print();
