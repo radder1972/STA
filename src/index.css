@@ -770,6 +770,10 @@ body {
   opacity: 1 !important;
 }
 
+.card-scene:hover .card-img-base {
+  opacity: 0 !important;
+}
+
 .card-face-front::before, .card-face-back::before {
   content: '';
   position: absolute;
