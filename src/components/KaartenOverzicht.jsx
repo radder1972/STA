@@ -111,14 +111,16 @@ export default function KaartenOverzicht({ onBack }) {
     return { src: modeImages[path], title, description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
   })
 
-  const renderCardList = (cards, defaultImageStyle = {}) => (
+  const renderCardList = (cards, listName, defaultImageStyle = {}) => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyItems: 'center', justifyContent: 'center', padding: '1rem', marginBottom: '3rem' }}>
-      {cards.map((card, idx) => (
+      {cards.map((card, idx) => {
+        const uniqueKey = `${listName}-${card.title}`;
+        return (
         <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div className="card-scene">
-            <div className={`card-flip-container ${flippedCards[card.title] ? 'flipped' : ''}`}>
+            <div className={`card-flip-container ${flippedCards[uniqueKey] ? 'flipped' : ''}`}>
               
-              <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(card.title)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[card.title] ? 'none' : 'auto' }}>
+              <div className="card-face-front schema-img" onClick={() => handleFlip(uniqueKey)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[uniqueKey] ? 'none' : 'auto' }}>
                 <div className="inner-border"></div>
                 <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                   <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
@@ -128,10 +130,10 @@ export default function KaartenOverzicht({ onBack }) {
                 </div>
               </div>
               
-              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: flippedCards[card.title] ? 'auto' : 'none' }}>
+              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: flippedCards[uniqueKey] ? 'auto' : 'none' }}>
                 <div className="inner-border"></div>
                 <div 
-                  onClick={() => handleFlip(card.title)} 
+                  onClick={() => handleFlip(uniqueKey)} 
                   style={{ flex: 1, cursor: 'pointer', overflowY: 'auto', marginBottom: '5px', paddingRight: '2px' }}
                   className="hide-scrollbar"
                 >
@@ -150,7 +152,8 @@ export default function KaartenOverzicht({ onBack }) {
             </div>
           </div>
         </div>
-      ))}
+        );
+      })}
     </div>
   )
 
@@ -199,28 +202,28 @@ export default function KaartenOverzicht({ onBack }) {
         {(filter === 'all' || filter === 'domeinen') && (
           <div>
             <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem' }}>Schema Domeinen (Basisbehoeften)</h2>
-            {renderCardList(schemaCards, { transform: 'scale(0.85)' })}
+            {renderCardList(schemaCards, 'schema-cat', { transform: 'scale(0.85)' })}
           </div>
         )}
 
         {(filter === 'all' || filter === 'schemas') && (
           <div>
             <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '2rem' : '0' }}>Individuele Schema's (18)</h2>
-            {renderCardList(detailedSchemaCards)}
+            {renderCardList(detailedSchemaCards, 'schema-ind')}
           </div>
         )}
 
         {(filter === 'all' || filter === 'modicats') && (
           <div>
             <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '2rem' : '0' }}>Modi Categorieën</h2>
-            {renderCardList(modiCards, { transform: 'scale(0.85)' })}
+            {renderCardList(modiCards, 'modi-cat', { transform: 'scale(0.85)' })}
           </div>
         )}
 
         {(filter === 'all' || filter === 'modi') && (
           <div>
             <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '2rem' : '0' }}>Individuele Modi (14)</h2>
-            {renderCardList(detailedModeCards)}
+            {renderCardList(detailedModeCards, 'modi-ind')}
           </div>
         )}
 
