@@ -767,7 +767,7 @@ body {
 }
 
 .card-face-back p {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   line-height: 1.4;
   color: #4b5563;
   margin: 0;
@@ -777,7 +777,7 @@ body {
 
 .card-face-back h4 {
   margin: 0 0 8px 0;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: #1f2937;
   border-bottom: 1px solid #e5e7eb;
   padding-bottom: 4px;

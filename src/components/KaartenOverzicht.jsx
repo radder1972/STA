@@ -128,7 +128,6 @@ export default function KaartenOverzicht({ onBack }) {
               <div className="card-face-back">
                 <h4>{card.title}</h4>
                 <p>{card.description || 'Geen theorie beschikbaar.'}</p>
-                <div style={{ fontSize: '0.7rem', color: '#9ca3af', marginTop: 'auto', borderTop: '1px solid #e5e7eb', width: '100%', paddingTop: '4px' }}>Klik om terug te draaien</div>
               </div>
 
             </div>
