@@ -414,8 +414,10 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '300px', padding: '2rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
             <CardSlot label="Gezonde Volwassene" card={healthyAdultCard} />
             <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-              <div style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '0.2rem' }}>Grenzen stellen & Zorgen</div>
-              <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', textAlign: 'center', marginBottom: '1rem' }}>Wat zou de Gezonde Volwassene zeggen of doen in deze situatie?</div>
+              <div style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '0.5rem' }}>Grenzen stellen & Zorgen</div>
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', textAlign: 'center', marginBottom: '1rem', lineHeight: '1.5' }}>
+                De Gezonde Volwassene helpt je om op een constructieve manier met deze situatie om te gaan. Enerzijds door begrip en zorg te tonen voor je kwetsbare kant (je onvervulde behoefte), en anderzijds door gezonde grenzen te stellen aan automatische, disfunctionele reacties. Wat zou de Gezonde Volwassene nu zeggen of doen?
+              </p>
               <textarea 
                 placeholder="" 
                 value={gvNotes}
