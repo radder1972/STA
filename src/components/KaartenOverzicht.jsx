@@ -2,17 +2,28 @@ import React, { useState } from 'react'
 import { ArrowLeftIcon } from './Icons'
 
 import imgB1 from '../assets/images/basisbehoeften/1.png'
+import imgB1Color from '../assets/images/basisbehoeften/1_color.png'
 import imgB2 from '../assets/images/basisbehoeften/2.png'
+import imgB2Color from '../assets/images/basisbehoeften/2_color.png'
 import imgB3 from '../assets/images/basisbehoeften/3.png'
+import imgB3Color from '../assets/images/basisbehoeften/3_color.png'
 import imgB4 from '../assets/images/basisbehoeften/4.png'
+import imgB4Color from '../assets/images/basisbehoeften/4_color.png'
 import imgB5 from '../assets/images/basisbehoeften/5.png'
+import imgB5Color from '../assets/images/basisbehoeften/5_color.png'
 
 import imgM1 from '../assets/images/modicategorieen/1.png'
+import imgM1Color from '../assets/images/modicategorieen/1_color.png'
 import imgM2 from '../assets/images/modicategorieen/2.png'
+import imgM2Color from '../assets/images/modicategorieen/2_color.png'
 import imgM3a from '../assets/images/modicategorieen/coping_overgave.png'
+import imgM3aColor from '../assets/images/modicategorieen/coping_overgave_color.png'
 import imgM3b from '../assets/images/modicategorieen/coping_vermijding.png'
+import imgM3bColor from '../assets/images/modicategorieen/coping_vermijding_color.png'
 import imgM3c from '../assets/images/modicategorieen/coping_overcompensatie.png'
+import imgM3cColor from '../assets/images/modicategorieen/coping_overcompensatie_color.png'
 import imgM4 from '../assets/images/modicategorieen/4.png'
+import imgM4Color from '../assets/images/modicategorieen/4_color.png'
 
 import { schemaImages, modeImages } from '../utils/images'
 import { schemaDescriptions } from '../data/descriptions'
@@ -83,33 +94,39 @@ export default function KaartenOverzicht({ onBack }) {
   }
 
   const schemaCards = [
-    { src: imgB1, title: '1. Veilige hechting', description: basisbehoeftenText['1. Veilige hechting'] },
-    { src: imgB2, title: '2. Autonomie', description: basisbehoeftenText['2. Autonomie'] },
-    { src: imgB3, title: '3. Vrije expressie', description: basisbehoeftenText['3. Vrije expressie'] },
-    { src: imgB4, title: '4. Spontaniteit en spel', description: basisbehoeftenText['4. Spontaniteit en spel'] },
-    { src: imgB5, title: '5. Realistische grenzen', description: basisbehoeftenText['5. Realistische grenzen'] },
+    { src: imgB1, srcColor: imgB1Color, title: '1. Veilige hechting', description: basisbehoeftenText['1. Veilige hechting'] },
+    { src: imgB2, srcColor: imgB2Color, title: '2. Autonomie', description: basisbehoeftenText['2. Autonomie'] },
+    { src: imgB3, srcColor: imgB3Color, title: '3. Vrije expressie', description: basisbehoeftenText['3. Vrije expressie'] },
+    { src: imgB4, srcColor: imgB4Color, title: '4. Spontaniteit en spel', description: basisbehoeftenText['4. Spontaniteit en spel'] },
+    { src: imgB5, srcColor: imgB5Color, title: '5. Realistische grenzen', description: basisbehoeftenText['5. Realistische grenzen'] },
   ]
 
   const modiCards = [
-    { src: imgM1, title: 'Kindmodi', description: categorieText['Kindmodi'] },
-    { src: imgM2, title: 'Oudermodi', description: categorieText['Oudermodi'] },
-    { src: imgM3a, title: 'Coping: Overgave', description: categorieText['Coping: Overgave'] },
-    { src: imgM3b, title: 'Coping: Vermijding', description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' } },
-    { src: imgM3c, title: 'Coping: Overcompensatie', description: categorieText['Coping: Overcompensatie'] },
-    { src: imgM4, title: 'Gezonde volwassene', description: categorieText['Gezonde volwassene'] },
+    { src: imgM1, srcColor: imgM1Color, title: 'Kindmodi', description: categorieText['Kindmodi'] },
+    { src: imgM2, srcColor: imgM2Color, title: 'Oudermodi', description: categorieText['Oudermodi'] },
+    { src: imgM3a, srcColor: imgM3aColor, title: 'Coping: Overgave', description: categorieText['Coping: Overgave'] },
+    { src: imgM3b, srcColor: imgM3bColor, title: 'Coping: Vermijding', description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' } },
+    { src: imgM3c, srcColor: imgM3cColor, title: 'Coping: Overcompensatie', description: categorieText['Coping: Overcompensatie'] },
+    { src: imgM4, srcColor: imgM4Color, title: 'Gezonde volwassene', description: categorieText['Gezonde volwassene'] },
   ]
 
-  const detailedSchemaCards = Object.keys(schemaImages).map(path => {
-    const filename = path.split('/').pop().replace('.png', '');
-    const title = ysqSchemaNamesMap[filename] || filename.replace(/_/g, ' ');
-    return { src: schemaImages[path], title, description: schemaDescriptions[title], style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' } };
-  })
+  const detailedSchemaCards = Object.keys(schemaImages)
+    .filter(path => !path.endsWith('_color.png'))
+    .map(path => {
+      const filename = path.split('/').pop().replace('.png', '');
+      const title = ysqSchemaNamesMap[filename] || filename.replace(/_/g, ' ');
+      const colorPath = path.replace('.png', '_color.png');
+      return { src: schemaImages[path], srcColor: schemaImages[colorPath] || schemaImages[path], title, description: schemaDescriptions[title], style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' } };
+    })
 
-  const detailedModeCards = Object.keys(modeImages).map(path => {
-    const filename = path.split('/').pop().replace('.png', '');
-    const title = smiModesMap[filename] || filename;
-    return { src: modeImages[path], title, description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
-  })
+  const detailedModeCards = Object.keys(modeImages)
+    .filter(path => !path.endsWith('_color.png'))
+    .map(path => {
+      const filename = path.split('/').pop().replace('.png', '');
+      const title = smiModesMap[filename] || filename;
+      const colorPath = path.replace('.png', '_color.png');
+      return { src: modeImages[path], srcColor: modeImages[colorPath] || modeImages[path], title, description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
+    })
 
   const renderCardList = (cards, defaultImageStyle = {}) => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyItems: 'center', justifyContent: 'center', padding: '1rem', marginBottom: '3rem' }}>
@@ -119,8 +136,16 @@ export default function KaartenOverzicht({ onBack }) {
             <div className={`card-flip-container ${flippedCards[card.title] ? 'flipped' : ''}`}>
               
               <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(card.title)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[card.title] ? 'none' : 'auto' }}>
-                <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                  <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
+                <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative' }}>
+                  <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', ...defaultImageStyle, ...card.style }} />
+                  {card.srcColor && (
+                    <img 
+                      src={card.srcColor} 
+                      alt={`${card.title} in color`} 
+                      className="card-img-color"
+                      style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', opacity: 0, transition: 'opacity 0.5s ease-in-out', ...defaultImageStyle, ...card.style }} 
+                    />
+                  )}
                 </div>
                 <div style={{ fontWeight: 'bold', color: '#333', textAlign: 'center', fontSize: '0.85rem', lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40px', marginTop: '4px', zIndex: 1 }}>
                   {card.title}

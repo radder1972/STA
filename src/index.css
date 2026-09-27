@@ -766,6 +766,10 @@ body {
   overflow: hidden;
 }
 
+.card-scene:hover .card-img-color {
+  opacity: 1 !important;
+}
+
 .card-face-front::before, .card-face-back::before {
   content: '';
   position: absolute;
