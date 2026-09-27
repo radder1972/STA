@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { ArrowLeftIcon } from 'lucide-react';
 import img1 from '../assets/images/modicategorieen/1.png';
 import img2 from '../assets/images/modicategorieen/2.png';
-import img3 from '../assets/images/modicategorieen/3.png';
+import img3a from '../assets/images/modicategorieen/3a.png';
+import img3b from '../assets/images/modicategorieen/3b.png';
+import img3c from '../assets/images/modicategorieen/3c.png';
 import img4 from '../assets/images/modicategorieen/4.png';
 
 const ModiCategorieen = ({ onBack }) => {
@@ -65,8 +67,10 @@ const ModiCategorieen = ({ onBack }) => {
             <li><strong>Overcompensatie (vechten/tegenaanval):</strong> Bijvoorbeeld de Grandioze overcompensator of de Pest-en-aanvalmodus.</li>
           </ul>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px' }}>
-          <img src={img3} alt="Copingmodi" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '220px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', position: 'relative' }}>
+          <img src={img3c} alt="Overcompensatie" style={{ width: '120px', height: 'auto', position: 'absolute', right: '10px', top: '40px', zIndex: 1, objectFit: 'contain', transform: 'rotate(5deg)' }} />
+          <img src={img3b} alt="Vermijding" style={{ width: '120px', height: 'auto', position: 'absolute', right: '50px', top: '30px', zIndex: 2, objectFit: 'contain' }} />
+          <img src={img3a} alt="Overgave" style={{ width: '120px', height: 'auto', position: 'absolute', right: '90px', top: '20px', zIndex: 3, objectFit: 'contain', transform: 'rotate(-5deg)', filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.1))' }} />
         </div>
       </div>
 
