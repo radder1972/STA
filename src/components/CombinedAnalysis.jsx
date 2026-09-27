@@ -2,7 +2,8 @@ import React, { useMemo } from 'react';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Cell, LabelList, Legend } from 'recharts';
-import { ArrowRightIcon } from './Icons';
+import { ArrowRightIcon, LightbulbIcon, HypothesisIcon, ConnectionIcon, MatrixIcon } from './Icons';
+import AiAnalysis from './AiAnalysis';
 
 // Duplicated maps for simplicity, as they are not exported from SingleResult
 const basisbehoeftenMap = {
@@ -16,7 +17,7 @@ const basisbehoeftenMap = {
 const smiModesMap = {
   'kk': { name: 'Kwetsbare kind', group: 'KINDMODI' }, 'rk': { name: 'Razende kind', group: 'KINDMODI' }, 'ik': { name: 'Impulsieve kind', group: 'KINDMODI' }, 'ok': { name: 'Ongedisciplineerde kind', group: 'KINDMODI' }, 'bk': { name: 'Boze kind', group: 'KINDMODI' },
   'wi': { name: 'Willoze inschikkelijke', group: 'BESCHERMMODI - OVERGAVE' }, 'ob': { name: 'Onthechte beschermer', group: 'BESCHERMMODI - VERMIJDEN' }, 'oz': { name: 'Onthechte zelfsusser', group: 'BESCHERMMODI - VERMIJDEN' }, 'wk': { name: 'Wantrouwende overcontroleerder', group: 'BESCHERMMODI - OMKERING' }, 'zh': { name: 'Zelfverheerlijker', group: 'BESCHERMMODI - OMKERING' }, 'pa': { name: 'Pest en aanval', group: 'BESCHERMMODI - OMKERING' },
-  'so': { name: 'Straffende ouder', group: 'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI' }, 'vo': { name: 'Veeleisende ouder', group: 'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI' }, 'gv': { name: 'Gezonde volwassene', group: 'FUNCTIONELE MODI' }
+  'so': { name: 'Straffende ouder', group: 'DISFUNCTIONELE OUDERMODI' }, 'vo': { name: 'Veeleisende ouder', group: 'DISFUNCTIONELE OUDERMODI' }, 'gv': { name: 'Gezonde volwassene', group: 'FUNCTIONELE MODI' }
 };
 
 const ysqNamesMap = {
@@ -89,7 +90,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
 
     const combined = [
       { name: 'Verbondenheid / Kindmodi', ysq: ysqGroups['Verbondenheid & Veiligheid']?.sum / ysqGroups['Verbondenheid & Veiligheid']?.count || 0, smi: smiGroups['KINDMODI']?.sum / smiGroups['KINDMODI']?.count || 0 },
-      { name: 'Grenzen / Oudermodi', ysq: ysqGroups['Realistische Grenzen']?.sum / ysqGroups['Realistische Grenzen']?.count || 0, smi: smiGroups['DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI']?.sum / smiGroups['DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI']?.count || 0 },
+      { name: 'Grenzen / Oudermodi', ysq: ysqGroups['Realistische Grenzen']?.sum / ysqGroups['Realistische Grenzen']?.count || 0, smi: smiGroups['DISFUNCTIONELE OUDERMODI']?.sum / smiGroups['DISFUNCTIONELE OUDERMODI']?.count || 0 },
       { name: 'Autonomie / Coping (Vermijden)', ysq: ysqGroups['Autonomie']?.sum / ysqGroups['Autonomie']?.count || 0, smi: smiGroups['BESCHERMMODI - VERMIJDEN']?.sum / smiGroups['BESCHERMMODI - VERMIJDEN']?.count || 0 },
       { name: 'Zelfexpressie / Coping (Overgave)', ysq: ysqGroups['Zelfexpressie']?.sum / ysqGroups['Zelfexpressie']?.count || 0, smi: smiGroups['BESCHERMMODI - OVERGAVE']?.sum / smiGroups['BESCHERMMODI - OVERGAVE']?.count || 0 },
       { name: 'Spel / Coping (Omkering)', ysq: ysqGroups['Spontaniteit & Spel']?.sum / ysqGroups['Spontaniteit & Spel']?.count || 0, smi: smiGroups['BESCHERMMODI - OMKERING']?.sum / smiGroups['BESCHERMMODI - OMKERING']?.count || 0 }
@@ -100,10 +101,114 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
   return (
     <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
       
+      {/* OPTION A: Top 3 Visual Links */}
+      <div className="glass-panel print-avoid-break" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
+        <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <ConnectionIcon size={28} useGradient={true} /> Directe Top 3 Connectie
+        </h2>
+        <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
+          Voor uw meest verhoogde schema's laten we hier de hoogst scorende, theoretisch gekoppelde modus (SMI) zien.
+        </p>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.5)', color: 'var(--text-main)', fontSize: '0.9rem' }}>
+                <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }} colSpan="2">Kwetsbaarheid (Top 3 Schema's)</th>
+                <th style={{ padding: '8px 0', textAlign: 'center', width: '40px' }}></th>
+                <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }} colSpan="2">Reactie (Hoogste Gekoppelde Modus)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[0, 1, 2].map(i => {
+                const schema = top3Ysq[i];
+                
+                // Vind de hoogst scorende modus die theorethisch aan dit schema gekoppeld is
+                let topLinkedMode = null;
+                if (schema) {
+                  const hypothesis = schemaToModesHypothesis[schema.id];
+                  if (hypothesis && hypothesis.modes) {
+                    const linkedModesScores = smiScores.filter(s => hypothesis.modes.includes(s.id));
+                    topLinkedMode = linkedModesScores[0]; // Al gesorteerd op mean descending
+                  }
+                }
+
+                return (
+                  <tr key={i} style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.3)' }}>
+                    <td style={{ padding: '8px 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{schema?.name || '-'}</td>
+                    <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{schema?.mean || '-'}</td>
+                    <td style={{ padding: '8px 0', textAlign: 'center' }}>
+                      {schema && topLinkedMode && <ArrowRightIcon size={14} color="var(--text-muted)" />}
+                    </td>
+                    <td style={{ padding: '8px 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{topLinkedMode?.name || 'Geen sterke link gevonden'}</td>
+                    <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{topLinkedMode?.mean || '-'}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+      {/* OPTION C: Matrix Table */}
+      <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
+        <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <MatrixIcon size={28} useGradient={true} /> Kruisverbanden Matrix
+        </h2>
+        <p style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}>
+          Ruwe data vergelijking: zijn de hoogste schema's terug te zien in het modusgebruik?
+        </p>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.5)', color: 'var(--text-main)', fontSize: '0.9rem' }}>
+                <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }}>Theoretisch Vlak</th>
+                <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }}>YSQ Domein Score</th>
+                <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }}>SMI Groep Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {domainAverages.map((row, i) => (
+                <tr key={i} style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.3)' }}>
+                  <td style={{ padding: '8px 0', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{row.name}</td>
+                  <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                    <span style={{ fontWeight: row.ysq >= 4 ? 'bold' : 'normal', color: row.ysq >= 4 ? 'var(--text-main)' : 'var(--text-muted)' }}>
+                      {row.ysq}
+                    </span>
+                  </td>
+                  <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                    <span style={{ fontWeight: row.smi >= 4 ? 'bold' : 'normal', color: row.smi >= 4 ? 'var(--text-main)' : 'var(--text-muted)' }}>
+                      {row.smi}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Matrix Explanation */}
+        <div className="no-print" style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.02)', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+          <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 0, marginBottom: '1rem', color: 'var(--text-main)' }}>
+            <LightbulbIcon size={24} useGradient={true} /> Wat zegt deze matrix?
+          </h4>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>
+            In de schematherapie is er een theoretisch verband tussen uw onderliggende gevoeligheden (schema's) en uw huidige gedrag (modi). Deze matrix legt de score van een groep schema's direct naast de score van de bijbehorende groep modi om te zien of deze in balans zijn.
+          </p>
+          <ul style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6', margin: 0, paddingLeft: '1.5rem' }}>
+            <li style={{ marginBottom: '0.5rem' }}><strong>In balans:</strong> Een vergelijkbare score betekent dat uw gedrag logisch aansluit bij uw onderliggende gevoel.</li>
+            <li><strong>Uit balans (Discrepantie):</strong> Lopen de scores sterk uiteen? Dan drukt u uw kwetsbaarheid mogelijk extreem goed weg via coping (bijv. een lage schema-score, maar héél hoog vermijdend gedrag), óf u voelt de pijn wel (hoge schema-score) maar het uit zich niet in actief gedrag. Dit is voor een behandelaar een belangrijk inzicht.</li>
+          </ul>
+        </div>
+      </div>
+      
       {/* OPTION D: Clinical Hypothesis Engine */}
       <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-        <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', textAlign: 'center' }}>1. Klinische Hypothese (AI-Analyse)</h2>
-        <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>
+        <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <HypothesisIcon size={28} useGradient={true} /> Klinische Hypothese
+        </h2>
+        <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
           Deze analyse combineert de theorie van Schematherapie met uw specifieke scores om gepersonaliseerde hypothesen te genereren en te valideren.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -114,8 +219,8 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
             const usedModes = hypothesis.modes.map(mId => smiScores.find(s => s.id === mId)).filter(m => m && m.mean >= 3.0);
             
             const medalColors = ['#fbbf24', '#94a3b8', '#b45309'];
-            const medalNames = ['#1 (Goud)', '#2 (Zilver)', '#3 (Brons)'];
             const medalColor = medalColors[index] || 'var(--primary)';
+            const medalNames = ['#1', '#2', '#3'];
             const medalName = medalNames[index] || `#${index + 1}`;
 
             return (
@@ -149,13 +254,13 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                 </div>
 
                 {usedModes.length > 0 ? (
-                  <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
-                    <strong style={{ color: '#10b981' }}>✓ Bevestiging in data:</strong> 
-                    <span style={{ color: 'var(--text-main)' }}> U scoort inderdaad ook bovengemiddeld (≥3) op de theoretisch gekoppelde coping-modi: <strong>{usedModes.map(m => m.name).join(', ')}</strong>. Dit wijst op een sterk patroon.</span>
+                  <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+                    <strong style={{ color: 'var(--text-main)' }}>✓ Bevestiging in data:</strong> 
+                    <span style={{ color: 'var(--text-muted)' }}> U scoort inderdaad ook bovengemiddeld (≥3) op de theoretisch gekoppelde coping-modi: <strong>{usedModes.map(m => m.name).join(', ')}</strong>. Dit wijst op een sterk patroon.</span>
                   </div>
                 ) : (
-                  <div style={{ background: 'rgba(148, 163, 184, 0.1)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(148, 163, 184, 0.3)' }}>
-                    <strong style={{ color: '#94a3b8' }}>○ Geen sterke bevestiging:</strong> 
+                  <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+                    <strong style={{ color: 'var(--text-main)' }}>○ Geen sterke bevestiging:</strong> 
                     <span style={{ color: 'var(--text-muted)' }}> U lijkt deze standaard coping-modi niet exceptioneel hoog in te zetten. U hanteert waarschijnlijk een andere overlevingsstrategie voor dit schema, of het schema is wel aanwezig maar u copt er niet actief op deze manier mee.</span>
                   </div>
                 )}
@@ -165,99 +270,8 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         </div>
       </div>
       
-      {/* OPTION A: Top 3 Visual Links */}
-      <div className="glass-panel print-avoid-break" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-        <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', textAlign: 'center' }}>2. Directe Top 3 Connectie</h2>
-        <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem' }}>
-          Voor uw meest verhoogde schema's laten we hier de hoogst scorende, theoretisch gekoppelde modus (SMI) zien.
-        </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
-            <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'center', margin: 0 }}>Kwetsbaarheid (Top 3 Schema's)</h4>
-            <div style={{ flex: '0 0 40px' }}></div>
-            <h4 style={{ flex: 1, color: 'var(--text-main)', textAlign: 'center', margin: 0 }}>Reactie (Hoogste Gekoppelde Modus)</h4>
-          </div>
-
-          {[0, 1, 2].map(i => {
-            const schema = top3Ysq[i];
-            
-            // Vind de hoogst scorende modus die theorethisch aan dit schema gekoppeld is
-            let topLinkedMode = null;
-            if (schema) {
-              const hypothesis = schemaToModesHypothesis[schema.id];
-              if (hypothesis && hypothesis.modes) {
-                const linkedModesScores = smiScores.filter(s => hypothesis.modes.includes(s.id));
-                topLinkedMode = linkedModesScores[0]; // Al gesorteerd op mean descending
-              }
-            }
-
-            const bg = ['rgba(251, 191, 36, 0.15)', 'rgba(148, 163, 184, 0.15)', 'rgba(180, 83, 9, 0.15)'][i] || 'transparent';
-            const border = ['rgba(251, 191, 36, 0.4)', 'rgba(148, 163, 184, 0.4)', 'rgba(180, 83, 9, 0.4)'][i] || 'transparent';
-            const iconColor = ['#fbbf24', '#94a3b8', '#b45309'][i] || 'var(--primary)';
-            const iconBg = ['rgba(251,191,36,0.2)', 'rgba(148,163,184,0.2)', 'rgba(180,83,9,0.2)'][i];
-            
-            return (
-              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', width: '100%' }}>
-                {/* Left Box */}
-                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '4rem', background: bg, padding: '0.8rem 1.2rem', borderRadius: '12px', border: `1px solid ${border}` }}>
-                  <strong style={{ lineHeight: '1.2', fontSize: '1.05rem' }}>{schema?.name || '-'}</strong> <span style={{ fontWeight: 'bold' }}>{schema?.mean || '-'}</span>
-                </div>
-                
-                {/* Center Arrow */}
-                <div style={{ flex: '0 0 40px', display: 'flex', justifyContent: 'center' }}>
-                  <div style={{ background: iconBg, padding: '8px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${border}` }}>
-                    <ArrowRightIcon size={20} color={iconColor} />
-                  </div>
-                </div>
-
-                {/* Right Box */}
-                <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '4rem', background: bg, padding: '0.8rem 1.2rem', borderRadius: '12px', border: `1px solid ${border}` }}>
-                  <strong style={{ lineHeight: '1.2', fontSize: '1.05rem' }}>{topLinkedMode?.name || 'Geen sterke link gevonden'}</strong> <span style={{ fontWeight: 'bold' }}>{topLinkedMode?.mean || '-'}</span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-
-
-      {/* OPTION C: Matrix Table */}
-      <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-        <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', textAlign: 'center' }}>3. Kruisverbanden Matrix</h2>
-        <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '1rem' }}>
-          Ruwe data vergelijking: zijn de hoogste schema's terug te zien in het modusgebruik?
-        </p>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem' }}>
-            <thead>
-              <tr style={{ borderBottom: '2px solid var(--border-color)' }}>
-                <th style={{ padding: '12px', textAlign: 'left', color: 'var(--text-main)' }}>Theoretisch Vlak</th>
-                <th style={{ padding: '12px', textAlign: 'center', color: '#ef4444' }}>YSQ Domein Score</th>
-                <th style={{ padding: '12px', textAlign: 'center', color: '#f59e0b' }}>SMI Groep Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {domainAverages.map((row, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                  <td style={{ padding: '12px', color: 'var(--text-main)', fontWeight: 'bold' }}>{row.name}</td>
-                  <td style={{ padding: '12px', textAlign: 'center', color: 'var(--text-main)' }}>
-                    <div style={{ display: 'inline-block', background: row.ysq >= 4 ? 'rgba(239, 68, 68, 0.2)' : 'transparent', padding: '4px 12px', borderRadius: '12px', fontWeight: row.ysq >= 4 ? 'bold' : 'normal' }}>
-                      {row.ysq}
-                    </div>
-                  </td>
-                  <td style={{ padding: '12px', textAlign: 'center', color: 'var(--text-main)' }}>
-                    <div style={{ display: 'inline-block', background: row.smi >= 4 ? 'rgba(245, 158, 11, 0.2)' : 'transparent', padding: '4px 12px', borderRadius: '12px', fontWeight: row.smi >= 4 ? 'bold' : 'normal' }}>
-                      {row.smi}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
       
+      <AiAnalysis ysqData={ysqScores} smiData={smiScores} />
     </div>
   );
 }

@@ -1,23 +1,34 @@
+import React, { useState } from 'react';
 import { schemaDescriptions } from '../data/descriptions';
+import { getModeImage } from '../utils/images';
 
-export default function SmiVisualizer({ groupedScores, top3 = [] }) {
+export default function SmiVisualizer({ groupedScores, top3 = [], onUpdateAnswer }) {
+  const [expandedNodes, setExpandedNodes] = useState({});
+  
+  const toggleNode = (id) => {
+    setExpandedNodes(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
   // Helper to get scores for a specific group safely
   const getGroup = (groupName) => groupedScores[groupName] || [];
 
-  const renderModeNode = (mode) => {
+  const renderModeNode = (mode, index) => {
     const top3Index = top3.findIndex(m => m.id === mode.id);
     const isTop3 = top3Index !== -1;
     const medalColor = top3Index === 0 ? '#fbbf24' : top3Index === 1 ? '#94a3b8' : top3Index === 2 ? '#b45309' : null;
+    const medalBg = top3Index === 0 ? 'rgba(251, 191, 36, 0.1)' : top3Index === 1 ? 'rgba(148, 163, 184, 0.25)' : top3Index === 2 ? 'rgba(180, 83, 9, 0.1)' : 'var(--card-bg)';
 
     return (
       <div 
         key={mode.id} 
         className="mode-node glass-panel" 
-        style={{ display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}) }}
+        style={{ display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: medalBg } : {}) }}
       >
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
           <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-            <img src={`/images/modes/${mode.id}.png`} alt={mode.name} className="schema-img" style={{ maxWidth: '100px', borderRadius: '6px' }} />
+            <div className="schema-img playing-card" style={{ width: '100px', height: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transform: `rotate(${(index * 7) % 8 - 4}deg)` }}>
+              <img src={getModeImage(mode.id)} alt={mode.name} style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', transform: mode.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
+            </div>
           </div>
           
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -43,6 +54,102 @@ export default function SmiVisualizer({ groupedScores, top3 = [] }) {
             </div>
           </div>
         </div>
+        
+        {/* Toggle details button */}
+        <button 
+          className="no-print"
+          onClick={() => toggleNode(mode.id)}
+          style={{
+            marginTop: '1rem',
+            background: 'transparent',
+            border: '1px solid var(--border-color)',
+            color: 'var(--text-muted)',
+            padding: '4px 12px',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            fontSize: '0.75rem',
+            fontWeight: 'bold',
+            alignSelf: 'center',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            transition: 'all 0.2s'
+          }}
+        >
+          {expandedNodes[mode.id] ? '▲ Verberg antwoorden' : '▼ Bekijk antwoorden'}
+        </button>
+        
+        {/* Expanded questions list */}
+        {expandedNodes[mode.id] && mode.questionDetails && mode.questionDetails.length > 0 && (
+          <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', fontSize: '0.85rem', textAlign: 'left', width: '100%', animation: 'fadeIn 0.3s ease-in-out' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              {mode.questionDetails.map(q => (
+                <li key={q.id} style={{ display: 'flex', gap: '12px', padding: '10px 0', borderBottom: '1px solid var(--border-color)', alignItems: 'center', minHeight: '60px' }}>
+                  {onUpdateAnswer ? (
+                    <>
+                      <select
+                        className="no-print"
+                        value={q.score}
+                        onChange={(e) => onUpdateAnswer(q.id, parseInt(e.target.value, 10))}
+                        style={{
+                          fontWeight: 'bold', 
+                          color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
+                          background: q.score >= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(0,0,0,0.05)',
+                          borderRadius: '6px',
+                          width: '40px',
+                          height: '28px',
+                          textAlign: 'center',
+                          flexShrink: 0,
+                          border: `1px solid ${q.score >= 5 ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)'}`,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        {[1,2,3,4,5,6].map(num => (
+                          <option key={num} value={num}>{num}</option>
+                        ))}
+                      </select>
+                      <span className="print-only" style={{ 
+                        fontWeight: 'bold', 
+                        color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
+                        background: q.score >= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(0,0,0,0.05)',
+                        borderRadius: '6px',
+                        width: '28px',
+                        height: '28px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                        border: `1px solid ${q.score >= 5 ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)'}`
+                      }}>
+                        {q.score}
+                      </span>
+                    </>
+                  ) : (
+                    <span style={{ 
+                      fontWeight: 'bold', 
+                      color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
+                      background: q.score >= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(0,0,0,0.05)',
+                      borderRadius: '6px',
+                      width: '28px',
+                      height: '28px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      border: `1px solid ${q.score >= 5 ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)'}`
+                    }}>
+                      {q.score}
+                    </span>
+                  )}
+                  <span style={{ color: 'var(--text-muted)', lineHeight: '1.4' }}>
+                    <span style={{ fontWeight: 'bold', marginRight: '8px', opacity: 0.5 }}>#{q.id}</span>
+                    {q.text}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     );
   };
@@ -70,17 +177,17 @@ export default function SmiVisualizer({ groupedScores, top3 = [] }) {
   };
 
   return (
-    <div className="visualizer-container">
-      <h3 className="visualizer-title">Modi Overzicht</h3>
+    <div className="visualizer-container page-break">
+      <h3 className="visualizer-title text-gradient">Modi Overzicht</h3>
       
       <div className="ysq-layout">
         <div className="ysq-grid">
-          {renderSection('DISFUNCTIONELE OUDERMODI', 'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI', '#ef4444')}
-          {renderSection('FUNCTIONELE MODI', 'FUNCTIONELE MODI', '#10b981')}
-          {renderSection('BESCHERMMODI - OMKERING', 'BESCHERMMODI - OMKERING', '#eab308')}
-          {renderSection('BESCHERMMODI - VERMIJDEN', 'BESCHERMMODI - VERMIJDEN', '#f59e0b')}
-          {renderSection('BESCHERMMODI - OVERGAVE', 'BESCHERMMODI - OVERGAVE', '#d97706')}
-          {renderSection('KINDMODI', 'KINDMODI', '#3b82f6')}
+          {renderSection('Disfunctionele oudermodi', 'DISFUNCTIONELE OUDERMODI', '#ef4444')}
+          {renderSection('Functionele modi', 'FUNCTIONELE MODI', '#10b981')}
+          {renderSection('Beschermmodi - omkering', 'BESCHERMMODI - OMKERING', '#eab308')}
+          {renderSection('Beschermmodi - vermijden', 'BESCHERMMODI - VERMIJDEN', '#f59e0b')}
+          {renderSection('Beschermmodi - overgave', 'BESCHERMMODI - OVERGAVE', '#d97706')}
+          {renderSection('Kindmodi', 'KINDMODI', '#3b82f6')}
         </div>
       </div>
     </div>

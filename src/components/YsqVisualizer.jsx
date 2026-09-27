@@ -1,12 +1,21 @@
+import React, { useState } from 'react';
 import { schemaDescriptions } from '../data/descriptions';
+import { getSchemaImage } from '../utils/images';
 
-export default function YsqVisualizer({ groupedScores, top3 = [] }) {
+export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer }) {
+  const [expandedNodes, setExpandedNodes] = useState({});
+  
+  const toggleNode = (id) => {
+    setExpandedNodes(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
   const getGroup = (groupName) => groupedScores[groupName] || [];
 
-  const renderSchemaNode = (schema) => {
+  const renderSchemaNode = (schema, index) => {
     const top3Index = top3.findIndex(s => s.id === schema.id);
     const isTop3 = top3Index !== -1;
     const medalColor = top3Index === 0 ? '#fbbf24' : top3Index === 1 ? '#94a3b8' : top3Index === 2 ? '#b45309' : null;
+    const medalBg = top3Index === 0 ? 'rgba(251, 191, 36, 0.1)' : top3Index === 1 ? 'rgba(148, 163, 184, 0.25)' : top3Index === 2 ? 'rgba(180, 83, 9, 0.1)' : 'var(--card-bg)';
 
     const schemasWithImages = [
       'Abandonment', 'Mistrust', 'Emotional deprivation', 'Social isolation/Alienation', 'Defectiveness/unlovability',
@@ -15,18 +24,20 @@ export default function YsqVisualizer({ groupedScores, top3 = [] }) {
       'Entitlement/Superiority', 'Insufficient self-control/self-discipline', 'Subjugation'
     ];
     const hasImage = schemasWithImages.includes(schema.id);
-    const imgName = hasImage ? `${schema.id.replace('/', '_')}.png` : null;
+    const imgUrl = hasImage ? getSchemaImage(schema.id) : null;
 
     return (
       <div 
         key={schema.id} 
         className="mode-node glass-panel" 
-        style={{ display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: 'rgba(0,0,0,0.03)' } : {}) }}
+        style={{ display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: medalBg } : {}) }}
       >
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
           {hasImage && (
             <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-              <img src={`/images/schemas/${imgName}`} alt={schema.name} className="schema-img" style={{ maxWidth: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? '120px' : '100px', borderRadius: '6px' }} />
+              <div className="schema-img playing-card" style={{ position: 'relative', width: '100px', height: '120px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', transform: `rotate(${(index * 7) % 8 - 4}deg)`, boxShadow: '2px 4px 10px rgba(0,0,0,0.3)', border: '3px solid white', background: 'white', borderRadius: '8px' }}>
+                <img src={imgUrl} alt={schema.name} style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', transform: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
+              </div>
             </div>
           )}
           
@@ -53,6 +64,102 @@ export default function YsqVisualizer({ groupedScores, top3 = [] }) {
             </div>
           </div>
         </div>
+        
+        {/* Toggle details button */}
+        <button 
+          className="no-print"
+          onClick={() => toggleNode(schema.id)}
+          style={{
+            marginTop: '1rem',
+            background: 'transparent',
+            border: '1px solid var(--border-color)',
+            color: 'var(--text-muted)',
+            padding: '4px 12px',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            fontSize: '0.75rem',
+            fontWeight: 'bold',
+            alignSelf: 'center',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            transition: 'all 0.2s'
+          }}
+        >
+          {expandedNodes[schema.id] ? '▲ Verberg antwoorden' : '▼ Bekijk antwoorden'}
+        </button>
+        
+        {/* Expanded questions list */}
+        {expandedNodes[schema.id] && schema.questionDetails && schema.questionDetails.length > 0 && (
+          <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', fontSize: '0.85rem', textAlign: 'left', width: '100%', animation: 'fadeIn 0.3s ease-in-out' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              {schema.questionDetails.map(q => (
+                <li key={q.id} style={{ display: 'flex', gap: '12px', padding: '10px 0', borderBottom: '1px solid var(--border-color)', alignItems: 'center', minHeight: '60px' }}>
+                  {onUpdateAnswer ? (
+                    <>
+                      <select
+                        className="no-print"
+                        value={q.score}
+                        onChange={(e) => onUpdateAnswer(q.id, parseInt(e.target.value, 10))}
+                        style={{
+                          fontWeight: 'bold', 
+                          color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
+                          background: q.score >= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(0,0,0,0.05)',
+                          borderRadius: '6px',
+                          width: '40px',
+                          height: '28px',
+                          textAlign: 'center',
+                          flexShrink: 0,
+                          border: `1px solid ${q.score >= 5 ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)'}`,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        {[1,2,3,4,5,6].map(num => (
+                          <option key={num} value={num}>{num}</option>
+                        ))}
+                      </select>
+                      <span className="print-only" style={{ 
+                        fontWeight: 'bold', 
+                        color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
+                        background: q.score >= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(0,0,0,0.05)',
+                        borderRadius: '6px',
+                        width: '28px',
+                        height: '28px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                        border: `1px solid ${q.score >= 5 ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)'}`
+                      }}>
+                        {q.score}
+                      </span>
+                    </>
+                  ) : (
+                    <span style={{ 
+                      fontWeight: 'bold', 
+                      color: q.score >= 5 ? '#ef4444' : 'var(--text-main)',
+                      background: q.score >= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(0,0,0,0.05)',
+                      borderRadius: '6px',
+                      width: '28px',
+                      height: '28px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      border: `1px solid ${q.score >= 5 ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)'}`
+                    }}>
+                      {q.score}
+                    </span>
+                  )}
+                  <span style={{ color: 'var(--text-muted)', lineHeight: '1.4' }}>
+                    <span style={{ fontWeight: 'bold', marginRight: '8px', opacity: 0.5 }}>#{q.id}</span>
+                    {q.text}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     );
   };
@@ -80,16 +187,16 @@ export default function YsqVisualizer({ groupedScores, top3 = [] }) {
   };
 
   return (
-    <div className="visualizer-container">
-      <h3 className="visualizer-title">Basisbehoeften en Schema's</h3>
+    <div className="visualizer-container page-break">
+      <h3 className="visualizer-title text-gradient">Basisbehoeften en Schema's</h3>
       
       <div className="ysq-layout">
         <div className="ysq-grid">
-          {renderSection('VERBONDENHEID & VEILIGHEID', 'Verbondenheid & Veiligheid', '#10b981')}
-          {renderSection('AUTONOMIE', 'Autonomie', '#3b82f6')}
-          {renderSection('ZELFEXPRESSIE', 'Zelfexpressie', '#eab308')}
-          {renderSection('REALISTISCHE GRENZEN', 'Realistische Grenzen', '#ef4444')}
-          {renderSection('SPONTANITEIT & SPEL', 'Spontaniteit & Spel', '#f97316')}
+          {renderSection('Verbondenheid & veiligheid', 'Verbondenheid & Veiligheid', '#10b981')}
+          {renderSection('Autonomie', 'Autonomie', '#3b82f6')}
+          {renderSection('Zelfexpressie', 'Zelfexpressie', '#eab308')}
+          {renderSection('Realistische grenzen', 'Realistische Grenzen', '#ef4444')}
+          {renderSection('Spontaniteit & spel', 'Spontaniteit & Spel', '#f97316')}
         </div>
       </div>
     </div>

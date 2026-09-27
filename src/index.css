@@ -22,6 +22,10 @@
   --accent: #bdbdbd;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -32,6 +36,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 #root {
@@ -51,6 +56,7 @@ body {
 }
 
 .btn {
+  font-family: inherit;
   background: var(--primary);
   color: white;
   border: none;
@@ -134,8 +140,16 @@ body {
 
 .card h2 {
   margin-top: 0;
-  color: var(--primary);
   font-size: 1.75rem;
+  background: linear-gradient(to right, #818cf8, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #818cf8, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .card p {
@@ -255,17 +269,18 @@ body {
 }
 
 .option-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(to right, rgba(129, 140, 248, 0.15), rgba(52, 211, 153, 0.15));
 }
 
 [data-theme="light"] .option-btn:hover {
-  background: rgba(0, 0, 0, 0.03);
+  background: linear-gradient(to right, rgba(129, 140, 248, 0.1), rgba(52, 211, 153, 0.1));
 }
 
 .option-btn.selected {
-  background: var(--primary);
+  background: linear-gradient(to right, #818cf8, #34d399);
   color: white;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(52, 211, 153, 0.2);
 }
 
 .option-btn.selected span {
@@ -350,7 +365,18 @@ body {
   }
 }
 
+@page {
+  margin: 30mm 15mm 15mm 15mm; /* Groot stuk top margin, rest is standaard */
+  size: A4;
+}
+
 @media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+  }
+  
   .page-break {
     page-break-before: always !important;
     break-before: page !important;
@@ -363,7 +389,47 @@ body {
     --border-color: #ccc !important;
     --card-bg: transparent !important;
   }
-  @page { margin: 1.5cm; }
+  
+  html, body {
+    font-size: 80% !important; /* Scale down entire app by 20% in print */
+  }
+
+
+  
+
+  /* specifically nuke borders on all structural containers */
+  html, body, #root, .app-container, .combined-results-container, .results-container, .visualizer-container, .details-section, .glass-panel, .no-print, header, main, footer {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  /* Except for mode/schema rows, we might want a simple bottom border for separation */
+  .mode-node, .ysq-node {
+    border-bottom: 1px solid #ddd !important;
+    border-radius: 0 !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .playing-card, .schema-img {
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.2) !important;
+    background: white !important;
+  }
+  
+  .playing-card img, .schema-img img {
+    /* If mix-blend-mode fails in PDF export, this filter forces near-white to pure white while keeping blacks dark */
+    filter: contrast(1.5) brightness(1.1) grayscale(1) !important;
+    mix-blend-mode: multiply !important;
+    background: transparent !important;
+  }
+
+  .app-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
   
   .recharts-responsive-container, .recharts-wrapper {
     width: 100% !important;
@@ -379,15 +445,13 @@ body {
     display: none !important;
   }
   
-  body, .app-container, .results-container, .combined-results-container {
+  body, .app-container {
     background: white !important;
     color: black !important;
-    padding: 0 !important;
-    margin: 0 !important;
   }
   
   /* Remove glass effects and gray backgrounds */
-  .glass-panel, .smi-section, .ysq-section, .mode-node, .visualizer-container {
+  .glass-panel, .smi-section, .ysq-section {
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
@@ -441,33 +505,40 @@ body {
   .chart-section {
     margin-top: 0.5rem !important;
     padding: 0.5rem !important;
-    transform: scale(0.9);
-    transform-origin: top center;
+  }
+  
+  /* Force fixed width for Recharts in print to prevent disappearing */
+  .recharts-responsive-container {
+    width: 750px !important;
+    min-width: 750px !important;
+  }
+  .chart-wrapper > div {
+    width: 750px !important;
+    min-width: 750px !important;
   }
   
   .radar-container, .domain-container {
-    transform-origin: top center;
-    transform: scale(0.9);
+    /* removed scale to make it bigger */
   }
   .chart-wrapper {
     overflow: visible !important;
   }
 
-  /* Compact headings */
-  h2, h3, h4 {
-    margin: 0.5rem 0 !important;
-    font-size: 1.1rem !important;
-    color: black !important;
+  /* Retain heading page breaks and enforce black color */
+  h1, h2, h3, h4, h5, h6 {
     page-break-after: avoid !important;
     break-after: avoid !important;
+    color: black !important;
   }
   
   /* Compact Nodes */
   .mode-node {
-    margin-bottom: 0.25rem !important;
-    padding: 0.25rem 0 !important;
-    border-bottom: 1px solid #eee !important;
+    margin-bottom: 0 !important;
+    padding: 0.5rem 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #ccc !important;
     page-break-inside: avoid;
+    height: auto !important;
   }
   .mode-name {
     font-size: 0.8rem !important;
@@ -491,8 +562,7 @@ body {
   }
 
   /* Fix WebKit CSS Grid page breaking bug which creates massive blank pages */
-  /* Fix WebKit CSS Grid page breaking bug which creates massive blank pages */
-  .ysq-grid, .smi-layout, .smi-row {
+  .ysq-grid, .smi-layout, .smi-row, .nodes-container {
     display: block !important;
   }
   
@@ -502,9 +572,13 @@ body {
     gap: 0.5rem !important;
   }
   
-  .ysq-section, .smi-section, .top-score-card, .chart-section {
+  .top-score-card, .chart-section {
     page-break-inside: avoid;
     break-inside: avoid;
+    margin-bottom: 1rem !important;
+  }
+  
+  .ysq-section, .smi-section {
     margin-bottom: 1rem !important;
   }
 
@@ -515,7 +589,7 @@ body {
     border: none !important;
     box-shadow: none !important;
   }
-  .top-scores-section, .top-score-card, .ysq-section, .smi-section {
+  .top-scores-section {
     border: 1px solid #ccc !important;
   }
   .chart-section {
@@ -533,37 +607,15 @@ body {
     font-size: 1.2rem !important;
   }
 
-  /* Compact Top 3 in print mode */
-  .top-score-card {
-    flex: 1 !important;
-    padding: 0.5rem 0.2rem !important;
-    margin-bottom: 0 !important;
-  }
-  .top-score-card > div:first-child {
-    font-size: 1.1rem !important;
-    margin-bottom: 0.2rem !important;
-  }
-  .top-score-card > div:nth-child(2) > div:first-child {
-    font-size: 0.8rem !important;
-    margin-bottom: 0 !important;
-  }
-  .top-score-card > div:nth-child(2) > div:last-child {
-    font-size: 0.6rem !important;
-    margin-bottom: 0.2rem !important;
-  }
-  .top-score-card > div:last-child {
-    font-size: 1rem !important;
-    padding: 0 0.5rem !important;
-  }
 
   .chart-wrapper {
     height: 480px !important;
   }
 
-  /* Ensure details section starts on a new page */
+  /* Ensure details section can break across pages to prevent massive white gaps */
   .details-section {
-    page-break-before: always !important;
-    break-before: page !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
   }
   
   /* Space between sections */
@@ -577,10 +629,7 @@ body {
     margin-bottom: 2rem !important;
   }
   
-  /* Ensure all text is dark enough to read on white paper */
-  p, span, div, strong, td, th {
-    color: black !important;
-  }
+  /* (Removed aggressive black color override to preserve screen colors) */
 
   /* Fix recharts SVG colors in print */
   .recharts-text, .recharts-cartesian-axis-tick-value {
@@ -589,20 +638,67 @@ body {
   .recharts-cartesian-axis-line, .recharts-cartesian-axis-tick-line {
     stroke: black !important;
   }
+  
+  /* Fix SVG Icons with gradients disappearing in print */
+  svg[stroke^="url"] {
+    stroke: black !important; /* solid fallback color */
+  }
+  
+  /* Fix text-gradient rendering glitches in PDF */
+  .text-gradient, .card h2 {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    color: black !important;
+  }
+  
+  /* FORCE RECHARTS VISIBILITY IN PRINT */
+  .recharts-wrapper, 
+  .recharts-wrapper svg.recharts-surface {
+    width: 700px !important;
+    min-width: 700px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  .chart-wrapper {
+    display: block !important;
+    width: 700px !important;
+    min-width: 700px !important;
+    overflow: visible !important;
+  }
 
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 }
-
 /* Schema Images */
+.schema-img img {
+  mix-blend-mode: multiply;
+  filter: contrast(1.1) brightness(1.05) grayscale(1);
+  background: transparent;
+}
+
 .schema-img {
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: white;
   padding: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   transition: transform 0.2s ease;
+  position: relative;
+}
+
+.schema-img::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  pointer-events: none;
 }
 
 [data-theme="dark"] .schema-img {
@@ -610,8 +706,116 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-@media print {
-  .schema-img {
-    filter: none !important;
-  }
+
+/* Card Flip and Hover Animations */
+.card-scene {
+  perspective: 1000px;
+  width: 200px;
+  height: 240px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.card-flip-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card-scene:hover .card-flip-container:not(.flipped) {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.card-flip-container.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-scene:hover .card-flip-container.flipped {
+  transform: rotateY(180deg) translateY(-8px) scale(1.02);
+}
+
+.card-face-front, .card-face-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.card-face-front::before, .card-face-back::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 12px;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.4) 25%,
+    rgba(255, 255, 255, 0.5) 30%,
+    transparent 35%
+  );
+  background-size: 300% 300%;
+  background-position: -150% 0;
+  pointer-events: none;
+  z-index: 5;
+  transition: background-position 0.8s ease-in-out, opacity 0.8s ease-in-out;
+  opacity: 0;
+}
+
+.card-scene:hover .card-face-front::before,
+.card-scene:hover .card-face-back::before {
+  background-position: 150% 0;
+  opacity: 1;
+}
+
+.card-face-front::after, .card-face-back::after {
+  content: '';
+  position: absolute;
+  top: 6px; left: 6px; right: 6px; bottom: 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.card-face-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  text-align: center;
+}
+
+.card-face-back p {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #4b5563;
+  margin: 0;
+  padding-top: 8px;
+  overflow-y: auto;
+}
+
+.card-face-back h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.85rem;
+  color: #1f2937;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 4px;
+}
+
+/* Hide scrollbar for card descriptions */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

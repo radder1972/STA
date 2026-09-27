@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ArrowLeftIcon, ArrowRightIcon, CheckIcon } from './Icons'
 
 export default function Questionnaire({ type, questions, onFinish, onCancel }) {
@@ -6,6 +6,71 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
   const [answers, setAnswers] = useState({})
   const [animateKey, setAnimateKey] = useState(0)
   const [hasReachedEnd, setHasReachedEnd] = useState(false)
+  const fileInputRef = useRef(null)
+
+  useEffect(() => {
+    const saved = localStorage.getItem(`schemaApp_progress_${type}`);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setAnswers(parsed);
+        for (let i = 0; i < questions.length; i++) {
+          if (parsed[questions[i].id] === undefined) {
+            setCurrentIndex(i);
+            break;
+          }
+        }
+      } catch (e) {
+        console.error("Error loading progress", e);
+      }
+    }
+  }, [type, questions]);
+
+  useEffect(() => {
+    if (Object.keys(answers).length > 0) {
+      localStorage.setItem(`schemaApp_progress_${type}`, JSON.stringify(answers));
+    }
+  }, [answers, type]);
+
+  const handleSaveFile = () => {
+    const data = JSON.stringify(answers);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `schema-therapy-voortgang-${type}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleResumeFile = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const parsed = JSON.parse(event.target.result);
+        setAnswers(parsed);
+        for (let i = 0; i < questions.length; i++) {
+          if (parsed[questions[i].id] === undefined) {
+            setCurrentIndex(i);
+            break;
+          }
+        }
+      } catch (err) {
+        alert("Bestand kon niet gelezen worden. Zorg dat het een geldig voortgangsbestand is.");
+      }
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    };
+    reader.readAsText(file);
+  };
+
+  const handleFinish = () => {
+    localStorage.removeItem(`schemaApp_progress_${type}`);
+    onFinish(answers);
+  };
   
   const question = questions[currentIndex]
   const total = questions.length
@@ -44,13 +109,7 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
     if (currentIndex < total - 1) setCurrentIndex(c => c + 1)
   }
 
-  const handleFillRandom = () => {
-    const randomAnswers = {}
-    questions.forEach(q => {
-      randomAnswers[q.id] = Math.floor(Math.random() * 6) + 1
-    })
-    onFinish(randomAnswers)
-  }
+
 
   const handlePrev = () => {
     if (currentIndex > 0) setCurrentIndex(c => c - 1)
@@ -80,14 +139,28 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
         <button className="btn btn-outline" onClick={onCancel}>
           <ArrowLeftIcon size={18} /> Cancel
         </button>
-        <span style={{color: 'var(--text-muted)'}}>Question {currentIndex + 1} of {total}</span>
-        
-        <div style={{ display: 'flex', gap: '10px', paddingRight: '40px' }}>
-          <button className="btn btn-outline" onClick={handleFillRandom} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
-            Fill Randomly
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <span className="text-gradient" style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '4px' }}>
+            {type === 'ysq' ? "Young Schema Questionnaire (YSQ S3)" : "Schema Mode Inventory (SMI)"}
+          </span>
+          <span style={{color: 'var(--text-muted)'}}>Vraag {currentIndex + 1} van {total}</span>
+        </div>        
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center', paddingRight: '50px' }}>
+          <input 
+            type="file" 
+            accept=".json" 
+            style={{ display: 'none' }} 
+            ref={fileInputRef} 
+            onChange={handleResumeFile} 
+          />
+          <button className="btn btn-outline" onClick={() => fileInputRef.current && fileInputRef.current.click()} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
+            Hervatten
+          </button>
+          <button className="btn btn-outline" onClick={handleSaveFile} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
+            Opslaan
           </button>
           {isComplete && currentIndex === total - 1 && (
-            <button className="btn btn-gradient" onClick={() => onFinish(answers)} style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <button className="btn btn-gradient" onClick={handleFinish} style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '5px' }}>
               <CheckIcon size={18} /> Bekijk Resultaten
             </button>
           )}

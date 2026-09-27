@@ -2,10 +2,13 @@ import { useState } from 'react'
 import { DownloadIcon, RefreshIcon, ChartIcon, TrophyIcon } from './Icons'
 import ysqScoring from '../data/ysq-scoring.json'
 import smiScoring from '../data/smi-scoring.json'
+import ysqQuestions from '../data/ysq-s3.json'
+import smiQuestions from '../data/smi.json'
 import YsqVisualizer from './YsqVisualizer'
 import SmiVisualizer from './SmiVisualizer'
 import ScoreChart from './ScoreChart'
 import { schemaDescriptions } from '../data/descriptions'
+import { getSchemaImage, getModeImage } from '../utils/images'
 import './Visualizers.css'
 
 const basisbehoeftenMap = {
@@ -62,12 +65,12 @@ const smiModesMap = {
   'wk': { name: 'Wantrouwende overcontroleerder', group: 'BESCHERMMODI - OMKERING' },
   'zh': { name: 'Zelfverheerlijker', group: 'BESCHERMMODI - OMKERING' },
   'pa': { name: 'Pest en aanval', group: 'BESCHERMMODI - OMKERING' },
-  'so': { name: 'Straffende ouder', group: 'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI' },
-  'vo': { name: 'Veeleisende ouder', group: 'DISFUNCTIONELE GEÏNTERNALISEERDE OUDERMODI' },
+  'so': { name: 'Straffende ouder', group: 'DISFUNCTIONELE OUDERMODI' },
+  'vo': { name: 'Veeleisende ouder', group: 'DISFUNCTIONELE OUDERMODI' },
   'gv': { name: 'Gezonde volwassene', group: 'FUNCTIONELE MODI' }
 };
 
-export default function SingleResult({ type, answers }) {
+export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasisbehoeften, onViewModiCategorieen }) {
   const scoringData = type === 'ysq' ? ysqScoring : smiScoring;
   const title = type === 'ysq' ? 'YSQ S3' : 'SMI'
   
@@ -96,7 +99,15 @@ export default function SingleResult({ type, answers }) {
       displayKey = ysqSchemaNamesMap[key];
     }
     
-    return { id: key, name: displayKey, mean, highScores, totalItems: items.length }
+    const questionBank = type === 'ysq' ? ysqQuestions : smiQuestions;
+    const questionDetails = items.map(qId => {
+      const val = answers[qId];
+      if (val === undefined) return null;
+      const qObj = questionBank.find(q => q.id === parseInt(qId));
+      return { id: qId, score: val, text: qObj ? qObj.text : `Vraag ${qId}` };
+    }).filter(Boolean);
+    
+    return { id: key, name: displayKey, mean, highScores, totalItems: items.length, questionDetails }
   })
   
   const handleDownload = () => {
@@ -145,18 +156,17 @@ export default function SingleResult({ type, answers }) {
   return (
     <div className="results-container" style={{ width: '100%', maxWidth: '900px', margin: '0 auto', paddingBottom: '2rem' }}>
       <div className="results-box glass-panel" style={{ padding: '2rem', marginTop: '2rem' }}>
-        <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-          <ChartIcon size={28} /> {title} Resultaten
+        <h2 className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+          <ChartIcon size={28} useGradient={true} /> {title} Resultaten
         </h2>
 
         <p className="no-print">Je hebt {totalAnswered} vragen beantwoord.</p>
 
-        {/* Wrapper to keep Top 3 and Chart on the same printed page */}
-        <div className="print-keep-together">
+
           {/* Top 3 Scores Highlight */}
         <div className="top-scores-section glass-panel" style={{ padding: '1.5rem', marginTop: '3rem', marginBottom: '1rem', border: '1px solid var(--border-color)', borderRadius: '16px', background: 'var(--card-bg)', boxShadow: 'var(--glass-shadow)' }}>
-          <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--text-color)', marginBottom: '3rem', letterSpacing: '1px', fontSize: '1.5rem' }}>
-            <TrophyIcon size={28} color="#fbbf24" /> Jouw Top 3 {type === 'ysq' ? "Schema's" : "Modi"}
+          <h3 className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '3rem', letterSpacing: '1px', fontSize: '1.5rem' }}>
+            Jouw Top 3 {type === 'ysq' ? "Schema's" : "Modi"}
           </h3>
           <div className="top-scores-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
             {top3.map((score, i) => {
@@ -174,7 +184,7 @@ export default function SingleResult({ type, answers }) {
               const isSchemaImg = type === 'ysq' && schemasWithImages.includes(score.id);
               const isModeImg = type === 'smi' && modesWithImages.includes(score.id);
               const hasImage = isSchemaImg || isModeImg;
-              const imgUrl = isSchemaImg ? `/images/schemas/${score.id.replace('/', '_')}.png` : (isModeImg ? `/images/modes/${score.id}.png` : null);
+              const imgUrl = isSchemaImg ? getSchemaImage(score.id) : (isModeImg ? getModeImage(score.id) : null);
 
               return (
                 <div 
@@ -187,12 +197,23 @@ export default function SingleResult({ type, answers }) {
                   </div>
                   {hasImage && (
                     <div style={{ marginBottom: '1rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                      <img src={imgUrl} alt={score.name} className="schema-img" style={{ maxWidth: score.name === 'Kwetsbaarheid voor ziekte en gevaar' ? '150px' : '130px' }} />
+                      <div className="schema-img playing-card" style={{ width: '130px', height: '155px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', transform: `rotate(${(i * 7) % 8 - 4}deg)`, boxShadow: '2px 4px 12px rgba(0,0,0,0.4)', border: '4px solid white', background: 'white' }}>
+                        <img src={imgUrl} alt={score.name} style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', transform: score.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
+                      </div>
                     </div>
                   )}
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', width: '100%' }}>
-                    <div style={{ fontWeight: 'bold', fontSize: '0.9rem', lineHeight: '1.3', marginBottom: '0.25rem', minHeight: '2.8rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>{score.name}</div>
-                    <div style={{ color: 'var(--text-muted)', fontSize: '0.7rem', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.5px', minHeight: '2rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>{group || 'Overig'}</div>
+                    <div style={{ fontWeight: 'bold', fontSize: '0.9rem', lineHeight: '1.3', marginBottom: '0.25rem', minHeight: '2.8rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', textAlign: 'center' }}>
+                      {score.name.includes(' ') ? (
+                        <>
+                          <span>{score.name.substring(0, score.name.indexOf(' '))}</span>
+                          <span>{score.name.substring(score.name.indexOf(' ') + 1)}</span>
+                        </>
+                      ) : (
+                        <span>{score.name}</span>
+                      )}
+                    </div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginBottom: '1.5rem', letterSpacing: '0.5px', minHeight: '2rem', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>{group || 'Overig'}</div>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.4', marginBottom: '1.5rem', fontStyle: 'italic', flex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
                       {schemaDescriptions[score.name] || ''}
                     </div>
@@ -206,18 +227,17 @@ export default function SingleResult({ type, answers }) {
 
         {/* Full Chart Overview */}
         <div className="chart-section glass-panel" style={{ marginTop: '1rem', padding: '1.5rem', border: '1px solid var(--border-color)', borderRadius: '16px', background: 'var(--card-bg)' }}>
-          <ScoreChart scores={calculatedScores.map(score => ({
+          <ScoreChart type={type} scores={calculatedScores.map(score => ({
             ...score,
             category: type === 'smi' ? smiModesMap[score.id]?.group : basisbehoeftenMap[score.id]
-          }))} />
-        </div>
+          }))} onViewBasisbehoeften={onViewBasisbehoeften} onViewModiCategorieen={onViewModiCategorieen} />
         </div>
 
         <div className="details-section" style={{ marginTop: '2rem', marginBottom: '2rem' }}>
           {type === 'ysq' ? (
-            <YsqVisualizer groupedScores={groupedScores} top3={top3} />
+            <YsqVisualizer groupedScores={groupedScores} top3={top3} onUpdateAnswer={(qId, val) => onUpdateAnswer && onUpdateAnswer(type, qId, val)} />
           ) : (
-            <SmiVisualizer groupedScores={groupedScores} top3={top3} />
+            <SmiVisualizer groupedScores={groupedScores} top3={top3} onUpdateAnswer={(qId, val) => onUpdateAnswer && onUpdateAnswer(type, qId, val)} />
           )}
         </div>
       </div>
