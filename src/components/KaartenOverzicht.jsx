@@ -87,12 +87,14 @@ export default function KaartenOverzicht({ onBack }) {
   const renderCardList = (cards, defaultImageStyle = {}) => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyItems: 'center', justifyContent: 'center', padding: '1rem', marginBottom: '3rem' }}>
       {cards.map((card, idx) => (
-        <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-          <div className="schema-img playing-card" style={{ width: '200px', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
-          </div>
-          <div style={{ fontWeight: 'bold', color: 'var(--text-main)', textAlign: 'center', maxWidth: '200px' }}>
-            {card.title}
+        <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div className="schema-img playing-card" style={{ width: '200px', height: '240px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: '16px', boxSizing: 'border-box' }}>
+            <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+              <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
+            </div>
+            <div style={{ fontWeight: 'bold', color: '#333', textAlign: 'center', fontSize: '0.85rem', lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40px', marginTop: '4px', zIndex: 1 }}>
+              {card.title}
+            </div>
           </div>
         </div>
       ))}
