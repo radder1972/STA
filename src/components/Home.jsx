@@ -72,7 +72,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
       <div className="header">
         <h1>Schema Therapy Questionnaires</h1>
         <p style={{ fontSize: '1rem', lineHeight: '1.6' }}>
-          Hieronder vindt u twee belangrijke vragenlijsten die worden ingezet binnen de schematherapie. 
+          Hieronder vindt u twee vragenlijsten die worden ingezet binnen de schematherapie. 
           Door deze in te vullen krijgt u waardevolle inzichten in uw onderliggende gevoeligheden (schema's) en uw huidige gedragspatronen (modi). 
           Vul beide vragenlijsten in voor een uitgebreid en gecombineerd analyserapport.
         </p>
