@@ -794,10 +794,11 @@ body {
   opacity: 1;
 }
 
-.inner-border {
+.playing-card::after, .card-face-back::after {
+  content: '';
   position: absolute;
   top: 6px; left: 6px; right: 6px; bottom: 6px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid rgba(20, 184, 166, 0.3); /* teal-tinted inner border for consistency */
   border-radius: 10px;
   pointer-events: none;
   z-index: 50;
