@@ -799,7 +799,7 @@ body {
   right: 6px;
   bottom: 6px;
   border: 1px solid rgba(15, 23, 42, 0.15); /* Lijntje op de voorkant */
-  border-radius: 8px; /* Zachte ronding */
+  border-radius: 6px; /* 12px buitenrand - 6px inset = 6px wiskundig perfecte radius */
   pointer-events: none;
   z-index: 10;
 }
