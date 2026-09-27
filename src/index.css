@@ -783,6 +783,9 @@ body {
 .card-scene:hover .card-face-front::before,
 .card-scene:hover .card-face-back::before {
   background-position: 150% 0;
+  opacity: 1;
+}
+
 .card-scene:hover .card-face-front,
 .card-scene:hover .card-face-back {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
