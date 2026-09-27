@@ -825,7 +825,7 @@ body {
 
 .card-face-back {
   transform: rotateY(180deg);
-  background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+  background: #ffffff;
   text-align: center;
 }
 
