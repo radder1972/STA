@@ -346,7 +346,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         <button className="btn btn-outline" onClick={() => window.print()} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           PDF / Printen
         </button>
-        <button className="btn btn-outline" onClick={clearTable} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ef4444', borderColor: '#ef4444' }}>
+        <button className="btn btn-outline" onClick={clearTable} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           Tafel Leegmaken
         </button>
       </div>
