@@ -680,13 +680,4 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-@media print {
-  .schema-img {
-    filter: none !important;
-    transform: none !important;
-    box-shadow: none !important;
-    width: 65px !important;
-    height: 80px !important;
-    border-width: 2px !important;
-  }
-}
+
