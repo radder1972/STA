@@ -36,7 +36,7 @@ const ModiCategorieen = ({ onBack }) => {
             Dit zijn de intense, oorspronkelijke emoties en behoeften die iemand als kind ervoer en die in het heden weer opspelen bij een trigger. Voorbeelden zijn het Kwetsbare kind, het Boze kind, het Impulsieve/Ongedisciplineerde kind en het Blije/Gezonde kind.
           </p>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px' }}>
+        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)' }}>
           <img src={img1} alt="Kindmodi" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>
@@ -49,7 +49,7 @@ const ModiCategorieen = ({ onBack }) => {
             Dit zijn de geïnternaliseerde, negatieve stemmen en houdingen van belangrijke figuren uit de jeugd. Voorbeelden zijn de Straffende ouder, de Veeleisende ouder en de Schuldinducerende ouder.
           </p>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px' }}>
+        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-3deg)' }}>
           <img src={img2} alt="Disfunctionele oudermodi" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>
@@ -67,10 +67,16 @@ const ModiCategorieen = ({ onBack }) => {
             <li><strong>Overcompensatie (vechten/tegenaanval):</strong> Bijvoorbeeld de Grandioze overcompensator of de Pest-en-aanvalmodus.</li>
           </ul>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '220px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', position: 'relative' }}>
-          <img src={img3c} alt="Overcompensatie" style={{ width: '120px', height: 'auto', position: 'absolute', right: '10px', top: '40px', zIndex: 1, objectFit: 'contain', transform: 'rotate(5deg)' }} />
-          <img src={img3b} alt="Vermijding" style={{ width: '120px', height: 'auto', position: 'absolute', right: '50px', top: '30px', zIndex: 2, objectFit: 'contain' }} />
-          <img src={img3a} alt="Overgave" style={{ width: '120px', height: 'auto', position: 'absolute', right: '90px', top: '20px', zIndex: 3, objectFit: 'contain', transform: 'rotate(-5deg)', filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.1))' }} />
+        <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+          <div className="schema-img playing-card" style={{ width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(2deg)', zIndex: 1 }}>
+            <img src={img3c} alt="Overcompensatie" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          </div>
+          <div className="schema-img playing-card" style={{ width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)', zIndex: 2, marginTop: '-80px' }}>
+            <img src={img3b} alt="Vermijding" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          </div>
+          <div className="schema-img playing-card" style={{ width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)', zIndex: 3, marginTop: '-80px' }}>
+            <img src={img3a} alt="Overgave" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          </div>
         </div>
       </div>
 
@@ -82,7 +88,7 @@ const ModiCategorieen = ({ onBack }) => {
             Dit is de gebalanceerde, rationele en zorgzame kant. Deze modus neemt de regie, troost het Kwetsbare kind, stelt grenzen aan de disfunctionele oudermodi en vervangt automatische copingmodi door effectieve, bewuste keuzes.
           </p>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px' }}>
+        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-2deg)' }}>
           <img src={img4} alt="De Gezonde Volwassene" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>
