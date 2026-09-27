@@ -143,21 +143,6 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
       </div>
 
 
-      <div style={{ maxWidth: '900px', margin: '3rem auto 2rem', padding: '0 1rem' }}>
-        <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Therapeutische Tools</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}>
-          <div className="card glass-panel" onClick={onViewTafelopstelling} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '320px', padding: '2rem', cursor: 'pointer' }}>
-            <div style={{ background: 'transparent', color: 'var(--primary)', padding: '10px', borderRadius: '50%', marginBottom: '1rem' }}>
-              <CardsIcon size={56} useGradient={true} />
-            </div>
-            <h3 style={{ margin: '0 0 1rem 0' }}>Tafelopstelling</h3>
-            <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem', flex: 1, margin: 0 }}>
-              Interactief canvas om fysiek (digitaal) je eigen triggers in kaart te brengen. Sleep Modus, Schema en Basisbehoefte bij elkaar op tafel.
-            </p>
-          </div>
-        </div>
-      </div>
-
       <div style={{ color: 'var(--text-muted)', padding: '2rem', background: 'var(--glass-bg, rgba(255, 255, 255, 0.05))', borderRadius: '16px', border: '1px solid var(--border-color)', textAlign: 'left', lineHeight: '1.6', fontSize: '0.95rem', maxWidth: '900px', margin: '3rem auto 2rem' }}>
         <h3 className="text-gradient" style={{ marginBottom: '1rem', fontSize: '1.2rem', textAlign: 'center' }}>Het verschil tussen de YSQ en de SMI</h3>
         <p style={{ marginBottom: theoryExpanded ? '1.5rem' : '0', textAlign: 'center', maxWidth: '750px', margin: '0 auto' }}>
@@ -203,6 +188,21 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
             </div>
           </>
         )}
+      </div>
+
+      <div style={{ maxWidth: '900px', margin: '3rem auto 2rem', padding: '0 1rem' }}>
+        <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Therapeutische Tools</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}>
+          <div className="card glass-panel" onClick={onViewTafelopstelling} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '320px', padding: '2rem', cursor: 'pointer' }}>
+            <div style={{ background: 'transparent', color: 'var(--primary)', padding: '10px', borderRadius: '50%', marginBottom: '1rem' }}>
+              <CardsIcon size={56} useGradient={true} />
+            </div>
+            <h3 style={{ margin: '0 0 1rem 0' }}>Tafelopstelling</h3>
+            <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem', flex: 1, margin: 0 }}>
+              Interactief canvas om fysiek (digitaal) je eigen triggers in kaart te brengen. Sleep Modus, Schema en Basisbehoefte bij elkaar op tafel.
+            </p>
+          </div>
+        </div>
       </div>
 
       {hasAnyResult && (
