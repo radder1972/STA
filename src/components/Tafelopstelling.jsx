@@ -378,7 +378,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 ) : (
                   <span style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <AlertTriangleIcon size={16} useGradient={true} /> Vragenlijsten niet ingevuld (Algemene voorspelling) - 
-                    <span onClick={onBack} className="text-gradient" style={{ cursor: 'pointer', textDecoration: 'underline', fontWeight: 'bold' }}>Nu invullen</span>
+                    <span onClick={onBack} className="text-gradient" style={{ cursor: 'pointer', fontWeight: 'bold' }}>Nu invullen</span>
                   </span>
                 )}
               </div>
@@ -415,7 +415,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             <CardSlot label="Gezonde Volwassene" card={healthyAdultCard} />
             <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
               <div style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '0.5rem' }}>Grenzen stellen & Zorgen</div>
-              <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', textAlign: 'center', marginBottom: '1rem', lineHeight: '1.5' }}>
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '1rem', lineHeight: '1.5' }}>
                 De Gezonde Volwassene helpt je om op een constructieve manier met deze situatie om te gaan. Enerzijds door begrip en zorg te tonen voor je kwetsbare kant (je onvervulde behoefte), en anderzijds door gezonde grenzen te stellen aan automatische, disfunctionele reacties. Wat zou de Gezonde Volwassene nu zeggen of doen?
               </p>
               <textarea 
