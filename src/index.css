@@ -425,8 +425,6 @@ body {
   }
 
   .app-container {
-    transform: scale(0.85) !important;
-    transform-origin: top center !important;
     width: 100% !important;
     max-width: none !important;
     margin: 0 auto !important;
@@ -507,8 +505,6 @@ body {
   .chart-section {
     margin-top: 0.5rem !important;
     padding: 0.5rem !important;
-    transform: scale(0.9);
-    transform-origin: top center;
   }
   
   /* Force fixed width for Recharts in print to prevent disappearing */
@@ -522,8 +518,7 @@ body {
   }
   
   .radar-container, .domain-container {
-    transform-origin: top center;
-    transform: scale(0.9);
+    /* removed scale to make it bigger */
   }
   .chart-wrapper {
     overflow: visible !important;
