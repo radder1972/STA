@@ -135,9 +135,8 @@ export default function KaartenOverzicht({ onBack }) {
           <div className="card-scene">
             <div className={`card-flip-container ${flippedCards[card.title] ? 'flipped' : ''}`}>
               
-              <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(card.title)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[card.title] ? 'none' : 'auto', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: '8px', left: '8px', right: '8px', bottom: '8px', border: '1px solid rgba(15, 23, 42, 0.15)', borderRadius: '10px', pointerEvents: 'none', zIndex: 50 }}></div>
-                <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative', zIndex: 2 }}>
+              <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(card.title)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[card.title] ? 'none' : 'auto' }}>
+                <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative' }}>
                   <img src={card.src} alt={card.title} className="card-img-base" style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', transition: 'opacity 0.5s ease-in-out', ...defaultImageStyle, ...card.style }} />
                   {card.srcColor && (
                     <img 
@@ -153,11 +152,10 @@ export default function KaartenOverzicht({ onBack }) {
                 </div>
               </div>
               
-              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: flippedCards[card.title] ? 'auto' : 'none', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: '8px', left: '8px', right: '8px', bottom: '8px', border: '1px solid rgba(15, 23, 42, 0.15)', borderRadius: '10px', pointerEvents: 'none', zIndex: 50 }}></div>
+              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: flippedCards[card.title] ? 'auto' : 'none' }}>
                 <div 
                   onClick={() => handleFlip(card.title)} 
-                  style={{ flex: 1, cursor: 'pointer', overflowY: 'auto', marginBottom: '5px', paddingRight: '2px', zIndex: 2, position: 'relative' }}
+                  style={{ flex: 1, cursor: 'pointer', overflowY: 'auto', marginBottom: '5px', paddingRight: '2px' }}
                   className="hide-scrollbar"
                 >
                   <h4 style={{ fontSize: '0.9rem', marginBottom: '0.5rem', lineHeight: '1.2' }}>{card.title}</h4>
