@@ -395,20 +395,17 @@ body {
 
 
   
-  /* NUKE ALL BORDERS BY DEFAULT IN PRINT */
-  *, *::before, *::after {
-    box-shadow: none !important;
-    outline: none !important;
-    border: none !important;
-    border-color: transparent !important;
-  }
-  
+
   /* specifically nuke borders on all structural containers */
   html, body, #root, .app-container, .combined-results-container, .results-container, .visualizer-container, .details-section, .glass-panel, .no-print, header, main, footer {
-    border: none !important;
-    border-color: transparent !important;
     border-style: hidden !important;
     background: transparent !important;
+  }
+
+  .playing-card, .schema-img {
+    border: 2px solid #ccc !important;
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.2) !important;
+    background: white !important;
   }
 
   .app-container {
