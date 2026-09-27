@@ -375,7 +375,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
       {embedded && (
         <div className="no-print" style={{ marginBottom: '2rem', textAlign: 'center' }}>
           <p style={{ color: 'var(--text-main)', maxWidth: '700px', margin: '0 auto 1.5rem auto', lineHeight: '1.6', fontSize: '1rem' }}>
-            De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen. Sleep jouw schema's, modi en basisbehoeften op tafel om inzicht te krijgen in wat er op dat moment gebeurt.
+            De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen. Je kunt de opstelling <strong>handmatig</strong> maken door zelf kaarten op tafel te leggen en de analyse te starten, óf je situatie beschrijven en de <strong>AI-wizard</strong> de opstelling en analyse automatisch voor je laten doen op basis van je testresultaten.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
             <button className="btn btn-outline" onClick={handlePrintTafel} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
