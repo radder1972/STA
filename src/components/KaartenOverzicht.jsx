@@ -2,28 +2,28 @@ import React, { useState } from 'react'
 import { ArrowLeftIcon } from './Icons'
 
 import imgB1 from '../assets/images/basisbehoeften/1.png'
-import imgB1Color from '../assets/images/basisbehoeften/1_color.png'
+import imgB1Color from '../assets/images/basisbehoeften/1_teal.png'
 import imgB2 from '../assets/images/basisbehoeften/2.png'
-import imgB2Color from '../assets/images/basisbehoeften/2_color.png'
+import imgB2Color from '../assets/images/basisbehoeften/2_teal.png'
 import imgB3 from '../assets/images/basisbehoeften/3.png'
-import imgB3Color from '../assets/images/basisbehoeften/3_color.png'
+import imgB3Color from '../assets/images/basisbehoeften/3_teal.png'
 import imgB4 from '../assets/images/basisbehoeften/4.png'
-import imgB4Color from '../assets/images/basisbehoeften/4_color.png'
+import imgB4Color from '../assets/images/basisbehoeften/4_teal.png'
 import imgB5 from '../assets/images/basisbehoeften/5.png'
-import imgB5Color from '../assets/images/basisbehoeften/5_color.png'
+import imgB5Color from '../assets/images/basisbehoeften/5_teal.png'
 
 import imgM1 from '../assets/images/modicategorieen/1.png'
-import imgM1Color from '../assets/images/modicategorieen/1_color.png'
+import imgM1Color from '../assets/images/modicategorieen/1_teal.png'
 import imgM2 from '../assets/images/modicategorieen/2.png'
-import imgM2Color from '../assets/images/modicategorieen/2_color.png'
+import imgM2Color from '../assets/images/modicategorieen/2_teal.png'
 import imgM3a from '../assets/images/modicategorieen/coping_overgave.png'
-import imgM3aColor from '../assets/images/modicategorieen/coping_overgave_color.png'
+import imgM3aColor from '../assets/images/modicategorieen/coping_overgave_teal.png'
 import imgM3b from '../assets/images/modicategorieen/coping_vermijding.png'
-import imgM3bColor from '../assets/images/modicategorieen/coping_vermijding_color.png'
+import imgM3bColor from '../assets/images/modicategorieen/coping_vermijding_teal.png'
 import imgM3c from '../assets/images/modicategorieen/coping_overcompensatie.png'
-import imgM3cColor from '../assets/images/modicategorieen/coping_overcompensatie_color.png'
+import imgM3cColor from '../assets/images/modicategorieen/coping_overcompensatie_teal.png'
 import imgM4 from '../assets/images/modicategorieen/4.png'
-import imgM4Color from '../assets/images/modicategorieen/4_color.png'
+import imgM4Color from '../assets/images/modicategorieen/4_teal.png'
 
 import { schemaImages, modeImages } from '../utils/images'
 import { schemaDescriptions } from '../data/descriptions'
@@ -111,20 +111,20 @@ export default function KaartenOverzicht({ onBack }) {
   ]
 
   const detailedSchemaCards = Object.keys(schemaImages)
-    .filter(path => !path.endsWith('_color.png'))
+    .filter(path => !path.endsWith('_teal.png'))
     .map(path => {
       const filename = path.split('/').pop().replace('.png', '');
       const title = ysqSchemaNamesMap[filename] || filename.replace(/_/g, ' ');
-      const colorPath = path.replace('.png', '_color.png');
+      const colorPath = path.replace('.png', '_teal.png');
       return { src: schemaImages[path], srcColor: schemaImages[colorPath] || schemaImages[path], title, description: schemaDescriptions[title], style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' } };
     })
 
   const detailedModeCards = Object.keys(modeImages)
-    .filter(path => !path.endsWith('_color.png'))
+    .filter(path => !path.endsWith('_teal.png'))
     .map(path => {
       const filename = path.split('/').pop().replace('.png', '');
       const title = smiModesMap[filename] || filename;
-      const colorPath = path.replace('.png', '_color.png');
+      const colorPath = path.replace('.png', '_teal.png');
       return { src: modeImages[path], srcColor: modeImages[colorPath] || modeImages[path], title, description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
     })
 

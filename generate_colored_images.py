@@ -15,7 +15,6 @@ def tint_image(input_path, output_path, target_color_hex):
         r, g, b, a = item
         # Detect grey pixels
         if a > 0 and r > 30 and r < 230 and abs(r - g) < 25 and abs(g - b) < 25:
-            # Replace grey with the exact target color, keeping the original alpha
             new_data.append((target_r, target_g, target_b, a))
         else:
             new_data.append(item)
@@ -28,10 +27,9 @@ target_color = '#14b8a6' # Light teal
 
 for root, dirs, files in os.walk(base_dir):
     for file in files:
-        if file.endswith('.png') and not file.endswith('_color.png'):
+        if file.endswith('.png') and not file.endswith('_teal.png'):
             input_path = os.path.join(root, file)
-            output_path = os.path.join(root, file.replace('.png', '_color.png'))
+            output_path = os.path.join(root, file.replace('.png', '_teal.png'))
             tint_image(input_path, output_path, target_color)
-            print(f"Generated {output_path}")
 
-print("Done generating light teal images.")
+print("Done generating teal images.")
