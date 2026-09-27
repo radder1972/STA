@@ -44,13 +44,7 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
     if (currentIndex < total - 1) setCurrentIndex(c => c + 1)
   }
 
-  const handleFillRandom = () => {
-    const randomAnswers = {}
-    questions.forEach(q => {
-      randomAnswers[q.id] = Math.floor(Math.random() * 6) + 1
-    })
-    onFinish(randomAnswers)
-  }
+
 
   const handlePrev = () => {
     if (currentIndex > 0) setCurrentIndex(c => c - 1)
@@ -87,9 +81,6 @@ export default function Questionnaire({ type, questions, onFinish, onCancel }) {
           <span style={{color: 'var(--text-muted)'}}>Vraag {currentIndex + 1} van {total}</span>
         </div>        
         <div style={{ display: 'flex', gap: '10px', paddingRight: '40px' }}>
-          <button className="btn btn-outline" onClick={handleFillRandom} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
-            Fill Randomly
-          </button>
           {isComplete && currentIndex === total - 1 && (
             <button className="btn btn-gradient" onClick={() => onFinish(answers)} style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '5px' }}>
               <CheckIcon size={18} /> Bekijk Resultaten
