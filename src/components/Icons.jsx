@@ -205,3 +205,17 @@ export const CpuChipIcon = (props) => (
     <line x1="1" y1="14" x2="4" y2="14" />
   </IconBase>
 );
+
+export const WandIcon = (props) => (
+  <IconBase {...props}>
+    <path d="M15 4V2" />
+    <path d="M15 16v-2" />
+    <path d="M8 9h2" />
+    <path d="M20 9h2" />
+    <path d="M17.8 11.8l1.4 1.4" />
+    <path d="M15 9h0" />
+    <path d="M17.8 6.2l1.4-1.4" />
+    <path d="M3 21l9-9" />
+    <path d="M12.2 6.2l-1.4-1.4" />
+  </IconBase>
+);

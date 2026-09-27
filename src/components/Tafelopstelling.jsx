@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { ArrowLeftIcon, CpuChipIcon } from './Icons';
+import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon } from './Icons';
 import { schemaImages, modeImages } from '../utils/images';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
@@ -374,9 +374,9 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               
               <div style={{ fontSize: '0.85rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 {(completedTests?.ysq && completedTests?.smi) ? (
-                  <span style={{ color: '#10b981', display: 'flex', alignItems: 'center', gap: '4px' }}>✅ Vragenlijsten ingevuld (Persoonlijke voorspelling)</span>
+                  <span style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '4px' }}><CheckIcon size={16} useGradient={true} /> Vragenlijsten ingevuld (Persoonlijke voorspelling)</span>
                 ) : (
-                  <span style={{ color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '4px' }}>⚠️ Vragenlijsten niet ingevuld (Algemene voorspelling)</span>
+                  <span style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '4px' }}><AlertTriangleIcon size={16} useGradient={true} /> Vragenlijsten niet ingevuld (Algemene voorspelling)</span>
                 )}
               </div>
 
@@ -387,7 +387,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.95rem' }}
                 title="Voorspel de kaarten op basis van je situatie en testresultaten"
               >
-                {isPredicting ? 'Bezig met voorspellen...' : <><CpuChipIcon size={16} useGradient={true} /> 🪄 AI: Voorspel de kaarten</>}
+                {isPredicting ? 'Bezig met voorspellen...' : <><WandIcon size={16} useGradient={true} /> AI: Voorspel de kaarten</>}
               </button>
             </div>
           </div>
