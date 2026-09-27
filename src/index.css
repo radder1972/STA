@@ -701,7 +701,7 @@ body {
   transition: filter 0.5s ease;
 }
 
-.schema-img:hover img {
+.card-scene .schema-img:hover img {
   filter: contrast(1.1) brightness(1.05) sepia(0.7) hue-rotate(135deg) saturate(1.8);
 }
 
