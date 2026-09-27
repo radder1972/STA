@@ -246,9 +246,6 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <ArrowLeftIcon size={18} /> Terug naar Start
         </button>
-        <button className="btn btn-outline" onClick={generateDeepAnalysis} disabled={isGeneratingAnalysis} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {isGeneratingAnalysis ? 'Analyseren...' : <><CpuChipIcon size={16} useGradient={true} /> Diepgaande AI Analyse</>}
-        </button>
         <button className="btn btn-outline" onClick={() => window.print()} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           PDF / Printen
         </button>
@@ -319,6 +316,14 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         </div>
       </div>
 
+      {!analysisText && !isGeneratingAnalysis && (
+        <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+          <button className="btn btn-outline" onClick={generateDeepAnalysis} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 24px', fontSize: '1.1rem', background: 'var(--card-bg)' }}>
+            <CpuChipIcon size={20} useGradient={true} /> Diepgaande AI Analyse
+          </button>
+        </div>
+      )}
+
       {/* Diepgaande Analyse Weergave */}
       {(analysisText || isGeneratingAnalysis) && (
         <div className="glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '2rem auto 0 auto', background: 'var(--card-bg)' }}>
@@ -334,7 +339,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               value={analysisText}
               onChange={e => setAnalysisText(e.target.value)}
               style={{ 
-                width: '100%', minHeight: '200px', padding: '1.5rem', 
+                width: '100%', minHeight: '400px', padding: '1.5rem', 
                 borderRadius: '12px', border: '1px solid var(--border-color)', 
                 background: 'var(--bg-color)', color: 'var(--text-main)', 
                 fontFamily: 'inherit', fontSize: '1rem', resize: 'vertical',
