@@ -70,6 +70,15 @@ const modeCards = Object.keys(modeImages).map(path => {
 
 const healthyAdultCard = { src: imgM4, title: 'Gezonde volwassene', type: 'mode', style: { transform: 'scale(1.1)' } };
 
+const formatCardTitle = (title) => {
+  if (!title) return title;
+  const words = title.trim().split(/\s+/);
+  if (words.length === 2) {
+    return <>{words[0]}<br />{words[1]}</>;
+  }
+  return title;
+};
+
 const CardSlot = ({ label, card, onSelect, onRemove }) => (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
     <div style={{ fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--primary)', textAlign: 'center' }}>{label}</div>
@@ -79,7 +88,7 @@ const CardSlot = ({ label, card, onSelect, onRemove }) => (
            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
              <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
            </div>
-           <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '6px 0 0 0', lineHeight: '1.2' }}>{card.title}</div>
+           <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '8px 0 6px 0', lineHeight: '1.2' }}>{formatCardTitle(card.title)}</div>
          </div>
          {onRemove && (
            <button onClick={onRemove} className="no-print" style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, padding: 0, boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}>&times;</button>
@@ -212,12 +221,7 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, minWidth: '300px', padding: '2rem', background: 'rgba(20, 184, 166, 0.05)', borderRadius: '16px', border: '1px dashed var(--primary)' }}>
             <CardSlot label="Gezonde Volwassene" card={healthyAdultCard} />
             <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', gap: '10px' }}>
-                <div style={{ fontWeight: 'bold', color: 'var(--primary)', whiteSpace: 'nowrap' }}>Grenzen stellen & Zorgen</div>
-                <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline no-print" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 12px', fontSize: '0.85rem' }}>
-                  {isGenerating ? 'Genereren...' : <><CpuChipIcon size={14} useGradient={true} /> AI Analyse</>}
-                </button>
-              </div>
+              <div style={{ fontWeight: 'bold', color: 'var(--primary)', whiteSpace: 'nowrap', marginBottom: '0.5rem' }}>Grenzen stellen & Zorgen</div>
               <textarea 
                 placeholder="Wat zou de Gezonde Volwassene zeggen of doen in deze situatie?" 
                 value={gvNotes}
@@ -231,6 +235,11 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
                   boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)'
                 }}
               />
+              <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '0.8rem' }}>
+                <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline no-print" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', fontSize: '0.9rem' }}>
+                  {isGenerating ? 'Genereren...' : <><CpuChipIcon size={16} useGradient={true} /> AI Analyse</>}
+                </button>
+              </div>
             </div>
           </div>
 
@@ -250,7 +259,7 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
                   <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                     <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                   </div>
-                  <div style={{ textAlign: 'center', fontSize: '0.7rem', fontWeight: 'bold', marginTop: '4px', lineHeight: '1.2' }}>{card.title}</div>
+                  <div style={{ textAlign: 'center', fontSize: '0.7rem', fontWeight: 'bold', margin: '6px 0 8px 0', lineHeight: '1.2' }}>{formatCardTitle(card.title)}</div>
                 </div>
               ))}
             </div>
