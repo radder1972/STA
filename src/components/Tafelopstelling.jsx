@@ -356,10 +356,15 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
       )}
 
       {embedded && (
-        <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-          <button className="btn btn-outline" onClick={clearTable} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            Tafel Leegmaken
-          </button>
+        <div className="no-print" style={{ marginBottom: '2rem', textAlign: 'center' }}>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '700px', margin: '0 auto 1.5rem auto', lineHeight: '1.6' }}>
+            De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen. Sleep jouw schema's, modi en basisbehoeften op tafel om inzicht te krijgen in wat er op dat moment gebeurt.
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <button className="btn btn-outline" onClick={clearTable} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              Tafel Leegmaken
+            </button>
+          </div>
         </div>
       )}
 
@@ -380,20 +385,9 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             />
             
             <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem', background: 'var(--bg-color)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)', width: '100%', boxSizing: 'border-box' }}>
-              <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: '0.8rem', textAlign: 'center', maxWidth: '650px', lineHeight: '1.5' }}>
-                Laat de AI de kaarten voor je op tafel leggen op basis van de situatie. Als je de vragenlijsten hebt ingevuld, gebruikt de AI jouw persoonlijke profiel voor een veel accuratere voorspelling.
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: '1.5rem', textAlign: 'center', maxWidth: '650px', lineHeight: '1.5' }}>
+                Laat de AI de kaarten voor je op tafel leggen op basis van de situatie. Jouw persoonlijke schema- en modiprofiel worden hierbij gebruikt voor een accurate voorspelling.
               </p>
-              
-              <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'center' }}>
-                {(completedTests?.ysq && completedTests?.smi) ? (
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><CheckIcon size={16} useGradient={true} /> Vragenlijsten ingevuld (Persoonlijke voorspelling)</span>
-                ) : (
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <AlertTriangleIcon size={16} useGradient={true} /> Vragenlijsten niet ingevuld (Algemene voorspelling) - 
-                    <span onClick={onBack} className="text-gradient" style={{ cursor: 'pointer', fontWeight: 'bold' }}>Nu invullen</span>
-                  </span>
-                )}
-              </div>
 
               <button 
                 className="btn btn-gradient" 
