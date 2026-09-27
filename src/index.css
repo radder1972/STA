@@ -109,7 +109,7 @@ body {
 }
 
 .btn-card:hover {
-  background: rgba(20, 184, 166, 0.08);
+  background: white;
   color: var(--primary);
   border-color: var(--primary);
   transform: translateY(-2px);
