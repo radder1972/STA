@@ -232,7 +232,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
           <AlertTriangleIcon size={24} useGradient={true} /> Let op: Uw antwoorden worden nergens opgeslagen!
         </p>
         <p style={{ color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
-          Heeft u de resultaten eerder al opgeslagen als een csv-bestand? Dan kunt u ze hier inlezen en kunt u direct naar het rapport gaan.
+          Omdat de applicatie lokaal draait, bent u na het afsluiten van de pagina uw gegevens kwijt. Sla daarom na het invullen uw resultaten altijd op als PDF of CSV-bestand. Heeft u uw resultaten eerder al opgeslagen als een CSV-bestand? Dan kunt u deze hieronder direct inlezen om meteen door te gaan naar het rapport.
         </p>
         <input 
           type="file" 
