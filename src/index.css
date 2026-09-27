@@ -810,3 +810,12 @@ body {
   border-bottom: 1px solid #e5e7eb;
   padding-bottom: 4px;
 }
+
+/* Hide scrollbar for card descriptions */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

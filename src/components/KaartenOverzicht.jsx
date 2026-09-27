@@ -128,14 +128,18 @@ export default function KaartenOverzicht({ onBack }) {
               </div>
               
               <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: flippedCards[card.title] ? 'auto' : 'none' }}>
-                <div onClick={() => handleFlip(card.title)} style={{ flex: 1, cursor: 'pointer' }}>
-                  <h4>{card.title}</h4>
-                  <p>{card.description || 'Geen theorie beschikbaar.'}</p>
+                <div 
+                  onClick={() => handleFlip(card.title)} 
+                  style={{ flex: 1, cursor: 'pointer', overflowY: 'auto', marginBottom: '5px', paddingRight: '2px' }}
+                  className="hide-scrollbar"
+                >
+                  <h4 style={{ fontSize: '0.9rem', marginBottom: '0.5rem', lineHeight: '1.2' }}>{card.title}</h4>
+                  <p style={{ fontSize: '0.75rem', lineHeight: '1.4' }}>{card.description || 'Geen theorie beschikbaar.'}</p>
                 </div>
                 <button 
                   className="btn btn-outline" 
                   onClick={(e) => { e.stopPropagation(); e.preventDefault(); setSelectedCard(card); }}
-                  style={{ fontSize: '0.75rem', padding: '6px 12px', marginTop: '10px', alignSelf: 'center', width: '90%', zIndex: 20, position: 'relative' }}
+                  style={{ fontSize: '0.75rem', padding: '6px 12px', alignSelf: 'center', width: '100%', zIndex: 20, position: 'relative', flexShrink: 0 }}
                 >
                   Praktijkvoorbeeld & Tips
                 </button>
