@@ -16,6 +16,7 @@ import imgM4 from '../assets/images/modicategorieen/4.png'
 
 import { schemaImages, modeImages } from '../utils/images'
 import { schemaDescriptions } from '../data/descriptions'
+import { getVerdieping } from '../data/verdieping'
 
 const ysqSchemaNamesMap = {
   'Abandonment': 'Verlating / Instabiliteit',
@@ -75,6 +76,7 @@ const categorieText = {
 export default function KaartenOverzicht({ onBack }) {
   const [filter, setFilter] = useState('all');
   const [flippedCards, setFlippedCards] = useState({});
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const handleFlip = (title) => {
     setFlippedCards(prev => ({ ...prev, [title]: !prev[title] }));
@@ -125,9 +127,18 @@ export default function KaartenOverzicht({ onBack }) {
                 </div>
               </div>
               
-              <div className="card-face-back">
-                <h4>{card.title}</h4>
-                <p>{card.description || 'Geen theorie beschikbaar.'}</p>
+              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div>
+                  <h4>{card.title}</h4>
+                  <p>{card.description || 'Geen theorie beschikbaar.'}</p>
+                </div>
+                <button 
+                  className="btn btn-outline" 
+                  onClick={(e) => { e.stopPropagation(); setSelectedCard(card); }}
+                  style={{ fontSize: '0.75rem', padding: '6px 12px', marginTop: '10px', alignSelf: 'center', width: '90%' }}
+                >
+                  Praktijkvoorbeeld & Tips
+                </button>
               </div>
 
             </div>
@@ -208,6 +219,49 @@ export default function KaartenOverzicht({ onBack }) {
         )}
 
       </div>
+
+      {selectedCard && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, 
+          backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 9999,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem'
+        }} onClick={() => setSelectedCard(null)}>
+          <div className="glass-panel" style={{
+            background: 'var(--card-bg)', maxWidth: '600px', width: '100%', 
+            maxHeight: '90vh', overflowY: 'auto', padding: '2rem', position: 'relative'
+          }} onClick={e => e.stopPropagation()}>
+            <button 
+              onClick={() => setSelectedCard(null)} 
+              style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}
+            >×</button>
+            <h2 className="text-gradient" style={{ marginBottom: '0.5rem' }}>{selectedCard.title}</h2>
+            <h4 style={{ color: 'var(--primary)', marginBottom: '1.5rem' }}>Praktijkvoorbeeld & Tips</h4>
+            
+            <div style={{ marginBottom: '1.5rem' }}>
+              <h5 style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>Herkenbaar Praktijkvoorbeeld</h5>
+              <p style={{ lineHeight: '1.6', background: 'rgba(20, 184, 166, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)' }}>
+                {getVerdieping(selectedCard.title).casus}
+              </p>
+            </div>
+
+            <div>
+              <h5 style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>Concrete Tips & Handvatten</h5>
+              <ul style={{ paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+                {getVerdieping(selectedCard.title).tips.map((tip, idx) => (
+                  <li key={idx} style={{ marginBottom: '0.5rem' }}>{tip}</li>
+                ))}
+              </ul>
+            </div>
+            
+            <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+              <button className="btn btn-gradient" onClick={() => setSelectedCard(null)} style={{ color: 'white' }}>
+                Sluiten
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   )
 }
