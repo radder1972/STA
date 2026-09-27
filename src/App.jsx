@@ -114,7 +114,7 @@ function App() {
 
       {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v1.5.47
+          v1.5.48
         </div>
       )}
     </div>

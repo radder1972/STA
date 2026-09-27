@@ -672,8 +672,13 @@ body {
     print-color-adjust: exact !important;
   }
 }
-
 /* Schema Images */
+.schema-img img {
+  mix-blend-mode: multiply;
+  filter: contrast(1.1) brightness(1.05) grayscale(1);
+  background: transparent;
+}
+
 .schema-img {
   border-radius: 12px;
   background-color: white;
