@@ -294,7 +294,7 @@ export default function KaartenOverzicht({ onBack }) {
         <FilterButton id="modi" label="Individuele Modi" />
       </div>
 
-      <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
+      <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
         
         {(filter === 'all' || filter === 'domeinen') && (
           <div>
