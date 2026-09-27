@@ -368,11 +368,11 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             />
             
             <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem', background: 'var(--bg-color)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.5rem', textAlign: 'center' }}>
+              <p style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '0.5rem', textAlign: 'center' }}>
                 Laat de AI de kaarten voor je op tafel leggen op basis van de situatie.
               </p>
               
-              <div style={{ fontSize: '0.85rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{ fontSize: '1rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 {(completedTests?.ysq && completedTests?.smi) ? (
                   <span style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '4px' }}><CheckIcon size={16} useGradient={true} /> Vragenlijsten ingevuld (Persoonlijke voorspelling)</span>
                 ) : (
@@ -384,7 +384,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 className="btn btn-outline" 
                 onClick={predictCards} 
                 disabled={isPredicting || !situationText}
-                style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.95rem' }}
+                style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1rem' }}
                 title="Voorspel de kaarten op basis van je situatie en testresultaten"
               >
                 {isPredicting ? 'Bezig met voorspellen...' : <><WandIcon size={16} useGradient={true} /> AI: Voorspel de kaarten</>}
@@ -420,13 +420,13 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                   width: '100%', flex: 1, minHeight: '180px', padding: '1rem', 
                   borderRadius: '12px', border: '1px solid var(--border-color)', 
                   background: 'var(--bg-color)', color: 'var(--text-main)', 
-                  fontFamily: 'inherit', fontSize: '0.95rem', resize: 'none',
+                  fontFamily: 'inherit', fontSize: '1rem', resize: 'none',
                   lineHeight: '1.6',
                   boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)'
                 }}
               />
               <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '0.8rem' }}>
-                <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline no-print" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', fontSize: '0.9rem' }}>
+                <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline no-print" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', fontSize: '1rem' }}>
                   {isGenerating ? 'Genereren...' : <><CpuChipIcon size={16} useGradient={true} /> AI Analyse</>}
                 </button>
               </div>
@@ -439,7 +439,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
       {!analysisText && !isGeneratingAnalysis && (
         <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
-          <button className="btn btn-outline" onClick={generateDeepAnalysis} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 24px', fontSize: '1.1rem', background: 'var(--card-bg)' }}>
+          <button className="btn btn-outline" onClick={generateDeepAnalysis} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 24px', fontSize: '1rem', background: 'var(--card-bg)' }}>
             <CpuChipIcon size={20} useGradient={true} /> Diepgaande AI Analyse
           </button>
         </div>
