@@ -780,14 +780,13 @@ body {
   opacity: 1;
 }
 
-.card-face-front::after, .card-face-back::after {
-  content: '';
+.inner-border {
   position: absolute;
   top: 6px; left: 6px; right: 6px; bottom: 6px;
-  border: 1px solid #cbd5e1; /* Solid kleur! Geen rgba ivm achtergrondverschil */
-  border-radius: 10px; /* Perfecte optische afronding */
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
   pointer-events: none;
-  z-index: 10;
+  z-index: 50;
 }
 
 .card-face-back {

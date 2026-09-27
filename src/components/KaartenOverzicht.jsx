@@ -119,6 +119,7 @@ export default function KaartenOverzicht({ onBack }) {
             <div className={`card-flip-container ${flippedCards[card.title] ? 'flipped' : ''}`}>
               
               <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(card.title)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[card.title] ? 'none' : 'auto' }}>
+                <div className="inner-border"></div>
                 <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                   <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
                 </div>
@@ -128,6 +129,7 @@ export default function KaartenOverzicht({ onBack }) {
               </div>
               
               <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: flippedCards[card.title] ? 'auto' : 'none' }}>
+                <div className="inner-border"></div>
                 <div 
                   onClick={() => handleFlip(card.title)} 
                   style={{ flex: 1, cursor: 'pointer', overflowY: 'auto', marginBottom: '5px', paddingRight: '2px' }}
