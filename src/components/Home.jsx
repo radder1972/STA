@@ -143,14 +143,14 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
       </div>
 
       {hasAnyResult && (
-        <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+        <div style={{ textAlign: 'center', margin: '2rem 0' }}>
           <button className="btn btn-gradient" onClick={handleViewResults} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.2rem', padding: '1rem 2rem' }}>
             <ChartIcon size={24} color="white" /> Bekijk {isYsqDone && isSmiDone ? '(Gecombineerd)' : ''} Rapport
           </button>
         </div>
       )}
 
-      <div style={{ color: 'var(--text-muted)', padding: '2rem', background: 'var(--glass-bg, rgba(255, 255, 255, 0.05))', borderRadius: '16px', border: '1px solid var(--border-color)', textAlign: 'left', lineHeight: '1.6', fontSize: '0.95rem', maxWidth: '900px', margin: '3rem auto 2rem' }}>
+      <div style={{ color: 'var(--text-muted)', padding: '2rem', background: 'var(--glass-bg, rgba(255, 255, 255, 0.05))', borderRadius: '16px', border: '1px solid var(--border-color)', textAlign: 'left', lineHeight: '1.6', fontSize: '0.95rem', maxWidth: '900px', margin: hasAnyResult ? '0 auto 2rem' : '3rem auto 2rem' }}>
         <h3 className="text-gradient" style={{ marginBottom: '1rem', fontSize: '1.2rem', textAlign: 'center' }}>Het verschil tussen de YSQ en de SMI</h3>
         <p style={{ marginBottom: theoryExpanded ? '1.5rem' : '0', textAlign: 'center', maxWidth: '750px', margin: '0 auto' }}>
           Het belangrijkste verschil tussen de YSQ en de SMI zit in de diepte en de tijdelijkheid van wat ze meten.
