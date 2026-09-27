@@ -4,6 +4,7 @@ import Home from './components/Home'
 import Questionnaire from './components/Questionnaire'
 import Results from './components/Results'
 import Basisbehoeften from './components/Basisbehoeften'
+import ModiCategorieen from './components/ModiCategorieen'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 
@@ -100,16 +101,20 @@ function App() {
           onRestart={handleRestart}
           onBack={() => setCurrentView('home')}
           onViewBasisbehoeften={() => setCurrentView('basisbehoeften')}
+          onViewModiCategorieen={() => setCurrentView('modicategorieen')}
           onUpdateAnswer={handleUpdateAnswer}
         />
       )}
       {currentView === 'basisbehoeften' && (
         <Basisbehoeften onBack={() => setCurrentView('results')} />
       )}
+      {currentView === 'modicategorieen' && (
+        <ModiCategorieen onBack={() => setCurrentView('results')} />
+      )}
 
-      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && (
+      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v1.5.38
+          v1.5.39
         </div>
       )}
     </div>

@@ -18,7 +18,7 @@ import {
 } from 'recharts';
 import { ChartIcon } from './Icons';
 
-export default function ScoreChart({ scores, type, onViewBasisbehoeften }) {
+export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewModiCategorieen }) {
   // Calculate Domain Averages
   const domainAverages = React.useMemo(() => {
     const groups = {};
@@ -381,6 +381,18 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften }) {
                 style={{ padding: '10px 20px', fontSize: '1rem' }}
               >
                 Meer over de 5 emotionele basisbehoeften
+              </button>
+            </div>
+          )}
+          
+          {type === 'smi' && onViewModiCategorieen && (
+            <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+              <button 
+                onClick={onViewModiCategorieen}
+                className="btn btn-outline"
+                style={{ padding: '10px 20px', fontSize: '1rem' }}
+              >
+                Meer over de 4 modi categorieën
               </button>
             </div>
           )}
