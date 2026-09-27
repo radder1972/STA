@@ -85,6 +85,15 @@ export const RefreshIcon = (props) => (
 );
 
 // Display Icons
+export const CardsIcon = (props) => (
+  <IconBase {...props}>
+    <rect x="3" y="6" width="9" height="13" rx="1.5" transform="rotate(-15 7.5 12.5)" />
+    <rect x="12" y="6" width="9" height="13" rx="1.5" transform="rotate(15 16.5 12.5)" />
+    <rect x="7.5" y="4" width="9" height="13" rx="1.5" fill="var(--bg-color)" />
+    <rect x="7.5" y="4" width="9" height="13" rx="1.5" fill="currentColor" fillOpacity="0.2" />
+  </IconBase>
+);
+
 export const ChartIcon = (props) => (
   <IconBase {...props}>
     <rect x="3" y="3" width="18" height="18" rx="2" ry="2" fill="currentColor" fillOpacity="0.1" />

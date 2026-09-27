@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon } from './Icons'
+import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon, CardsIcon } from './Icons'
 
 export default function Home({ onStart, completedTests, onViewResults, onImport, onViewKaartenOverzicht, onViewTafelopstelling }) {
   const fileInputRef = useRef(null)
@@ -144,11 +144,11 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
 
 
       <div style={{ maxWidth: '900px', margin: '3rem auto 2rem', padding: '0 1rem' }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '1.5rem', color: 'var(--primary)' }}>Therapeutische Tools</h2>
+        <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Therapeutische Tools</h2>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}>
           <div className="card glass-panel" onClick={onViewTafelopstelling} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '320px', padding: '2rem', cursor: 'pointer' }}>
             <div style={{ background: 'var(--primary)', color: 'white', padding: '15px', borderRadius: '50%', marginBottom: '1rem' }}>
-              <ChartIcon size={32} color="white" />
+              <CardsIcon size={32} color="white" />
             </div>
             <h3 style={{ margin: '0 0 1rem 0' }}>Tafelopstelling</h3>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem', flex: 1, margin: 0 }}>
