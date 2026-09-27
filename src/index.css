@@ -695,8 +695,6 @@ body {
 .schema-img {
   border-radius: 12px;
   padding: 8px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-  transition: transform 0.2s ease;
   position: relative;
 }
 
@@ -742,7 +740,7 @@ body {
   backface-visibility: hidden;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(15, 23, 42, 0.1); /* Strakkere buitenrand voor betere hoek-referentie */
   transition: box-shadow 0.6s cubic-bezier(0.4, 0.2, 0.2, 1), border-color 0.6s ease;
   background-color: white;
   display: flex;
@@ -800,7 +798,7 @@ body {
   left: 6px;
   right: 6px;
   bottom: 6px;
-  border: 1px solid #cbd5e1; /* Sierrandje kleur */
+  border: 1px solid rgba(15, 23, 42, 0.12); /* Transparant donkerblauw past zich visueel perfect aan de achtergrond aan */
   border-radius: 6px; /* 12px buitenrand - 6px marge = 6px binnenrand */
   pointer-events: none;
   z-index: 10;
