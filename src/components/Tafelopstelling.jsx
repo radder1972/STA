@@ -165,7 +165,7 @@ export default function Tafelopstelling({ onBack }) {
     try {
       const apiKey = localStorage.getItem('gemini_api_key') || DEFAULT_KEY;
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
       
       const prompt = `Je bent een expert in schematherapie. Een cliënt heeft een tafelopstelling gemaakt:
 Situatie: "${situationText}"
@@ -196,7 +196,7 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
     try {
       const apiKey = localStorage.getItem('gemini_api_key') || DEFAULT_KEY;
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: "gemini-3.8-pro" });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
       
       const prompt = `Je bent een expert in schematherapie. Een cliënt heeft een tafelopstelling gemaakt:
 Situatie: "${situationText}"
