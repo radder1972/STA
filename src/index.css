@@ -412,7 +412,6 @@ body {
   }
 
   .playing-card, .schema-img {
-    border: 2px solid #ccc !important;
     box-shadow: 2px 4px 8px rgba(0,0,0,0.2) !important;
     background: white !important;
   }
@@ -676,13 +675,24 @@ body {
 
 /* Schema Images */
 .schema-img {
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: white;
   padding: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   transition: transform 0.2s ease;
-  outline: 1px solid #d1d5db;
-  outline-offset: -6px;
+  position: relative;
+}
+
+.schema-img::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  pointer-events: none;
 }
 
 [data-theme="dark"] .schema-img {
