@@ -104,7 +104,7 @@ function App() {
 
       {currentView !== 'questionnaire' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v1.5.28
+          v1.5.29
         </div>
       )}
     </div>

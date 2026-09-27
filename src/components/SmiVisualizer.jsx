@@ -27,7 +27,7 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onUpdateAnswer
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
           <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
             <div className="schema-img playing-card" style={{ position: 'relative', width: '100px', height: '120px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', transform: `rotate(${(index * 7) % 8 - 4}deg)`, boxShadow: '2px 4px 10px rgba(0,0,0,0.3)', border: '3px solid white', background: 'white', borderRadius: '8px' }}>
-              <img src={getModeImage(mode.id)} alt={mode.name} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: mode.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
+              <img src={getModeImage(mode.id)} alt={mode.name} style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', transform: mode.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
             </div>
           </div>
           
