@@ -398,14 +398,30 @@ body {
 
   /* specifically nuke borders on all structural containers */
   html, body, #root, .app-container, .combined-results-container, .results-container, .visualizer-container, .details-section, .glass-panel, .no-print, header, main, footer {
-    border-style: hidden !important;
+    border: none !important;
+    box-shadow: none !important;
     background: transparent !important;
+  }
+
+  /* Except for mode/schema rows, we might want a simple bottom border for separation */
+  .mode-node, .ysq-node {
+    border-bottom: 1px solid #ddd !important;
+    border-radius: 0 !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 1rem !important;
   }
 
   .playing-card, .schema-img {
     border: 2px solid #ccc !important;
     box-shadow: 2px 4px 8px rgba(0,0,0,0.2) !important;
     background: white !important;
+  }
+  
+  .playing-card img, .schema-img img {
+    /* If mix-blend-mode fails in PDF export, this filter forces near-white to pure white while keeping blacks dark */
+    filter: contrast(1.5) brightness(1.1) grayscale(1) !important;
+    mix-blend-mode: multiply !important;
+    background: transparent !important;
   }
 
   .app-container {

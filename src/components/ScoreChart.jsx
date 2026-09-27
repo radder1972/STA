@@ -243,8 +243,8 @@ export default function ScoreChart({ scores, type }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       {/* Detailed Bar Chart */}
-      <div className="glass-panel" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)' }}>
-        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+      <div className="glass-panel print-avoid-break" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <h3 className="text-gradient" style={{ margin: 0, fontSize: '1.3rem', marginBottom: '0.5rem' }}>Alle scores</h3>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', maxWidth: '600px', margin: '0 auto' }}>
             Dit is het complete overzicht van al uw individuele scores. Scroll verder naar beneden om te wisselen naar de helikopterview per categorie.
@@ -304,9 +304,9 @@ export default function ScoreChart({ scores, type }) {
       </div>
 
       {/* Radar Chart */}
-      <div className="glass-panel page-break" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
+      <div className="glass-panel print-avoid-break" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
         <h3 className="text-gradient" style={{ marginBottom: '0.5rem', fontSize: '1.3rem' }}>Spinnenweb Overzicht</h3>
-        <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem', maxWidth: '600px', margin: '0 auto 1.5rem auto' }}>
+        <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
           Deze grafiek toont de verdeling van al uw scores. Punten die ver naar buiten uitschieten, zijn uw meest prominente patronen.
         </p>
         <div className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
@@ -324,11 +324,11 @@ export default function ScoreChart({ scores, type }) {
 
       {/* Domain Averages Chart */}
       {domainAverages.length > 1 && (
-        <div className="glass-panel" style={{ padding: '1.5rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+        <div className="glass-panel print-avoid-break" style={{ padding: '1.5rem', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.1)' }}>
           <h3 className="text-gradient" style={{ marginBottom: '0.5rem', textAlign: 'center', fontSize: '1.3rem' }}>
             {type === 'ysq' ? 'Score per Emotionele basisbehoefte' : 'Gemiddelde per Categorie'}
           </h3>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem', maxWidth: '600px', margin: '0 auto 1.5rem auto', textAlign: 'center' }}>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem auto', textAlign: 'center' }}>
             Deze staafgrafiek toont uw gemiddelde score per hoofdcategorie. Dit helpt om patronen op een hoger niveau (helikopterview) te herkennen.
           </p>
           <div className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
