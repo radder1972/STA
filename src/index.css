@@ -786,22 +786,16 @@ body {
   opacity: 1;
 }
 
-.card-scene:hover .card-face-front,
+.card-scene:hover .card-face-front {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), inset 0 0 0 6px white, inset 0 0 0 7px rgba(15, 23, 42, 0.15);
+}
+
 .card-scene:hover .card-face-back {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-.card-face-front::after {
-  content: '';
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  right: 6px;
-  bottom: 6px;
-  border: 1px solid rgba(15, 23, 42, 0.15); /* Lijntje op de voorkant */
-  border-radius: 6px; /* 12px buitenrand - 6px inset = 6px wiskundig perfecte radius */
-  pointer-events: none;
-  z-index: 10;
+.card-face-front {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 0 0 6px white, inset 0 0 0 7px rgba(15, 23, 42, 0.15);
 }
 
 .card-face-back {
