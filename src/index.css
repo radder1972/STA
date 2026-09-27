@@ -415,7 +415,20 @@ body {
   }
 
 
-  
+  /* Fix 3D card flips in print */
+  .card-flip-container {
+    transform: none !important;
+  }
+  .card-flip-container:not(.flipped) .card-face-back {
+    display: none !important;
+  }
+  .card-flip-container.flipped .card-face-front {
+    display: none !important;
+  }
+  .card-flip-container.flipped .card-face-back {
+    transform: none !important;
+  }
+
 
   /* specifically nuke borders on all structural containers */
   html, body, #root, .app-container, .combined-results-container, .results-container, .visualizer-container, .details-section, .glass-panel, .no-print, header, main, footer {
