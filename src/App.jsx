@@ -119,7 +119,7 @@ function App() {
 
       {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v1.5.58
+          v1.5.59
         </div>
       )}
     </div>
