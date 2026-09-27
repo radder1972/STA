@@ -68,13 +68,13 @@ const ModiCategorieen = ({ onBack }) => {
           </ul>
         </div>
         <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', position: 'relative' }}>
-          <div className="schema-img playing-card" style={{ width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(3deg)', zIndex: 1 }}>
+          <div className="schema-img playing-card" style={{ width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(2deg)', zIndex: 1 }}>
             <img src={imgOvercomp} alt="Overcompensatie" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
-          <div className="schema-img playing-card" style={{ width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(3deg)', zIndex: 2, marginTop: '-80px' }}>
+          <div className="schema-img playing-card" style={{ width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)', zIndex: 2, marginTop: '-80px' }}>
             <img src={imgVermijding} alt="Vermijding" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
-          <div className="schema-img playing-card" style={{ width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(2deg)', zIndex: 3, marginTop: '-80px' }}>
+          <div className="schema-img playing-card" style={{ width: '200px', height: '240px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(4deg)', zIndex: 3, marginTop: '-80px' }}>
             <img src={imgOvergave} alt="Overgave" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
         </div>
