@@ -135,8 +135,8 @@ export default function KaartenOverzicht({ onBack }) {
           <div className="card-scene">
             <div className={`card-flip-container ${flippedCards[card.title] ? 'flipped' : ''}`}>
               
-              <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(card.title)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[card.title] ? 'none' : 'auto' }}>
-                <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative' }}>
+              <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(card.title)} style={{ padding: '0', border: '4px solid white', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[card.title] ? 'none' : 'auto' }}>
+                <div style={{ flex: 1, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative', borderRadius: '8px' }}>
                   <img src={card.src} alt={card.title} className="card-img-base" style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', transition: 'opacity 0.5s ease-in-out', ...defaultImageStyle, ...card.style }} />
                   {card.srcColor && (
                     <img 
@@ -146,9 +146,9 @@ export default function KaartenOverzicht({ onBack }) {
                       style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', opacity: 0, transition: 'opacity 0.5s ease-in-out', ...defaultImageStyle, ...card.style }} 
                     />
                   )}
-                </div>
-                <div style={{ fontWeight: 'bold', color: '#333', textAlign: 'center', fontSize: '0.85rem', lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40px', marginTop: '4px', zIndex: 1 }}>
-                  {card.title}
+                  <div style={{ position: 'absolute', bottom: '8px', left: 0, right: 0, fontWeight: 'bold', color: '#333', textAlign: 'center', fontSize: '0.85rem', lineHeight: '1.2', zIndex: 1, textShadow: '0 0 3px rgba(255,255,255,0.9)' }}>
+                    {card.title}
+                  </div>
                 </div>
               </div>
               
