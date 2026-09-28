@@ -79,7 +79,7 @@ body {
 .btn:hover {
   background: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .btn-outline {
@@ -114,9 +114,9 @@ body {
 
 .btn-card:hover {
   background: white;
-  border-color: var(--primary);
+  border-color: #9ca3af;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .btn-card:hover .btn-text {
@@ -158,8 +158,8 @@ body {
 
 .card:hover {
   transform: translateY(-5px) scale(1.02);
-  border-color: rgba(20, 184, 166, 0.5);
-  box-shadow: 0 10px 40px rgba(20, 184, 166, 0.2);
+  border-color: var(--border-color);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
 .card h2 {
@@ -353,8 +353,8 @@ body {
 }
 .interactive-card:hover {
   transform: translateY(-4px) !important;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
-  border-color: var(--primary) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+  border-color: #9ca3af !important;
 }
 
 @media (max-width: 600px) {

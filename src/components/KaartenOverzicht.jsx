@@ -102,20 +102,20 @@ export default function KaartenOverzicht({ onBack }) {
   }
 
   const schemaCards = [
-    { src: imgB1, title: '1. Veilige hechting', description: basisbehoeftenText['1. Veilige hechting'], color: '#10b981' },
-    { src: imgB2, title: '2. Autonomie', description: basisbehoeftenText['2. Autonomie'], color: '#3b82f6' },
-    { src: imgB3, title: '3. Vrije expressie', description: basisbehoeftenText['3. Vrije expressie'], color: '#eab308' },
-    { src: imgB4, title: '4. Spontaniteit en spel', description: basisbehoeftenText['4. Spontaniteit en spel'], color: '#f97316' },
-    { src: imgB5, title: '5. Realistische grenzen', description: basisbehoeftenText['5. Realistische grenzen'], color: '#ef4444' },
+    { src: imgB1, title: '1. Veilige hechting', description: basisbehoeftenText['1. Veilige hechting'], color: '#34d399' },
+    { src: imgB2, title: '2. Autonomie', description: basisbehoeftenText['2. Autonomie'], color: '#60a5fa' },
+    { src: imgB3, title: '3. Vrije expressie', description: basisbehoeftenText['3. Vrije expressie'], color: '#facc15' },
+    { src: imgB4, title: '4. Spontaniteit en spel', description: basisbehoeftenText['4. Spontaniteit en spel'], color: '#fb923c' },
+    { src: imgB5, title: '5. Realistische grenzen', description: basisbehoeftenText['5. Realistische grenzen'], color: '#f87171' },
   ]
 
   const modiCards = [
-    { src: imgM1, title: 'Kindmodi', description: categorieText['Kindmodi'], color: '#10b981' },
-    { src: imgM2, title: 'Oudermodi', description: categorieText['Oudermodi'], color: '#3b82f6' },
-    { src: imgM3a, title: 'Coping: Overgave', description: categorieText['Coping: Overgave'], color: '#eab308' },
-    { src: imgM3b, title: 'Coping: Vermijding', description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' }, color: '#eab308' },
-    { src: imgM3c, title: 'Coping: Overcompensatie', description: categorieText['Coping: Overcompensatie'], color: '#eab308' },
-    { src: imgM4, title: 'Gezonde volwassene', description: categorieText['Gezonde volwassene'], color: '#f97316' },
+    { src: imgM1, title: 'Kindmodi', description: categorieText['Kindmodi'], color: '#34d399' },
+    { src: imgM2, title: 'Oudermodi', description: categorieText['Oudermodi'], color: '#60a5fa' },
+    { src: imgM3a, title: 'Coping: Overgave', description: categorieText['Coping: Overgave'], color: '#facc15' },
+    { src: imgM3b, title: 'Coping: Vermijding', description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' }, color: '#facc15' },
+    { src: imgM3c, title: 'Coping: Overcompensatie', description: categorieText['Coping: Overcompensatie'], color: '#facc15' },
+    { src: imgM4, title: 'Gezonde volwassene', description: categorieText['Gezonde volwassene'], color: '#fb923c' },
   ]
 
   const detailedSchemaCards = Object.keys(schemaImages).map(path => {

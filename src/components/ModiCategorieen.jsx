@@ -32,13 +32,13 @@ const ModiCategorieen = ({ onBack }) => {
       {/* Categorie 1 */}
       <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 style={{ color: '#10b981', marginBottom: '1rem', fontSize: '1.5rem' }}>1. Kindmodi</h2>
+          <h2 style={{ color: '#34d399', marginBottom: '1rem', fontSize: '1.5rem' }}>1. Kindmodi</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit zijn de intense, oorspronkelijke emoties en behoeften die iemand als kind ervoer en die in het heden weer opspelen bij een trigger. Voorbeelden zijn het Kwetsbare kind, het Boze kind, het Impulsieve/Ongedisciplineerde kind en het Blije/Gezonde kind.
           </p>
         </div>
         <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)' }}>
-          <CardInnerBorder color="#10b981" />
+          <CardInnerBorder color="#34d399" />
           <img src={img1} alt="Kindmodi" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>
@@ -46,13 +46,13 @@ const ModiCategorieen = ({ onBack }) => {
       {/* Categorie 2 */}
       <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 style={{ color: '#3b82f6', marginBottom: '1rem', fontSize: '1.5rem' }}>2. Disfunctionele oudermodi</h2>
+          <h2 style={{ color: '#60a5fa', marginBottom: '1rem', fontSize: '1.5rem' }}>2. Disfunctionele oudermodi</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit zijn de geïnternaliseerde, negatieve stemmen en houdingen van belangrijke figuren uit de jeugd. Voorbeelden zijn de Straffende ouder, de Veeleisende ouder en de Schuldinducerende ouder.
           </p>
         </div>
         <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-2deg)' }}>
-          <CardInnerBorder color="#3b82f6" />
+          <CardInnerBorder color="#60a5fa" />
           <img src={img2} alt="Disfunctionele oudermodi" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>
@@ -60,7 +60,7 @@ const ModiCategorieen = ({ onBack }) => {
       {/* Categorie 3 */}
       <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 style={{ color: '#eab308', marginBottom: '1rem', fontSize: '1.5rem' }}>3. Copingmodi</h2>
+          <h2 style={{ color: '#facc15', marginBottom: '1rem', fontSize: '1.5rem' }}>3. Copingmodi</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit zijn de overlevingsstrategieën (afweermechanismen) die in de jeugd zijn aangeleerd om pijn en druk te vermijden. Ze zijn gebaseerd op de biologische reacties van vechten, vluchten en bevriezen:
           </p>
@@ -72,15 +72,15 @@ const ModiCategorieen = ({ onBack }) => {
         </div>
         <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', position: 'relative' }}>
           <div className="schema-img playing-card" style={{ width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(2deg)', zIndex: 1 }}>
-            <CardInnerBorder color="#eab308" />
+            <CardInnerBorder color="#facc15" />
             <img src={imgOvergave} alt="Overgave" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
           <div className="schema-img playing-card" style={{ width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)', zIndex: 2, marginTop: '-110px' }}>
-            <CardInnerBorder color="#eab308" />
+            <CardInnerBorder color="#facc15" />
             <img src={imgVermijding} alt="Vermijding" style={{ width: '80%', height: '80%', objectFit: 'contain' }} />
           </div>
           <div className="schema-img playing-card" style={{ width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(4deg)', zIndex: 3, marginTop: '-110px' }}>
-            <CardInnerBorder color="#eab308" />
+            <CardInnerBorder color="#facc15" />
             <img src={imgOvercomp} alt="Overcompensatie" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
         </div>
@@ -89,13 +89,13 @@ const ModiCategorieen = ({ onBack }) => {
       {/* Categorie 4 */}
       <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 style={{ color: '#f97316', marginBottom: '1rem', fontSize: '1.5rem' }}>4. De Gezonde Volwassene</h2>
+          <h2 style={{ color: '#fb923c', marginBottom: '1rem', fontSize: '1.5rem' }}>4. De Gezonde Volwassene</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit is de gebalanceerde, rationele en zorgzame kant. Deze modus neemt de regie, troost het Kwetsbare kind, stelt grenzen aan de disfunctionele oudermodi en vervangt automatische copingmodi door effectieve, bewuste keuzes.
           </p>
         </div>
         <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)' }}>
-          <CardInnerBorder color="#f97316" />
+          <CardInnerBorder color="#fb923c" />
           <img src={img4} alt="De Gezonde Volwassene" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>
