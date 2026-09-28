@@ -134,7 +134,7 @@ const CardSlot = ({ label, card, onSelect, onRemove }) => {
     <div style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>
     {card ? (
       <div style={{ position: 'relative', display: 'inline-block' }}>
-        <div className="card-scene" style={{ width: '140px', height: '200px', margin: 0 }}>
+        <div className="card-scene" style={{ width: '160px', height: '228px', margin: 0 }}>
           <div className={`card-flip-container ${flipped ? 'flipped' : ''}`}>
             <div className="card-face-front schema-img playing-card" onClick={() => setFlipped(!flipped)} style={{ padding: '12px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
               <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
@@ -145,8 +145,8 @@ const CardSlot = ({ label, card, onSelect, onRemove }) => {
             
             <div className="card-face-back" onClick={() => setFlipped(!flipped)} style={{ display: 'flex', flexDirection: 'column', cursor: 'pointer', padding: '12px' }}>
               <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                <h4 style={{ fontSize: '0.85rem', marginTop: '0.5rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
-                <p style={{ fontSize: '0.65rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 8, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie beschikbaar.'}</p>
+                <h4 style={{ fontSize: '0.9rem', marginTop: '0.6rem', marginBottom: '0.3rem', lineHeight: '1.2', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
+                <p style={{ fontSize: '0.7rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 9, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie beschikbaar.'}</p>
               </div>
             </div>
           </div>
@@ -159,7 +159,7 @@ const CardSlot = ({ label, card, onSelect, onRemove }) => {
       <div 
         onClick={onSelect} 
         className="glass-panel no-print" 
-        style={{ width: '140px', height: '200px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed var(--primary)', borderRadius: '12px', cursor: 'pointer', background: 'rgba(20, 184, 166, 0.05)', transition: 'all 0.2s' }}
+        style={{ width: '160px', height: '228px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed var(--primary)', borderRadius: '12px', cursor: 'pointer', background: 'rgba(20, 184, 166, 0.05)', transition: 'all 0.2s' }}
       >
         <span style={{ color: 'var(--primary)', fontSize: '2.5rem', marginBottom: '0.5rem' }}>+</span>
         <span style={{ color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 'bold' }}>Kies Kaart</span>
@@ -552,7 +552,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               {showCardPicker === 'need' ? (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
                   {needCards.map((card, idx) => (
-                    <div key={idx} className="card-scene" style={{ width: '120px', height: '170px', margin: 0 }}>
+                    <div key={idx} className="card-scene" style={{ width: '140px', height: '200px', margin: 0 }}>
                       <div className={`card-flip-container ${flippedCards[`need-${idx}`] ? 'flipped' : ''}`}>
                         <div className="card-face-front schema-img playing-card" onClick={(e) => handleFlip(`need-${idx}`, e)} style={{ padding: '8px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
                           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
@@ -562,8 +562,8 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                         </div>
                         <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '8px', pointerEvents: flippedCards[`need-${idx}`] ? 'auto' : 'none' }}>
                           <div onClick={(e) => handleFlip(`need-${idx}`, e)} style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', cursor: 'pointer' }}>
-                            <h4 style={{ fontSize: '0.8rem', marginTop: '0.2rem', marginBottom: '0.2rem', lineHeight: '1.1', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
-                            <p style={{ fontSize: '0.6rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 6, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
+                            <h4 style={{ fontSize: '0.85rem', marginTop: '0.5rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
+                            <p style={{ fontSize: '0.65rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 8, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
                           </div>
                           <button onClick={(e) => { e.stopPropagation(); handleSelectCard(card); }} className="btn btn-card" style={{ fontSize: '0.65rem', padding: '4px 8px', width: '100%' }}><span className="btn-text">Kies</span></button>
                         </div>
@@ -582,7 +582,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                       <h4 style={{ color: 'var(--text-main)', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1rem', textAlign: 'left' }}>{group.group}</h4>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'flex-start' }}>
                         {groupCards.map((card, idx) => (
-                          <div key={idx} className="card-scene" style={{ width: '120px', height: '170px', margin: 0 }}>
+                          <div key={idx} className="card-scene" style={{ width: '140px', height: '200px', margin: 0 }}>
                             <div className={`card-flip-container ${flippedCards[`${groupIdx}-${idx}`] ? 'flipped' : ''}`}>
                               <div className="card-face-front schema-img playing-card" onClick={(e) => handleFlip(`${groupIdx}-${idx}`, e)} style={{ padding: '8px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
                                 <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
@@ -592,8 +592,8 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                               </div>
                               <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '8px', pointerEvents: flippedCards[`${groupIdx}-${idx}`] ? 'auto' : 'none' }}>
                                 <div onClick={(e) => handleFlip(`${groupIdx}-${idx}`, e)} style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', cursor: 'pointer' }}>
-                                  <h4 style={{ fontSize: '0.8rem', marginTop: '0.2rem', marginBottom: '0.2rem', lineHeight: '1.1', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
-                                  <p style={{ fontSize: '0.6rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 6, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
+                                  <h4 style={{ fontSize: '0.85rem', marginTop: '0.5rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
+                                  <p style={{ fontSize: '0.65rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 8, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
                                 </div>
                                 <button onClick={(e) => { e.stopPropagation(); handleSelectCard(card); }} className="btn btn-card" style={{ fontSize: '0.65rem', padding: '4px 8px', width: '100%' }}><span className="btn-text">Kies</span></button>
                               </div>
