@@ -150,30 +150,18 @@ export default function KaartenOverzicht({ onBack }) {
               <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: flippedCards[uniqueKey] ? 'auto' : 'none' }}>
                 <div 
                   onClick={() => handleFlip(uniqueKey)} 
-                  style={{ flex: 1, cursor: 'pointer', overflowY: 'auto', marginBottom: '5px', paddingRight: '2px' }}
-                  className="custom-scrollbar"
+                  style={{ flex: 1, cursor: 'pointer', overflow: 'hidden', marginBottom: '5px', paddingRight: '2px', display: 'flex', flexDirection: 'column' }}
                 >
                   <h4 style={{ fontSize: '1rem', marginBottom: '0.5rem', lineHeight: '1.2' }}>{card.title}</h4>
-                  <p style={{ fontSize: '0.75rem', lineHeight: '1.6' }}>{card.description || 'Geen theorie beschikbaar.'}</p>
+                  <p style={{ fontSize: '0.75rem', lineHeight: '1.4', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' }}>{card.description || 'Geen theorie beschikbaar.'}</p>
                 </div>
                 <button 
                   className="btn btn-card" 
-                  onClick={(e) => { e.stopPropagation(); e.preventDefault(); setSelectedCard(card); }}
+                  onClick={(e) => { e.stopPropagation(); e.preventDefault(); setSelectedCard({ ...card, listName }); }}
                   style={{ fontSize: '0.75rem', padding: '6px 12px', alignSelf: 'center', width: '100%', zIndex: 20, position: 'relative', flexShrink: 0 }}
                 >
-                  <span className="btn-text">Praktijkvoorbeeld & Tips</span>
+                  <span className="btn-text">Lees theorie & tips</span>
                 </button>
-                {(listName === 'schema-cat' || listName === 'modi-cat') && (
-                  <button 
-                    className="btn btn-card" 
-                    onClick={(e) => { e.stopPropagation(); e.preventDefault(); setSelectedCategory(card); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                    style={{ fontSize: '0.75rem', padding: '6px 12px', alignSelf: 'center', width: '100%', zIndex: 20, position: 'relative', flexShrink: 0, marginTop: '0.5rem' }}
-                  >
-                    <span className="btn-text">
-                      {listName === 'schema-cat' ? "Bekijk bijbehorende schema's" : "Bekijk bijbehorende modi"}
-                    </span>
-                  </button>
-                )}
               </div>
 
             </div>
@@ -354,7 +342,22 @@ export default function KaartenOverzicht({ onBack }) {
               style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}
             >×</button>
             <h2 className="text-gradient" style={{ marginBottom: '0.5rem' }}>{selectedCard.title}</h2>
-            <h4 style={{ color: 'var(--primary)', marginBottom: '1.5rem' }}>Praktijkvoorbeeld & Tips</h4>
+            
+            <div style={{ marginBottom: '1.5rem', lineHeight: '1.6', fontSize: '1.05rem', color: 'var(--text-main)' }}>
+              {selectedCard.description || 'Geen theorie beschikbaar.'}
+            </div>
+
+            {(selectedCard.listName === 'schema-cat' || selectedCard.listName === 'modi-cat') && (
+              <button 
+                className="btn btn-gradient" 
+                onClick={() => { setSelectedCategory(selectedCard); setSelectedCard(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                style={{ width: '100%', marginBottom: '2rem', color: 'white', padding: '12px' }}
+              >
+                {selectedCard.listName === 'schema-cat' ? "Bekijk bijbehorende schema's" : "Bekijk bijbehorende modi"}
+              </button>
+            )}
+
+            <h4 style={{ color: 'var(--primary)', marginBottom: '1.5rem', marginTop: '1rem' }}>Verdieping & Tips</h4>
             
             <div style={{ marginBottom: '1.5rem' }}>
               <h5 style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>Herkenbaar Praktijkvoorbeeld</h5>
