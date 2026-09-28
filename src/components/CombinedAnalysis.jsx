@@ -106,7 +106,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <ConnectionIcon size={28} useGradient={true} /> Directe Top 3 Connectie
         </h2>
-        <p style={{ color: 'var(--text-main)', marginBottom: '2rem' }}>
+        <p style={{ color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '2rem' }}>
           Voor uw meest verhoogde schema's laten we hier de hoogst scorende, theoretisch gekoppelde modus (SMI) zien.
         </p>
         <div style={{ overflowX: 'auto' }}>
@@ -156,7 +156,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <MatrixIcon size={28} useGradient={true} /> Kruisverbanden Matrix
         </h2>
-        <p style={{ color: 'var(--text-main)', marginBottom: '1rem' }}>
+        <p style={{ color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1rem' }}>
           Ruwe data vergelijking: zijn de hoogste schema's terug te zien in het modusgebruik?
         </p>
         <div style={{ overflowX: 'auto' }}>
@@ -208,7 +208,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <HypothesisIcon size={28} useGradient={true} /> Klinische Hypothese
         </h2>
-        <p style={{ color: 'var(--text-main)', marginBottom: '2rem' }}>
+        <p style={{ color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '2rem' }}>
           Deze analyse combineert de theorie van Schematherapie met uw specifieke scores om gepersonaliseerde hypothesen te genereren en te valideren.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
