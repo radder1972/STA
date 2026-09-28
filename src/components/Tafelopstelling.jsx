@@ -182,15 +182,15 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
           </>
         )}
         <div className="card-scene" style={{ width: '160px', height: '228px', margin: 0, position: 'relative', zIndex: 1 }}>
-          <div className={`card-flip-container ${flipped ? 'flipped' : ''}`} style={{ '--card-inner-border': cardColor }}>
-            <div className="card-face-front schema-img playing-card" onClick={() => setFlipped(!flipped)} style={{ padding: '12px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
+          <div className={`card-flip-container ${flipped ? 'flipped' : ''}`}>
+            <div className="card-face-front schema-img playing-card" onClick={() => setFlipped(!flipped)} style={{ '--card-inner-border': cardColor, padding: '12px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
               <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                 <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
               </div>
               <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '8px 0 6px 0', lineHeight: '1.2' }}>{formatCardTitle(card.title)}</div>
             </div>
             
-            <div className="card-face-back" onClick={() => setFlipped(!flipped)} style={{ display: 'flex', flexDirection: 'column', cursor: 'pointer', padding: '12px' }}>
+            <div className="card-face-back" onClick={() => setFlipped(!flipped)} style={{ '--card-inner-border': cardColor, display: 'flex', flexDirection: 'column', cursor: 'pointer', padding: '12px' }}>
               <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                 <h4 style={{ fontSize: '0.9rem', marginTop: '0.6rem', marginBottom: '0.3rem', lineHeight: '1.2', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
                 <p style={{ fontSize: '0.7rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 9, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie beschikbaar.'}</p>
