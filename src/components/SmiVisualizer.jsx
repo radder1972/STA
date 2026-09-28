@@ -16,15 +16,14 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onUpdateAnswer
   const renderModeNode = (mode, index) => {
     const top3Index = top3.findIndex(m => m.id === mode.id);
     const isTop3 = top3Index !== -1;
-    const medalColor = top3Index === 0 ? '#fbbf24' : top3Index === 1 ? '#94a3b8' : top3Index === 2 ? '#b45309' : null;
-    const medalBg = top3Index === 0 ? 'rgba(251, 191, 36, 0.1)' : top3Index === 1 ? 'rgba(148, 163, 184, 0.25)' : top3Index === 2 ? 'rgba(180, 83, 9, 0.1)' : 'var(--card-bg)';
     const cardColor = getCardColor('mode', mode.id);
+    const highlightBg = isTop3 ? `${cardColor}20` : 'var(--card-bg)';
 
     return (
       <div 
         key={mode.id} 
         className="mode-node glass-panel" 
-        style={{ display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: medalBg } : {}) }}
+        style={{ display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${cardColor}`, background: highlightBg } : {}) }}
       >
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
           <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
@@ -37,7 +36,7 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onUpdateAnswer
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div className="mode-name" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.25rem', minHeight: 'auto' }}>
               <span style={{ paddingRight: '10px', fontWeight: 'bold' }}>{mode.name}</span>
-              {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
+              {isTop3 && <span style={{ backgroundColor: cardColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
             </div>
             <div style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-main)', lineHeight: '1.6', fontStyle: 'italic' }}>
               {schemaDescriptions[mode.name] || ''}
@@ -52,7 +51,7 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onUpdateAnswer
             <div className="mini-progress-bg">
               <div 
                 className="mini-progress-fill" 
-                style={{ width: `${(mode.mean / 6) * 100}%`, ...(isTop3 ? { background: medalColor } : {}) }}
+                style={{ width: `${(mode.mean / 6) * 100}%`, ...(isTop3 ? { background: cardColor } : {}) }}
               ></div>
             </div>
           </div>

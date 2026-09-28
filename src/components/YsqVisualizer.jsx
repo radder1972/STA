@@ -15,8 +15,8 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
   const renderSchemaNode = (schema, index) => {
     const top3Index = top3.findIndex(s => s.id === schema.id);
     const isTop3 = top3Index !== -1;
-    const medalColor = top3Index === 0 ? '#fbbf24' : top3Index === 1 ? '#94a3b8' : top3Index === 2 ? '#b45309' : null;
-    const medalBg = top3Index === 0 ? 'rgba(251, 191, 36, 0.1)' : top3Index === 1 ? 'rgba(148, 163, 184, 0.25)' : top3Index === 2 ? 'rgba(180, 83, 9, 0.1)' : 'var(--card-bg)';
+    const cardColor = getCardColor('schema', schema.id);
+    const highlightBg = isTop3 ? `${cardColor}20` : 'var(--card-bg)';
 
     const schemasWithImages = [
       'Abandonment', 'Mistrust', 'Emotional deprivation', 'Social isolation/Alienation', 'Defectiveness/unlovability',
@@ -26,13 +26,13 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
     ];
     const hasImage = schemasWithImages.includes(schema.id);
     const imgUrl = hasImage ? getSchemaImage(schema.id) : null;
-    const cardColor = getCardColor('schema', schema.id);
+
 
     return (
       <div 
         key={schema.id} 
         className="mode-node glass-panel" 
-        style={{ display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${medalColor}`, background: medalBg } : {}) }}
+        style={{ display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${cardColor}`, background: highlightBg } : {}) }}
       >
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
           {hasImage && (
@@ -47,7 +47,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div className="mode-name" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.25rem', minHeight: 'auto' }}>
               <span style={{ paddingRight: '10px', fontWeight: 'bold' }}>{schema.name}</span>
-              {isTop3 && <span style={{ backgroundColor: medalColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
+              {isTop3 && <span style={{ backgroundColor: cardColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
             </div>
             <div style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-main)', lineHeight: '1.6', fontStyle: 'italic' }}>
               {schemaDescriptions[schema.name] || ''}
@@ -62,7 +62,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
             <div className="mini-progress-bg">
               <div 
                 className="mini-progress-fill" 
-                style={{ width: `${(schema.mean / 6) * 100}%`, ...(isTop3 ? { background: medalColor } : {}) }}
+                style={{ width: `${(schema.mean / 6) * 100}%`, ...(isTop3 ? { background: cardColor } : {}) }}
               ></div>
             </div>
           </div>
