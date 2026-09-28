@@ -39,21 +39,11 @@ export const CardInnerBorder = ({ color }) => {
         .card-scene:hover .${safeClass} {
            box-shadow: 0 12px 35px ${hoverShadowColor} !important;
         }
-        .card-scene:hover .${safeClass}-img-tint {
-           opacity: 1 !important;
+        .card-scene:hover img {
+           filter: drop-shadow(0 0 0 ${color}) drop-shadow(0 4px 10px ${color}60) !important;
+           transition: all 0.3s ease;
         }
       `}</style>
-      <div className={`${safeClass}-img-tint`} style={{
-        position: 'absolute',
-        top: 0, left: 0, right: 0, bottom: 0,
-        borderRadius: '12px',
-        backgroundColor: color,
-        mixBlendMode: 'color',
-        opacity: 0,
-        transition: 'opacity 0.3s ease',
-        pointerEvents: 'none',
-        zIndex: 10
-      }}></div>
       <div className={safeClass} style={{ 
         position: 'absolute', 
         top: 0, left: 0, right: 0, bottom: 0, 
