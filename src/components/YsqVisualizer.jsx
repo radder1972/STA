@@ -191,7 +191,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
 
   return (
     <div className="visualizer-container page-break">
-      <h3 className="visualizer-title text-gradient">Basisbehoeften en Schema's</h3>
+      <h3 className="visualizer-title" style={{ color: 'var(--text-main)' }}>Basisbehoeften en Schema's Overzicht</h3>
       
       <div className="ysq-layout">
         <div className="ysq-grid">
