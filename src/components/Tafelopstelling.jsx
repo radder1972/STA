@@ -142,14 +142,20 @@ const formatCardTitle = (title) => {
   return title;
 };
 
-const CardSlot = ({ label, card, onSelect, onRemove }) => {
+const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
   const [flipped, setFlipped] = useState(false);
   return (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <div style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>
+    {label && <div style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>}
     {card ? (
       <div style={{ position: 'relative', display: 'inline-block' }}>
-        <div className="card-scene" style={{ width: '160px', height: '228px', margin: 0 }}>
+        {isStacked && (
+          <>
+            <div style={{ position: 'absolute', top: '4px', left: '-8px', width: '160px', height: '228px', background: 'white', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '12px', zIndex: 0, opacity: 0.8, transform: 'rotate(-4deg)', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}></div>
+            <div style={{ position: 'absolute', top: '8px', left: '6px', width: '160px', height: '228px', background: 'white', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '12px', zIndex: 0, opacity: 0.5, transform: 'rotate(5deg)', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}></div>
+          </>
+        )}
+        <div className="card-scene" style={{ width: '160px', height: '228px', margin: 0, position: 'relative', zIndex: 1 }}>
           <div className={`card-flip-container ${flipped ? 'flipped' : ''}`}>
             <div className="card-face-front schema-img playing-card" onClick={() => setFlipped(!flipped)} style={{ padding: '12px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
               <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
@@ -502,29 +508,40 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', width: '100%' }}>
             
             {/* Top Row: De 3 Kaarten */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem', width: '100%', padding: '2rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
-              <div style={{ flex: 1, minWidth: '220px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem', width: '100%', padding: '2rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)', alignItems: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '180px' }}>
                 <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} />
               </div>
-              <div style={{ flex: 1, minWidth: '220px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div className="no-print" style={{ height: '3px', width: '40px', background: 'var(--primary)', opacity: 0.3, margin: '0 10px' }}></div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '180px' }}>
                 <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} />
               </div>
-              <div style={{ flex: 1, minWidth: '220px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div className="no-print" style={{ height: '3px', width: '40px', background: 'var(--primary)', opacity: 0.3, margin: '0 10px' }}></div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '180px' }}>
                 <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} />
               </div>
             </div>
 
-            {/* Accolade */}
-            <svg width="100%" height="40" viewBox="0 0 100 40" preserveAspectRatio="none" style={{ display: 'block', maxWidth: '800px', margin: '0.5rem 0' }}>
-              <path d="M 5,0 C 5,20 50,20 50,40 C 50,20 95,20 95,0" fill="none" stroke="var(--primary)" strokeWidth="2" opacity="0.4" />
-            </svg>
+            {/* Funnel Direction Arrow */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1rem 0' }}>
+              <div style={{ width: '3px', height: '40px', background: 'linear-gradient(to bottom, var(--primary), #3b82f6)', opacity: 0.5 }}></div>
+              <div style={{ 
+                width: '40px', height: '40px', borderRadius: '50%', 
+                background: 'linear-gradient(135deg, #14b8a6, #3b82f6)', 
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: 'white', boxShadow: '0 4px 10px rgba(20,184,166,0.3)',
+                marginTop: '-5px'
+              }}>
+                <ArrowDownIcon size={24} />
+              </div>
+            </div>
 
             {/* Bottom Row: Gezonde Volwassene */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '600px', padding: '2rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
-              <CardSlot label="Gezonde Volwassene" card={healthyAdultCard} />
+              <CardSlot card={healthyAdultCard} isStacked={true} />
               
               <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ fontWeight: 'bold', fontSize: '1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '0.5rem' }}>Grenzen stellen & Zorgen</div>
+                
                 <p style={{ fontSize: '1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '1rem', lineHeight: '1.6' }}>
                   De Gezonde Volwassene stelt grenzen aan disfunctionele reacties en biedt zorg voor onvervulde behoeften. Wat zou deze in deze situatie zeggen of doen?
                 </p>
