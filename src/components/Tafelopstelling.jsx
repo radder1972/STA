@@ -166,9 +166,6 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
                 <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
               </div>
               <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '8px 0 6px 0', lineHeight: '1.2' }}>{formatCardTitle(card.title)}</div>
-              {onRemove && (
-                 <button onClick={(e) => { e.stopPropagation(); onRemove(); }} className="no-print" style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, padding: 0, boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}>&times;</button>
-              )}
             </div>
             
             <div className="card-face-back" onClick={() => setFlipped(!flipped)} style={{ display: 'flex', flexDirection: 'column', cursor: 'pointer', padding: '12px' }}>
@@ -177,12 +174,12 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
                 <h4 style={{ fontSize: '0.75rem', marginTop: '0.4rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
                 <p style={{ fontSize: '0.6rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie beschikbaar.'}</p>
               </div>
-              {onRemove && (
-                 <button onClick={(e) => { e.stopPropagation(); onRemove(); }} className="no-print" style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, padding: 0, boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}>&times;</button>
-              )}
             </div>
           </div>
         </div>
+        {onRemove && (
+           <button onClick={onRemove} className="no-print btn-remove-card" style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, padding: 0, boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}>&times;</button>
+        )}
       </div>
     ) : (
       <div 
