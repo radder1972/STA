@@ -111,11 +111,11 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
 
   const categoryColors = {
     // YSQ Domains
-    'Verbondenheid & Veiligheid': '#34d399', // Groen
-    'Autonomie': '#60a5fa', // Blauw
-    'Zelfexpressie': '#facc15', // Geel
-    'Realistische Grenzen': '#f87171', // Rood
-    'Spontaniteit & Spel': '#fb923c', // Oranje
+    'Verbondenheid & Veiligheid': '#60a5fa', // Blauw
+    'Autonomie': '#34d399', // Groen
+    'Zelfexpressie': '#facc15', // Geel (Gerichtheid op anderen)
+    'Realistische Grenzen': '#fb923c', // Oranje
+    'Spontaniteit & Spel': '#f87171', // Rood
     
     // SMI Modes
     'KINDMODI': '#60a5fa', // Blauw
