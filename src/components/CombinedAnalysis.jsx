@@ -207,7 +207,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
       {/* OPTION D: Clinical Hypothesis Engine */}
       <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
         <h2 style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <HypothesisIcon size={28} useGradient={true} /> Klinische Hypothese
+          <HypothesisIcon size={28} useGradient={true} /> Hypothese
         </h2>
         <p style={{ color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '2rem' }}>
           Deze analyse combineert de theorie van Schematherapie met uw specifieke scores om gepersonaliseerde hypothesen te genereren en te valideren.
