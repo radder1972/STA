@@ -17,11 +17,11 @@ export const getCardColor = (type, id) => {
     const cat5 = ['Entitlement_Superiority', 'Insufficient self-control_self-discipline'];
     
     // YSQ Domains
-    if (cat1.includes(safeId)) return '#34d399'; // Verbondenheid (Groen)
-    if (cat2.includes(safeId)) return '#60a5fa'; // Autonomie (Blauw)
-    if (cat5.includes(safeId)) return '#f87171'; // Realistische grenzen (Rood)
-    if (cat3.includes(safeId)) return '#facc15'; // Zelfexpressie (Geel)
-    if (cat4.includes(safeId)) return '#fb923c'; // Spontaniteit & Spel (Oranje)
+    if (cat1.includes(safeId)) return '#60a5fa'; // Domein 1: Onthechting/Afwijzing -> Blauw (Triggert Kindmodi)
+    if (cat2.includes(safeId)) return '#34d399'; // Domein 2: Autonomie -> Groen (Gezonde Volwassene)
+    if (cat3.includes(safeId)) return '#facc15'; // Domein 4: Gerichtheid op anderen -> Geel (Copingmodi)
+    if (cat4.includes(safeId)) return '#f87171'; // Domein 5: Overmatige waakzaamheid -> Rood (Oudermodi)
+    if (cat5.includes(safeId)) return '#fb923c'; // Domein 3: Realistische grenzen -> Oranje
   }
   
   return 'rgba(0,0,0,0.15)'; // Default subtiel grijs randje

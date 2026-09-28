@@ -78,11 +78,11 @@ const needDescriptions = {
 };
 
 const needCards = [
-  { src: imgB1, title: 'Veilige hechting', type: 'need', description: needDescriptions['Veilige hechting'], color: '#34d399' },
-  { src: imgB2, title: 'Autonomie', type: 'need', description: needDescriptions['Autonomie'], color: '#60a5fa' },
+  { src: imgB1, title: 'Veilige hechting', type: 'need', description: needDescriptions['Veilige hechting'], color: '#60a5fa' },
+  { src: imgB2, title: 'Autonomie', type: 'need', description: needDescriptions['Autonomie'], color: '#34d399' },
   { src: imgB3, title: 'Vrije expressie', type: 'need', description: needDescriptions['Vrije expressie'], color: '#facc15' },
-  { src: imgB4, title: 'Spontaniteit en spel', type: 'need', description: needDescriptions['Spontaniteit en spel'], color: '#fb923c' },
-  { src: imgB5, title: 'Realistische grenzen', type: 'need', description: needDescriptions['Realistische grenzen'], color: '#f87171' },
+  { src: imgB4, title: 'Spontaniteit en spel', type: 'need', description: needDescriptions['Spontaniteit en spel'], color: '#f87171' },
+  { src: imgB5, title: 'Realistische grenzen', type: 'need', description: needDescriptions['Realistische grenzen'], color: '#fb923c' },
 ];
 
 const schemaGroups = [
