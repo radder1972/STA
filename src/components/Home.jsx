@@ -329,7 +329,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
           <ShieldIcon size={24} useGradient={true} /> Privacy & Veiligheid
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
-          Deze webapplicatie draait <strong>volledig lokaal</strong> in de browser op uw eigen apparaat. Uw gevoelige gegevens, testantwoorden en resultaten worden <strong>niet</strong> verzonden, <strong>niet</strong> opgeslagen op een server en <strong>nooit</strong> gedeeld met derden. Zodra u het venster sluit, zijn alle gegevens direct gewist. Sla uw rapport daarom altijd op via de PDF/Print functie, druk het direct af, of exporteer het als CSV-databestand voor uw eigen archief.<br /><br />
+          Deze webapplicatie draait <strong>volledig lokaal</strong> in de browser op uw eigen apparaat. Uw gevoelige gegevens, testantwoorden en resultaten worden <strong>niet</strong> verzonden, <strong>niet</strong> opgeslagen op een server en <strong>nooit</strong> gedeeld met derden. Zodra u het venster sluit, zijn alle gegevens direct gewist. Sla uw rapport daarom op via de PDF/Print-functie, druk het direct af, of exporteer uitsluitend uw testresultaten als CSV-databestand voor in uw eigen archief. U kunt dit CSV-bestand hier later altijd weer inlezen om het rapport opnieuw te genereren.<br /><br />
           <strong>Let op:</strong> De gecombineerde rapportage bevat een <em>optionele</em> AI-functionaliteit voor analyse. Indien u ervoor kiest deze te gebruiken, worden uw anonieme testresultaten (zonder herleidbare persoonsgegevens) ter analyse naar Google verzonden.
         </p>
       </div>
