@@ -40,13 +40,13 @@ export const CardInnerBorder = ({ color }) => {
            box-shadow: 0 12px 35px ${hoverShadowColor} !important;
         }
         .card-scene:hover .${safeClass}-bg {
-           opacity: 0.25 !important;
+           opacity: 1 !important;
         }
       `}</style>
       <div className={`${safeClass}-bg`} style={{
         position: 'absolute',
         top: 0, left: 0, right: 0, bottom: 0,
-        backgroundColor: color,
+        background: `radial-gradient(circle at center, transparent 40%, ${color}60 120%)`,
         opacity: 0,
         transition: 'opacity 0.3s ease',
         pointerEvents: 'none',
