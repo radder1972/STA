@@ -209,18 +209,9 @@ export default function KaartenOverzicht({ onBack }) {
 
   const FilterButton = ({ id, label }) => (
     <button 
+      className={`btn ${filter === id ? 'btn-gradient' : 'btn-outline'}`}
       onClick={() => setFilter(id)}
-      style={{
-        padding: '8px 16px',
-        borderRadius: '20px',
-        border: filter === id ? 'none' : '1px solid var(--border-color)',
-        background: filter === id ? 'var(--primary)' : 'var(--card-bg)',
-        color: filter === id ? 'white' : 'var(--text-main)',
-        fontWeight: filter === id ? 'bold' : 'normal',
-        cursor: 'pointer',
-        transition: 'all 0.2s ease',
-        boxShadow: filter === id ? '0 4px 12px rgba(20, 184, 166, 0.3)' : 'none'
-      }}
+      style={{ margin: 0, border: 'none' }}
     >
       {label}
     </button>
@@ -309,12 +300,14 @@ export default function KaartenOverzicht({ onBack }) {
         </button>
       </div>
 
-      <div className="no-print" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px', marginBottom: '3rem' }}>
-        <FilterButton id="all" label="Toon Alles" />
-        <FilterButton id="domeinen" label="Basisbehoeften" />
-        <FilterButton id="schemas" label="Individuele Schema's" />
-        <FilterButton id="modicats" label="Modi Categorieën" />
-        <FilterButton id="modi" label="Individuele Modi" />
+      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px' }}>
+          <FilterButton id="all" label="Toon Alles" />
+          <FilterButton id="domeinen" label="Basisbehoeften" />
+          <FilterButton id="schemas" label="Individuele Schema's" />
+          <FilterButton id="modicats" label="Modi Categorieën" />
+          <FilterButton id="modi" label="Individuele Modi" />
+        </div>
       </div>
 
       <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
