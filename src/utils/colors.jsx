@@ -4,10 +4,10 @@ export const getCardColor = (type, id) => {
     const parentModes = ['so', 'vo'];
     const copingModes = ['wi', 'ob', 'oz', 'wk', 'zh', 'pa'];
     
-    if (childModes.includes(id)) return '#34d399';
-    if (parentModes.includes(id)) return '#60a5fa';
-    if (copingModes.includes(id)) return '#facc15';
-    if (id === 'gv') return '#fb923c';
+    if (childModes.includes(id)) return '#60a5fa'; // Blauw
+    if (parentModes.includes(id)) return '#f87171'; // Rood
+    if (copingModes.includes(id)) return '#facc15'; // Geel
+    if (id === 'gv') return '#34d399'; // Groen
   } else if (type === 'schema') {
     const safeId = id.replace('/', '_');
     const cat1 = ['Abandonment', 'Mistrust', 'Emotional deprivation', 'Defectiveness_unlovability', 'Social isolation_Alienation'];
@@ -16,11 +16,12 @@ export const getCardColor = (type, id) => {
     const cat4 = ['Pessimism_Worry', 'Emotional inhibition', 'Unrelenting Standards', 'Self-punitiveness'];
     const cat5 = ['Entitlement_Superiority', 'Insufficient self-control_self-discipline'];
     
-    if (cat1.includes(safeId)) return '#34d399';
-    if (cat2.includes(safeId)) return '#60a5fa';
-    if (cat3.includes(safeId)) return '#facc15';
-    if (cat4.includes(safeId)) return '#fb923c';
-    if (cat5.includes(safeId)) return '#f87171';
+    // YSQ Domains
+    if (cat1.includes(safeId)) return '#34d399'; // Verbondenheid (Groen)
+    if (cat2.includes(safeId)) return '#60a5fa'; // Autonomie (Blauw)
+    if (cat5.includes(safeId)) return '#f87171'; // Realistische grenzen (Rood)
+    if (cat3.includes(safeId)) return '#facc15'; // Zelfexpressie (Geel)
+    if (cat4.includes(safeId)) return '#fb923c'; // Spontaniteit & Spel (Oranje)
   }
   
   return 'rgba(0,0,0,0.15)'; // Default subtiel grijs randje

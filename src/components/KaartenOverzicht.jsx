@@ -110,12 +110,12 @@ export default function KaartenOverzicht({ onBack }) {
   ]
 
   const modiCards = [
-    { src: imgM1, title: 'Kindmodi', description: categorieText['Kindmodi'], color: '#34d399' },
-    { src: imgM2, title: 'Oudermodi', description: categorieText['Oudermodi'], color: '#60a5fa' },
+    { src: imgM1, title: 'Kindmodi', description: categorieText['Kindmodi'], color: '#60a5fa' }, // Blauw
+    { src: imgM2, title: 'Oudermodi', description: categorieText['Oudermodi'], color: '#f87171' }, // Rood
     { src: imgM3a, title: 'Coping: Overgave', description: categorieText['Coping: Overgave'], color: '#facc15' },
     { src: imgM3b, title: 'Coping: Vermijding', description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' }, color: '#facc15' },
     { src: imgM3c, title: 'Coping: Overcompensatie', description: categorieText['Coping: Overcompensatie'], color: '#facc15' },
-    { src: imgM4, title: 'Gezonde volwassene', description: categorieText['Gezonde volwassene'], color: '#fb923c' },
+    { src: imgM4, title: 'Gezonde volwassene', description: categorieText['Gezonde volwassene'], color: '#34d399' }, // Groen
   ]
 
   const schemaGroups = [
