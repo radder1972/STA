@@ -508,29 +508,29 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', width: '100%' }}>
             
             {/* Top Row: De 3 Kaarten */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem', width: '100%', padding: '2rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)', alignItems: 'center' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '180px' }}>
+            <div style={{ display: 'flex', flexWrap: 'nowrap', overflowX: 'auto', justifyContent: 'center', gap: '0.5rem', width: '100%', padding: '2rem 1rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)', alignItems: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '160px' }}>
                 <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} />
               </div>
-              <div className="no-print" style={{ height: '3px', width: '40px', background: 'var(--primary)', opacity: 0.3, margin: '0 10px' }}></div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '180px' }}>
+              <div className="no-print" style={{ height: '3px', minWidth: '20px', width: '40px', background: 'var(--primary)', opacity: 0.3, margin: '0 5px', flexShrink: 1 }}></div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '160px' }}>
                 <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} />
               </div>
-              <div className="no-print" style={{ height: '3px', width: '40px', background: 'var(--primary)', opacity: 0.3, margin: '0 10px' }}></div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '180px' }}>
+              <div className="no-print" style={{ height: '3px', minWidth: '20px', width: '40px', background: 'var(--primary)', opacity: 0.3, margin: '0 5px', flexShrink: 1 }}></div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '160px' }}>
                 <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} />
               </div>
             </div>
 
             {/* Funnel Direction Arrow */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1rem 0' }}>
-              <div style={{ width: '3px', height: '40px', background: 'linear-gradient(to bottom, var(--primary), #3b82f6)', opacity: 0.5 }}></div>
+              <div style={{ width: '3px', height: '35px', background: 'linear-gradient(to bottom, var(--primary), #3b82f6)', opacity: 0.5, marginBottom: '-2px' }}></div>
               <div style={{ 
                 width: '40px', height: '40px', borderRadius: '50%', 
                 background: 'linear-gradient(135deg, #14b8a6, #3b82f6)', 
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 color: 'white', boxShadow: '0 4px 10px rgba(20,184,166,0.3)',
-                marginTop: '-5px'
+                position: 'relative', zIndex: 1
               }}>
                 <ArrowDownIcon size={24} />
               </div>
