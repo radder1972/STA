@@ -111,19 +111,19 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
 
   const categoryColors = {
     // YSQ Domains
-    'Verbondenheid & Veiligheid': '#10b981',
-    'Autonomie': '#3b82f6',
-    'Zelfexpressie': '#eab308',
-    'Realistische Grenzen': '#ef4444',
-    'Spontaniteit & Spel': '#f97316',
+    'Verbondenheid & Veiligheid': '#34d399',
+    'Autonomie': '#60a5fa',
+    'Zelfexpressie': '#facc15',
+    'Realistische Grenzen': '#f87171',
+    'Spontaniteit & Spel': '#fb923c',
     
     // SMI Modes
-    'KINDMODI': '#3b82f6', 
-    'BESCHERMMODI - OVERGAVE': '#d97706',
-    'BESCHERMMODI - VERMIJDEN': '#f59e0b',
-    'BESCHERMMODI - OMKERING': '#eab308',
-    'DISFUNCTIONELE OUDERMODI': '#ef4444',
-    'FUNCTIONELE MODI': '#10b981',
+    'KINDMODI': '#34d399', 
+    'BESCHERMMODI - OVERGAVE': '#facc15',
+    'BESCHERMMODI - VERMIJDEN': '#facc15',
+    'BESCHERMMODI - OMKERING': '#facc15',
+    'DISFUNCTIONELE OUDERMODI': '#60a5fa',
+    'FUNCTIONELE MODI': '#fb923c',
     
     'Overig': '#94a3b8'
   };
