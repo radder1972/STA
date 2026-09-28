@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, DownloadIcon, AlertTriangleIcon } from './Icons'
+import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, DownloadIcon, AlertTriangleIcon, ClipboardIcon, BrainIcon } from './Icons'
 
 export default function Questionnaire({ type, questions, initialAnswers, completedTests, onFinish, onCancel }) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -91,9 +91,9 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
     reader.readAsText(file);
   };
 
-  const handleFinish = () => {
+  const handleFinish = (goToResults = false) => {
     localStorage.removeItem(`schemaApp_progress_${type}`);
-    onFinish(answers);
+    onFinish(answers, goToResults);
   };
   
   const question = questions[currentIndex]
@@ -160,14 +160,27 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
   const otherType = type === 'ysq' ? 'smi' : 'ysq';
   const otherCompleted = completedTests && completedTests[otherType] !== null && Object.keys(completedTests[otherType]).length > 0;
 
+  const renderIcon = (listType) => {
+    const IconComponent = listType === 'ysq' ? ClipboardIcon : BrainIcon;
+    return (
+      <div key={listType} style={{ position: 'relative', display: 'inline-block', margin: '0 10px' }}>
+        <div className="btn-gradient" style={{ padding: '1.2rem', borderRadius: '50%', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 25px rgba(52, 211, 153, 0.3)' }}>
+          <IconComponent size={48} />
+        </div>
+        <div style={{ position: 'absolute', bottom: '-5px', right: '-5px', background: '#10b981', color: 'white', borderRadius: '50%', padding: '4px', border: '3px solid var(--bg-main, #ffffff)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <CheckIcon size={20} strokeWidth={3} />
+        </div>
+      </div>
+    );
+  };
+
   if (showCompletionScreen) {
     return (
       <div className="q-container">
         <div className="q-content glass-panel" style={{ textAlign: 'center', padding: '3rem 2rem', margin: '2rem auto', maxWidth: '800px' }}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-            <div className="btn-gradient" style={{ padding: '1rem', borderRadius: '50%', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <CheckIcon size={48} />
-            </div>
+            {(type === 'ysq' || otherCompleted) && renderIcon('ysq')}
+            {(type === 'smi' || otherCompleted) && renderIcon('smi')}
           </div>
           <h2 className="text-gradient" style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Lijst Voltooid!</h2>
 
@@ -182,7 +195,7 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
               </div>
               <button 
                 className="btn btn-outline" 
-                onClick={handleFinish}
+                onClick={() => handleFinish(false)}
                 style={{ flexShrink: 0, whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
               >
                 <ArrowLeftIcon size={18} /> Naar startpagina
@@ -202,7 +215,7 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
             <button className="btn btn-outline" onClick={handleExportCSV} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1.1rem' }}>
               <DownloadIcon size={20} /> Sla Scores Op (CSV)
             </button>
-            <button className="btn btn-gradient" onClick={handleFinish} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'white', padding: '12px 24px', fontSize: '1.1rem' }}>
+            <button className="btn btn-gradient" onClick={() => handleFinish(true)} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'white', padding: '12px 24px', fontSize: '1.1rem' }}>
               Doorgaan naar Rapport <ArrowRightIcon size={20} />
             </button>
           </div>

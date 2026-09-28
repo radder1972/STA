@@ -37,9 +37,13 @@ function App() {
     setCurrentView('questionnaire')
   }
 
-  const handleFinish = (finalAnswers) => {
+  const handleFinish = (finalAnswers, goToResults = false) => {
     setCompletedTests(prev => ({ ...prev, [currentQuestionnaire]: finalAnswers }))
-    setCurrentView('home')
+    if (goToResults) {
+      setCurrentView('results')
+    } else {
+      setCurrentView('home')
+    }
     setCurrentQuestionnaire(null)
   }
 
@@ -128,7 +132,7 @@ function App() {
 
       {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v2.6.47
+          v2.6.48
         </div>
       )}
     </div>
