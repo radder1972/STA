@@ -402,11 +402,21 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         </>
       )}
 
-      {embedded && (
-        <div className="no-print" style={{ marginBottom: '2rem', textAlign: 'center' }}>
-          <p style={{ color: 'var(--text-main)', maxWidth: '700px', margin: '0 auto 1.5rem auto', lineHeight: '1.6', fontSize: '1rem' }}>
-            De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen. Je kunt de opstelling <strong>handmatig</strong> maken door zelf kaarten op tafel te leggen en de analyse te starten, óf je situatie beschrijven en de opstelling en analyse <strong>automatisch</strong> laten genereren op basis van je testresultaten.
-          </p>
+      <div className="no-print" style={{ marginBottom: '2rem', textAlign: 'center' }}>
+        <p style={{ color: 'var(--text-main)', maxWidth: '700px', margin: '0 auto 1.5rem auto', lineHeight: '1.6', fontSize: '1.05rem' }}>
+          De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen.
+        </p>
+
+        <div style={{ textAlign: 'left', maxWidth: '750px', margin: '0 auto 2rem auto', background: 'rgba(20, 184, 166, 0.05)', padding: '1.5rem 2rem', borderRadius: '12px', border: '1px solid rgba(20, 184, 166, 0.2)' }}>
+          <h4 style={{ color: 'var(--primary)', marginBottom: '1rem', marginTop: 0, fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '8px' }}><CheckIcon size={20} /> Hoe werkt het?</h4>
+          <ol style={{ margin: 0, paddingLeft: '1.5rem', color: 'var(--text-main)', lineHeight: '1.6' }}>
+            <li style={{ marginBottom: '0.8rem' }}><strong>Beschrijf de situatie:</strong> Wat was de trigger? Beschrijf dit altijd als eerste.</li>
+            <li style={{ marginBottom: '0.8rem' }}><strong>Leg de kaarten op tafel:</strong> Op basis van deze situatie: wat deed je (modus), welk schema werd getriggerd, en welke basisbehoefte werd geraakt? Je kunt de kaarten <strong>handmatig</strong> kiezen, óf dit <strong>automatisch</strong> laten voorspellen op basis van je testresultaten.</li>
+            <li><strong>Analyseer:</strong> Laat een diepgaande analyse maken van jouw specifieke keten en kijk hoe je Gezonde Volwassene kan reageren.</li>
+          </ol>
+        </div>
+
+        {embedded && (
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
             <button className="btn btn-outline" onClick={handlePrintTafel} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               PDF / Printen
@@ -415,8 +425,8 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               Tafel Leegmaken
             </button>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       <div className="glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '0 auto', background: 'var(--card-bg)' }}>
         <div style={{ maxWidth: '850px', margin: '0 auto' }}>
