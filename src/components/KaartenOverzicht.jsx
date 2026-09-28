@@ -211,7 +211,7 @@ export default function KaartenOverzicht({ onBack }) {
     <button 
       className={`btn ${filter === id ? 'btn-gradient' : 'btn-outline'}`}
       onClick={() => setFilter(id)}
-      style={{ margin: 0, border: 'none' }}
+      style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}
     >
       {label}
     </button>
@@ -300,8 +300,8 @@ export default function KaartenOverzicht({ onBack }) {
         </button>
       </div>
 
-      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px' }}>
+      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
+        <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
 
           <FilterButton id="domeinen" label="Basisbehoeften" />
           <FilterButton id="schemas" label="Individuele Schema's" />
