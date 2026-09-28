@@ -9,7 +9,6 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
   const [animateKey, setAnimateKey] = useState(0)
   const [hasReachedEnd, setHasReachedEnd] = useState(false)
   const [showCompletionScreen, setShowCompletionScreen] = useState(false)
-  const fileInputRef = useRef(null)
 
   useEffect(() => {
     if (initialAnswers && Object.keys(initialAnswers).length > 0) {
@@ -91,27 +90,7 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
     downloadAnchorNode.remove();
   };
 
-  const handleResumeFile = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      try {
-        const parsed = JSON.parse(event.target.result);
-        setAnswers(parsed);
-        for (let i = 0; i < questions.length; i++) {
-          if (parsed[questions[i].id] === undefined) {
-            setCurrentIndex(i);
-            break;
-          }
-        }
-      } catch (err) {
-        alert("Bestand kon niet gelezen worden. Zorg dat het een geldig voortgangsbestand is.");
-      }
-      if (fileInputRef.current) fileInputRef.current.value = '';
-    };
-    reader.readAsText(file);
-  };
+
 
   const handleFinish = (goToResults = false) => {
     localStorage.removeItem(`schemaApp_progress_${type}`);
@@ -273,19 +252,6 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
           <span style={{color: 'var(--text-main)'}}>Vraag {currentIndex + 1} van {total}</span>
         </div>        
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center', paddingRight: '50px' }}>
-          <input 
-            type="file" 
-            accept=".json" 
-            style={{ display: 'none' }} 
-            ref={fileInputRef} 
-            onChange={handleResumeFile} 
-          />
-          <button className="btn btn-outline" onClick={() => fileInputRef.current && fileInputRef.current.click()} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
-            Hervatten
-          </button>
-          <button className="btn btn-outline" onClick={handleExportCSV} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
-            Opslaan
-          </button>
           {isComplete && currentIndex === total - 1 && (
             <button className="btn btn-gradient" onClick={() => setShowCompletionScreen(true)} style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '5px' }}>
               <CheckIcon size={18} /> Bekijk Resultaten
