@@ -299,27 +299,39 @@ export default function KaartenOverzicht({ onBack }) {
         {(filter === 'all' || filter === 'domeinen') && (
           <div>
             <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem' }}>Schema Domeinen (Basisbehoeften)</h2>
+            <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
+              Ieder mens heeft fundamentele emotionele basisbehoeften, zoals de behoefte aan veiligheid, verbondenheid, autonomie en spontaniteit. Als er in de kindertijd structureel niet aan deze behoeften is voldaan, kunnen er hardnekkige, negatieve patronen (schema's) ontstaan. De schema's vallen onder de volgende 5 domeinen.
+            </p>
             {renderCardList(schemaCards, 'schema-cat', { transform: 'scale(0.85)' })}
           </div>
         )}
 
         {(filter === 'all' || filter === 'schemas') && (
           <div>
-            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '2rem' : '0' }}>Individuele Schema's (18)</h2>
+            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '3rem' : '0' }}>Individuele Schema's (18)</h2>
+            <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
+              Een schema is een vastgeroest patroon van denken, voelen en doen dat vaak al in de vroege jeugd is ontstaan. Ze fungeren als een soort gekleurde bril waardoor je (soms onbewust) naar jezelf, anderen en de wereld kijkt. Hieronder zie je de 18 specifieke schema's die we onderscheiden.
+            </p>
             {renderCardList(detailedSchemaCards, 'schema-ind')}
           </div>
         )}
 
         {(filter === 'all' || filter === 'modicats') && (
           <div>
-            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '2rem' : '0' }}>Modi Categorieën</h2>
+            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '3rem' : '0' }}>Modi Categorieën</h2>
+            <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
+              Waar schema's de dieperliggende, langdurige patronen of 'knoppen' zijn, is een <strong>modus</strong> de actuele gemoedstoestand waarin je op dít specifieke moment verkeert als een knop wordt ingedrukt. Modi worden ingedeeld in deze 4 hoofdcategorieën.
+            </p>
             {renderCardList(modiCards, 'modi-cat', { transform: 'scale(0.85)' })}
           </div>
         )}
 
         {(filter === 'all' || filter === 'modi') && (
           <div>
-            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '2rem' : '0' }}>Individuele Modi (14)</h2>
+            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '3rem' : '0' }}>Individuele Modi (14)</h2>
+            <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
+              Binnen de 4 hoofdcategorieën kunnen we specifieker inzoomen. Hier vind je de 14 meest voorkomende, specifieke gemoedstoestanden of kanten van jezelf (de modi) die geactiveerd kunnen worden wanneer je schema's worden geraakt.
+            </p>
             {renderCardList(detailedModeCards, 'modi-ind')}
           </div>
         )}
