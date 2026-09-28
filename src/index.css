@@ -92,7 +92,7 @@ body {
   background: linear-gradient(to right, #6b7280, #9ca3af);
   color: white;
   border: none;
-  box-shadow: 0 4px 15px rgba(52, 211, 153, 0.2);
+  box-shadow: 0 4px 15px rgba(107, 114, 128, 0.2);
 }
 
 .btn-gradient:hover {
