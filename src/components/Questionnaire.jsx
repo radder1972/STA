@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
-import { ArrowLeftIcon, ArrowRightIcon, CheckIcon } from './Icons'
+import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, DownloadIcon } from './Icons'
 
 export default function Questionnaire({ type, questions, initialAnswers, onFinish, onCancel }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answers, setAnswers] = useState({})
   const [animateKey, setAnimateKey] = useState(0)
   const [hasReachedEnd, setHasReachedEnd] = useState(false)
+  const [showCompletionScreen, setShowCompletionScreen] = useState(false)
   const fileInputRef = useRef(null)
 
   useEffect(() => {
@@ -49,17 +50,23 @@ export default function Questionnaire({ type, questions, initialAnswers, onFinis
     }
   }, [answers, type]);
 
-  const handleSaveFile = () => {
-    const data = JSON.stringify(answers);
-    const blob = new Blob([data], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `schema-therapy-voortgang-${type}.json`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const handleExportCSV = () => {
+    let csvContent = "Vragenlijst,Vraag_ID,Score,Vraag_Tekst\n";
+    const typeLabel = type.toUpperCase();
+    
+    Object.entries(answers).forEach(([qId, score]) => {
+      const question = questions.find(q => q.id.toString() === qId.toString());
+      const text = question ? `"${question.text.replace(/"/g, '""')}"` : "";
+      csvContent += `${typeLabel},${qId},${score},${text}\n`;
+    });
+    
+    const dataStr = "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent);
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", `schema_therapy_${type}_scores.csv`);
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
   };
 
   const handleResumeFile = (e) => {
@@ -150,6 +157,35 @@ export default function Questionnaire({ type, questions, initialAnswers, onFinis
     'Altijd'
   ]
 
+  if (showCompletionScreen) {
+    return (
+      <div className="q-container">
+        <div className="q-content glass-panel" style={{ textAlign: 'center', padding: '3rem 2rem', margin: '2rem auto', maxWidth: '800px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+            <div style={{ background: 'var(--primary)', padding: '1rem', borderRadius: '50%', color: 'white' }}>
+              <CheckIcon size={48} />
+            </div>
+          </div>
+          <h2 className="text-gradient" style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Lijst Voltooid!</h2>
+          <p style={{ color: 'var(--text-main)', lineHeight: '1.6', fontSize: '1.1rem', marginBottom: '2rem', maxWidth: '650px', margin: '0 auto 2rem auto' }}>
+            U heeft alle vragen ingevuld. Voordat u verdergaat naar het rapport, kunt u uw antwoorden lokaal opslaan als CSV-bestand. U kunt deze later altijd weer inlezen via de startpagina. 
+            <br/><br/>
+            <strong>Let op:</strong> Vanwege uw privacy worden uw antwoorden <em>nergens online opgeslagen</em>. Zodra u de applicatie afsluit, bent u de ingevulerde gegevens kwijt tenzij u ze opslaat.
+          </p>
+          
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '3rem' }}>
+            <button className="btn btn-outline" onClick={handleExportCSV} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1.1rem' }}>
+              <DownloadIcon size={20} /> Sla Scores Op (CSV)
+            </button>
+            <button className="btn btn-gradient" onClick={handleFinish} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'white', padding: '12px 24px', fontSize: '1.1rem' }}>
+              Doorgaan naar Rapport <ArrowRightIcon size={20} />
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="q-container">
       <div className="q-header">
@@ -173,11 +209,11 @@ export default function Questionnaire({ type, questions, initialAnswers, onFinis
           <button className="btn btn-outline" onClick={() => fileInputRef.current && fileInputRef.current.click()} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
             Hervatten
           </button>
-          <button className="btn btn-outline" onClick={handleSaveFile} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
+          <button className="btn btn-outline" onClick={handleExportCSV} style={{ fontSize: '0.8rem', padding: '8px 12px' }}>
             Opslaan
           </button>
           {isComplete && currentIndex === total - 1 && (
-            <button className="btn btn-gradient" onClick={handleFinish} style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <button className="btn btn-gradient" onClick={() => setShowCompletionScreen(true)} style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '5px' }}>
               <CheckIcon size={18} /> Bekijk Resultaten
             </button>
           )}
@@ -235,7 +271,7 @@ export default function Questionnaire({ type, questions, initialAnswers, onFinis
         )}
         
         {currentIndex === total - 1 && isComplete && (
-          <button className="btn btn-gradient" onClick={() => onFinish(answers)} style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <button className="btn btn-gradient" onClick={() => setShowCompletionScreen(true)} style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '8px' }}>
             Bekijk Resultaten <CheckIcon size={18} />
           </button>
         )}
