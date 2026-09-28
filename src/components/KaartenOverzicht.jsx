@@ -102,20 +102,20 @@ export default function KaartenOverzicht({ onBack }) {
   }
 
   const schemaCards = [
-    { src: imgB1, title: '1. Veilige hechting', description: basisbehoeftenText['1. Veilige hechting'] },
-    { src: imgB2, title: '2. Autonomie', description: basisbehoeftenText['2. Autonomie'] },
-    { src: imgB3, title: '3. Vrije expressie', description: basisbehoeftenText['3. Vrije expressie'] },
-    { src: imgB4, title: '4. Spontaniteit en spel', description: basisbehoeftenText['4. Spontaniteit en spel'] },
-    { src: imgB5, title: '5. Realistische grenzen', description: basisbehoeftenText['5. Realistische grenzen'] },
+    { src: imgB1, title: '1. Veilige hechting', description: basisbehoeftenText['1. Veilige hechting'], color: '#10b981' },
+    { src: imgB2, title: '2. Autonomie', description: basisbehoeftenText['2. Autonomie'], color: '#3b82f6' },
+    { src: imgB3, title: '3. Vrije expressie', description: basisbehoeftenText['3. Vrije expressie'], color: '#eab308' },
+    { src: imgB4, title: '4. Spontaniteit en spel', description: basisbehoeftenText['4. Spontaniteit en spel'], color: '#f97316' },
+    { src: imgB5, title: '5. Realistische grenzen', description: basisbehoeftenText['5. Realistische grenzen'], color: '#ef4444' },
   ]
 
   const modiCards = [
-    { src: imgM1, title: 'Kindmodi', description: categorieText['Kindmodi'] },
-    { src: imgM2, title: 'Oudermodi', description: categorieText['Oudermodi'] },
-    { src: imgM3a, title: 'Coping: Overgave', description: categorieText['Coping: Overgave'] },
-    { src: imgM3b, title: 'Coping: Vermijding', description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' } },
-    { src: imgM3c, title: 'Coping: Overcompensatie', description: categorieText['Coping: Overcompensatie'] },
-    { src: imgM4, title: 'Gezonde volwassene', description: categorieText['Gezonde volwassene'] },
+    { src: imgM1, title: 'Kindmodi', description: categorieText['Kindmodi'], color: '#10b981' },
+    { src: imgM2, title: 'Oudermodi', description: categorieText['Oudermodi'], color: '#3b82f6' },
+    { src: imgM3a, title: 'Coping: Overgave', description: categorieText['Coping: Overgave'], color: '#eab308' },
+    { src: imgM3b, title: 'Coping: Vermijding', description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' }, color: '#eab308' },
+    { src: imgM3c, title: 'Coping: Overcompensatie', description: categorieText['Coping: Overcompensatie'], color: '#eab308' },
+    { src: imgM4, title: 'Gezonde volwassene', description: categorieText['Gezonde volwassene'], color: '#f97316' },
   ]
 
   const detailedSchemaCards = Object.keys(schemaImages).map(path => {
@@ -134,7 +134,7 @@ export default function KaartenOverzicht({ onBack }) {
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyItems: 'center', justifyContent: 'center', padding: '1rem', marginBottom: '3rem' }}>
       {cards.map((card, idx) => {
         const uniqueKey = `${listName}-${card.title}`;
-        const cardColor = getCardColor(card.type, card.id);
+        const cardColor = card.color || getCardColor(card.type, card.id);
         return (
         <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div className="card-scene">
