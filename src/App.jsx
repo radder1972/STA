@@ -72,7 +72,6 @@ function App() {
       ysq: importedTests.ysq || prev.ysq,
       smi: importedTests.smi || prev.smi
     }))
-    setCurrentView('results')
   }
 
   const getQuestionData = () => {
@@ -132,7 +131,7 @@ function App() {
 
       {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v2.6.49
+          v2.6.50
         </div>
       )}
     </div>

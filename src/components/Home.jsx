@@ -1,11 +1,13 @@
 import { useRef, useState } from 'react'
-import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon, CardsIcon } from './Icons'
+import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon, CardsIcon, ArrowLeftIcon, ArrowRightIcon } from './Icons'
 
 export default function Home({ onStart, completedTests, onViewResults, onImport, onViewKaartenOverzicht }) {
   const fileInputRef = useRef(null)
   const [ysqExpanded, setYsqExpanded] = useState(false);
   const [smiExpanded, setSmiExpanded] = useState(false);
   const [theoryExpanded, setTheoryExpanded] = useState(false);
+  const [showImportScreen, setShowImportScreen] = useState(false);
+  const [justImported, setJustImported] = useState({ ysq: false, smi: false });
   
   const isYsqDone = !!completedTests.ysq;
   const isSmiDone = !!completedTests.smi;
@@ -57,6 +59,8 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
       
       if (importedYsq || importedSmi) {
         onImport && onImport({ ysq: importedYsq, smi: importedSmi });
+        setJustImported({ ysq: !!importedYsq, smi: !!importedSmi });
+        setShowImportScreen(true);
       } else {
         alert("Geen geldige scores gevonden in dit bestand.");
       }
@@ -67,6 +71,74 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
     };
     reader.readAsText(file);
   };
+
+  if (showImportScreen) {
+    const isYsqImported = justImported.ysq;
+    const isSmiImported = justImported.smi;
+    const bothCompletedNow = !!completedTests.ysq && !!completedTests.smi;
+
+    const renderIcon = (listType) => {
+      const IconComponent = listType === 'ysq' ? ClipboardIcon : BrainIcon;
+      return (
+        <div key={listType} style={{ position: 'relative', display: 'inline-block', margin: '0 10px' }}>
+          <div className="btn-gradient" style={{ padding: '1.2rem', borderRadius: '50%', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 25px rgba(52, 211, 153, 0.3)' }}>
+            <IconComponent size={48} />
+          </div>
+          <div style={{ position: 'absolute', bottom: '-5px', right: '-5px', background: '#10b981', color: 'white', borderRadius: '50%', padding: '4px', border: '3px solid var(--bg-main, #ffffff)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <CheckIcon size={20} strokeWidth={3} />
+          </div>
+        </div>
+      );
+    };
+
+    return (
+      <div className="q-container" style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="q-content glass-panel" style={{ textAlign: 'center', padding: '3rem 2rem', margin: '2rem auto', maxWidth: '800px', width: '100%' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+            {(isYsqImported || bothCompletedNow) && renderIcon('ysq')}
+            {(isSmiImported || bothCompletedNow) && renderIcon('smi')}
+          </div>
+          <h2 className="text-gradient" style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>
+            {bothCompletedNow ? "Beide Lijsten Voltooid!" : "Lijst Ingeladen!"}
+          </h2>
+
+          {!bothCompletedNow && (
+            <div className="glass-panel" style={{ border: '1px solid var(--border-color)', padding: '1.5rem', borderRadius: '12px', color: 'var(--text-main)', marginBottom: '2rem', textAlign: 'left', display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+              <div style={{ background: 'var(--bg-card)', padding: '12px', borderRadius: '50%', color: 'var(--text-muted)', flexShrink: 0 }}>
+                <AlertTriangleIcon size={24} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <strong style={{ display: 'block', color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>U heeft nu alleen de {isYsqImported ? "YSQ" : "SMI"} ingeladen</strong>
+                <p style={{ margin: 0, color: 'var(--text-muted)' }}>Het rapport is het meest waardevol als u beide lijsten invult of inlaadt.</p>
+              </div>
+              <button 
+                className="btn btn-outline" 
+                onClick={() => setShowImportScreen(false)}
+                style={{ flexShrink: 0, whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+              >
+                <ArrowLeftIcon size={18} /> Naar startpagina
+              </button>
+            </div>
+          )}
+
+          <p style={{ color: 'var(--text-main)', lineHeight: '1.6', fontSize: '1.1rem', marginBottom: '2rem', maxWidth: '650px', margin: '0 auto 2rem auto' }}>
+            U heeft zojuist succesvol een CSV-bestand ingeladen.
+            {bothCompletedNow && (
+              <span style={{ display: 'block', marginTop: '0.5rem', color: '#10b981', fontWeight: 'bold' }}>
+                Fantastisch! Daarmee heeft u nu beide lijsten voltooid en is uw profiel compleet.
+              </span>
+            )}
+          </p>
+          
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '3rem' }}>
+            <button className="btn btn-gradient" onClick={() => onViewResults()} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'white', padding: '12px 24px', fontSize: '1.1rem' }}>
+              Doorgaan naar Rapport <ArrowRightIcon size={20} />
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="home-container">
