@@ -143,7 +143,6 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
     const rankIndex = overallRankedScores.findIndex(s => s.name === payload.value);
     const isTop3 = rankIndex >= 0 && rankIndex < 3;
     const rankText = isTop3 ? ` (#${rankIndex + 1})` : '';
-    const rankColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : rankIndex === 2 ? '#b45309' : color;
     
     // Add some breathing room for the vertical axis labels (top and bottom)
     let adjustedY = y;
@@ -159,7 +158,7 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
       <g>
         <text radius={radius} stroke="none" x={x} y={adjustedY} className="recharts-text recharts-polar-angle-axis-tick-value" textAnchor={textAnchor} fill={color} fontSize="9" fontWeight="bold">
           <tspan x={x} dy="0em">{payload.value}</tspan>
-          {isTop3 && <tspan fill={rankColor}>{rankText}</tspan>}
+          {isTop3 && <tspan fill="#94a3b8">{rankText}</tspan>}
         </text>
       </g>
     );
@@ -170,9 +169,9 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
     const rankIndex = overallRankedScores.findIndex(s => s.name === payload.name);
     
     if (rankIndex >= 0 && rankIndex < 3) {
-      const rankColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : '#b45309';
+      const catColor = payload.category ? categoryColors[payload.category] : 'var(--primary)';
       return (
-        <circle cx={cx} cy={cy} r={6} fill={rankColor} stroke="#1e293b" strokeWidth={2} />
+        <circle cx={cx} cy={cy} r={6} fill={catColor} stroke="#1e293b" strokeWidth={2} />
       );
     }
     
@@ -209,7 +208,6 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
     return null;
   };
 
-  // Custom bar shape to draw both the bar and the badge accurately
   const CustomBarWithBadge = (props) => {
     const { x, y, width, height, payload } = props;
     
@@ -219,18 +217,17 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
     
     const rankIndex = overallRankedScores.findIndex(s => s.name === payload.name);
     const isTop3 = rankIndex >= 0 && rankIndex < 3;
-    const medalColor = rankIndex === 0 ? '#fbbf24' : rankIndex === 1 ? '#94a3b8' : '#b45309';
     const catColor = payload.category ? categoryColors[payload.category] : 'var(--primary)';
     
-    // In domain view, use category color. In high-low view, use medal colors for top 3 and primary color for the rest.
-    const finalColor = sortBy === 'domain' ? catColor : (isTop3 ? medalColor : 'var(--primary)');
+    // Always use category color for the bars
+    const finalColor = catColor;
 
     return (
       <g>
         <Rectangle x={x} y={y} width={width} height={height} fill={finalColor} radius={[0, 4, 4, 0]} />
         {sortBy === 'domain' && isTop3 && (
           <g transform={`translate(${x + width + 35}, ${y + height / 2 - 8})`}>
-            <rect width="24" height="16" rx="4" fill={medalColor} />
+            <rect width="24" height="16" rx="4" fill="#94a3b8" />
             <text x="12" y="11.5" fill="#fff" fontSize="10" fontWeight="bold" textAnchor="middle">
               #{rankIndex + 1}
             </text>
