@@ -105,7 +105,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
             <div>
               <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--text-main)' }}>Privacy & Bring Your Own Key</h4>
               <p style={{ fontSize: '1rem', color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
-                Om uw privacy te garanderen, draait deze app volledig lokaal. Om de AI te gebruiken, moet u eenmalig uw eigen (gratis) Google Gemini API-sleutel invoeren. Deze wordt veilig opgeslagen in uw eigen browser. Zodra u genereert, worden enkel uw Top 3 scores (geen persoonsgegevens) naar Google gestuurd.
+                Om uw privacy te garanderen, draait deze app volledig lokaal. Om de AI te gebruiken, moet u eenmalig uw eigen (gratis) Google Gemini API-sleutel invoeren. Deze wordt veilig opgeslagen in uw eigen browser. Zodra u genereert, worden uw anonieme testresultaten (geen persoonsgegevens) naar Google gestuurd.
               </p>
             </div>
           </div>
