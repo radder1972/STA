@@ -154,11 +154,11 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
       <div style={{ position: 'relative', display: 'inline-block' }}>
         {isStacked && (
           <>
-            <div style={{ position: 'absolute', top: '2px', left: '-12px', width: '160px', height: '228px', background: '#f8fafc', border: '1px solid rgba(0,0,0,0.15)', borderRadius: '12px', zIndex: 0, transform: 'rotate(-6deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
-            <div style={{ position: 'absolute', top: '6px', left: '10px', width: '160px', height: '228px', background: '#f1f5f9', border: '1px solid rgba(0,0,0,0.15)', borderRadius: '12px', zIndex: 0, transform: 'rotate(5deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
+            <div style={{ position: 'absolute', top: '2px', left: '-12px', width: '190px', height: '270px', background: '#f8fafc', border: '1px solid rgba(0,0,0,0.15)', borderRadius: '12px', zIndex: 0, transform: 'rotate(-6deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
+            <div style={{ position: 'absolute', top: '6px', left: '10px', width: '190px', height: '270px', background: '#f1f5f9', border: '1px solid rgba(0,0,0,0.15)', borderRadius: '12px', zIndex: 0, transform: 'rotate(5deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
           </>
         )}
-        <div className="card-scene" style={{ width: '160px', height: '228px', margin: 0, position: 'relative', zIndex: 1 }}>
+        <div className="card-scene" style={{ width: '190px', height: '270px', margin: 0, position: 'relative', zIndex: 1 }}>
           <div className={`card-flip-container ${flipped ? 'flipped' : ''}`}>
             <div className="card-face-front schema-img playing-card" onClick={() => setFlipped(!flipped)} style={{ padding: '12px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
               <CardInnerBorder color={cardColor} />
@@ -185,7 +185,7 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
       <div 
         onClick={onSelect} 
         className="glass-panel no-print" 
-        style={{ width: '160px', height: '228px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed var(--primary)', borderRadius: '12px', cursor: 'pointer', background: 'rgba(20, 184, 166, 0.05)', transition: 'all 0.2s' }}
+        style={{ width: '190px', height: '270px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed var(--primary)', borderRadius: '12px', cursor: 'pointer', background: 'rgba(20, 184, 166, 0.05)', transition: 'all 0.2s' }}
       >
         <span style={{ color: 'var(--primary)', fontSize: '2.5rem', marginBottom: '0.5rem' }}>+</span>
         <span style={{ color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 'bold' }}>Kies Kaart</span>
@@ -518,15 +518,15 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             
             {/* Top Row: De 3 Kaarten */}
             <div style={{ display: 'flex', flexWrap: 'nowrap', overflowX: 'auto', justifyContent: 'center', gap: '0.5rem', width: '100%', padding: '2rem 1rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)', alignItems: 'center' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '160px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '190px' }}>
                 <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} />
               </div>
               <div className="no-print" style={{ height: '3px', minWidth: '20px', width: '40px', background: 'var(--primary)', opacity: 0.3, margin: '0 5px', flexShrink: 1 }}></div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '160px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '190px' }}>
                 <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} />
               </div>
               <div className="no-print" style={{ height: '3px', minWidth: '20px', width: '40px', background: 'var(--primary)', opacity: 0.3, margin: '0 5px', flexShrink: 1 }}></div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '160px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '190px' }}>
                 <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} />
               </div>
             </div>
@@ -654,7 +654,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               {showCardPicker === 'need' ? (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}>
                   {needCards.map((card, idx) => (
-                    <div key={idx} onClick={() => handleSelectCard(card)} className="card-scene picker-card" style={{ width: '140px', height: '200px', margin: 0, cursor: 'pointer' }}>
+                    <div key={idx} onClick={() => handleSelectCard(card)} className="card-scene picker-card" style={{ width: '160px', height: '228px', margin: 0, cursor: 'pointer' }}>
                       <div className="card-flip-container" style={{ transition: 'transform 0.2s' }}>
                         <div className="card-face-front schema-img playing-card" style={{ padding: '8px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}>
                           <CardInnerBorder color={card.color} />
@@ -690,7 +690,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                         {groupCards.map((card, idx) => {
                           const cardColor = getCardColor(card.type, card.id);
                           return (
-                          <div key={idx} onClick={() => handleSelectCard(card)} className="card-scene picker-card" style={{ width: '140px', height: '200px', margin: 0, cursor: 'pointer' }}>
+                          <div key={idx} onClick={() => handleSelectCard(card)} className="card-scene picker-card" style={{ width: '160px', height: '228px', margin: 0, cursor: 'pointer' }}>
                             <div className="card-flip-container" style={{ transition: 'transform 0.2s' }}>
                               <div className="card-face-front schema-img playing-card" style={{ padding: '8px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}>
                                 <CardInnerBorder color={cardColor} />
