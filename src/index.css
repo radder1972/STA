@@ -89,16 +89,16 @@ body {
 }
 
 .btn-gradient {
-  background: linear-gradient(to right, #818cf8, #34d399);
+  background: linear-gradient(to right, #6b7280, #9ca3af);
   color: white;
   border: none;
   box-shadow: 0 4px 15px rgba(52, 211, 153, 0.2);
 }
 
 .btn-gradient:hover {
-  background: linear-gradient(to right, #6366f1, #10b981);
+  background: linear-gradient(to right, #4b5563, #6b7280);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(52, 211, 153, 0.3);
+  box-shadow: 0 6px 20px rgba(107, 114, 128, 0.3);
 }
 
 .btn-outline:hover {
@@ -120,7 +120,7 @@ body {
 }
 
 .btn-card:hover .btn-text {
-  background: linear-gradient(to right, #3b82f6, #14b8a6);
+  background: linear-gradient(to right, #4b5563, #6b7280);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -165,13 +165,13 @@ body {
 .card h2 {
   margin-top: 0;
   font-size: 1.75rem;
-  background: linear-gradient(to right, #818cf8, #34d399);
+  background: linear-gradient(to right, #6b7280, #9ca3af);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #818cf8, #34d399);
+  background: linear-gradient(to right, #6b7280, #9ca3af);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -189,7 +189,7 @@ body {
 .header h1 {
   font-size: 2.5rem;
   font-weight: 800;
-  background: linear-gradient(to right, #818cf8, #34d399);
+  background: linear-gradient(to right, #6b7280, #9ca3af);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
@@ -293,18 +293,18 @@ body {
 }
 
 .option-btn:hover {
-  background: linear-gradient(to right, rgba(129, 140, 248, 0.15), rgba(52, 211, 153, 0.15));
+  background: linear-gradient(to right, rgba(107, 114, 128, 0.15), rgba(156, 163, 175, 0.15));
 }
 
 [data-theme="light"] .option-btn:hover {
-  background: linear-gradient(to right, rgba(129, 140, 248, 0.1), rgba(52, 211, 153, 0.1));
+  background: linear-gradient(to right, rgba(107, 114, 128, 0.1), rgba(156, 163, 175, 0.1));
 }
 
 .option-btn.selected {
-  background: linear-gradient(to right, #818cf8, #34d399);
+  background: linear-gradient(to right, #6b7280, #9ca3af);
   color: white;
   border-color: transparent;
-  box-shadow: 0 4px 12px rgba(52, 211, 153, 0.2);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.2);
 }
 
 .option-btn.selected span {

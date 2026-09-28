@@ -17,8 +17,8 @@ const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5, colo
   >
     <defs>
       <linearGradient id="blueGreenGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="#818cf8" />
-        <stop offset="100%" stopColor="#34d399" />
+        <stop offset="0%" stopColor="#6b7280" />
+        <stop offset="100%" stopColor="#9ca3af" />
       </linearGradient>
     </defs>
     {children}
