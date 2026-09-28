@@ -94,7 +94,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
         <CpuChipIcon size={28} useGradient={true} /> AI Analyse
       </h2>
       
-      <p className="no-print" style={{ color: 'var(--text-main)', marginBottom: '2rem' }}>
+      <p className="no-print" style={{ color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '2rem' }}>
         Genereer een interpretatie van de wisselwerking tussen de schema's en modi met behulp van AI.
       </p>
 
