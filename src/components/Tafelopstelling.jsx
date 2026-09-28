@@ -15,13 +15,14 @@ import imgB5 from '../assets/images/basisbehoeften/5.png';
 import imgM4 from '../assets/images/modicategorieen/4.png';
 
 
-const StepBadge = ({ number, size = 24 }) => (
+const StepBadge = ({ number, size = 32 }) => (
   <span style={{
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
     width: `${size}px`, height: `${size}px`, borderRadius: '50%',
-    background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
-    color: 'white', fontSize: `${size * 0.55}px`, fontWeight: 'bold',
-    marginRight: '8px', flexShrink: 0, boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+    background: 'var(--primary)',
+    color: '#ffffff', fontSize: `${size * 0.55}px`, fontWeight: 'bold',
+    marginRight: '12px', flexShrink: 0,
+    WebkitTextFillColor: '#ffffff'
   }}>
     {number}
   </span>
@@ -421,7 +422,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         </p>
 
         <div style={{ textAlign: 'left', maxWidth: '750px', margin: '0 auto 2rem auto', background: 'rgba(20, 184, 166, 0.05)', padding: '1.5rem 2rem', borderRadius: '12px', border: '1px solid rgba(20, 184, 166, 0.2)' }}>
-          <h4 style={{ color: 'var(--primary)', marginBottom: '1rem', marginTop: 0, fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '8px' }}><CheckIcon size={20} /> Hoe werkt het?</h4>
+          
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-main)', lineHeight: '1.6' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px' }}><StepBadge number="1" /></div>
@@ -453,9 +454,9 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
       <div className="glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '0 auto', background: 'var(--card-bg)' }}>
         <div style={{ maxWidth: '850px', margin: '0 auto' }}>
           <div style={{ marginBottom: '3rem' }}>
-            <h3 className="text-gradient" style={{ marginBottom: '1.5rem', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><StepBadge number="1" size={28} /> Wat was de situatie / trigger?</h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem', alignItems: 'stretch' }}>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <h3 className="text-gradient" style={{ marginBottom: '1.5rem', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><StepBadge number="1" size={28} /> Beschrijf de situatie</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                 <textarea 
                   className="no-print"
                   placeholder="Beschrijf hier kort de situatie (bijv. 'Tijdens een overleg werd mijn idee genegeerd...')" 
@@ -474,9 +475,11 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 </div>
               </div>
               
-              <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-color)', padding: '2rem', borderRadius: '12px', border: '1px solid var(--border-color)', boxSizing: 'border-box' }}>
-                <h4 className="text-gradient" style={{ margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', fontSize: '1.1rem' }}><StepBadge number="2" /> Automatisch voorspellen</h4>
-                <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '1.5rem', textAlign: 'center', lineHeight: '1.6' }}>
+              <div>
+                <h3 className="text-gradient" style={{ marginBottom: '1.5rem', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><StepBadge number="2" size={28} /> Leg de kaarten op tafel</h3>
+                <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-color)', padding: '2rem', borderRadius: '12px', border: '1px solid var(--border-color)', boxSizing: 'border-box' }}>
+                  <h4 className="text-gradient" style={{ margin: '0 0 1rem 0', fontSize: '1.1rem' }}>Automatisch voorspellen</h4>
+                  <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '1.5rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '650px' }}>
                   Laat de kaarten automatisch op tafel leggen op basis van de beschreven situatie. Jouw persoonlijke scores (schema's en modi) vormen hierbij de basis voor een passend voorstel.
                 </p>
 
@@ -489,11 +492,12 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 >
                   {isPredicting ? 'Bezig...' : <><WandIcon size={24} color="currentColor" /> Voorspel kaarten</>}
                 </button>
+                </div>
               </div>
             </div>
           </div>
 
-          <h3 className="text-gradient" style={{ marginTop: '3rem', marginBottom: '2rem', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><StepBadge number="2" size={28} /> Of: Leg zelf handmatig de kaarten op tafel</h3>
+          <h4 className="text-gradient" style={{ marginTop: '3rem', marginBottom: '2rem', textAlign: 'center' }}>Of: Leg zelf handmatig de kaarten op tafel</h4>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '3rem', alignItems: 'stretch' }}>
           
           {/* Linkerkant: De Keten */}
@@ -538,10 +542,9 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline no-print" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', fontSize: '1rem' }}>
                   {isGenerating ? 'Genereren...' : <><CpuChipIcon size={16} useGradient={true} /> AI Analyse</>}
                 </button>
+                </div>
               </div>
             </div>
-          </div>
-
           </div>
         </div>
       </div>
@@ -558,7 +561,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
       {(analysisText || isGeneratingAnalysis) && (
         <div className="glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '2rem auto 0 auto', background: 'var(--card-bg)' }}>
           <h3 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <StepBadge number="3" size={28} /> Diepgaande Analyse van de Keten
+            <StepBadge number="3" size={28} /> Analyseer
           </h3>
           {isGeneratingAnalysis ? (
             <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-main)' }}>
