@@ -63,7 +63,7 @@ export const ArrowRightIcon = (props) => (
 
 export const CheckIcon = (props) => (
   <IconBase {...props}>
-    <polyline points="20 6 9 17 4 12" stroke="var(--success, #10b981)" strokeWidth="2" />
+    <polyline points="20 6 9 17 4 12" />
   </IconBase>
 );
 
