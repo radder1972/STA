@@ -246,7 +246,7 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
       <div className="glass-panel print-avoid-break" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <h3 className="text-gradient" style={{ margin: 0, fontSize: '1.3rem', marginBottom: '0.5rem' }}>{type === 'ysq' ? "Schema's: Alle scores" : "Modi: Alle scores"}</h3>
-          <p style={{ color: 'var(--text-main)', fontSize: '1rem', maxWidth: '600px', margin: '0 auto' }}>
+          <p style={{ color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto' }}>
             Dit is het complete overzicht van al uw individuele scores. Scroll verder naar beneden om te wisselen naar de helikopterview per categorie.
           </p>
         </div>
@@ -306,7 +306,7 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
       {/* Radar Chart */}
       <div className="glass-panel print-avoid-break" style={{ padding: '1.5rem', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
         <h3 className="text-gradient" style={{ marginBottom: '0.5rem', fontSize: '1.3rem' }}>{type === 'ysq' ? "Schema's: Spinnenweb Overzicht" : "Modi: Spinnenweb Overzicht"}</h3>
-        <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
+        <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-main)', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
           Deze grafiek toont de verdeling van al uw scores. Punten die ver naar buiten uitschieten, zijn uw meest prominente patronen.
         </p>
         <div className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
@@ -328,7 +328,7 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
           <h3 className="text-gradient" style={{ marginBottom: '0.5rem', textAlign: 'center', fontSize: '1.3rem' }}>
             {type === 'ysq' ? "Schema's: Score per Emotionele basisbehoefte" : "Modi: Gemiddelde per Categorie"}
           </h3>
-          <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem auto', textAlign: 'center' }}>
+          <p style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-main)', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem auto', textAlign: 'center' }}>
             Deze staafgrafiek toont uw gemiddelde score per hoofdcategorie. Dit helpt om patronen op een hoger niveau (helikopterview) te herkennen.
           </p>
           <div className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
