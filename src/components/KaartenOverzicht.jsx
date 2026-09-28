@@ -151,7 +151,7 @@ export default function KaartenOverzicht({ onBack }) {
                 <div 
                   onClick={() => handleFlip(uniqueKey)} 
                   style={{ flex: 1, cursor: 'pointer', overflowY: 'auto', marginBottom: '5px', paddingRight: '2px' }}
-                  className="hide-scrollbar"
+                  className="custom-scrollbar"
                 >
                   <h4 style={{ fontSize: '1rem', marginBottom: '0.5rem', lineHeight: '1.2' }}>{card.title}</h4>
                   <p style={{ fontSize: '0.75rem', lineHeight: '1.6' }}>{card.description || 'Geen theorie beschikbaar.'}</p>
