@@ -151,8 +151,8 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
       <div style={{ position: 'relative', display: 'inline-block' }}>
         {isStacked && (
           <>
-            <div style={{ position: 'absolute', top: '4px', left: '-8px', width: '160px', height: '228px', background: 'white', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '12px', zIndex: 0, opacity: 0.8, transform: 'rotate(-4deg)', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}></div>
-            <div style={{ position: 'absolute', top: '8px', left: '6px', width: '160px', height: '228px', background: 'white', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '12px', zIndex: 0, opacity: 0.5, transform: 'rotate(5deg)', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}></div>
+            <div style={{ position: 'absolute', top: '2px', left: '-12px', width: '160px', height: '228px', background: '#f8fafc', border: '1px solid rgba(0,0,0,0.15)', borderRadius: '12px', zIndex: 0, transform: 'rotate(-6deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
+            <div style={{ position: 'absolute', top: '6px', left: '10px', width: '160px', height: '228px', background: '#f1f5f9', border: '1px solid rgba(0,0,0,0.15)', borderRadius: '12px', zIndex: 0, transform: 'rotate(5deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
           </>
         )}
         <div className="card-scene" style={{ width: '160px', height: '228px', margin: 0, position: 'relative', zIndex: 1 }}>
