@@ -171,8 +171,8 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
             <div className="card-face-back" onClick={() => setFlipped(!flipped)} style={{ display: 'flex', flexDirection: 'column', cursor: 'pointer', padding: '12px' }}>
               <CardInnerBorder color={cardColor} />
               <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                <h4 style={{ fontSize: '0.75rem', marginTop: '0.4rem', marginBottom: '0.2rem', lineHeight: '1.1', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
-                <p style={{ fontSize: '0.6rem', lineHeight: '1.15', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie beschikbaar.'}</p>
+                <h4 style={{ fontSize: '0.75rem', marginTop: '0.4rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
+                <p style={{ fontSize: '0.6rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie beschikbaar.'}</p>
               </div>
             </div>
           </div>
@@ -666,8 +666,8 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                         <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '8px' }}>
                           <CardInnerBorder color={card.color} />
                           <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                            <h4 style={{ fontSize: '0.75rem', marginTop: '0.4rem', marginBottom: '0.2rem', lineHeight: '1.1', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
-                            <p style={{ fontSize: '0.6rem', lineHeight: '1.15', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
+                            <h4 style={{ fontSize: '0.75rem', marginTop: '0.4rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
+                            <p style={{ fontSize: '0.6rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
                           </div>
                         </div>
                       </div>
@@ -702,8 +702,8 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                               <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '8px' }}>
                                 <CardInnerBorder color={cardColor} />
                                 <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                                  <h4 style={{ fontSize: '0.75rem', marginTop: '0.4rem', marginBottom: '0.2rem', lineHeight: '1.1', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
-                                  <p style={{ fontSize: '0.6rem', lineHeight: '1.15', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
+                                  <h4 style={{ fontSize: '0.75rem', marginTop: '0.4rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
+                                  <p style={{ fontSize: '0.6rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
                                 </div>
                               </div>
                             </div>
