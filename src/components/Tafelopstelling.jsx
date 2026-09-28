@@ -520,8 +520,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', width: '100%' }}>
             
             {/* Top Row: De 3 Kaarten */}
-            <div style={{ width: '100%', overflowX: 'auto', padding: '4rem 1rem', margin: '-2rem 0' }}>
-              <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', gap: '0.5rem', minWidth: 'max-content', margin: '0 auto', padding: '2rem 1rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', gap: '0.5rem', width: '100%', minWidth: 'max-content', margin: '0 auto', padding: '2rem 1rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)', alignItems: 'center' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '190px' }}>
                 <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} />
               </div>
@@ -532,7 +531,6 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               <div className="no-print" style={{ height: '3px', minWidth: '20px', width: '40px', background: 'var(--primary)', opacity: 0.3, margin: '0 5px', flexShrink: 1 }}></div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '190px' }}>
                 <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} />
-              </div>
               </div>
             </div>
 
