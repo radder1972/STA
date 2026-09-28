@@ -122,7 +122,7 @@ const modeSortOrder = modeGroups.flatMap(g => g.titles);
 const modeCards = Object.keys(modeImages).map(path => {
   const filename = path.split('/').pop().replace('.png', '');
   const title = smiModesMap[filename] || filename;
-  return { src: modeImages[path], title, type: 'mode', description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
+  return { id: filename, src: modeImages[path], title, type: 'mode', description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
 }).sort((a, b) => {
   const indexA = modeSortOrder.indexOf(a.title);
   const indexB = modeSortOrder.indexOf(b.title);
@@ -132,7 +132,7 @@ const modeCards = Object.keys(modeImages).map(path => {
   return indexA - indexB;
 });
 
-const healthyAdultCard = { src: imgM4, title: 'Gezonde volwassene', type: 'mode', description: schemaDescriptions['Gezonde volwassene'], style: { transform: 'scale(1.1)' } };
+const healthyAdultCard = { id: 'gv', src: imgM4, title: 'Gezonde volwassene', type: 'mode', description: schemaDescriptions['Gezonde volwassene'], style: { transform: 'scale(1.1)' } };
 
 const formatCardTitle = (title) => {
   if (!title) return title;
