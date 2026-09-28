@@ -184,7 +184,7 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
           <p style={{ color: 'var(--text-main)', lineHeight: '1.6', fontSize: '1.1rem', marginBottom: '2rem', maxWidth: '650px', margin: '0 auto 2rem auto' }}>
             U heeft alle vragen ingevuld. Voordat u verdergaat naar het rapport, kunt u uw antwoorden lokaal opslaan als CSV-bestand. U kunt deze later altijd weer inlezen via de startpagina. 
             <br/><br/>
-            <strong>Let op:</strong> Vanwege uw privacy worden uw antwoorden <em>nergens online opgeslagen</em>. Zodra u de applicatie afsluit, bent u de ingevulerde gegevens kwijt tenzij u ze opslaat.
+            <strong>Let op:</strong> Vanwege uw privacy worden uw antwoorden <em>nergens online opgeslagen</em>. Zodra u de applicatie afsluit, bent u de ingevulde gegevens kwijt tenzij u ze opslaat.
           </p>
           
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '3rem' }}>
