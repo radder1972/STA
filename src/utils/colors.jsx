@@ -29,24 +29,34 @@ export const getCardColor = (type, id) => {
 export const CardInnerBorder = ({ color }) => {
   const isHex = color.startsWith('#');
   const tintColor = isHex ? `${color}25` : 'rgba(0,0,0,0.03)';
-  
+  const hoverShadowColor = isHex ? `${color}50` : 'rgba(0,0,0,0.2)'; // 31% opacity
+  const safeClass = 'hover-border-' + color.replace(/[^a-zA-Z0-9]/g, '');
+
   return (
-    <div style={{ 
-      position: 'absolute', 
-      top: 0, left: 0, right: 0, bottom: 0, 
-      border: `6px solid ${tintColor}`, 
-      borderRadius: '12px', 
-      pointerEvents: 'none', 
-      zIndex: 50,
-      boxSizing: 'border-box'
-    }}>
-      <div style={{
-        position: 'absolute',
-        top: 0, left: 0, right: 0, bottom: 0,
-        border: `2px solid ${color}`,
-        borderRadius: '6px',
-        boxSizing: 'border-box'
-      }}></div>
-    </div>
+    <>
+      <style>{`
+        .card-scene:hover .${safeClass} {
+           box-shadow: 0 12px 35px ${hoverShadowColor} !important;
+        }
+      `}</style>
+      <div className={safeClass} style={{ 
+        position: 'absolute', 
+        top: 0, left: 0, right: 0, bottom: 0, 
+        border: `6px solid ${tintColor}`, 
+        borderRadius: '12px', 
+        pointerEvents: 'none', 
+        zIndex: 50,
+        boxSizing: 'border-box',
+        transition: 'box-shadow 0.3s ease'
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: 0, left: 0, right: 0, bottom: 0,
+          border: `2px solid ${color}`,
+          borderRadius: '6px',
+          boxSizing: 'border-box'
+        }}></div>
+      </div>
+    </>
   );
 };
