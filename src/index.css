@@ -758,6 +758,11 @@ body {
   transition: z-index 0.3s;
 }
 
+.card-scene {
+  perspective: 1000px;
+  z-index: 1;
+}
+
 .card-scene:hover {
   z-index: 50;
 }
