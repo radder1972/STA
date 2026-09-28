@@ -101,6 +101,7 @@ function App() {
           type={currentQuestionnaire} 
           questions={getQuestionData()} 
           initialAnswers={completedTests[currentQuestionnaire]}
+          completedTests={completedTests}
           onFinish={handleFinish} 
           onCancel={handleRestart} 
         />
@@ -127,7 +128,7 @@ function App() {
 
       {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v2.6.43
+          v2.6.44
         </div>
       )}
     </div>

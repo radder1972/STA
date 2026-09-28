@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
-import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, DownloadIcon } from './Icons'
+import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, DownloadIcon, AlertTriangleIcon } from './Icons'
 
-export default function Questionnaire({ type, questions, initialAnswers, onFinish, onCancel }) {
+export default function Questionnaire({ type, questions, initialAnswers, completedTests, onFinish, onCancel }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answers, setAnswers] = useState({})
   const [animateKey, setAnimateKey] = useState(0)
@@ -157,16 +157,30 @@ export default function Questionnaire({ type, questions, initialAnswers, onFinis
     'Altijd'
   ]
 
+  const otherType = type === 'ysq' ? 'smi' : 'ysq';
+  const otherCompleted = completedTests && completedTests[otherType] !== null && Object.keys(completedTests[otherType]).length > 0;
+
   if (showCompletionScreen) {
     return (
       <div className="q-container">
         <div className="q-content glass-panel" style={{ textAlign: 'center', padding: '3rem 2rem', margin: '2rem auto', maxWidth: '800px' }}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-            <div style={{ background: 'var(--primary)', padding: '1rem', borderRadius: '50%', color: 'white' }}>
+            <div style={{ background: 'linear-gradient(135deg, #10b981, #059669)', padding: '1rem', borderRadius: '50%', color: 'white', boxShadow: '0 4px 15px rgba(16, 185, 129, 0.4)' }}>
               <CheckIcon size={48} />
             </div>
           </div>
           <h2 className="text-gradient" style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Lijst Voltooid!</h2>
+
+          {!otherCompleted && (
+            <div style={{ background: 'rgba(239, 68, 68, 0.05)', border: '1px solid var(--error, #ef4444)', padding: '1.5rem', borderRadius: '12px', color: 'var(--text-main)', marginBottom: '2rem', textAlign: 'left', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+              <AlertTriangleIcon size={24} color="var(--error, #ef4444)" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <div>
+                <strong style={{ display: 'block', color: 'var(--error, #ef4444)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Let op: U heeft nu alleen de {type.toUpperCase()} ingevuld</strong>
+                Het rapport is het meest waardevol als u beide lijsten invult. We raden aan om via de startpagina eerst ook de {otherType.toUpperCase()} in te vullen voordat u naar de resultaten gaat.
+              </div>
+            </div>
+          )}
+
           <p style={{ color: 'var(--text-main)', lineHeight: '1.6', fontSize: '1.1rem', marginBottom: '2rem', maxWidth: '650px', margin: '0 auto 2rem auto' }}>
             U heeft alle vragen ingevuld. Voordat u verdergaat naar het rapport, kunt u uw antwoorden lokaal opslaan als CSV-bestand. U kunt deze later altijd weer inlezen via de startpagina. 
             <br/><br/>
