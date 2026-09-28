@@ -165,7 +165,7 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
       <div className="q-container">
         <div className="q-content glass-panel" style={{ textAlign: 'center', padding: '3rem 2rem', margin: '2rem auto', maxWidth: '800px' }}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-            <div style={{ background: 'linear-gradient(135deg, var(--primary), var(--accent))', padding: '1rem', borderRadius: '50%', color: 'white', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
+            <div className="btn-gradient" style={{ padding: '1rem', borderRadius: '50%', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <CheckIcon size={48} />
             </div>
           </div>
@@ -191,7 +191,9 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
           )}
 
           <p style={{ color: 'var(--text-main)', lineHeight: '1.6', fontSize: '1.1rem', marginBottom: '2rem', maxWidth: '650px', margin: '0 auto 2rem auto' }}>
-            U heeft alle vragen ingevuld. Voordat u verdergaat naar het rapport, kunt u uw antwoorden lokaal opslaan als CSV-bestand. U kunt deze later altijd weer inlezen via de startpagina. 
+            Gefeliciteerd, u heeft zojuist alle vragen van de <strong>{type === 'ysq' ? "Young Schema Questionnaire (YSQ)" : "Schema Mode Inventory (SMI)"}</strong> succesvol ingevuld!
+            <br/><br/>
+            Voordat u verdergaat naar het analyserapport, bieden we u de mogelijkheid om uw onbewerkte antwoorden lokaal op uw eigen computer op te slaan als een CSV-bestand. Door dit bestand op te slaan raakt u uw ingevulde gegevens niet kwijt en kunt u ze op een later moment eenvoudig weer inlezen via de startpagina.
             <br/><br/>
             <strong>Let op:</strong> Vanwege uw privacy worden uw antwoorden <em>nergens online opgeslagen</em>. Zodra u de applicatie afsluit, bent u de ingevulde gegevens kwijt tenzij u ze opslaat.
           </p>
@@ -201,7 +203,7 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
               <DownloadIcon size={20} /> Sla Scores Op (CSV)
             </button>
             <button className="btn btn-gradient" onClick={handleFinish} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'white', padding: '12px 24px', fontSize: '1.1rem' }}>
-              {otherCompleted ? "Doorgaan naar Rapport" : "Doorgaan naar Startpagina"} <ArrowRightIcon size={20} />
+              Doorgaan naar Rapport <ArrowRightIcon size={20} />
             </button>
           </div>
         </div>
