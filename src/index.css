@@ -772,7 +772,7 @@ body {
 }
 
 .card-scene:hover .card-flip-container:not(.flipped) {
-  transform: translateY(-10px) scale(1.2);
+  transform: rotateY(180deg) translateY(-10px) scale(1.2);
 }
 
 .card-flip-container.flipped {
@@ -780,7 +780,7 @@ body {
 }
 
 .card-scene:hover .card-flip-container.flipped {
-  transform: rotateY(180deg) translateY(-10px) scale(1.2);
+  transform: translateY(-10px) scale(1.2);
 }
 
 .card-face-front, .card-face-back {

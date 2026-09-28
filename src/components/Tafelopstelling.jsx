@@ -86,11 +86,11 @@ const needCards = [
 ];
 
 const schemaGroups = [
-  { group: 'I. Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotioneel tekort', 'Tekortschieten / Schaamte', 'Sociale isolatie / Vervreemding'] },
-  { group: 'II. Verzwakte Autonomie', titles: ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'] },
-  { group: 'III. Verzwakte Grenzen', titles: ['Onvoldoende zelfcontrole', 'Veeleisendheid / Grandiositeit'] },
-  { group: 'IV. Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'] },
-  { group: 'V. Overmatige Waakzaamheid', titles: ['Emotionele geremdheid', 'Meedogenloze normen', 'Negativisme / Pessimisme', 'Bestraffendheid'] }
+  { group: 'Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotioneel tekort', 'Tekortschieten / Schaamte', 'Sociale isolatie / Vervreemding'] },
+  { group: 'Verzwakte Autonomie', titles: ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'] },
+  { group: 'Verzwakte Grenzen', titles: ['Onvoldoende zelfcontrole', 'Veeleisendheid / Grandiositeit'] },
+  { group: 'Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'] },
+  { group: 'Overmatige Waakzaamheid', titles: ['Emotionele geremdheid', 'Meedogenloze normen', 'Negativisme / Pessimisme', 'Bestraffendheid'] }
 ];
 
 const schemaSortOrder = schemaGroups.flatMap(g => g.titles);
@@ -656,13 +656,19 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                   {needCards.map((card, idx) => (
                     <div key={idx} onClick={() => handleSelectCard(card)} className="card-scene picker-card" style={{ width: '140px', height: '200px', margin: 0, cursor: 'pointer' }}>
                       <div className="card-flip-container" style={{ transition: 'transform 0.2s' }}>
-                        <div className="card-face-front schema-img playing-card" style={{ padding: '8px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', border: `2px solid ${card.color || 'var(--primary)'}`, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                        <div className="card-face-front schema-img playing-card" style={{ padding: '8px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}>
                           <CardInnerBorder color={card.color} />
                           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                             <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                           </div>
                           <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '6px 0', lineHeight: '1.2', zIndex: 1 }}>{formatCardTitle(card.title)}</div>
-                          <button className="btn btn-card" style={{ fontSize: '0.75rem', padding: '6px', width: '100%', marginTop: 'auto', zIndex: 2 }}><span className="btn-text">Kies</span></button>
+                        </div>
+                        <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '8px' }}>
+                          <CardInnerBorder color={card.color} />
+                          <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                            <h4 style={{ fontSize: '0.85rem', marginTop: '0.5rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
+                            <p style={{ fontSize: '0.65rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 8, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -686,13 +692,19 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                           return (
                           <div key={idx} onClick={() => handleSelectCard(card)} className="card-scene picker-card" style={{ width: '140px', height: '200px', margin: 0, cursor: 'pointer' }}>
                             <div className="card-flip-container" style={{ transition: 'transform 0.2s' }}>
-                              <div className="card-face-front schema-img playing-card" style={{ padding: '8px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', border: `2px solid ${cardColor}`, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                              <div className="card-face-front schema-img playing-card" style={{ padding: '8px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}>
                                 <CardInnerBorder color={cardColor} />
                                 <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                                   <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                                 </div>
                                 <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '6px 0', lineHeight: '1.2', zIndex: 1 }}>{formatCardTitle(card.title)}</div>
-                                <button className="btn btn-card" style={{ fontSize: '0.75rem', padding: '6px', width: '100%', marginTop: 'auto', zIndex: 2 }}><span className="btn-text">Kies</span></button>
+                              </div>
+                              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '8px' }}>
+                                <CardInnerBorder color={cardColor} />
+                                <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                                  <h4 style={{ fontSize: '0.85rem', marginTop: '0.5rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
+                                  <p style={{ fontSize: '0.65rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 8, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
+                                </div>
                               </div>
                             </div>
                           </div>
