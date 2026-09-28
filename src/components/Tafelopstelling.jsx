@@ -20,11 +20,11 @@ const StepBadge = ({ number, size = 32 }) => (
   <span style={{
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
     width: `${size}px`, height: `${size}px`, borderRadius: '50%',
-    background: 'linear-gradient(135deg, #14b8a6, #3b82f6)',
+    background: 'linear-gradient(135deg, #9ca3af, #6b7280)',
     color: '#ffffff', fontSize: `${size * 0.55}px`, fontWeight: 'bold',
     marginRight: '12px', flexShrink: 0,
     WebkitTextFillColor: '#ffffff',
-    boxShadow: '0 4px 10px rgba(20, 184, 166, 0.3)'
+    boxShadow: '0 4px 10px rgba(107, 114, 128, 0.3)'
   }}>
     {number}
   </span>
@@ -185,7 +185,7 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
       <div 
         onClick={onSelect} 
         className="glass-panel no-print" 
-        style={{ width: '190px', height: '270px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed var(--primary)', borderRadius: '12px', cursor: 'pointer', background: 'rgba(20, 184, 166, 0.05)', transition: 'all 0.2s' }}
+        style={{ width: '190px', height: '270px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed var(--primary)', borderRadius: '12px', cursor: 'pointer', background: 'rgba(107, 114, 128, 0.05)', transition: 'all 0.2s' }}
       >
         <span style={{ color: 'var(--primary)', fontSize: '2.5rem', marginBottom: '0.5rem' }}>+</span>
         <span style={{ color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 'bold' }}>Kies Kaart</span>
@@ -433,7 +433,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen.
         </p>
 
-        <div style={{ textAlign: 'left', maxWidth: '750px', margin: '0 auto 2rem auto', background: 'rgba(20, 184, 166, 0.05)', padding: '3rem 5rem', borderRadius: '12px', border: '1px solid rgba(20, 184, 166, 0.2)' }}>
+        <div style={{ textAlign: 'left', maxWidth: '750px', margin: '0 auto 2rem auto', background: 'rgba(107, 114, 128, 0.05)', padding: '3rem 5rem', borderRadius: '12px', border: '1px solid rgba(107, 114, 128, 0.2)' }}>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', color: 'var(--text-main)', lineHeight: '1.6' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
@@ -533,12 +533,12 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
             {/* Funnel Direction Arrow */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1rem 0' }}>
-              <div style={{ width: '3px', height: '35px', background: 'linear-gradient(to bottom, var(--primary), #3b82f6)', opacity: 0.5, marginBottom: '-2px' }}></div>
+              <div style={{ width: '3px', height: '35px', background: 'linear-gradient(to bottom, var(--primary), #9ca3af)', opacity: 0.5, marginBottom: '-2px' }}></div>
               <div style={{ 
                 width: '40px', height: '40px', borderRadius: '50%', 
-                background: 'linear-gradient(135deg, #14b8a6, #3b82f6)', 
+                background: 'linear-gradient(135deg, #9ca3af, #6b7280)', 
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: 'white', boxShadow: '0 4px 10px rgba(20,184,166,0.3)',
+                color: 'white', boxShadow: '0 4px 10px rgba(107,114,128,0.3)',
                 position: 'relative', zIndex: 1
               }}>
                 <ArrowDownIcon size={24} />
