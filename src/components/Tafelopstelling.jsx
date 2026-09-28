@@ -78,11 +78,11 @@ const needDescriptions = {
 };
 
 const needCards = [
-  { src: imgB1, title: 'Veilige hechting', type: 'need', description: needDescriptions['Veilige hechting'] },
-  { src: imgB2, title: 'Autonomie', type: 'need', description: needDescriptions['Autonomie'] },
-  { src: imgB3, title: 'Vrije expressie', type: 'need', description: needDescriptions['Vrije expressie'] },
-  { src: imgB4, title: 'Spontaniteit en spel', type: 'need', description: needDescriptions['Spontaniteit en spel'] },
-  { src: imgB5, title: 'Realistische grenzen', type: 'need', description: needDescriptions['Realistische grenzen'] },
+  { src: imgB1, title: 'Veilige hechting', type: 'need', description: needDescriptions['Veilige hechting'], color: '#34d399' },
+  { src: imgB2, title: 'Autonomie', type: 'need', description: needDescriptions['Autonomie'], color: '#60a5fa' },
+  { src: imgB3, title: 'Vrije expressie', type: 'need', description: needDescriptions['Vrije expressie'], color: '#facc15' },
+  { src: imgB4, title: 'Spontaniteit en spel', type: 'need', description: needDescriptions['Spontaniteit en spel'], color: '#fb923c' },
+  { src: imgB5, title: 'Realistische grenzen', type: 'need', description: needDescriptions['Realistische grenzen'], color: '#f87171' },
 ];
 
 const schemaGroups = [
@@ -657,12 +657,14 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                     <div key={idx} className="card-scene" style={{ width: '140px', height: '200px', margin: 0 }}>
                       <div className={`card-flip-container ${flippedCards[`need-${idx}`] ? 'flipped' : ''}`}>
                         <div className="card-face-front schema-img playing-card" onClick={(e) => handleFlip(`need-${idx}`, e)} style={{ padding: '8px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
+                          <CardInnerBorder color={card.color} />
                           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                             <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                           </div>
-                          <div style={{ textAlign: 'center', fontSize: '0.7rem', fontWeight: 'bold', margin: '6px 0 8px 0', lineHeight: '1.2' }}>{formatCardTitle(card.title)}</div>
+                          <div style={{ textAlign: 'center', fontSize: '0.7rem', fontWeight: 'bold', margin: '6px 0 8px 0', lineHeight: '1.2', zIndex: 1 }}>{formatCardTitle(card.title)}</div>
                         </div>
                         <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '8px', pointerEvents: flippedCards[`need-${idx}`] ? 'auto' : 'none' }}>
+                          <CardInnerBorder color={card.color} />
                           <div onClick={(e) => handleFlip(`need-${idx}`, e)} style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', cursor: 'pointer' }}>
                             <h4 style={{ fontSize: '0.85rem', marginTop: '0.5rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
                             <p style={{ fontSize: '0.65rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 8, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
@@ -679,20 +681,27 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                   const groupCards = group.titles.map(title => cards.find(c => c.title === title)).filter(Boolean);
                   if (groupCards.length === 0) return null;
                   
+                  const firstCard = groupCards[0];
+                  const groupColor = firstCard ? getCardColor(firstCard.type, firstCard.id) : 'var(--text-main)';
+                  
                   return (
                     <div key={groupIdx} style={{ marginBottom: '1.5rem' }}>
-                      <h4 style={{ color: 'var(--text-main)', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1rem', textAlign: 'left' }}>{group.group}</h4>
+                      <h4 style={{ color: groupColor, borderBottom: `2px solid ${groupColor}40`, paddingBottom: '0.5rem', marginBottom: '1rem', textAlign: 'left' }}>{group.group}</h4>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'flex-start' }}>
-                        {groupCards.map((card, idx) => (
+                        {groupCards.map((card, idx) => {
+                          const cardColor = getCardColor(card.type, card.id);
+                          return (
                           <div key={idx} className="card-scene" style={{ width: '140px', height: '200px', margin: 0 }}>
                             <div className={`card-flip-container ${flippedCards[`${groupIdx}-${idx}`] ? 'flipped' : ''}`}>
                               <div className="card-face-front schema-img playing-card" onClick={(e) => handleFlip(`${groupIdx}-${idx}`, e)} style={{ padding: '8px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
+                                <CardInnerBorder color={cardColor} />
                                 <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                                   <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                                 </div>
-                                <div style={{ textAlign: 'center', fontSize: '0.7rem', fontWeight: 'bold', margin: '6px 0 8px 0', lineHeight: '1.2' }}>{formatCardTitle(card.title)}</div>
+                                <div style={{ textAlign: 'center', fontSize: '0.7rem', fontWeight: 'bold', margin: '6px 0 8px 0', lineHeight: '1.2', zIndex: 1 }}>{formatCardTitle(card.title)}</div>
                               </div>
                               <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '8px', pointerEvents: flippedCards[`${groupIdx}-${idx}`] ? 'auto' : 'none' }}>
+                                <CardInnerBorder color={cardColor} />
                                 <div onClick={(e) => handleFlip(`${groupIdx}-${idx}`, e)} style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', cursor: 'pointer' }}>
                                   <h4 style={{ fontSize: '0.85rem', marginTop: '0.5rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
                                   <p style={{ fontSize: '0.65rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 8, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
@@ -701,7 +710,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                               </div>
                             </div>
                           </div>
-                        ))}
+                        )})}
                       </div>
                     </div>
                   );
