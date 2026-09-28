@@ -241,11 +241,11 @@ export default function KaartenOverzicht({ onBack }) {
         </div>
         
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '3rem' }}>
-          <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem' }}>Geselecteerde Categorie</h2>
+          <h2 style={{ color: "var(--text-main)" }} style={{ textAlign: 'center', marginBottom: '1rem' }}>Geselecteerde Categorie</h2>
           {renderCardList([selectedCategory], isSchema ? 'schema-cat' : 'modi-cat', isSchema ? { transform: 'scale(0.85)' } : { transform: 'scale(0.85)' })}
         </div>
 
-        <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+        <h2 style={{ color: "var(--text-main)" }} style={{ textAlign: 'center', marginBottom: '1rem' }}>
           Bijbehorende {isSchema ? "Schema's" : 'Modi'}
         </h2>
         {renderCardList(filteredCards, isSchema ? 'schema-ind' : 'modi-ind')}
@@ -265,7 +265,7 @@ export default function KaartenOverzicht({ onBack }) {
                 onClick={() => setSelectedCard(null)} 
                 style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}
               >×</button>
-              <h2 className="text-gradient" style={{ marginBottom: '0.5rem' }}>{selectedCard.title}</h2>
+              <h2 style={{ color: "var(--text-main)" }} style={{ marginBottom: '0.5rem' }}>{selectedCard.title}</h2>
               <h4 style={{ color: 'var(--primary)', marginBottom: '1.5rem' }}>Praktijkvoorbeeld & Tips</h4>
               
               <div style={{ marginBottom: '1.5rem' }}>
@@ -299,7 +299,7 @@ export default function KaartenOverzicht({ onBack }) {
   return (
     <div className="view-container">
       <div className="header" style={{ marginBottom: '2rem' }}>
-        <h1 className="text-gradient">Kaarten Overzicht</h1>
+        <h1 style={{ color: "var(--text-main)" }}>Kaarten Overzicht</h1>
         <p>Alle illustraties uit de theorie op een rij. Klik op een kaart om de theorie te lezen!</p>
       </div>
       
@@ -321,7 +321,7 @@ export default function KaartenOverzicht({ onBack }) {
         
         {(filter === 'all' || filter === 'domeinen') && (
           <div>
-            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem' }}>Schema Domeinen (Basisbehoeften)</h2>
+            <h2 style={{ color: "var(--text-main)" }} style={{ textAlign: 'center', marginBottom: '1rem' }}>Schema Domeinen (Basisbehoeften)</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
               Ieder mens heeft fundamentele emotionele basisbehoeften, zoals de behoefte aan veiligheid, verbondenheid, autonomie en spontaniteit. Als er in de kindertijd structureel niet aan deze behoeften is voldaan, kunnen er hardnekkige, negatieve patronen (schema's) ontstaan. De schema's vallen onder de volgende 5 domeinen.
             </p>
@@ -331,7 +331,7 @@ export default function KaartenOverzicht({ onBack }) {
 
         {(filter === 'all' || filter === 'schemas') && (
           <div>
-            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '3rem' : '0' }}>Individuele Schema's (18)</h2>
+            <h2 style={{ color: "var(--text-main)" }} style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '3rem' : '0' }}>Individuele Schema's (18)</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
               Een schema is een vastgeroest patroon van denken, voelen en doen dat vaak al in de vroege jeugd is ontstaan. Ze fungeren als een soort gekleurde bril waardoor je (soms onbewust) naar jezelf, anderen en de wereld kijkt. Hieronder zie je de 18 specifieke schema's die we onderscheiden.
             </p>
@@ -341,7 +341,7 @@ export default function KaartenOverzicht({ onBack }) {
 
         {(filter === 'all' || filter === 'modicats') && (
           <div>
-            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '3rem' : '0' }}>Modi Categorieën</h2>
+            <h2 style={{ color: "var(--text-main)" }} style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '3rem' : '0' }}>Modi Categorieën</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
               Waar schema's de dieperliggende, langdurige patronen of 'knoppen' zijn, is een <strong>modus</strong> de actuele gemoedstoestand waarin je op dít specifieke moment verkeert als een knop wordt ingedrukt. Modi worden ingedeeld in deze 4 hoofdcategorieën.
             </p>
@@ -351,7 +351,7 @@ export default function KaartenOverzicht({ onBack }) {
 
         {(filter === 'all' || filter === 'modi') && (
           <div>
-            <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '3rem' : '0' }}>Individuele Modi (14)</h2>
+            <h2 style={{ color: "var(--text-main)" }} style={{ textAlign: 'center', marginBottom: '1rem', marginTop: filter === 'all' ? '3rem' : '0' }}>Individuele Modi (14)</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
               Binnen de 4 hoofdcategorieën kunnen we specifieker inzoomen. Hier vind je de 14 meest voorkomende, specifieke gemoedstoestanden of kanten van jezelf (de modi) die geactiveerd kunnen worden wanneer je schema's worden geraakt.
             </p>
@@ -376,7 +376,7 @@ export default function KaartenOverzicht({ onBack }) {
               onClick={() => setSelectedCard(null)} 
               style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}
             >×</button>
-            <h2 className="text-gradient" style={{ marginBottom: '0.5rem' }}>{selectedCard.title}</h2>
+            <h2 style={{ color: "var(--text-main)" }} style={{ marginBottom: '0.5rem' }}>{selectedCard.title}</h2>
             
             <div style={{ marginBottom: '1.5rem', lineHeight: '1.6', fontSize: '1.05rem', color: 'var(--text-main)' }}>
               {selectedCard.description || 'Geen theorie beschikbaar.'}
