@@ -422,7 +422,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen.
         </p>
 
-        <div style={{ textAlign: 'left', maxWidth: '750px', margin: '0 auto 2rem auto', background: 'rgba(20, 184, 166, 0.05)', padding: '1.5rem 2rem', borderRadius: '12px', border: '1px solid rgba(20, 184, 166, 0.2)' }}>
+        <div style={{ textAlign: 'left', maxWidth: '750px', margin: '0 auto 2rem auto', background: 'rgba(20, 184, 166, 0.05)', padding: '2.5rem 4rem', borderRadius: '12px', border: '1px solid rgba(20, 184, 166, 0.2)' }}>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: 'var(--text-main)', lineHeight: '1.6' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
