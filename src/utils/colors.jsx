@@ -42,7 +42,7 @@ export const CardInnerBorder = ({ color }) => {
         .card-scene:hover .${safeClass}-bg {
            opacity: 1 !important;
         }
-        .card-scene:hover img {
+        .card-scene:hover .${safeClass} ~ div img {
            filter: drop-shadow(0 0 0 ${color}) drop-shadow(0 4px 10px ${color}60) !important;
         }
       `}</style>
