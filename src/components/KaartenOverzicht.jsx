@@ -93,13 +93,8 @@ const categorieToModi = {
 
 export default function KaartenOverzicht({ onBack }) {
   const [filter, setFilter] = useState('all');
-  const [flippedCards, setFlippedCards] = useState({});
   const [selectedCard, setSelectedCard] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
-
-  const handleFlip = (title) => {
-    setFlippedCards(prev => ({ ...prev, [title]: !prev[title] }));
-  }
 
   const schemaCards = [
     { src: imgB1, title: '1. Veilige hechting', description: basisbehoeftenText['1. Veilige hechting'], color: '#60a5fa' }, // Domein 1 -> Blauw
@@ -171,9 +166,9 @@ export default function KaartenOverzicht({ onBack }) {
         return (
         <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div className="card-scene">
-            <div className={`card-flip-container ${flippedCards[uniqueKey] ? 'flipped' : ''}`}>
+            <div className={`card-flip-container`}>
               
-              <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(uniqueKey)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[uniqueKey] ? 'none' : 'auto' }}>
+              <div className="card-face-front schema-img playing-card" style={{ padding: '16px', boxSizing: 'border-box' }}>
                 <CardInnerBorder color={cardColor} />
                 <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                   <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
@@ -183,11 +178,10 @@ export default function KaartenOverzicht({ onBack }) {
                 </div>
               </div>
               
-              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: flippedCards[uniqueKey] ? 'auto' : 'none' }}>
+              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <CardInnerBorder color={cardColor} />
                 <div 
-                  onClick={() => handleFlip(uniqueKey)} 
-                  style={{ flex: 1, cursor: 'pointer', overflow: 'hidden', marginBottom: '5px', paddingRight: '2px', display: 'flex', flexDirection: 'column' }}
+                  style={{ flex: 1, overflow: 'hidden', marginBottom: '5px', paddingRight: '2px', display: 'flex', flexDirection: 'column' }}
                 >
                   <h4 style={{ fontSize: '0.85rem', marginTop: '1rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
                   <p style={{ fontSize: '0.65rem', lineHeight: '1.4', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical' }}>{card.description || 'Geen theorie beschikbaar.'}</p>

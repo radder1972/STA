@@ -776,16 +776,12 @@ body {
   transform-style: preserve-3d;
 }
 
-.card-scene:hover .card-flip-container:not(.flipped) {
+.card-scene:hover .card-flip-container {
   transform: rotateY(180deg) translateY(-12px) scale(1.5);
 }
 
 .card-flip-container.flipped {
   transform: rotateY(180deg);
-}
-
-.card-scene:hover .card-flip-container.flipped {
-  transform: translateY(-12px) scale(1.5);
 }
 
 .card-face-front, .card-face-back {
