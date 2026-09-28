@@ -118,17 +118,50 @@ export default function KaartenOverzicht({ onBack }) {
     { src: imgM4, title: 'Gezonde volwassene', description: categorieText['Gezonde volwassene'], color: '#fb923c' },
   ]
 
+  const schemaGroups = [
+    { group: 'I. Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotioneel tekort', 'Tekortschieten / Schaamte', 'Sociale isolatie / Vervreemding'] },
+    { group: 'II. Verzwakte Autonomie', titles: ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'] },
+    { group: 'III. Verzwakte Grenzen', titles: ['Onvoldoende zelfcontrole', 'Veeleisendheid / Grandiositeit'] },
+    { group: 'IV. Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'] },
+    { group: 'V. Overmatige Waakzaamheid', titles: ['Emotionele geremdheid', 'Meedogenloze normen', 'Negativisme / Pessimisme', 'Bestraffendheid'] }
+  ];
+  const schemaSortOrder = schemaGroups.flatMap(g => g.titles);
+
+  const modeGroups = [
+    { group: 'Kindmodi', titles: ['Kwetsbare kind', 'Boze kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind'] },
+    { group: 'Coping: Overgave', titles: ['Willoze inschikkelijke'] },
+    { group: 'Coping: Vermijding', titles: ['Onthechte beschermer', 'Onthechte zelfsusser'] },
+    { group: 'Coping: Overcompensatie', titles: ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval'] },
+    { group: 'Oudermodi', titles: ['Straffende ouder', 'Veeleisende ouder'] },
+    { group: 'Gezonde Volwassene', titles: ['Gezonde volwassene'] }
+  ];
+  const modeSortOrder = modeGroups.flatMap(g => g.titles);
+
   const detailedSchemaCards = Object.keys(schemaImages).map(path => {
     const filename = path.split('/').pop().replace('.png', '');
     const title = ysqSchemaNamesMap[filename] || filename.replace(/_/g, ' ');
     return { id: filename, type: 'schema', src: schemaImages[path], title, description: schemaDescriptions[title], style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' } };
-  })
+  }).sort((a, b) => {
+    const indexA = schemaSortOrder.indexOf(a.title);
+    const indexB = schemaSortOrder.indexOf(b.title);
+    if (indexA === -1 && indexB === -1) return a.title.localeCompare(b.title);
+    if (indexA === -1) return 1;
+    if (indexB === -1) return -1;
+    return indexA - indexB;
+  });
 
   const detailedModeCards = Object.keys(modeImages).map(path => {
     const filename = path.split('/').pop().replace('.png', '');
     const title = smiModesMap[filename] || filename;
     return { id: filename, type: 'mode', src: modeImages[path], title, description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
-  })
+  }).sort((a, b) => {
+    const indexA = modeSortOrder.indexOf(a.title);
+    const indexB = modeSortOrder.indexOf(b.title);
+    if (indexA === -1 && indexB === -1) return a.title.localeCompare(b.title);
+    if (indexA === -1) return 1;
+    if (indexB === -1) return -1;
+    return indexA - indexB;
+  });
 
   const renderCardList = (cards, listName, defaultImageStyle = {}) => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyItems: 'center', justifyContent: 'center', padding: '1rem', marginBottom: '3rem' }}>
