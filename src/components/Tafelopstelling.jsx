@@ -154,11 +154,11 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
       <div style={{ position: 'relative', display: 'inline-block' }}>
         {isStacked && (
           <>
-            <div style={{ position: 'absolute', top: '2px', left: '-12px', width: '190px', height: '270px', background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '12px', zIndex: 0, transform: 'rotate(-6deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
-            <div style={{ position: 'absolute', top: '6px', left: '10px', width: '190px', height: '270px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '12px', zIndex: 0, transform: 'rotate(5deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
+            <div style={{ position: 'absolute', top: '2px', left: '-12px', width: '150px', height: '213px', background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '12px', zIndex: 0, transform: 'rotate(-6deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
+            <div style={{ position: 'absolute', top: '6px', left: '10px', width: '150px', height: '213px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '12px', zIndex: 0, transform: 'rotate(5deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
           </>
         )}
-        <div className="card-scene" style={{ width: '190px', height: '270px', margin: 0, position: 'relative' }}>
+        <div className="card-scene" style={{ width: '150px', height: '213px', margin: 0, position: 'relative' }}>
           <div className={`card-flip-container ${flipped ? 'flipped' : ''}`}>
             <div className="card-face-front schema-img playing-card" onClick={() => setFlipped(!flipped)} style={{ padding: '12px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
               <CardInnerBorder color={cardColor} />
@@ -185,7 +185,7 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
       <div 
         onClick={onSelect} 
         className="glass-panel no-print" 
-        style={{ width: '190px', height: '270px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed var(--primary)', borderRadius: '12px', cursor: 'pointer', background: 'rgba(107, 114, 128, 0.05)', transition: 'all 0.2s' }}
+        style={{ width: '150px', height: '213px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed var(--primary)', borderRadius: '12px', cursor: 'pointer', background: 'rgba(107, 114, 128, 0.05)', transition: 'all 0.2s' }}
       >
         <span style={{ color: 'var(--primary)', fontSize: '2.5rem', marginBottom: '0.5rem' }}>+</span>
         <span style={{ color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 'bold' }}>Kies Kaart</span>
@@ -518,15 +518,15 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             
             {/* Top Row: De 3 Kaarten */}
             <div className="tafel-cards-container" style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', gap: '1rem', width: '100%', maxWidth: '100%', overflowX: 'auto', margin: '0 auto', padding: '3rem 1rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)', alignItems: 'center' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '190px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '150px' }}>
                 <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} />
               </div>
               <div className="no-print" style={{ height: '3px', minWidth: '20px', width: '40px', background: 'var(--primary)', opacity: 0.3, margin: '0 5px', flexShrink: 1 }}></div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '190px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '150px' }}>
                 <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} />
               </div>
               <div className="no-print" style={{ height: '3px', minWidth: '20px', width: '40px', background: 'var(--primary)', opacity: 0.3, margin: '0 5px', flexShrink: 1 }}></div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '190px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '150px' }}>
                 <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} />
               </div>
             </div>
