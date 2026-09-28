@@ -405,7 +405,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
       {embedded && (
         <div className="no-print" style={{ marginBottom: '2rem', textAlign: 'center' }}>
           <p style={{ color: 'var(--text-main)', maxWidth: '700px', margin: '0 auto 1.5rem auto', lineHeight: '1.6', fontSize: '1rem' }}>
-            De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen. Je kunt de opstelling <strong>handmatig</strong> maken door zelf kaarten op tafel te leggen en de analyse te starten, óf je situatie beschrijven en de <strong>AI-wizard</strong> de opstelling en analyse automatisch voor je laten doen op basis van je testresultaten.
+            De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen. Je kunt de opstelling <strong>handmatig</strong> maken door zelf kaarten op tafel te leggen en de analyse te starten, óf je situatie beschrijven en de opstelling en analyse <strong>automatisch</strong> laten genereren op basis van je testresultaten.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
             <button className="btn btn-outline" onClick={handlePrintTafel} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -441,7 +441,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             
             <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem', background: 'var(--bg-color)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)', width: '100%', boxSizing: 'border-box' }}>
               <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '1.5rem', textAlign: 'center', maxWidth: '650px', lineHeight: '1.6' }}>
-                Laat de AI de kaarten voor je op tafel leggen op basis van de situatie. Jouw persoonlijke schema- en modiprofiel worden hierbij gebruikt voor een accurate voorspelling.
+                Laat de kaarten automatisch op tafel leggen op basis van de beschreven situatie. Jouw persoonlijke scores op de vragenlijsten (schema's en modi) vormen hierbij de basis voor een passend voorstel.
               </p>
 
               <button 
