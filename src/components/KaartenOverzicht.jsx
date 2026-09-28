@@ -178,7 +178,11 @@ export default function KaartenOverzicht({ onBack }) {
                 </div>
               </div>
               
-              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div 
+                className="card-face-back" 
+                style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', cursor: 'pointer' }}
+                onClick={() => setSelectedCard({ ...card, listName })}
+              >
                 <CardInnerBorder color={cardColor} />
                 <div 
                   style={{ flex: 1, overflow: 'hidden', marginBottom: '5px', paddingRight: '2px', display: 'flex', flexDirection: 'column' }}
