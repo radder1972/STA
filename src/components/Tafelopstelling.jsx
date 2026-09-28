@@ -98,7 +98,7 @@ const schemaSortOrder = schemaGroups.flatMap(g => g.titles);
 const schemaCards = Object.keys(schemaImages).map(path => {
   const filename = path.split('/').pop().replace('.png', '');
   const title = ysqSchemaNamesMap[filename] || filename.replace(/_/g, ' ');
-  return { src: schemaImages[path], title, type: 'schema', description: schemaDescriptions[title], style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' } };
+  return { id: filename, src: schemaImages[path], title, type: 'schema', description: schemaDescriptions[title], style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' } };
 }).sort((a, b) => {
   const indexA = schemaSortOrder.indexOf(a.title);
   const indexB = schemaSortOrder.indexOf(b.title);
@@ -145,7 +145,7 @@ const formatCardTitle = (title) => {
 
 const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
   const [flipped, setFlipped] = useState(false);
-  const cardColor = card ? getCardColor(card.type, card.id) : 'rgba(0,0,0,0.15)';
+  const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'rgba(0,0,0,0.15)';
   
   return (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
