@@ -301,10 +301,12 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
 
       <div style={{ marginTop: '2rem', textAlign: 'center', color: 'var(--text-main)', maxWidth: '600px', margin: '2rem auto 1rem', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-          <AlertTriangleIcon size={24} useGradient={true} /> Let op: Uw antwoorden worden nergens opgeslagen!
+          <AlertTriangleIcon size={24} useGradient={true} /> Let op: Uw antwoorden worden niet automatisch opgeslagen!
         </p>
         <p style={{ color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
-          Omdat de applicatie lokaal draait, bent u na het afsluiten van de pagina uw gegevens kwijt. Sla daarom na het invullen uw resultaten altijd op als PDF of CSV-bestand. Heeft u uw resultaten eerder al opgeslagen als een CSV-bestand? Dan kunt u deze hieronder direct inlezen om meteen door te gaan naar het rapport.
+          Omdat de applicatie lokaal draait, bent u bij het afsluiten van de pagina uw gegevens kwijt. Sla daarom na het invullen uw resultaten op als PDF (alleen het rapport) of als CSV-bestand (alleen de resultaten).
+          <br /><br />
+          Heeft u de vragenlijst eerder al ingevuld en uw resultaten opgeslagen als een CSV-bestand? Dan kunt u deze hieronder direct inlezen om meteen door te gaan naar het rapport.
         </p>
         <input 
           type="file" 
