@@ -133,30 +133,6 @@ const modeCards = Object.keys(modeImages).map(path => {
 
 const healthyAdultCard = { src: imgM4, title: 'Gezonde volwassene', type: 'mode', description: schemaDescriptions['Gezonde volwassene'], style: { transform: 'scale(1.1)' } };
 
-const getCardColor = (type, id) => {
-  if (type === 'mode') {
-    const childModes = ['kk', 'rk', 'ik', 'ok', 'bk'];
-    const parentModes = ['sb', 'es'];
-    const copingModes = ['wi', 'ob', 'bo', 'bw', 'aa', 'pb'];
-    if (childModes.includes(id)) return '#10b981';
-    if (parentModes.includes(id)) return '#3b82f6';
-    if (copingModes.includes(id)) return '#eab308';
-    if (id === 'gv') return '#f97316';
-  } else if (type === 'schema') {
-    const cat1 = ['Abandonment', 'Mistrust', 'Emotional deprivation', 'Defectiveness_unlovability', 'Social isolation_Alienation'];
-    const cat2 = ['Practical incompetence_Dependence', 'Vulnerability to harm_illness', 'Enmeshment', 'Failure to achieve'];
-    const cat3 = ['Subjugation', 'Self-sacrifice', 'Admiration_Recognition-seeking'];
-    const cat4 = ['Pessimism_Worry', 'Emotional inhibition', 'Unrelenting Standards', 'Self-punitiveness'];
-    const cat5 = ['Entitlement_Superiority', 'Insufficient self-control_self-discipline'];
-    if (cat1.includes(id)) return '#10b981';
-    if (cat2.includes(id)) return '#3b82f6';
-    if (cat3.includes(id)) return '#eab308';
-    if (cat4.includes(id)) return '#f97316';
-    if (cat5.includes(id)) return '#ef4444';
-  }
-  return '#cbd5e1';
-};
-
 const formatCardTitle = (title) => {
   if (!title) return title;
   const words = title.trim().split(/\s+/);
@@ -168,7 +144,6 @@ const formatCardTitle = (title) => {
 
 const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
   const [flipped, setFlipped] = useState(false);
-  const cardColor = card ? getCardColor(card.type, card.id) : '#cbd5e1';
   
   return (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -184,7 +159,6 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
         <div className="card-scene" style={{ width: '160px', height: '228px', margin: 0, position: 'relative', zIndex: 1 }}>
           <div className={`card-flip-container ${flipped ? 'flipped' : ''}`}>
             <div className="card-face-front schema-img playing-card" onClick={() => setFlipped(!flipped)} style={{ padding: '12px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ position: 'absolute', top: '6px', left: '6px', right: '6px', bottom: '6px', border: `2px solid ${cardColor}`, borderRadius: '10px', pointerEvents: 'none', zIndex: 50 }}></div>
               <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                 <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
               </div>
@@ -192,7 +166,6 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
             </div>
             
             <div className="card-face-back" onClick={() => setFlipped(!flipped)} style={{ display: 'flex', flexDirection: 'column', cursor: 'pointer', padding: '12px' }}>
-              <div style={{ position: 'absolute', top: '6px', left: '6px', right: '6px', bottom: '6px', border: `2px solid ${cardColor}`, borderRadius: '10px', pointerEvents: 'none', zIndex: 50 }}></div>
               <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                 <h4 style={{ fontSize: '0.9rem', marginTop: '0.6rem', marginBottom: '0.3rem', lineHeight: '1.2', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
                 <p style={{ fontSize: '0.7rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 9, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie beschikbaar.'}</p>
