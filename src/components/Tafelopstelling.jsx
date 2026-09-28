@@ -144,6 +144,8 @@ const formatCardTitle = (title) => {
 
 const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
   const [flipped, setFlipped] = useState(false);
+  const cardColor = card ? getCardColor(card.type, card.id) : '#cbd5e1';
+  
   return (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
     {label && <div style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>}
@@ -156,7 +158,7 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
           </>
         )}
         <div className="card-scene" style={{ width: '160px', height: '228px', margin: 0, position: 'relative', zIndex: 1 }}>
-          <div className={`card-flip-container ${flipped ? 'flipped' : ''}`}>
+          <div className={`card-flip-container ${flipped ? 'flipped' : ''}`} style={{ '--card-inner-border': cardColor }}>
             <div className="card-face-front schema-img playing-card" onClick={() => setFlipped(!flipped)} style={{ padding: '12px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
               <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                 <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />

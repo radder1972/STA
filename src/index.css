@@ -825,7 +825,7 @@ body {
   content: '';
   position: absolute;
   top: 6px; left: 6px; right: 6px; bottom: 6px;
-  border: 1px solid #cbd5e1;
+  border: 2px solid var(--card-inner-border, #cbd5e1);
   border-radius: 10px;
   pointer-events: none;
   z-index: 50;
