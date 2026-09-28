@@ -387,6 +387,9 @@ body {
   .print-only {
     display: none !important;
   }
+  .tafel-print-only {
+    display: none !important;
+  }
 }
 
 @page {

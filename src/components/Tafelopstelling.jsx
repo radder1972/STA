@@ -423,6 +423,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div style={{ marginBottom: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h3 className="text-gradient" style={{ marginBottom: '1rem' }}>Wat was de situatie / trigger?</h3>
             <textarea 
+              className="no-print"
               placeholder="Beschrijf hier kort de situatie (bijv. 'Tijdens een overleg werd mijn idee genegeerd...')" 
               value={situationText}
               onChange={e => setSituationText(e.target.value)}
@@ -434,6 +435,9 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 lineHeight: '1.6'
               }}
             />
+            <div className="tafel-print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)', width: '100%', textAlign: 'left', background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+              {situationText || "Geen situatie beschreven."}
+            </div>
             
             <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem', background: 'var(--bg-color)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)', width: '100%', boxSizing: 'border-box' }}>
               <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '1.5rem', textAlign: 'center', maxWidth: '650px', lineHeight: '1.6' }}>
@@ -476,6 +480,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 De Gezonde Volwassene stelt grenzen aan disfunctionele reacties en biedt zorg voor onvervulde behoeften. Wat zou deze in deze situatie zeggen of doen?
               </p>
               <textarea 
+                className="no-print"
                 placeholder="" 
                 value={gvNotes}
                 onChange={e => setGvNotes(e.target.value)}
@@ -488,6 +493,9 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                   boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)'
                 }}
               />
+              <div className="tafel-print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)', width: '100%', minHeight: '180px', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--bg-color)' }}>
+                {gvNotes}
+              </div>
               <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '0.8rem' }}>
                 <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline no-print" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', fontSize: '1rem' }}>
                   {isGenerating ? 'Genereren...' : <><CpuChipIcon size={16} useGradient={true} /> AI Analyse</>}
@@ -533,7 +541,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                   boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)'
                 }}
               />
-              <div className="print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)' }}>
+              <div className="tafel-print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)' }}>
                 {analysisText}
               </div>
             </>
