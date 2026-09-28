@@ -562,11 +562,6 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 <div className="tafel-print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)', width: '100%', minHeight: '180px', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--bg-color)' }}>
                   {gvNotes}
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '0.8rem' }}>
-                  <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline no-print" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', fontSize: '1rem' }}>
-                    {isGenerating ? 'Genereren...' : <><CpuChipIcon size={16} useGradient={true} /> Genereer een gezonde reactie</>}
-                  </button>
-                </div>
               </div>
             </div>
 
@@ -574,19 +569,33 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         </div>
       </div>
 
-      {!analysisText && !isGeneratingAnalysis && (
-        <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
-          <button className="btn btn-outline" onClick={generateDeepAnalysis} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 24px', fontSize: '1rem', background: 'var(--card-bg)' }}>
-            <CpuChipIcon size={20} useGradient={true} /> Een beschrijvende analyse
+      {/* Stap 3: Analyse */}
+      <div className="no-print glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '3rem auto 0 auto', background: 'var(--card-bg)' }}>
+        <h3 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <StepBadge number="3" size={28} /> AI Analyse
+        </h3>
+        <p style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '2rem', lineHeight: '1.6', maxWidth: '700px', margin: '0 auto 2rem auto' }}>
+          Laat de AI je opstelling analyseren op basis van je gekozen kaarten en testresultaten. 
+          Kies voor een concrete suggestie voor je <strong>Gezonde Volwassene</strong> (wat zou je kunnen zeggen of doen?), 
+          of genereer een uitgebreide <strong>beschrijvende analyse</strong> van het hele patroon.
+        </p>
+        
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
+          <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1rem', background: 'var(--bg-color)' }}>
+            {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useGradient={true} /> Genereer een gezonde reactie</>}
+          </button>
+          
+          <button className="btn btn-gradient" onClick={generateDeepAnalysis} disabled={isGeneratingAnalysis} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1rem' }}>
+            {isGeneratingAnalysis ? 'Bezig...' : <><WandIcon size={20} color="currentColor" /> Een beschrijvende analyse</>}
           </button>
         </div>
-      )}
+      </div>
 
-      {/* Diepgaande Analyse Weergave */}
+      {/* Diepgaande Analyse Weergave (Print/View) */}
       {(analysisText || isGeneratingAnalysis) && (
         <div className="glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '2rem auto 0 auto', background: 'var(--card-bg)' }}>
-          <h3 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <StepBadge number="3" size={28} /> Analyseer
+          <h3 className="text-gradient" style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            Uitgebreide Psychologische Analyse
           </h3>
           {isGeneratingAnalysis ? (
             <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-main)' }}>
