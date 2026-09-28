@@ -182,7 +182,9 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
             {(type === 'ysq' || otherCompleted) && renderIcon('ysq')}
             {(type === 'smi' || otherCompleted) && renderIcon('smi')}
           </div>
-          <h2 className="text-gradient" style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Lijst Voltooid!</h2>
+          <h2 className="text-gradient" style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>
+            {otherCompleted ? "Beide Lijsten Voltooid!" : "Lijst Voltooid!"}
+          </h2>
 
           {!otherCompleted && (
             <div className="glass-panel" style={{ border: '1px solid var(--border-color)', padding: '1.5rem', borderRadius: '12px', color: 'var(--text-main)', marginBottom: '2rem', textAlign: 'left', display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
@@ -204,7 +206,12 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
           )}
 
           <p style={{ color: 'var(--text-main)', lineHeight: '1.6', fontSize: '1.1rem', marginBottom: '2rem', maxWidth: '650px', margin: '0 auto 2rem auto' }}>
-            Gefeliciteerd, u heeft zojuist alle vragen van de <strong>{type === 'ysq' ? "Young Schema Questionnaire (YSQ)" : "Schema Mode Inventory (SMI)"}</strong> succesvol ingevuld!
+            Gefeliciteerd, u heeft zojuist de <strong>{type === 'ysq' ? "Young Schema Questionnaire (YSQ)" : "Schema Mode Inventory (SMI)"}</strong> succesvol ingevuld!
+            {otherCompleted && (
+              <span style={{ display: 'block', marginTop: '0.5rem', color: '#10b981', fontWeight: 'bold' }}>
+                Fantastisch! Daarmee heeft u nu beide lijsten voltooid en is uw profiel compleet.
+              </span>
+            )}
             <br/><br/>
             Voordat u verdergaat naar het analyserapport, bieden we u de mogelijkheid om uw onbewerkte antwoorden lokaal op uw eigen computer op te slaan als een CSV-bestand. Door dit bestand op te slaan raakt u uw ingevulde gegevens niet kwijt en kunt u ze op een later moment eenvoudig weer inlezen via de startpagina.
             <br/><br/>
