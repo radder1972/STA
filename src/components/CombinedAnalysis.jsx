@@ -104,7 +104,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
       
       {/* OPTION A: Top 3 Visual Links */}
       <div className="glass-panel print-avoid-break" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-        <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <h2 style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <ConnectionIcon size={28} useGradient={true} /> Directe Top 3 Connectie
         </h2>
         <p style={{ color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '2rem' }}>
@@ -154,7 +154,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
 
       {/* OPTION C: Matrix Table */}
       <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-        <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <h2 style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <MatrixIcon size={28} useGradient={true} /> Kruisverbanden Matrix
         </h2>
         <p style={{ color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1rem' }}>
@@ -206,7 +206,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
       
       {/* OPTION D: Clinical Hypothesis Engine */}
       <div className="glass-panel" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-        <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <h2 style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <HypothesisIcon size={28} useGradient={true} /> Klinische Hypothese
         </h2>
         <p style={{ color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '2rem' }}>

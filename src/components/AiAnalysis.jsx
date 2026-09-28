@@ -90,7 +90,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
 
   return (
     <div className="glass-panel page-break" style={{ padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
-      <h2 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+      <h2 style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
         <CpuChipIcon size={28} useGradient={true} /> AI Analyse
       </h2>
       
@@ -169,7 +169,7 @@ Schrijf een korte, heldere klinische analyse (maximaal 3 alinea's) over de waars
 
       {analysisResult && (
         <div className="ai-result-box" style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.02)', border: '1px solid var(--border-color)', borderRadius: '12px' }}>
-          <h3 className="text-gradient" style={{ marginBottom: '1.5rem', marginTop: 0, fontSize: '1.2rem' }}>Klinische Interpretatie</h3>
+          <h3 style={{ marginBottom: '1.5rem', marginTop: 0, fontSize: '1.2rem' }}>Klinische Interpretatie</h3>
           <div className="ai-content">
             {renderFormattedText(analysisResult)}
           </div>

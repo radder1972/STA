@@ -157,7 +157,7 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
   return (
     <div className="results-container" style={{ width: '100%', maxWidth: '900px', margin: '0 auto', paddingBottom: '2rem' }}>
       <div className="results-box glass-panel" style={{ padding: '2rem', marginTop: '2rem' }}>
-        <h2 className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+        <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
           <ChartIcon size={28} useGradient={true} /> {title} Resultaten
         </h2>
 
@@ -166,7 +166,7 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
 
           {/* Top 3 Scores Highlight */}
         <div className="top-scores-section glass-panel" style={{ padding: '1.5rem', marginTop: '3rem', marginBottom: '1rem', border: '1px solid var(--border-color)', borderRadius: '16px', background: 'var(--card-bg)', boxShadow: 'var(--glass-shadow)' }}>
-          <h3 className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '3rem', letterSpacing: '1px', fontSize: '1.5rem' }}>
+          <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '3rem', letterSpacing: '1px', fontSize: '1.5rem' }}>
             Jouw Top 3 {type === 'ysq' ? "Schema's" : "Modi"}
           </h3>
           <div className="top-scores-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
