@@ -26,6 +26,27 @@ export const getCardColor = (type, id) => {
   return 'rgba(0,0,0,0.15)'; // Default subtiel grijs randje
 };
 
-export const CardInnerBorder = ({ color }) => (
-  <div style={{ position: 'absolute', top: '6px', left: '6px', right: '6px', bottom: '6px', border: `2px solid ${color}`, borderRadius: '10px', pointerEvents: 'none', zIndex: 50 }}></div>
-);
+export const CardInnerBorder = ({ color }) => {
+  const isHex = color.startsWith('#');
+  const tintColor = isHex ? `${color}25` : 'rgba(0,0,0,0.03)';
+  
+  return (
+    <div style={{ 
+      position: 'absolute', 
+      top: 0, left: 0, right: 0, bottom: 0, 
+      border: `6px solid ${tintColor}`, 
+      borderRadius: '12px', 
+      pointerEvents: 'none', 
+      zIndex: 50,
+      boxSizing: 'border-box'
+    }}>
+      <div style={{
+        position: 'absolute',
+        top: 0, left: 0, right: 0, bottom: 0,
+        border: `2px solid ${color}`,
+        borderRadius: '6px',
+        boxSizing: 'border-box'
+      }}></div>
+    </div>
+  );
+};
