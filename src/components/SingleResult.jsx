@@ -197,7 +197,7 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
                   </div>
                   {hasImage && (
                     <div style={{ marginBottom: '1rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                      <div className="schema-img playing-card" style={{ width: '130px', height: '155px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', transform: `rotate(${(i * 7) % 8 - 4}deg)`, boxShadow: '2px 4px 12px rgba(0,0,0,0.4)', border: '4px solid white', background: 'white' }}>
+                      <div className="schema-img playing-card" style={{ width: '130px', height: '185px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', transform: `rotate(${(i * 7) % 8 - 4}deg)`, boxShadow: '2px 4px 12px rgba(0,0,0,0.4)', border: '4px solid white', background: 'white' }}>
                         <img src={imgUrl} alt={score.name} style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', transform: score.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
                       </div>
                     </div>

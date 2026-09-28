@@ -121,7 +121,7 @@ const CardSlot = ({ label, card, onSelect, onRemove }) => (
     <div style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>
     {card ? (
       <div style={{ position: 'relative', display: 'inline-block' }}>
-         <div className="schema-img playing-card" style={{ width: '140px', height: '180px', padding: '12px', display: 'flex', flexDirection: 'column', pointerEvents: 'none', margin: 0, boxSizing: 'border-box' }}>
+         <div className="schema-img playing-card" style={{ width: '140px', height: '200px', padding: '12px', display: 'flex', flexDirection: 'column', pointerEvents: 'none', margin: 0, boxSizing: 'border-box' }}>
            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
              <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
            </div>
@@ -135,7 +135,7 @@ const CardSlot = ({ label, card, onSelect, onRemove }) => (
       <div 
         onClick={onSelect} 
         className="glass-panel no-print" 
-        style={{ width: '140px', height: '180px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed var(--primary)', borderRadius: '12px', cursor: 'pointer', background: 'rgba(20, 184, 166, 0.05)', transition: 'all 0.2s' }}
+        style={{ width: '140px', height: '200px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed var(--primary)', borderRadius: '12px', cursor: 'pointer', background: 'rgba(20, 184, 166, 0.05)', transition: 'all 0.2s' }}
       >
         <span style={{ color: 'var(--primary)', fontSize: '2.5rem', marginBottom: '0.5rem' }}>+</span>
         <span style={{ color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 'bold' }}>Kies Kaart</span>
@@ -522,7 +522,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               {showCardPicker === 'need' ? (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
                   {needCards.map((card, idx) => (
-                    <div key={idx} className="schema-img playing-card" onClick={() => handleSelectCard(card)} style={{ width: '120px', height: '160px', padding: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
+                    <div key={idx} className="schema-img playing-card" onClick={() => handleSelectCard(card)} style={{ width: '120px', height: '170px', padding: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
                       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                         <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                       </div>
@@ -541,7 +541,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                       <h4 style={{ color: 'var(--text-main)', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1rem', textAlign: 'left' }}>{group.group}</h4>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'flex-start' }}>
                         {groupCards.map((card, idx) => (
-                          <div key={idx} className="schema-img playing-card" onClick={() => handleSelectCard(card)} style={{ width: '120px', height: '160px', padding: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
+                          <div key={idx} className="schema-img playing-card" onClick={() => handleSelectCard(card)} style={{ width: '120px', height: '170px', padding: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
                             <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                               <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                             </div>
