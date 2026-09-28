@@ -164,7 +164,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                   style={{ display: 'block', marginBottom: ysqExpanded ? '0.8rem' : 'auto', cursor: 'pointer' }}
                 >
                   Breng je onderliggende kwetsbaarheden en patronen (schema's) in kaart. Deze vragenlijst helpt je ontdekken welke diepgewortelde overtuigingen over jezelf en de wereld bij jou een rol spelen.
-                  {!ysqExpanded && <span style={{ display: 'block', marginTop: '8px', color: '#14b8a6', fontWeight: 'bold' }}>Lees meer...</span>}
+                  {!ysqExpanded && <span style={{ display: 'block', marginTop: '8px', color: 'var(--primary)', fontWeight: 'bold' }}>Lees meer...</span>}
                 </span>
                 
                 {ysqExpanded && (
@@ -195,7 +195,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                   style={{ display: 'block', marginBottom: smiExpanded ? '0.8rem' : 'auto', cursor: 'pointer' }}
                 >
                   Breng je actuele overlevingsmechanismen en gemoedstoestanden (modi) in kaart. Deze vragenlijst laat zien op welke manier je in het dagelijks leven reageert wanneer je geraakt wordt.
-                  {!smiExpanded && <span style={{ display: 'block', marginTop: '8px', color: '#14b8a6', fontWeight: 'bold' }}>Lees meer...</span>}
+                  {!smiExpanded && <span style={{ display: 'block', marginTop: '8px', color: 'var(--primary)', fontWeight: 'bold' }}>Lees meer...</span>}
                 </span>
                 
                 {smiExpanded && (
@@ -229,7 +229,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
         </p>
         <p style={{ marginBottom: theoryExpanded ? '2rem' : '0', textAlign: 'center', maxWidth: '750px', margin: '0 auto' }}>
           De YSQ meet je chronische kwetsbaarheden (de littekens), terwijl de SMI meet hoe je op dit moment reageert als die kwetsbaarheden worden geraakt (de overlevingsmechanismen).
-          {!theoryExpanded && <span onClick={() => setTheoryExpanded(true)} style={{ display: 'block', marginTop: '8px', color: '#14b8a6', cursor: 'pointer', fontWeight: 'bold' }}>Lees meer...</span>}
+          {!theoryExpanded && <span onClick={() => setTheoryExpanded(true)} style={{ display: 'block', marginTop: '8px', color: 'var(--primary)', cursor: 'pointer', fontWeight: 'bold' }}>Lees meer...</span>}
         </p>
         
         {theoryExpanded && (
