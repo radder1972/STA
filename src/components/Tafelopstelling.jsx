@@ -504,7 +504,11 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             </div>
           </div>
 
-          <h4 className="text-gradient" style={{ marginTop: '3rem', marginBottom: '2rem', textAlign: 'center' }}>Of: Leg zelf handmatig de kaarten op tafel</h4>
+          <h4 className="text-gradient" style={{ marginTop: '3rem', marginBottom: '1rem', textAlign: 'center' }}>Of: Leg zelf handmatig de kaarten op tafel</h4>
+          <p style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '2rem', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
+            Klik op een leeg vak om zelf een kaart te kiezen. 
+            <strong> Tip:</strong> je kunt altijd op een gekozen kaart klikken of tikken om hem om te draaien en de theorie te lezen!
+          </p>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', width: '100%' }}>
             
             {/* Top Row: De 3 Kaarten */}
