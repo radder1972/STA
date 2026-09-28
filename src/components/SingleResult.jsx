@@ -192,9 +192,9 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
                 <div 
                   key={score.id} 
                   className="top-score-card glass-panel" 
-                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '1rem', background: 'rgba(0,0,0,0.02)', borderRadius: '12px', border: '1px solid var(--border-color)', borderTop: `6px solid ${medalColor}` }}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '1rem', background: 'rgba(0,0,0,0.02)', borderRadius: '12px', border: '1px solid var(--border-color)', borderTop: `6px solid ${cardColor}` }}
                 >
-                  <div style={{ fontSize: '2.5rem', fontWeight: '900', color: medalColor, marginBottom: '1rem', lineHeight: '1', opacity: 0.9 }}>
+                  <div style={{ fontSize: '2.5rem', fontWeight: '900', color: cardColor, marginBottom: '1rem', lineHeight: '1', opacity: 0.9 }}>
                     #{i + 1}
                   </div>
                   {hasImage && (

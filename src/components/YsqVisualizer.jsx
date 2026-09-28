@@ -47,7 +47,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div className="mode-name" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.25rem', minHeight: 'auto' }}>
               <span style={{ paddingRight: '10px', fontWeight: 'bold' }}>{schema.name}</span>
-              {isTop3 && <span style={{ backgroundColor: cardColor, color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
+              {isTop3 && <span style={{ backgroundColor: '#94a3b8', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
             </div>
             <div style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-main)', lineHeight: '1.6', fontStyle: 'italic' }}>
               {schemaDescriptions[schema.name] || ''}
