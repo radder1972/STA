@@ -254,12 +254,12 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                 </div>
 
                 {usedModes.length > 0 ? (
-                  <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+                  <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)', lineHeight: '1.6' }}>
                     <strong style={{ color: 'var(--text-main)' }}>✓ Bevestiging in data:</strong> 
                     <span style={{ color: 'var(--text-main)' }}> U scoort inderdaad ook bovengemiddeld (≥3) op de theoretisch gekoppelde coping-modi: <strong>{usedModes.map(m => m.name).join(', ')}</strong>. Dit wijst op een sterk patroon.</span>
                   </div>
                 ) : (
-                  <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+                  <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)', lineHeight: '1.6' }}>
                     <strong style={{ color: 'var(--text-main)' }}>○ Geen sterke bevestiging:</strong> 
                     <span style={{ color: 'var(--text-main)' }}> U lijkt deze standaard coping-modi niet exceptioneel hoog in te zetten. U hanteert waarschijnlijk een andere overlevingsstrategie voor dit schema, of het schema is wel aanwezig maar u copt er niet actief op deze manier mee.</span>
                   </div>
