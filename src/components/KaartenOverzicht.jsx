@@ -152,8 +152,8 @@ export default function KaartenOverzicht({ onBack }) {
                   onClick={() => handleFlip(uniqueKey)} 
                   style={{ flex: 1, cursor: 'pointer', overflow: 'hidden', marginBottom: '5px', paddingRight: '2px', display: 'flex', flexDirection: 'column' }}
                 >
-                  <h4 style={{ fontSize: '1rem', marginBottom: '0.5rem', lineHeight: '1.2' }}>{card.title}</h4>
-                  <p style={{ fontSize: '0.75rem', lineHeight: '1.4', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' }}>{card.description || 'Geen theorie beschikbaar.'}</p>
+                  <h4 style={{ fontSize: '1rem', marginTop: '1.5rem', marginBottom: '0.5rem', lineHeight: '1.2', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
+                  <p style={{ fontSize: '0.75rem', lineHeight: '1.4', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 8, WebkitBoxOrient: 'vertical' }}>{card.description || 'Geen theorie beschikbaar.'}</p>
                 </div>
                 <button 
                   className="btn btn-card" 
