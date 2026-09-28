@@ -238,7 +238,14 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
           <ArrowLeftIcon size={18} /> Cancel
         </button>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <span className="text-gradient" onDoubleClick={() => setShowCompletionScreen(true)} style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '4px', cursor: 'default' }}>
+          <span className="text-gradient" onDoubleClick={() => {
+            const dummyAnswers = {};
+            questions.forEach(q => {
+              dummyAnswers[q.id] = Math.floor(Math.random() * 6) + 1;
+            });
+            setAnswers(dummyAnswers);
+            setShowCompletionScreen(true);
+          }} style={{ fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '4px', cursor: 'default' }}>
             {type === 'ysq' ? "Young Schema Questionnaire (YSQ S3)" : "Schema Mode Inventory (SMI)"}
           </span>
           <span style={{color: 'var(--text-main)'}}>Vraag {currentIndex + 1} van {total}</span>
