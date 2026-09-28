@@ -39,20 +39,11 @@ export const CardInnerBorder = ({ color }) => {
         .card-scene:hover .${safeClass} {
            box-shadow: 0 12px 35px ${hoverShadowColor} !important;
         }
-        .card-scene:hover .${safeClass}-overlay {
+        .card-scene:hover .${safeClass}-bg {
            opacity: 1 !important;
         }
       `}</style>
-      <div className={`${safeClass}-overlay`} style={{
-        position: 'absolute',
-        top: 0, left: 0, right: 0, bottom: 0,
-        backgroundColor: color,
-        mixBlendMode: 'overlay',
-        opacity: 0,
-        transition: 'opacity 0.3s ease',
-        pointerEvents: 'none',
-        zIndex: 10
-      }}></div>
+
       <div className={`${safeClass}-bg`} style={{
         position: 'absolute',
         top: 0, left: 0, right: 0, bottom: 0,
