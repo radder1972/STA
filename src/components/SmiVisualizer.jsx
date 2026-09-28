@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { schemaDescriptions } from '../data/descriptions';
 import { getModeImage } from '../utils/images';
+import { getCardColor, CardInnerBorder } from '../utils/colors';
 
 export default function SmiVisualizer({ groupedScores, top3 = [], onUpdateAnswer }) {
   const [expandedNodes, setExpandedNodes] = useState({});
@@ -17,6 +18,7 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onUpdateAnswer
     const isTop3 = top3Index !== -1;
     const medalColor = top3Index === 0 ? '#fbbf24' : top3Index === 1 ? '#94a3b8' : top3Index === 2 ? '#b45309' : null;
     const medalBg = top3Index === 0 ? 'rgba(251, 191, 36, 0.1)' : top3Index === 1 ? 'rgba(148, 163, 184, 0.25)' : top3Index === 2 ? 'rgba(180, 83, 9, 0.1)' : 'var(--card-bg)';
+    const cardColor = getCardColor('mode', mode.id);
 
     return (
       <div 
@@ -27,6 +29,7 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onUpdateAnswer
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
           <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
             <div className="schema-img playing-card" style={{ width: '100px', height: '145px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transform: `rotate(${(index * 7) % 8 - 4}deg)` }}>
+              <CardInnerBorder color={cardColor} />
               <img src={getModeImage(mode.id)} alt={mode.name} style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', transform: mode.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
             </div>
           </div>

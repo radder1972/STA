@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowLeftIcon } from 'lucide-react';
+import { CardInnerBorder } from '../utils/colors';
 import img1 from '../assets/images/modicategorieen/1.png';
 import img2 from '../assets/images/modicategorieen/2.png';
 import imgOvergave from '../assets/images/modicategorieen/coping_overgave.png';
@@ -37,6 +38,7 @@ const ModiCategorieen = ({ onBack }) => {
           </p>
         </div>
         <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)' }}>
+          <CardInnerBorder color="#10b981" />
           <img src={img1} alt="Kindmodi" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>
@@ -50,6 +52,7 @@ const ModiCategorieen = ({ onBack }) => {
           </p>
         </div>
         <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-2deg)' }}>
+          <CardInnerBorder color="#3b82f6" />
           <img src={img2} alt="Disfunctionele oudermodi" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>
@@ -69,12 +72,15 @@ const ModiCategorieen = ({ onBack }) => {
         </div>
         <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', position: 'relative' }}>
           <div className="schema-img playing-card" style={{ width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(2deg)', zIndex: 1 }}>
+            <CardInnerBorder color="#eab308" />
             <img src={imgOvergave} alt="Overgave" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
           <div className="schema-img playing-card" style={{ width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)', zIndex: 2, marginTop: '-110px' }}>
+            <CardInnerBorder color="#eab308" />
             <img src={imgVermijding} alt="Vermijding" style={{ width: '80%', height: '80%', objectFit: 'contain' }} />
           </div>
           <div className="schema-img playing-card" style={{ width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(4deg)', zIndex: 3, marginTop: '-110px' }}>
+            <CardInnerBorder color="#eab308" />
             <img src={imgOvercomp} alt="Overcompensatie" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
         </div>
@@ -89,6 +95,7 @@ const ModiCategorieen = ({ onBack }) => {
           </p>
         </div>
         <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)' }}>
+          <CardInnerBorder color="#f97316" />
           <img src={img4} alt="De Gezonde Volwassene" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>

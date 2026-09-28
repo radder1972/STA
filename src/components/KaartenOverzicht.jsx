@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ArrowLeftIcon } from './Icons'
+import { getCardColor, CardInnerBorder } from '../utils/colors'
 
 import imgB1 from '../assets/images/basisbehoeften/1.png'
 import imgB2 from '../assets/images/basisbehoeften/2.png'
@@ -120,25 +121,27 @@ export default function KaartenOverzicht({ onBack }) {
   const detailedSchemaCards = Object.keys(schemaImages).map(path => {
     const filename = path.split('/').pop().replace('.png', '');
     const title = ysqSchemaNamesMap[filename] || filename.replace(/_/g, ' ');
-    return { src: schemaImages[path], title, description: schemaDescriptions[title], style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' } };
+    return { id: filename, type: 'schema', src: schemaImages[path], title, description: schemaDescriptions[title], style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' } };
   })
 
   const detailedModeCards = Object.keys(modeImages).map(path => {
     const filename = path.split('/').pop().replace('.png', '');
     const title = smiModesMap[filename] || filename;
-    return { src: modeImages[path], title, description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
+    return { id: filename, type: 'mode', src: modeImages[path], title, description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
   })
 
   const renderCardList = (cards, listName, defaultImageStyle = {}) => (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyItems: 'center', justifyContent: 'center', padding: '1rem', marginBottom: '3rem' }}>
       {cards.map((card, idx) => {
         const uniqueKey = `${listName}-${card.title}`;
+        const cardColor = getCardColor(card.type, card.id);
         return (
         <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div className="card-scene">
             <div className={`card-flip-container ${flippedCards[uniqueKey] ? 'flipped' : ''}`}>
               
               <div className="card-face-front schema-img playing-card" onClick={() => handleFlip(uniqueKey)} style={{ padding: '16px', boxSizing: 'border-box', cursor: 'pointer', pointerEvents: flippedCards[uniqueKey] ? 'none' : 'auto' }}>
+                <CardInnerBorder color={cardColor} />
                 <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                   <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
                 </div>
@@ -148,6 +151,7 @@ export default function KaartenOverzicht({ onBack }) {
               </div>
               
               <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: flippedCards[uniqueKey] ? 'auto' : 'none' }}>
+                <CardInnerBorder color={cardColor} />
                 <div 
                   onClick={() => handleFlip(uniqueKey)} 
                   style={{ flex: 1, cursor: 'pointer', overflow: 'hidden', marginBottom: '5px', paddingRight: '2px', display: 'flex', flexDirection: 'column' }}

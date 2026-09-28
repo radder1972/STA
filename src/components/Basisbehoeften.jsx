@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowLeftIcon } from 'lucide-react';
+import { CardInnerBorder } from '../utils/colors';
 import img1 from '../assets/images/basisbehoeften/1.png';
 import img2 from '../assets/images/basisbehoeften/2.png';
 import img3 from '../assets/images/basisbehoeften/3.png';
@@ -36,6 +37,7 @@ const Basisbehoeften = ({ onBack }) => {
           </p>
         </div>
         <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(2deg)' }}>
+          <CardInnerBorder color="#10b981" />
           <img src={img1} alt="Veilige hechting" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>
@@ -49,6 +51,7 @@ const Basisbehoeften = ({ onBack }) => {
           </p>
         </div>
         <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(5deg)' }}>
+          <CardInnerBorder color="#3b82f6" />
           <img src={img2} alt="Autonomie en competentie" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>
@@ -62,6 +65,7 @@ const Basisbehoeften = ({ onBack }) => {
           </p>
         </div>
         <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)' }}>
+          <CardInnerBorder color="#eab308" />
           <img src={img3} alt="Vrijheid en emoties" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>
@@ -75,6 +79,7 @@ const Basisbehoeften = ({ onBack }) => {
           </p>
         </div>
         <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(5deg)' }}>
+          <CardInnerBorder color="#f97316" />
           <img src={img4} alt="Spontaniteit en spel" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>
@@ -88,6 +93,7 @@ const Basisbehoeften = ({ onBack }) => {
           </p>
         </div>
         <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(3deg)' }}>
+          <CardInnerBorder color="#ef4444" />
           <img src={img5} alt="Realistische grenzen" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         </div>
       </div>

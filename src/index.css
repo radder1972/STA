@@ -821,16 +821,6 @@ body {
   opacity: 1;
 }
 
-.playing-card::after, .card-face-back::after {
-  content: '';
-  position: absolute;
-  top: 6px; left: 6px; right: 6px; bottom: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  pointer-events: none;
-  z-index: 50;
-}
-
 .card-face-back {
   transform: rotateY(180deg);
   background: #ffffff;
