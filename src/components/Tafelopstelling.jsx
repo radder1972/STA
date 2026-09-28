@@ -652,24 +652,17 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {showCardPicker === 'need' ? (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}>
                   {needCards.map((card, idx) => (
-                    <div key={idx} className="card-scene" style={{ width: '140px', height: '200px', margin: 0 }}>
-                      <div className={`card-flip-container ${flippedCards[`need-${idx}`] ? 'flipped' : ''}`}>
-                        <div className="card-face-front schema-img playing-card" onClick={(e) => handleFlip(`need-${idx}`, e)} style={{ padding: '8px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
+                    <div key={idx} onClick={() => handleSelectCard(card)} className="card-scene picker-card" style={{ width: '140px', height: '200px', margin: 0, cursor: 'pointer' }}>
+                      <div className="card-flip-container" style={{ transition: 'transform 0.2s' }}>
+                        <div className="card-face-front schema-img playing-card" style={{ padding: '8px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', border: `2px solid ${card.color || 'var(--primary)'}`, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
                           <CardInnerBorder color={card.color} />
                           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                             <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                           </div>
-                          <div style={{ textAlign: 'center', fontSize: '0.7rem', fontWeight: 'bold', margin: '6px 0 8px 0', lineHeight: '1.2', zIndex: 1 }}>{formatCardTitle(card.title)}</div>
-                        </div>
-                        <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '8px', pointerEvents: flippedCards[`need-${idx}`] ? 'auto' : 'none' }}>
-                          <CardInnerBorder color={card.color} />
-                          <div onClick={(e) => handleFlip(`need-${idx}`, e)} style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', cursor: 'pointer' }}>
-                            <h4 style={{ fontSize: '0.85rem', marginTop: '0.5rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
-                            <p style={{ fontSize: '0.65rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 8, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
-                          </div>
-                          <button onClick={(e) => { e.stopPropagation(); handleSelectCard(card); }} className="btn btn-card" style={{ fontSize: '0.65rem', padding: '4px 8px', width: '100%' }}><span className="btn-text">Kies</span></button>
+                          <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '6px 0', lineHeight: '1.2', zIndex: 1 }}>{formatCardTitle(card.title)}</div>
+                          <button className="btn btn-card" style={{ fontSize: '0.75rem', padding: '6px', width: '100%', marginTop: 'auto', zIndex: 2 }}><span className="btn-text">Kies</span></button>
                         </div>
                       </div>
                     </div>
@@ -687,26 +680,19 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                   return (
                     <div key={groupIdx} style={{ marginBottom: '1.5rem' }}>
                       <h4 style={{ color: groupColor, borderBottom: `2px solid ${groupColor}40`, paddingBottom: '0.5rem', marginBottom: '1rem', textAlign: 'left' }}>{group.group}</h4>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'flex-start' }}>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'flex-start' }}>
                         {groupCards.map((card, idx) => {
                           const cardColor = getCardColor(card.type, card.id);
                           return (
-                          <div key={idx} className="card-scene" style={{ width: '140px', height: '200px', margin: 0 }}>
-                            <div className={`card-flip-container ${flippedCards[`${groupIdx}-${idx}`] ? 'flipped' : ''}`}>
-                              <div className="card-face-front schema-img playing-card" onClick={(e) => handleFlip(`${groupIdx}-${idx}`, e)} style={{ padding: '8px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
+                          <div key={idx} onClick={() => handleSelectCard(card)} className="card-scene picker-card" style={{ width: '140px', height: '200px', margin: 0, cursor: 'pointer' }}>
+                            <div className="card-flip-container" style={{ transition: 'transform 0.2s' }}>
+                              <div className="card-face-front schema-img playing-card" style={{ padding: '8px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', border: `2px solid ${cardColor}`, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
                                 <CardInnerBorder color={cardColor} />
                                 <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                                   <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                                 </div>
-                                <div style={{ textAlign: 'center', fontSize: '0.7rem', fontWeight: 'bold', margin: '6px 0 8px 0', lineHeight: '1.2', zIndex: 1 }}>{formatCardTitle(card.title)}</div>
-                              </div>
-                              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '8px', pointerEvents: flippedCards[`${groupIdx}-${idx}`] ? 'auto' : 'none' }}>
-                                <CardInnerBorder color={cardColor} />
-                                <div onClick={(e) => handleFlip(`${groupIdx}-${idx}`, e)} style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', cursor: 'pointer' }}>
-                                  <h4 style={{ fontSize: '0.85rem', marginTop: '0.5rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
-                                  <p style={{ fontSize: '0.65rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 8, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
-                                </div>
-                                <button onClick={(e) => { e.stopPropagation(); handleSelectCard(card); }} className="btn btn-card" style={{ fontSize: '0.65rem', padding: '4px 8px', width: '100%' }}><span className="btn-text">Kies</span></button>
+                                <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '6px 0', lineHeight: '1.2', zIndex: 1 }}>{formatCardTitle(card.title)}</div>
+                                <button className="btn btn-card" style={{ fontSize: '0.75rem', padding: '6px', width: '100%', marginTop: 'auto', zIndex: 2 }}><span className="btn-text">Kies</span></button>
                               </div>
                             </div>
                           </div>
