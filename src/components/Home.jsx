@@ -81,10 +81,10 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
       const IconComponent = listType === 'ysq' ? ClipboardIcon : BrainIcon;
       return (
         <div key={listType} style={{ position: 'relative', display: 'inline-block', margin: '0 10px' }}>
-          <div className="btn-gradient" style={{ padding: '1.2rem', borderRadius: '50%', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 25px rgba(107, 114, 128, 0.3)' }}>
+          <div style={{ background: 'linear-gradient(135deg, #34d399, #10b981)', padding: '1.2rem', borderRadius: '50%', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 25px rgba(16, 185, 129, 0.3)' }}>
             <IconComponent size={48} />
           </div>
-          <div style={{ position: 'absolute', bottom: '-5px', right: '-5px', background: 'var(--primary)', color: 'white', borderRadius: '50%', padding: '4px', border: '3px solid var(--bg-main, #ffffff)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ position: 'absolute', bottom: '-5px', right: '-5px', background: '#10b981', color: 'white', borderRadius: '50%', padding: '4px', border: '3px solid var(--bg-main, #ffffff)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <CheckIcon size={20} strokeWidth={3} />
           </div>
         </div>
