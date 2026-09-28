@@ -221,7 +221,7 @@ export const WandIcon = (props) => (
 );
 
 export const ArrowDownIcon = (props) => (
-  <BaseIcon {...props}>
+  <IconBase {...props}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
-  </BaseIcon>
+  </IconBase>
 );
