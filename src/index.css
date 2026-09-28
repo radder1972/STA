@@ -821,15 +821,7 @@ body {
   opacity: 1;
 }
 
-.playing-card::after, .card-face-back::after {
-  content: '';
-  position: absolute;
-  top: 6px; left: 6px; right: 6px; bottom: 6px;
-  border: 2px solid var(--card-inner-border, #cbd5e1);
-  border-radius: 10px;
-  pointer-events: none;
-  z-index: 50;
-}
+/* Card inner border now handled by real DOM element */
 
 .card-face-back {
   transform: rotateY(180deg);
