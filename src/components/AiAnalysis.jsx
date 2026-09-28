@@ -22,7 +22,7 @@ Schrijf een korte, heldere analyse (maximaal 3 alinea's) over de waarschijnlijke
   };
 
   const generateAnalysis = async () => {
-    if (!apiKey) return;
+    if (!DEFAULT_KEY) return;
     setLoading(true);
     setError('');
     
