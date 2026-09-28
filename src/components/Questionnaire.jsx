@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, DownloadIcon, AlertTriangleIcon, ClipboardIcon, BrainIcon } from './Icons'
+import ysqData from '../data/ysq-s3.json'
+import smiData from '../data/smi.json'
 
 export default function Questionnaire({ type, questions, initialAnswers, completedTests, onFinish, onCancel }) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -60,10 +62,30 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
       csvContent += `${typeLabel},${qId},${score},${text}\n`;
     });
     
+    const otherType = type === 'ysq' ? 'smi' : 'ysq';
+    const otherAnswers = completedTests && completedTests[otherType];
+    const isOtherCompleted = otherAnswers && Object.keys(otherAnswers).length > 0;
+    
+    if (isOtherCompleted) {
+      const otherTypeLabel = otherType.toUpperCase();
+      const otherQuestions = otherType === 'ysq' ? ysqData : smiData;
+      
+      Object.entries(otherAnswers).forEach(([qId, score]) => {
+        const question = otherQuestions.find(q => q.id.toString() === qId.toString());
+        const text = question ? `"${question.text.replace(/"/g, '""')}"` : "";
+        csvContent += `${otherTypeLabel},${qId},${score},${text}\n`;
+      });
+    }
+    
     const dataStr = "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent);
     const downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", `schema_therapy_${type}_scores.csv`);
+    
+    const fileName = isOtherCompleted 
+      ? "schema_therapy_ysq_and_smi_scores.csv" 
+      : `schema_therapy_${type}_scores.csv`;
+      
+    downloadAnchorNode.setAttribute("download", fileName);
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
