@@ -206,16 +206,19 @@ export default function PrintShopExport({ onBack }) {
             <React.Fragment key={idx}>
               {/* VOORKANT */}
               <div className="print-shop-page card-front">
-                <div className="print-shop-bleed" style={{ background: `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)`, position: 'relative', width: '100%', height: '100%' }}>
-                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '8mm 6mm 2mm 6mm' }}>
-                      <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
-                    </div>
-                    {card.title && (
-                      <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold', margin: '2mm 0 10mm 0', lineHeight: '1.2', color: 'black' }}>
-                        {formatCardTitle(card.title)}
+                <div className="print-shop-bleed" style={{ background: 'white', position: 'relative', width: '100%', height: '100%' }}>
+                  <div style={{ position: 'absolute', top: '6mm', left: '6mm', right: '6mm', bottom: '6mm', background: `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)`, borderRadius: '4mm' }}>
+                    <CardInnerBorder color={cardColor} />
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '2mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '6mm 4mm 2mm 4mm' }}>
+                        <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                       </div>
-                    )}
+                      {card.title && (
+                        <div style={{ textAlign: 'center', fontSize: '0.85rem', fontWeight: 'bold', margin: '2mm 0 6mm 0', lineHeight: '1.2', color: 'black' }}>
+                          {formatCardTitle(card.title)}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
