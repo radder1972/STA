@@ -786,6 +786,7 @@ body {
   position: relative;
   z-index: 1;
   transition: z-index 0.3s;
+  border-radius: 12px;
 }
 
 .card-scene {
