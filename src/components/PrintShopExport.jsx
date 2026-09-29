@@ -106,7 +106,7 @@ const formatCardTitle = (title) => {
   return title;
 };
 
-export default function PrintShopExport({ onBack }) {
+export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
   useEffect(() => {
     document.body.classList.add('print-shop-export-mode');
     return () => {
@@ -209,8 +209,11 @@ export default function PrintShopExport({ onBack }) {
           - <strong>Marges:</strong> Geen<br/>
           - <strong>Achtergrondafbeeldingen:</strong> AAN<br/>
         </p>
-        <button onClick={handlePrint} className="btn btn-gradient" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem' }}>
-          Genereer Print-PDF
+        <button onClick={handlePrint} className="btn btn-gradient" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem', marginBottom: '1rem' }}>
+          Genereer Print-PDF (PeterPrint)
+        </button>
+        <button onClick={onViewHomePrintExport} className="btn btn-outline" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem' }}>
+          Naar A4 Thuisprint Export
         </button>
       </div>
 

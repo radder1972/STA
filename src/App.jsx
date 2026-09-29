@@ -137,10 +137,16 @@ function App() {
         <KaartenOverzicht onBack={() => setCurrentView('home')} />
       )}
       {currentView === 'print-shop' && (
-        <PrintShopExport onBack={() => setCurrentView('home')} />
+        <PrintShopExport 
+          onBack={() => setCurrentView('home')} 
+          onViewHomePrintExport={() => setCurrentView('home-print-export')}
+        />
       )}
       {currentView === 'home-print-export' && (
-        <HomePrintExport onBack={() => setCurrentView('home')} />
+        <HomePrintExport 
+          onBack={() => setCurrentView('home')} 
+          onViewPrintShop={() => setCurrentView('print-shop')}
+        />
       )}
 
       {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'print-shop' && currentView !== 'home-print-export' && (

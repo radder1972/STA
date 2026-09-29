@@ -131,7 +131,7 @@ const modeSortOrder = [
 ];
 
 
-export default function HomePrintExport({ onBack }) {
+export default function HomePrintExport({ onBack, onViewPrintShop }) {
   const allCards = [];
 
   // 1. Basisbehoeften
@@ -253,8 +253,11 @@ export default function HomePrintExport({ onBack }) {
           - <strong>Achtergrondafbeeldingen:</strong> AAN<br/>
           - <strong>Marges:</strong> Standaard (of Minimum)<br/>
         </p>
-        <button onClick={handlePrint} className="btn btn-gradient" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem' }}>
-          Print Proefdruk
+        <button onClick={handlePrint} className="btn btn-gradient" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem', marginBottom: '1rem' }}>
+          Print Proefdruk (A4)
+        </button>
+        <button onClick={onViewPrintShop} className="btn btn-outline" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem' }}>
+          Terug naar Drukkerij Export
         </button>
       </div>
 
