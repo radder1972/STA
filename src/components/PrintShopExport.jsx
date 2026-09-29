@@ -206,36 +206,32 @@ export default function PrintShopExport({ onBack }) {
             <React.Fragment key={idx}>
               {/* VOORKANT */}
               <div className="print-shop-page card-front">
-                <div className="print-shop-bleed" style={{ background: 'white', position: 'relative', width: '100%', height: '100%' }}>
-                  <div style={{ position: 'absolute', top: '6mm', left: '6mm', right: '6mm', bottom: '6mm', background: `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)`, borderRadius: '4mm' }}>
-                    <CardInnerBorder color={cardColor} />
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '2mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '6mm 4mm 2mm 4mm' }}>
-                        <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
-                      </div>
-                      {card.title && (
-                        <div style={{ textAlign: 'center', fontSize: '0.85rem', fontWeight: 'bold', margin: '2mm 0 6mm 0', lineHeight: '1.2', color: 'black' }}>
-                          {formatCardTitle(card.title)}
-                        </div>
-                      )}
+                <div className="print-shop-bleed" style={{ background: `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)`, position: 'relative', width: '100%', height: '100%' }}>
+                  <CardInnerBorder color={cardColor} />
+                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '8mm 6mm 2mm 6mm' }}>
+                      <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                     </div>
+                    {card.title && (
+                      <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold', margin: '2mm 0 10mm 0', lineHeight: '1.2', color: 'black' }}>
+                        {formatCardTitle(card.title)}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
 
               {/* ACHTERKANT */}
               <div className="print-shop-page card-back" style={{ background: 'white' }}>
-                <div className="print-shop-bleed" style={{ position: 'relative', width: '100%', height: '100%' }}>
-                  <div style={{ position: 'absolute', top: '6mm', left: '6mm', right: '6mm', bottom: '6mm', background: 'white', borderRadius: '4mm' }}>
-                    <CardInnerBorder color={cardColor} />
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                      <h4 style={{ margin: '0 0 4mm 0', fontSize: '0.9rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0, zIndex: 1 }}>
-                        {formatCardTitle(card.title)}
-                      </h4>
-                      <p style={{ fontSize: '0.75rem', lineHeight: '1.4', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0, zIndex: 1 }}>
-                        {card.description}
-                      </p>
-                    </div>
+                <div className="print-shop-bleed" style={{ position: 'relative', display: 'flex', flexDirection: 'column', padding: '8mm', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', width: '100%', height: '100%', boxSizing: 'border-box' }}>
+                  <CardInnerBorder color={cardColor} />
+                  <div style={{ zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+                    <h4 style={{ margin: '0 0 4mm 0', fontSize: '0.9rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0 }}>
+                      {formatCardTitle(card.title)}
+                    </h4>
+                    <p style={{ fontSize: '0.75rem', lineHeight: '1.4', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0 }}>
+                      {card.description}
+                    </p>
                   </div>
                 </div>
               </div>
