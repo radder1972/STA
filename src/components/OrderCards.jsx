@@ -88,15 +88,15 @@ export default function OrderCards({ onBack }) {
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'center', 
-            background: 'var(--bg-secondary)', 
-            border: '2px solid var(--border-color)', 
-            color: 'var(--text-main)', 
-            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+            background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', 
+            border: 'none', 
+            color: 'white', 
+            boxShadow: '0 10px 25px rgba(59, 130, 246, 0.4)',
             cursor: 'pointer',
             transition: 'all 0.2s ease'
           }}
-          onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.borderColor = 'var(--primary)'; }}
-          onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = 'var(--border-color)'; }}
+          onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(59, 130, 246, 0.6)'; }}
+          onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 10px 25px rgba(59, 130, 246, 0.4)'; }}
         >
           <ArrowLeftIcon size={24} />
         </button>
@@ -136,15 +136,15 @@ export default function OrderCards({ onBack }) {
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'center', 
-            background: 'var(--bg-secondary)', 
-            border: '2px solid var(--border-color)', 
-            color: 'var(--text-main)', 
-            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+            background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', 
+            border: 'none', 
+            color: 'white', 
+            boxShadow: '0 10px 25px rgba(59, 130, 246, 0.4)',
             cursor: 'pointer',
             transition: 'all 0.2s ease'
           }}
-          onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.borderColor = 'var(--primary)'; }}
-          onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = 'var(--border-color)'; }}
+          onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(59, 130, 246, 0.6)'; }}
+          onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 10px 25px rgba(59, 130, 246, 0.4)'; }}
         >
           <ArrowRightIcon size={24} />
         </button>

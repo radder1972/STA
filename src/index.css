@@ -751,6 +751,8 @@ body {
 }
 .schema-img img {
   background: transparent;
+  mix-blend-mode: multiply;
+  filter: contrast(1.1) brightness(1.03);
 }
 
 
