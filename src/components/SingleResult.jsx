@@ -55,20 +55,20 @@ const ysqSchemaNamesMap = {
 };
 
 const smiModesMap = {
-  'kk': { name: 'Kwetsbare kind', group: 'KINDMODI' },
-  'rk': { name: 'Razende kind', group: 'KINDMODI' },
-  'ik': { name: 'Impulsieve kind', group: 'KINDMODI' },
-  'ok': { name: 'Ongedisciplineerde kind', group: 'KINDMODI' },
-  'bk': { name: 'Boze kind', group: 'KINDMODI' },
-  'wi': { name: 'Willoze inschikkelijke', group: 'BESCHERMMODI - OVERGAVE' },
-  'ob': { name: 'Onthechte beschermer', group: 'BESCHERMMODI - VERMIJDEN' },
-  'oz': { name: 'Onthechte zelfsusser', group: 'BESCHERMMODI - VERMIJDEN' },
-  'wk': { name: 'Wantrouwende overcontroleerder', group: 'BESCHERMMODI - OMKERING' },
-  'zh': { name: 'Zelfverheerlijker', group: 'BESCHERMMODI - OMKERING' },
-  'pa': { name: 'Pest en aanval', group: 'BESCHERMMODI - OMKERING' },
-  'so': { name: 'Straffende ouder', group: 'DISFUNCTIONELE OUDERMODI' },
-  'vo': { name: 'Veeleisende ouder', group: 'DISFUNCTIONELE OUDERMODI' },
-  'gv': { name: 'Gezonde volwassene', group: 'FUNCTIONELE MODI' }
+  'kk': { name: 'Kwetsbare kind', group: 'Kindmodi' },
+  'rk': { name: 'Razende kind', group: 'Kindmodi' },
+  'ik': { name: 'Impulsieve kind', group: 'Kindmodi' },
+  'ok': { name: 'Ongedisciplineerde kind', group: 'Kindmodi' },
+  'bk': { name: 'Boze kind', group: 'Kindmodi' },
+  'wi': { name: 'Willoze inschikkelijke', group: 'Beschermmodi - Overgave' },
+  'ob': { name: 'Onthechte beschermer', group: 'Beschermmodi - Vermijden' },
+  'oz': { name: 'Onthechte zelfsusser', group: 'Beschermmodi - Vermijden' },
+  'wk': { name: 'Wantrouwende overcontroleerder', group: 'Beschermmodi - Omkering' },
+  'zh': { name: 'Zelfverheerlijker', group: 'Beschermmodi - Omkering' },
+  'pa': { name: 'Pest en aanval', group: 'Beschermmodi - Omkering' },
+  'so': { name: 'Straffende ouder', group: 'Disfunctionele oudermodi' },
+  'vo': { name: 'Veeleisende ouder', group: 'Disfunctionele oudermodi' },
+  'gv': { name: 'Gezonde volwassene', group: 'Functionele modi' }
 };
 
 export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasisbehoeften, onViewModiCategorieen }) {
