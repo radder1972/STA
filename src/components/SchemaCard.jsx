@@ -72,7 +72,7 @@ const SchemaCard = ({
           <CardInnerBorder color={color} />
           <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', padding: `0 ${6 * s}px` }}>
             {title && (
-              <h4 style={{ fontSize: `${0.75 * s}rem`, marginTop: `${12 * s}px`, marginBottom: `${6 * s}px`, lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+              <h4 style={{ fontSize: `${0.75 * s}rem`, marginTop: `${10 * s}px`, marginBottom: `${4 * s}px`, paddingBottom: `${4 * s}px`, lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
                 {title}
               </h4>
             )}
