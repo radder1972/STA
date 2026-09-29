@@ -9,7 +9,8 @@ import SmiVisualizer from './SmiVisualizer'
 import ScoreChart from './ScoreChart'
 import { schemaDescriptions } from '../data/descriptions'
 import { getSchemaImage, getModeImage } from '../utils/images'
-import { getCardColor, CardInnerBorder } from '../utils/colors'
+import { getCardColor } from '../utils/colors'
+import SchemaCard from './SchemaCard'
 import './Visualizers.css'
 
 const basisbehoeftenMap = {
@@ -199,10 +200,19 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
                   </div>
                   {hasImage && (
                     <div style={{ marginBottom: '1rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                      <div className="schema-img playing-card" style={{ position: 'relative', width: '130px', height: '185px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', transform: `rotate(${(i * 7) % 8 - 4}deg)`, boxShadow: '2px 4px 12px rgba(0,0,0,0.4)', border: '4px solid white', background: 'white' }}>
-                        <CardInnerBorder color={cardColor} />
-                        <img src={imgUrl} alt={score.name} style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', transform: score.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
-                      </div>
+                      <SchemaCard
+                        id={score.id}
+                        title={score.name}
+                        description={schemaDescriptions[score.name] || score.name}
+                        src={imgUrl}
+                        color={cardColor}
+                        width="130px"
+                        height="185px"
+                        rotation={(i * 7) % 8 - 4}
+                        imageStyle={{ transform: score.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }}
+                        flipOnClick={true}
+                        style={{ boxShadow: '2px 4px 12px rgba(0,0,0,0.4)', borderRadius: '4px' }}
+                      />
                     </div>
                   )}
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', width: '100%' }}>

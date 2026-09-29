@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { ArrowLeftIcon } from 'lucide-react';
 import { CardInnerBorder } from '../utils/colors';
+import SchemaCard from './SchemaCard';
 import img1 from '../assets/images/modicategorieen/1.png';
 import img2 from '../assets/images/modicategorieen/2.png';
 import imgOvergave from '../assets/images/modicategorieen/coping_overgave.png';
@@ -37,10 +38,16 @@ const ModiCategorieen = ({ onBack }) => {
             Dit zijn de intense, oorspronkelijke emoties en behoeften die iemand als kind ervoer en die in het heden weer opspelen bij een trigger. Voorbeelden zijn het Kwetsbare kind, het Boze kind, het Impulsieve/Ongedisciplineerde kind en het Blije/Gezonde kind.
           </p>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)' }}>
-          <CardInnerBorder color="#34d399" />
-          <img src={img1} alt="Kindmodi" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-        </div>
+        <SchemaCard 
+          id="m1"
+          src={img1}
+          color="#34d399"
+          width="230px"
+          height="330px"
+          rotation={-4}
+          flipOnClick={false}
+          style={{ flexShrink: 0 }}
+        />
       </div>
 
       {/* Categorie 2 */}
@@ -51,10 +58,16 @@ const ModiCategorieen = ({ onBack }) => {
             Dit zijn de geïnternaliseerde, negatieve stemmen en houdingen van belangrijke figuren uit de jeugd. Voorbeelden zijn de Straffende ouder, de Veeleisende ouder en de Schuldinducerende ouder.
           </p>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-2deg)' }}>
-          <CardInnerBorder color="#60a5fa" />
-          <img src={img2} alt="Disfunctionele oudermodi" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-        </div>
+        <SchemaCard 
+          id="m2"
+          src={img2}
+          color="#60a5fa"
+          width="230px"
+          height="330px"
+          rotation={-2}
+          flipOnClick={false}
+          style={{ flexShrink: 0 }}
+        />
       </div>
 
       {/* Categorie 3 */}
@@ -71,18 +84,37 @@ const ModiCategorieen = ({ onBack }) => {
           </ul>
         </div>
         <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', position: 'relative' }}>
-          <div className="schema-img playing-card" style={{ width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(2deg)', zIndex: 1 }}>
-            <CardInnerBorder color="#facc15" />
-            <img src={imgOvergave} alt="Overgave" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-          </div>
-          <div className="schema-img playing-card" style={{ width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)', zIndex: 2, marginTop: '-110px' }}>
-            <CardInnerBorder color="#facc15" />
-            <img src={imgVermijding} alt="Vermijding" style={{ width: '80%', height: '80%', objectFit: 'contain' }} />
-          </div>
-          <div className="schema-img playing-card" style={{ width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(4deg)', zIndex: 3, marginTop: '-110px' }}>
-            <CardInnerBorder color="#facc15" />
-            <img src={imgOvercomp} alt="Overcompensatie" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-          </div>
+          <SchemaCard 
+            id="overgave"
+            src={imgOvergave}
+            color="#facc15"
+            width="230px"
+            height="330px"
+            rotation={2}
+            flipOnClick={false}
+            style={{ zIndex: 1 }}
+          />
+          <SchemaCard 
+            id="vermijding"
+            src={imgVermijding}
+            color="#facc15"
+            width="230px"
+            height="330px"
+            rotation={-4}
+            flipOnClick={false}
+            style={{ zIndex: 2, marginTop: '-110px' }}
+            imageStyle={{ transform: 'scale(0.8)' }}
+          />
+          <SchemaCard 
+            id="overcomp"
+            src={imgOvercomp}
+            color="#facc15"
+            width="230px"
+            height="330px"
+            rotation={4}
+            flipOnClick={false}
+            style={{ zIndex: 3, marginTop: '-110px' }}
+          />
         </div>
       </div>
 
@@ -94,10 +126,16 @@ const ModiCategorieen = ({ onBack }) => {
             Dit is de gebalanceerde, rationele en zorgzame kant. Deze modus neemt de regie, troost het Kwetsbare kind, stelt grenzen aan de disfunctionele oudermodi en vervangt automatische copingmodi door effectieve, bewuste keuzes.
           </p>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)' }}>
-          <CardInnerBorder color="#fb923c" />
-          <img src={img4} alt="De Gezonde Volwassene" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-        </div>
+        <SchemaCard 
+          id="m4"
+          src={img4}
+          color="#fb923c"
+          width="230px"
+          height="330px"
+          rotation={-4}
+          flipOnClick={false}
+          style={{ flexShrink: 0 }}
+        />
       </div>
 
       <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>

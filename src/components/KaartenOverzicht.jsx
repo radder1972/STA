@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ArrowLeftIcon } from './Icons'
-import { getCardColor, CardInnerBorder } from '../utils/colors'
-
+import { getCardColor } from '../utils/colors'
+import SchemaCard from './SchemaCard'
 import imgB1 from '../assets/images/basisbehoeften/1.png'
 import imgB2 from '../assets/images/basisbehoeften/2.png'
 import imgB3 from '../assets/images/basisbehoeften/3.png'
@@ -165,42 +165,18 @@ export default function KaartenOverzicht({ onBack }) {
         const cardColor = card.color || getCardColor(card.type, card.id);
         return (
         <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div className="card-scene">
-            <div className={`card-flip-container`}>
-              
-              <div className="card-face-front schema-img playing-card" style={{ padding: '16px', boxSizing: 'border-box' }}>
-                <CardInnerBorder color={cardColor} />
-                <div style={{ flex: 1, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                  <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...defaultImageStyle, ...card.style }} />
-                </div>
-                <div style={{ fontWeight: 'bold', color: '#333', textAlign: 'center', fontSize: '1rem', lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40px', marginTop: '4px', zIndex: 1 }}>
-                  {card.title}
-                </div>
-              </div>
-              
-              <div 
-                className="card-face-back" 
-                style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', cursor: 'pointer' }}
-                onClick={() => setSelectedCard({ ...card, listName })}
-              >
-                <CardInnerBorder color={cardColor} />
-                <div 
-                  style={{ flex: 1, overflow: 'hidden', marginBottom: '5px', paddingRight: '2px', display: 'flex', flexDirection: 'column' }}
-                >
-                  <h4 style={{ fontSize: '0.85rem', marginTop: '1rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
-                  <p style={{ fontSize: '0.65rem', lineHeight: '1.4', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical' }}>{card.description || 'Geen theorie beschikbaar.'}</p>
-                </div>
-                <button 
-                  className="btn btn-card" 
-                  onClick={(e) => { e.stopPropagation(); e.preventDefault(); setSelectedCard({ ...card, listName }); }}
-                  style={{ fontSize: '0.75rem', padding: '6px 12px', alignSelf: 'center', width: '100%', zIndex: 20, position: 'relative', flexShrink: 0 }}
-                >
-                  <span className="btn-text">Lees theorie & tips</span>
-                </button>
-              </div>
-
-            </div>
-          </div>
+          <SchemaCard
+            id={card.id}
+            title={card.title}
+            description={card.description}
+            src={card.src}
+            color={cardColor}
+            width="200px"
+            height="285px"
+            imageStyle={{ ...defaultImageStyle, ...card.style }}
+            flipOnClick={false}
+            onClick={() => setSelectedCard({ ...card, listName })}
+          />
         </div>
         );
       })}

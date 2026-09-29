@@ -5,6 +5,7 @@ import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Toolti
 import { ArrowRightIcon, LightbulbIcon, HypothesisIcon, ConnectionIcon, MatrixIcon } from './Icons';
 import AiAnalysis from './AiAnalysis';
 import { getCardColor } from '../utils/colors';
+import SchemaCard from './SchemaCard';
 import { getSchemaImage } from '../utils/images';
 import { schemaDescriptions } from '../data/descriptions';
 
@@ -238,38 +239,21 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
               <div key={schema.id} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', borderLeft: `4px solid ${cardColor}`, border: '1px solid var(--border-color)', borderRight: '1px solid var(--border-color)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)', position: 'relative' }}>
                 
                 {schemaImgUrl && (
-                  <div className="card-scene" title="Klik om te draaien voor uitleg, of lees hier de theorie" style={{
-                    position: 'absolute',
-                    top: '-20px',
-                    right: '10px',
-                    width: '130px',
-                    height: '185px',
-                    transform: `rotate(${rotation}deg)`,
-                    zIndex: 10,
-                    cursor: 'pointer'
-                  }} onClick={() => toggleFlip(schema.id)}>
-                    <div className={`card-flip-container ${flippedCards[schema.id] ? 'flipped' : ''}`} style={{ width: '100%', height: '100%' }}>
-                      
-                      <div className="card-face-front schema-img playing-card" style={{ padding: '4px', boxSizing: 'border-box', border: '4px solid white', background: 'white', display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ border: `2px solid ${cardColor}`, borderRadius: '4px', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '4px' }}>
-                          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-                            <img src={schemaImgUrl} alt={schema.name} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }} />
-                          </div>
-                          <div style={{ textAlign: 'center', fontSize: '0.6rem', fontWeight: 'bold', marginTop: '2px', lineHeight: '1.1', height: '16px' }}>{schema.name}</div>
-                        </div>
-                      </div>
-
-                      <div className="card-face-back playing-card" style={{ padding: '4px', boxSizing: 'border-box', border: '4px solid white', background: 'white', display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ border: `2px solid ${cardColor}`, borderRadius: '4px', flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', padding: '6px' }}>
-                          <h4 style={{ fontSize: '0.7rem', marginTop: '0', marginBottom: '0.2rem', lineHeight: '1.1', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{schema.name}</h4>
-                          <p style={{ fontSize: '0.55rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>
-                            {schemaDescriptions[schema.name] || schema.name}
-                          </p>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
+                  <SchemaCard
+                    id={schema.id}
+                    title={schema.name}
+                    description={schemaDescriptions[schema.name] || schema.name}
+                    src={schemaImgUrl}
+                    color={cardColor}
+                    width="130px"
+                    height="185px"
+                    style={{ position: 'absolute', top: '-20px', right: '10px', zIndex: 10 }}
+                    rotation={rotation}
+                    imageStyle={{ transform: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }}
+                    flipOnClick={true}
+                    isFlipped={flippedCards[schema.id]}
+                    onToggleFlip={() => toggleFlip(schema.id)}
+                  />
                 )}
 
                 <div style={{ paddingRight: '150px' }}>

@@ -6,7 +6,7 @@ import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
 import { schemaDescriptions } from '../data/descriptions';
 import { getCardColor, CardInnerBorder } from '../utils/colors';
-
+import SchemaCard from './SchemaCard';
 
 import imgB1 from '../assets/images/basisbehoeften/1.png';
 import imgB2 from '../assets/images/basisbehoeften/2.png';
@@ -134,14 +134,7 @@ const modeCards = Object.keys(modeImages).map(path => {
 
 const healthyAdultCard = { id: 'gv', src: imgM4, title: 'Gezonde volwassene', type: 'mode', description: schemaDescriptions['Gezonde volwassene'], style: { transform: 'scale(1.1)' } };
 
-const formatCardTitle = (title) => {
-  if (!title) return title;
-  const words = title.trim().split(/\s+/);
-  if (words.length === 2) {
-    return <>{words[0]}<br />{words[1]}</>;
-  }
-  return title;
-};
+
 
 const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
   const [flipped, setFlipped] = useState(false);
@@ -158,25 +151,17 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
             <div style={{ position: 'absolute', top: '6px', left: '10px', width: '150px', height: '213px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '12px', zIndex: 0, transform: 'rotate(5deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
           </>
         )}
-        <div className="card-scene" style={{ width: '150px', height: '213px', margin: 0, position: 'relative' }}>
-          <div className={`card-flip-container ${flipped ? 'flipped' : ''}`}>
-            <div className="card-face-front schema-img playing-card" onClick={() => setFlipped(!flipped)} style={{ padding: '12px', boxSizing: 'border-box', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
-              <CardInnerBorder color={cardColor} />
-              <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
-              </div>
-              <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '8px 0 6px 0', lineHeight: '1.2' }}>{formatCardTitle(card.title)}</div>
-            </div>
-            
-            <div className="card-face-back" onClick={() => setFlipped(!flipped)} style={{ display: 'flex', flexDirection: 'column', cursor: 'pointer', padding: '12px' }}>
-              <CardInnerBorder color={cardColor} />
-              <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                <h4 style={{ fontSize: '0.75rem', marginTop: '0.4rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
-                <p style={{ fontSize: '0.6rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie beschikbaar.'}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SchemaCard 
+          id={card.id}
+          title={card.title}
+          description={card.description}
+          src={card.src}
+          color={cardColor}
+          width="150px"
+          height="213px"
+          imageStyle={card.style}
+          flipOnClick={true}
+        />
         {onRemove && (
            <button onClick={onRemove} className="no-print btn-remove-card" style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, padding: 0, boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}>&times;</button>
         )}
@@ -654,24 +639,21 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               {showCardPicker === 'need' ? (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}>
                   {needCards.map((card, idx) => (
-                    <div key={idx} onClick={() => handleSelectCard(card)} className="card-scene picker-card" style={{ width: '160px', height: '228px', margin: 0, cursor: 'pointer' }}>
-                      <div className="card-flip-container" style={{ transition: 'transform 0.2s' }}>
-                        <div className="card-face-front schema-img playing-card" style={{ padding: '8px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}>
-                          <CardInnerBorder color={card.color} />
-                          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                            <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
-                          </div>
-                          <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '6px 0', lineHeight: '1.2', zIndex: 1 }}>{formatCardTitle(card.title)}</div>
-                        </div>
-                        <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '8px' }}>
-                          <CardInnerBorder color={card.color} />
-                          <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                            <h4 style={{ fontSize: '0.75rem', marginTop: '0.4rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
-                            <p style={{ fontSize: '0.6rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <SchemaCard
+                      key={idx}
+                      id={card.id}
+                      title={card.title}
+                      description={card.description}
+                      src={card.src}
+                      color={card.color}
+                      width="160px"
+                      height="228px"
+                      imageStyle={card.style}
+                      flipOnClick={false}
+                      onClick={() => handleSelectCard(card)}
+                      className="picker-card"
+                      style={{ margin: 0 }}
+                    />
                   ))}
                 </div>
               ) : (
@@ -690,24 +672,21 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                         {groupCards.map((card, idx) => {
                           const cardColor = getCardColor(card.type, card.id);
                           return (
-                          <div key={idx} onClick={() => handleSelectCard(card)} className="card-scene picker-card" style={{ width: '160px', height: '228px', margin: 0, cursor: 'pointer' }}>
-                            <div className="card-flip-container" style={{ transition: 'transform 0.2s' }}>
-                              <div className="card-face-front schema-img playing-card" style={{ padding: '8px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}>
-                                <CardInnerBorder color={cardColor} />
-                                <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                                  <img src={card.src} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
-                                </div>
-                                <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '6px 0', lineHeight: '1.2', zIndex: 1 }}>{formatCardTitle(card.title)}</div>
-                              </div>
-                              <div className="card-face-back" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '8px' }}>
-                                <CardInnerBorder color={cardColor} />
-                                <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                                  <h4 style={{ fontSize: '0.75rem', marginTop: '0.4rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{card.title}</h4>
-                                  <p style={{ fontSize: '0.6rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>{card.description || 'Geen theorie.'}</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          <SchemaCard
+                            key={idx}
+                            id={card.id}
+                            title={card.title}
+                            description={card.description}
+                            src={card.src}
+                            color={cardColor}
+                            width="160px"
+                            height="228px"
+                            imageStyle={card.style}
+                            flipOnClick={false}
+                            onClick={() => handleSelectCard(card)}
+                            className="picker-card"
+                            style={{ margin: 0 }}
+                          />
                         )})}
                       </div>
                     </div>

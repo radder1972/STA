@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { ArrowLeftIcon } from 'lucide-react';
 import { CardInnerBorder } from '../utils/colors';
+import SchemaCard from './SchemaCard';
 import img1 from '../assets/images/basisbehoeften/1.png';
 import img2 from '../assets/images/basisbehoeften/2.png';
 import img3 from '../assets/images/basisbehoeften/3.png';
@@ -36,10 +37,16 @@ const Basisbehoeften = ({ onBack }) => {
             Dit is de meest fundamentele behoefte. Het draait om veiligheid, stabiliteit, verzorging en onvoorwaardelijke acceptatie. Een kind moet voelen dat het gewenst is en dat de opvoeders een veilige thuishaven bieden waarop altijd kan worden teruggevallen, zonder angst voor verlating of afwijzing.
           </p>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(2deg)' }}>
-          <CardInnerBorder color="#34d399" />
-          <img src={img1} alt="Veilige hechting" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-        </div>
+        <SchemaCard 
+          id="b1"
+          src={img1}
+          color="#34d399"
+          width="230px"
+          height="330px"
+          rotation={2}
+          flipOnClick={false}
+          style={{ flexShrink: 0 }}
+        />
       </div>
 
       {/* Behoefte 2 */}
@@ -50,10 +57,16 @@ const Basisbehoeften = ({ onBack }) => {
             Dit is de behoefte om je als een onafhankelijk, capabel individu te ontwikkelen. Het gaat om de ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen. Als deze behoefte in de knel komt, voelt iemand zich als volwassene vaak extreem afhankelijk of kwetsbaar.
           </p>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(5deg)' }}>
-          <CardInnerBorder color="#60a5fa" />
-          <img src={img2} alt="Autonomie en competentie" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-        </div>
+        <SchemaCard 
+          id="b2"
+          src={img2}
+          color="#60a5fa"
+          width="230px"
+          height="330px"
+          rotation={5}
+          flipOnClick={false}
+          style={{ flexShrink: 0 }}
+        />
       </div>
 
       {/* Behoefte 3 */}
@@ -64,10 +77,16 @@ const Basisbehoeften = ({ onBack }) => {
             Ieder mens heeft de behoefte om zich vrij uit te drukken. Het kind moet ervaren dat de eigen gevoelens (ook boosheid of verdriet) en behoeften geldig zijn, en niet minder belangrijk zijn dan die van anderen. Wanneer deze behoefte wordt onderdrukt, ontstaat vaak zelfopoffering of onderwerping.
           </p>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(-4deg)' }}>
-          <CardInnerBorder color="#facc15" />
-          <img src={img3} alt="Vrijheid en emoties" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-        </div>
+        <SchemaCard 
+          id="b3"
+          src={img3}
+          color="#facc15"
+          width="230px"
+          height="330px"
+          rotation={-4}
+          flipOnClick={false}
+          style={{ flexShrink: 0 }}
+        />
       </div>
 
       {/* Behoefte 4 */}
@@ -78,10 +97,16 @@ const Basisbehoeften = ({ onBack }) => {
             Er moet ruimte zijn voor plezier, creativiteit en onbezorgdheid. Niet alles hoeft nuttig, perfect of efficiënt te zijn. Deze behoefte beschermt ons tegen meedogenloze normen, overmatige prestatiedruk en het gevoel dat het leven uitsluitend uit plichten bestaat.
           </p>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(5deg)' }}>
-          <CardInnerBorder color="#fb923c" />
-          <img src={img4} alt="Spontaniteit en spel" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-        </div>
+        <SchemaCard 
+          id="b4"
+          src={img4}
+          color="#fb923c"
+          width="230px"
+          height="330px"
+          rotation={5}
+          flipOnClick={false}
+          style={{ flexShrink: 0 }}
+        />
       </div>
 
       {/* Behoefte 5 */}
@@ -92,10 +117,16 @@ const Basisbehoeften = ({ onBack }) => {
             Naast vrijheid heeft een kind kaders nodig om te leren omgaan met frustratie. Dit betekent leren dat je niet altijd je zin kunt krijgen, dat je rekening moet houden met anderen, en dat je discipline moet opbrengen voor taken die minder leuk zijn. Het ontbreken hiervan leidt vaak tot onvoldoende zelfcontrole of veeleisendheid richting anderen.
           </p>
         </div>
-        <div className="schema-img playing-card" style={{ flexShrink: 0, width: '230px', height: '330px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', transform: 'rotate(3deg)' }}>
-          <CardInnerBorder color="#f87171" />
-          <img src={img5} alt="Realistische grenzen" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-        </div>
+        <SchemaCard 
+          id="b5"
+          src={img5}
+          color="#f87171"
+          width="230px"
+          height="330px"
+          rotation={3}
+          flipOnClick={false}
+          style={{ flexShrink: 0 }}
+        />
       </div>
 
       <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
