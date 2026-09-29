@@ -184,6 +184,14 @@ export default function PrintShopExport({ onBack }) {
             size: 64mm 94mm;
             margin: 0;
           }
+          .print-shop-container {
+            padding: 0 !important;
+            background: white !important;
+          }
+          .print-shop-pages {
+            display: block !important;
+            gap: 0 !important;
+          }
         }
       `}</style>
       <div className="no-print" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', background: 'white', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
