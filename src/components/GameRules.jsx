@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowLeftIcon } from './Icons';
-import { Printer, PlayingCards } from 'lucide-react';
+import { ArrowLeftIcon, PlayingCardsIcon } from './Icons';
+import { Printer } from 'lucide-react';
 
 export default function GameRules({ onBack }) {
   const handlePrint = () => {
@@ -42,7 +42,7 @@ export default function GameRules({ onBack }) {
           min-width: 40px;
           width: 40px;
           height: 40px;
-          background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+          background: linear-gradient(135deg, #64748b 0%, #3b82f6 100%);
           color: white;
           border-radius: 50%;
           font-weight: bold;
@@ -76,7 +76,7 @@ export default function GameRules({ onBack }) {
         <button onClick={onBack} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <ArrowLeftIcon size={18} /> Terug naar Start
         </button>
-        <button onClick={handlePrint} className="btn btn-gradient" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <button onClick={handlePrint} className="btn btn-gradient-game" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Printer size={18} /> Print Spelregels
         </button>
       </div>
@@ -91,8 +91,8 @@ export default function GameRules({ onBack }) {
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)'
       }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h1 className="text-gradient" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-            <PlayingCards size={48} color="#3b82f6" /> Het Schema-Spel
+          <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+            <PlayingCardsIcon size={48} useGameGradient={true} /> Het Schema-Spel
           </h1>
           <h2 style={{ color: '#64748b', margin: 0, fontWeight: '500', fontSize: '1.5rem' }}>Van Trigger tot Volwassene</h2>
         </div>

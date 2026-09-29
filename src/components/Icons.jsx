@@ -1,13 +1,13 @@
 import React from 'react';
 
-const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5, color="currentColor", useGradient = false, ...rest }) => (
+const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5, color="currentColor", useGradient = false, useGameGradient = false, ...rest }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     width={size}
     height={size}
     fill="none"
-    stroke={useGradient ? "url(#blueGreenGrad)" : color}
+    stroke={useGameGradient ? "url(#gameGrad)" : (useGradient ? "url(#blueGreenGrad)" : color)}
     strokeWidth={strokeWidth}
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -19,6 +19,10 @@ const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5, colo
       <linearGradient id="blueGreenGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
         <stop offset="0%" stopColor="#6b7280" />
         <stop offset="100%" stopColor="#9ca3af" />
+      </linearGradient>
+      <linearGradient id="gameGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#64748b" />
+        <stop offset="100%" stopColor="#3b82f6" />
       </linearGradient>
     </defs>
     {children}
@@ -231,5 +235,22 @@ export const PlayingCardsIcon = (props) => (
     <path d="M14.832 8.445a1 1 0 00-1.589-.098l-2.075 3.098a1 1 0 000 1.11l2 3a1 1 0 001.664 0l2-3a1 1 0 000-1.11z" />
     <path d="m7.18 20.827-5-11a2 2 0 01.993-2.647L7 5.44" />
     <rect x="7" y="2" width="14" height="20" rx="2" />
+  </IconBase>
+);
+
+export const ScrollTextIcon = (props) => (
+  <IconBase {...props}>
+    <path d="M15 12h-5" />
+    <path d="M15 8h-5" />
+    <path d="M19 17V5a2 2 0 0 0-2-2H4" />
+    <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" />
+  </IconBase>
+);
+
+export const PrinterIcon = (props) => (
+  <IconBase {...props}>
+    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+    <path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6" />
+    <rect x="6" y="14" width="12" height="8" rx="1" />
   </IconBase>
 );

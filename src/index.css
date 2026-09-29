@@ -101,6 +101,19 @@ body {
   box-shadow: 0 6px 20px rgba(107, 114, 128, 0.3);
 }
 
+.btn-gradient-game {
+  background: linear-gradient(to right, #64748b, #3b82f6);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+}
+
+.btn-gradient-game:hover {
+  background: linear-gradient(to right, #475569, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+
 .btn-outline:hover {
   background: rgba(255, 255, 255, 0.05);
   transform: translateY(-2px);
@@ -172,6 +185,12 @@ body {
 
 .text-gradient {
   background: linear-gradient(to right, #6b7280, #9ca3af);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-game {
+  background: linear-gradient(to right, #64748b, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
