@@ -94,6 +94,11 @@ const modeSortOrder = modeGroups.flatMap(g => g.titles);
 
 const formatCardTitle = (title) => {
   if (!title) return title;
+  
+  if (title === 'Kwetsbaarheid voor ziekte en gevaar') {
+    return <>Kwetsbaarheid voor ziekte<br />en gevaar</>;
+  }
+  
   const words = title.trim().split(/\s+/);
   if (words.length === 2) {
     return <>{words[0]}<br />{words[1]}</>;
@@ -222,7 +227,7 @@ export default function PrintShopExport({ onBack }) {
                   <CardInnerBorder color={cardColor} />
                   <div style={{ zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
                     <h4 style={{ margin: '0 0 4mm 0', fontSize: '0.9rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0 }}>
-                      {card.title}
+                      {formatCardTitle(card.title)}
                     </h4>
                     <p style={{ fontSize: '0.75rem', lineHeight: '1.4', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0 }}>
                       {card.description}
