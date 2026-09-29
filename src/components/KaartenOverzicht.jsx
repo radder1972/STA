@@ -97,11 +97,11 @@ export default function KaartenOverzicht({ onBack }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const schemaCards = [
-    { src: imgB1, title: '1. Veilige hechting', description: basisbehoeftenText['1. Veilige hechting'], color: '#60a5fa' }, // Domein 1 -> Blauw
-    { src: imgB2, title: '2. Autonomie', description: basisbehoeftenText['2. Autonomie'], color: '#34d399' }, // Domein 2 -> Groen
-    { src: imgB3, title: '3. Vrije expressie', description: basisbehoeftenText['3. Vrije expressie'], color: '#facc15' }, // Domein 4 -> Geel
-    { src: imgB4, title: '4. Spontaniteit en spel', description: basisbehoeftenText['4. Spontaniteit en spel'], color: '#f87171' }, // Domein 5 -> Rood
-    { src: imgB5, title: '5. Realistische grenzen', description: basisbehoeftenText['5. Realistische grenzen'], color: '#fb923c' }, // Domein 3 -> Oranje
+    { src: imgB1, title: 'Veilige hechting', description: basisbehoeftenText['1. Veilige hechting'], color: '#60a5fa' }, // Domein 1 -> Blauw
+    { src: imgB2, title: 'Autonomie', description: basisbehoeftenText['2. Autonomie'], color: '#34d399' }, // Domein 2 -> Groen
+    { src: imgB3, title: 'Vrije expressie', description: basisbehoeftenText['3. Vrije expressie'], color: '#facc15' }, // Domein 4 -> Geel
+    { src: imgB4, title: 'Spontaniteit en spel', description: basisbehoeftenText['4. Spontaniteit en spel'], color: '#f87171' }, // Domein 5 -> Rood
+    { src: imgB5, title: 'Realistische grenzen', description: basisbehoeftenText['5. Realistische grenzen'], color: '#fb923c' }, // Domein 3 -> Oranje
   ]
 
   const modiCards = [

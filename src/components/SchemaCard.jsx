@@ -56,7 +56,7 @@ const SchemaCard = ({
             <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />
           </div>
           {title && (
-            <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '8px 0 2px 0', lineHeight: '1.2' }}>
+            <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '4px 0 16px 0', lineHeight: '1.2' }}>
               {formatCardTitle(title)}
             </div>
           )}
