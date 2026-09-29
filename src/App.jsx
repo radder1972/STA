@@ -85,7 +85,7 @@ function App() {
       <button 
         onClick={toggleTheme} 
         className="btn btn-outline no-print" 
-        style={{ position: 'absolute', top: '1rem', right: '1rem', padding: '10px', borderRadius: '50%', zIndex: 100 }}
+        style={{ position: 'absolute', top: '1rem', right: '1rem', width: '44px', height: '44px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', zIndex: 100 }}
         title="Toggle Theme"
       >
         {theme === 'dark' ? <SunIcon size={20} useGradient={true} /> : <MoonIcon size={20} useGradient={true} />}
