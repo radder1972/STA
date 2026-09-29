@@ -106,36 +106,52 @@ export default function GameRules({ onBack }) {
           </p>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
-            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
-              <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>S</div>
-                Schema-kaarten
-              </div>
-              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(18 stuks) Tonen de hardnekkige patronen. De kleur van de kaart geeft aan binnen welk <strong>Schema Domein</strong> de kaart valt.</div>
-            </div>
-            
-            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
-              <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>M</div>
-                Modus-kaarten
-              </div>
-              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(14 stuks) Tonen actuele gemoedstoestanden. Gekleurd naar de specifieke <strong>Modus Categorie</strong> (bijv. Kindmodi of Copingmodi).</div>
-            </div>
-
-            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            {/* B: Basisbehoeften */}
+            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', position: 'relative' }}>
               <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>B</div>
                 Basisbehoeften
               </div>
               <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(5 stuks) Vormen de kern van de therapie. Ze delen hun kleur met de bijbehorende Schema Domeinen.</div>
+              <div style={{ display: 'flex', gap: '4px', marginTop: '12px' }}>
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f97316' }}></div>
+              </div>
+            </div>
+
+            {/* S: Schema's */}
+            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', position: 'relative' }}>
+              <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>S</div>
+                Schema-kaarten
+              </div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(18 stuks) Tonen de hardnekkige patronen. De kleur van de kaart geeft aan binnen welk <strong>Schema Domein</strong> de kaart valt.</div>
+              <div style={{ display: 'flex', gap: '4px', marginTop: '12px' }}>
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f97316' }}></div>
+              </div>
             </div>
             
-            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            {/* M: Modi */}
+            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', position: 'relative' }}>
+              <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>M</div>
+                Modus-kaarten
+              </div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(14 stuks) Tonen actuele gemoedstoestanden. Gekleurd naar de specifieke <strong>Modus Categorie</strong> (bijv. Kindmodi of Copingmodi).</div>
+              <div style={{ display: 'flex', gap: '4px', marginTop: '12px' }}>
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f97316' }}></div>
+              </div>
+            </div>
+
+            {/* C: Categorieën */}
+            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', position: 'relative' }}>
               <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>C</div>
                 Categorie-kaarten
               </div>
               <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(6 stuks) De Modi Categorieën (zoals Kindmodi, Oudermodi of specifieke Coping). Vaak gebruikt om overkoepelend te clusteren.</div>
+              <div style={{ display: 'flex', gap: '4px', marginTop: '12px' }}>
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f97316' }}></div>
+              </div>
             </div>
           </div>
           
