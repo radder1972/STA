@@ -10,6 +10,7 @@ import PrintShopExport from './components/PrintShopExport'
 import HomePrintExport from './components/HomePrintExport'
 import GameRules from './components/GameRules'
 import GamePortal from './components/GamePortal'
+import OrderCards from './components/OrderCards'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 import packageJson from '../package.json'
@@ -28,6 +29,7 @@ function App() {
     if (hash === 'spelregels') return 'game-rules'
     if (hash === 'theoriekaarten') return 'kaartenoverzicht'
     if (hash === 'print-shop') return 'print-shop'
+    if (hash === 'bestel-kaarten') return 'order-cards'
     return 'home'
   })
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState(null)
@@ -43,6 +45,7 @@ function App() {
       else if (hash === 'spelregels') setCurrentView('game-rules')
       else if (hash === 'theoriekaarten') setCurrentView('kaartenoverzicht')
       else if (hash === 'print-shop') setCurrentView('print-shop')
+      else if (hash === 'bestel-kaarten') setCurrentView('order-cards')
       else setCurrentView('home')
     }
     
@@ -57,6 +60,7 @@ function App() {
     else if (currentView === 'game-rules') { hash = 'spelregels'; isGameView = true }
     else if (currentView === 'kaartenoverzicht') { hash = 'theoriekaarten'; isGameView = true }
     else if (currentView === 'print-shop') { hash = 'print-shop'; isGameView = true }
+    else if (currentView === 'order-cards') { hash = 'bestel-kaarten'; isGameView = true }
     
     const faviconLink = document.querySelector("link[rel~='icon']")
     if (faviconLink) {
@@ -197,9 +201,13 @@ function App() {
           onViewKaartenOverzicht={() => setCurrentView('kaartenoverzicht')}
           onViewGameRules={() => setCurrentView('game-rules')}
           onViewPrintShop={() => setCurrentView('print-shop')}
+          onViewOrderCards={() => setCurrentView('order-cards')}
         />
       )}
-      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'print-shop' && currentView !== 'home-print-export' && currentView !== 'game-rules' && currentView !== 'game-portal' && (
+      {currentView === 'order-cards' && (
+        <OrderCards onBack={() => setCurrentView('game-portal')} />
+      )}
+      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'print-shop' && currentView !== 'home-print-export' && currentView !== 'game-rules' && currentView !== 'game-portal' && currentView !== 'order-cards' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
           v{packageJson.version}
         </div>

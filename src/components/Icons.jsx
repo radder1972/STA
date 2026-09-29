@@ -265,3 +265,18 @@ export const DicesIcon = (props) => (
     <path d="M18 9h.01" />
   </IconBase>
 );
+
+export const ShoppingCartIcon = (props) => (
+  <IconBase {...props}>
+    <circle cx="8" cy="21" r="1" />
+    <circle cx="19" cy="21" r="1" />
+    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+  </IconBase>
+);
+
+export const MailIcon = (props) => (
+  <IconBase {...props}>
+    <rect width="20" height="16" x="2" y="4" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </IconBase>
+);

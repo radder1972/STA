@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { ArrowLeftIcon, PlayingCardsIcon, ScrollTextIcon, PrinterIcon, CardsIcon } from './Icons';
+import { ArrowLeftIcon, PlayingCardsIcon, ScrollTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon } from './Icons';
 import packageJson from '../../package.json';
 
-export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameRules, onViewPrintShop }) {
+export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameRules, onViewPrintShop, onViewOrderCards }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -53,7 +53,7 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border-color)' }}>
           <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
             <PrinterIcon size={32} useGameGradient={true} />
           </div>
@@ -62,6 +62,19 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
             <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Print de kaarten zelf of stuur een bestand naar de drukker om fysiek met de theoriekaarten aan de slag te gaan.</p>
             <button onClick={onViewPrintShop} className="btn btn-outline">
               Bekijk print opties
+            </button>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
+          <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
+            <ShoppingCartIcon size={32} useGameGradient={true} />
+          </div>
+          <div style={{ flex: 1 }}>
+            <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.5rem' }}>Fysieke Kaarten Bestellen</h2>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Wil je liever een professioneel, fysiek kaartendeck in handen? Bekijk hier de mogelijkheden om een set te bestellen.</p>
+            <button onClick={onViewOrderCards} className="btn btn-gradient-game">
+              Kaarten bestellen
             </button>
           </div>
         </div>
