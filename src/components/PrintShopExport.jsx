@@ -219,12 +219,15 @@ export default function PrintShopExport({ onBack }) {
               {/* ACHTERKANT */}
               <div className="print-shop-page card-back" style={{ background: 'white' }}>
                 <div className="print-shop-bleed" style={{ position: 'relative', display: 'flex', flexDirection: 'column', padding: '8mm', justifyContent: 'flex-start', alignItems: 'center', overflow: 'hidden', width: '100%', height: '100%', boxSizing: 'border-box' }}>
-                  <h4 style={{ margin: '0 0 4mm 0', fontSize: '0.9rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0 }}>
-                    {card.title}
-                  </h4>
-                  <p style={{ fontSize: '0.75rem', lineHeight: '1.4', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0 }}>
-                    {card.description}
-                  </p>
+                  <CardInnerBorder color={cardColor} />
+                  <div style={{ zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+                    <h4 style={{ margin: '0 0 4mm 0', fontSize: '0.9rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0 }}>
+                      {card.title}
+                    </h4>
+                    <p style={{ fontSize: '0.75rem', lineHeight: '1.4', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0 }}>
+                      {card.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             </React.Fragment>
