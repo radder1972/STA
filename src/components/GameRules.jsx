@@ -108,39 +108,31 @@ export default function GameRules({ onBack }) {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
             <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
               <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#ef4444', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>S</div>
+                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>S</div>
                 Schema-kaarten
               </div>
-              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>Gekleurd naar hun bijbehorende Schema Domein. Ze tonen de hardnekkige patronen.</div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(18 stuks) Tonen de hardnekkige patronen. De kleur van de kaart geeft aan binnen welk <strong>Schema Domein</strong> de kaart valt.</div>
             </div>
             
             <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
               <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#3b82f6', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>M</div>
+                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>M</div>
                 Modus-kaarten
               </div>
-              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>Gekleurd naar de Modus Categorie (bijv. Kindmodi, Oudermodi). Tonen actuele gemoedstoestanden.</div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(14 stuks) Tonen actuele gemoedstoestanden. Gekleurd naar de specifieke <strong>Modus Categorie</strong> (bijv. Kindmodi of Copingmodi).</div>
             </div>
 
             <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
               <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#10b981', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>B</div>
+                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>B</div>
                 Basisbehoeften
               </div>
-              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>Vormen de kern van de therapie. Het doel is vaak om terug te werken naar een vervulde basisbehoefte.</div>
-            </div>
-            
-            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
-              <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#f59e0b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>C</div>
-                Coping-kaarten
-              </div>
-              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>Laten zien op welke manieren cliënten (onbewust) met hun schema's proberen om te gaan.</div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(5 stuks) Vormen de kern van de therapie. Ze delen hun kleur met de bijbehorende Schema Domeinen.</div>
             </div>
           </div>
           
-          <p style={{ fontSize: '1.05rem', lineHeight: '1.6', color: '#0f172a', margin: 0, padding: '1rem', background: '#f1f5f9', borderRadius: '8px' }}>
-            <strong>💡 Kleur bekennen:</strong> Kleuren zijn essentieel in dit spel. Ze helpen je in één oogopslag te zien in welk "Domein" je zit. Tijdens het spelen is een veelgebruikte regel dat je kaarten met <strong>dezelfde kleur</strong> óf <strong>dezelfde letter</strong> op elkaar mag leggen!
+          <p style={{ fontSize: '1.05rem', lineHeight: '1.6', color: '#0f172a', margin: 0, padding: '1.5rem', background: '#f1f5f9', borderRadius: '8px' }}>
+            <strong>💡 Kleur bekennen:</strong> De kleur van een kaart vertelt je direct bij welk "Domein" de kaart hoort, ongeacht of het een S, M of B kaart is. Zo zijn kaarten uit het domein <em>Onverbondenheid/Afwijzing</em> en de basisbehoefte <em>Veilige hechting</em> bijvoorbeeld aan elkaar gelinkt via dezelfde kleur! Tijdens het spelen mag je kaarten met <strong>dezelfde kleur</strong> óf <strong>dezelfde letter</strong> op elkaar leggen.
           </p>
         </div>
         
@@ -149,7 +141,7 @@ export default function GameRules({ onBack }) {
             <DicesIcon size={24} useGameGradient={true} /> Voorbereiding
           </h3>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: '#475569', margin: 0 }}>
-            Schud alle 42 kaarten en deel ze uit aan de spelers. Leg één startkaart open in het midden van de tafel (bij voorkeur een Schema of een Basisbehoefte).
+            Schud de stapel van 37 theoriekaarten (18 S, 14 M, 5 B) en deel ze uit aan de spelers. Leg één startkaart open in het midden van de tafel (bij voorkeur een Schema of een Basisbehoefte).
           </p>
         </div>
 
@@ -162,7 +154,7 @@ export default function GameRules({ onBack }) {
             <div className="rule-number">1</div>
             <div>
               <h4 className="rule-title">Matchen</h4>
-              <p className="rule-text">Je mag een kaart spelen als deze dezelfde <strong>Kleur</strong> (Domein) óf dezelfde <strong>Letter</strong> (Type: S, M, B of C) heeft als de bovenste kaart op de aflegstapel.</p>
+              <p className="rule-text">Je mag een kaart spelen als deze dezelfde <strong>Kleur</strong> (Domein) óf dezelfde <strong>Letter</strong> (Type: S, M of B) heeft als de bovenste kaart op de aflegstapel.</p>
             </div>
           </div>
 
