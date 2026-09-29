@@ -11,8 +11,17 @@ const formatCardTitle = (title) => {
   return title;
 };
 
+const getCardTypeLetter = (type) => {
+  if (type === 'schema') return 'S';
+  if (type === 'mode') return 'M';
+  if (type === 'basisbehoefte') return 'B';
+  if (type === 'modicategorie') return 'C';
+  return '';
+};
+
 const SchemaCard = ({ 
   id, 
+  type, 
   title, 
   description, 
   src, 
@@ -60,6 +69,18 @@ const SchemaCard = ({
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
             <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />
           </div>
+          {type && getCardTypeLetter(type) && (
+            <>
+              <div style={{ position: 'absolute', top: `${6 * s}px`, left: `${6 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: `${0.7 * s}rem`, color, lineHeight: 1.1, zIndex: 10 }}>
+                <span>{getCardTypeLetter(type)}</span>
+                <span style={{ fontSize: `${0.8 * s}rem` }}>●</span>
+              </div>
+              <div style={{ position: 'absolute', bottom: `${6 * s}px`, right: `${6 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: `${0.7 * s}rem`, color, transform: 'rotate(180deg)', lineHeight: 1.1, zIndex: 10 }}>
+                <span>{getCardTypeLetter(type)}</span>
+                <span style={{ fontSize: `${0.8 * s}rem` }}>●</span>
+              </div>
+            </>
+          )}
           {title && (
             <div style={{ textAlign: 'center', fontSize: `${0.75 * s}rem`, fontWeight: 'bold', margin: `${4 * s}px 0 ${16 * s}px 0`, lineHeight: '1.2' }}>
               {formatCardTitle(title)}

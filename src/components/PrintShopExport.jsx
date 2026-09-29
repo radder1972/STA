@@ -232,6 +232,18 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '8mm 6mm 2mm 6mm' }}>
                         <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                       </div>
+                      {card.type && getCardTypeLetter(card.type) && (
+                        <>
+                          <div style={{ position: 'absolute', top: '1.5mm', left: '1.5mm', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: '10px', color: cardColor, lineHeight: 1.1, zIndex: 10 }}>
+                            <span>{getCardTypeLetter(card.type)}</span>
+                            <span style={{ fontSize: '12px' }}>●</span>
+                          </div>
+                          <div style={{ position: 'absolute', bottom: '1.5mm', right: '1.5mm', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: '10px', color: cardColor, transform: 'rotate(180deg)', lineHeight: 1.1, zIndex: 10 }}>
+                            <span>{getCardTypeLetter(card.type)}</span>
+                            <span style={{ fontSize: '12px' }}>●</span>
+                          </div>
+                        </>
+                      )}
                       {card.title && (
                         <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold', margin: '2mm 0 10mm 0', lineHeight: '1.2', color: 'black' }}>
                           {formatCardTitle(card.title)}

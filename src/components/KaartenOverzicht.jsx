@@ -167,6 +167,7 @@ export default function KaartenOverzicht({ onBack }) {
         <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <SchemaCard
             id={card.id}
+            type={card.type}
             title={card.title}
             description={card.description}
             src={card.src}
