@@ -74,13 +74,19 @@ const SchemaCard = ({
         {/* Front */}
         <div className="card-face-front schema-img playing-card" onClick={handleFlip} style={{ padding: '12px', boxSizing: 'border-box', cursor: flipOnClick || onClick ? 'pointer' : 'default', display: 'flex', flexDirection: 'column', background: 'white' }}>
           <CardInnerBorder color={color} />
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: src ? `${28 * s}px ${8 * s}px 0 ${8 * s}px` : '0' }}>
             {src && <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />}
           </div>
-          {type && getCardTypeLetter(type) && (
+          {type && getCardTypeLetter(type) && !src && (
               <div style={{ position: 'absolute', top: `${14 * s}px`, left: `${14 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
                 <span style={{ fontSize: `${1.2 * s}rem` }}>{getCardTypeLetter(type)}</span>
                 <span style={{ fontSize: `${0.35 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{getCardTypeLabel(type)}</span>
+              </div>
+          )}
+          {type && getCardTypeLetter(type) && src && (
+              <div style={{ position: 'absolute', top: `${10 * s}px`, left: `${12 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
+                <span style={{ fontSize: `${1.0 * s}rem` }}>{getCardTypeLetter(type)}</span>
+                <span style={{ fontSize: `${0.3 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{getCardTypeLabel(type)}</span>
               </div>
           )}
           {title && (
