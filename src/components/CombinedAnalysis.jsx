@@ -224,12 +224,32 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
             const medalNames = ['#1', '#2', '#3'];
             const medalName = medalNames[index] || `#${index + 1}`;
             const schemaImgUrl = getSchemaImage(schema.id);
+            const rotations = [12, -8, 15];
+            const rotation = rotations[index % 3];
 
             return (
-              <div key={schema.id} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', borderLeft: `4px solid ${cardColor}`, border: '1px solid var(--border-color)', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '4px', background: cardColor }}></div>
+              <div key={schema.id} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', borderLeft: `4px solid ${cardColor}`, border: '1px solid var(--border-color)', borderRight: '1px solid var(--border-color)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)', position: 'relative' }}>
                 {schemaImgUrl && (
-                  <img src={schemaImgUrl} alt={schema.name} style={{ position: 'absolute', top: '1rem', right: '1.5rem', width: '80px', height: 'auto', opacity: 0.9, pointerEvents: 'none' }} />
+                  <div style={{
+                    position: 'absolute',
+                    top: '-15px',
+                    right: '-10px',
+                    width: '70px',
+                    height: '100px',
+                    background: '#fff',
+                    borderRadius: '6px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.1)',
+                    border: '1px solid #e2e8f0',
+                    padding: '4px',
+                    boxSizing: 'border-box',
+                    transform: `rotate(${rotation}deg)`,
+                    pointerEvents: 'none',
+                    zIndex: 10
+                  }}>
+                    <div style={{ border: `1.5px solid ${cardColor}`, borderRadius: '4px', height: '100%', padding: '2px', boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <img src={schemaImgUrl} alt={schema.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    </div>
+                  </div>
                 )}
                 <h4 style={{ color: cardColor, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', position: 'relative', zIndex: 1 }}>
                   <span style={{ background: '#94a3b8', color: '#fff', padding: '2px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 'bold', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{medalName}</span>
