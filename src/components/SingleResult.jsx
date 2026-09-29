@@ -211,7 +211,6 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
                         rotation={(i * 7) % 8 - 4}
                         imageStyle={{ transform: score.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }}
                         flipOnClick={true}
-                        style={{ boxShadow: '2px 4px 12px rgba(0,0,0,0.4)', borderRadius: '4px' }}
                       />
                     </div>
                   )}
