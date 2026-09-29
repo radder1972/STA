@@ -58,13 +58,32 @@ export default function OrderCards({ onBack }) {
         </button>
       </div>
 
-      <div style={{ textAlign: 'center', marginBottom: '2rem', maxWidth: '800px', position: 'relative', zIndex: 10 }}>
+      <div style={{ textAlign: 'center', marginBottom: '3rem', maxWidth: '800px', position: 'relative', zIndex: 10 }}>
         <h1 className="text-gradient-game" style={{ fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '1rem' }}>
           <ShoppingCartIcon size={48} useGameGradient={true} /> Kaarten Bestellen
         </h1>
-        <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: 'var(--text-main)' }}>
-          Binnenkort is het mogelijk om hier direct een professioneel gedrukte set van Het Schematherapie Spel te bestellen. Bekijk hieronder alvast alle kaarten!
+        <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: 'var(--text-main)', marginBottom: '3rem' }}>
+          Binnenkort is het mogelijk om hier direct een professioneel gedrukte set van Het Schematherapie Spel te bestellen. Deze hoogwaardige set is de perfecte aanvulling voor je praktijk.
         </p>
+        
+        {/* Product Photo */}
+        <div style={{
+          width: '100%',
+          borderRadius: '24px',
+          overflow: 'hidden',
+          boxShadow: '0 25px 50px rgba(0,0,0,0.2)',
+          marginBottom: '3rem',
+          border: '1px solid var(--border-color)',
+          background: 'white'
+        }}>
+          <img 
+            src="/images/product_photo.jpg" 
+            alt="Fysieke set van Het Schematherapie Spel" 
+            style={{ width: '100%', height: 'auto', display: 'block' }} 
+          />
+        </div>
+
+        <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', color: 'var(--text-main)' }}>Bekijk alvast de interactieve digitale kaarten:</h3>
       </div>
 
       {/* Interactive Single Card Carousel */}
