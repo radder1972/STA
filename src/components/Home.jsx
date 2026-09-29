@@ -274,10 +274,10 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
 
       <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-main)', maxWidth: '600px', margin: '4rem auto 2rem auto', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.05rem' }}>
-          <InfoIcon size={24} useGradient={true} /> Meer weten over Schematherapie?
+          🃏 Speel het Schematherapie Spel
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
-          Wilt u meer achtergrondinformatie over de theorie achter schema's en modi, of zoekt u een geregistreerde behandelaar? Bezoek dan de officiële website van de <strong>Nederlandse Vereniging voor Schematherapie</strong>.
+          Gebruik de theoriekaarten om het patroon van trigger tot gezonde volwassene inzichtelijk te maken en interactief met schema's en modi te werken.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
           <button 
@@ -288,20 +288,31 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg> Bekijk theoriekaarten
           </button>
           <button 
+            onClick={onViewGameRules}
+            className="btn btn-gradient"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            🃏 Spelregels
+          </button>
+          <button 
             onClick={onViewPrintShop}
             className="btn btn-outline"
             style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"></path><path d="m3 9 2.25-2.25a1.5 1.5 0 0 1 2.1 0L9.6 9l2.25-2.25a1.5 1.5 0 0 1 2.1 0L16.2 9l2.25-2.25a1.5 1.5 0 0 1 2.1 0L21 9"></path></svg>
-            Print Export
+            Kaarten Printen
           </button>
-          <button 
-            onClick={onViewGameRules}
-            className="btn btn-outline"
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#10b981', borderColor: '#10b981' }}
-          >
-            🃏 Spelregels
-          </button>
+        </div>
+      </div>
+
+      <div style={{ marginTop: '2rem', textAlign: 'center', color: 'var(--text-main)', maxWidth: '600px', margin: '2rem auto 2rem auto', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
+        <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.05rem' }}>
+          <InfoIcon size={24} useGradient={true} /> Meer weten over Schematherapie?
+        </p>
+        <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
+          Wilt u meer achtergrondinformatie over de theorie achter schema's en modi, of zoekt u een geregistreerde behandelaar? Bezoek dan de officiële website van de <strong>Nederlandse Vereniging voor Schematherapie</strong>.
+        </p>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
           <a 
             href="https://www.schematherapie.nl/home" 
             target="_blank" 
