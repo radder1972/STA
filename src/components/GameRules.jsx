@@ -129,10 +129,18 @@ export default function GameRules({ onBack }) {
               </div>
               <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(5 stuks) Vormen de kern van de therapie. Ze delen hun kleur met de bijbehorende Schema Domeinen.</div>
             </div>
+            
+            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+              <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>C</div>
+                Categorie-kaarten
+              </div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(6 stuks) De Modi Categorieën (zoals Kindmodi, Oudermodi of specifieke Coping). Vaak gebruikt om overkoepelend te clusteren.</div>
+            </div>
           </div>
           
           <p style={{ fontSize: '1.05rem', lineHeight: '1.6', color: '#0f172a', margin: 0, padding: '1.5rem', background: '#f1f5f9', borderRadius: '8px' }}>
-            <strong>💡 Kleur bekennen:</strong> De kleur van een kaart vertelt je direct bij welk "Domein" de kaart hoort, ongeacht of het een S, M of B kaart is. Zo zijn kaarten uit het domein <em>Onverbondenheid/Afwijzing</em> en de basisbehoefte <em>Veilige hechting</em> bijvoorbeeld aan elkaar gelinkt via dezelfde kleur! Tijdens het spelen mag je kaarten met <strong>dezelfde kleur</strong> óf <strong>dezelfde letter</strong> op elkaar leggen.
+            <strong>💡 Kleur bekennen:</strong> De kleur van een kaart vertelt je direct bij welk "Domein" de kaart hoort, ongeacht of het een S, M, B of C kaart is. Zo zijn kaarten uit het domein <em>Onverbondenheid/Afwijzing</em> en de basisbehoefte <em>Veilige hechting</em> bijvoorbeeld aan elkaar gelinkt via dezelfde kleur! Tijdens het spelen mag je kaarten met <strong>dezelfde kleur</strong> óf <strong>dezelfde letter</strong> op elkaar leggen.
           </p>
         </div>
         
@@ -141,7 +149,7 @@ export default function GameRules({ onBack }) {
             <DicesIcon size={24} useGameGradient={true} /> Voorbereiding
           </h3>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: '#475569', margin: 0 }}>
-            Schud de stapel van 37 theoriekaarten (18 S, 14 M, 5 B) en deel ze uit aan de spelers. Leg één startkaart open in het midden van de tafel (bij voorkeur een Schema of een Basisbehoefte).
+            Schud de stapel van 43 theoriekaarten (18 S, 14 M, 5 B, 6 C) en deel ze uit aan de spelers. Leg één startkaart open in het midden van de tafel (bij voorkeur een Schema of een Basisbehoefte).
           </p>
         </div>
 
@@ -154,7 +162,7 @@ export default function GameRules({ onBack }) {
             <div className="rule-number">1</div>
             <div>
               <h4 className="rule-title">Matchen</h4>
-              <p className="rule-text">Je mag een kaart spelen als deze dezelfde <strong>Kleur</strong> (Domein) óf dezelfde <strong>Letter</strong> (Type: S, M of B) heeft als de bovenste kaart op de aflegstapel.</p>
+              <p className="rule-text">Je mag een kaart spelen als deze dezelfde <strong>Kleur</strong> (Domein) óf dezelfde <strong>Letter</strong> (Type: S, M, B of C) heeft als de bovenste kaart op de aflegstapel.</p>
             </div>
           </div>
 
