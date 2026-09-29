@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeftIcon, PlayingCardsIcon } from './Icons';
+import { ArrowLeftIcon, PlayingCardsIcon, ScrollTextIcon, DicesIcon, LightbulbIcon } from './Icons';
 import { Printer } from 'lucide-react';
 
 export default function GameRules({ onBack }) {
@@ -99,7 +99,7 @@ export default function GameRules({ onBack }) {
         
         <div style={{ marginBottom: '3rem', background: '#f8fafc', borderRadius: '16px', padding: '2rem', border: '1px solid #e2e8f0' }}>
           <h3 style={{ color: '#0f172a', margin: '0 0 1rem 0', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span style={{ fontSize: '1.5rem' }}>🎲</span> Voorbereiding
+            <DicesIcon size={24} useGameGradient={true} /> Voorbereiding
           </h3>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: '#475569', margin: 0 }}>
             Schud alle 42 kaarten en deel ze uit aan de spelers. Leg één startkaart open in het midden van de tafel (bij voorkeur een Schema of een Basisbehoefte).
@@ -108,7 +108,7 @@ export default function GameRules({ onBack }) {
 
         <div style={{ marginBottom: '2rem' }}>
           <h3 style={{ color: '#0f172a', margin: '0 0 2rem 0', fontSize: '1.75rem', display: 'flex', alignItems: 'center', gap: '12px', borderBottom: '2px solid #e2e8f0', paddingBottom: '1rem' }}>
-            <span style={{ fontSize: '1.75rem' }}>📜</span> De Regels
+            <ScrollTextIcon size={28} useGameGradient={true} /> De Regels
           </h3>
           
           <div className="rule-box">
@@ -157,7 +157,9 @@ export default function GameRules({ onBack }) {
         </div>
         
         <div style={{ marginTop: '4rem', padding: '2rem', background: '#ecfdf5', borderRadius: '16px', borderLeft: '6px solid #10b981', display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-          <div style={{ fontSize: '2.5rem' }}>💡</div>
+          <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <LightbulbIcon size={32} useGameGradient={true} />
+          </div>
           <p style={{ margin: 0, fontStyle: 'italic', color: '#065f46', lineHeight: '1.7', fontSize: '1.1rem' }}>
             <strong>Let op:</strong> Dit spel is bedoeld als een speelse, interactieve manier om schema's, modi en basisbehoeften te verkennen en te bespreken. De nadruk ligt op de <strong>dialoog</strong> (het uitleggen van de verbindingen) in plaats van alleen het winnen.
           </p>
