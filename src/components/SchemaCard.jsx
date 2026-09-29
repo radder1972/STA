@@ -40,10 +40,10 @@ const getCardTypeLetter = (type) => {
 };
 
 const getCardTypeLabel = (type) => {
-  if (type === 'schema') return "Schema's";
-  if (type === 'mode') return "Modi";
-  if (type === 'basisbehoefte') return "Basisbehoeften";
-  if (type === 'modicategorie') return "Categorieën";
+  if (type === 'schema') return "Schema";
+  if (type === 'mode') return "Modus";
+  if (type === 'basisbehoefte') return "Basisbehoefte";
+  if (type === 'modicategorie') return "Categorie";
   return '';
 };
 
@@ -98,15 +98,15 @@ const SchemaCard = ({
             {src && <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />}
           </div>
           {type && getCardTypeLetter(type) && !src && (
-              <div style={{ position: 'absolute', top: `${14 * s}px`, left: `${14 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
+              <div style={{ position: 'absolute', top: `${14 * s}px`, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
                 <span style={{ fontSize: `${1.2 * s}rem` }}>{getCardTypeLetter(type)}</span>
-                <span style={{ fontSize: `${0.35 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{getCardTypeLabel(type)}</span>
+                <span style={{ fontSize: `${0.35 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black' }}>{getCardTypeLabel(type)}</span>
               </div>
           )}
           {type && getCardTypeLetter(type) && src && (
-              <div style={{ position: 'absolute', top: `${10 * s}px`, left: `${12 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
+              <div style={{ position: 'absolute', top: `${10 * s}px`, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
                 <span style={{ fontSize: `${1.0 * s}rem` }}>{getCardTypeLetter(type)}</span>
-                <span style={{ fontSize: `${0.3 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{getCardTypeLabel(type)}</span>
+                <span style={{ fontSize: `${0.3 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black' }}>{getCardTypeLabel(type)}</span>
               </div>
           )}
           {title && (
