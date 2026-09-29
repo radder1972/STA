@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon, ShoppingCartIcon, MailIcon } from './Icons';
 import SchemaCard from './SchemaCard';
-import { ysqSchemaNamesMap, smiModesMap, basisbehoeftenToSchemas, categorieToModi, categorieText } from '../data/cards';
+import { ysqSchemaNamesMap, smiModesMap, basisbehoeftenToSchemas, categorieToModi, categorieText, basisbehoeftenText } from '../data/cards';
 import { schemaDescriptions } from '../data/descriptions';
 import { getCardColor } from '../utils/colors';
 
@@ -33,7 +33,7 @@ export default function OrderCards({ onBack }) {
       title,
       src: `/images/basisbehoeften/${index + 1}.png`,
       color: getCardColor('basisbehoefte', title.toLowerCase().replace(/\s+/g, '-')),
-      description: schemaDescriptions[title] || ''
+      description: basisbehoeftenText[title] || ''
     })),
     ...Object.keys(categorieToModi).map(title => {
       let img = '';
