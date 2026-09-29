@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { ArrowLeftIcon } from './Icons';
-import { PlayingCards, ScrollText, Printer } from 'lucide-react';
+import { ArrowLeftIcon, PlayingCardsIcon } from './Icons';
+import { ScrollText, Printer } from 'lucide-react';
 
 export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameRules, onViewPrintShop }) {
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
 
       <div style={{ textAlign: 'center', marginBottom: '4rem', maxWidth: '800px' }}>
         <h1 className="text-gradient" style={{ fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '1.5rem' }}>
-          <PlayingCards size={48} /> Het Schematherapie Spel
+          <PlayingCardsIcon size={48} useGradient={true} /> Het Schematherapie Spel
         </h1>
         <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: 'var(--text-main)', marginBottom: '1rem' }}>
           Breng schema's en modi tot leven op tafel! Het spel helpt je om samen met je cliënt het patroon van trigger tot gezonde volwassene inzichtelijk te maken en er interactief mee te werken.

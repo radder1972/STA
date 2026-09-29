@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
-import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon, CardsIcon, ArrowLeftIcon, ArrowRightIcon } from './Icons'
-import { PlayingCards, ScrollText, Printer } from 'lucide-react'
+import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon, CardsIcon, ArrowLeftIcon, ArrowRightIcon, PlayingCardsIcon } from './Icons'
+import { ScrollText, Printer } from 'lucide-react'
 
 export default function Home({ onStart, completedTests, onViewResults, onImport, onViewGamePortal }) {
   const fileInputRef = useRef(null)
@@ -275,7 +275,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
 
       <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-main)', maxWidth: '600px', margin: '4rem auto 2rem auto', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.05rem' }}>
-          <PlayingCards size={24} /> Speel het Schematherapie Spel
+          <PlayingCardsIcon size={24} useGradient={true} /> Speel het Schematherapie Spel
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
           Gebruik de theoriekaarten om het patroon van trigger tot gezonde volwassene inzichtelijk te maken en interactief met schema's en modi te werken.
@@ -286,7 +286,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
             className="btn btn-gradient"
             style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1.1rem' }}
           >
-            <PlayingCards size={20} /> Ga naar het Spelportaal
+            <PlayingCardsIcon size={20} useGradient={false} /> Ga naar het Spelportaal
           </button>
         </div>
       </div>
