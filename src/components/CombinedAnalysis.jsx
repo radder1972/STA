@@ -250,18 +250,18 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                   }} onClick={() => toggleFlip(schema.id)}>
                     <div className={`card-flip-container ${flippedCards[schema.id] ? 'flipped' : ''}`} style={{ width: '100%', height: '100%' }}>
                       
-                      <div className="card-face-front schema-img playing-card" style={{ padding: '10px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', background: 'white' }}>
-                        <div style={{ position: 'absolute', top: '4px', left: '4px', right: '4px', bottom: '4px', border: `2px solid ${cardColor}`, borderRadius: '4px', pointerEvents: 'none' }}></div>
-                        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                          <img src={schemaImgUrl} alt={schema.name} style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', transform: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }} />
+                      <div className="card-face-front schema-img playing-card" style={{ padding: '4px', boxSizing: 'border-box', border: '4px solid white', background: 'white', display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ border: `2px solid ${cardColor}`, borderRadius: '4px', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '4px' }}>
+                          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                            <img src={schemaImgUrl} alt={schema.name} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }} />
+                          </div>
+                          <div style={{ textAlign: 'center', fontSize: '0.6rem', fontWeight: 'bold', marginTop: '2px', lineHeight: '1.1', height: '16px' }}>{schema.name}</div>
                         </div>
-                        <div style={{ textAlign: 'center', fontSize: '0.6rem', fontWeight: 'bold', margin: '4px 0 0 0', lineHeight: '1.1' }}>{schema.name}</div>
                       </div>
 
-                      <div className="card-face-back playing-card" style={{ display: 'flex', flexDirection: 'column', padding: '10px', background: 'white', boxSizing: 'border-box' }}>
-                        <div style={{ position: 'absolute', top: '4px', left: '4px', right: '4px', bottom: '4px', border: `2px solid ${cardColor}`, borderRadius: '4px', pointerEvents: 'none' }}></div>
-                        <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                          <h4 style={{ fontSize: '0.7rem', marginTop: '0.2rem', marginBottom: '0.2rem', lineHeight: '1.1', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{schema.name}</h4>
+                      <div className="card-face-back playing-card" style={{ padding: '4px', boxSizing: 'border-box', border: '4px solid white', background: 'white', display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ border: `2px solid ${cardColor}`, borderRadius: '4px', flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', padding: '6px' }}>
+                          <h4 style={{ fontSize: '0.7rem', marginTop: '0', marginBottom: '0.2rem', lineHeight: '1.1', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{schema.name}</h4>
                           <p style={{ fontSize: '0.55rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>
                             {schemaDescriptions[schema.name] || schema.name}
                           </p>
