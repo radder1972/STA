@@ -55,6 +55,14 @@ const getCardTypeLetter = (type) => {
   return '';
 };
 
+const getCardTypeLabel = (type) => {
+  if (type === 'schema') return "Schema's";
+  if (type === 'mode') return "Modi";
+  if (type === 'basisbehoefte') return "Basisbehoeften";
+  if (type === 'modicategorie') return "Categorieën";
+  return '';
+};
+
 export default function HomePrintExport({ onBack, onViewPrintShop }) {
   const allCards = [];
 
@@ -207,11 +215,10 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                               <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                             </div>
                             {card.type && getCardTypeLetter(card.type) && (
-                              <>
-                                <div style={{ position: 'absolute', top: '4mm', left: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: '18px', color: cardColor, lineHeight: 1.1, zIndex: 10 }}>
-                                  <span>{getCardTypeLetter(card.type)}</span>
-                                </div>
-                              </>
+                              <div style={{ position: 'absolute', top: '4mm', left: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color: cardColor, lineHeight: 1.1, zIndex: 10 }}>
+                                <span style={{ fontSize: '18px' }}>{getCardTypeLetter(card.type)}</span>
+                                <span style={{ fontSize: '5.5px', marginTop: '1.5mm', textTransform: 'uppercase', letterSpacing: '0.3px' }}>{getCardTypeLabel(card.type)}</span>
+                              </div>
                             )}
                             {card.title && (
                               <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold', margin: '2mm 0 10mm 0', lineHeight: '1.2', color: 'black' }}>

@@ -19,6 +19,14 @@ const getCardTypeLetter = (type) => {
   return '';
 };
 
+const getCardTypeLabel = (type) => {
+  if (type === 'schema') return "Schema's";
+  if (type === 'mode') return "Modi";
+  if (type === 'basisbehoefte') return "Basisbehoeften";
+  if (type === 'modicategorie') return "Categorieën";
+  return '';
+};
+
 const SchemaCard = ({ 
   id, 
   type, 
@@ -70,8 +78,9 @@ const SchemaCard = ({
             <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />
           </div>
           {type && getCardTypeLetter(type) && (
-              <div style={{ position: 'absolute', top: `${14 * s}px`, left: `${14 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: `${1.2 * s}rem`, color, lineHeight: 1.1, zIndex: 10 }}>
-                <span>{getCardTypeLetter(type)}</span>
+              <div style={{ position: 'absolute', top: `${14 * s}px`, left: `${14 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
+                <span style={{ fontSize: `${1.2 * s}rem` }}>{getCardTypeLetter(type)}</span>
+                <span style={{ fontSize: `${0.35 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{getCardTypeLabel(type)}</span>
               </div>
           )}
           {title && (
