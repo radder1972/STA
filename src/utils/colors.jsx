@@ -45,6 +45,10 @@ export const CardInnerBorder = ({ color, outerColor }) => {
         .card-scene:hover .${safeClass} {
            box-shadow: 0 12px 35px ${hoverShadowColor} !important;
         }
+        .${safeClass} ~ div img,
+        .${safeClass} ~ img {
+           filter: drop-shadow(0 0 0 ${color}) drop-shadow(0 4px 10px ${color}60) !important;
+        }
         .${safeClass} ~ button.btn-card:hover {
            background: ${color} !important;
            border-color: ${color} !important;
