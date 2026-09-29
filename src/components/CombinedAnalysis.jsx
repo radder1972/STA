@@ -242,18 +242,17 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                     position: 'absolute',
                     top: '-20px',
                     right: '10px',
-                    width: '100px',
-                    height: '142px',
+                    width: '130px',
+                    height: '185px',
                     transform: `rotate(${rotation}deg)`,
                     zIndex: 10,
                     cursor: 'pointer'
                   }} onClick={() => toggleFlip(schema.id)}>
                     <div className={`card-flip-container ${flippedCards[schema.id] ? 'flipped' : ''}`} style={{ width: '100%', height: '100%' }}>
                       
-                      <div className="card-face-front playing-card schema-img" style={{ padding: '6px', boxSizing: 'border-box' }}>
-                        <div style={{ border: `2px solid ${cardColor}`, borderRadius: '4px', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          <img src={schemaImgUrl} alt={schema.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                        </div>
+                      <div className="card-face-front playing-card schema-img" style={{ padding: 0, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', border: '4px solid white', background: 'white' }}>
+                        <div style={{ position: 'absolute', top: '4px', left: '4px', right: '4px', bottom: '4px', border: `2px solid ${cardColor}`, borderRadius: '4px', pointerEvents: 'none' }}></div>
+                        <img src={schemaImgUrl} alt={schema.name} style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', transform: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(0.85)' }} />
                       </div>
 
                       <div className="card-face-back playing-card" style={{ padding: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-main)', border: '1px solid var(--border-color)' }}>
@@ -266,7 +265,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                   </div>
                 )}
 
-                <div style={{ paddingRight: '120px' }}>
+                <div style={{ paddingRight: '150px' }}>
                 <h4 style={{ color: cardColor, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', position: 'relative', zIndex: 1 }}>
                   <span style={{ background: '#94a3b8', color: '#fff', padding: '2px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 'bold', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{medalName}</span>
                   Hypothese rondom schema: {schema.name}
