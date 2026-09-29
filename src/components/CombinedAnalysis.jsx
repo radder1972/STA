@@ -258,7 +258,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                         <div style={{ textAlign: 'center', fontSize: '0.6rem', fontWeight: 'bold', margin: '4px 0 0 0', lineHeight: '1.1' }}>{schema.name}</div>
                       </div>
 
-                      <div className="card-face-back playing-card" style={{ display: 'flex', flexDirection: 'column', padding: '10px', background: 'var(--bg-main)', boxSizing: 'border-box' }}>
+                      <div className="card-face-back playing-card" style={{ display: 'flex', flexDirection: 'column', padding: '10px', background: 'white', boxSizing: 'border-box' }}>
                         <div style={{ position: 'absolute', top: '4px', left: '4px', right: '4px', bottom: '4px', border: `2px solid ${cardColor}`, borderRadius: '4px', pointerEvents: 'none' }}></div>
                         <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                           <h4 style={{ fontSize: '0.7rem', marginTop: '0.2rem', marginBottom: '0.2rem', lineHeight: '1.1', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>{schema.name}</h4>
@@ -298,6 +298,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                        </div>
                      );
                    })}
+                 </div>
                 </div>
 
                 {usedModes.length > 0 ? (
@@ -311,7 +312,6 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                     <span style={{ color: 'var(--text-main)' }}> U lijkt deze standaard coping-modi niet exceptioneel hoog in te zetten. U hanteert waarschijnlijk een andere overlevingsstrategie voor dit schema, of het schema is wel aanwezig maar u copt er niet actief op deze manier mee.</span>
                   </div>
                 )}
-                </div>
               </div>
             );
           })}
