@@ -201,7 +201,7 @@ export default function PrintShopExport({ onBack }) {
             <React.Fragment key={idx}>
               {/* VOORKANT */}
               <div className="print-shop-page card-front">
-                <div className="print-shop-bleed" style={{ background: 'white', position: 'relative' }}>
+                <div className="print-shop-bleed" style={{ background: 'white', position: 'relative', width: '100%', height: '100%' }}>
                   <CardInnerBorder color={cardColor} />
                   <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '6mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                     <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '15mm 10mm 5mm 10mm' }}>
@@ -218,7 +218,7 @@ export default function PrintShopExport({ onBack }) {
 
               {/* ACHTERKANT */}
               <div className="print-shop-page card-back" style={{ background: 'white' }}>
-                <div className="print-shop-bleed" style={{ position: 'relative', display: 'flex', flexDirection: 'column', padding: '12mm', justifyContent: 'flex-start', alignItems: 'center', overflow: 'hidden' }}>
+                <div className="print-shop-bleed" style={{ position: 'relative', display: 'flex', flexDirection: 'column', padding: '12mm', justifyContent: 'flex-start', alignItems: 'center', overflow: 'hidden', width: '100%', height: '100%', boxSizing: 'border-box' }}>
                   <h4 style={{ margin: '0 0 4mm 0', fontSize: '1.1rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0 }}>
                     {card.title}
                   </h4>
