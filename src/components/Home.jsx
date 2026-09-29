@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon, CardsIcon, ArrowLeftIcon, ArrowRightIcon } from './Icons'
 import { PlayingCards, ScrollText, Printer } from 'lucide-react'
 
-export default function Home({ onStart, completedTests, onViewResults, onImport, onViewKaartenOverzicht, onViewPrintShop, onViewHomePrintExport, onViewGameRules }) {
+export default function Home({ onStart, completedTests, onViewResults, onImport, onViewGamePortal }) {
   const fileInputRef = useRef(null)
   const [ysqExpanded, setYsqExpanded] = useState(false);
   const [smiExpanded, setSmiExpanded] = useState(false);
@@ -282,25 +282,11 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
           <button 
-            onClick={onViewKaartenOverzicht}
-            className="btn btn-outline"
-            style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg> Bekijk theoriekaarten
-          </button>
-          <button 
-            onClick={onViewGameRules}
+            onClick={onViewGamePortal}
             className="btn btn-gradient"
-            style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1.1rem' }}
           >
-            <ScrollText size={18} /> Spelregels
-          </button>
-          <button 
-            onClick={onViewPrintShop}
-            className="btn btn-outline"
-            style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
-          >
-            <Printer size={18} /> Kaarten Printen
+            <PlayingCards size={20} /> Ga naar het Spelportaal
           </button>
         </div>
       </div>

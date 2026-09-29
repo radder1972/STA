@@ -9,6 +9,7 @@ import KaartenOverzicht from './components/KaartenOverzicht'
 import PrintShopExport from './components/PrintShopExport'
 import HomePrintExport from './components/HomePrintExport'
 import GameRules from './components/GameRules'
+import GamePortal from './components/GamePortal'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 import packageJson from '../package.json'
@@ -103,10 +104,7 @@ function App() {
           completedTests={completedTests} 
           onViewResults={viewResults} 
           onImport={handleImport}
-          onViewKaartenOverzicht={() => setCurrentView('kaartenoverzicht')}
-          onViewPrintShop={() => setCurrentView('print-shop')}
-          onViewHomePrintExport={() => setCurrentView('home-print-export')}
-          onViewGameRules={() => setCurrentView('game-rules')}
+          onViewGamePortal={() => setCurrentView('game-portal')}
         />
       )}
       {currentView === 'questionnaire' && (
@@ -136,11 +134,11 @@ function App() {
         <ModiCategorieen onBack={() => setCurrentView('results')} />
       )}
       {currentView === 'kaartenoverzicht' && (
-        <KaartenOverzicht onBack={() => setCurrentView('home')} />
+        <KaartenOverzicht onBack={() => setCurrentView('game-portal')} />
       )}
       {currentView === 'print-shop' && (
         <PrintShopExport 
-          onBack={() => setCurrentView('home')} 
+          onBack={() => setCurrentView('game-portal')} 
           onViewHomePrintExport={() => setCurrentView('home-print-export')}
         />
       )}
@@ -151,10 +149,17 @@ function App() {
         />
       )}
       {currentView === 'game-rules' && (
-        <GameRules onBack={() => setCurrentView('home')} />
+        <GameRules onBack={() => setCurrentView('game-portal')} />
       )}
-
-      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'print-shop' && currentView !== 'home-print-export' && currentView !== 'game-rules' && (
+      {currentView === 'game-portal' && (
+        <GamePortal 
+          onBack={() => setCurrentView('home')} 
+          onViewKaartenOverzicht={() => setCurrentView('kaartenoverzicht')}
+          onViewGameRules={() => setCurrentView('game-rules')}
+          onViewPrintShop={() => setCurrentView('print-shop')}
+        />
+      )}
+      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'print-shop' && currentView !== 'home-print-export' && currentView !== 'game-rules' && currentView !== 'game-portal' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
           v{packageJson.version}
         </div>
