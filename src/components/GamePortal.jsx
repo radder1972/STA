@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowLeftIcon, PlayingCardsIcon, ScrollTextIcon, PrinterIcon, CardsIcon } from './Icons';
+import packageJson from '../../package.json';
 
 export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameRules, onViewPrintShop }) {
   useEffect(() => {
@@ -65,6 +66,10 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
           </div>
         </div>
 
+      </div>
+      
+      <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+        v{packageJson.version}
       </div>
     </div>
   );
