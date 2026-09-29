@@ -27,11 +27,11 @@ export default function OrderCards({ onBack }) {
       color: getCardColor('mode', filename),
       description: schemaDescriptions[title] || ''
     })),
-    ...Object.keys(basisbehoeftenToSchemas).map(title => ({
+    ...Object.keys(basisbehoeftenToSchemas).map((title, index) => ({
       id: title.toLowerCase().replace(/\s+/g, '-'),
       type: 'basisbehoefte',
       title,
-      src: null,
+      src: `/images/basisbehoeften/${index + 1}.png`,
       color: getCardColor('basisbehoefte', title.toLowerCase().replace(/\s+/g, '-')),
       description: schemaDescriptions[title] || ''
     }))
