@@ -7,6 +7,7 @@ import Basisbehoeften from './components/Basisbehoeften'
 import ModiCategorieen from './components/ModiCategorieen'
 import KaartenOverzicht from './components/KaartenOverzicht'
 import PrintShopExport from './components/PrintShopExport'
+import HomePrintExport from './components/HomePrintExport'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 import packageJson from '../package.json'
@@ -102,6 +103,8 @@ function App() {
           onViewResults={viewResults} 
           onImport={handleImport}
           onViewKaartenOverzicht={() => setCurrentView('kaartenoverzicht')}
+          onViewPrintShop={() => setCurrentView('print-shop')}
+          onViewHomePrintExport={() => setCurrentView('home-print-export')}
         />
       )}
       {currentView === 'questionnaire' && (
@@ -136,8 +139,11 @@ function App() {
       {currentView === 'print-shop' && (
         <PrintShopExport onBack={() => setCurrentView('home')} />
       )}
+      {currentView === 'home-print-export' && (
+        <HomePrintExport onBack={() => setCurrentView('home')} />
+      )}
 
-      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'print-shop' && (
+      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'print-shop' && currentView !== 'home-print-export' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
           v{packageJson.version}
         </div>

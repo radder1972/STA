@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon, CardsIcon, ArrowLeftIcon, ArrowRightIcon } from './Icons'
 
-export default function Home({ onStart, completedTests, onViewResults, onImport, onViewKaartenOverzicht }) {
+export default function Home({ onStart, completedTests, onViewResults, onImport, onViewKaartenOverzicht, onViewPrintShop, onViewHomePrintExport }) {
   const fileInputRef = useRef(null)
   const [ysqExpanded, setYsqExpanded] = useState(false);
   const [smiExpanded, setSmiExpanded] = useState(false);
@@ -285,7 +285,23 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
             className="btn btn-outline"
             style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg> Bekijk alle theoriekaarten
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg> Bekijk theoriekaarten
+          </button>
+          <button 
+            onClick={onViewPrintShop}
+            className="btn btn-outline"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"></path><path d="m3 9 2.25-2.25a1.5 1.5 0 0 1 2.1 0L9.6 9l2.25-2.25a1.5 1.5 0 0 1 2.1 0L16.2 9l2.25-2.25a1.5 1.5 0 0 1 2.1 0L21 9"></path></svg>
+            Drukkerij Export
+          </button>
+          <button 
+            onClick={onViewHomePrintExport}
+            className="btn btn-outline"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Thuisprint Export
           </button>
           <a 
             href="https://www.schematherapie.nl/home" 
