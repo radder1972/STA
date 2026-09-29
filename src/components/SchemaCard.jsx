@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-const CardInnerBorder = ({ color }) => (
-  <div style={{ position: 'absolute', top: '4px', left: '4px', right: '4px', bottom: '4px', border: `2px solid ${color}`, borderRadius: '4px', pointerEvents: 'none' }}></div>
-);
+import { CardInnerBorder } from '../utils/colors';
 
 const formatCardTitle = (title) => {
   if (!title) return title;
