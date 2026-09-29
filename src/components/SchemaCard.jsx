@@ -71,13 +71,13 @@ const SchemaCard = ({
           </div>
           {type && getCardTypeLetter(type) && (
             <>
-              <div style={{ position: 'absolute', top: `${6 * s}px`, left: `${6 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: `${0.7 * s}rem`, color, lineHeight: 1.1, zIndex: 10 }}>
+              <div style={{ position: 'absolute', top: `${14 * s}px`, left: `${14 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: `${1.2 * s}rem`, color, lineHeight: 1.1, zIndex: 10 }}>
                 <span>{getCardTypeLetter(type)}</span>
-                <span style={{ fontSize: `${0.8 * s}rem` }}>●</span>
+                <span style={{ fontSize: `${1.4 * s}rem` }}>●</span>
               </div>
-              <div style={{ position: 'absolute', bottom: `${6 * s}px`, right: `${6 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: `${0.7 * s}rem`, color, transform: 'rotate(180deg)', lineHeight: 1.1, zIndex: 10 }}>
+              <div style={{ position: 'absolute', bottom: `${14 * s}px`, right: `${14 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: `${1.2 * s}rem`, color, transform: 'rotate(180deg)', lineHeight: 1.1, zIndex: 10 }}>
                 <span>{getCardTypeLetter(type)}</span>
-                <span style={{ fontSize: `${0.8 * s}rem` }}>●</span>
+                <span style={{ fontSize: `${1.4 * s}rem` }}>●</span>
               </div>
             </>
           )}

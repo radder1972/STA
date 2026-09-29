@@ -307,13 +307,13 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                             </div>
                             {card.type && getCardTypeLetter(card.type) && (
                               <>
-                                <div style={{ position: 'absolute', top: '1.5mm', left: '1.5mm', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: '10px', color: cardColor, lineHeight: 1.1, zIndex: 10 }}>
+                                <div style={{ position: 'absolute', top: '4mm', left: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: '18px', color: cardColor, lineHeight: 1.1, zIndex: 10 }}>
                                   <span>{getCardTypeLetter(card.type)}</span>
-                                  <span style={{ fontSize: '12px' }}>●</span>
+                                  <span style={{ fontSize: '24px' }}>●</span>
                                 </div>
-                                <div style={{ position: 'absolute', bottom: '1.5mm', right: '1.5mm', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: '10px', color: cardColor, transform: 'rotate(180deg)', lineHeight: 1.1, zIndex: 10 }}>
+                                <div style={{ position: 'absolute', bottom: '4mm', right: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: '18px', color: cardColor, transform: 'rotate(180deg)', lineHeight: 1.1, zIndex: 10 }}>
                                   <span>{getCardTypeLetter(card.type)}</span>
-                                  <span style={{ fontSize: '12px' }}>●</span>
+                                  <span style={{ fontSize: '24px' }}>●</span>
                                 </div>
                               </>
                             )}
