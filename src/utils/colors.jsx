@@ -27,9 +27,9 @@ export const getCardColor = (type, id) => {
   return 'rgba(0,0,0,0.15)'; // Default subtiel grijs randje
 };
 
-export const CardInnerBorder = ({ color }) => {
+export const CardInnerBorder = ({ color, outerColor }) => {
   const isHex = color.startsWith('#');
-  const tintColor = isHex ? `${color}25` : 'rgba(0,0,0,0.03)';
+  const tintColor = outerColor || (isHex ? `${color}25` : 'rgba(0,0,0,0.03)');
   const hoverShadowColor = isHex ? `${color}50` : 'rgba(0,0,0,0.2)'; // 31% opacity
   const safeClass = 'hover-border-' + color.replace(/[^a-zA-Z0-9]/g, '');
 
