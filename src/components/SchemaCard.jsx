@@ -92,7 +92,7 @@ const SchemaCard = ({
       <div className={`card-flip-container ${flipped ? 'flipped' : ''}`} style={{ width: '100%', height: '100%' }}>
         
         {/* Front */}
-        <div className="card-face-front schema-img playing-card" onClick={handleFlip} style={{ padding: '12px', boxSizing: 'border-box', cursor: flipOnClick || onClick ? 'pointer' : 'default', display: 'flex', flexDirection: 'column', background: 'white' }}>
+        <div className="card-face-front schema-img playing-card" onClick={handleFlip} style={{ padding: '12px', boxSizing: 'border-box', cursor: flipOnClick || onClick ? 'pointer' : 'default', display: 'flex', flexDirection: 'column', background: `linear-gradient(135deg, white 40%, ${color}30 150%)` }}>
           <CardInnerBorder color={color} />
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: src ? `${28 * s}px ${8 * s}px 0 ${8 * s}px` : '0' }}>
             {src && <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />}
@@ -117,7 +117,7 @@ const SchemaCard = ({
         </div>
 
         {/* Back */}
-        <div className="card-face-back playing-card" onClick={handleFlip} style={{ display: 'flex', flexDirection: 'column', cursor: flipOnClick || onClick ? 'pointer' : 'default', padding: `${12 * s}px`, background: 'white', boxSizing: 'border-box' }}>
+        <div className="card-face-back playing-card" onClick={handleFlip} style={{ display: 'flex', flexDirection: 'column', cursor: flipOnClick || onClick ? 'pointer' : 'default', padding: `${12 * s}px`, background: `radial-gradient(circle at center, white 50%, ${color}20 120%)`, boxSizing: 'border-box' }}>
           <CardInnerBorder color={color} />
           <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', padding: `0 ${6 * s}px` }}>
             {title && (
