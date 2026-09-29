@@ -65,13 +65,13 @@ const SchemaCard = ({
         {/* Back */}
         <div className="card-face-back playing-card" onClick={handleFlip} style={{ display: 'flex', flexDirection: 'column', cursor: flipOnClick || onClick ? 'pointer' : 'default', padding: '12px', background: 'white', boxSizing: 'border-box' }}>
           <CardInnerBorder color={color} />
-          <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', padding: '0 6px' }}>
             {title && (
-              <h4 style={{ fontSize: '0.75rem', marginTop: '0.2rem', marginBottom: '0.2rem', lineHeight: '1.2', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+              <h4 style={{ fontSize: '0.75rem', marginTop: '12px', marginBottom: '6px', lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
                 {title}
               </h4>
             )}
-            <p style={{ fontSize: '0.6rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 10, WebkitBoxOrient: 'vertical', margin: 0 }}>
+            <p style={{ fontSize: '0.6rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 9, WebkitBoxOrient: 'vertical', margin: 0, paddingBottom: '6px' }}>
               {description || (title ? 'Geen theorie beschikbaar.' : '')}
             </p>
           </div>
