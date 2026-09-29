@@ -404,7 +404,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               <ArrowLeftIcon size={18} /> Terug naar Start
             </button>
             <button className="btn btn-outline" onClick={handlePrintTafel} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              PDF / Printen
+              Tafel Printen
             </button>
             <button className="btn btn-outline" onClick={clearTable} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               Tafel Leegmaken
@@ -444,7 +444,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         {embedded && (
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
             <button className="btn btn-outline" onClick={handlePrintTafel} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              PDF / Printen
+              Tafel Printen
             </button>
             <button className="btn btn-outline" onClick={clearTable} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               Tafel Leegmaken
