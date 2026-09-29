@@ -178,6 +178,14 @@ export default function PrintShopExport({ onBack }) {
 
   return (
     <div className="print-shop-container" style={{ background: '#f0f0f0', minHeight: '100vh', padding: '1rem' }}>
+      <style>{`
+        @media print {
+          @page {
+            size: 64mm 94mm;
+            margin: 0;
+          }
+        }
+      `}</style>
       <div className="no-print" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', background: 'white', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
         <button onClick={onBack} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
           <ArrowLeftIcon size={18} /> Terug naar Start
