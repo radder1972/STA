@@ -225,15 +225,17 @@ export default function PrintShopExport({ onBack }) {
 
               {/* ACHTERKANT */}
               <div className="print-shop-page card-back" style={{ background: 'white' }}>
-                <div className="print-shop-bleed" style={{ position: 'relative', display: 'flex', flexDirection: 'column', padding: '8mm', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', width: '100%', height: '100%', boxSizing: 'border-box' }}>
-                  <CardInnerBorder color={cardColor} />
-                  <div style={{ zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-                    <h4 style={{ margin: '0 0 4mm 0', fontSize: '0.9rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0 }}>
-                      {formatCardTitle(card.title)}
-                    </h4>
-                    <p style={{ fontSize: '0.75rem', lineHeight: '1.4', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0 }}>
-                      {card.description}
-                    </p>
+                <div className="print-shop-bleed" style={{ position: 'relative', width: '100%', height: '100%' }}>
+                  <div style={{ position: 'absolute', top: '6mm', left: '6mm', right: '6mm', bottom: '6mm', background: 'white', borderRadius: '4mm' }}>
+                    <CardInnerBorder color={cardColor} />
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                      <h4 style={{ margin: '0 0 4mm 0', fontSize: '0.9rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0, zIndex: 1 }}>
+                        {formatCardTitle(card.title)}
+                      </h4>
+                      <p style={{ fontSize: '0.75rem', lineHeight: '1.4', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0, zIndex: 1 }}>
+                        {card.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
