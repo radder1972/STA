@@ -118,12 +118,12 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
     'Spontaniteit & Spel': '#f87171', // Rood
     
     // SMI Modes
-    'KINDMODI': '#60a5fa', // Blauw
-    'BESCHERMMODI - OVERGAVE': '#facc15', // Geel
-    'BESCHERMMODI - VERMIJDEN': '#facc15', // Geel
-    'BESCHERMMODI - OMKERING': '#facc15', // Geel
-    'DISFUNCTIONELE OUDERMODI': '#f87171', // Rood
-    'FUNCTIONELE MODI': '#34d399', // Groen (Gezonde Volwassene)
+    'Kindmodi': '#60a5fa', // Blauw
+    'Coping: Overgave': '#facc15', // Geel
+    'Coping: Vermijding': '#facc15', // Geel
+    'Coping: Overcompensatie': '#facc15', // Geel
+    'Oudermodi': '#f87171', // Rood
+    'Gezonde volwassene': '#34d399', // Groen
     
     'Overig': '#94a3b8'
   };
@@ -169,7 +169,7 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
     const rankIndex = overallRankedScores.findIndex(s => s.name === payload.name);
     
     if (rankIndex >= 0 && rankIndex < 3) {
-      const catColor = payload.category ? categoryColors[payload.category] : 'var(--primary)';
+      const catColor = getCategoryColor(payload.category);
       return (
         <circle cx={cx} cy={cy} r={6} fill={catColor} stroke="#1e293b" strokeWidth={2} />
       );
@@ -217,7 +217,7 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
     
     const rankIndex = overallRankedScores.findIndex(s => s.name === payload.name);
     const isTop3 = rankIndex >= 0 && rankIndex < 3;
-    const catColor = payload.category ? categoryColors[payload.category] : 'var(--primary)';
+    const catColor = getCategoryColor(payload.category);
     
     // Always use category color for the bars
     const finalColor = catColor;
