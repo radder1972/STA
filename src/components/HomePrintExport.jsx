@@ -18,7 +18,7 @@ import imgM3b from '../assets/images/modicategorieen/coping_vermijding.png'
 import imgM3c from '../assets/images/modicategorieen/coping_overcompensatie.png'
 import imgM4 from '../assets/images/modicategorieen/4.png'
 
-import SchemaCard from './SchemaCard';
+import { CardInnerBorder } from '../utils/colors';
 
 const formatCardTitle = (title) => {
   if (!title) return title;
@@ -286,40 +286,52 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
               {/* PAGE: FRONTS */}
               <div className="a4-page" style={{ width: '210mm', height: '297mm', background: 'white', padding: '10mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
                 <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 58mm)', gridAutoRows: '88mm', gap: '5mm', justifyContent: 'center', alignContent: 'center', height: '100%' }}>
-                  {chunk.map((card, i) => (
-                    <div key={`front-${i}`} style={{ width: '58mm', height: '88mm', border: '1px dashed #ccc', boxSizing: 'border-box', position: 'relative' }}>
+                  {chunk.map((card, i) => {
+                    const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'white';
+                    return (
+                    <div key={`front-${i}`} style={{ width: '58mm', height: '88mm', border: '1px dashed #ccc', boxSizing: 'border-box', position: 'relative', background: card ? `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)` : 'transparent', borderRadius: '6px', overflow: 'hidden' }}>
                       {card && (
-                        <SchemaCard 
-                          {...card} 
-                          title={formatCardTitle(card.title)}
-                          width="58mm" 
-                          height="88mm"
-                          flipOnClick={false} 
-                          isFlipped={false} 
-                        />
+                        <>
+                          <CardInnerBorder color={cardColor} outerColor="white" />
+                          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '1mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '8mm 6mm 2mm 6mm' }}>
+                              <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
+                            </div>
+                            {card.title && (
+                              <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold', margin: '2mm 0 10mm 0', lineHeight: '1.2', color: 'black' }}>
+                                {formatCardTitle(card.title)}
+                              </div>
+                            )}
+                          </div>
+                        </>
                       )}
                     </div>
-                  ))}
+                  )})}
                 </div>
               </div>
 
               {/* PAGE: BACKS */}
               <div className="a4-page" style={{ width: '210mm', height: '297mm', background: 'white', padding: '10mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
                 <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 58mm)', gridAutoRows: '88mm', gap: '5mm', justifyContent: 'center', alignContent: 'center', height: '100%' }}>
-                  {backChunk.map((card, i) => (
-                    <div key={`back-${i}`} style={{ width: '58mm', height: '88mm', border: '1px dashed #ccc', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative' }}>
+                  {backChunk.map((card, i) => {
+                    const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'white';
+                    return (
+                    <div key={`back-${i}`} style={{ width: '58mm', height: '88mm', border: '1px dashed #ccc', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative', background: 'white', borderRadius: '6px', overflow: 'hidden' }}>
                       {card && (
-                        <SchemaCard 
-                          {...card} 
-                          title={formatCardTitle(card.title)}
-                          width="58mm" 
-                          height="88mm"
-                          flipOnClick={false} 
-                          isFlipped={true} 
-                        />
+                        <>
+                          <CardInnerBorder color={cardColor} />
+                          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '5mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box' }}>
+                            <h4 style={{ margin: '0 0 4mm 0', fontSize: '0.9rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0, zIndex: 1 }}>
+                              {formatCardTitle(card.title)}
+                            </h4>
+                            <p style={{ fontSize: '0.75rem', lineHeight: '1.4', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0, zIndex: 1 }}>
+                              {card.description}
+                            </p>
+                          </div>
+                        </>
                       )}
                     </div>
-                  ))}
+                  )})}
                 </div>
               </div>
             </React.Fragment>
