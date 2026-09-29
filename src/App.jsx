@@ -8,6 +8,7 @@ import ModiCategorieen from './components/ModiCategorieen'
 import KaartenOverzicht from './components/KaartenOverzicht'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
+import packageJson from '../package.json'
 
 window.addEventListener('error', function(event) {
   alert("Error: " + event.message + "\nFile: " + event.filename + "\nLine: " + event.lineno);
@@ -131,7 +132,7 @@ function App() {
 
       {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          v2.6.89
+          v{packageJson.version}
         </div>
       )}
     </div>
