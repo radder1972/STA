@@ -97,20 +97,20 @@ export default function KaartenOverzicht({ onBack }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const schemaCards = [
-    { src: imgB1, title: 'Veilige hechting', description: basisbehoeftenText['Veilige hechting'], color: '#60a5fa' }, // Domein 1 -> Blauw
-    { src: imgB2, title: 'Autonomie', description: basisbehoeftenText['Autonomie'], color: '#34d399' }, // Domein 2 -> Groen
-    { src: imgB3, title: 'Vrije expressie', description: basisbehoeftenText['Vrije expressie'], color: '#facc15' }, // Domein 4 -> Geel
-    { src: imgB4, title: 'Spontaniteit en spel', description: basisbehoeftenText['Spontaniteit en spel'], color: '#f87171' }, // Domein 5 -> Rood
-    { src: imgB5, title: 'Realistische grenzen', description: basisbehoeftenText['Realistische grenzen'], color: '#fb923c' }, // Domein 3 -> Oranje
+    { src: imgB1, title: 'Veilige hechting', description: basisbehoeftenText['Veilige hechting'], color: '#60a5fa', type: 'basisbehoefte' },
+    { src: imgB2, title: 'Autonomie', description: basisbehoeftenText['Autonomie'], color: '#34d399', type: 'basisbehoefte' },
+    { src: imgB3, title: 'Vrije expressie', description: basisbehoeftenText['Vrije expressie'], color: '#facc15', type: 'basisbehoefte' },
+    { src: imgB4, title: 'Spontaniteit en spel', description: basisbehoeftenText['Spontaniteit en spel'], color: '#f87171', type: 'basisbehoefte' },
+    { src: imgB5, title: 'Realistische grenzen', description: basisbehoeftenText['Realistische grenzen'], color: '#fb923c', type: 'basisbehoefte' },
   ]
 
   const modiCards = [
-    { src: imgM1, title: 'Kindmodi', description: categorieText['Kindmodi'], color: '#60a5fa' }, // Blauw
-    { src: imgM2, title: 'Oudermodi', description: categorieText['Oudermodi'], color: '#f87171' }, // Rood
-    { src: imgM3a, title: 'Coping: Overgave', description: categorieText['Coping: Overgave'], color: '#facc15' },
-    { src: imgM3b, title: 'Coping: Vermijding', description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' }, color: '#facc15' },
-    { src: imgM3c, title: 'Coping: Overcompensatie', description: categorieText['Coping: Overcompensatie'], color: '#facc15' },
-    { src: imgM4, title: 'Gezonde volwassene', description: categorieText['Gezonde volwassene'], color: '#34d399' }, // Groen
+    { src: imgM1, title: 'Kindmodi', description: categorieText['Kindmodi'], color: '#60a5fa', type: 'modicategorie' },
+    { src: imgM2, title: 'Oudermodi', description: categorieText['Oudermodi'], color: '#f87171', type: 'modicategorie' },
+    { src: imgM3a, title: 'Coping: Overgave', description: categorieText['Coping: Overgave'], color: '#facc15', type: 'modicategorie' },
+    { src: imgM3b, title: 'Coping: Vermijding', description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' }, color: '#facc15', type: 'modicategorie' },
+    { src: imgM3c, title: 'Coping: Overcompensatie', description: categorieText['Coping: Overcompensatie'], color: '#facc15', type: 'modicategorie' },
+    { src: imgM4, title: 'Gezonde volwassene', description: categorieText['Gezonde volwassene'], color: '#34d399', type: 'modicategorie' },
   ]
 
   const schemaGroups = [
