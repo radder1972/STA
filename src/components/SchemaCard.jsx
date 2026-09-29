@@ -52,20 +52,20 @@ const SchemaCard = ({
       <div className={`card-flip-container ${flipped ? 'flipped' : ''}`} style={{ width: '100%', height: '100%' }}>
         
         {/* Front */}
-        <div className="card-face-front schema-img playing-card" onClick={handleFlip} style={{ padding: '8px', boxSizing: 'border-box', cursor: flipOnClick || onClick ? 'pointer' : 'default', display: 'flex', flexDirection: 'column', background: 'white' }}>
+        <div className="card-face-front schema-img playing-card" onClick={handleFlip} style={{ padding: '12px', boxSizing: 'border-box', cursor: flipOnClick || onClick ? 'pointer' : 'default', display: 'flex', flexDirection: 'column', background: 'white' }}>
           <CardInnerBorder color={color} />
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
             <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />
           </div>
           {title && (
-            <div style={{ textAlign: 'center', fontSize: '0.65rem', fontWeight: 'bold', margin: '6px 0 2px 0', lineHeight: '1.2' }}>
+            <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '8px 0 2px 0', lineHeight: '1.2' }}>
               {formatCardTitle(title)}
             </div>
           )}
         </div>
 
         {/* Back */}
-        <div className="card-face-back playing-card" onClick={handleFlip} style={{ display: 'flex', flexDirection: 'column', cursor: flipOnClick || onClick ? 'pointer' : 'default', padding: '10px', background: 'white', boxSizing: 'border-box' }}>
+        <div className="card-face-back playing-card" onClick={handleFlip} style={{ display: 'flex', flexDirection: 'column', cursor: flipOnClick || onClick ? 'pointer' : 'default', padding: '12px', background: 'white', boxSizing: 'border-box' }}>
           <CardInnerBorder color={color} />
           <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
             {title && (
