@@ -22,6 +22,12 @@ export const getCardColor = (type, id) => {
     if (cat3.includes(safeId)) return '#facc15'; // Domein 4: Gerichtheid op anderen -> Geel (Copingmodi)
     if (cat4.includes(safeId)) return '#f87171'; // Domein 5: Overmatige waakzaamheid -> Rood (Oudermodi)
     if (cat5.includes(safeId)) return '#fb923c'; // Domein 3: Realistische grenzen -> Oranje
+  } else if (type === 'basisbehoefte') {
+    if (id === 'veilige-hechting') return '#60a5fa'; // Blauw
+    if (id === 'autonomie') return '#34d399'; // Groen
+    if (id === 'realistische-grenzen') return '#fb923c'; // Oranje
+    if (id === 'vrije-expressie') return '#facc15'; // Geel
+    if (id === 'spontaniteit-en-spel') return '#f87171'; // Rood
   }
   
   return 'rgba(0,0,0,0.15)'; // Default subtiel grijs randje

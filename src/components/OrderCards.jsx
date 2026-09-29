@@ -1,11 +1,41 @@
 import React, { useEffect } from 'react';
 import { ArrowLeftIcon, ShoppingCartIcon, MailIcon } from './Icons';
 import SchemaCard from './SchemaCard';
+import { ysqSchemaNamesMap, smiModesMap, basisbehoeftenToSchemas } from '../data/cards';
+import { schemaDescriptions } from '../data/descriptions';
+import { getCardColor } from '../utils/colors';
 
 export default function OrderCards({ onBack }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const allCards = [
+    ...Object.entries(ysqSchemaNamesMap).map(([filename, title]) => ({
+      id: filename,
+      type: 'schema',
+      title,
+      src: `/images/schemas/${filename}.png`,
+      color: getCardColor('schema', filename),
+      description: schemaDescriptions[title] || ''
+    })),
+    ...Object.entries(smiModesMap).map(([filename, title]) => ({
+      id: filename,
+      type: 'mode',
+      title,
+      src: `/images/modes/${filename}.png`,
+      color: getCardColor('mode', filename),
+      description: schemaDescriptions[title] || ''
+    })),
+    ...Object.keys(basisbehoeftenToSchemas).map(title => ({
+      id: title.toLowerCase().replace(/\s+/g, '-'),
+      type: 'basisbehoefte',
+      title,
+      src: null,
+      color: getCardColor('basisbehoefte', title.toLowerCase().replace(/\s+/g, '-')),
+      description: schemaDescriptions[title] || ''
+    }))
+  ];
 
   return (
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem', overflow: 'hidden' }}>
@@ -21,69 +51,39 @@ export default function OrderCards({ onBack }) {
           <ShoppingCartIcon size={48} useGameGradient={true} /> Kaarten Bestellen
         </h1>
         <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: 'var(--text-main)' }}>
-          Binnenkort is het mogelijk om hier direct een professioneel gedrukte set van Het Schematherapie Spel te bestellen.
+          Binnenkort is het mogelijk om hier direct een professioneel gedrukte set van Het Schematherapie Spel te bestellen. Bekijk hieronder alvast alle kaarten!
         </p>
       </div>
 
-      {/* CSS 3D Card Fan */}
+      {/* Horizontal Carousel */}
       <div style={{ 
-        position: 'relative', 
-        height: '380px', 
-        width: '100%', 
-        maxWidth: '800px', 
+        width: '100vw', 
+        padding: '2rem', 
         display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
+        gap: '2rem', 
+        overflowX: 'auto',
+        scrollSnapType: 'x mandatory',
+        scrollPadding: '2rem',
         marginBottom: '3rem',
-        perspective: '1200px'
+        WebkitOverflowScrolling: 'touch',
+        alignItems: 'center'
       }}>
-        {/* Oudermodus Card */}
-        <div style={{ position: 'absolute', transform: 'translateX(-140px) rotate(-15deg) translateY(30px)', zIndex: 1, cursor: 'pointer' }}>
-          <SchemaCard 
-            id="straffende-ouder"
-            type="mode"
-            title="Straffende ouder"
-            src="/images/modes/so.png"
-            description="Is hard, kritisch en bestraffend naar jezelf. Roept gevoelens op van schaamte en zelfhaat."
-            color="#f87171"
-            width="200px"
-            height="284px"
-            flipOnClick={true}
-            style={{ boxShadow: '-10px 15px 30px rgba(0,0,0,0.15)', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
-          />
-        </div>
-        
-        {/* Schema Card (Front Center) */}
-        <div style={{ position: 'absolute', transform: 'translateX(0) rotate(0deg) translateY(-10px)', zIndex: 3, cursor: 'pointer' }}>
-          <SchemaCard 
-            id="verlating"
-            type="schema"
-            title="Verlating / Instabiliteit"
-            src="/images/schemas/Abandonment.png"
-            description="Het gevoel dat belangrijke personen in je leven je zullen verlaten, onbetrouwbaar zijn, of er niet altijd voor je kunnen zijn."
-            color="#60a5fa"
-            width="220px"
-            height="312px"
-            flipOnClick={true}
-            style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.25)', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
-          />
-        </div>
-
-        {/* Mode Card */}
-        <div style={{ position: 'absolute', transform: 'translateX(140px) rotate(15deg) translateY(30px)', zIndex: 2, cursor: 'pointer' }}>
-          <SchemaCard 
-            id="kwetsbare-kind"
-            type="mode"
-            title="Kwetsbare kind"
-            src="/images/modes/kk.png"
-            description="Voelt zich eenzaam, verlaten, misbruikt, onbegrepen, niet gesteund, angstig of kwetsbaar."
-            color="#10b981"
-            width="200px"
-            height="284px"
-            flipOnClick={true}
-            style={{ boxShadow: '10px 15px 30px rgba(0,0,0,0.15)', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
-          />
-        </div>
+        {allCards.map((c, i) => (
+          <div key={c.id + i} style={{ scrollSnapAlign: 'center', flexShrink: 0, padding: '1rem' }}>
+            <SchemaCard 
+              id={c.id}
+              type={c.type}
+              title={c.title}
+              src={c.src}
+              description={c.description}
+              color={c.color}
+              width="220px"
+              height="312px"
+              flipOnClick={true}
+              style={{ boxShadow: '0 15px 35px rgba(0,0,0,0.15)' }}
+            />
+          </div>
+        ))}
       </div>
 
       <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '700px', borderRadius: '24px', border: '1px solid var(--border-color)', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)', textAlign: 'center', position: 'relative', zIndex: 10 }}>
