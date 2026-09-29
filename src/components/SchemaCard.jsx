@@ -75,7 +75,7 @@ const SchemaCard = ({
         <div className="card-face-front schema-img playing-card" onClick={handleFlip} style={{ padding: '12px', boxSizing: 'border-box', cursor: flipOnClick || onClick ? 'pointer' : 'default', display: 'flex', flexDirection: 'column', background: 'white' }}>
           <CardInnerBorder color={color} />
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-            <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />
+            {src && <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />}
           </div>
           {type && getCardTypeLetter(type) && (
               <div style={{ position: 'absolute', top: `${14 * s}px`, left: `${14 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
