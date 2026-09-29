@@ -40,7 +40,7 @@ const Basisbehoeften = ({ onBack }) => {
         <SchemaCard 
           id="b1"
           src={img1}
-          color="#34d399"
+          color="#60a5fa"
           width="230px"
           height="330px"
           rotation={2}
@@ -60,7 +60,7 @@ const Basisbehoeften = ({ onBack }) => {
         <SchemaCard 
           id="b2"
           src={img2}
-          color="#60a5fa"
+          color="#34d399"
           width="230px"
           height="330px"
           rotation={5}
@@ -100,7 +100,7 @@ const Basisbehoeften = ({ onBack }) => {
         <SchemaCard 
           id="b4"
           src={img4}
-          color="#fb923c"
+          color="#f87171"
           width="230px"
           height="330px"
           rotation={5}
@@ -120,7 +120,7 @@ const Basisbehoeften = ({ onBack }) => {
         <SchemaCard 
           id="b5"
           src={img5}
-          color="#f87171"
+          color="#fb923c"
           width="230px"
           height="330px"
           rotation={3}
