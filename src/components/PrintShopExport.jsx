@@ -106,6 +106,14 @@ const formatCardTitle = (title) => {
   return title;
 };
 
+const getCardTypeLetter = (type) => {
+  if (type === 'schema') return 'S';
+  if (type === 'mode') return 'M';
+  if (type === 'basisbehoefte') return 'B';
+  if (type === 'modicategorie') return 'C';
+  return '';
+};
+
 export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
   useEffect(() => {
     document.body.classList.add('print-shop-export-mode');
