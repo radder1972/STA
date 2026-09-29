@@ -232,12 +232,12 @@ export default function KaartenOverzicht({ onBack }) {
                 onClick={() => setSelectedCard(null)} 
                 style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}
               >×</button>
-              <h2 style={{ color: "var(--text-main)" }} style={{ marginBottom: '0.5rem' }}>{selectedCard.title}</h2>
-              <h4 style={{ color: 'var(--primary)', marginBottom: '1.5rem' }}>Praktijkvoorbeeld & Tips</h4>
+              <h2 style={{ color: "var(--text-main)", marginBottom: '0.5rem' }}>{selectedCard.title}</h2>
+              <h4 style={{ color: (selectedCard.color || getCardColor(selectedCard.type, selectedCard.id)), marginBottom: '1.5rem' }}>Praktijkvoorbeeld & Tips</h4>
               
               <div style={{ marginBottom: '1.5rem' }}>
                 <h5 style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>Herkenbaar Praktijkvoorbeeld</h5>
-                <p style={{ lineHeight: '1.6', background: 'rgba(20, 184, 166, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)' }}>
+                <p style={{ lineHeight: '1.6', background: `${(selectedCard.color || getCardColor(selectedCard.type, selectedCard.id))}15`, padding: '1rem', borderRadius: '8px', borderLeft: `4px solid ${(selectedCard.color || getCardColor(selectedCard.type, selectedCard.id))}` }}>
                   {getVerdieping(selectedCard.title).casus}
                 </p>
               </div>
@@ -252,7 +252,7 @@ export default function KaartenOverzicht({ onBack }) {
               </div>
               
               <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-                <button className="btn btn-gradient" onClick={() => setSelectedCard(null)} style={{ color: 'white' }}>
+                <button className="btn" onClick={() => setSelectedCard(null)} style={{ background: (selectedCard.color || getCardColor(selectedCard.type, selectedCard.id)), color: 'white', border: 'none' }}>
                   Sluiten
                 </button>
               </div>
@@ -353,19 +353,19 @@ export default function KaartenOverzicht({ onBack }) {
 
             {(selectedCard.listName === 'schema-cat' || selectedCard.listName === 'modi-cat') && (
               <button 
-                className="btn btn-gradient" 
+                className="btn" 
                 onClick={() => { setSelectedCategory(selectedCard); setSelectedCard(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                style={{ width: '100%', marginBottom: '2rem', color: 'white', padding: '12px' }}
+                style={{ width: '100%', marginBottom: '2rem', color: 'white', padding: '12px', background: (selectedCard.color || getCardColor(selectedCard.type, selectedCard.id)), border: 'none' }}
               >
                 {selectedCard.listName === 'schema-cat' ? "Bekijk bijbehorende schema's" : "Bekijk bijbehorende modi"}
               </button>
             )}
 
-            <h4 style={{ color: 'var(--primary)', marginBottom: '1.5rem', marginTop: '1rem' }}>Verdieping & Tips</h4>
+            <h4 style={{ color: (selectedCard.color || getCardColor(selectedCard.type, selectedCard.id)), marginBottom: '1.5rem', marginTop: '1rem' }}>Verdieping & Tips</h4>
             
             <div style={{ marginBottom: '1.5rem' }}>
               <h5 style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>Herkenbaar Praktijkvoorbeeld</h5>
-              <p style={{ lineHeight: '1.6', background: 'rgba(20, 184, 166, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)' }}>
+              <p style={{ lineHeight: '1.6', background: `${(selectedCard.color || getCardColor(selectedCard.type, selectedCard.id))}15`, padding: '1rem', borderRadius: '8px', borderLeft: `4px solid ${(selectedCard.color || getCardColor(selectedCard.type, selectedCard.id))}` }}>
                 {getVerdieping(selectedCard.title).casus}
               </p>
             </div>
@@ -380,7 +380,7 @@ export default function KaartenOverzicht({ onBack }) {
             </div>
             
             <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-              <button className="btn btn-gradient" onClick={() => setSelectedCard(null)} style={{ color: 'white' }}>
+              <button className="btn" onClick={() => setSelectedCard(null)} style={{ background: (selectedCard.color || getCardColor(selectedCard.type, selectedCard.id)), color: 'white', border: 'none' }}>
                 Sluiten
               </button>
             </div>
