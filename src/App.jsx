@@ -22,17 +22,51 @@ window.addEventListener('unhandledrejection', function(event) {
 });
 
 function App() {
-  const [currentView, setCurrentView] = useState('home')
+  const [currentView, setCurrentView] = useState(() => {
+    const hash = window.location.hash.replace('#', '')
+    if (hash === 'spelportaal') return 'game-portal'
+    if (hash === 'spelregels') return 'game-rules'
+    if (hash === 'theoriekaarten') return 'kaartenoverzicht'
+    if (hash === 'print-shop') return 'print-shop'
+    return 'home'
+  })
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState(null)
   const [completedTests, setCompletedTests] = useState({ ysq: null, smi: null })
   const [theme, setTheme] = useState('light')
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'light')
-    if (window.location.href.includes('print-shop') || window.location.hash === '#print-shop') {
-      setCurrentView('print-shop')
+    
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '')
+      if (hash === 'spelportaal') setCurrentView('game-portal')
+      else if (hash === 'spelregels') setCurrentView('game-rules')
+      else if (hash === 'theoriekaarten') setCurrentView('kaartenoverzicht')
+      else if (hash === 'print-shop') setCurrentView('print-shop')
+      else setCurrentView('home')
     }
+    
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
+
+  useEffect(() => {
+    let hash = ''
+    if (currentView === 'game-portal') hash = 'spelportaal'
+    else if (currentView === 'game-rules') hash = 'spelregels'
+    else if (currentView === 'kaartenoverzicht') hash = 'theoriekaarten'
+    else if (currentView === 'print-shop') hash = 'print-shop'
+    
+    if (hash) {
+      if (window.location.hash !== `#${hash}`) {
+        window.history.pushState(null, '', `#${hash}`)
+      }
+    } else {
+      if (window.location.hash && window.location.hash !== '#') {
+        window.history.pushState(null, '', window.location.pathname + window.location.search)
+      }
+    }
+  }, [currentView])
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark'
