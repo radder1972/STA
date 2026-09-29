@@ -243,7 +243,7 @@ export default function PrintShopExport({ onBack }) {
               <div className="print-shop-page card-back" style={{ background: 'white' }}>
                 <div className="print-shop-bleed" style={{ position: 'relative', width: '100%', height: '100%' }}>
                   <div style={{ position: 'absolute', top: '3mm', left: '3mm', right: '3mm', bottom: '3mm', background: 'white', borderRadius: '6px' }}>
-                    <CardInnerBorder color={cardColor} outerColor="white" />
+                    <CardInnerBorder color={cardColor} />
                     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '5mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box' }}>
                       <h4 style={{ margin: '0 0 4mm 0', fontSize: '0.9rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0, zIndex: 1 }}>
                         {formatCardTitle(card.title)}
