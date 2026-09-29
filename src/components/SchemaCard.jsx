@@ -4,6 +4,26 @@ import { CardInnerBorder } from '../utils/colors';
 
 const formatCardTitle = (title) => {
   if (!title) return title;
+  
+  if (title.includes('/')) {
+    const parts = title.split('/');
+    return (
+      <>
+        {parts.map((part, index) => (
+          <React.Fragment key={index}>
+            {part.trim()}
+            {index < parts.length - 1 && (
+              <>
+                {' /'}
+                <br />
+              </>
+            )}
+          </React.Fragment>
+        ))}
+      </>
+    );
+  }
+
   const words = title.trim().split(/\s+/);
   if (words.length === 2) {
     return <>{words[0]}<br />{words[1]}</>;
