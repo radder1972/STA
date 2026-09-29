@@ -179,7 +179,7 @@ export default function PrintShopExport({ onBack }) {
         </button>
         <h1 style={{ color: 'black', marginBottom: '1rem' }}>Print Shop Export (PeterPrint)</h1>
         <p style={{ color: '#333', lineHeight: '1.6', marginBottom: '1rem' }}>
-          Dit is de verborgen generator voor professionele drukkerijen. Het papierformaat voor de PDF is ingesteld op <strong>Tarot formaat (76x126mm inclusief 3mm afloop rondom)</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 70x120mm worden zonder witte randjes.
+          Dit is de verborgen generator voor professionele drukkerijen. Het papierformaat voor de PDF is ingesteld op <strong>Speelkaarten formaat (64x94mm inclusief 3mm afloop rondom)</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 58x88mm worden zonder witte randjes.
         </p>
         <p style={{ color: '#333', lineHeight: '1.6', marginBottom: '1rem' }}>
           Druk op de knop hieronder en kies "Opslaan als PDF" in Chrome. Zorg dat je de volgende print-instellingen gebruikt:
@@ -203,12 +203,12 @@ export default function PrintShopExport({ onBack }) {
               <div className="print-shop-page card-front">
                 <div className="print-shop-bleed" style={{ background: 'white', position: 'relative', width: '100%', height: '100%' }}>
                   <CardInnerBorder color={cardColor} />
-                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '6mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '15mm 10mm 5mm 10mm' }}>
+                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '8mm 6mm 2mm 6mm' }}>
                       <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                     </div>
                     {card.title && (
-                      <div style={{ textAlign: 'center', fontSize: '1.2rem', fontWeight: 'bold', margin: '4mm 0 15mm 0', lineHeight: '1.2', color: 'black' }}>
+                      <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold', margin: '2mm 0 10mm 0', lineHeight: '1.2', color: 'black' }}>
                         {formatCardTitle(card.title)}
                       </div>
                     )}
@@ -218,11 +218,11 @@ export default function PrintShopExport({ onBack }) {
 
               {/* ACHTERKANT */}
               <div className="print-shop-page card-back" style={{ background: 'white' }}>
-                <div className="print-shop-bleed" style={{ position: 'relative', display: 'flex', flexDirection: 'column', padding: '12mm', justifyContent: 'flex-start', alignItems: 'center', overflow: 'hidden', width: '100%', height: '100%', boxSizing: 'border-box' }}>
-                  <h4 style={{ margin: '0 0 4mm 0', fontSize: '1.1rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0 }}>
+                <div className="print-shop-bleed" style={{ position: 'relative', display: 'flex', flexDirection: 'column', padding: '8mm', justifyContent: 'flex-start', alignItems: 'center', overflow: 'hidden', width: '100%', height: '100%', boxSizing: 'border-box' }}>
+                  <h4 style={{ margin: '0 0 4mm 0', fontSize: '0.9rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0 }}>
                     {card.title}
                   </h4>
-                  <p style={{ fontSize: '0.85rem', lineHeight: '1.5', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0 }}>
+                  <p style={{ fontSize: '0.75rem', lineHeight: '1.4', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0 }}>
                     {card.description}
                   </p>
                 </div>
