@@ -70,14 +70,9 @@ const SchemaCard = ({
             <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />
           </div>
           {type && getCardTypeLetter(type) && (
-            <>
               <div style={{ position: 'absolute', top: `${14 * s}px`, left: `${14 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: `${1.2 * s}rem`, color, lineHeight: 1.1, zIndex: 10 }}>
                 <span>{getCardTypeLetter(type)}</span>
               </div>
-              <div style={{ position: 'absolute', bottom: `${14 * s}px`, right: `${14 * s}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', fontSize: `${1.2 * s}rem`, color, transform: 'rotate(180deg)', lineHeight: 1.1, zIndex: 10 }}>
-                <span>{getCardTypeLetter(type)}</span>
-              </div>
-            </>
           )}
           {title && (
             <div style={{ textAlign: 'center', fontSize: `${0.75 * s}rem`, fontWeight: 'bold', margin: `${4 * s}px 0 ${16 * s}px 0`, lineHeight: '1.2' }}>
