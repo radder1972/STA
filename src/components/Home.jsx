@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon, CardsIcon, ArrowLeftIcon, ArrowRightIcon } from './Icons'
+import { PlayingCards, ScrollText, Printer } from 'lucide-react'
 
 export default function Home({ onStart, completedTests, onViewResults, onImport, onViewKaartenOverzicht, onViewPrintShop, onViewHomePrintExport, onViewGameRules }) {
   const fileInputRef = useRef(null)
@@ -274,7 +275,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
 
       <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-main)', maxWidth: '600px', margin: '4rem auto 2rem auto', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.05rem' }}>
-          🃏 Speel het Schematherapie Spel
+          <PlayingCards size={24} /> Speel het Schematherapie Spel
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
           Gebruik de theoriekaarten om het patroon van trigger tot gezonde volwassene inzichtelijk te maken en interactief met schema's en modi te werken.
@@ -292,15 +293,14 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
             className="btn btn-gradient"
             style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            🃏 Spelregels
+            <ScrollText size={18} /> Spelregels
           </button>
           <button 
             onClick={onViewPrintShop}
             className="btn btn-outline"
             style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"></path><path d="m3 9 2.25-2.25a1.5 1.5 0 0 1 2.1 0L9.6 9l2.25-2.25a1.5 1.5 0 0 1 2.1 0L16.2 9l2.25-2.25a1.5 1.5 0 0 1 2.1 0L21 9"></path></svg>
-            Kaarten Printen
+            <Printer size={18} /> Kaarten Printen
           </button>
         </div>
       </div>

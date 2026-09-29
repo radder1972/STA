@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowLeftIcon } from './Icons';
+import { Printer, PlayingCards } from 'lucide-react';
 
 export default function GameRules({ onBack }) {
   const handlePrint = () => {
@@ -22,7 +23,7 @@ export default function GameRules({ onBack }) {
           <ArrowLeftIcon size={18} /> Terug naar Start
         </button>
         <button onClick={handlePrint} className="btn btn-gradient" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          🖨️ Print Spelregels
+          <Printer size={18} /> Print Spelregels
         </button>
       </div>
       
@@ -34,7 +35,7 @@ export default function GameRules({ onBack }) {
         borderRadius: '16px',
         color: '#222'
       }}>
-        <h1 style={{ color: '#1e293b', marginBottom: '0.5rem', textAlign: 'center', fontSize: '2.5rem' }}>🃏 Het Schema-Spel</h1>
+        <h1 style={{ color: '#1e293b', marginBottom: '0.5rem', textAlign: 'center', fontSize: '2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}><PlayingCards size={40} color="#10b981" /> Het Schema-Spel</h1>
         <h2 style={{ color: '#64748b', marginBottom: '3rem', textAlign: 'center', fontWeight: 'normal' }}>"Van Trigger tot Volwassene"</h2>
         
         <div style={{ marginBottom: '2rem' }}>
