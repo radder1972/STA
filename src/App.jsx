@@ -8,6 +8,7 @@ import ModiCategorieen from './components/ModiCategorieen'
 import KaartenOverzicht from './components/KaartenOverzicht'
 import PrintShopExport from './components/PrintShopExport'
 import HomePrintExport from './components/HomePrintExport'
+import GameRules from './components/GameRules'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 import packageJson from '../package.json'
@@ -105,6 +106,7 @@ function App() {
           onViewKaartenOverzicht={() => setCurrentView('kaartenoverzicht')}
           onViewPrintShop={() => setCurrentView('print-shop')}
           onViewHomePrintExport={() => setCurrentView('home-print-export')}
+          onViewGameRules={() => setCurrentView('game-rules')}
         />
       )}
       {currentView === 'questionnaire' && (
@@ -148,8 +150,11 @@ function App() {
           onViewPrintShop={() => setCurrentView('print-shop')}
         />
       )}
+      {currentView === 'game-rules' && (
+        <GameRules onBack={() => setCurrentView('home')} />
+      )}
 
-      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'print-shop' && currentView !== 'home-print-export' && (
+      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'print-shop' && currentView !== 'home-print-export' && currentView !== 'game-rules' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
           v{packageJson.version}
         </div>

@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon, CardsIcon, ArrowLeftIcon, ArrowRightIcon } from './Icons'
 
-export default function Home({ onStart, completedTests, onViewResults, onImport, onViewKaartenOverzicht, onViewPrintShop, onViewHomePrintExport }) {
+export default function Home({ onStart, completedTests, onViewResults, onImport, onViewKaartenOverzicht, onViewPrintShop, onViewHomePrintExport, onViewGameRules }) {
   const fileInputRef = useRef(null)
   const [ysqExpanded, setYsqExpanded] = useState(false);
   const [smiExpanded, setSmiExpanded] = useState(false);
@@ -293,7 +293,14 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
             style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"></path><path d="m3 9 2.25-2.25a1.5 1.5 0 0 1 2.1 0L9.6 9l2.25-2.25a1.5 1.5 0 0 1 2.1 0L16.2 9l2.25-2.25a1.5 1.5 0 0 1 2.1 0L21 9"></path></svg>
-            Naar de Print Shop (Export)
+            Print Export
+          </button>
+          <button 
+            onClick={onViewGameRules}
+            className="btn btn-outline"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#10b981', borderColor: '#10b981' }}
+          >
+            🃏 Spelregels
           </button>
           <a 
             href="https://www.schematherapie.nl/home" 
