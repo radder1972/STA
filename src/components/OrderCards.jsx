@@ -37,14 +37,15 @@ export default function OrderCards({ onBack }) {
         marginBottom: '3rem',
         perspective: '1200px'
       }}>
-        {/* Basisbehoefte Card */}
+        {/* Oudermodus Card */}
         <div style={{ position: 'absolute', transform: 'translateX(-140px) rotate(-15deg) translateY(30px)', zIndex: 1, cursor: 'pointer' }}>
           <SchemaCard 
-            id="veilige-hechting"
-            type="basisbehoefte"
-            title="Veilige hechting"
-            description="Veiligheid, stabiliteit, verzorging en onvoorwaardelijke acceptatie. Een thuishaven zonder angst voor verlating of afwijzing."
-            color="#3b82f6"
+            id="straffende-ouder"
+            type="mode"
+            title="Straffende ouder"
+            src="/images/modes/so.png"
+            description="Is hard, kritisch en bestraffend naar jezelf. Roept gevoelens op van schaamte en zelfhaat."
+            color="#f87171"
             width="200px"
             height="284px"
             flipOnClick={true}
@@ -60,7 +61,7 @@ export default function OrderCards({ onBack }) {
             title="Verlating / Instabiliteit"
             src="/images/schemas/Abandonment.png"
             description="Het gevoel dat belangrijke personen in je leven je zullen verlaten, onbetrouwbaar zijn, of er niet altijd voor je kunnen zijn."
-            color="#8b5cf6"
+            color="#60a5fa"
             width="220px"
             height="312px"
             flipOnClick={true}
