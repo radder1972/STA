@@ -428,6 +428,17 @@ body {
     font-size: 80% !important; /* Scale down entire app by 20% in print */
   }
 
+  body.printing-tafel {
+    zoom: 0.8; /* Scale down specifically to fit the tafel on one page */
+  }
+
+  .tafel-print-header {
+    display: none;
+  }
+  body.printing-tafel .tafel-print-header {
+    display: block !important;
+  }
+
 
   /* Fix 3D card flips in print */
   .card-flip-container {

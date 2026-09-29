@@ -413,6 +413,11 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         </>
       )}
 
+      <div className="tafel-print-header" style={{ display: 'none', textAlign: 'center', marginBottom: '2rem' }}>
+        <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', color: 'black' }}>Tafelopstelling</h1>
+        <p style={{ color: '#555', fontSize: '1.2rem' }}>Psychologisch reactiepatroon</p>
+      </div>
+
       <div className="no-print" style={{ marginBottom: '2rem', textAlign: 'center' }}>
         <p style={{ color: 'var(--text-main)', maxWidth: '700px', margin: '0 auto 1.5rem auto', lineHeight: '1.6', fontSize: '1.05rem' }}>
           De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen.
