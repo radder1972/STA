@@ -260,7 +260,7 @@ export const verdiepingData = {
   },
 
   // BASISBEHOEFTEN (5)
-  '1. Veilige hechting': {
+  'Veilige hechting': {
     casus: "Zodra Tim's vrienden zonder hem afspreken, raakt hij in paniek. Vroeger was er thuis veel onvoorspelbaarheid, waardoor zijn basisbehoefte aan veiligheid en hechting niet vervuld is. Nu zoekt hij die absolute zekerheid krampachtig in al zijn relaties.",
     tips: [
       "Erken dat je sterke reactie voortkomt uit een oude, onvervulde basisbehoefte en niet per se uit de huidige situatie.",
@@ -268,7 +268,7 @@ export const verdiepingData = {
       "Probeer in het hier-en-nu je eigen veilige basis te zijn door kalmerende gedachten tegen jezelf uit te spreken."
     ]
   },
-  '2. Autonomie': {
+  'Autonomie': {
     casus: "Maaike vindt het verschrikkelijk om zelf keuzes te maken, van wat ze eet tot welke baan ze neemt. Ze is nooit aangemoedigd om zelfstandig te zijn en leunt daarom voor elke beslissing zwaar op haar partner.",
     tips: [
       "Begin met het zelfstandig nemen van hele kleine, onbelangrijke beslissingen in het dagelijks leven.",
@@ -276,7 +276,7 @@ export const verdiepingData = {
       "Vraag jezelf regelmatig: 'Wat vind ik hier zélf eigenlijk van?' voordat je de mening van een ander peilt."
     ]
   },
-  '3. Vrije expressie': {
+  'Vrije expressie': {
     casus: "Op het werk is Jeroen het vaak oneens met de koers van het team, maar hij slikt zijn mening altijd in. Thuis leerde hij dat zijn mening er niet toe deed. Hij raakt hierdoor gefrustreerd en burn-out.",
     tips: [
       "Realiseer je dat jouw behoeften en gevoelens evenveel waarde hebben als die van ieder ander.",
@@ -284,7 +284,7 @@ export const verdiepingData = {
       "Merk op wat er in je lichaam gebeurt als je je inhoudt, en gebruik dat als signaal om toch ruimte in te nemen."
     ]
   },
-  '4. Spontaniteit en spel': {
+  'Spontaniteit en spel': {
     casus: "Saskia's agenda staat ramvol met 'moetjes'. Zelfs in het weekend plant ze het huishouden strak in. Ze is vergeten hoe ze moet ontspannen of gewoon 'leuk' kan doen zonder dat het nuttig is.",
     tips: [
       "Plan wekelijks bewust een uur in voor iets dat uitsluitend leuk of ontspannend is, zonder enig doel.",
@@ -292,7 +292,7 @@ export const verdiepingData = {
       "Sta jezelf toe om af en toe 'kinderlijk' onbezorgd te zijn en te lachen om kleine dingen."
     ]
   },
-  '5. Realistische grenzen': {
+  'Realistische grenzen': {
     casus: "Als Thomas moet wachten in de rij bij de supermarkt, wordt hij extreem driftig. Hij is gewend geraakt dat alles altijd om hem draait, waardoor hij niet geleerd heeft om te gaan met normale grenzen of frustraties.",
     tips: [
       "Erken dat regels en grenzen er zijn voor iedereen, inclusief jezelf, om samenleven mogelijk te maken.",
