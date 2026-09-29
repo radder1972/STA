@@ -5,6 +5,7 @@ import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Toolti
 import { ArrowRightIcon, LightbulbIcon, HypothesisIcon, ConnectionIcon, MatrixIcon } from './Icons';
 import AiAnalysis from './AiAnalysis';
 import { getCardColor } from '../utils/colors';
+import { getSchemaImage } from '../utils/images';
 
 // Duplicated maps for simplicity, as they are not exported from SingleResult
 const basisbehoeftenMap = {
@@ -222,11 +223,15 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
             const cardColor = getCardColor('schema', schema.id);
             const medalNames = ['#1', '#2', '#3'];
             const medalName = medalNames[index] || `#${index + 1}`;
+            const schemaImgUrl = getSchemaImage(schema.id);
 
             return (
               <div key={schema.id} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', borderLeft: `4px solid ${cardColor}`, border: '1px solid var(--border-color)', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '4px', background: cardColor }}></div>
-                <h4 style={{ color: cardColor, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                {schemaImgUrl && (
+                  <img src={schemaImgUrl} alt={schema.name} style={{ position: 'absolute', top: '1rem', right: '1rem', width: '60px', height: 'auto', opacity: 0.15, pointerEvents: 'none' }} />
+                )}
+                <h4 style={{ color: cardColor, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', position: 'relative', zIndex: 1 }}>
                   <span style={{ background: '#94a3b8', color: '#fff', padding: '2px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 'bold', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{medalName}</span>
                   Hypothese rondom schema: {schema.name}
                 </h4>
