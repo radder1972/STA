@@ -52,10 +52,16 @@ function App() {
 
   useEffect(() => {
     let hash = ''
-    if (currentView === 'game-portal') hash = 'spelportaal'
-    else if (currentView === 'game-rules') hash = 'spelregels'
-    else if (currentView === 'kaartenoverzicht') hash = 'theoriekaarten'
-    else if (currentView === 'print-shop') hash = 'print-shop'
+    let isGameView = false
+    if (currentView === 'game-portal') { hash = 'spelportaal'; isGameView = true }
+    else if (currentView === 'game-rules') { hash = 'spelregels'; isGameView = true }
+    else if (currentView === 'kaartenoverzicht') { hash = 'theoriekaarten'; isGameView = true }
+    else if (currentView === 'print-shop') { hash = 'print-shop'; isGameView = true }
+    
+    const faviconLink = document.querySelector("link[rel~='icon']")
+    if (faviconLink) {
+      faviconLink.href = isGameView ? '/favicon-game.svg' : '/favicon.svg'
+    }
     
     if (hash) {
       if (window.location.hash !== `#${hash}`) {
