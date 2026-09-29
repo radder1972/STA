@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon, ShoppingCartIcon, MailIcon } from './Icons';
 import SchemaCard from './SchemaCard';
-import { ysqSchemaNamesMap, smiModesMap, basisbehoeftenToSchemas } from '../data/cards';
+import { ysqSchemaNamesMap, smiModesMap, basisbehoeftenToSchemas, categorieToModi, categorieText } from '../data/cards';
 import { schemaDescriptions } from '../data/descriptions';
 import { getCardColor } from '../utils/colors';
 
@@ -34,7 +34,27 @@ export default function OrderCards({ onBack }) {
       src: `/images/basisbehoeften/${index + 1}.png`,
       color: getCardColor('basisbehoefte', title.toLowerCase().replace(/\s+/g, '-')),
       description: schemaDescriptions[title] || ''
-    }))
+    })),
+    ...Object.keys(categorieToModi).map(title => {
+      let img = '';
+      if (title === 'Kindmodi') img = '1.png';
+      else if (title === 'Oudermodi') img = '2.png';
+      else if (title === 'Gezonde volwassene') img = '4.png';
+      else if (title === 'Coping: Overgave') img = 'coping_overgave.png';
+      else if (title === 'Coping: Vermijding') img = 'coping_vermijding.png';
+      else if (title === 'Coping: Overcompensatie') img = 'coping_overcompensatie.png';
+      
+      const safeId = title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+      
+      return {
+        id: safeId,
+        type: 'modicategorie',
+        title,
+        src: `/images/modicategorieen/${img}`,
+        color: getCardColor('modicategorie', safeId),
+        description: categorieText[title] || ''
+      };
+    })
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);

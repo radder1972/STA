@@ -28,6 +28,11 @@ export const getCardColor = (type, id) => {
     if (id === 'realistische-grenzen') return '#fb923c'; // Oranje
     if (id === 'vrije-expressie') return '#facc15'; // Geel
     if (id === 'spontaniteit-en-spel') return '#f87171'; // Rood
+  } else if (type === 'modicategorie') {
+    if (id === 'kindmodi') return '#60a5fa';
+    if (id === 'oudermodi') return '#f87171';
+    if (id.startsWith('coping')) return '#facc15';
+    if (id === 'gezonde-volwassene') return '#34d399';
   }
   
   return 'rgba(0,0,0,0.15)'; // Default subtiel grijs randje
