@@ -201,7 +201,7 @@ export default function PrintShopExport({ onBack }) {
             <React.Fragment key={idx}>
               {/* VOORKANT */}
               <div className="print-shop-page card-front">
-                <div className="print-shop-bleed" style={{ background: 'white', position: 'relative', width: '100%', height: '100%' }}>
+                <div className="print-shop-bleed" style={{ background: `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)`, position: 'relative', width: '100%', height: '100%' }}>
                   <CardInnerBorder color={cardColor} />
                   <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                     <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '8mm 6mm 2mm 6mm' }}>
