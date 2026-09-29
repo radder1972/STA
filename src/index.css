@@ -867,3 +867,68 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* --------------------------------------------------- */
+/* PRINT SHOP EXPORT CSS (PeterPrint)                  */
+/* --------------------------------------------------- */
+
+body.print-shop-export-mode {
+  background: white !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+@media print {
+  body.print-shop-export-mode .no-print {
+    display: none !important;
+  }
+  
+  body.print-shop-export-mode {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    /* DONT ZOOM HERE, WE WANT EXACT MM */
+    zoom: 1 !important; 
+  }
+
+  /* We override the generic @page rule specifically for print shop export */
+  body.print-shop-export-mode {
+    /* To apply a page size, CSS actually needs @page { size: ... }
+       Unfortunately, @page cannot be nested inside a body selector.
+       However, Chrome uses the last @page definition or respects the user's manual selection.
+       We will define a global @page for tarot size but it would break standard print.
+       Actually, we can't conditionally apply @page based on body class! 
+       Workaround: tell the user to set paper size to Custom: 76x126mm in Chrome's print dialog,
+       or just rely on the sizes of the elements (which forces Chrome to paginate if margins are None).
+    */
+  }
+  
+  /* Fallback: try to enforce page break behavior on exact mm sizes */
+  body.print-shop-export-mode .print-shop-page {
+    width: 76mm !important;
+    height: 126mm !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    break-after: page !important;
+    break-inside: avoid !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    /* Force size */
+    min-width: 76mm !important;
+    min-height: 126mm !important;
+  }
+}
+
+/* Screen styles for previewing */
+.print-shop-page {
+  width: 76mm;
+  height: 126mm;
+  margin: 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

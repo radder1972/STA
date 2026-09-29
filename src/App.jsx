@@ -6,6 +6,7 @@ import Results from './components/Results'
 import Basisbehoeften from './components/Basisbehoeften'
 import ModiCategorieen from './components/ModiCategorieen'
 import KaartenOverzicht from './components/KaartenOverzicht'
+import PrintShopExport from './components/PrintShopExport'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 import packageJson from '../package.json'
@@ -25,6 +26,9 @@ function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'light')
+    if (window.location.href.includes('print-shop') || window.location.hash === '#print-shop') {
+      setCurrentView('print-shop')
+    }
   }, [])
 
   const toggleTheme = () => {
@@ -129,8 +133,11 @@ function App() {
       {currentView === 'kaartenoverzicht' && (
         <KaartenOverzicht onBack={() => setCurrentView('home')} />
       )}
+      {currentView === 'print-shop' && (
+        <PrintShopExport onBack={() => setCurrentView('home')} />
+      )}
 
-      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && (
+      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'print-shop' && (
         <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
           v{packageJson.version}
         </div>
