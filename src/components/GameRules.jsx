@@ -140,7 +140,10 @@ export default function GameRules({ onBack }) {
           </div>
           
           <p style={{ fontSize: '1.05rem', lineHeight: '1.6', color: '#0f172a', margin: 0, padding: '1.5rem', background: '#f1f5f9', borderRadius: '8px' }}>
-            <strong>💡 Kleur bekennen:</strong> De kleur van een kaart vertelt je direct bij welk "Domein" de kaart hoort, ongeacht of het een S, M, B of C kaart is. Zo zijn kaarten uit het domein <em>Onverbondenheid/Afwijzing</em> en de basisbehoefte <em>Veilige hechting</em> bijvoorbeeld aan elkaar gelinkt via dezelfde kleur! Tijdens het spelen mag je kaarten met <strong>dezelfde kleur</strong> óf <strong>dezelfde letter</strong> op elkaar leggen.
+            <strong style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', fontSize: '1.1rem' }}>
+              <LightbulbIcon size={20} useGameGradient={true} /> Kleur bekennen:
+            </strong>
+            De kleur van een kaart vertelt je direct bij welk "Domein" de kaart hoort, ongeacht of het een S, M, B of C kaart is. Zo zijn kaarten uit het domein <em>Onverbondenheid/Afwijzing</em> en de basisbehoefte <em>Veilige hechting</em> bijvoorbeeld aan elkaar gelinkt via dezelfde kleur! Tijdens het spelen mag je kaarten met <strong>dezelfde kleur</strong> óf <strong>dezelfde letter</strong> op elkaar leggen.
           </p>
         </div>
         
