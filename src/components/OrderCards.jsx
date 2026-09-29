@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { ArrowLeftIcon, ShoppingCartIcon, MailIcon } from './Icons';
+import React, { useEffect, useState } from 'react';
+import { ArrowLeftIcon, ArrowRightIcon, ShoppingCartIcon, MailIcon } from './Icons';
 import SchemaCard from './SchemaCard';
 import { ysqSchemaNamesMap, smiModesMap, basisbehoeftenToSchemas } from '../data/cards';
 import { schemaDescriptions } from '../data/descriptions';
@@ -37,6 +37,18 @@ export default function OrderCards({ onBack }) {
     }))
   ];
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handlePrev = () => {
+    setCurrentIndex(prev => (prev === 0 ? allCards.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex(prev => (prev === allCards.length - 1 ? 0 : prev + 1));
+  };
+
+  const currentCard = allCards[currentIndex];
+
   return (
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem', overflow: 'hidden' }}>
       
@@ -55,35 +67,91 @@ export default function OrderCards({ onBack }) {
         </p>
       </div>
 
-      {/* Horizontal Carousel */}
+      {/* Interactive Single Card Carousel */}
       <div style={{ 
-        width: '100vw', 
-        padding: '2rem', 
         display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
         gap: '2rem', 
-        overflowX: 'auto',
-        scrollSnapType: 'x mandatory',
-        scrollPadding: '2rem',
-        marginBottom: '3rem',
-        WebkitOverflowScrolling: 'touch',
-        alignItems: 'center'
+        marginBottom: '3rem', 
+        width: '100%', 
+        maxWidth: '800px' 
       }}>
-        {allCards.map((c, i) => (
-          <div key={c.id + i} style={{ scrollSnapAlign: 'center', flexShrink: 0, padding: '1rem' }}>
-            <SchemaCard 
-              id={c.id}
-              type={c.type}
-              title={c.title}
-              src={c.src}
-              description={c.description}
-              color={c.color}
-              width="220px"
-              height="312px"
-              flipOnClick={true}
-              style={{ boxShadow: '0 15px 35px rgba(0,0,0,0.15)' }}
-            />
-          </div>
-        ))}
+        <button 
+          onClick={handlePrev} 
+          className="btn" 
+          style={{ 
+            borderRadius: '50%', 
+            width: '60px', 
+            height: '60px', 
+            padding: 0, 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            background: 'var(--bg-secondary)', 
+            border: '2px solid var(--border-color)', 
+            color: 'var(--text-main)', 
+            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.borderColor = 'var(--primary)'; }}
+          onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = 'var(--border-color)'; }}
+        >
+          <ArrowLeftIcon size={24} />
+        </button>
+
+        <div style={{ 
+          position: 'relative', 
+          width: '260px', 
+          height: '370px', 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          perspective: '1200px' 
+        }}>
+          <SchemaCard 
+            key={currentCard.id} // forces re-render for flip state reset if needed, though react handles it.
+            id={currentCard.id}
+            type={currentCard.type}
+            title={currentCard.title}
+            src={currentCard.src}
+            description={currentCard.description}
+            color={currentCard.color}
+            width="240px"
+            height="340px"
+            flipOnClick={true}
+            style={{ boxShadow: '0 25px 50px rgba(0,0,0,0.2)' }}
+          />
+        </div>
+
+        <button 
+          onClick={handleNext} 
+          className="btn" 
+          style={{ 
+            borderRadius: '50%', 
+            width: '60px', 
+            height: '60px', 
+            padding: 0, 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            background: 'var(--bg-secondary)', 
+            border: '2px solid var(--border-color)', 
+            color: 'var(--text-main)', 
+            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.borderColor = 'var(--primary)'; }}
+          onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = 'var(--border-color)'; }}
+        >
+          <ArrowRightIcon size={24} />
+        </button>
+      </div>
+
+      <div style={{ color: 'var(--text-muted)', marginBottom: '3rem', fontSize: '1.1rem', fontWeight: '500' }}>
+        Kaart {currentIndex + 1} van {allCards.length}
       </div>
 
       <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '700px', borderRadius: '24px', border: '1px solid var(--border-color)', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)', textAlign: 'center', position: 'relative', zIndex: 10 }}>

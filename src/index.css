@@ -749,12 +749,8 @@ body {
     print-color-adjust: exact !important;
   }
 }
-/* Schema Images */
 .schema-img img {
-  filter: contrast(1.1) brightness(1.05);
   background: transparent;
-  mix-blend-mode: multiply;
-  transition: filter 0.5s ease;
 }
 
 
