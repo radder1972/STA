@@ -113,7 +113,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.5)', color: 'var(--text-main)', fontSize: '1rem' }}>
+              <tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-main)', fontSize: '1rem' }}>
                 <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }} colSpan="2">Kwetsbaarheid (Top 3 Schema's)</th>
                 <th style={{ padding: '8px 0', textAlign: 'center', width: '40px' }}></th>
                 <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }} colSpan="2">Reactie (Hoogste Gekoppelde Modus)</th>
@@ -134,7 +134,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                 }
 
                 return (
-                  <tr key={i} style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.3)' }}>
+                  <tr key={i} style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <td style={{ padding: '8px 0', color: 'var(--text-main)', fontSize: '1rem' }}>{schema?.name || '-'}</td>
                     <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-main)', fontSize: '1rem' }}>{schema?.mean || '-'}</td>
                     <td style={{ padding: '8px 0', textAlign: 'center' }}>
@@ -163,7 +163,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.5)', color: 'var(--text-main)', fontSize: '1rem' }}>
+              <tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-main)', fontSize: '1rem' }}>
                 <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }}>Theoretisch Vlak</th>
                 <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }}>YSQ Domein Score</th>
                 <th style={{ padding: '8px 0', textAlign: 'left', fontWeight: 'bold' }}>SMI Groep Score</th>
@@ -171,7 +171,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
             </thead>
             <tbody>
               {domainAverages.map((row, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid rgba(14, 165, 233, 0.3)' }}>
+                <tr key={i} style={{ borderBottom: '1px solid var(--border-color)' }}>
                   <td style={{ padding: '8px 0', color: 'var(--text-main)', fontSize: '1rem' }}>{row.name}</td>
                   <td style={{ padding: '8px 0', textAlign: 'left', color: 'var(--text-main)', fontSize: '1rem' }}>
                     <span style={{ fontWeight: row.ysq >= 4 ? 'bold' : 'normal', color: row.ysq >= 4 ? 'var(--text-main)' : 'var(--text-muted)' }}>
