@@ -119,11 +119,11 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
     
     // SMI Modes
     'Kindmodi': '#60a5fa', // Blauw
-    'Coping: Overgave': '#facc15', // Geel
-    'Coping: Vermijding': '#facc15', // Geel
-    'Coping: Overcompensatie': '#facc15', // Geel
-    'Oudermodi': '#f87171', // Rood
-    'Gezonde volwassene': '#34d399', // Groen
+    'Beschermmodi - Overgave': '#facc15', // Geel
+    'Beschermmodi - Vermijden': '#facc15', // Geel
+    'Beschermmodi - Omkering': '#facc15', // Geel
+    'Disfunctionele oudermodi': '#f87171', // Rood
+    'Functionele modi': '#34d399', // Groen
     
     'Overig': '#94a3b8'
   };
