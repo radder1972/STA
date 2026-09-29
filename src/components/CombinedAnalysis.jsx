@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Cell, LabelList, Legend } from 'recharts';
@@ -6,6 +6,7 @@ import { ArrowRightIcon, LightbulbIcon, HypothesisIcon, ConnectionIcon, MatrixIc
 import AiAnalysis from './AiAnalysis';
 import { getCardColor } from '../utils/colors';
 import { getSchemaImage } from '../utils/images';
+import { schemaDescriptions } from '../data/descriptions';
 
 // Duplicated maps for simplicity, as they are not exported from SingleResult
 const basisbehoeftenMap = {
@@ -68,6 +69,12 @@ const calculateScores = (answers, scoringData, type) => {
 };
 
 export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
+  const [flippedCards, setFlippedCards] = useState({});
+
+  const toggleFlip = (id) => {
+    setFlippedCards(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
   const ysqScores = useMemo(() => calculateScores(ysqAnswers, ysqScoring, 'ysq'), [ysqAnswers]);
   const smiScores = useMemo(() => calculateScores(smiAnswers, smiScoring, 'smi'), [smiAnswers]);
 
@@ -229,28 +236,37 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
 
             return (
               <div key={schema.id} style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: '12px', borderLeft: `4px solid ${cardColor}`, border: '1px solid var(--border-color)', borderRight: '1px solid var(--border-color)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)', position: 'relative' }}>
+                
                 {schemaImgUrl && (
-                  <div style={{
+                  <div className="card-scene" style={{
                     position: 'absolute',
-                    top: '-15px',
-                    right: '-10px',
-                    width: '70px',
-                    height: '100px',
-                    background: '#fff',
-                    borderRadius: '6px',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.1)',
-                    border: '1px solid #e2e8f0',
-                    padding: '4px',
-                    boxSizing: 'border-box',
+                    top: '-20px',
+                    right: '10px',
+                    width: '100px',
+                    height: '142px',
                     transform: `rotate(${rotation}deg)`,
-                    pointerEvents: 'none',
-                    zIndex: 10
-                  }}>
-                    <div style={{ border: `1.5px solid ${cardColor}`, borderRadius: '4px', height: '100%', padding: '2px', boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <img src={schemaImgUrl} alt={schema.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    zIndex: 10,
+                    cursor: 'pointer'
+                  }} onClick={() => toggleFlip(schema.id)}>
+                    <div className={`card-flip-container ${flippedCards[schema.id] ? 'flipped' : ''}`} style={{ width: '100%', height: '100%' }}>
+                      
+                      <div className="card-face-front playing-card schema-img" style={{ padding: '6px', boxSizing: 'border-box' }}>
+                        <div style={{ border: `2px solid ${cardColor}`, borderRadius: '4px', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <img src={schemaImgUrl} alt={schema.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        </div>
+                      </div>
+
+                      <div className="card-face-back playing-card" style={{ padding: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-main)', border: '1px solid var(--border-color)' }}>
+                        <p style={{ fontSize: '0.65rem', color: 'var(--text-main)', textAlign: 'center', margin: 0, lineHeight: '1.4' }}>
+                          {schemaDescriptions[schema.name] || schema.name}
+                        </p>
+                      </div>
+
                     </div>
                   </div>
                 )}
+
+                <div style={{ paddingRight: '120px' }}>
                 <h4 style={{ color: cardColor, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', position: 'relative', zIndex: 1 }}>
                   <span style={{ background: '#94a3b8', color: '#fff', padding: '2px 8px', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 'bold', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{medalName}</span>
                   Hypothese rondom schema: {schema.name}
@@ -289,6 +305,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                     <span style={{ color: 'var(--text-main)' }}> U lijkt deze standaard coping-modi niet exceptioneel hoog in te zetten. U hanteert waarschijnlijk een andere overlevingsstrategie voor dit schema, of het schema is wel aanwezig maar u copt er niet actief op deze manier mee.</span>
                   </div>
                 )}
+                </div>
               </div>
             );
           })}
