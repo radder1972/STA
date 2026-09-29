@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeftIcon, PlayingCardsIcon, ScrollTextIcon, DicesIcon, LightbulbIcon } from './Icons';
+import { ArrowLeftIcon, PlayingCardsIcon, ScrollTextIcon, DicesIcon, LightbulbIcon, CardsIcon } from './Icons';
 import { Printer } from 'lucide-react';
 
 export default function GameRules({ onBack }) {
@@ -95,6 +95,53 @@ export default function GameRules({ onBack }) {
             <PlayingCardsIcon size={48} useGameGradient={true} /> Het Schema-Spel
           </h1>
           <h2 style={{ color: '#64748b', margin: 0, fontWeight: '500', fontSize: '1.5rem' }}>Van Trigger tot Volwassene</h2>
+        </div>
+        
+        <div style={{ marginBottom: '3rem', background: '#f8fafc', borderRadius: '16px', padding: '2rem', border: '1px solid #e2e8f0' }}>
+          <h3 style={{ color: '#0f172a', margin: '0 0 1.5rem 0', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <CardsIcon size={28} useGameGradient={true} /> Wat zit er in het spel?
+          </h3>
+          <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: '#475569', marginBottom: '1.5rem' }}>
+            Het spel bestaat uit theoriekaarten die allemaal een eigen <strong>Letter</strong> (het type) en <strong>Kleur</strong> (het domein of de categorie) hebben. Deze eigenschappen zijn belangrijk voor het matchen tijdens het spelen:
+          </p>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+              <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#ef4444', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>S</div>
+                Schema-kaarten
+              </div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>Gekleurd naar hun bijbehorende Schema Domein. Ze tonen de hardnekkige patronen.</div>
+            </div>
+            
+            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+              <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#3b82f6', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>M</div>
+                Modus-kaarten
+              </div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>Gekleurd naar de Modus Categorie (bijv. Kindmodi, Oudermodi). Tonen actuele gemoedstoestanden.</div>
+            </div>
+
+            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+              <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#10b981', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>B</div>
+                Basisbehoeften
+              </div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>Vormen de kern van de therapie. Het doel is vaak om terug te werken naar een vervulde basisbehoefte.</div>
+            </div>
+            
+            <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+              <div style={{ fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#f59e0b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>C</div>
+                Coping-kaarten
+              </div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>Laten zien op welke manieren cliënten (onbewust) met hun schema's proberen om te gaan.</div>
+            </div>
+          </div>
+          
+          <p style={{ fontSize: '1.05rem', lineHeight: '1.6', color: '#0f172a', margin: 0, padding: '1rem', background: '#f1f5f9', borderRadius: '8px' }}>
+            <strong>💡 Kleur bekennen:</strong> Kleuren zijn essentieel in dit spel. Ze helpen je in één oogopslag te zien in welk "Domein" je zit. Tijdens het spelen is een veelgebruikte regel dat je kaarten met <strong>dezelfde kleur</strong> óf <strong>dezelfde letter</strong> op elkaar mag leggen!
+          </p>
         </div>
         
         <div style={{ marginBottom: '3rem', background: '#f8fafc', borderRadius: '16px', padding: '2rem', border: '1px solid #e2e8f0' }}>
