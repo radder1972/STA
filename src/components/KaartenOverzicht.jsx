@@ -179,9 +179,9 @@ export default function KaartenOverzicht({ onBack }) {
       <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
         <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
 
-          <FilterButton id="domeinen" label="Basisbehoeften" />
+          <FilterButton id="domeinen" label="Basisbehoeften (5)" />
           <FilterButton id="schemas" label="Schema's" />
-          <FilterButton id="modicats" label="Modi Categorieën" />
+          <FilterButton id="modicats" label="Modi Categorieën (6)" />
           <FilterButton id="modi" label="Modi" />
         </div>
       </div>
@@ -190,7 +190,7 @@ export default function KaartenOverzicht({ onBack }) {
         
         {filter === 'domeinen' && (
           <div>
-            <h2 style={{ color: "var(--text-main)", textAlign: 'center', marginBottom: '1rem' }}>Schema Domeinen (Basisbehoeften)</h2>
+            <h2 style={{ color: "var(--text-main)", textAlign: 'center', marginBottom: '1rem' }}>Schema Domeinen (Basisbehoeften) (5)</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
               Ieder mens heeft fundamentele emotionele basisbehoeften, zoals de behoefte aan veiligheid, verbondenheid, autonomie en spontaniteit. Als er in de kindertijd structureel niet aan deze behoeften is voldaan, kunnen er hardnekkige, negatieve patronen (schema's) ontstaan. De schema's vallen onder de volgende 5 domeinen.
             </p>
@@ -210,7 +210,7 @@ export default function KaartenOverzicht({ onBack }) {
 
         {filter === 'modicats' && (
           <div>
-            <h2 style={{ color: "var(--text-main)", textAlign: 'center', marginBottom: '1rem' }}>Modi Categorieën</h2>
+            <h2 style={{ color: "var(--text-main)", textAlign: 'center', marginBottom: '1rem' }}>Modi Categorieën (6)</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
               Waar schema's de dieperliggende, langdurige patronen of 'knoppen' zijn, is een <strong>modus</strong> de actuele gemoedstoestand waarin je op dít specifieke moment verkeert als een knop wordt ingedrukt. Modi worden ingedeeld in deze 4 hoofdcategorieën.
             </p>
