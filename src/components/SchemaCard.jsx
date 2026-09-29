@@ -45,6 +45,9 @@ const SchemaCard = ({
     }
   };
 
+  const widthNum = parseFloat(width) || 150;
+  const s = widthNum / 150;
+
   const isInteractive = flipOnClick || onClick;
 
   return (
@@ -58,22 +61,22 @@ const SchemaCard = ({
             <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />
           </div>
           {title && (
-            <div style={{ textAlign: 'center', fontSize: '0.75rem', fontWeight: 'bold', margin: '4px 0 16px 0', lineHeight: '1.2' }}>
+            <div style={{ textAlign: 'center', fontSize: `${0.75 * s}rem`, fontWeight: 'bold', margin: `${4 * s}px 0 ${16 * s}px 0`, lineHeight: '1.2' }}>
               {formatCardTitle(title)}
             </div>
           )}
         </div>
 
         {/* Back */}
-        <div className="card-face-back playing-card" onClick={handleFlip} style={{ display: 'flex', flexDirection: 'column', cursor: flipOnClick || onClick ? 'pointer' : 'default', padding: '12px', background: 'white', boxSizing: 'border-box' }}>
+        <div className="card-face-back playing-card" onClick={handleFlip} style={{ display: 'flex', flexDirection: 'column', cursor: flipOnClick || onClick ? 'pointer' : 'default', padding: `${12 * s}px`, background: 'white', boxSizing: 'border-box' }}>
           <CardInnerBorder color={color} />
-          <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', padding: '0 6px' }}>
+          <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', padding: `0 ${6 * s}px` }}>
             {title && (
-              <h4 style={{ fontSize: '0.75rem', marginTop: '12px', marginBottom: '6px', lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+              <h4 style={{ fontSize: `${0.75 * s}rem`, marginTop: `${12 * s}px`, marginBottom: `${6 * s}px`, lineHeight: '1.2', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
                 {title}
               </h4>
             )}
-            <p style={{ fontSize: '0.6rem', lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 9, WebkitBoxOrient: 'vertical', margin: 0, paddingBottom: '6px' }}>
+            <p style={{ fontSize: `${0.6 * s}rem`, lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 9, WebkitBoxOrient: 'vertical', margin: 0, paddingBottom: `${6 * s}px` }}>
               {description || (title ? 'Geen theorie beschikbaar.' : '')}
             </p>
           </div>
