@@ -217,7 +217,7 @@ export default function GameRules({ onBack }) {
             <div className="rule-number">5</div>
             <div>
               <h4 className="rule-title">Het Einddoel</h4>
-              <p className="rule-text">Het spel is niet zomaar uit als je kaarten op zijn. Je kunt pas winnen (en uitgaan) als jouw allerlaatste kaart de groene <strong>'Gezonde Volwassene'</strong> is. Hiermee doorbreek je het patroon en sluit je het spel succesvol af!</p>
+              <p className="rule-text">Het spel is niet zomaar uit als je kaarten op zijn. Je kunt pas winnen (en uitgaan) als jouw allerlaatste kaart de groene <strong>'Gezonde Volwassene'</strong> is. Dit mag zowel de Modus-kaart als de Categorie-kaart zijn. Hiermee doorbreek je het patroon en sluit je het spel succesvol af!</p>
             </div>
           </div>
 
