@@ -191,7 +191,7 @@ export default function GameRules({ onBack }) {
             <div>
               <h4 className="rule-title">Modus-regel (Kleur veranderen)</h4>
               <p className="rule-text">Modi (M-kaarten) mag je inzetten als reactie op een Schema, zelfs als de kleur niet matcht. De Modus verandert dan de actieve kleur van het spel naar zijn eigen kleur!</p>
-              <div style={{ marginTop: '0.75rem', padding: '0.75rem 1rem', background: '#fef3c7', borderRadius: '8px', color: '#92400e', fontSize: '0.95rem', borderLeft: '4px solid #f59e0b' }}>
+              <div style={{ marginTop: '0.75rem', padding: '0.75rem 1rem', background: '#eff6ff', borderRadius: '8px', color: '#1e3a8a', fontSize: '0.95rem', borderLeft: '4px solid #3b82f6' }}>
                 <strong>Therapeutische twist:</strong> De speler moet kort benoemen hoe deze Modus in de praktijk zou reageren op dat specifieke Schema.
               </div>
             </div>
@@ -218,18 +218,12 @@ export default function GameRules({ onBack }) {
             <div>
               <h4 className="rule-title">Het Einddoel</h4>
               <p className="rule-text">Het spel is niet zomaar uit als je kaarten op zijn. Je kunt pas winnen (en uitgaan) als jouw allerlaatste kaart de groene <strong>'Gezonde Volwassene'</strong> is. Dit mag zowel de Modus-kaart als de Categorie-kaart zijn. Hiermee doorbreek je het patroon en sluit je het spel succesvol af!</p>
+              <div style={{ marginTop: '0.75rem', padding: '0.75rem 1rem', background: '#eff6ff', borderRadius: '8px', color: '#1e3a8a', fontSize: '0.95rem', borderLeft: '4px solid #3b82f6' }}>
+                <strong>Let op:</strong> Dit spel is bedoeld als een speelse, interactieve manier om schema's, modi en basisbehoeften te verkennen en te bespreken. De nadruk ligt op de <strong>dialoog</strong> (het uitleggen van de verbindingen) in plaats van alleen het winnen.
+              </div>
             </div>
           </div>
 
-        </div>
-        
-        <div style={{ marginTop: '4rem', padding: '2rem', background: '#ecfdf5', borderRadius: '16px', borderLeft: '6px solid #10b981', display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-          <div style={{ padding: '1rem', background: 'white', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <LightbulbIcon size={32} useGameGradient={true} />
-          </div>
-          <p style={{ margin: 0, fontStyle: 'italic', color: '#065f46', lineHeight: '1.7', fontSize: '1.1rem' }}>
-            <strong>Let op:</strong> Dit spel is bedoeld als een speelse, interactieve manier om schema's, modi en basisbehoeften te verkennen en te bespreken. De nadruk ligt op de <strong>dialoog</strong> (het uitleggen van de verbindingen) in plaats van alleen het winnen.
-          </p>
         </div>
       </div>
     </div>
