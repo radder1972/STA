@@ -45,8 +45,10 @@ const SchemaCard = ({
     }
   };
 
+  const isInteractive = flipOnClick || onClick;
+
   return (
-    <div className={`card-scene ${className}`} style={{ width, height, position: 'relative', transform: `rotate(${rotation}deg)`, ...style }} title={flipOnClick ? "Klik om te draaien voor theorie" : ""}>
+    <div className={`card-scene ${className}`} style={{ width, height, position: 'relative', transform: `rotate(${rotation}deg)`, pointerEvents: isInteractive ? 'auto' : 'none', ...style }} title={flipOnClick ? "Klik om te draaien voor theorie" : ""}>
       <div className={`card-flip-container ${flipped ? 'flipped' : ''}`} style={{ width: '100%', height: '100%' }}>
         
         {/* Front */}

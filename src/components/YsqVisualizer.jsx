@@ -47,7 +47,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
                 height="145px"
                 rotation={(index * 7) % 8 - 4}
                 flipOnClick={false}
-                style={{ flexShrink: 0, boxShadow: '2px 4px 10px rgba(0,0,0,0.3)' }}
+                style={{ flexShrink: 0 }}
                 imageStyle={{ transform: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }}
               />
             </div>
