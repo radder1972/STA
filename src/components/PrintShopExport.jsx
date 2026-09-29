@@ -223,9 +223,9 @@ export default function PrintShopExport({ onBack }) {
               {/* VOORKANT */}
               <div className="print-shop-page card-front">
                 <div className="print-shop-bleed" style={{ background: 'white', position: 'relative', width: '100%', height: '100%' }}>
-                  <div style={{ position: 'absolute', top: '6mm', left: '6mm', right: '6mm', bottom: '6mm', background: `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)`, borderRadius: '4mm' }}>
+                  <div style={{ position: 'absolute', top: '3mm', left: '3mm', right: '3mm', bottom: '3mm', background: `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)`, borderRadius: '6px' }}>
                     <CardInnerBorder color={cardColor} outerColor="white" />
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '1mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '8mm 6mm 2mm 6mm' }}>
                         <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
                       </div>
@@ -242,9 +242,9 @@ export default function PrintShopExport({ onBack }) {
               {/* ACHTERKANT */}
               <div className="print-shop-page card-back" style={{ background: 'white' }}>
                 <div className="print-shop-bleed" style={{ position: 'relative', width: '100%', height: '100%' }}>
-                  <div style={{ position: 'absolute', top: '6mm', left: '6mm', right: '6mm', bottom: '6mm', background: 'white', borderRadius: '4mm' }}>
+                  <div style={{ position: 'absolute', top: '3mm', left: '3mm', right: '3mm', bottom: '3mm', background: 'white', borderRadius: '6px' }}>
                     <CardInnerBorder color={cardColor} outerColor="white" />
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '5mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box' }}>
                       <h4 style={{ margin: '0 0 4mm 0', fontSize: '0.9rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0, zIndex: 1 }}>
                         {formatCardTitle(card.title)}
                       </h4>
