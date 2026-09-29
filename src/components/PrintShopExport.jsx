@@ -225,21 +225,6 @@ export default function PrintShopExport({ onBack }) {
                   <p style={{ fontSize: '0.85rem', lineHeight: '1.5', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0 }}>
                     {card.description}
                   </p>
-                  
-                  {verdieping.casus && (
-                    <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
-                      <p style={{ fontSize: '0.75rem', fontStyle: 'italic', color: '#444', borderLeft: `3px solid ${cardColor}`, paddingLeft: '4mm', margin: '0 0 4mm 0', textAlign: 'left', lineHeight: '1.4' }}>
-                        "{verdieping.casus}"
-                      </p>
-                      {verdieping.tips && verdieping.tips.length > 0 && (
-                         <ul style={{ paddingLeft: '4mm', margin: 0, fontSize: '0.75rem', color: '#222', textAlign: 'left', lineHeight: '1.4' }}>
-                           {verdieping.tips.slice(0, 3).map((tip, tIdx) => (
-                             <li key={tIdx} style={{ marginBottom: '2mm' }}>{tip}</li>
-                           ))}
-                         </ul>
-                      )}
-                    </div>
-                  )}
                 </div>
               </div>
             </React.Fragment>
