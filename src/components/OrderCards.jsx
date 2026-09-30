@@ -122,7 +122,7 @@ export default function OrderCards({ onBack }) {
             background: 'var(--inner-box-bg, rgba(255,255,255,0.05))', 
             borderRadius: '16px', 
             padding: '1.5rem', 
-            paddingRight: '1rem',
+            paddingRight: '2.5rem',
             marginBottom: '2.5rem', 
             border: '1px solid var(--border-color)',
             position: 'relative'
@@ -152,12 +152,12 @@ export default function OrderCards({ onBack }) {
             
             {/* Overlapping Product Image */}
             <div style={{ 
-              flex: '0 0 160px', 
+              flex: '0 0 180px', 
               borderRadius: '12px', 
               overflow: 'hidden', 
               boxShadow: '0 15px 35px rgba(0,0,0,0.15)', 
               border: '4px solid white', 
-              transform: 'translate(15px, -15px) rotate(3deg)',
+              transform: 'translate(25px, -20px) rotate(4deg)',
               background: 'white',
               position: 'relative',
               zIndex: 2
