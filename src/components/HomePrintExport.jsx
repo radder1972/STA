@@ -142,47 +142,37 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
       <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '2rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1rem' }}>
-          <div style={{ padding: '8px', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '12px', color: '#3b82f6' }}>
-            <Info size={24} />
-          </div>
-          <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.25rem' }}>Printhulp voor Thuis / Praktijk</h3>
+          <Info size={28} color="#3b82f6" />
+          <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.5rem' }}>Printhulp voor Thuis / Praktijk</h3>
         </div>
         <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
           Met deze weergave kun je de kaarten zelf op A4-papier printen (bijv. op een inkjet of laserprinter thuis). De kaarten worden gerangschikt in een 3x3 grid. De achterkant-pagina's zijn <strong>gespiegeld</strong>, zodat ze perfect achter de voorkanten vallen als je dubbelzijdig print (omdraaien over de lange zijde). Druk op de "Print Proefdruk (A4)" knop hierboven.
         </p>
 
-        <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+        <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-            <div style={{ padding: '6px', background: '#f1f5f9', borderRadius: '8px', color: '#64748b', flexShrink: 0 }}>
-              <FileText size={18} />
-            </div>
+            <FileText size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
             <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
               <strong>Papierformaat:</strong> A4 Staand (Portrait)
             </p>
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-            <div style={{ padding: '6px', background: '#f1f5f9', borderRadius: '8px', color: '#64748b', flexShrink: 0 }}>
-              <Maximize size={18} />
-            </div>
+            <Maximize size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
             <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
               <strong>Schaal & Marges:</strong> 100% of Standaard (Niet passend maken!) en Marges op Standaard/Minimum
             </p>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-            <div style={{ padding: '6px', background: '#f1f5f9', borderRadius: '8px', color: '#64748b', flexShrink: 0 }}>
-              <Files size={18} />
-            </div>
+            <Files size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
             <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
               <strong>Dubbelzijdig:</strong> Omdraaien over de lange zijde (Long edge binding)
             </p>
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-            <div style={{ padding: '6px', background: '#f1f5f9', borderRadius: '8px', color: '#64748b', flexShrink: 0 }}>
-              <ImageIcon size={18} />
-            </div>
+            <ImageIcon size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
             <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
               <strong>Achtergrondafbeeldingen:</strong> AAN
             </p>

@@ -125,38 +125,30 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
 
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1rem' }}>
-          <div style={{ padding: '8px', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '12px', color: '#3b82f6' }}>
-            <Info size={24} />
-          </div>
-          <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.25rem' }}>Printhulp voor Drukkerijen</h3>
+          <Info size={28} color="#3b82f6" />
+          <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.5rem' }}>Printhulp voor Drukkerijen</h3>
         </div>
         <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
           Deze weergave is geoptimaliseerd voor professionele drukkerijen. Het papierformaat voor de PDF is ingesteld op <strong>Speelkaarten formaat (64x94mm inclusief 3mm afloop rondom)</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 58x88mm worden zonder witte randjes. Druk op de "Genereer Print-PDF" knop hierboven en kies "Opslaan als PDF" in Chrome.
         </p>
 
-        <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+        <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-            <div style={{ padding: '6px', background: '#f1f5f9', borderRadius: '8px', color: '#64748b', flexShrink: 0 }}>
-              <FileText size={18} />
-            </div>
+            <FileText size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
             <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
               <strong>Papierformaat:</strong> Aangepast (wordt automatisch door de browser geregeld, indien mogelijk, anders laat staan)
             </p>
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-            <div style={{ padding: '6px', background: '#f1f5f9', borderRadius: '8px', color: '#64748b', flexShrink: 0 }}>
-              <Maximize size={18} />
-            </div>
+            <Maximize size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
             <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
               <strong>Marges:</strong> Geen
             </p>
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-            <div style={{ padding: '6px', background: '#f1f5f9', borderRadius: '8px', color: '#64748b', flexShrink: 0 }}>
-              <ImageIcon size={18} />
-            </div>
+            <ImageIcon size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
             <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
               <strong>Achtergrondafbeeldingen:</strong> AAN
             </p>
