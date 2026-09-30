@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon, ShoppingCartIcon, MailIcon, StarIcon } from './Icons';
+import { Plus, Minus } from 'lucide-react';
 import SchemaCard from './SchemaCard';
 import { ysqSchemaNamesMap, smiModesMap, basisbehoeftenToSchemas, categorieToModi, categorieText, basisbehoeftenText } from '../data/cards';
 import { schemaDescriptions } from '../data/descriptions';
@@ -7,6 +8,8 @@ import { getCardColor } from '../utils/colors';
 
 export default function OrderCards({ onBack }) {
   const [filter, setFilter] = useState('optie1');
+  const [quantity, setQuantity] = useState(1);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -76,86 +79,134 @@ export default function OrderCards({ onBack }) {
 
   const currentCard = allCards[currentIndex];
 
+  const increaseQuantity = () => setQuantity(prev => prev + 1);
+  const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
+
+  const pricePerUnit = 39.95;
+  const totalPrice = (pricePerUnit * quantity).toFixed(2).replace('.', ',');
+  
+  const mailBody = `Beste,\n\nIk wil graag ${quantity} set(s) van Het Schematherapie Spel bestellen.\n\nKunt u mij informeren over de verdere afhandeling en betaling?\n\nMet vriendelijke groet,\n[Jouw naam]`;
+  const mailHref = `mailto:info@schematherapiespel.nl?subject=Bestelling: ${quantity}x Het Schematherapie Spel&body=${encodeURIComponent(mailBody)}`;
+
   return (
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem', overflow: 'hidden' }}>
       
-
-
-      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
+      {/* HEADER */}
+      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '1000px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
           <ShoppingCartIcon size={48} useGameGradient={true} /> Bestellen
         </h1>
         <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>
-          Een professioneel gedrukte set voor in je praktijk
+          De professioneel gedrukte set voor in jouw praktijk
         </h2>
       </div>
 
-      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto', position: 'relative', zIndex: 10 }}>
-        <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
-          <a href="mailto:info@schematherapiespel.nl?subject=Interesse in Het Schematherapie Spel" className="btn btn-gradient-game" style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', whiteSpace: 'nowrap', textDecoration: 'none' }}>
-            <MailIcon size={18} /> Stuur ons een e-mail
-          </a>
+      {/* WEBSHOP HERO SECTION */}
+      <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '1000px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10, display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'flex-start' }}>
+        
+        {/* Left: Product Image */}
+        <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
+          <div style={{
+            width: '100%',
+            borderRadius: '20px',
+            overflow: 'hidden',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
+            border: '1px solid var(--border-color)',
+            background: 'white',
+            position: 'relative'
+          }}>
+            <img 
+              src="/images/cards-mockup.jpeg" 
+              alt="Fysieke set van Het Schematherapie Spel" 
+              style={{ width: '100%', height: 'auto', display: 'block' }} 
+            />
+          </div>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', margin: 0, textAlign: 'center' }}>
+            <StarIcon size={16} color="#fbbf24" style={{ display: 'inline', marginRight: '6px', verticalAlign: 'text-bottom' }} /> 
+            Hoogwaardige kwaliteit voor dagelijks gebruik
+          </p>
         </div>
-      </div>
 
-      <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10 }}>
-        <div className="inner-box" style={{ background: 'white' }}>
-          {/* Full Width Heading */}
-          <h3 className="box-heading">
-            <StarIcon size={28} useGameGradient={true} /> Kwaliteit voor in de Praktijk
-          </h3>
+        {/* Right: Product Details & Order Box */}
+        <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column' }}>
+          <h2 style={{ fontSize: '2.5rem', margin: '0 0 0.5rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>Het Schematherapie Spel</h2>
+          <p style={{ fontSize: '1.2rem', color: '#64748b', margin: '0 0 2rem 0', fontWeight: '500' }}>Complete Fysieke Kaartenset</p>
+          
+          {/* Price */}
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', marginBottom: '2rem' }}>
+            <span style={{ fontSize: '2.5rem', fontWeight: '800', color: '#3b82f6' }}>€ {totalPrice}</span>
+            {quantity > 1 && <span style={{ fontSize: '1.1rem', color: 'var(--text-muted)' }}>(€ {pricePerUnit.toString().replace('.', ',')} per stuk)</span>}
+          </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <div className="order-promo-box" style={{ margin: 0, gap: '2.5rem', alignItems: 'flex-start' }}>
-              {/* Promotional Text */}
-              <div style={{ flex: '1 1 auto', minWidth: 0, textAlign: 'left' }}>
-                <p style={{ margin: 0 }}>
-                  Het Schematherapie Spel wordt professioneel gedrukt op stevig speelkaartenkarton. Speciaal ontworpen om lang mee te gaan, zelfs bij intensief dagelijks gebruik door therapeuten en cliënten.
-                </p>
-              </div>
-
-              {/* Product Photo */}
-              <div style={{
-                flex: '0 0 240px',
-                borderRadius: '16px',
-                overflow: 'hidden',
-                boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                border: '1px solid var(--border-color)',
-                background: 'white'
-              }}>
-                <img 
-                  src="/images/cards-mockup.jpeg" 
-                  alt="Fysieke set van Het Schematherapie Spel" 
-                  style={{ width: '100%', height: 'auto', display: 'block' }} 
-                />
-              </div>
-            </div>
-
-            {/* Checkmarks Full Width Below */}
-            <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
-                <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
-                Handzaam formaat (64 x 94 mm)
+          {/* Specifications */}
+          <div style={{ background: 'var(--inner-box-bg, rgba(255,255,255,0.05))', borderRadius: '16px', padding: '1.5rem', marginBottom: '2.5rem', border: '1px solid var(--border-color)' }}>
+            <h4 style={{ margin: '0 0 1rem 0', fontSize: '1.1rem', color: 'var(--text-main)' }}>Specificaties:</h4>
+            <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
+                <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
+                98 theoriekaarten & actiekaarten
               </li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
-                <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
+              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
+                <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
+                Handzaam speelformaat (64 x 94 mm)
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
+                <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
                 Mooie afgeronde hoeken (radius 5 mm)
               </li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
-                <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
-                Hoogwaardige matte afwerking
-              </li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
-                <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
-                Krasbestendig en vuilafstotend
+              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
+                <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
+                Hoogwaardige matte afwerking (vuilafstotend)
               </li>
             </ul>
           </div>
+
+          {/* Order Actions */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span style={{ fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '500' }}>Aantal:</span>
+              <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-color)', borderRadius: '12px', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
+                <button onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                   <Minus size={18} />
+                </button>
+                <div style={{ width: '40px', textAlign: 'center', fontSize: '1.2rem', fontWeight: '600', color: 'var(--text-main)' }}>
+                  {quantity}
+                </div>
+                <button onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                   <Plus size={18} />
+                </button>
+              </div>
+            </div>
+
+            <a 
+              href={mailHref} 
+              className="btn btn-gradient-game" 
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                gap: '12px', 
+                width: '100%', 
+                padding: '1.2rem', 
+                fontSize: '1.3rem', 
+                borderRadius: '16px', 
+                textDecoration: 'none',
+                boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)'
+              }}
+            >
+              <ShoppingCartIcon size={24} /> Bestel Nu via E-mail
+            </a>
+            <p style={{ margin: 0, textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+              Je bestelling wordt per e-mail verwerkt. Je zit nog nergens aan vast.
+            </p>
+          </div>
+
         </div>
       </div>
 
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
-        <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', color: 'var(--text-main)' }}>Bekijk alvast de interactieve digitale kaarten:</h3>
+        <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--text-main)' }}>Bekijk alvast de kaarten</h3>
+        <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>Blader digitaal door de complete set theoriekaarten</p>
       </div>
 
       {/* Interactive Single Card Carousel */}
@@ -202,7 +253,7 @@ export default function OrderCards({ onBack }) {
           perspective: '1200px' 
         }}>
           <SchemaCard 
-            key={currentCard.id} // forces re-render for flip state reset if needed, though react handles it.
+            key={currentCard.id}
             id={currentCard.id}
             type={currentCard.type}
             title={currentCard.title}
@@ -242,23 +293,10 @@ export default function OrderCards({ onBack }) {
         </button>
       </div>
 
-      <div style={{ color: 'var(--text-muted)', marginBottom: '3rem', fontSize: '1.1rem', fontWeight: '500' }}>
+      <div style={{ color: 'var(--text-muted)', marginBottom: '4rem', fontSize: '1.1rem', fontWeight: '500' }}>
         Kaart {currentIndex + 1} van {allCards.length}
       </div>
 
-      <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '700px', borderRadius: '24px', border: '1px solid var(--border-color)', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)', textAlign: 'center', position: 'relative', zIndex: 10 }}>
-        
-        <div style={{ display: 'inline-flex', padding: '1.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '50%', color: '#3b82f6', marginBottom: '2rem' }}>
-          <MailIcon size={48} useGameGradient={true} />
-        </div>
-        
-        <h2 style={{ color: 'var(--text-main)', marginBottom: '1rem', fontSize: '1.8rem' }}>Heb je nu al interesse?</h2>
-        <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', marginBottom: '2.5rem', fontSize: '1.1rem' }}>
-          Wil je alvast een exemplaar reserveren of heb je vragen over prijzen en oplages voor jouw praktijk? Neem dan gerust contact met ons op via e-mail.
-        </p>
-        
-      </div>
-      
     </div>
   );
 }
