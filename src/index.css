@@ -48,7 +48,7 @@ body {
 }
 
 /* Base Typography Standards */
-p:not(.playing-card p) {
+p {
   font-size: 1.1rem !important;
   line-height: 1.6 !important;
   color: var(--text-main) !important;
