@@ -158,7 +158,7 @@ export default function GameRules({ onBack }) {
             <strong style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', fontSize: '1.1rem' }}>
               <LightbulbIcon size={20} useGameGradient={true} /> Uitleg van de kleuren (de stippen):
             </strong>
-            Elke kaart in het spel krijgt een kleur die verwijst naar een van de 5 vaste domeinen (bijvoorbeeld: <em>Verbondenheid en Afwijzing</em>). Het spel heeft twee 'kleurwerelden': de Schema's/Behoeften (de inhoud) en de Modi (het gedrag). De Modus trekt het spel naar zijn eigen kleurwereld, dwars door de inhoud heen.<br /><br />
+            De theoriekaarten gebruiken kleur om logische verbindingen te leggen. Voor de Basisbehoeften en Schema's verwijst de kleur naar de 5 vaste domeinen (zoals <em>Verbondenheid en Afwijzing</em>). Het spel heeft daardoor twee 'kleurwerelden': de Schema's/Behoeften (de inhoud) en de Modi (het gedrag). De Modus trekt het spel naar zijn eigen kleurwereld, dwars door de inhoud heen.<br /><br />
             Daarom kun je in het spel een S-kaart moeiteloos op een B-kaart leggen, mits ze <strong>dezelfde kleur</strong> (dus hetzelfde achterliggende thema) delen. Tijdens het spelen mag je overigens kaarten met dezelfde kleur óf dezelfde letter op elkaar leggen.
           </p>
         </div>
