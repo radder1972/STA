@@ -131,11 +131,11 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
       <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
         <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
-          <button onClick={handlePrint} className="btn btn-gradient-game" style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
-            <PrinterIcon size={18} /> Print Proefdruk (A4)
+          <button onClick={onViewPrintShop} className="btn btn-outline" style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
+            Drukkerij
           </button>
-          <button onClick={onViewPrintShop} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
-            Naar Drukkerij Export
+          <button className="btn btn-gradient-game" style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
+            Thuisprint
           </button>
         </div>
       </div>
@@ -146,8 +146,12 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
           <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.5rem' }}>Printhulp voor Thuis / Praktijk</h3>
         </div>
         <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
-          Met deze weergave kun je de kaarten zelf op A4-papier printen (bijv. op een inkjet of laserprinter thuis). De kaarten worden gerangschikt in een 3x3 grid. De achterkant-pagina's zijn <strong>gespiegeld</strong>, zodat ze perfect achter de voorkanten vallen als je dubbelzijdig print (omdraaien over de lange zijde). Druk op de "Print Proefdruk (A4)" knop hierboven.
+          Met deze weergave kun je de kaarten zelf op A4-papier printen (bijv. op een inkjet of laserprinter thuis). De kaarten worden gerangschikt in een 3x3 grid. De achterkant-pagina's zijn <strong>gespiegeld</strong>, zodat ze perfect achter de voorkanten vallen als je dubbelzijdig print (omdraaien over de lange zijde). Druk op de "Print Proefdruk (A4)" knop hieronder.
         </p>
+
+        <button onClick={handlePrint} className="btn btn-gradient" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem', marginTop: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+          <PrinterIcon size={20} /> Print Proefdruk (A4)
+        </button>
 
         <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
