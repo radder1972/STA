@@ -138,6 +138,9 @@ export const formatCardTitle = (title) => {
   if (title === 'Kluwen / Onderontwikkeld zelf') {
     return <>Kluwen / Onderontwikkeld<br />zelf</>;
   }
+  if (title === 'Spontaniteit en spel') {
+    return <>Spontaniteit<br />en spel</>;
+  }
   
   if (title.length > 20 && title.includes(' / ')) {
     const parts = title.split(' / ');
