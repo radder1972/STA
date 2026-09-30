@@ -101,7 +101,7 @@ export default function OrderCards({ onBack }) {
       <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10 }}>
         <div className="inner-box" style={{ background: 'white' }}>
           {/* Full Width Heading */}
-          <h3 className="box-heading" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.5rem', marginBottom: '2rem' }}>
+          <h3 className="box-heading">
             <StarIcon size={28} useGameGradient={true} /> Kwaliteit voor in de Praktijk
           </h3>
 
