@@ -198,7 +198,7 @@ export default function GameRules({ onBack }) {
             <DicesIcon size={28} useGameGradient={true} /> Voorbereiding
           </h3>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: '#475569', margin: 0 }}>
-            Schud de stapel van 43 theoriekaarten (18 S, 14 M, 5 B, 6 C) en deel ze uit aan de spelers. Leg één startkaart open in het midden van de tafel (bij voorkeur een Schema of een Basisbehoefte).
+            Schud de stapel van 43 theoriekaarten (18 S, 14 M, 5 B, 6 C). Deel elke speler 5 kaarten uit. Leg de overgebleven kaarten gesloten in het midden van de tafel; dit vormt de trekstapel. Draai de bovenste kaart van de trekstapel open om de aflegstapel te beginnen (zorg bij voorkeur dat dit een Schema of een Basisbehoefte is).
           </p>
         </div>
 
