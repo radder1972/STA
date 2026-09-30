@@ -178,9 +178,9 @@ export default function KaartenOverzicht({ onBack }) {
         <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
 
           <FilterButton id="domeinen" label="Basisbehoeften (5)" />
-          <FilterButton id="schemas" label="Schema's" />
+          <FilterButton id="schemas" label="Schema's (18)" />
           <FilterButton id="modicats" label="Modi Categorieën (6)" />
-          <FilterButton id="modi" label="Modi" />
+          <FilterButton id="modi" label="Modi (14)" />
         </div>
       </div>
 
