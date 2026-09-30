@@ -187,7 +187,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
 
                       {/* Footer (Title) */}
                       {card.title && (
-                        <div style={{ textAlign: 'center', fontSize: '12.5px', fontWeight: '900', color: 'black', margin: '2mm 0 6mm 0', lineHeight: '1.2', height: '10mm', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
+                        <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold', color: 'black', margin: '2mm 0 6mm 0', lineHeight: '1.2', height: '10mm', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
                           {formatCardTitle(card.title)}
                         </div>
                       )}
