@@ -46,10 +46,10 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
             <CardsIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1 }}>
-            <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.5rem' }}>Theoriekaarten Bekijken</h2>
+            <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.5rem' }}>De Spelkaarten Bekijken</h2>
             <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Bestudeer de theorie, herkenbare voorbeelden en concrete tips van alle 18 schema's en 14 modi digitaal.</p>
             <button onClick={onViewKaartenOverzicht} className="btn btn-gradient-game">
-              Bekijk theoriekaarten
+              Bekijk spelkaarten
             </button>
           </div>
         </div>
@@ -60,7 +60,7 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
           </div>
           <div style={{ flex: 1 }}>
             <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.5rem' }}>Spelregels en Oefeningen</h2>
-            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Lees hier de officiële spelregels en ontdek hoe je de theoriekaarten in de praktijk kunt gebruiken.</p>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Lees hier de officiële spelregels en ontdek hoe je de spelkaarten in de praktijk kunt gebruiken.</p>
             <button onClick={onViewGameRules} className="btn btn-gradient-game">
               Lees de spelregels
             </button>
@@ -73,7 +73,7 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
           </div>
           <div style={{ flex: 1 }}>
             <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.5rem' }}>Kaarten Printen</h2>
-            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Print de kaarten zelf of stuur een bestand naar de drukker om fysiek met de theoriekaarten aan de slag te gaan.</p>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Print de kaarten zelf of stuur een bestand naar de drukker om fysiek met de spelkaarten aan de slag te gaan.</p>
             <button onClick={onViewPrintShop} className="btn btn-gradient-game">
               Bekijk print opties
             </button>
