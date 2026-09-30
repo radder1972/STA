@@ -158,7 +158,7 @@ export default function GameRules({ onBack }) {
             <strong style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', fontSize: '1.1rem' }}>
               <LightbulbIcon size={20} useGameGradient={true} /> Uitleg van de kleuren (de stippen):
             </strong>
-            Elke kaart in het spel krijgt een kleur die verwijst naar een van de 5 vaste domeinen (bijvoorbeeld: <em>Verbondenheid en Afwijzing</em>). Een onvervulde basisbehoefte deelt zo exact dezelfde kleur als het schema dat eruit ontstaat, en de bijbehorende (coping)modus!<br /><br />
+            Elke kaart in het spel krijgt een kleur die verwijst naar een van de 5 vaste domeinen (bijvoorbeeld: <em>Verbondenheid en Afwijzing</em>). Het spel heeft twee 'kleurwerelden': de Schema's/Behoeften (de inhoud) en de Modi (het gedrag). De Modus trekt het spel naar zijn eigen kleurwereld, dwars door de inhoud heen.<br /><br />
             Daarom kun je in het spel een S-kaart moeiteloos op een B-kaart leggen, mits ze <strong>dezelfde kleur</strong> (dus hetzelfde achterliggende thema) delen. Tijdens het spelen mag je overigens kaarten met dezelfde kleur óf dezelfde letter op elkaar leggen.
           </p>
         </div>
@@ -200,7 +200,7 @@ export default function GameRules({ onBack }) {
             <div className="rule-number">3</div>
             <div>
               <h4 className="rule-title">Terug naar de Kern</h4>
-              <p className="rule-text">Na een Modus of Schema mag je altijd terugspelen naar een Basisbehoefte (B-kaart), zolang de kleur matcht, om het onderliggende patroon weer te verhelderen.</p>
+              <p className="rule-text">Je mag een Basisbehoefte (B-kaart) <strong>alleen op een Schema (S-kaart)</strong> leggen (zolang de kleur matcht). In therapie ga je namelijk vanuit het Schema (de overtuiging) terug naar de Basisbehoefte (het gemis). Vanuit een Copingmodus direct naar een Basisbehoefte springen is in de praktijk vaak te hoog gegrepen zonder eerst het schema te (h)erkennen.</p>
             </div>
           </div>
 
@@ -208,7 +208,14 @@ export default function GameRules({ onBack }) {
             <div className="rule-number">4</div>
             <div>
               <h4 className="rule-title">De Actiekaarten</h4>
-              <p className="rule-text">De Categorie-kaarten (C-kaarten) kunnen worden ingezet als speciale actiekaarten (bijvoorbeeld 'beurt overslaan' bij Vermijding). Spreek de effecten hiervan vooraf met elkaar af.</p>
+              <p className="rule-text">De Categorie-kaarten (C-kaarten) functioneren als actiekaarten die perfect aansluiten bij wat de modus in de theorie doet:</p>
+              <ul style={{ margin: '0.5rem 0 0 0', paddingLeft: '1.5rem', color: '#475569', lineHeight: '1.6', fontSize: '1.05rem' }}>
+                <li><strong>Coping: Vermijding (Geel):</strong> <em>Beurt overslaan.</em> (Je gaat het contact uit de weg).</li>
+                <li><strong>Coping: Overgave (Geel):</strong> <em>Pak 2 kaarten van de stapel.</em> (Je laat je overspoelen door het probleem).</li>
+                <li><strong>Coping: Overcompensatie (Geel):</strong> <em>Draai de speelrichting om.</em> (Je gaat in de tegenaanval).</li>
+                <li><strong>Oudermodi (Rood):</strong> <em>Geef 1 van jouw kaarten aan de volgende speler.</em> (Je legt straf of schuld bij de ander neer).</li>
+                <li><strong>Kindmodi (Blauw):</strong> <em>Ruil blind 1 kaart met een tegenspeler.</em> (Kwetsbaarheid en behoefte aan sturing/hulp).</li>
+              </ul>
             </div>
           </div>
 
@@ -216,7 +223,7 @@ export default function GameRules({ onBack }) {
             <div className="rule-number">5</div>
             <div>
               <h4 className="rule-title">Het Einddoel</h4>
-              <p className="rule-text">Het spel is niet zomaar uit als je kaarten op zijn. Je kunt pas winnen (en uitgaan) als jouw allerlaatste kaart de groene <strong>'Gezonde Volwassene'</strong> is. Dit mag zowel de Modus-kaart als de Categorie-kaart zijn. Hiermee doorbreek je het patroon en sluit je het spel succesvol af!</p>
+              <p className="rule-text">Het spel is niet zomaar uit als je kaarten op zijn. Je kunt pas winnen (en uitgaan) als jouw allerlaatste kaart de groene <strong>'Gezonde Volwassene'</strong> is. Wil je je laatste kaart spelen, maar is dit níét de Gezonde Volwassene? Dan moet je een kaart van de stapel trekken en doorspelen. Je kunt in schematherapie immers pas echt 'klaar' zijn als de regie bij de Gezonde Volwassene ligt.</p>
               <div style={{ marginTop: '0.75rem', padding: '0.75rem 1rem', background: '#eff6ff', borderRadius: '8px', color: '#1e3a8a', fontSize: '0.95rem', borderLeft: '4px solid #3b82f6' }}>
                 <strong>Let op:</strong> Dit spel is bedoeld als een speelse, interactieve manier om schema's, modi en basisbehoeften te verkennen en te bespreken. De nadruk ligt op de <strong>dialoog</strong> (het uitleggen van de verbindingen) in plaats van alleen het winnen.
               </div>
