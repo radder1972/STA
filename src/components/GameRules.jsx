@@ -231,6 +231,48 @@ export default function GameRules({ onBack }) {
           </div>
 
         </div>
+
+        <div className="inner-box no-print" style={{ marginBottom: '2rem' }}>
+          <h3 className="box-heading" style={{ borderBottom: '2px solid #e2e8f0', paddingBottom: '1rem', marginBottom: '2rem' }}>
+            <LightbulbIcon size={28} useGameGradient={true} /> Voorbeeld: Een Beurt in de Praktijk
+          </h3>
+          
+          <div style={{ background: '#f8fafc', padding: '1.5rem', borderRadius: '12px', border: '1px solid #e2e8f0', color: '#334155' }}>
+            <p style={{ marginTop: 0, fontSize: '1.1rem', lineHeight: '1.6' }}><strong>De Opstelling</strong><br />
+            Stel, we spelen met twee personen: Speler 1 (de cliënt) en Speler 2 (de therapeut). Beide spelers krijgen 5 kaarten.<br />
+            De startkaart wordt in het midden opengedraaid: een <strong>S-kaart (Blauw) - Schema: Verlating</strong>.</p>
+
+            <h4 style={{ color: '#0f172a', marginTop: '1.5rem', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Beurt 1: Speler 1 (Cliënt)</h4>
+            <ul style={{ margin: 0, paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+              <li><strong>De Kaart:</strong> Speler 1 heeft geen blauwe kaart en geen S-kaart, maar besluit Regel 2 te gebruiken en speelt een <strong>M-kaart (Geel) - Modus: Afstandelijke Beschermer</strong>.</li>
+              <li><strong>De Spelregel:</strong> Een Modus mag altijd als reactie op een Schema gespeeld worden, ongeacht de kleur. De actieve kleur op tafel verandert nu van Blauw naar Geel.</li>
+              <li><strong>Therapeutische twist:</strong> Speler 1 moet de link uitleggen: <em>"Als ik getriggerd word in mijn verlatingsangst (blauwe schema), is mijn automatische reactie om me terug te trekken en niks meer te voelen (gele modus), zodat een eventuele afwijzing geen pijn doet."</em></li>
+            </ul>
+
+            <h4 style={{ color: '#0f172a', marginTop: '1.5rem', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Beurt 2: Speler 2 (Therapeut)</h4>
+            <ul style={{ margin: 0, paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+              <li><strong>De Kaart:</strong> Speler 2 speelt een <strong>C-kaart (Geel) - Categorie: Coping Vermijding</strong>.</li>
+              <li><strong>De Spelregel:</strong> Deze kaart matcht op de actieve kleur (Geel) van de vorige kaart.</li>
+              <li><strong>De Actie (Regel 4):</strong> Omdat dit een gele Vermijdings-actiekaart is, is de actie: <em>Beurt overslaan</em>. Speler 1 moet een beurt overslaan (bij een tweepersoonsspel betekent dit dat Speler 2 direct nóg een keer mag).</li>
+            </ul>
+
+            <h4 style={{ color: '#0f172a', marginTop: '1.5rem', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Beurt 3: Speler 2 (Therapeut - extra beurt)</h4>
+            <ul style={{ margin: 0, paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+              <li><strong>De Kaart:</strong> Speler 2 speelt nu een <strong>S-kaart (Geel) - Schema: Zelfopoffering</strong>.</li>
+              <li><strong>De Spelregel:</strong> Deze matcht op kleur (Geel) met de C-kaart die er al lag. De actieve kleur blijft Geel, maar het type op de aflegstapel is nu 'S'.</li>
+            </ul>
+
+            <h4 style={{ color: '#0f172a', marginTop: '1.5rem', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Beurt 4: Speler 1 (Cliënt)</h4>
+            <ul style={{ margin: 0, paddingLeft: '1.5rem', lineHeight: '1.6' }}>
+              <li><strong>De Kaart:</strong> Speler 1 kijkt naar de aflegstapel en speelt de <strong>B-kaart (Geel) - Basisbehoefte: Vrije Expressie</strong>.</li>
+              <li><strong>De Spelregel:</strong> Dit is een perfecte uitvoering van Regel 3 ('Terug naar de Kern'). Een B-kaart mag uitsluitend op een S-kaart gelegd worden, mits de kleur matcht (van Geel naar Geel).</li>
+              <li><strong>Therapeutische twist:</strong> Speler 1 benoemt het patroon: <em>"Onder die drang om altijd maar voor anderen te zorgen en mezelf weg te cijferen (Zelfopoffering), zit eigenlijk mijn onvervulde basisbehoefte om gewoon mijn eigen grenzen en emoties te mogen uiten (Vrije expressie)."</em></li>
+            </ul>
+
+            <h4 style={{ color: '#0f172a', marginTop: '1.5rem', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Richting het einde van het spel...</h4>
+            <p style={{ margin: 0, lineHeight: '1.6' }}>Speler 1 heeft nog maar één kaart over en roept "Laatste kaart!". Het is de <strong>M-kaart (Blauw) - Boze Kindmodus</strong>. Omdat je volgens Regel 5 alléén mag uitmaken met de groene Gezonde Volwassene, mag Speler 1 deze blauwe kaart wel spelen (als het qua kleur of letter past), maar is het spel nog niet gewonnen. Speler 1 moet verplicht een nieuwe kaart van de trekstapel pakken en doorspelen tot de regie daadwerkelijk weer bij de Gezonde Volwassene ligt.</p>
+          </div>
+        </div>
       </div>
     </div>
   );
