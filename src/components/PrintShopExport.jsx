@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ArrowLeftIcon } from './Icons';
+import { ArrowLeftIcon, PrinterIcon } from './Icons';
 import { getCardColor, CardInnerBorder } from '../utils/colors';
 import { schemaImages, modeImages } from '../utils/images';
 import { schemaDescriptions } from '../data/descriptions';
@@ -105,7 +105,12 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
       `}</style>
       <div className="no-print" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', background: 'white', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
 
-        <h1 style={{ color: 'black', marginBottom: '1rem' }}>Print Shop Export (PeterPrint)</h1>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+            <PrinterIcon size={48} useGameGradient={true} /> Print Opties
+          </h1>
+          <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem' }}>Drukkerij Export (PeterPrint)</h2>
+        </div>
         <p style={{ color: '#333', lineHeight: '1.6', marginBottom: '1rem' }}>
           Dit is de verborgen generator voor professionele drukkerijen. Het papierformaat voor de PDF is ingesteld op <strong>Speelkaarten formaat (64x94mm inclusief 3mm afloop rondom)</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 58x88mm worden zonder witte randjes.
         </p>

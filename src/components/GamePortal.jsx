@@ -17,12 +17,12 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
       </div>
 
       <div style={{ textAlign: 'center', marginBottom: '4rem', maxWidth: '800px' }}>
-        <h1 className="text-gradient-game" style={{ fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '1.5rem' }}>
+        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
           <PlayingCardsIcon size={48} useGameGradient={true} /> Het Schematherapie Spel
         </h1>
-        <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: 'var(--text-main)', marginBottom: '1rem' }}>
-          Breng schema's en modi tot leven op tafel! Het spel helpt je om samen met je cliënt het patroon van trigger tot gezonde volwassene inzichtelijk te maken en er interactief mee te werken.
-        </p>
+        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.6' }}>
+          Breng schema's en modi tot leven op tafel
+        </h2>
       </div>
 
       <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '800px', borderRadius: '24px', border: '1px solid var(--border-color)', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', gap: '2rem' }}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeftIcon } from './Icons';
+import { ArrowLeftIcon, PrinterIcon } from './Icons';
 import { getCardColor } from '../utils/colors';
 import { schemaImages, modeImages } from '../utils/images';
 import { formatCardTitle, getCardTypeLetter, getCardTypeLabel } from './SchemaCard';
@@ -124,7 +124,12 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
         <button onClick={onBack} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
           <ArrowLeftIcon size={18} /> Terug naar Start
         </button>
-        <h1 style={{ color: 'black', marginBottom: '1rem' }}>Thuisprint Export (A4)</h1>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+            <PrinterIcon size={48} useGameGradient={true} /> Print Opties
+          </h1>
+          <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem' }}>Thuisprint Export (A4)</h2>
+        </div>
         <p style={{ color: '#333', lineHeight: '1.6', marginBottom: '1rem' }}>
           Met deze optie kun je de kaarten zelf op A4-papier printen om te proberen (bijv. op een inkjet of laserprinter thuis).<br/>
           De kaarten worden gerangschikt in een 3x3 grid. De achterkant-pagina's zijn <strong>gespiegeld</strong>, zodat ze perfect achter de voorkanten vallen als je dubbelzijdig print (omdraaien over de lange zijde).

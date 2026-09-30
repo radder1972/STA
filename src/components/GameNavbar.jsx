@@ -46,7 +46,7 @@ export default function GameNavbar({ currentView, setCurrentView }) {
                 padding: '0.5rem 1rem',
                 borderRadius: '9999px',
                 border: 'none',
-                background: isActive ? 'linear-gradient(135deg, #3b82f6, #8b5cf6)' : 'transparent',
+                background: isActive ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
                 color: isActive ? 'white' : 'var(--text-muted)',
                 fontWeight: isActive ? '600' : '500',
                 cursor: 'pointer',

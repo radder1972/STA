@@ -8,7 +8,7 @@ export default function GameRules({ onBack }) {
   };
 
   return (
-    <div className="view-container game-rules-page" style={{ padding: '1rem', minHeight: '100vh', background: 'var(--bg-color)' }}>
+    <div className="view-container game-rules-page" style={{ padding: '2rem', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'var(--bg-color)' }}>
       <style>{`
         @media print {
           .no-print { display: none !important; }
@@ -71,9 +71,14 @@ export default function GameRules({ onBack }) {
           }
         }
       `}</style>
-      
-      <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem', gap: '1rem' }}>
+      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
+        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+          <PlayingCardsIcon size={48} useGameGradient={true} /> Het Schema-Spel
+        </h1>
+        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>Van Trigger tot Volwassene</h2>
+      </div>
 
+      <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem', gap: '1rem' }}>
         <button onClick={handlePrint} className="btn btn-gradient-game" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Printer size={18} /> Print Spelregels
         </button>
@@ -88,12 +93,7 @@ export default function GameRules({ onBack }) {
         color: '#222',
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)'
       }}>
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-            <PlayingCardsIcon size={48} useGameGradient={true} /> Het Schema-Spel
-          </h1>
-          <h2 style={{ color: '#64748b', margin: 0, fontWeight: '500', fontSize: '1.5rem' }}>Van Trigger tot Volwassene</h2>
-        </div>
+
         
         <div style={{ marginBottom: '3rem', background: '#f8fafc', borderRadius: '16px', padding: '2rem', border: '1px solid #e2e8f0' }}>
           <h3 style={{ color: '#0f172a', margin: '0 0 1.5rem 0', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '12px' }}>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ArrowLeftIcon } from './Icons'
+import { ArrowLeftIcon, PlayingCardsIcon } from './Icons'
 import { getCardColor } from '../utils/colors'
 import SchemaCard from './SchemaCard'
 
@@ -164,10 +164,12 @@ export default function KaartenOverzicht({ onBack }) {
   }
 
   return (
-    <div className="view-container">
-      <div className="header" style={{ marginBottom: '2rem' }}>
-        <h1 style={{ color: "var(--text-main)" }}>Kaarten Overzicht</h1>
-        <p>Alle illustraties uit de theorie op een rij. Klik op een kaart om de theorie te lezen!</p>
+    <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
+      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
+        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+          <PlayingCardsIcon size={48} useGameGradient={true} /> De Theoriekaarten
+        </h1>
+        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>Bestudeer theorie, voorbeelden en tips</h2>
       </div>
       
 
