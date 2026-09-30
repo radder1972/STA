@@ -170,11 +170,7 @@ export default function KaartenOverzicht({ onBack }) {
         <p>Alle illustraties uit de theorie op een rij. Klik op een kaart om de theorie te lezen!</p>
       </div>
       
-      <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-        <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <ArrowLeftIcon size={18} /> Terug naar Start
-        </button>
-      </div>
+
 
       <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
         <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>

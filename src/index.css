@@ -949,3 +949,17 @@ body.print-shop-export-mode {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+@media (max-width: 600px) {
+  .game-nav-label {
+    display: none;
+  }
+}
+

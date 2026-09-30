@@ -14,6 +14,7 @@ import OrderCards from './components/OrderCards'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 import packageJson from '../package.json'
+import GameNavbar from './components/GameNavbar'
 
 window.addEventListener('error', function(event) {
   alert("Error: " + event.message + "\nFile: " + event.filename + "\nLine: " + event.lineno);
@@ -134,6 +135,9 @@ function App() {
 
   return (
     <div className="app-container" style={{ position: 'relative' }}>
+      {['game-portal', 'kaartenoverzicht', 'game-rules', 'print-shop', 'order-cards'].includes(currentView) && (
+        <GameNavbar currentView={currentView} setCurrentView={setCurrentView} />
+      )}
       <button 
         onClick={toggleTheme} 
         className="btn btn-outline no-print" 

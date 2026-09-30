@@ -72,11 +72,7 @@ export default function OrderCards({ onBack }) {
   return (
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem', overflow: 'hidden' }}>
       
-      <div className="no-print" style={{ alignSelf: 'flex-start', marginBottom: '2rem', position: 'relative', zIndex: 10 }}>
-        <button onClick={onBack} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <ArrowLeftIcon size={18} /> Terug naar het Spelportaal
-        </button>
-      </div>
+
 
       <div style={{ textAlign: 'center', marginBottom: '3rem', maxWidth: '800px', position: 'relative', zIndex: 10 }}>
         <h1 className="text-gradient-game" style={{ fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '1rem' }}>

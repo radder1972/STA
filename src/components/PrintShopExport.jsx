@@ -131,9 +131,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
         }
       `}</style>
       <div className="no-print" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', background: 'white', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
-        <button onClick={onBack} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
-          <ArrowLeftIcon size={18} /> Terug naar Start
-        </button>
+
         <h1 style={{ color: 'black', marginBottom: '1rem' }}>Print Shop Export (PeterPrint)</h1>
         <p style={{ color: '#333', lineHeight: '1.6', marginBottom: '1rem' }}>
           Dit is de verborgen generator voor professionele drukkerijen. Het papierformaat voor de PDF is ingesteld op <strong>Speelkaarten formaat (64x94mm inclusief 3mm afloop rondom)</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 58x88mm worden zonder witte randjes.

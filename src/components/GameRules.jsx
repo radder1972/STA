@@ -73,9 +73,7 @@ export default function GameRules({ onBack }) {
       `}</style>
       
       <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem', gap: '1rem' }}>
-        <button onClick={onBack} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <ArrowLeftIcon size={18} /> Terug naar Start
-        </button>
+
         <button onClick={handlePrint} className="btn btn-gradient-game" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Printer size={18} /> Print Spelregels
         </button>
