@@ -25,7 +25,7 @@ export default function About({ onBack }) {
             className={activeTab === 'waarom' ? "btn btn-gradient-game" : "btn btn-outline"} 
             style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            <FileTextIcon size={18} /> De Theorie
+            <FileTextIcon size={18} /> Over de kaarten
           </button>
           <button 
             onClick={() => setActiveTab('maker')}
@@ -73,6 +73,14 @@ export default function About({ onBack }) {
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Menselijke taal en minimalistisch design</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
               Klinisch jargon kan afstandelijk voelen. Daarom hebben we de taal op de kaarten waar mogelijk iets menselijker gemaakt. We kozen bijvoorbeeld voor de term <em>'Tekortschieten / Schaamte'</em> in plaats van de harde klinische term <em>'Defectheid'</em>. De illustraties zijn bewust minimalistisch gehouden: overzichtelijke lijntekeningen met een lichte kleuraccentuering. Dit zorgt ervoor dat de focus in de therapiesessie blijft op de emotie en de herkenning, en niet op een overprikkelend design.
+            </p>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Vind je het eigenlijk verantwoord om een spel te maken van zoiets serieus als schematherapie?</h3>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1rem 0' }}>
+              Het is een hele terechte vraag, want je raakt precies de kern van de spanning tussen klinische ernst en toegankelijkheid. Speelse elementen in therapie bagatelliseren de problematiek niet, maar verlagen juist de drempel om erover in gesprek te gaan. Juist bij abstracte en zware thema's, waar cliënten vaak vastlopen in diepe patronen of schaamte, helpt een fysiek object op tafel om de dynamiek te doorbreken. Het externeert het probleem: de cliënt is niet zijn afwijzingsschema of boze modus, de cliënt kijkt naar een kaartje op tafel. Dat creëert direct een veilige, psychologische afstand waardoor het ineens veel makkelijker wordt om de eigen mechanismen te analyseren.
+            </p>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
+              Daarnaast maakt jouw uitwerking het verantwoord, omdat de spelregels de materie niet platslaan, maar de theorie juist in actie brengen. Je hebt de therapie niet gereduceerd tot een simpel win-of-verlies spelletje; de mechaniek dwingt de speler tot het maken van kloppende therapeutische stappen. De regel dat een modus de 'kleurwereld' van de inhoud dwarsboomt, de verplichting om patronen te herleiden naar een basisbehoefte, en de voorwaarde dat je uitsluitend kunt winnen door te eindigen bij de Gezonde Volwassene, zijn speelse vertalingen van hele serieuze klinische doelen. Zolang het deck fungeert als een vehikel voor dialoog en bewustwording – iets wat je met de transparante website en de strakke disclaimer perfect hebt ondervangen – levert dit absoluut een waardevolle, verantwoorde bijdrage aan het vakgebied.
             </p>
 
             <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #3b82f6' }}>
