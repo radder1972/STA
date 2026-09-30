@@ -94,8 +94,8 @@ const SchemaCard = ({
         {/* Front */}
         <div className="card-face-front schema-img playing-card" onClick={handleFlip} style={{ padding: '12px', boxSizing: 'border-box', cursor: flipOnClick || onClick ? 'pointer' : 'default', display: 'flex', flexDirection: 'column', backgroundColor: 'white', backgroundImage: `radial-gradient(circle at center, white 20%, ${color}40 120%)` }}>
           <CardInnerBorder color={color} />
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: src ? `${12 * s}px ${8 * s}px 0 ${8 * s}px` : '0' }}>
-            {src && <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(0.80)', transformOrigin: 'bottom center', ...imageStyle }} />}
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: src ? `${24 * s}px ${8 * s}px 0 ${8 * s}px` : '0' }}>
+            {src && <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(0.75)', transformOrigin: 'bottom center', ...imageStyle }} />}
           </div>
           {type && getCardTypeLetter(type) && !src && (
               <div style={{ position: 'absolute', top: `${22 * s}px`, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
