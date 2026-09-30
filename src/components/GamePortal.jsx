@@ -60,7 +60,7 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
           <div style={{ flex: 1 }}>
             <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.5rem' }}>Kaarten Printen</h2>
             <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Print de kaarten zelf of stuur een bestand naar de drukker om fysiek met de theoriekaarten aan de slag te gaan.</p>
-            <button onClick={onViewPrintShop} className="btn btn-outline">
+            <button onClick={onViewPrintShop} className="btn btn-gradient-game">
               Bekijk print opties
             </button>
           </div>
