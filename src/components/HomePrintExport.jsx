@@ -114,14 +114,12 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             page-break-after: always;
             break-after: page;
             width: 210mm !important;
-            height: 297mm !important;
+            height: 296mm !important; /* 1mm smaller to prevent extra blank pages */
             margin: 0 !important;
-            padding: 0 !important;
+            padding: 11mm 13mm !important; /* (296-274)/2 = 11mm top/bottom, (210-184)/2 = 13mm left/right */
             box-shadow: none !important;
             border: none !important;
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
+            display: block !important;
             box-sizing: border-box !important;
           }
           /* Force exact sizing for A4 to prevent scaling */
