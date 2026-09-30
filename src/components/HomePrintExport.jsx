@@ -211,17 +211,22 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                         <>
                           <CardInnerBorder color={cardColor} outerColor="white" />
                           <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '1mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '8mm 6mm 2mm 6mm' }}>
-                              <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...card.style }} />
-                            </div>
+                            {/* Header (Badge) */}
                             {card.type && getCardTypeLetter(card.type) && (
-                              <div style={{ position: 'absolute', top: '4mm', left: '4mm', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color: cardColor, lineHeight: 1.1, zIndex: 10 }}>
-                                <span style={{ fontSize: '18px' }}>{getCardTypeLetter(card.type)}</span>
-                                <span style={{ fontSize: '5.5px', marginTop: '1.5mm', textTransform: 'uppercase', letterSpacing: '0.3px' }}>{getCardTypeLabel(card.type)}</span>
+                              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color: cardColor, lineHeight: 1.1, zIndex: 10, marginTop: card.src ? '4mm' : '8mm' }}>
+                                <span style={{ fontSize: card.src ? '14px' : '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: card.src ? '9mm' : '12mm', height: card.src ? '9mm' : '12mm', borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: '1.5mm', boxSizing: 'border-box' }}>{getCardTypeLetter(card.type)}</span>
+                                <span style={{ fontSize: card.src ? '5.5px' : '6.5px', marginTop: '1mm', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black' }}>{getCardTypeLabel(card.type)}</span>
                               </div>
                             )}
+
+                            {/* Image Container */}
+                            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: 0, width: '100%' }}>
+                              {card.src && <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.18)', ...card.style }} />}
+                            </div>
+
+                            {/* Footer (Title) */}
                             {card.title && (
-                              <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold', margin: '2mm 0 10mm 0', lineHeight: '1.2', color: 'black' }}>
+                              <div style={{ textAlign: 'center', fontSize: '10.5px', fontWeight: '900', color: 'black', margin: '2mm 0 6mm 0', lineHeight: '1.2', height: '10mm', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
                                 {formatCardTitle(card.title)}
                               </div>
                             )}
