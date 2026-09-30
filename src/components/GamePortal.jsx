@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { HomeIcon, FileTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon } from './Icons';
+import { HomeIcon, FileTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon, InfoIcon } from './Icons';
 
-export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameRules, onViewPrintShop, onViewOrderCards }) {
+export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameRules, onViewPrintShop, onViewOrderCards, onViewAbout }) {
   const [filter, setFilter] = useState('optie1');
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -66,6 +66,18 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
           </div>
         </div>
 
+        <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
+          <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
+            <InfoIcon size={32} useGameGradient={true} />
+          </div>
+          <div style={{ flex: 1 }}>
+            <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Over de kaarten</h2>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Lees meer over de achtergrond, verantwoording en visie achter de theorie- en actiekaarten.</p>
+            <button onClick={onViewAbout} className="btn btn-gradient-game">
+              Lees meer over de kaarten
+            </button>
+          </div>
+        </div>
         <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
           <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
             <PrinterIcon size={32} useGameGradient={true} />

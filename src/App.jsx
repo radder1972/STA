@@ -203,6 +203,7 @@ function App() {
           onViewGameRules={() => setCurrentView('game-rules')}
           onViewPrintShop={() => setCurrentView('print-shop')}
           onViewOrderCards={() => setCurrentView('order-cards')}
+          onViewAbout={() => setCurrentView('about')}
         />
       )}
       {currentView === 'order-cards' && (
