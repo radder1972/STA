@@ -223,7 +223,7 @@ export default function OrderCards({ onBack }) {
       }}>
         <button 
           onClick={handlePrev} 
-          className="btn" 
+          className="btn btn-gradient-game" 
           style={{ 
             borderRadius: '50%', 
             width: '60px', 
@@ -232,12 +232,7 @@ export default function OrderCards({ onBack }) {
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'center', 
-            background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', 
-            border: 'none', 
-            color: 'white', 
-            boxShadow: '0 10px 25px rgba(59, 130, 246, 0.4)',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease'
+            boxShadow: '0 10px 25px rgba(59, 130, 246, 0.4)'
           }}
           onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(59, 130, 246, 0.6)'; }}
           onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 10px 25px rgba(59, 130, 246, 0.4)'; }}
@@ -272,7 +267,7 @@ export default function OrderCards({ onBack }) {
 
         <button 
           onClick={handleNext} 
-          className="btn" 
+          className="btn btn-gradient-game" 
           style={{ 
             borderRadius: '50%', 
             width: '60px', 
@@ -280,13 +275,8 @@ export default function OrderCards({ onBack }) {
             padding: 0, 
             display: 'flex', 
             alignItems: 'center', 
-            justifyContent: 'center', 
-            background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', 
-            border: 'none', 
-            color: 'white', 
-            boxShadow: '0 10px 25px rgba(59, 130, 246, 0.4)',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease'
+            justifyContent: 'center',
+            boxShadow: '0 10px 25px rgba(59, 130, 246, 0.4)'
           }}
           onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(59, 130, 246, 0.6)'; }}
           onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 10px 25px rgba(59, 130, 246, 0.4)'; }}
