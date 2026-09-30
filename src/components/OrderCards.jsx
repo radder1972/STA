@@ -122,7 +122,7 @@ export default function OrderCards({ onBack }) {
               <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
                   <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
-                  98 theoriekaarten & actiekaarten
+                  43 theoriekaarten & actiekaarten
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
                   <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
