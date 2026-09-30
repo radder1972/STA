@@ -9,18 +9,13 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
 
   return (
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
-      
-      <div className="no-print" style={{ alignSelf: 'flex-start', marginBottom: '2rem' }}>
-        <button onClick={onBack} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <ArrowLeftIcon size={18} /> Terug naar de App
-        </button>
-      </div>
 
-      <div style={{ textAlign: 'center', marginBottom: '4rem', maxWidth: '800px' }}>
+
+      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
           <PlayingCardsIcon size={48} useGameGradient={true} /> Het Schematherapie Spel
         </h1>
-        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.6' }}>
+        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>
           Breng schema's en modi tot leven op tafel
         </h2>
       </div>

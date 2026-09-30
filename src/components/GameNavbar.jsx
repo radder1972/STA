@@ -1,8 +1,9 @@
 import React from 'react';
-import { Home, BookOpen, FileText, Printer, ShoppingCart } from 'lucide-react';
+import { ArrowLeft, Home, BookOpen, FileText, Printer, ShoppingCart } from 'lucide-react';
 
 export default function GameNavbar({ currentView, setCurrentView }) {
   const navItems = [
+    { id: 'home', label: 'Terug', icon: ArrowLeft },
     { id: 'game-portal', label: 'Portaal', icon: Home },
     { id: 'kaartenoverzicht', label: 'Theorie', icon: BookOpen },
     { id: 'game-rules', label: 'Spelregels', icon: FileText },

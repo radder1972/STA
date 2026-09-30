@@ -88,9 +88,7 @@ export default function GameRules({ onBack }) {
         maxWidth: '850px', 
         margin: '0 auto', 
         padding: '3rem', 
-        background: 'white', 
         borderRadius: '24px',
-        color: '#222',
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)'
       }}>
 

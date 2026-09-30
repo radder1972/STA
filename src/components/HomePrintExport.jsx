@@ -93,7 +93,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
   };
 
   return (
-    <div className="home-print-container" style={{ background: '#f0f0f0', minHeight: '100vh', padding: '1rem' }}>
+    <div className="home-print-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
       <style>{`
         @media print {
           @page {
@@ -120,21 +120,18 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
         }
       `}</style>
 
-      <div className="no-print" style={{ maxWidth: '800px', margin: '0 auto 2rem auto', background: 'white', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
-        <button onClick={onBack} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
-          <ArrowLeftIcon size={18} /> Terug naar Start
-        </button>
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-            <PrinterIcon size={48} useGameGradient={true} /> Print Opties
-          </h1>
-          <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem' }}>Thuisprint Export (A4)</h2>
-        </div>
-        <p style={{ color: '#333', lineHeight: '1.6', marginBottom: '1rem' }}>
+      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
+        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+          <PrinterIcon size={48} useGameGradient={true} /> Print Opties
+        </h1>
+        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>Thuisprint Export (A4)</h2>
+      </div>
+      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '2rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
           Met deze optie kun je de kaarten zelf op A4-papier printen om te proberen (bijv. op een inkjet of laserprinter thuis).<br/>
           De kaarten worden gerangschikt in een 3x3 grid. De achterkant-pagina's zijn <strong>gespiegeld</strong>, zodat ze perfect achter de voorkanten vallen als je dubbelzijdig print (omdraaien over de lange zijde).
         </p>
-        <p style={{ color: '#333', lineHeight: '1.6', marginBottom: '1rem' }}>
+        <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
           Zorg dat je printer instaat op:
           <br/><br/>
           - <strong>Papierformaat:</strong> A4 Staand (Portrait)<br/>
