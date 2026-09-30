@@ -174,13 +174,13 @@ export default function KaartenOverzicht({ onBack }) {
       
 
 
-      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
-        <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
+      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px' }}>
 
-          <FilterButton id="domeinen" label="Basisbehoeften (5)" />
-          <FilterButton id="schemas" label="Schema's (18)" />
-          <FilterButton id="modicats" label="Modi Categorieën (6)" />
-          <FilterButton id="modi" label="Modi (14)" />
+          <FilterButton id="domeinen" label="Basisbehoeften" />
+          <FilterButton id="schemas" label="Schema's" />
+          <FilterButton id="modicats" label="Modi Categorieën" />
+          <FilterButton id="modi" label="Modi" />
         </div>
       </div>
 
