@@ -11,7 +11,7 @@ export default function GameNavbar({ currentView, setCurrentView }) {
   ];
 
   return (
-    <div style={{
+    <div className="no-print" style={{
       position: 'sticky',
       top: '1rem',
       zIndex: 50,
