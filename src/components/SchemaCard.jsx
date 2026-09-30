@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { CardInnerBorder } from '../utils/colors';
 
-const formatCardTitle = (title) => {
+export const formatCardTitle = (title) => {
   if (!title) return title;
   
   if (title.includes('/')) {
@@ -36,7 +36,7 @@ const formatCardTitle = (title) => {
   return title;
 };
 
-const getCardTypeLetter = (type) => {
+export const getCardTypeLetter = (type) => {
   if (type === 'schema') return 'S';
   if (type === 'mode') return 'M';
   if (type === 'basisbehoefte') return 'B';
@@ -44,7 +44,7 @@ const getCardTypeLetter = (type) => {
   return '';
 };
 
-const getCardTypeLabel = (type) => {
+export const getCardTypeLabel = (type) => {
   if (type === 'schema') return "Schema";
   if (type === 'mode') return "Modus";
   if (type === 'basisbehoefte') return "Basisbehoefte";

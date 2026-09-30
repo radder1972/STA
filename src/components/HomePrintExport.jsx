@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowLeftIcon } from './Icons';
 import { getCardColor } from '../utils/colors';
 import { schemaImages, modeImages } from '../utils/images';
+import { formatCardTitle, getCardTypeLetter, getCardTypeLabel } from './SchemaCard';
 import { schemaDescriptions } from '../data/descriptions';
 import { getVerdieping } from '../data/verdieping';
 
@@ -29,39 +30,6 @@ import imgM4 from '../assets/images/modicategorieen/4.png'
 
 import { CardInnerBorder } from '../utils/colors';
 
-const formatCardTitle = (title) => {
-  if (!title) return title;
-  
-  if (title === 'Kwetsbaarheid voor ziekte en gevaar') {
-    return <>Kwetsbaarheid voor ziekte<br />en gevaar</>;
-  }
-  if (title === 'Kluwen / Onderontwikkeld zelf') {
-    return <>Kluwen / Onderontwikkeld<br />zelf</>;
-  }
-  
-  if (title.length > 20 && title.includes(' / ')) {
-    const parts = title.split(' / ');
-    return <>{parts[0]} /<br />{parts[1]}</>;
-  }
-  
-  return title;
-};
-
-const getCardTypeLetter = (type) => {
-  if (type === 'schema') return 'S';
-  if (type === 'mode') return 'M';
-  if (type === 'basisbehoefte') return 'B';
-  if (type === 'modicategorie') return 'C';
-  return '';
-};
-
-const getCardTypeLabel = (type) => {
-  if (type === 'schema') return "Schema's";
-  if (type === 'mode') return "Modi";
-  if (type === 'basisbehoefte') return "Basisbehoeften";
-  if (type === 'modicategorie') return "Categorieën";
-  return '';
-};
 
 export default function HomePrintExport({ onBack, onViewPrintShop }) {
   const allCards = [];

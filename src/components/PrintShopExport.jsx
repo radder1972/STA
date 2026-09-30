@@ -4,6 +4,7 @@ import { getCardColor, CardInnerBorder } from '../utils/colors';
 import { schemaImages, modeImages } from '../utils/images';
 import { schemaDescriptions } from '../data/descriptions';
 import { getVerdieping } from '../data/verdieping';
+import { formatCardTitle, getCardTypeLetter, getCardTypeLabel } from './SchemaCard';
 
 import {
   ysqSchemaNamesMap,
@@ -27,35 +28,7 @@ import imgM3b from '../assets/images/modicategorieen/coping_vermijding.png'
 import imgM3c from '../assets/images/modicategorieen/coping_overcompensatie.png'
 import imgM4 from '../assets/images/modicategorieen/4.png'
 
-const formatCardTitle = (title) => {
-  if (!title) return title;
-  
-  if (title === 'Kwetsbaarheid voor ziekte en gevaar') {
-    return <>Kwetsbaarheid voor ziekte<br />en gevaar</>;
-  }
-  
-  const words = title.trim().split(/\s+/);
-  if (words.length === 2) {
-    return <>{words[0]}<br />{words[1]}</>;
-  }
-  return title;
-};
 
-const getCardTypeLetter = (type) => {
-  if (type === 'schema') return 'S';
-  if (type === 'mode') return 'M';
-  if (type === 'basisbehoefte') return 'B';
-  if (type === 'modicategorie') return 'C';
-  return '';
-};
-
-const getCardTypeLabel = (type) => {
-  if (type === 'schema') return "Schema's";
-  if (type === 'mode') return "Modi";
-  if (type === 'basisbehoefte') return "Basisbehoeften";
-  if (type === 'modicategorie') return "Categorieën";
-  return '';
-};
 
 export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
   useEffect(() => {
