@@ -135,7 +135,7 @@ const SchemaCard = ({
           <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', padding: `0 ${6 * s}px` }}>
             {title && (
               <h4 style={{ 
-                fontSize: `${0.65 * s}rem`, 
+                fontSize: `${0.75 * s}rem`, 
                 marginTop: `${10 * s}px`, 
                 marginBottom: `${2 * s}px`, 
                 paddingBottom: `${6 * s}px`, 

@@ -153,6 +153,21 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
         </div>
       </div>
 
+      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '2.5rem', borderRadius: '24px', background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%)', border: '1px solid rgba(147, 51, 234, 0.15)' }}>
+        <h3 style={{ margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1.4rem' }}>
+          <span style={{ fontSize: '1.5rem' }}>✨</span> Een professioneel gedrukte set voor in jouw praktijk
+        </h3>
+        <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: '0 0 1rem 0' }}>
+          Til je therapiesessies naar een hoger niveau met deze luxe kaartenset. Ontworpen om de abstracte theorie van schematherapie direct visueel en tastbaar te maken voor je cliënten. Perfect voor op tafel, overzichtelijk, en een onmisbare interactieve tool voor in de spreekkamer.
+        </p>
+        <div style={{ background: 'rgba(255,255,255,0.5)', padding: '1.25rem', borderRadius: '12px', border: '1px solid rgba(0,0,0,0.05)', marginTop: '1rem' }}>
+          <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
+            <strong>Kun je zelf niet printen of wil je een hoogwaardige afdruk zonder zelf te hoeven knippen en snijden?</strong><br />
+            <span style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>Neem contact op of houd deze pagina in de gaten voor meer informatie.</span>
+          </p>
+        </div>
+      </div>
+
       <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '3rem', borderRadius: '24px' }}>
         <div className="inner-box" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', margin: 0 }}>
           <h3 className="box-heading" style={{ marginBottom: '1rem' }}>
