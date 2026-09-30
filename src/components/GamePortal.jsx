@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { HomeIcon, FileTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon } from './Icons';
-import packageJson from '../../package.json';
 
 export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameRules, onViewPrintShop, onViewOrderCards }) {
   const [filter, setFilter] = useState('optie1');
@@ -95,9 +94,7 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
 
       </div>
       
-      <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-        v{packageJson.version}
-      </div>
+
     </div>
   );
 }
