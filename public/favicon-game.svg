@@ -1,14 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
   <style>
-    path, rect { stroke: #0f172a; }
+    rect { stroke: #3b82f6; }
+    .bg { fill: white; }
+    .overlay { fill: #3b82f6; fill-opacity: 0.2; }
     @media (prefers-color-scheme: dark) {
-      path, rect { stroke: #e2e8f0; }
+      rect { stroke: #60a5fa; }
+      .bg { fill: #1e293b; }
+      .overlay { fill: #60a5fa; fill-opacity: 0.2; }
     }
   </style>
-  <rect width="12" height="12" x="2" y="10" rx="2" ry="2" />
-  <path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6" />
-  <path d="M6 18h.01" />
-  <path d="M10 14h.01" />
-  <path d="M15 6h.01" />
-  <path d="M18 9h.01" />
+  <rect x="3" y="6" width="9" height="13" rx="1.5" transform="rotate(-15 7.5 12.5)" />
+  <rect x="12" y="6" width="9" height="13" rx="1.5" transform="rotate(15 16.5 12.5)" />
+  <rect class="bg" x="7.5" y="4" width="9" height="13" rx="1.5" />
+  <rect class="overlay" x="7.5" y="4" width="9" height="13" rx="1.5" />
 </svg>

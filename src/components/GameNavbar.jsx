@@ -1,13 +1,13 @@
 import React from 'react';
-import { ArrowLeft, Home, BookOpen, FileText, Printer, ShoppingCart } from 'lucide-react';
+import { HomeIcon, CardsIcon, ScrollTextIcon, PrinterIcon, ShoppingCartIcon } from './Icons';
 
 export default function GameNavbar({ currentView, setCurrentView }) {
   const navItems = [
-    { id: 'game-portal', label: 'Home', icon: Home },
-    { id: 'kaartenoverzicht', label: 'Theorie', icon: BookOpen },
-    { id: 'game-rules', label: 'Spelregels', icon: FileText },
-    { id: 'print-shop', label: 'Printen', icon: Printer },
-    { id: 'order-cards', label: 'Bestellen', icon: ShoppingCart }
+    { id: 'game-portal', label: 'Home', icon: HomeIcon },
+    { id: 'kaartenoverzicht', label: 'Kaarten', icon: CardsIcon },
+    { id: 'game-rules', label: 'Spelregels', icon: ScrollTextIcon },
+    { id: 'print-shop', label: 'Printen', icon: PrinterIcon },
+    { id: 'order-cards', label: 'Bestellen', icon: ShoppingCartIcon }
   ];
 
   return (
