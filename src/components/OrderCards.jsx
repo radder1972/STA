@@ -228,7 +228,7 @@ export default function OrderCards({ onBack }) {
 
           {/* Order Actions */}
           {orderStatus === 'success' ? (
-            <div style={{ background: '#f0fdf4', padding: '2rem', borderRadius: '16px', border: '1px solid #bbf7d0', textAlign: 'center', maxWidth: '400px' }}>
+            <div style={{ background: '#f0fdf4', padding: '2rem', borderRadius: '16px', border: '1px solid #bbf7d0', textAlign: 'center', width: '100%' }}>
               <h3 style={{ color: '#166534', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '1.5rem' }}>✓</span> Bedankt voor je bestelling!
               </h3>
@@ -237,7 +237,7 @@ export default function OrderCards({ onBack }) {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleOrderSubmit} style={{ width: '100%', maxWidth: '450px' }}>
+            <form onSubmit={handleOrderSubmit} style={{ width: '100%' }}>
               <div style={{ background: '#f8fafc', padding: '2rem', borderRadius: '16px', border: '1px solid #e2e8f0', width: '100%', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', color: '#1e293b', fontWeight: '600' }}>Jouw Gegevens</h3>
                 
