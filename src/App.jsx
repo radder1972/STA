@@ -211,8 +211,8 @@ function App() {
       {currentView === 'order-cards' && (
         <OrderCards onBack={() => setCurrentView('game-portal')} />
       )}
-      {currentView !== 'questionnaire' && currentView !== 'basisbehoeften' && currentView !== 'modicategorieen' && currentView !== 'kaartenoverzicht' && currentView !== 'print-shop' && currentView !== 'home-print-export' && currentView !== 'game-rules' && currentView !== 'game-portal' && currentView !== 'order-cards' && (
-        <div style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+      {currentView !== 'questionnaire' && (
+        <div className="no-print" style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
           v{packageJson.version}
         </div>
       )}
