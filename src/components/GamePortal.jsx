@@ -24,7 +24,7 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
 
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <HomeIcon size={48} useGameGradient={true} /> Portaal
+          <HomeIcon size={48} useGameGradient={true} /> Home
         </h1>
         <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>
           Breng schema's en modi tot leven op tafel
@@ -33,8 +33,9 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
 
       <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
         <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
-          <FilterButton id="optie1" label="Optie 1" />
-          <FilterButton id="optie2" label="Optie 2" />
+          <button className="btn btn-outline" onClick={onBack} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
+            {"< Schematherapie app"}
+          </button>
         </div>
       </div>
 

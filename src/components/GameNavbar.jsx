@@ -3,8 +3,7 @@ import { ArrowLeft, Home, BookOpen, FileText, Printer, ShoppingCart } from 'luci
 
 export default function GameNavbar({ currentView, setCurrentView }) {
   const navItems = [
-    { id: 'home', label: 'Schematherapie app', icon: ArrowLeft },
-    { id: 'game-portal', label: 'Portaal', icon: Home },
+    { id: 'game-portal', label: 'Home', icon: Home },
     { id: 'kaartenoverzicht', label: 'Theorie', icon: BookOpen },
     { id: 'game-rules', label: 'Spelregels', icon: FileText },
     { id: 'print-shop', label: 'Printen', icon: Printer },
