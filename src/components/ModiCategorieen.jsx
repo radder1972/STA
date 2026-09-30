@@ -15,7 +15,7 @@ const ModiCategorieen = ({ onBack }) => {
   }, []);
 
   return (
-    <div className="details-section" style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto', background: 'var(--bg-color)', borderRadius: '16px' }}>
+    <div className="glass-panel" style={{ padding: '3rem', maxWidth: '850px', margin: '0 auto', borderRadius: '24px' }}>
       <button 
         onClick={onBack} 
         className="btn btn-outline no-print" 
@@ -24,16 +24,16 @@ const ModiCategorieen = ({ onBack }) => {
         <ArrowLeftIcon size={18} /> Terug naar resultaten
       </button>
 
-      <h1 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>De 4 Modi Categorieën</h1>
+      <h1 className="box-heading text-gradient" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>De 4 Modi Categorieën</h1>
       
       <p style={{ fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--text-main)', marginBottom: '3rem' }}>
         Binnen de schematherapie worden de modi ingedeeld in vier hoofdcategorieën:
       </p>
 
       {/* Categorie 1 */}
-      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+      <div className="inner-box page-break" style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 style={{ color: '#60a5fa', marginBottom: '1rem', fontSize: '1.5rem' }}>1. Kindmodi</h2>
+          <h2 className="box-heading" style={{ color: '#60a5fa', marginBottom: '1rem' }}>1. Kindmodi</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit zijn de intense, oorspronkelijke emoties en behoeften die iemand als kind ervoer en die in het heden weer opspelen bij een trigger. Voorbeelden zijn het Kwetsbare kind, het Boze kind, het Impulsieve/Ongedisciplineerde kind en het Blije/Gezonde kind.
           </p>
@@ -51,9 +51,9 @@ const ModiCategorieen = ({ onBack }) => {
       </div>
 
       {/* Categorie 2 */}
-      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
+      <div className="inner-box page-break" style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 style={{ color: '#f87171', marginBottom: '1rem', fontSize: '1.5rem' }}>2. Disfunctionele oudermodi</h2>
+          <h2 className="box-heading" style={{ color: '#f87171', marginBottom: '1rem' }}>2. Disfunctionele oudermodi</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit zijn de geïnternaliseerde, negatieve stemmen en houdingen van belangrijke figuren uit de jeugd. Voorbeelden zijn de Straffende ouder, de Veeleisende ouder en de Schuldinducerende ouder.
           </p>
@@ -71,9 +71,9 @@ const ModiCategorieen = ({ onBack }) => {
       </div>
 
       {/* Categorie 3 */}
-      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+      <div className="inner-box page-break" style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 style={{ color: '#facc15', marginBottom: '1rem', fontSize: '1.5rem' }}>3. Copingmodi</h2>
+          <h2 className="box-heading" style={{ color: '#facc15', marginBottom: '1rem' }}>3. Copingmodi</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit zijn de overlevingsstrategieën (afweermechanismen) die in de jeugd zijn aangeleerd om pijn en druk te vermijden. Ze zijn gebaseerd op de biologische reacties van vechten, vluchten en bevriezen:
           </p>
@@ -119,9 +119,9 @@ const ModiCategorieen = ({ onBack }) => {
       </div>
 
       {/* Categorie 4 */}
-      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
+      <div className="inner-box page-break" style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 style={{ color: '#34d399', marginBottom: '1rem', fontSize: '1.5rem' }}>4. De Gezonde Volwassene</h2>
+          <h2 className="box-heading" style={{ color: '#34d399', marginBottom: '1rem' }}>4. De Gezonde Volwassene</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit is de gebalanceerde, rationele en zorgzame kant. Deze modus neemt de regie, troost het Kwetsbare kind, stelt grenzen aan de disfunctionele oudermodi en vervangt automatische copingmodi door effectieve, bewuste keuzes.
           </p>

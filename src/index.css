@@ -57,6 +57,30 @@ body {
   box-shadow: var(--glass-shadow);
 }
 
+.inner-box {
+  background: var(--inner-box-bg, #f8fafc);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+}
+.dark .inner-box {
+  --inner-box-bg: rgba(255, 255, 255, 0.03);
+}
+.inner-box:last-child {
+  margin-bottom: 0;
+}
+
+.box-heading {
+  font-size: 1.5rem;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
 .btn {
   font-family: inherit;
   background: var(--primary);

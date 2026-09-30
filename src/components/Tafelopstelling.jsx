@@ -453,11 +453,13 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         )}
       </div>
 
-      <div className="glass-panel" style={{ padding: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '0 auto', background: 'var(--card-bg)' }}>
-        <div style={{ maxWidth: '850px', margin: '0 auto' }}>
-          <div style={{ marginBottom: '3rem' }}>
-            <h3 className="text-gradient" style={{ marginBottom: '1.5rem', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><StepBadge number="1" size={28} /> Beschrijf de situatie</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <div className="glass-panel" style={{ padding: '3rem', borderRadius: '24px', maxWidth: '1000px', margin: '0 auto' }}>
+        
+        <div className="inner-box" style={{ margin: 0 }}>
+          <div style={{ maxWidth: '850px', margin: '0 auto' }}>
+            <div style={{ marginBottom: '3rem' }}>
+              <h3 className="box-heading text-gradient" style={{ justifyContent: 'center' }}><StepBadge number="1" size={28} /> Beschrijf de situatie</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                 <textarea 
                   className="no-print"
@@ -566,14 +568,14 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
           </div>
         </div>
-      </div>
+        </div>
 
-      {/* Stap 3: Analyse */}
-      <div className="no-print glass-panel" style={{ padding: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '3rem auto 0 auto', background: 'var(--card-bg)' }}>
-        <h3 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <StepBadge number="3" size={28} /> AI Analyse
-        </h3>
-        <p style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '2rem', lineHeight: '1.6', maxWidth: '700px', margin: '0 auto 2rem auto' }}>
+        {/* Stap 3: Analyse */}
+        <div className="inner-box no-print" style={{ marginTop: '2rem', margin: '2rem 0 0 0' }}>
+          <h3 className="box-heading text-gradient" style={{ justifyContent: 'center' }}>
+            <StepBadge number="3" size={28} /> AI Analyse
+          </h3>
+          <p style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '2rem', lineHeight: '1.6', maxWidth: '700px', margin: '0 auto 2rem auto' }}>
           Laat de AI je opstelling analyseren op basis van je gekozen kaarten en testresultaten. 
           Kies voor een concrete suggestie voor je <strong>Gezonde Volwassene</strong> (wat zou je kunnen zeggen of doen?), 
           of genereer een uitgebreide <strong>beschrijvende analyse</strong> van het hele patroon.
@@ -588,15 +590,17 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             {isGeneratingAnalysis ? 'Bezig...' : <><WandIcon size={20} color="currentColor" /> Een beschrijvende analyse</>}
           </button>
         </div>
-      </div>
+        </div>
 
-      {/* Diepgaande Analyse Weergave (Print/View) */}
-      {(analysisText || isGeneratingAnalysis) && (
-        <div className="glass-panel" style={{ padding: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '2rem auto 0 auto', background: 'var(--card-bg)' }}>
-          <h3 className="text-gradient" style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            Uitgebreide Psychologische Analyse
-          </h3>
-          {isGeneratingAnalysis ? (
+        </div>
+
+        {/* Diepgaande Analyse Weergave (Print/View) */}
+        {(analysisText || isGeneratingAnalysis) && (
+          <div className="inner-box" style={{ marginTop: '2rem', margin: '2rem 0 0 0' }}>
+            <h3 className="box-heading text-gradient" style={{ justifyContent: 'center' }}>
+              Uitgebreide Psychologische Analyse
+            </h3>
+            {isGeneratingAnalysis ? (
             <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-main)' }}>
               De AI analyseert momenteel jouw opstelling...
             </div>

@@ -140,11 +140,11 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
         </div>
       </div>
 
-      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '2rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1rem' }}>
-          <Info size={28} color="#3b82f6" />
-          <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.5rem' }}>Printhulp voor Thuis / Praktijk</h3>
-        </div>
+      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '3rem', borderRadius: '24px' }}>
+        <div className="inner-box" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', margin: 0 }}>
+          <h3 className="box-heading" style={{ marginBottom: '1rem' }}>
+            <Info size={28} color="#3b82f6" /> Printhulp voor Thuis / Praktijk
+          </h3>
         <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
           Met deze weergave kun je de kaarten zelf op A4-papier printen (bijv. op een inkjet of laserprinter thuis). De kaarten worden gerangschikt in een 3x3 grid. De achterkant-pagina's zijn <strong>gespiegeld</strong>, zodat ze perfect achter de voorkanten vallen als je dubbelzijdig print (omdraaien over de lange zijde). Druk op de "Print Proefdruk (A4)" knop hieronder.
         </p>
@@ -180,6 +180,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
               <strong>Achtergrondafbeeldingen:</strong> AAN
             </p>
+          </div>
           </div>
         </div>
       </div>

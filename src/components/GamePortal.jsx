@@ -38,14 +38,14 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
         </div>
       </div>
 
-      <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '800px', borderRadius: '24px', border: '1px solid var(--border-color)', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto', borderRadius: '24px', border: '1px solid var(--border-color)', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)' }}>
         
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border-color)' }}>
+        <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
           <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
             <CardsIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1 }}>
-            <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.5rem' }}>Spelkaarten Bekijken</h2>
+            <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Spelkaarten Bekijken</h2>
             <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Bestudeer de theorie, herkenbare voorbeelden en concrete tips van alle 18 schema's en 14 modi digitaal.</p>
             <button onClick={onViewKaartenOverzicht} className="btn btn-gradient-game">
               Bekijk spelkaarten
@@ -53,12 +53,12 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border-color)' }}>
+        <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
           <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
             <FileTextIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1 }}>
-            <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.5rem' }}>Spelregels en Oefeningen</h2>
+            <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Spelregels en Oefeningen</h2>
             <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Lees hier de officiële spelregels en ontdek hoe je de spelkaarten in de praktijk kunt gebruiken.</p>
             <button onClick={onViewGameRules} className="btn btn-gradient-game">
               Lees de spelregels
@@ -66,12 +66,12 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border-color)' }}>
+        <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
           <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
             <PrinterIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1 }}>
-            <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.5rem' }}>Kaarten Printen</h2>
+            <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Kaarten Printen</h2>
             <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Print de kaarten zelf of stuur een bestand naar de drukker om fysiek met de spelkaarten aan de slag te gaan.</p>
             <button onClick={onViewPrintShop} className="btn btn-gradient-game">
               Bekijk print opties
@@ -79,12 +79,12 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
+        <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
           <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
             <ShoppingCartIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1 }}>
-            <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.5rem' }}>Fysieke Kaarten Bestellen</h2>
+            <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Fysieke Kaarten Bestellen</h2>
             <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Wil je liever een professioneel, fysiek kaartendeck in handen? Bekijk hier de mogelijkheden om een set te bestellen.</p>
             <button onClick={onViewOrderCards} className="btn btn-gradient-game">
               Kaarten bestellen

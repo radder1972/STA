@@ -96,8 +96,8 @@ export default function GameRules({ onBack }) {
       }}>
 
         
-        <div style={{ marginBottom: '3rem', background: '#f8fafc', borderRadius: '16px', padding: '2rem', border: '1px solid #e2e8f0' }}>
-          <h3 style={{ color: '#0f172a', margin: '0 0 1.5rem 0', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div className="inner-box">
+          <h3 className="box-heading">
             <CardsIcon size={28} useGameGradient={true} /> Wat zit er in het spel?
           </h3>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: '#475569', marginBottom: '1.5rem' }}>
@@ -163,17 +163,17 @@ export default function GameRules({ onBack }) {
           </p>
         </div>
         
-        <div style={{ marginBottom: '3rem', background: '#f8fafc', borderRadius: '16px', padding: '2rem', border: '1px solid #e2e8f0' }}>
-          <h3 style={{ color: '#0f172a', margin: '0 0 1rem 0', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <DicesIcon size={24} useGameGradient={true} /> Voorbereiding
+        <div className="inner-box">
+          <h3 className="box-heading">
+            <DicesIcon size={28} useGameGradient={true} /> Voorbereiding
           </h3>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: '#475569', margin: 0 }}>
             Schud de stapel van 43 theoriekaarten (18 S, 14 M, 5 B, 6 C) en deel ze uit aan de spelers. Leg één startkaart open in het midden van de tafel (bij voorkeur een Schema of een Basisbehoefte).
           </p>
         </div>
 
-        <div style={{ marginBottom: '2rem' }}>
-          <h3 style={{ color: '#0f172a', margin: '0 0 2rem 0', fontSize: '1.75rem', display: 'flex', alignItems: 'center', gap: '12px', borderBottom: '2px solid #e2e8f0', paddingBottom: '1rem' }}>
+        <div className="inner-box" style={{ marginBottom: '2rem' }}>
+          <h3 className="box-heading" style={{ borderBottom: '2px solid #e2e8f0', paddingBottom: '1rem', marginBottom: '2rem' }}>
             <ScrollTextIcon size={28} useGameGradient={true} /> De Regels
           </h3>
           

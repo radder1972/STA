@@ -121,13 +121,11 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
           </button>
         </div>
       </div>
-      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '2rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1rem' }}>
-          <Info size={28} color="#3b82f6" />
-          <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.5rem' }}>Printhulp voor Drukkerijen</h3>
-        </div>
+      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '3rem', borderRadius: '24px' }}>
+        <div className="inner-box" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', margin: 0 }}>
+          <h3 className="box-heading" style={{ marginBottom: '1rem' }}>
+            <Info size={28} color="#3b82f6" /> Printhulp voor Drukkerijen
+          </h3>
         <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
           Deze weergave is geoptimaliseerd voor professionele drukkerijen. Het papierformaat voor de PDF is ingesteld op <strong>Speelkaarten formaat (64x94mm inclusief 3mm afloop rondom)</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 58x88mm worden zonder witte randjes. Druk op de "Genereer Print-PDF" knop hieronder en kies "Opslaan als PDF" in Chrome.
         </p>
@@ -156,6 +154,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
             <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
               <strong>Achtergrondafbeeldingen:</strong> AAN
             </p>
+          </div>
           </div>
         </div>
       </div>
