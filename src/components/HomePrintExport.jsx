@@ -100,7 +100,11 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
         @media print {
           @page {
             size: A4 portrait;
-            margin: 10mm;
+            margin: 0;
+          }
+          body {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
           }
           .home-print-container {
             padding: 0 !important;
@@ -109,15 +113,22 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
           .a4-page {
             page-break-after: always;
             break-after: page;
+            width: 210mm !important;
+            height: 297mm !important;
             margin: 0 !important;
+            padding: 0 !important;
             box-shadow: none !important;
             border: none !important;
-            padding: 0 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
           }
           /* Force exact sizing for A4 to prevent scaling */
           .a4-page-content {
-            width: 190mm !important; /* A4 width (210) minus 2x10mm margins */
-            height: 277mm !important; /* A4 height (297) minus 2x10mm margins */
+            width: 184mm !important; 
+            height: 274mm !important; 
+            margin: 0 !important;
           }
         }
       `}</style>
@@ -164,7 +175,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
             <Maximize size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
             <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
-              <strong>Schaal & Marges:</strong> 100% of Standaard (Niet passend maken!) en Marges op Standaard/Minimum
+              <strong>Schaal & Marges:</strong> Schaal op 100% of Standaard. Marges op <strong>Geen</strong> (Heel belangrijk voor dubbelzijdige uitlijning!)
             </p>
           </div>
 
