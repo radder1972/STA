@@ -102,102 +102,104 @@ export default function OrderCards({ onBack }) {
       </div>
 
       {/* WEBSHOP HERO SECTION */}
-      <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '1000px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10, display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'flex-start' }}>
-        
-        {/* Left: Product Image */}
-        <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
-          <div style={{
-            width: '100%',
-            borderRadius: '20px',
-            overflow: 'hidden',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
-            border: '1px solid var(--border-color)',
-            background: 'white',
-            position: 'relative'
-          }}>
-            <img 
-              src="/images/cards-mockup.jpeg" 
-              alt="Fysieke set van Het Schematherapie Spel" 
-              style={{ width: '100%', height: 'auto', display: 'block' }} 
-            />
-          </div>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', margin: 0, textAlign: 'center' }}>
-            <StarIcon size={16} color="#fbbf24" style={{ display: 'inline', marginRight: '6px', verticalAlign: 'text-bottom' }} /> 
-            Hoogwaardige kwaliteit voor dagelijks gebruik
-          </p>
-        </div>
-
-        {/* Right: Product Details & Order Box */}
-        <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column' }}>
-          <h2 style={{ fontSize: '2.5rem', margin: '0 0 0.5rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>Het Schematherapie Spel</h2>
-          <p style={{ fontSize: '1.2rem', color: '#64748b', margin: '0 0 2rem 0', fontWeight: '500' }}>Complete Fysieke Kaartenset</p>
+      <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '1000px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10 }}>
+        <div className="inner-box" style={{ background: 'white', display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'flex-start', padding: '2rem' }}>
           
-          {/* Price */}
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', marginBottom: '2rem' }}>
-            <span style={{ fontSize: '2.5rem', fontWeight: '800', color: '#3b82f6' }}>€ {totalPrice}</span>
-            {quantity > 1 && <span style={{ fontSize: '1.1rem', color: 'var(--text-muted)' }}>(€ {pricePerUnit.toString().replace('.', ',')} per stuk)</span>}
-          </div>
-
-          {/* Specifications */}
-          <div style={{ background: 'var(--inner-box-bg, rgba(255,255,255,0.05))', borderRadius: '16px', padding: '1.5rem', marginBottom: '2.5rem', border: '1px solid var(--border-color)' }}>
-            <h4 style={{ margin: '0 0 1rem 0', fontSize: '1.1rem', color: 'var(--text-main)' }}>Specificaties:</h4>
-            <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
-                <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
-                98 theoriekaarten & actiekaarten
-              </li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
-                <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
-                Handzaam speelformaat (64 x 94 mm)
-              </li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
-                <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
-                Mooie afgeronde hoeken (radius 5 mm)
-              </li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
-                <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
-                Hoogwaardige matte afwerking (vuilafstotend)
-              </li>
-            </ul>
-          </div>
-
-          {/* Order Actions */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <span style={{ fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '500' }}>Aantal:</span>
-              <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-color)', borderRadius: '12px', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
-                <button onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                   <Minus size={18} />
-                </button>
-                <div style={{ width: '40px', textAlign: 'center', fontSize: '1.2rem', fontWeight: '600', color: 'var(--text-main)' }}>
-                  {quantity}
-                </div>
-                <button onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                   <Plus size={18} />
-                </button>
-              </div>
+          {/* Left: Product Details & Order Box (Swapped) */}
+          <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column' }}>
+            <h2 style={{ fontSize: '2.5rem', margin: '0 0 0.5rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>Het Schematherapie Spel</h2>
+            <p style={{ fontSize: '1.2rem', color: '#64748b', margin: '0 0 2rem 0', fontWeight: '500' }}>Complete Fysieke Kaartenset</p>
+            
+            {/* Price */}
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', marginBottom: '2rem' }}>
+              <span style={{ fontSize: '2.5rem', fontWeight: '800', color: '#3b82f6' }}>€ {totalPrice}</span>
+              {quantity > 1 && <span style={{ fontSize: '1.1rem', color: 'var(--text-muted)' }}>(€ {pricePerUnit.toString().replace('.', ',')} per stuk)</span>}
             </div>
 
-            <a 
-              href={mailHref} 
-              className="btn btn-gradient-game" 
-              style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                gap: '12px', 
-                width: '100%', 
-                padding: '1.2rem', 
-                fontSize: '1.3rem', 
-                borderRadius: '16px', 
-                textDecoration: 'none',
-                boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)'
-              }}
-            >
-              <ShoppingCartIcon size={24} /> Bestel Nu via E-mail
-            </a>
-            <p style={{ margin: 0, textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-              Je bestelling wordt per e-mail verwerkt. Je zit nog nergens aan vast.
+            {/* Specifications */}
+            <div style={{ background: 'var(--inner-box-bg, rgba(255,255,255,0.05))', borderRadius: '16px', padding: '1.5rem', marginBottom: '2.5rem', border: '1px solid var(--border-color)' }}>
+              <h4 style={{ margin: '0 0 1rem 0', fontSize: '1.1rem', color: 'var(--text-main)' }}>Specificaties:</h4>
+              <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
+                  <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
+                  98 theoriekaarten & actiekaarten
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
+                  <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
+                  Handzaam speelformaat (64 x 94 mm)
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
+                  <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
+                  Mooie afgeronde hoeken (radius 5 mm)
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
+                  <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
+                  Hoogwaardige matte afwerking (vuilafstotend)
+                </li>
+              </ul>
+            </div>
+
+            {/* Order Actions */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <span style={{ fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '500' }}>Aantal:</span>
+                <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-color)', borderRadius: '12px', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
+                  <button onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Minus size={18} />
+                  </button>
+                  <div style={{ width: '40px', textAlign: 'center', fontSize: '1.2rem', fontWeight: '600', color: 'var(--text-main)' }}>
+                    {quantity}
+                  </div>
+                  <button onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Plus size={18} />
+                  </button>
+                </div>
+              </div>
+
+              <a 
+                href={mailHref} 
+                className="btn btn-gradient-game" 
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  gap: '12px', 
+                  width: '100%', 
+                  padding: '1.2rem', 
+                  fontSize: '1.3rem', 
+                  borderRadius: '16px', 
+                  textDecoration: 'none',
+                  boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)'
+                }}
+              >
+                <ShoppingCartIcon size={24} /> Bestel Nu via E-mail
+              </a>
+              <p style={{ margin: 0, textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                Je bestelling wordt per e-mail verwerkt. Je zit nog nergens aan vast.
+              </p>
+            </div>
+          </div>
+
+          {/* Right: Product Image (Swapped) */}
+          <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
+            <div style={{
+              width: '100%',
+              borderRadius: '20px',
+              overflow: 'hidden',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
+              border: '1px solid var(--border-color)',
+              background: 'white',
+              position: 'relative'
+            }}>
+              <img 
+                src="/images/cards-mockup.jpeg" 
+                alt="Fysieke set van Het Schematherapie Spel" 
+                style={{ width: '100%', height: 'auto', display: 'block' }} 
+              />
+            </div>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', margin: 0, textAlign: 'center' }}>
+              <StarIcon size={16} color="#fbbf24" style={{ display: 'inline', marginRight: '6px', verticalAlign: 'text-bottom' }} /> 
+              Hoogwaardige kwaliteit voor dagelijks gebruik
             </p>
           </div>
 
