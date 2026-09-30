@@ -85,7 +85,7 @@ export default function KaartenOverzicht({ onBack }) {
 
   const FilterButton = ({ id, label }) => (
     <button 
-      className={`btn ${filter === id ? 'btn-gradient' : 'btn-outline'}`}
+      className={`btn ${filter === id ? 'btn-gradient-game' : 'btn-outline'}`}
       onClick={() => setFilter(id)}
       style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}
     >
