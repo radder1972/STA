@@ -18,7 +18,8 @@ export default function OrderCards({ onBack }) {
       title,
       src: `/images/schemas/${filename}.png`,
       color: getCardColor('schema', filename),
-      description: schemaDescriptions[title] || ''
+      description: schemaDescriptions[title] || '',
+      style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }
     })),
     ...Object.entries(smiModesMap).map(([filename, title]) => ({
       id: filename,
@@ -26,7 +27,8 @@ export default function OrderCards({ onBack }) {
       title,
       src: `/images/modes/${filename}.png`,
       color: getCardColor('mode', filename),
-      description: schemaDescriptions[title] || ''
+      description: schemaDescriptions[title] || '',
+      style: { transform: 'scale(1.1)' }
     })),
     ...Object.keys(basisbehoeftenToSchemas).map((title, index) => ({
       id: title.toLowerCase().replace(/\s+/g, '-'),
@@ -34,7 +36,8 @@ export default function OrderCards({ onBack }) {
       title,
       src: `/images/basisbehoeften/${index + 1}.png`,
       color: getCardColor('basisbehoefte', title.toLowerCase().replace(/\s+/g, '-')),
-      description: basisbehoeftenText[title] || ''
+      description: basisbehoeftenText[title] || '',
+      style: { transform: 'scale(0.85)' }
     })),
     ...Object.keys(categorieToModi).map(title => {
       let img = '';
@@ -53,7 +56,10 @@ export default function OrderCards({ onBack }) {
         title,
         src: `/images/modicategorieen/${img}`,
         color: getCardColor('modicategorie', safeId),
-        description: categorieText[title] || ''
+        description: categorieText[title] || '',
+        style: title === 'Coping: Vermijding' 
+          ? { transform: 'scale(0.85)', width: '80%', height: '80%' } 
+          : { transform: 'scale(0.85)' }
       };
     })
   ];
@@ -195,6 +201,7 @@ export default function OrderCards({ onBack }) {
             height="340px"
             flipOnClick={true}
             style={{ boxShadow: '0 25px 50px rgba(0,0,0,0.2)' }}
+            imageStyle={currentCard.style}
           />
         </div>
 
