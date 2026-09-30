@@ -47,6 +47,13 @@ body {
   flex-direction: column;
 }
 
+/* Base Typography Standards */
+p:not(.playing-card p) {
+  font-size: 1.1rem !important;
+  line-height: 1.6 !important;
+  color: var(--text-main) !important;
+}
+
 /* Glassmorphism Utilities */
 .glass-panel {
   background: var(--card-bg);
