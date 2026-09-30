@@ -167,7 +167,7 @@ export default function GameRules({ onBack }) {
               </div>
               <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(14 stuks) Tonen actuele gemoedstoestanden. Gekleurd naar de specifieke <strong>Modus Categorie</strong> (bijv. Kindmodi of Copingmodi).</div>
               <div style={{ display: 'flex', gap: '4px', marginTop: '12px' }}>
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f97316' }}></div>
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div>
               </div>
             </div>
 
@@ -179,7 +179,7 @@ export default function GameRules({ onBack }) {
               </div>
               <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(6 stuks) De Modi Categorieën (zoals Kindmodi, Oudermodi of specifieke Coping). Vaak gebruikt om overkoepelend te clusteren.</div>
               <div style={{ display: 'flex', gap: '4px', marginTop: '12px' }}>
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f97316' }}></div>
+                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div>
               </div>
             </div>
           </div>
