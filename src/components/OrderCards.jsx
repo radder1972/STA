@@ -133,8 +133,8 @@ export default function OrderCards({ onBack }) {
             background: 'var(--inner-box-bg, rgba(255,255,255,0.05))', 
             borderRadius: '16px', 
             padding: '1.5rem', 
-            paddingRight: '2.5rem',
-            marginBottom: '2.5rem', 
+            paddingRight: '1rem',
+            marginBottom: '3rem', 
             border: '1px solid var(--border-color)',
             position: 'relative'
           }}>
@@ -163,12 +163,12 @@ export default function OrderCards({ onBack }) {
             
             {/* Overlapping Product Image */}
             <div style={{ 
-              flex: '0 0 180px', 
+              flex: '0 0 140px', 
               borderRadius: '12px', 
               overflow: 'hidden', 
               boxShadow: '0 15px 35px rgba(0,0,0,0.15)', 
               border: '4px solid white', 
-              transform: 'translate(25px, -20px) rotate(4deg)',
+              transform: 'translate(20px, -15px) rotate(4deg)',
               background: 'white',
               position: 'relative',
               zIndex: 2
@@ -192,74 +192,92 @@ export default function OrderCards({ onBack }) {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleOrderSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '400px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <span style={{ fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '500' }}>Aantal:</span>
-                <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-color)', borderRadius: '12px', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
-                  <button type="button" onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Minus size={18} />
-                  </button>
-                  <div style={{ width: '40px', textAlign: 'center', fontSize: '1.2rem', fontWeight: '600', color: 'var(--text-main)' }}>
-                    {quantity}
+            <form onSubmit={handleOrderSubmit} style={{ width: '100%', maxWidth: '450px' }}>
+              <div style={{ background: '#f8fafc', padding: '2rem', borderRadius: '16px', border: '1px solid #e2e8f0', width: '100%', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', color: '#1e293b', fontWeight: '600' }}>Jouw Gegevens</h3>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                  
+                  {/* Aantal Selector integrated */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid #e2e8f0', marginBottom: '0.5rem' }}>
+                    <span style={{ fontSize: '1.05rem', color: '#475569', fontWeight: '500' }}>Aantal spellen:</span>
+                    <div style={{ display: 'flex', alignItems: 'center', background: 'white', borderRadius: '10px', border: '1px solid #cbd5e1', overflow: 'hidden', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
+                      <button type="button" onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Minus size={16} />
+                      </button>
+                      <div style={{ width: '36px', textAlign: 'center', fontSize: '1.1rem', fontWeight: '600', color: '#334155' }}>
+                        {quantity}
+                      </div>
+                      <button type="button" onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Plus size={16} />
+                      </button>
+                    </div>
                   </div>
-                  <button type="button" onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Plus size={18} />
-                  </button>
+
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', color: '#475569', fontWeight: '500' }}>Naam</label>
+                    <input 
+                      type="text" 
+                      placeholder="Voor- en achternaam" 
+                      required
+                      value={orderName}
+                      onChange={(e) => setOrderName(e.target.value)}
+                      style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '1rem', width: '100%', outline: 'none', background: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
+                    />
+                  </div>
+                  
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', color: '#475569', fontWeight: '500' }}>E-mailadres</label>
+                    <input 
+                      type="email" 
+                      placeholder="Jouw e-mailadres" 
+                      required
+                      value={orderEmail}
+                      onChange={(e) => setOrderEmail(e.target.value)}
+                      style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '1rem', width: '100%', outline: 'none', background: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', color: '#475569', fontWeight: '500' }}>Opmerkingen / Factuuradres <span style={{ color: '#94a3b8', fontWeight: 'normal' }}>(optioneel)</span></label>
+                    <textarea 
+                      placeholder="Vul hier eventueel een afwijkend afleveradres in..." 
+                      rows={3}
+                      value={orderAddress}
+                      onChange={(e) => setOrderAddress(e.target.value)}
+                      style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '1rem', width: '100%', resize: 'vertical', outline: 'none', fontFamily: 'inherit', background: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <input 
-                  type="text" 
-                  placeholder="Jouw Naam" 
-                  required
-                  value={orderName}
-                  onChange={(e) => setOrderName(e.target.value)}
-                  style={{ padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', fontSize: '1rem', width: '100%', outline: 'none' }}
-                />
-                <input 
-                  type="email" 
-                  placeholder="E-mailadres" 
-                  required
-                  value={orderEmail}
-                  onChange={(e) => setOrderEmail(e.target.value)}
-                  style={{ padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', fontSize: '1rem', width: '100%', outline: 'none' }}
-                />
-                <textarea 
-                  placeholder="Opmerkingen / Factuuradres (optioneel)" 
-                  rows={3}
-                  value={orderAddress}
-                  onChange={(e) => setOrderAddress(e.target.value)}
-                  style={{ padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', fontSize: '1rem', width: '100%', resize: 'vertical', outline: 'none', fontFamily: 'inherit' }}
-                />
+                <button 
+                  type="submit"
+                  disabled={orderStatus === 'submitting'}
+                  className="btn btn-gradient-game" 
+                  style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    gap: '12px', 
+                    width: '100%', 
+                    padding: '1.2rem', 
+                    fontSize: '1.2rem', 
+                    borderRadius: '12px', 
+                    border: 'none',
+                    cursor: orderStatus === 'submitting' ? 'wait' : 'pointer',
+                    opacity: orderStatus === 'submitting' ? 0.7 : 1,
+                    boxShadow: '0 10px 25px rgba(59, 130, 246, 0.4)',
+                    color: 'white',
+                    marginTop: '2rem'
+                  }}
+                >
+                  <ShoppingCartIcon size={22} /> {orderStatus === 'submitting' ? 'Bezig met verzenden...' : 'Bestelling Plaatsen'}
+                </button>
+                
+                <p style={{ margin: '1rem 0 0 0', textAlign: 'center', fontSize: '0.85rem', color: '#64748b' }}>
+                  Je bestelling wordt handmatig verwerkt. Je zit nergens aan vast tot na de bevestiging.
+                </p>
               </div>
-
-              <button 
-                type="submit"
-                disabled={orderStatus === 'submitting'}
-                className="btn btn-gradient-game" 
-                style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  gap: '12px', 
-                  width: '100%', 
-                  padding: '1.2rem', 
-                  fontSize: '1.2rem', 
-                  borderRadius: '16px', 
-                  border: 'none',
-                  cursor: orderStatus === 'submitting' ? 'wait' : 'pointer',
-                  opacity: orderStatus === 'submitting' ? 0.7 : 1,
-                  boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)',
-                  color: 'white'
-                }}
-              >
-                <ShoppingCartIcon size={24} /> {orderStatus === 'submitting' ? 'Bezig met verzenden...' : 'Bestelling Plaatsen'}
-              </button>
-              
-              <p style={{ margin: 0, textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                Je bestelling wordt handmatig verwerkt. Je zit nergens aan vast tot na de bevestiging.
-              </p>
             </form>
           )}
 
