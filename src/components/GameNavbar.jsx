@@ -1,11 +1,11 @@
 import React from 'react';
-import { HomeIcon, CardsIcon, ScrollTextIcon, PrinterIcon, ShoppingCartIcon } from './Icons';
+import { HomeIcon, CardsIcon, FileTextIcon, PrinterIcon, ShoppingCartIcon } from './Icons';
 
 export default function GameNavbar({ currentView, setCurrentView }) {
   const navItems = [
     { id: 'game-portal', label: 'Home', icon: HomeIcon },
     { id: 'kaartenoverzicht', label: 'Kaarten', icon: CardsIcon },
-    { id: 'game-rules', label: 'Spelregels', icon: ScrollTextIcon },
+    { id: 'game-rules', label: 'Spelregels', icon: FileTextIcon },
     { id: 'print-shop', label: 'Printen', icon: PrinterIcon },
     { id: 'order-cards', label: 'Bestellen', icon: ShoppingCartIcon }
   ];

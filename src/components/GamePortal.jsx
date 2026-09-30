@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HomeIcon, ScrollTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon } from './Icons';
+import { HomeIcon, FileTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon } from './Icons';
 import packageJson from '../../package.json';
 
 export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameRules, onViewPrintShop, onViewOrderCards }) {
@@ -56,7 +56,7 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
 
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border-color)' }}>
           <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
-            <ScrollTextIcon size={32} useGameGradient={true} />
+            <FileTextIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1 }}>
             <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.5rem' }}>Spelregels en Oefeningen</h2>
