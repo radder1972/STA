@@ -274,7 +274,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                                 {formatCardTitle(card.title)}
                               </h4>
                             </div>
-                            <div style={{ fontSize: '0.75rem', lineHeight: '1.4', color: '#111', margin: '0', textAlign: 'center', flexShrink: 0, zIndex: 1 }}>
+                            <div style={{ fontSize: '0.9rem', fontWeight: 'normal', lineHeight: '1.4', color: '#111', margin: '0', textAlign: 'center', flexShrink: 0, zIndex: 1 }}>
                               {card.description}
                             </div>
                           </div>
