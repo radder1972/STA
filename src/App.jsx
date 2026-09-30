@@ -135,7 +135,7 @@ function App() {
 
   return (
     <div className="app-container" style={{ position: 'relative' }}>
-      {['game-portal', 'kaartenoverzicht', 'game-rules', 'print-shop', 'order-cards'].includes(currentView) && (
+      {['game-portal', 'kaartenoverzicht', 'game-rules', 'print-shop', 'home-print-export', 'order-cards'].includes(currentView) && (
         <GameNavbar currentView={currentView} setCurrentView={setCurrentView} />
       )}
       <button 
