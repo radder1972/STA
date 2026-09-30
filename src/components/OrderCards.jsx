@@ -97,7 +97,7 @@ export default function OrderCards({ onBack }) {
           background: 'white'
         }}>
           <img 
-            src="/images/product_photo.jpg" 
+            src="/images/cards-mockup.jpeg" 
             alt="Fysieke set van Het Schematherapie Spel" 
             style={{ width: '100%', height: 'auto', display: 'block' }} 
           />
