@@ -8,11 +8,11 @@ export default function About({ onBack }) {
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
       
       {/* HEADER */}
-      <div style={{ textAlign: 'center', marginBottom: '2rem', width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', position: 'relative', zIndex: 10 }}>
+      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
           <InfoIcon size={48} useGameGradient={true} /> Verantwoording
         </h1>
-        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>
+        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4', minHeight: '34px' }}>
           {activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : 'Wie zit er achter dit spel?'}
         </h2>
       </div>
@@ -94,8 +94,8 @@ export default function About({ onBack }) {
               Deze theoriekaarten zijn met veel zorg en aandacht ontwikkeld vanuit de wens om de waardevolle, maar soms complexe materie van schematherapie visueel en direct toepasbaar te maken. De inhoud, de begrippen en de mechanismen in dit spel zijn zorgvuldig samengesteld op basis van erkende vakliteratuur, de grondbeginselen van Jeffrey Young en de gangbare indelingen die binnen de schematherapie worden gebruikt.
             </p>
 
-            <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#f8fafc', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #64748b' }}>
-              <p style={{ color: '#334155', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
+            <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #3b82f6' }}>
+              <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
                 <strong>Belangrijke disclaimer:</strong> Dit kaartspel is een onafhankelijk, creatief initiatief, ontworpen als praktisch hulpmiddel om de dialoog over patronen en behoeften op een speelse manier te faciliteren. Het is géén officieel product van, en niet formeel getoetst of goedgekeurd door, de Vereniging voor Schematherapie (VSt) of de International Society of Schema Therapy (ISST). Het deck is nadrukkelijk bedoeld als aanvullende, laagdrempelige ondersteuning en niet als vervanging voor officiële klinische instrumenten of een professionele behandeling.
               </p>
             </div>
