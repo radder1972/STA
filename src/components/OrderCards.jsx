@@ -92,20 +92,9 @@ export default function OrderCards({ onBack }) {
         </div>
       </div>
 
-      <div style={{ 
-        display: 'flex', 
-        flexWrap: 'wrap',
-        gap: '4rem', 
-        marginBottom: '4rem', 
-        width: '100%', 
-        maxWidth: '1000px', 
-        margin: '0 auto 4rem auto', 
-        alignItems: 'center',
-        position: 'relative',
-        zIndex: 10
-      }}>
+      <div className="order-promo-box">
         {/* Promotional Text */}
-        <div style={{ flex: '1 1 400px', textAlign: 'left' }}>
+        <div style={{ flex: '1 1 auto', minWidth: 0, textAlign: 'left' }}>
           <h3 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'var(--text-main)', lineHeight: '1.2' }}>Kwaliteit voor in de Praktijk</h3>
           <p style={{ fontSize: '1.15rem', lineHeight: '1.6', color: 'var(--text-muted)', marginBottom: '2rem' }}>
             Het Schematherapie Spel wordt professioneel gedrukt op stevig speelkaartenkarton. Speciaal ontworpen om lang mee te gaan, zelfs bij intensief dagelijks gebruik door therapeuten en cliënten.
@@ -132,7 +121,7 @@ export default function OrderCards({ onBack }) {
 
         {/* Product Photo */}
         <div style={{
-          flex: '0 0 280px',
+          flex: '0 0 240px',
           borderRadius: '24px',
           overflow: 'hidden',
           boxShadow: '0 25px 50px rgba(0,0,0,0.2)',

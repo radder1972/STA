@@ -160,6 +160,26 @@ body {
   margin-top: 3rem;
 }
 
+.order-promo-box {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 4rem auto;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 700px) {
+  .order-promo-box {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+}
+
 .card {
   padding: 2rem;
   text-align: center;
