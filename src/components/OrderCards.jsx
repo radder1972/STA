@@ -11,12 +11,57 @@ export default function OrderCards({ onBack }) {
   const [quantity, setQuantity] = useState(1);
   const [orderName, setOrderName] = useState('');
   const [orderEmail, setOrderEmail] = useState('');
+  const [orderPostcode, setOrderPostcode] = useState('');
+  const [orderHuisnummer, setOrderHuisnummer] = useState('');
+  const [orderToevoeging, setOrderToevoeging] = useState('');
+  const [orderStraat, setOrderStraat] = useState('');
+  const [orderWoonplaats, setOrderWoonplaats] = useState('');
+  const [addressLoading, setAddressLoading] = useState(false);
+  const [addressError, setAddressError] = useState('');
   const [orderAddress, setOrderAddress] = useState('');
   const [orderStatus, setOrderStatus] = useState('idle');
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const fetchAddress = async () => {
+      const pc = orderPostcode.replace(/\s+/g, '').toUpperCase();
+      if (/^[1-9][0-9]{3}[A-Z]{2}$/.test(pc) && orderHuisnummer) {
+        setAddressLoading(true);
+        setAddressError('');
+        try {
+          const res = await fetch(`https://api.pdok.nl/bzk/locatieserver/search/v3_1/free?fq=postcode:${pc}&fq=huisnummer:${orderHuisnummer}&fq=type:adres`);
+          const data = await res.json();
+          if (data.response && data.response.numFound > 0) {
+            const doc = data.response.docs[0];
+            setOrderStraat(doc.straatnaam);
+            setOrderWoonplaats(doc.woonplaatsnaam);
+          } else {
+            setOrderStraat('');
+            setOrderWoonplaats('');
+            setAddressError('Adres niet gevonden. Controleer postcode en huisnummer.');
+          }
+        } catch (e) {
+          setOrderStraat('');
+          setOrderWoonplaats('');
+          setAddressError('Fout bij ophalen adres.');
+        }
+        setAddressLoading(false);
+      } else {
+        setOrderStraat('');
+        setOrderWoonplaats('');
+        setAddressError('');
+      }
+    };
+
+    const timer = setTimeout(() => {
+      fetchAddress();
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [orderPostcode, orderHuisnummer]);
 
   const allCards = [
     ...Object.entries(ysqSchemaNamesMap).map(([filename, title]) => ({
@@ -238,8 +283,51 @@ export default function OrderCards({ onBack }) {
                     />
                   </div>
 
+                  <div style={{ display: 'flex', gap: '1rem' }}>
+                    <div style={{ flex: 1 }}>
+                      <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', color: '#475569', fontWeight: '500' }}>Postcode</label>
+                      <input 
+                        type="text" 
+                        placeholder="1234 AB" 
+                        required
+                        value={orderPostcode}
+                        onChange={(e) => setOrderPostcode(e.target.value)}
+                        style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: `1px solid ${addressError ? '#ef4444' : '#cbd5e1'}`, fontSize: '1rem', width: '100%', outline: 'none', background: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
+                      />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', color: '#475569', fontWeight: '500' }}>Huisnummer</label>
+                      <div style={{ display: 'flex', gap: '0.5rem' }}>
+                        <input 
+                          type="text" 
+                          placeholder="Nr" 
+                          required
+                          value={orderHuisnummer}
+                          onChange={(e) => setOrderHuisnummer(e.target.value)}
+                          style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: `1px solid ${addressError ? '#ef4444' : '#cbd5e1'}`, fontSize: '1rem', width: '60%', outline: 'none', background: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
+                        />
+                        <input 
+                          type="text" 
+                          placeholder="Toev" 
+                          value={orderToevoeging}
+                          onChange={(e) => setOrderToevoeging(e.target.value)}
+                          style={{ padding: '0.8rem 0.5rem', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '1rem', width: '40%', outline: 'none', background: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155', textAlign: 'center' }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {addressLoading && <div style={{ fontSize: '0.85rem', color: '#3b82f6', marginTop: '-0.5rem' }}>Adres zoeken...</div>}
+                  {addressError && <div style={{ fontSize: '0.85rem', color: '#ef4444', marginTop: '-0.5rem' }}>{addressError}</div>}
+                  {orderStraat && orderWoonplaats && (
+                    <div style={{ background: '#f1f5f9', padding: '1rem', borderRadius: '10px', border: '1px solid #cbd5e1', marginTop: '-0.5rem' }}>
+                      <p style={{ margin: 0, fontSize: '0.95rem', color: '#334155', fontWeight: '500' }}>{orderStraat} {orderHuisnummer}{orderToevoeging}</p>
+                      <p style={{ margin: 0, fontSize: '0.95rem', color: '#334155' }}>{orderPostcode.replace(/\s+/g, '').toUpperCase()}, {orderWoonplaats}</p>
+                    </div>
+                  )}
+
                   <div>
-                    <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', color: '#475569', fontWeight: '500' }}>Opmerkingen / Factuuradres <span style={{ color: '#94a3b8', fontWeight: 'normal' }}>(optioneel)</span></label>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', color: '#475569', fontWeight: '500' }}>Opmerkingen <span style={{ color: '#94a3b8', fontWeight: 'normal' }}>(optioneel)</span></label>
                     <textarea 
                       placeholder="Vul hier eventueel een afwijkend afleveradres in..." 
                       rows={3}
