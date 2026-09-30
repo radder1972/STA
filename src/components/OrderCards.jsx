@@ -243,12 +243,12 @@ export default function OrderCards({ onBack }) {
             
             {/* Overlapping Product Image */}
             <div style={{ 
-              flex: '0 0 140px', 
-              borderRadius: '12px', 
+              flex: '0 0 220px', 
+              borderRadius: '16px', 
               overflow: 'hidden', 
-              boxShadow: '0 15px 35px rgba(0,0,0,0.15)', 
-              border: '4px solid white', 
-              transform: 'translate(20px, -15px) rotate(4deg)',
+              boxShadow: '0 25px 50px rgba(0,0,0,0.25)', 
+              border: '6px solid white', 
+              transform: 'translate(35px, -35px) rotate(6deg)',
               background: 'white',
               position: 'relative',
               zIndex: 2
