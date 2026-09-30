@@ -104,22 +104,6 @@ export default function OrderCards({ onBack }) {
         position: 'relative',
         zIndex: 10
       }}>
-        {/* Product Photo */}
-        <div style={{
-          flex: '1 1 350px',
-          borderRadius: '24px',
-          overflow: 'hidden',
-          boxShadow: '0 25px 50px rgba(0,0,0,0.2)',
-          border: '1px solid var(--border-color)',
-          background: 'white'
-        }}>
-          <img 
-            src="/images/cards-mockup.jpeg" 
-            alt="Fysieke set van Het Schematherapie Spel" 
-            style={{ width: '100%', height: 'auto', display: 'block' }} 
-          />
-        </div>
-
         {/* Promotional Text */}
         <div style={{ flex: '1 1 400px', textAlign: 'left' }}>
           <h3 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'var(--text-main)', lineHeight: '1.2' }}>Kwaliteit voor in de Praktijk</h3>
@@ -144,6 +128,22 @@ export default function OrderCards({ onBack }) {
               Krasbestendig en vuilafstotend
             </li>
           </ul>
+        </div>
+
+        {/* Product Photo */}
+        <div style={{
+          flex: '0 0 280px',
+          borderRadius: '24px',
+          overflow: 'hidden',
+          boxShadow: '0 25px 50px rgba(0,0,0,0.2)',
+          border: '1px solid var(--border-color)',
+          background: 'white'
+        }}>
+          <img 
+            src="/images/cards-mockup.jpeg" 
+            alt="Fysieke set van Het Schematherapie Spel" 
+            style={{ width: '100%', height: 'auto', display: 'block' }} 
+          />
         </div>
       </div>
 
