@@ -188,7 +188,7 @@ export default function OrderCards({ onBack }) {
           Een professioneel gedrukte set voor in jouw praktijk
         </h2>
         <p style={{ marginTop: '1.25rem', fontSize: '1.15rem', color: '#475569', lineHeight: '1.6' }}>
-          Til je therapiesessies naar een hoger niveau met deze luxe kaartenset. Ontworpen om de abstracte theorie van schematherapie direct visueel en tastbaar te maken voor je cliënten. Perfect voor op tafel, overzichtelijk, en een onmisbare interactieve tool voor in de spreekkamer.
+          Kun je zelf niet printen of wil je een hoogwaardige afdruk zonder zelf te hoeven knippen en snijden? Til je therapiesessies naar een hoger niveau met deze luxe kaartenset. Ontworpen om de abstracte theorie van schematherapie direct visueel en tastbaar te maken voor je cliënten. Perfect voor op tafel, overzichtelijk, en een onmisbare interactieve tool voor in de spreekkamer.
         </p>
       </div>
 
