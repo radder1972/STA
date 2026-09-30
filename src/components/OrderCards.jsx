@@ -134,14 +134,43 @@ export default function OrderCards({ onBack }) {
   const pricePerUnit = 39.95;
   const totalPrice = (pricePerUnit * quantity).toFixed(2).replace('.', ',');
   
-  const handleOrderSubmit = (e) => {
+  const handleOrderSubmit = async (e) => {
     e.preventDefault();
     if (!orderName || !orderEmail) return;
     setOrderStatus('submitting');
-    // Simulate sending data
-    setTimeout(() => {
-      setOrderStatus('success');
-    }, 1500);
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/info@schematherapiespel.nl", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            Naam: orderName,
+            Email: orderEmail,
+            Aantal: quantity,
+            Postcode: orderPostcode,
+            Huisnummer: orderHuisnummer,
+            Toevoeging: orderToevoeging,
+            Straat: orderStraat,
+            Woonplaats: orderWoonplaats,
+            Opmerkingen: orderAddress,
+            _subject: `Nieuwe bestelling: ${quantity}x Het Schematherapie Spel`,
+            _replyto: orderEmail
+        })
+      });
+      
+      if (response.ok) {
+        setOrderStatus('success');
+      } else {
+        alert("Er ging iets mis bij het verzenden van je bestelling. Probeer het later nog eens.");
+        setOrderStatus('idle');
+      }
+    } catch (error) {
+      alert("Fout bij verbinden met de mailserver.");
+      setOrderStatus('idle');
+    }
   };
 
   return (
