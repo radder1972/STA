@@ -130,8 +130,12 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
       <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
         <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
-          <button className={`btn ${filter === 'optie1' ? 'btn-gradient-game' : 'btn-outline'}`} onClick={() => setFilter('optie1')} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>Optie 1</button>
-          <button className={`btn ${filter === 'optie2' ? 'btn-gradient-game' : 'btn-outline'}`} onClick={() => setFilter('optie2')} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>Optie 2</button>
+          <button onClick={handlePrint} className="btn btn-gradient-game" style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
+            <PrinterIcon size={18} /> Print Proefdruk (A4)
+          </button>
+          <button onClick={onViewPrintShop} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
+            Naar Drukkerij Export
+          </button>
         </div>
       </div>
 
@@ -149,12 +153,6 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
           - <strong>Achtergrondafbeeldingen:</strong> AAN<br/>
           - <strong>Marges:</strong> Standaard (of Minimum)<br/>
         </p>
-        <button onClick={handlePrint} className="btn btn-gradient" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem', marginBottom: '1rem' }}>
-          Print Proefdruk (A4)
-        </button>
-        <button onClick={onViewPrintShop} className="btn btn-outline" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem' }}>
-          Terug naar Drukkerij Export
-        </button>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>

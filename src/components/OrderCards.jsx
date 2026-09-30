@@ -86,8 +86,9 @@ export default function OrderCards({ onBack }) {
 
       <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto', position: 'relative', zIndex: 10 }}>
         <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
-          <button className={`btn ${filter === 'optie1' ? 'btn-gradient-game' : 'btn-outline'}`} onClick={() => setFilter('optie1')} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>Optie 1</button>
-          <button className={`btn ${filter === 'optie2' ? 'btn-gradient-game' : 'btn-outline'}`} onClick={() => setFilter('optie2')} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>Optie 2</button>
+          <a href="mailto:info@schematherapiespel.nl?subject=Interesse in Het Schematherapie Spel" className="btn btn-gradient-game" style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', whiteSpace: 'nowrap', textDecoration: 'none' }}>
+            <MailIcon size={18} /> Stuur ons een e-mail
+          </a>
         </div>
       </div>
 
@@ -210,13 +211,6 @@ export default function OrderCards({ onBack }) {
           Wil je alvast een exemplaar reserveren of heb je vragen over prijzen en oplages voor jouw praktijk? Neem dan gerust contact met ons op via e-mail.
         </p>
         
-        <a 
-          href="mailto:info@schematherapiespel.nl?subject=Interesse in Het Schematherapie Spel" 
-          className="btn btn-gradient-game"
-          style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', padding: '1rem 2rem', fontSize: '1.1rem' }}
-        >
-          <MailIcon size={20} /> Stuur ons een e-mail
-        </a>
       </div>
       
     </div>

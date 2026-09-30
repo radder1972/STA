@@ -112,8 +112,12 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
       </div>
       <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
         <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
-          <button className={`btn ${filter === 'optie1' ? 'btn-gradient-game' : 'btn-outline'}`} onClick={() => setFilter('optie1')} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>Optie 1</button>
-          <button className={`btn ${filter === 'optie2' ? 'btn-gradient-game' : 'btn-outline'}`} onClick={() => setFilter('optie2')} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>Optie 2</button>
+          <button onClick={handlePrint} className="btn btn-gradient-game" style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
+            <PrinterIcon size={18} /> Genereer Print-PDF
+          </button>
+          <button onClick={onViewHomePrintExport} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
+            Naar A4 Thuisprint
+          </button>
         </div>
       </div>
       <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '2rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -129,12 +133,6 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
           - <strong>Marges:</strong> Geen<br/>
           - <strong>Achtergrondafbeeldingen:</strong> AAN<br/>
         </p>
-        <button onClick={handlePrint} className="btn btn-gradient" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem', marginBottom: '1rem' }}>
-          Genereer Print-PDF (PeterPrint)
-        </button>
-        <button onClick={onViewHomePrintExport} className="btn btn-outline" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem' }}>
-          Naar A4 Thuisprint Export
-        </button>
       </div>
 
       <div className="print-shop-pages" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
