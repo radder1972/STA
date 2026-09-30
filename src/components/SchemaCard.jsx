@@ -135,7 +135,7 @@ const SchemaCard = ({
           <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', padding: `0 ${16 * s}px` }}>
             {title && (
               <h4 style={{ 
-                fontSize: `${0.75 * s}rem`, 
+                fontSize: `${0.65 * s}rem`, 
                 marginTop: `${10 * s}px`, 
                 marginBottom: `${2 * s}px`, 
                 paddingBottom: `${6 * s}px`, 
@@ -149,7 +149,7 @@ const SchemaCard = ({
                 {title}
               </h4>
             )}
-            <div className="card-desc" style={{ fontSize: `${0.75 * s}rem`, lineHeight: '1.35', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 11, WebkitBoxOrient: 'vertical', margin: 0, paddingBottom: `${6 * s}px` }}>
+            <div className="card-desc" style={{ fontSize: `${0.65 * s}rem`, lineHeight: '1.35', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 11, WebkitBoxOrient: 'vertical', margin: 0, paddingBottom: `${6 * s}px` }}>
               {description || (title ? 'Geen theorie beschikbaar.' : '')}
             </div>
           </div>
