@@ -93,31 +93,31 @@ export default function OrderCards({ onBack }) {
       
       {/* HEADER */}
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '1000px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
-        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <ShoppingCartIcon size={48} useGameGradient={true} /> Bestellen
+        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+          <ShoppingCartIcon size={40} useGameGradient={true} /> Bestellen
         </h1>
-        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>
+        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.25rem', lineHeight: '1.4' }}>
           De professioneel gedrukte set voor in jouw praktijk
         </h2>
       </div>
 
       {/* WEBSHOP HERO SECTION */}
-      <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '1000px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10 }}>
-        <div className="inner-box" style={{ background: 'white', display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'flex-start', padding: '2rem' }}>
+      <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '900px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10 }}>
+        <div className="inner-box" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '2.5rem' }}>
           
-          {/* Left: Product Details & Order Box (Swapped) */}
-          <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column' }}>
-            <h2 style={{ fontSize: '2.5rem', margin: '0 0 0.5rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>Het Schematherapie Spel</h2>
-            <p style={{ fontSize: '1.2rem', color: '#64748b', margin: '0 0 2rem 0', fontWeight: '500' }}>Complete Fysieke Kaartenset</p>
-            
-            {/* Price */}
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', marginBottom: '2rem' }}>
-              <span style={{ fontSize: '2.5rem', fontWeight: '800', color: '#3b82f6' }}>€ {totalPrice}</span>
-              {quantity > 1 && <span style={{ fontSize: '1.1rem', color: 'var(--text-muted)' }}>(€ {pricePerUnit.toString().replace('.', ',')} per stuk)</span>}
-            </div>
+          <h2 style={{ fontSize: '2rem', margin: '0 0 0.5rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>Het Schematherapie Spel</h2>
+          <p style={{ fontSize: '1.1rem', color: '#64748b', margin: '0 0 2rem 0', fontWeight: '500' }}>Complete Fysieke Kaartenset</p>
+          
+          {/* Price */}
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', marginBottom: '2rem' }}>
+            <span style={{ fontSize: '2.5rem', fontWeight: '800', color: '#3b82f6' }}>€ {totalPrice}</span>
+            {quantity > 1 && <span style={{ fontSize: '1.1rem', color: 'var(--text-muted)' }}>(€ {pricePerUnit.toString().replace('.', ',')} per stuk)</span>}
+          </div>
 
+          {/* Specs & Image Row */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2.5rem', marginBottom: '2.5rem', alignItems: 'center' }}>
             {/* Specifications */}
-            <div style={{ background: 'var(--inner-box-bg, rgba(255,255,255,0.05))', borderRadius: '16px', padding: '1.5rem', marginBottom: '2.5rem', border: '1px solid var(--border-color)' }}>
+            <div style={{ flex: '1 1 300px', background: 'var(--inner-box-bg, rgba(255,255,255,0.05))', borderRadius: '16px', padding: '1.5rem', border: '1px solid var(--border-color)' }}>
               <h4 style={{ margin: '0 0 1rem 0', fontSize: '1.1rem', color: 'var(--text-main)' }}>Specificaties:</h4>
               <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-muted)', fontSize: '1.05rem' }}>
@@ -138,68 +138,68 @@ export default function OrderCards({ onBack }) {
                 </li>
               </ul>
             </div>
-
-            {/* Order Actions */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <span style={{ fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '500' }}>Aantal:</span>
-                <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-color)', borderRadius: '12px', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
-                  <button onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Minus size={18} />
-                  </button>
-                  <div style={{ width: '40px', textAlign: 'center', fontSize: '1.2rem', fontWeight: '600', color: 'var(--text-main)' }}>
-                    {quantity}
-                  </div>
-                  <button onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Plus size={18} />
-                  </button>
-                </div>
+            
+            {/* Smaller Product Image */}
+            <div style={{ flex: '0 0 250px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+              <div style={{
+                width: '100%',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                boxShadow: '0 15px 35px rgba(0,0,0,0.1)',
+                border: '1px solid var(--border-color)',
+                background: 'white',
+                position: 'relative'
+              }}>
+                <img 
+                  src="/images/cards-mockup.jpeg" 
+                  alt="Fysieke set van Het Schematherapie Spel" 
+                  style={{ width: '100%', height: 'auto', display: 'block' }} 
+                />
               </div>
-
-              <a 
-                href={mailHref} 
-                className="btn btn-gradient-game" 
-                style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  gap: '12px', 
-                  width: '100%', 
-                  padding: '1.2rem', 
-                  fontSize: '1.3rem', 
-                  borderRadius: '16px', 
-                  textDecoration: 'none',
-                  boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)'
-                }}
-              >
-                <ShoppingCartIcon size={24} /> Bestel Nu via E-mail
-              </a>
-              <p style={{ margin: 0, textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                Je bestelling wordt per e-mail verwerkt. Je zit nog nergens aan vast.
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', margin: 0, textAlign: 'center' }}>
+                <StarIcon size={14} color="#fbbf24" style={{ display: 'inline', marginRight: '4px', verticalAlign: 'text-bottom' }} /> 
+                Kwaliteit voor de praktijk
               </p>
             </div>
           </div>
 
-          {/* Right: Product Image (Swapped) */}
-          <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
-            <div style={{
-              width: '100%',
-              borderRadius: '20px',
-              overflow: 'hidden',
-              boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
-              border: '1px solid var(--border-color)',
-              background: 'white',
-              position: 'relative'
-            }}>
-              <img 
-                src="/images/cards-mockup.jpeg" 
-                alt="Fysieke set van Het Schematherapie Spel" 
-                style={{ width: '100%', height: 'auto', display: 'block' }} 
-              />
+          {/* Order Actions */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '400px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span style={{ fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '500' }}>Aantal:</span>
+              <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-color)', borderRadius: '12px', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
+                <button onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Minus size={18} />
+                </button>
+                <div style={{ width: '40px', textAlign: 'center', fontSize: '1.2rem', fontWeight: '600', color: 'var(--text-main)' }}>
+                  {quantity}
+                </div>
+                <button onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Plus size={18} />
+                </button>
+              </div>
             </div>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', margin: 0, textAlign: 'center' }}>
-              <StarIcon size={16} color="#fbbf24" style={{ display: 'inline', marginRight: '6px', verticalAlign: 'text-bottom' }} /> 
-              Hoogwaardige kwaliteit voor dagelijks gebruik
+
+            <a 
+              href={mailHref} 
+              className="btn btn-gradient-game" 
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                gap: '12px', 
+                width: '100%', 
+                padding: '1.2rem', 
+                fontSize: '1.3rem', 
+                borderRadius: '16px', 
+                textDecoration: 'none',
+                boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)'
+              }}
+            >
+              <ShoppingCartIcon size={24} /> Bestel Nu via E-mail
+            </a>
+            <p style={{ margin: 0, textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+              Je bestelling wordt per e-mail verwerkt. Je zit nog nergens aan vast.
             </p>
           </div>
 
