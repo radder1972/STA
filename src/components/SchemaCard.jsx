@@ -5,6 +5,14 @@ import { CardInnerBorder } from '../utils/colors';
 export const formatCardTitle = (title) => {
   if (!title) return title;
   
+  if (title === 'Kwetsbaarheid voor ziekte en gevaar') {
+    return (
+      <>
+        Kwetsbaarheid voor<br />ziekte en gevaar
+      </>
+    );
+  }
+  
   if (title.includes('/')) {
     const parts = title.split('/');
     return (
@@ -102,9 +110,9 @@ const SchemaCard = ({
           
           {/* Header (Badge) */}
           {type && getCardTypeLetter(type) && (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10, marginTop: src ? `${6 * s}px` : `${10 * s}px` }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10, marginTop: src ? `${12 * s}px` : `${16 * s}px` }}>
               <span style={{ fontSize: src ? `${0.8 * s}rem` : `${1.0 * s}rem`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: src ? `${1.4 * s}rem` : `${1.8 * s}rem`, height: src ? `${1.4 * s}rem` : `${1.8 * s}rem`, borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: `${4 * s}px`, boxSizing: 'border-box' }}>{getCardTypeLetter(type)}</span>
-              <span style={{ fontSize: src ? `${0.3 * s}rem` : `${0.35 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black' }}>{getCardTypeLabel(type)}</span>
+              <span style={{ fontSize: src ? `${0.4 * s}rem` : `${0.45 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black' }}>{getCardTypeLabel(type)}</span>
             </div>
           )}
 
@@ -115,7 +123,7 @@ const SchemaCard = ({
 
           {/* Footer (Title) */}
           {title && (
-            <div style={{ textAlign: 'center', fontSize: `${0.65 * s}rem`, fontWeight: '900', color: 'black', margin: `${4 * s}px 0 ${16 * s}px 0`, lineHeight: '1.2', height: `${1.6 * s}rem` }}>
+            <div style={{ textAlign: 'center', fontSize: `${0.75 * s}rem`, fontWeight: '900', color: 'black', margin: `${4 * s}px 0 ${16 * s}px 0`, lineHeight: '1.2', height: `${1.8 * s}rem` }}>
               {formatCardTitle(title)}
             </div>
           )}
