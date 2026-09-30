@@ -89,12 +89,15 @@ export default function About({ onBack }) {
 
         {activeTab === 'maker' && (
           <div className="inner-box fade-in" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '3rem' }}>
-            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Over de maker</h3>
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Over de maker & Verantwoording</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
-              Hier komt straks de tekst over jou, de maker van dit fantastische theorie-spel! Je kunt hier iets vertellen over je achtergrond als therapeut of ontwerper, je persoonlijke drijfveren om dit spel te maken, of een leuke anekdote over het ontwerpproces.
+              Deze theoriekaarten zijn met veel zorg en aandacht ontwikkeld vanuit de wens om de waardevolle, maar soms complexe materie van schematherapie visueel en direct toepasbaar te maken. De inhoud, de begrippen en de mechanismen in dit spel zijn zorgvuldig samengesteld op basis van erkende vakliteratuur, de grondbeginselen van Jeffrey Young en de gangbare indelingen die binnen de schematherapie worden gebruikt.
             </p>
-            <div style={{ background: '#f8fafc', padding: '2rem', borderRadius: '12px', border: '1px dashed #cbd5e1', textAlign: 'center' }}>
-              <p style={{ color: '#64748b', margin: 0, fontStyle: 'italic' }}>Plak hier straks je tekst over de maker in de code...</p>
+
+            <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#f8fafc', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #64748b' }}>
+              <p style={{ color: '#334155', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
+                <strong>Belangrijke disclaimer:</strong> Dit kaartspel is een onafhankelijk, creatief initiatief, ontworpen als praktisch hulpmiddel om de dialoog over patronen en behoeften op een speelse manier te faciliteren. Het is géén officieel product van, en niet formeel getoetst of goedgekeurd door, de Vereniging voor Schematherapie (VSt) of de International Society of Schema Therapy (ISST). Het deck is nadrukkelijk bedoeld als aanvullende, laagdrempelige ondersteuning en niet als vervanging voor officiële klinische instrumenten of een professionele behandeling.
+              </p>
             </div>
           </div>
         )}
