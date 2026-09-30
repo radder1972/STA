@@ -137,7 +137,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
       <div className="no-print" style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <PrinterIcon size={48} useGameGradient={true} /> Print je eigen kaartenset
+          <PrinterIcon size={48} useGameGradient={true} /> Printen
         </h1>
         <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>Druk je eigen kaarten af</h2>
       </div>
