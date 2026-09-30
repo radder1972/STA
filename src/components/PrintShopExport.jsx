@@ -204,9 +204,9 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                       <h4 style={{ margin: '0 0 4mm 0', fontSize: '0.9rem', color: 'black', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', textAlign: 'center', width: '100%', flexShrink: 0, zIndex: 1 }}>
                         {formatCardTitle(card.title)}
                       </h4>
-                      <p style={{ fontSize: '0.75rem', lineHeight: '1.4', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0, zIndex: 1 }}>
+                      <div style={{ fontSize: '0.75rem', lineHeight: '1.4', color: '#111', margin: '0 0 6mm 0', textAlign: 'center', flexShrink: 0, zIndex: 1 }}>
                         {card.description}
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </div>
