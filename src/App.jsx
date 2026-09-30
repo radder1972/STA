@@ -144,7 +144,7 @@ function App() {
         style={{ position: 'absolute', top: '0.5rem', right: '1rem', width: '44px', height: '44px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', zIndex: 1000, background: 'var(--bg-color)', boxShadow: '0 2px 10px rgba(0,0,0,0.1)', border: '1px solid var(--border-color)' }}
         title="Toggle Theme"
       >
-        {theme === 'dark' ? <SunIcon size={20} useGradient={true} /> : <MoonIcon size={20} useGradient={true} />}
+        {theme === 'dark' ? <SunIcon size={20} useGameGradient={true} /> : <MoonIcon size={20} useGameGradient={true} />}
       </button>
       {currentView === 'home' && (
         <Home 
