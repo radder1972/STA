@@ -88,7 +88,7 @@ export default function About({ onBack }) {
                 <InfoIcon size={24} /> Het doel: Psycho-educatie & Dialoog
               </h3>
               <p style={{ color: '#1e3a8a', fontSize: '1.1rem', lineHeight: '1.6', margin: 0 }}>
-                Uiteindelijk is deze toolset geen gewone spelletjesdoos. Het is een visueel hulpmiddel. De dynamiek van het matchen, het inzetten van actiekaarten en het verplicht eindigen met de Gezonde Volwassene is een optioneel, speels voertuig voor het therapeutische gesprek. Het helpt cliënten om taal te geven aan hun patronen, afstand te nemen van hun modi, en stap voor stap de regie terug te pakken.
+                Uiteindelijk is deze toolset geen gewone spelletjesdoos. Het is een visueel hulpmiddel. De dynamiek van het matchen, het inzetten van categoriekaarten en het verplicht eindigen met de Gezonde Volwassene is een optioneel, speels voertuig voor het therapeutische gesprek. Het helpt cliënten om taal te geven aan hun patronen, afstand te nemen van hun modi, en stap voor stap de regie terug te pakken.
               </p>
             </div>
 

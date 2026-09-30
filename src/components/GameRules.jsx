@@ -237,8 +237,8 @@ export default function GameRules({ onBack }) {
           <div className="rule-box">
             <div className="rule-number">4</div>
             <div>
-              <h4 className="rule-title">De Actiekaarten</h4>
-              <p className="rule-text">De Categorie-kaarten (C-kaarten) functioneren als actiekaarten die perfect aansluiten bij wat de modus in de theorie doet:</p>
+              <h4 className="rule-title">De Categorie-kaarten</h4>
+              <p className="rule-text">De Categorie-kaarten (C-kaarten) geven sturing aan het gesprek op een manier die perfect aansluit bij wat de modus in de theorie doet:</p>
               <ul style={{ margin: '0.5rem 0 0 0', paddingLeft: '1.5rem', color: '#475569', lineHeight: '1.6', fontSize: '1.05rem' }}>
                 <li><strong>Coping: Vermijding (Geel):</strong> <em>Beurt overslaan.</em> (Je gaat het contact uit de weg).</li>
                 <li><strong>Coping: Overgave (Geel):</strong> <em>Pak 2 kaarten van de stapel.</em> (Je laat je overspoelen door het probleem).</li>
@@ -291,7 +291,7 @@ export default function GameRules({ onBack }) {
               <ul style={{ margin: 0, paddingLeft: '1.5rem', lineHeight: '1.6' }}>
                 <li style={{ marginBottom: '0.5rem' }}><strong>De Kaart:</strong> Speler 2 speelt een <strong>C-kaart</strong> <ColorBadge color="Geel" text="Geel" /> - <strong>Categorie: Coping Vermijding</strong>.</li>
                 <li style={{ marginBottom: '0.5rem' }}><strong>De Spelregel:</strong> Deze kaart matcht op de actieve kleur (Geel) van de vorige kaart.</li>
-                <li><strong>De Actie (Regel 4):</strong> Omdat dit een gele Vermijdings-actiekaart is, is de actie: <em>Beurt overslaan</em>. Speler 1 moet een beurt overslaan (bij een tweepersoonsspel betekent dit dat Speler 2 direct nóg een keer mag).</li>
+                <li><strong>De Consequentie (Regel 4):</strong> Omdat dit een gele Vermijdings-kaart is, is de consequentie: <em>Beurt overslaan</em>. Speler 1 moet een beurt overslaan (bij een tweepersoonsspel betekent dit dat Speler 2 direct nóg een keer mag).</li>
               </ul>
             </TurnBox>
 

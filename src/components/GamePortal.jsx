@@ -72,7 +72,7 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
           </div>
           <div style={{ flex: 1 }}>
             <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Over de kaarten</h2>
-            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Lees meer over de achtergrond, verantwoording en visie achter de theorie- en actiekaarten.</p>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Lees meer over de achtergrond, verantwoording en visie achter de theoriekaarten.</p>
             <button onClick={onViewAbout} className="btn btn-gradient-game">
               Lees meer over de kaarten
             </button>
