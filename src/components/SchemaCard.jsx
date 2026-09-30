@@ -115,7 +115,7 @@ const SchemaCard = ({
 
           {/* Footer (Title) */}
           {title && (
-            <div style={{ textAlign: 'center', fontSize: `${0.65 * s}rem`, fontWeight: '900', color: 'black', margin: `${4 * s}px 0 ${16 * s}px 0`, lineHeight: '1.2' }}>
+            <div style={{ textAlign: 'center', fontSize: `${0.65 * s}rem`, fontWeight: '900', color: 'black', margin: `${4 * s}px 0 ${16 * s}px 0`, lineHeight: '1.2', height: `${1.6 * s}rem` }}>
               {formatCardTitle(title)}
             </div>
           )}
