@@ -101,7 +101,7 @@ export default function GameRules({ onBack }) {
             <CardsIcon size={28} useGameGradient={true} /> Wat zit er in het spel?
           </h3>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: '#475569', marginBottom: '1.5rem' }}>
-            Het spel bestaat uit theoriekaarten die allemaal een eigen <strong>Letter</strong> (het type) en <strong>Kleur</strong> (het domein of de categorie) hebben. Deze eigenschappen zijn belangrijk voor het matchen tijdens het spelen:
+            Het spel bestaat uit theoriekaarten die allemaal een eigen <strong>Letter</strong> (de kaartsoort) en <strong>Kleur</strong> (het thema of de groep) hebben. Deze eigenschappen zijn belangrijk voor het matchen tijdens het spelen:
           </p>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
