@@ -104,8 +104,8 @@ const SchemaCard = ({
           )}
 
           {/* Image Container (Flex 1 ensures exact centering between Header and Footer) */}
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: src ? `${8 * s}px` : '0' }}>
-            {src && <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />}
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: 0 }}>
+            {src && <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.08)', ...imageStyle }} />}
           </div>
 
           {/* Footer (Title) */}
