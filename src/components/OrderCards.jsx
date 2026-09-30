@@ -6,6 +6,7 @@ import { schemaDescriptions } from '../data/descriptions';
 import { getCardColor } from '../utils/colors';
 
 export default function OrderCards({ onBack }) {
+  const [filter, setFilter] = useState('optie1');
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -81,7 +82,16 @@ export default function OrderCards({ onBack }) {
         <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>
           Een professioneel gedrukte set voor in je praktijk
         </h2>
+      </div>
 
+      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto', position: 'relative', zIndex: 10 }}>
+        <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
+          <button className={`btn ${filter === 'optie1' ? 'btn-gradient-game' : 'btn-outline'}`} onClick={() => setFilter('optie1')} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>Optie 1</button>
+          <button className={`btn ${filter === 'optie2' ? 'btn-gradient-game' : 'btn-outline'}`} onClick={() => setFilter('optie2')} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>Optie 2</button>
+        </div>
+      </div>
+
+      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
         {/* Product Photo */}
         <div style={{
           width: '100%',

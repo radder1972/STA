@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowLeftIcon, PrinterIcon } from './Icons';
 import { getCardColor, CardInnerBorder } from '../utils/colors';
 import { schemaImages, modeImages } from '../utils/images';
@@ -81,6 +81,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
   });
   allCards.push(...modi);
 
+  const [filter, setFilter] = useState('optie1');
   const handlePrint = () => {
     window.print();
   };
@@ -108,6 +109,12 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
           <PrinterIcon size={48} useGameGradient={true} /> Printen
         </h1>
         <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>Drukkerij Export (PeterPrint)</h2>
+      </div>
+      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
+        <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
+          <button className={`btn ${filter === 'optie1' ? 'btn-gradient-game' : 'btn-outline'}`} onClick={() => setFilter('optie1')} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>Optie 1</button>
+          <button className={`btn ${filter === 'optie2' ? 'btn-gradient-game' : 'btn-outline'}`} onClick={() => setFilter('optie2')} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>Optie 2</button>
+        </div>
       </div>
       <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '2rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
 

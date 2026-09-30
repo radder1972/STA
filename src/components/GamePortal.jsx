@@ -1,11 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HomeIcon, ScrollTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon } from './Icons';
 import packageJson from '../../package.json';
 
 export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameRules, onViewPrintShop, onViewOrderCards }) {
+  const [filter, setFilter] = useState('optie1');
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const FilterButton = ({ id, label }) => (
+    <button 
+      className={`btn ${filter === id ? 'btn-gradient-game' : 'btn-outline'}`}
+      onClick={() => setFilter(id)}
+      style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}
+    >
+      {label}
+    </button>
+  );
 
   return (
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
@@ -18,6 +29,13 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
         <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>
           Breng schema's en modi tot leven op tafel
         </h2>
+      </div>
+
+      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
+        <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
+          <FilterButton id="optie1" label="Optie 1" />
+          <FilterButton id="optie2" label="Optie 2" />
+        </div>
       </div>
 
       <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '800px', borderRadius: '24px', border: '1px solid var(--border-color)', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', gap: '2rem' }}>

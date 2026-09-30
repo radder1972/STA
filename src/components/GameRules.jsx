@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowLeftIcon, FileTextIcon, ScrollTextIcon, DicesIcon, LightbulbIcon, CardsIcon } from './Icons';
 import { Printer } from 'lucide-react';
 
 export default function GameRules({ onBack }) {
+  const [filter, setFilter] = useState('optie1');
   const handlePrint = () => {
     window.print();
   };
@@ -82,6 +83,13 @@ export default function GameRules({ onBack }) {
         <button onClick={handlePrint} className="btn btn-gradient-game" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Printer size={18} /> Print Spelregels
         </button>
+      </div>
+
+      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
+        <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
+          <button className={`btn ${filter === 'optie1' ? 'btn-gradient-game' : 'btn-outline'}`} onClick={() => setFilter('optie1')} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>Optie 1</button>
+          <button className={`btn ${filter === 'optie2' ? 'btn-gradient-game' : 'btn-outline'}`} onClick={() => setFilter('optie2')} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>Optie 2</button>
+        </div>
       </div>
       
       <div className="glass-panel rules-content" style={{ 
