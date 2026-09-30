@@ -13,14 +13,16 @@ export default function GameNavbar({ currentView, setCurrentView }) {
   return (
     <div style={{
       position: 'sticky',
-      top: 0,
+      top: '1rem',
       zIndex: 50,
       background: 'var(--bg-color)',
-      borderBottom: '1px solid var(--border-color)',
+      border: '1px solid var(--border-color)',
       padding: '0.5rem',
       display: 'flex',
       justifyContent: 'center',
-      boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)'
+      boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)',
+      borderRadius: '16px',
+      marginBottom: '1rem'
     }}>
       <div 
         className="hide-scrollbar"
@@ -33,7 +35,7 @@ export default function GameNavbar({ currentView, setCurrentView }) {
         }}
       >
         {navItems.map(item => {
-          const isActive = currentView === item.id;
+          const isActive = currentView === item.id || (item.id === 'print-shop' && currentView === 'home-print-export');
           const Icon = item.icon;
           return (
             <button
