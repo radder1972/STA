@@ -114,52 +114,59 @@ export default function OrderCards({ onBack }) {
             {quantity > 1 && <span style={{ fontSize: '1.1rem', color: 'var(--text-muted)' }}>(€ {pricePerUnit.toString().replace('.', ',')} per stuk)</span>}
           </div>
 
-          {/* Specs & Image Row */}
-          <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '1.5rem', marginBottom: '2.5rem', alignItems: 'stretch' }}>
-            {/* Specifications */}
-            <div style={{ flex: '1 1 auto', background: 'var(--inner-box-bg, rgba(255,255,255,0.05))', borderRadius: '16px', padding: '1.2rem', border: '1px solid var(--border-color)' }}>
+          {/* Specifications Box with Overlapping Image */}
+          <div style={{ 
+            display: 'flex', 
+            flexWrap: 'nowrap', 
+            alignItems: 'center', 
+            background: 'var(--inner-box-bg, rgba(255,255,255,0.05))', 
+            borderRadius: '16px', 
+            padding: '1.5rem', 
+            paddingRight: '1rem',
+            marginBottom: '2.5rem', 
+            border: '1px solid var(--border-color)',
+            position: 'relative'
+          }}>
+            {/* Specifications Text */}
+            <div style={{ flex: '1 1 auto', zIndex: 1 }}>
               <h4 style={{ margin: '0 0 1rem 0', fontSize: '1.1rem', color: 'var(--text-main)' }}>Specificaties:</h4>
               <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#334155', fontSize: '1.05rem', fontWeight: '500' }}>
-                  <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
-                  43 theoriekaarten & actiekaarten
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', color: '#334155', fontSize: '1.05rem', fontWeight: '500' }}>
+                  <div style={{ color: '#3b82f6', display: 'flex', marginTop: '2px' }}>✓</div> 
+                  <span>43 theoriekaarten & actiekaarten</span>
                 </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#334155', fontSize: '1.05rem', fontWeight: '500' }}>
-                  <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
-                  Handzaam speelformaat (64 x 94 mm)
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', color: '#334155', fontSize: '1.05rem', fontWeight: '500' }}>
+                  <div style={{ color: '#3b82f6', display: 'flex', marginTop: '2px' }}>✓</div> 
+                  <span>Handzaam speelformaat (64 x 94 mm)</span>
                 </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#334155', fontSize: '1.05rem', fontWeight: '500' }}>
-                  <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
-                  Mooie afgeronde hoeken (radius 5 mm)
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', color: '#334155', fontSize: '1.05rem', fontWeight: '500' }}>
+                  <div style={{ color: '#3b82f6', display: 'flex', marginTop: '2px' }}>✓</div> 
+                  <span>Mooie afgeronde hoeken (radius 5 mm)</span>
                 </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#334155', fontSize: '1.05rem', fontWeight: '500' }}>
-                  <div style={{ color: '#3b82f6', display: 'flex' }}>✓</div> 
-                  Hoogwaardige matte afwerking (vuilafstotend)
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', color: '#334155', fontSize: '1.05rem', fontWeight: '500' }}>
+                  <div style={{ color: '#3b82f6', display: 'flex', marginTop: '2px' }}>✓</div> 
+                  <span>Hoogwaardige matte afwerking (vuilafstotend)</span>
                 </li>
               </ul>
             </div>
             
-            {/* Smaller Product Image */}
-            <div style={{ flex: '0 0 140px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.8rem' }}>
-              <div style={{
-                width: '100%',
-                borderRadius: '12px',
-                overflow: 'hidden',
-                boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                border: '1px solid var(--border-color)',
-                background: 'white',
-                position: 'relative'
-              }}>
-                <img 
-                  src="/images/cards-mockup.jpeg" 
-                  alt="Fysieke set van Het Schematherapie Spel" 
-                  style={{ width: '100%', height: 'auto', display: 'block' }} 
-                />
-              </div>
-              <p style={{ color: '#64748b', fontSize: '0.75rem', margin: 0, textAlign: 'center', lineHeight: '1.3' }}>
-                <StarIcon size={12} color="#fbbf24" style={{ display: 'inline', marginRight: '4px', verticalAlign: 'text-bottom' }} /> 
-                Kwaliteit voor de praktijk
-              </p>
+            {/* Overlapping Product Image */}
+            <div style={{ 
+              flex: '0 0 160px', 
+              borderRadius: '12px', 
+              overflow: 'hidden', 
+              boxShadow: '0 15px 35px rgba(0,0,0,0.15)', 
+              border: '4px solid white', 
+              transform: 'translate(15px, -15px) rotate(3deg)',
+              background: 'white',
+              position: 'relative',
+              zIndex: 2
+            }}>
+              <img 
+                src="/images/cards-mockup.jpeg" 
+                alt="Fysieke set van Het Schematherapie Spel" 
+                style={{ width: '100%', height: 'auto', display: 'block' }} 
+              />
             </div>
           </div>
 
