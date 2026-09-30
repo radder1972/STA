@@ -180,13 +180,16 @@ export default function OrderCards({ onBack }) {
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem', overflow: 'hidden' }}>
       
       {/* HEADER */}
-      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '1000px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
-        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <ShoppingCartIcon size={40} useGameGradient={true} /> Bestellen
+      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
+        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+          <ShoppingCartIcon size={48} useGameGradient={true} /> Bestellen
         </h1>
-        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.25rem', lineHeight: '1.4' }}>
-          De professioneel gedrukte set voor in jouw praktijk
+        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>
+          Een professioneel gedrukte set voor in jouw praktijk
         </h2>
+        <p style={{ marginTop: '1.25rem', fontSize: '1.15rem', color: '#475569', lineHeight: '1.6' }}>
+          Til je therapiesessies naar een hoger niveau met deze luxe kaartenset. Ontworpen om de abstracte theorie van schematherapie direct visueel en tastbaar te maken voor je cliënten. Perfect voor op tafel, overzichtelijk, en een onmisbare interactieve tool voor in de spreekkamer.
+        </p>
       </div>
 
       {/* WEBSHOP HERO SECTION */}
