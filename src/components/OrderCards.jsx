@@ -9,6 +9,10 @@ import { getCardColor } from '../utils/colors';
 export default function OrderCards({ onBack }) {
   const [filter, setFilter] = useState('optie1');
   const [quantity, setQuantity] = useState(1);
+  const [orderName, setOrderName] = useState('');
+  const [orderEmail, setOrderEmail] = useState('');
+  const [orderAddress, setOrderAddress] = useState('');
+  const [orderStatus, setOrderStatus] = useState('idle');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -85,8 +89,15 @@ export default function OrderCards({ onBack }) {
   const pricePerUnit = 39.95;
   const totalPrice = (pricePerUnit * quantity).toFixed(2).replace('.', ',');
   
-  const mailBody = `Beste,\n\nIk wil graag ${quantity} set(s) van Het Schematherapie Spel bestellen.\n\nKunt u mij informeren over de verdere afhandeling en betaling?\n\nMet vriendelijke groet,\n[Jouw naam]`;
-  const mailHref = `mailto:info@schematherapiespel.nl?subject=Bestelling: ${quantity}x Het Schematherapie Spel&body=${encodeURIComponent(mailBody)}`;
+  const handleOrderSubmit = (e) => {
+    e.preventDefault();
+    if (!orderName || !orderEmail) return;
+    setOrderStatus('submitting');
+    // Simulate sending data
+    setTimeout(() => {
+      setOrderStatus('success');
+    }, 1500);
+  };
 
   return (
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem', overflow: 'hidden' }}>
@@ -171,44 +182,86 @@ export default function OrderCards({ onBack }) {
           </div>
 
           {/* Order Actions */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '400px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <span style={{ fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '500' }}>Aantal:</span>
-              <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-color)', borderRadius: '12px', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
-                <button onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Minus size={18} />
-                </button>
-                <div style={{ width: '40px', textAlign: 'center', fontSize: '1.2rem', fontWeight: '600', color: 'var(--text-main)' }}>
-                  {quantity}
-                </div>
-                <button onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Plus size={18} />
-                </button>
-              </div>
+          {orderStatus === 'success' ? (
+            <div style={{ background: '#f0fdf4', padding: '2rem', borderRadius: '16px', border: '1px solid #bbf7d0', textAlign: 'center', maxWidth: '400px' }}>
+              <h3 style={{ color: '#166534', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '1.5rem' }}>✓</span> Bedankt voor je bestelling!
+              </h3>
+              <p style={{ color: '#15803d', margin: 0, lineHeight: '1.5' }}>
+                We hebben je bestelling van <strong>{quantity}x</strong> Het Schematherapie Spel in goede orde ontvangen. Je krijgt z.s.m. een e-mail naar <strong>{orderEmail}</strong> met de verdere afhandeling en betalingsgegevens.
+              </p>
             </div>
+          ) : (
+            <form onSubmit={handleOrderSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '400px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <span style={{ fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '500' }}>Aantal:</span>
+                <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-color)', borderRadius: '12px', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
+                  <button type="button" onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Minus size={18} />
+                  </button>
+                  <div style={{ width: '40px', textAlign: 'center', fontSize: '1.2rem', fontWeight: '600', color: 'var(--text-main)' }}>
+                    {quantity}
+                  </div>
+                  <button type="button" onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '12px 16px', cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Plus size={18} />
+                  </button>
+                </div>
+              </div>
 
-            <a 
-              href={mailHref} 
-              className="btn btn-gradient-game" 
-              style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                gap: '12px', 
-                width: '100%', 
-                padding: '1.2rem', 
-                fontSize: '1.3rem', 
-                borderRadius: '16px', 
-                textDecoration: 'none',
-                boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)'
-              }}
-            >
-              <ShoppingCartIcon size={24} /> Bestel Nu via E-mail
-            </a>
-            <p style={{ margin: 0, textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-              Je bestelling wordt per e-mail verwerkt. Je zit nog nergens aan vast.
-            </p>
-          </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <input 
+                  type="text" 
+                  placeholder="Jouw Naam" 
+                  required
+                  value={orderName}
+                  onChange={(e) => setOrderName(e.target.value)}
+                  style={{ padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', fontSize: '1rem', width: '100%', outline: 'none' }}
+                />
+                <input 
+                  type="email" 
+                  placeholder="E-mailadres" 
+                  required
+                  value={orderEmail}
+                  onChange={(e) => setOrderEmail(e.target.value)}
+                  style={{ padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', fontSize: '1rem', width: '100%', outline: 'none' }}
+                />
+                <textarea 
+                  placeholder="Opmerkingen / Factuuradres (optioneel)" 
+                  rows={3}
+                  value={orderAddress}
+                  onChange={(e) => setOrderAddress(e.target.value)}
+                  style={{ padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', fontSize: '1rem', width: '100%', resize: 'vertical', outline: 'none', fontFamily: 'inherit' }}
+                />
+              </div>
+
+              <button 
+                type="submit"
+                disabled={orderStatus === 'submitting'}
+                className="btn btn-gradient-game" 
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  gap: '12px', 
+                  width: '100%', 
+                  padding: '1.2rem', 
+                  fontSize: '1.2rem', 
+                  borderRadius: '16px', 
+                  border: 'none',
+                  cursor: orderStatus === 'submitting' ? 'wait' : 'pointer',
+                  opacity: orderStatus === 'submitting' ? 0.7 : 1,
+                  boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)',
+                  color: 'white'
+                }}
+              >
+                <ShoppingCartIcon size={24} /> {orderStatus === 'submitting' ? 'Bezig met verzenden...' : 'Bestelling Plaatsen'}
+              </button>
+              
+              <p style={{ margin: 0, textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                Je bestelling wordt handmatig verwerkt. Je zit nergens aan vast tot na de bevestiging.
+              </p>
+            </form>
+          )}
 
         </div>
       </div>
