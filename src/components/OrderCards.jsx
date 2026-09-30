@@ -105,47 +105,51 @@ export default function OrderCards({ onBack }) {
             <StarIcon size={28} useGameGradient={true} /> Kwaliteit voor in de Praktijk
           </h3>
 
-          <div className="order-promo-box" style={{ margin: 0, marginBottom: 0, gap: '2.5rem', alignItems: 'center' }}>
-            {/* Promotional Text */}
-            <div style={{ flex: '1 1 auto', minWidth: 0, textAlign: 'left' }}>
-              <p style={{ fontSize: '1.15rem', lineHeight: '1.6', color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                Het Schematherapie Spel wordt professioneel gedrukt op stevig speelkaartenkarton. Speciaal ontworpen om lang mee te gaan, zelfs bij intensief dagelijks gebruik door therapeuten en cliënten.
-              </p>
-              <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
-                  <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
-                  Handzaam formaat (64 x 94 mm)
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
-                  <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
-                  Mooie afgeronde hoeken (radius 5 mm)
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
-                  <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
-                  Hoogwaardige matte afwerking
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
-                  <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
-                  Krasbestendig en vuilafstotend
-                </li>
-              </ul>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <div className="order-promo-box" style={{ margin: 0, gap: '2.5rem', alignItems: 'flex-start' }}>
+              {/* Promotional Text */}
+              <div style={{ flex: '1 1 auto', minWidth: 0, textAlign: 'left' }}>
+                <p style={{ margin: 0 }}>
+                  Het Schematherapie Spel wordt professioneel gedrukt op stevig speelkaartenkarton. Speciaal ontworpen om lang mee te gaan, zelfs bij intensief dagelijks gebruik door therapeuten en cliënten.
+                </p>
+              </div>
+
+              {/* Product Photo */}
+              <div style={{
+                flex: '0 0 240px',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                border: '1px solid var(--border-color)',
+                background: 'white'
+              }}>
+                <img 
+                  src="/images/cards-mockup.jpeg" 
+                  alt="Fysieke set van Het Schematherapie Spel" 
+                  style={{ width: '100%', height: 'auto', display: 'block' }} 
+                />
+              </div>
             </div>
 
-            {/* Product Photo */}
-            <div style={{
-              flex: '0 0 240px',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-              border: '1px solid var(--border-color)',
-              background: 'white'
-            }}>
-              <img 
-                src="/images/cards-mockup.jpeg" 
-                alt="Fysieke set van Het Schematherapie Spel" 
-                style={{ width: '100%', height: 'auto', display: 'block' }} 
-              />
-            </div>
+            {/* Checkmarks Full Width Below */}
+            <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
+                <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
+                Handzaam formaat (64 x 94 mm)
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
+                <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
+                Mooie afgeronde hoeken (radius 5 mm)
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
+                <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
+                Hoogwaardige matte afwerking
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
+                <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
+                Krasbestendig en vuilafstotend
+              </li>
+            </ul>
           </div>
         </div>
       </div>
