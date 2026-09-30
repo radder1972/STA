@@ -11,6 +11,7 @@ import HomePrintExport from './components/HomePrintExport'
 import GameRules from './components/GameRules'
 import GamePortal from './components/GamePortal'
 import OrderCards from './components/OrderCards'
+import About from './components/About'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 import packageJson from '../package.json'
@@ -31,6 +32,7 @@ function App() {
     if (hash === 'theoriekaarten') return 'kaartenoverzicht'
     if (hash === 'print-shop') return 'print-shop'
     if (hash === 'bestel-kaarten') return 'order-cards'
+    if (hash === 'over') return 'about'
     return 'home'
   })
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState(null)
@@ -47,6 +49,7 @@ function App() {
       else if (hash === 'theoriekaarten') setCurrentView('kaartenoverzicht')
       else if (hash === 'print-shop') setCurrentView('print-shop')
       else if (hash === 'bestel-kaarten') setCurrentView('order-cards')
+      else if (hash === 'over') setCurrentView('about')
       else setCurrentView('home')
     }
     
@@ -62,6 +65,7 @@ function App() {
     else if (currentView === 'kaartenoverzicht') { hash = 'theoriekaarten'; isGameView = true }
     else if (currentView === 'print-shop') { hash = 'print-shop'; isGameView = true }
     else if (currentView === 'order-cards') { hash = 'bestel-kaarten'; isGameView = true }
+    else if (currentView === 'about') { hash = 'over'; isGameView = true }
     
     const faviconLink = document.querySelector("link[rel~='icon']")
     if (faviconLink) {
@@ -135,7 +139,7 @@ function App() {
 
   return (
     <div className="app-container" style={{ position: 'relative' }}>
-      {['game-portal', 'kaartenoverzicht', 'game-rules', 'print-shop', 'home-print-export', 'order-cards'].includes(currentView) && (
+      {['game-portal', 'kaartenoverzicht', 'game-rules', 'print-shop', 'home-print-export', 'order-cards', 'about'].includes(currentView) && (
         <GameNavbar currentView={currentView} setCurrentView={setCurrentView} />
       )}
 
@@ -203,6 +207,9 @@ function App() {
       )}
       {currentView === 'order-cards' && (
         <OrderCards onBack={() => setCurrentView('game-portal')} />
+      )}
+      {currentView === 'about' && (
+        <About onBack={() => setCurrentView('game-portal')} />
       )}
       {currentView !== 'questionnaire' && (
         <div className="no-print" style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
