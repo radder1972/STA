@@ -275,10 +275,10 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
 
       <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-main)', maxWidth: '600px', margin: '4rem auto 2rem auto', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.05rem' }}>
-          <PlayingCardsIcon size={24} useGradient={true} /> Speel het Schematherapie Spel
+          <PlayingCardsIcon size={24} useGradient={true} /> De Schematherapie Kaartenset
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
-          Gebruik de theoriekaarten om het patroon van trigger tot gezonde volwassene inzichtelijk te maken en interactief met schema's en modi te werken.
+          Gebruik deze visuele toolset voor psycho-educatie om het patroon van trigger tot gezonde volwassene inzichtelijk te maken, of speel het als interactief spel.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
           <button 
@@ -286,7 +286,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
             className="btn btn-gradient"
             style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1.1rem' }}
           >
-            <PlayingCardsIcon size={20} useGradient={false} /> Ga naar het Spelportaal
+            <PlayingCardsIcon size={20} useGradient={false} /> Ga naar de Kaartenset
           </button>
         </div>
       </div>

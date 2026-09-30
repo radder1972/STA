@@ -104,9 +104,9 @@ export default function GameRules({ onBack }) {
       `}</style>
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <FileTextIcon size={40} useGameGradient={true} /> Spelregels
+          <FileTextIcon size={40} useGameGradient={true} /> Werkvormen & Spelregels
         </h1>
-        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.25rem', lineHeight: '1.4' }}>Van Trigger tot Volwassene</h2>
+        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.25rem', lineHeight: '1.4' }}>Zet de theorie in actie met deze speelse gespreksvorm (bonus)</h2>
       </div>
 
       <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
@@ -204,7 +204,7 @@ export default function GameRules({ onBack }) {
 
         <div className="inner-box" style={{ marginBottom: '2rem' }}>
           <h3 className="box-heading" style={{ borderBottom: '2px solid #e2e8f0', paddingBottom: '1rem', marginBottom: '2rem' }}>
-            <ScrollTextIcon size={28} useGameGradient={true} /> De Regels
+            <ScrollTextIcon size={28} useGameGradient={true} /> De Spelregels (Bonus optie)
           </h3>
           
           <div className="rule-box">
