@@ -99,13 +99,13 @@ const SchemaCard = ({
           </div>
           {type && getCardTypeLetter(type) && !src && (
               <div style={{ position: 'absolute', top: `${22 * s}px`, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
-                <span style={{ fontSize: `${1.2 * s}rem` }}>{getCardTypeLetter(type)}</span>
+                <span style={{ fontSize: `${1.2 * s}rem`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: `${2.2 * s}rem`, height: `${2.2 * s}rem`, borderRadius: '50%', backgroundColor: color, color: 'white', marginBottom: `${2 * s}px` }}>{getCardTypeLetter(type)}</span>
                 <span style={{ fontSize: `${0.35 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black' }}>{getCardTypeLabel(type)}</span>
               </div>
           )}
           {type && getCardTypeLetter(type) && src && (
               <div style={{ position: 'absolute', top: `${18 * s}px`, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
-                <span style={{ fontSize: `${1.0 * s}rem` }}>{getCardTypeLetter(type)}</span>
+                <span style={{ fontSize: `${1.0 * s}rem`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: `${1.8 * s}rem`, height: `${1.8 * s}rem`, borderRadius: '50%', backgroundColor: color, color: 'white', marginBottom: `${2 * s}px` }}>{getCardTypeLetter(type)}</span>
                 <span style={{ fontSize: `${0.3 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black' }}>{getCardTypeLabel(type)}</span>
               </div>
           )}
