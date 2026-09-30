@@ -98,7 +98,7 @@ const SchemaCard = ({
           {/* Header (Badge) */}
           {type && getCardTypeLetter(type) && (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10, marginTop: src ? `${6 * s}px` : `${10 * s}px` }}>
-              <span style={{ fontSize: src ? `${0.8 * s}rem` : `${1.0 * s}rem`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: src ? `${1.4 * s}rem` : `${1.8 * s}rem`, height: src ? `${1.4 * s}rem` : `${1.8 * s}rem`, borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: `${4 * s}px` }}>{getCardTypeLetter(type)}</span>
+              <span style={{ fontSize: src ? `${0.8 * s}rem` : `${1.0 * s}rem`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: src ? `${1.4 * s}rem` : `${1.8 * s}rem`, height: src ? `${1.4 * s}rem` : `${1.8 * s}rem`, borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: `${4 * s}px`, lineHeight: 1, paddingTop: `${2 * s}px`, boxSizing: 'border-box' }}>{getCardTypeLetter(type)}</span>
               <span style={{ fontSize: src ? `${0.3 * s}rem` : `${0.35 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black' }}>{getCardTypeLabel(type)}</span>
             </div>
           )}
