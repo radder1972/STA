@@ -12,17 +12,12 @@ export default function GameRules({ onBack }) {
     <div className="view-container game-rules-page" style={{ padding: '2rem', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <style>{`
         @media print {
-          @page {
-            size: A4 landscape;
-            margin: 0;
-          }
           .no-print { display: none !important; }
           .game-rules-page { background: white !important; padding: 0 !important; }
-          .rules-content { display: none !important; }
-          .no-screen { display: block !important; }
+          .rules-content { box-shadow: none !important; border: none !important; padding: 0 !important; }
+          .rule-box { border: none !important; box-shadow: none !important; background: white !important; padding: 1rem 0 !important; }
           body { color: black !important; }
         }
-        .no-screen { display: none; }
         
         .rule-box {
           background: #ffffff;
@@ -77,7 +72,7 @@ export default function GameRules({ onBack }) {
           }
         }
       `}</style>
-      <div className="no-print" style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
+      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
           <FileTextIcon size={48} useGameGradient={true} /> Spelregels
         </h1>
@@ -232,107 +227,6 @@ export default function GameRules({ onBack }) {
               <div style={{ marginTop: '0.75rem', padding: '0.75rem 1rem', background: '#eff6ff', borderRadius: '8px', color: '#1e3a8a', fontSize: '0.95rem', borderLeft: '4px solid #3b82f6' }}>
                 <strong>Let op:</strong> Dit spel is bedoeld als een speelse, interactieve manier om schema's, modi en basisbehoeften te verkennen en te bespreken. De nadruk ligt op de <strong>dialoog</strong> (het uitleggen van de verbindingen) in plaats van alleen het winnen.
               </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      {/* PRINT-ONLY LEPORELLO */}
-      <div className="no-screen" style={{ width: '100%', background: 'white' }}>
-        <div style={{ width: '297mm', height: '210mm', display: 'flex', flexDirection: 'column', gap: '20mm', justifyContent: 'center', alignItems: 'center', padding: '10mm', boxSizing: 'border-box', background: 'white' }}>
-          
-          {/* Top strip of 4 cards */}
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {/* Card 1 */}
-            <div style={{ width: '58mm', height: '88mm', border: '1px dashed #ccc', borderRight: 'none', boxSizing: 'border-box', padding: '5mm', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <h1 style={{ fontSize: '14px', textAlign: 'center', marginBottom: '8px', color: '#1e293b' }}>Schema Therapie<br/>Kaartspel</h1>
-              <h2 style={{ fontSize: '10px', textAlign: 'center', color: '#475569', marginBottom: '16px', fontWeight: 'normal' }}>Van Trigger tot Volwassene</h2>
-              <h3 style={{ fontSize: '11px', borderBottom: '1px solid #ccc', paddingBottom: '4px', marginBottom: '6px' }}>Voorbereiding</h3>
-              <p style={{ fontSize: '8.5px', lineHeight: '1.4', margin: 0 }}>Schud de stapel van 43 theoriekaarten (18 S, 14 M, 5 B, 6 C) en deel ze uit. Leg één startkaart (Schema of Basisbehoefte) open in het midden van de tafel.</p>
-            </div>
-            {/* Card 2 */}
-            <div style={{ width: '58mm', height: '88mm', border: '1px dashed #ccc', borderRight: 'none', boxSizing: 'border-box', padding: '5mm', display: 'flex', flexDirection: 'column' }}>
-              <h3 style={{ fontSize: '11px', borderBottom: '1px solid #ccc', paddingBottom: '4px', marginBottom: '6px' }}>Wat zit er in het spel?</h3>
-              <p style={{ fontSize: '8.5px', lineHeight: '1.4', margin: '0 0 6px 0' }}>Elke kaart heeft een <strong>Letter</strong> (het type) en <strong>Kleur</strong> (het domein of categorie).</p>
-              <div style={{ marginBottom: '6px' }}>
-                <strong style={{ fontSize: '9px', display: 'flex', alignItems: 'center', gap: '4px' }}><span style={{background:'#64748b',color:'white',padding:'1px 3px',borderRadius:'2px',fontSize:'7px'}}>B</span> Basisbehoeften (5)</strong>
-                <p style={{ fontSize: '8px', margin: '2px 0 0 0', lineHeight: '1.3' }}>Kern van de therapie. Zelfde kleur als bijbehorende schema's.</p>
-              </div>
-              <div>
-                <strong style={{ fontSize: '9px', display: 'flex', alignItems: 'center', gap: '4px' }}><span style={{background:'#64748b',color:'white',padding:'1px 3px',borderRadius:'2px',fontSize:'7px'}}>S</span> Schema's (18)</strong>
-                <p style={{ fontSize: '8px', margin: '2px 0 0 0', lineHeight: '1.3' }}>Tonen hardnekkige patronen per domein (kleur).</p>
-              </div>
-            </div>
-            {/* Card 3 */}
-            <div style={{ width: '58mm', height: '88mm', border: '1px dashed #ccc', borderRight: 'none', boxSizing: 'border-box', padding: '5mm', display: 'flex', flexDirection: 'column' }}>
-              <h3 style={{ fontSize: '11px', borderBottom: '1px solid #ccc', paddingBottom: '4px', marginBottom: '6px' }}>Soorten (vervolg)</h3>
-              <div style={{ marginBottom: '6px' }}>
-                <strong style={{ fontSize: '9px', display: 'flex', alignItems: 'center', gap: '4px' }}><span style={{background:'#64748b',color:'white',padding:'1px 3px',borderRadius:'2px',fontSize:'7px'}}>M</span> Modi (14)</strong>
-                <p style={{ fontSize: '8px', margin: '2px 0 0 0', lineHeight: '1.3' }}>Actuele gemoedstoestanden. Gekleurd naar Categorie (bijv. Kindmodi).</p>
-              </div>
-              <div>
-                <strong style={{ fontSize: '9px', display: 'flex', alignItems: 'center', gap: '4px' }}><span style={{background:'#64748b',color:'white',padding:'1px 3px',borderRadius:'2px',fontSize:'7px'}}>C</span> Categorie-kaarten (6)</strong>
-                <p style={{ fontSize: '8px', margin: '2px 0 0 0', lineHeight: '1.3' }}>Overkoepelende actiekaarten.</p>
-              </div>
-              <h3 style={{ fontSize: '10px', marginTop: '10px', marginBottom: '4px' }}>Twee Kleurwerelden</h3>
-              <p style={{ fontSize: '8px', margin: 0, lineHeight: '1.3' }}>Kleur verbindt logica: Schema's/Behoeften (inhoud) en Modi (gedrag).</p>
-            </div>
-            {/* Card 4 */}
-            <div style={{ width: '58mm', height: '88mm', border: '1px dashed #ccc', boxSizing: 'border-box', padding: '5mm', display: 'flex', flexDirection: 'column' }}>
-              <h3 style={{ fontSize: '11px', borderBottom: '1px solid #ccc', paddingBottom: '4px', marginBottom: '6px' }}>De Regels (1/3)</h3>
-              <div style={{ marginBottom: '8px' }}>
-                <strong style={{ fontSize: '9px' }}>1. Matchen</strong>
-                <p style={{ fontSize: '8px', margin: '2px 0 0 0', lineHeight: '1.3' }}>Speel een kaart als deze dezelfde <strong>Kleur</strong> (Domein) óf <strong>Letter</strong> (Type) heeft als de bovenste kaart.</p>
-              </div>
-              <div>
-                <strong style={{ fontSize: '9px' }}>2. Modus-regel</strong>
-                <p style={{ fontSize: '8px', margin: '2px 0 0 0', lineHeight: '1.3' }}>Modi (M) mogen op Schema's als reactie, ook als kleur niet matcht. De Modus verandert de actieve kleur!</p>
-                <div style={{ background: '#f1f5f9', padding: '3px', marginTop: '4px', borderRadius: '3px', fontSize: '7.5px', fontStyle: 'italic', borderLeft: '2px solid #3b82f6' }}>Therapie: Benoem hoe de modus zou reageren op het schema.</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom strip of 4 cards */}
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {/* Card 5 */}
-            <div style={{ width: '58mm', height: '88mm', border: '1px dashed #ccc', borderRight: 'none', boxSizing: 'border-box', padding: '5mm', display: 'flex', flexDirection: 'column' }}>
-              <h3 style={{ fontSize: '11px', borderBottom: '1px solid #ccc', paddingBottom: '4px', marginBottom: '6px' }}>De Regels (2/3)</h3>
-              <div style={{ marginBottom: '8px' }}>
-                <strong style={{ fontSize: '9px' }}>3. Terug naar de Kern</strong>
-                <p style={{ fontSize: '8px', margin: '2px 0 0 0', lineHeight: '1.3' }}>Je mag een Basisbehoefte (B) <strong>alleen op een Schema (S)</strong> leggen (mits kleurmatch). Van coping direct naar behoefte is in praktijk te groot.</p>
-              </div>
-              <div>
-                <strong style={{ fontSize: '9px' }}>4. De Actiekaarten</strong>
-                <p style={{ fontSize: '8px', margin: '2px 0 0 0', lineHeight: '1.3' }}>De C-kaarten zijn actiekaarten die aansluiten bij wat de modus in theorie doet (zie hiernaast).</p>
-              </div>
-            </div>
-            {/* Card 6 */}
-            <div style={{ width: '58mm', height: '88mm', border: '1px dashed #ccc', borderRight: 'none', boxSizing: 'border-box', padding: '5mm', display: 'flex', flexDirection: 'column' }}>
-              <h3 style={{ fontSize: '11px', borderBottom: '1px solid #ccc', paddingBottom: '4px', marginBottom: '6px' }}>Acties (C-kaarten)</h3>
-              <ul style={{ margin: 0, paddingLeft: '12px', fontSize: '8px', lineHeight: '1.3' }}>
-                <li style={{ marginBottom: '3px' }}><strong>Vermijding:</strong><br/><em>Beurt overslaan</em> (contact mijden).</li>
-                <li style={{ marginBottom: '3px' }}><strong>Overgave:</strong><br/><em>Pak 2 kaarten</em> (overspoeld).</li>
-                <li style={{ marginBottom: '3px' }}><strong>Overcompensatie:</strong><br/><em>Draai richting om</em> (tegenaanval).</li>
-                <li style={{ marginBottom: '3px' }}><strong>Oudermodi:</strong><br/><em>Geef 1 kaart aan ander</em> (schuld).</li>
-                <li><strong>Kindmodi:</strong><br/><em>Ruil blind 1 kaart</em> (sturing nodig).</li>
-              </ul>
-            </div>
-            {/* Card 7 */}
-            <div style={{ width: '58mm', height: '88mm', border: '1px dashed #ccc', borderRight: 'none', boxSizing: 'border-box', padding: '5mm', display: 'flex', flexDirection: 'column' }}>
-              <h3 style={{ fontSize: '11px', borderBottom: '1px solid #ccc', paddingBottom: '4px', marginBottom: '6px' }}>De Regels (3/3)</h3>
-              <div>
-                <strong style={{ fontSize: '9px' }}>5. Het Einddoel</strong>
-                <p style={{ fontSize: '8px', margin: '2px 0 0 0', lineHeight: '1.3' }}>Je kunt pas winnen als je allerlaatste kaart de groene <strong>'Gezonde Volwassene'</strong> is.</p>
-                <p style={{ fontSize: '8px', margin: '4px 0 0 0', lineHeight: '1.3' }}>Geen Gezonde Volwassene als laatste kaart? Dan moet je verplicht een kaart trekken en doorspelen.</p>
-                <p style={{ fontSize: '8px', margin: '4px 0 0 0', lineHeight: '1.3' }}>In therapie ben je pas echt klaar als de regie bij de Gezonde Volwassene ligt.</p>
-              </div>
-            </div>
-            {/* Card 8 */}
-            <div style={{ width: '58mm', height: '88mm', border: '1px dashed #ccc', boxSizing: 'border-box', padding: '5mm', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-              <LightbulbIcon size={32} useGameGradient={true} />
-              <p style={{ fontSize: '9px', textAlign: 'center', margin: '12px 0', lineHeight: '1.4' }}>Dit spel is bedoeld als een speelse, interactieve manier om schema's, modi en basisbehoeften te verkennen.</p>
-              <p style={{ fontSize: '8px', textAlign: 'center', color: '#64748b' }}>Schematherapie App</p>
             </div>
           </div>
 
