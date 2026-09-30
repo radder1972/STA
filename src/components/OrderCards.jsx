@@ -140,7 +140,7 @@ export default function OrderCards({ onBack }) {
     setOrderStatus('submitting');
     
     try {
-      const response = await fetch("https://formsubmit.co/ajax/info@schematherapiespel.nl", {
+      const response = await fetch("https://formsubmit.co/ajax/matthias.radder@gmail.com", {
         method: "POST",
         headers: { 
             'Content-Type': 'application/json',
