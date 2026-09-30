@@ -60,7 +60,7 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
           </div>
           <div style={{ flex: 1 }}>
             <h2 style={{ color: 'var(--text-main)', marginBottom: '0.5rem', fontSize: '1.5rem' }}>Spelregels en Oefeningen</h2>
-            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Ontdek hoe je de kaarten in de praktijk gebruikt, met onder andere de Modi-check in de wachtkamer en het uitpluizen van een incident.</p>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Lees hier de officiële spelregels en ontdek hoe je de theoriekaarten in de praktijk kunt gebruiken.</p>
             <button onClick={onViewGameRules} className="btn btn-gradient-game">
               Lees de spelregels
             </button>
