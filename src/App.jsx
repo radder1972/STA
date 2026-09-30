@@ -138,14 +138,7 @@ function App() {
       {['game-portal', 'kaartenoverzicht', 'game-rules', 'print-shop', 'home-print-export', 'order-cards'].includes(currentView) && (
         <GameNavbar currentView={currentView} setCurrentView={setCurrentView} />
       )}
-      <button 
-        onClick={toggleTheme} 
-        className="btn btn-outline no-print" 
-        style={{ position: 'absolute', top: '0.5rem', right: '1rem', width: '44px', height: '44px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', zIndex: 1000, background: 'var(--bg-color)', boxShadow: '0 2px 10px rgba(0,0,0,0.1)', border: '1px solid var(--border-color)' }}
-        title="Toggle Theme"
-      >
-        {theme === 'dark' ? <SunIcon size={20} useGameGradient={true} /> : <MoonIcon size={20} useGameGradient={true} />}
-      </button>
+
       {currentView === 'home' && (
         <Home 
           onStart={handleStart} 
