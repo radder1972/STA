@@ -140,24 +140,26 @@ export default function OrderCards({ onBack }) {
     setOrderStatus('submitting');
     
     try {
-      const response = await fetch("https://formsubmit.co/ajax/matthias.radder@gmail.com", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { 
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
         body: JSON.stringify({
+            access_key: "0462cd42-b71e-4a5a-8fa9-ad2d8f5b6626",
+            subject: `Nieuwe bestelling: ${quantity}x Het Schematherapie Spel`,
+            from_name: orderName,
+            replyto: orderEmail,
             Naam: orderName,
-            Email: orderEmail,
+            Emailadres: orderEmail,
             Aantal: quantity,
             Postcode: orderPostcode,
             Huisnummer: orderHuisnummer,
             Toevoeging: orderToevoeging,
             Straat: orderStraat,
             Woonplaats: orderWoonplaats,
-            Opmerkingen: orderAddress,
-            _subject: `Nieuwe bestelling: ${quantity}x Het Schematherapie Spel`,
-            _replyto: orderEmail
+            Opmerkingen: orderAddress
         })
       });
       
@@ -168,7 +170,8 @@ export default function OrderCards({ onBack }) {
         setOrderStatus('idle');
       }
     } catch (error) {
-      alert("Fout bij verbinden met de mailserver.");
+      console.error("FormSubmit Error:", error);
+      alert("Fout bij verbinden met de mailserver: " + error.message + "\n\n(Dit komt meestal omdat het e-mailadres nog niet is geactiveerd bij FormSubmit. Zie instructies.)");
       setOrderStatus('idle');
     }
   };
