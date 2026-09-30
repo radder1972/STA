@@ -140,7 +140,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
         </div>
       </div>
 
-      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '2rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '2rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1rem' }}>
           <Info size={28} color="#3b82f6" />
           <h3 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.5rem' }}>Printhulp voor Thuis / Praktijk</h3>

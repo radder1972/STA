@@ -30,7 +30,7 @@ const Basisbehoeften = ({ onBack }) => {
       </p>
 
       {/* Behoefte 1 */}
-      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
           <h2 style={{ color: '#60a5fa', marginBottom: '1rem', fontSize: '1.5rem' }}>1. Veilige hechting en verbondenheid</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
@@ -50,7 +50,7 @@ const Basisbehoeften = ({ onBack }) => {
       </div>
 
       {/* Behoefte 2 */}
-      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
+      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
         <div style={{ flex: '1 1 300px' }}>
           <h2 style={{ color: '#34d399', marginBottom: '1rem', fontSize: '1.5rem' }}>2. Autonomie, competentie en identiteitsgevoel</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
@@ -70,7 +70,7 @@ const Basisbehoeften = ({ onBack }) => {
       </div>
 
       {/* Behoefte 3 */}
-      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
           <h2 style={{ color: '#facc15', marginBottom: '1rem', fontSize: '1.5rem' }}>3. Vrijheid om behoeften en emoties te uiten</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
@@ -90,7 +90,7 @@ const Basisbehoeften = ({ onBack }) => {
       </div>
 
       {/* Behoefte 4 */}
-      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
+      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
         <div style={{ flex: '1 1 300px' }}>
           <h2 style={{ color: '#f87171', marginBottom: '1rem', fontSize: '1.5rem' }}>4. Spontaniteit en spel</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
@@ -110,7 +110,7 @@ const Basisbehoeften = ({ onBack }) => {
       </div>
 
       {/* Behoefte 5 */}
-      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+      <div className="glass-panel page-break" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
           <h2 style={{ color: '#fb923c', marginBottom: '1rem', fontSize: '1.5rem' }}>5. Realistische grenzen en zelfcontrole</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>

@@ -453,7 +453,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         )}
       </div>
 
-      <div className="glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '0 auto', background: 'var(--card-bg)' }}>
+      <div className="glass-panel" style={{ padding: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '0 auto', background: 'var(--card-bg)' }}>
         <div style={{ maxWidth: '850px', margin: '0 auto' }}>
           <div style={{ marginBottom: '3rem' }}>
             <h3 className="text-gradient" style={{ marginBottom: '1.5rem', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><StepBadge number="1" size={28} /> Beschrijf de situatie</h3>
@@ -569,7 +569,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
       </div>
 
       {/* Stap 3: Analyse */}
-      <div className="no-print glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '3rem auto 0 auto', background: 'var(--card-bg)' }}>
+      <div className="no-print glass-panel" style={{ padding: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '3rem auto 0 auto', background: 'var(--card-bg)' }}>
         <h3 className="text-gradient" style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <StepBadge number="3" size={28} /> AI Analyse
         </h3>
@@ -592,7 +592,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
       {/* Diepgaande Analyse Weergave (Print/View) */}
       {(analysisText || isGeneratingAnalysis) && (
-        <div className="glass-panel" style={{ padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '2rem auto 0 auto', background: 'var(--card-bg)' }}>
+        <div className="glass-panel" style={{ padding: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', maxWidth: '1000px', margin: '2rem auto 0 auto', background: 'var(--card-bg)' }}>
           <h3 className="text-gradient" style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             Uitgebreide Psychologische Analyse
           </h3>
@@ -635,7 +635,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
       {showCardPicker && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 9999, padding: '4rem 1rem', overflowY: 'auto' }} onClick={() => setShowCardPicker(null)}>
-          <div className="glass-panel" style={{ background: 'var(--bg-color)', width: '100%', maxWidth: '900px', margin: '0 auto', padding: '3rem', borderRadius: '16px', position: 'relative', boxShadow: '0 10px 40px rgba(0,0,0,0.3)' }} onClick={e => e.stopPropagation()}>
+          <div className="glass-panel" style={{ background: 'var(--bg-color)', width: '100%', maxWidth: '900px', margin: '0 auto', padding: '3rem', borderRadius: '24px', position: 'relative', boxShadow: '0 10px 40px rgba(0,0,0,0.3)' }} onClick={e => e.stopPropagation()}>
             <button onClick={() => setShowCardPicker(null)} style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}>&times;</button>
             <h2 className="text-gradient" style={{ textAlign: 'center', marginBottom: '2rem' }}>
               {showCardPicker === 'mode' ? 'Kies een Modus' : showCardPicker === 'schema' ? 'Kies een Schema' : 'Kies een Basisbehoefte'}

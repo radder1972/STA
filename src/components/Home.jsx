@@ -104,7 +104,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
           </h2>
 
           {!bothCompletedNow && (
-            <div className="glass-panel" style={{ border: '1px solid var(--border-color)', padding: '1.5rem', borderRadius: '12px', color: 'var(--text-main)', marginBottom: '2rem', textAlign: 'left', display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+            <div className="glass-panel" style={{ border: '1px solid var(--border-color)', padding: '1.5rem', borderRadius: '24px', color: 'var(--text-main)', marginBottom: '2rem', textAlign: 'left', display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
               <div style={{ background: 'var(--bg-card)', padding: '12px', borderRadius: '50%', color: 'var(--text-muted)', flexShrink: 0 }}>
                 <AlertTriangleIcon size={24} />
               </div>

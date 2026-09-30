@@ -126,7 +126,7 @@ export default function KaartenOverzicht({ onBack }) {
             <div className="glass-panel" style={{
               background: 'var(--bg-color)', maxWidth: '600px', width: '100%', 
               maxHeight: '90vh', overflowY: 'auto', padding: '2rem', position: 'relative',
-              borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: '0 10px 40px rgba(0,0,0,0.3)'
+              borderRadius: '24px', border: '1px solid var(--border-color)', boxShadow: '0 10px 40px rgba(0,0,0,0.3)'
             }} onClick={e => e.stopPropagation()}>
               <button 
                 onClick={() => setSelectedCard(null)} 
@@ -184,7 +184,7 @@ export default function KaartenOverzicht({ onBack }) {
         </div>
       </div>
 
-      <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
+      <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
         
         {filter === 'domeinen' && (
           <div>
