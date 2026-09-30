@@ -9,7 +9,7 @@ export default function GameRules({ onBack }) {
   };
 
   return (
-    <div className="view-container game-rules-page" style={{ padding: '2rem', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'var(--bg-color)' }}>
+    <div className="view-container game-rules-page" style={{ padding: '2rem', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <style>{`
         @media print {
           .no-print { display: none !important; }
