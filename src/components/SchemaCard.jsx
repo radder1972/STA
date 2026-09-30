@@ -141,7 +141,7 @@ const SchemaCard = ({
                 {title}
               </h4>
             )}
-            <div style={{ fontSize: `${0.6 * s}rem`, lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 11, WebkitBoxOrient: 'vertical', margin: 0, paddingBottom: `${6 * s}px` }}>
+            <div className="card-desc" style={{ fontSize: `${0.6 * s}rem`, lineHeight: '1.3', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 11, WebkitBoxOrient: 'vertical', margin: 0, paddingBottom: `${6 * s}px` }}>
               {description || (title ? 'Geen theorie beschikbaar.' : '')}
             </div>
           </div>

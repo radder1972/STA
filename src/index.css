@@ -909,7 +909,8 @@ p {
   text-align: center;
 }
 
-.card-face-back p {
+.card-face-back p,
+.card-face-back .card-desc {
   font-size: 0.75rem;
   line-height: 1.5;
   color: #4b5563;
