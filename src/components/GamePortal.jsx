@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ArrowLeftIcon, PlayingCardsIcon, ScrollTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon } from './Icons';
+import { HomeIcon, ScrollTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon } from './Icons';
 import packageJson from '../../package.json';
 
 export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameRules, onViewPrintShop, onViewOrderCards }) {
@@ -13,7 +13,7 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
 
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <PlayingCardsIcon size={48} useGameGradient={true} /> Het Schematherapie Spel
+          <HomeIcon size={48} useGameGradient={true} /> Portaal
         </h1>
         <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>
           Breng schema's en modi tot leven op tafel

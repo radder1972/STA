@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeftIcon, PlayingCardsIcon, ScrollTextIcon, DicesIcon, LightbulbIcon, CardsIcon } from './Icons';
+import { ArrowLeftIcon, FileTextIcon, ScrollTextIcon, DicesIcon, LightbulbIcon, CardsIcon } from './Icons';
 import { Printer } from 'lucide-react';
 
 export default function GameRules({ onBack }) {
@@ -73,7 +73,7 @@ export default function GameRules({ onBack }) {
       `}</style>
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <PlayingCardsIcon size={48} useGameGradient={true} /> Het Schema-Spel
+          <FileTextIcon size={48} useGameGradient={true} /> Spelregels
         </h1>
         <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>Van Trigger tot Volwassene</h2>
       </div>
