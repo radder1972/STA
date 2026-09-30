@@ -18,47 +18,23 @@ export default function About({ onBack }) {
       </div>
 
       {/* Submenu Tabs */}
-      <div style={{ display: 'flex', gap: '1rem', marginBottom: '3rem', position: 'relative', zIndex: 10, background: 'rgba(255,255,255,0.5)', padding: '0.5rem', borderRadius: '9999px', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.8)' }}>
-        <button 
-          onClick={() => setActiveTab('waarom')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            borderRadius: '9999px',
-            border: 'none',
-            background: activeTab === 'waarom' ? 'white' : 'transparent',
-            color: activeTab === 'waarom' ? '#0f172a' : '#64748b',
-            fontWeight: activeTab === 'waarom' ? '600' : '500',
-            boxShadow: activeTab === 'waarom' ? '0 2px 10px rgba(0, 0, 0, 0.05)' : 'none',
-            cursor: 'pointer',
-            transition: 'all 0.2s',
-            fontSize: '1rem',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
-          }}
-        >
-          <FileTextIcon size={18} /> De Theorie
-        </button>
-        <button 
-          onClick={() => setActiveTab('maker')}
-          style={{
-            padding: '0.75rem 1.5rem',
-            borderRadius: '9999px',
-            border: 'none',
-            background: activeTab === 'maker' ? 'white' : 'transparent',
-            color: activeTab === 'maker' ? '#0f172a' : '#64748b',
-            fontWeight: activeTab === 'maker' ? '600' : '500',
-            boxShadow: activeTab === 'maker' ? '0 2px 10px rgba(0, 0, 0, 0.05)' : 'none',
-            cursor: 'pointer',
-            transition: 'all 0.2s',
-            fontSize: '1rem',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
-          }}
-        >
-          <InfoIcon size={18} /> Over de maker
-        </button>
+      <div className="tabs-container" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
+        <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
+          <button 
+            onClick={() => setActiveTab('waarom')}
+            className={activeTab === 'waarom' ? "btn btn-gradient-game" : "btn btn-outline"} 
+            style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <FileTextIcon size={18} /> De Theorie
+          </button>
+          <button 
+            onClick={() => setActiveTab('maker')}
+            className={activeTab === 'maker' ? "btn btn-gradient-game" : "btn btn-outline"} 
+            style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <InfoIcon size={18} /> Over de maker
+          </button>
+        </div>
       </div>
 
       <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '900px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10, borderRadius: '24px' }}>
