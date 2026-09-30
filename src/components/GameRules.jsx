@@ -220,7 +220,7 @@ export default function GameRules({ onBack }) {
             <div>
               <h4 className="rule-title">Modus-regel (Kleur veranderen)</h4>
               <p className="rule-text">Modi (M-kaarten) mag je inzetten als reactie op een Schema, zelfs als de kleur niet matcht. De Modus verandert dan de actieve kleur van het spel naar zijn eigen kleur!</p>
-              <div style={{ marginTop: '0.75rem', padding: '0.75rem 1rem', background: '#eff6ff', borderRadius: '8px', color: '#1e3a8a', fontSize: '0.95rem', borderLeft: '4px solid #3b82f6' }}>
+              <div style={{ marginTop: '1rem', padding: '1rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', color: '#1e3a8a', fontSize: '0.95rem', lineHeight: '1.6', borderLeft: '4px solid #3b82f6' }}>
                 <strong>Therapeutische twist:</strong> De speler moet kort benoemen hoe deze Modus in de praktijk zou reageren op dat specifieke Schema.
               </div>
             </div>
@@ -254,7 +254,7 @@ export default function GameRules({ onBack }) {
             <div>
               <h4 className="rule-title">Het Einddoel</h4>
               <p className="rule-text">Het spel is niet zomaar uit als je kaarten op zijn. Je kunt pas winnen (en uitgaan) als jouw allerlaatste kaart de groene <strong>'Gezonde Volwassene'</strong> is. Wil je je laatste kaart spelen, maar is dit níét de Gezonde Volwassene? Dan moet je een kaart van de stapel trekken en doorspelen. Je kunt in schematherapie immers pas echt 'klaar' zijn als de regie bij de Gezonde Volwassene ligt.</p>
-              <div style={{ marginTop: '0.75rem', padding: '0.75rem 1rem', background: '#eff6ff', borderRadius: '8px', color: '#1e3a8a', fontSize: '0.95rem', borderLeft: '4px solid #3b82f6' }}>
+              <div style={{ marginTop: '1rem', padding: '1rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', color: '#1e3a8a', fontSize: '0.95rem', lineHeight: '1.6', borderLeft: '4px solid #3b82f6' }}>
                 <strong>Let op:</strong> Dit spel is bedoeld als een speelse, interactieve manier om schema's, modi en basisbehoeften te verkennen en te bespreken. De nadruk ligt op de <strong>dialoog</strong> (het uitleggen van de verbindingen) in plaats van alleen het winnen.
               </div>
             </div>
@@ -282,7 +282,7 @@ export default function GameRules({ onBack }) {
                 <li style={{ marginBottom: '0.5rem' }}><strong>De Kaart:</strong> Speler 1 heeft geen blauwe kaart en geen S-kaart, maar besluit Regel 2 te gebruiken en speelt een <strong>M-kaart</strong> <ColorBadge color="Geel" text="Geel" /> - <strong>Modus: Afstandelijke Beschermer</strong>.</li>
                 <li><strong>De Spelregel:</strong> Een Modus mag altijd als reactie op een Schema gespeeld worden, ongeacht de kleur. De actieve kleur op tafel verandert nu van <ColorBadge color="Blauw" text="Blauw" /> naar <ColorBadge color="Geel" text="Geel" />.</li>
               </ul>
-              <div style={{ padding: '1rem', background: '#eff6ff', borderRadius: '8px', color: '#1e3a8a', borderLeft: '4px solid #3b82f6', lineHeight: '1.5' }}>
+              <div style={{ marginTop: '1rem', padding: '1rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', color: '#1e3a8a', fontSize: '0.95rem', lineHeight: '1.6', borderLeft: '4px solid #3b82f6' }}>
                 <strong>Therapeutische twist:</strong> Speler 1 moet de link uitleggen:<br/><em>"Als ik getriggerd word in mijn verlatingsangst (blauwe schema), is mijn automatische reactie om me terug te trekken en niks meer te voelen (gele modus), zodat een eventuele afwijzing geen pijn doet."</em>
               </div>
             </TurnBox>
@@ -307,7 +307,7 @@ export default function GameRules({ onBack }) {
                 <li style={{ marginBottom: '0.5rem' }}><strong>De Kaart:</strong> Speler 1 kijkt naar de aflegstapel en speelt de <strong>B-kaart</strong> <ColorBadge color="Geel" text="Geel" /> - <strong>Basisbehoefte: Vrije Expressie</strong>.</li>
                 <li><strong>De Spelregel:</strong> Dit is een perfecte uitvoering van Regel 3 ('Terug naar de Kern'). Een B-kaart mag uitsluitend op een S-kaart gelegd worden, mits de kleur matcht (van Geel naar Geel).</li>
               </ul>
-              <div style={{ padding: '1rem', background: '#eff6ff', borderRadius: '8px', color: '#1e3a8a', borderLeft: '4px solid #3b82f6', lineHeight: '1.5' }}>
+              <div style={{ marginTop: '1rem', padding: '1rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', color: '#1e3a8a', fontSize: '0.95rem', lineHeight: '1.6', borderLeft: '4px solid #3b82f6' }}>
                 <strong>Therapeutische twist:</strong> Speler 1 benoemt het patroon:<br/><em>"Onder die drang om altijd maar voor anderen te zorgen en mezelf weg te cijferen (Zelfopoffering), zit eigenlijk mijn onvervulde basisbehoefte om gewoon mijn eigen grenzen en emoties te mogen uiten (Vrije expressie)."</em>
               </div>
             </TurnBox>
