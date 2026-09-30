@@ -95,8 +95,14 @@ export default function About({ onBack }) {
             </p>
 
             <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #3b82f6' }}>
+              <h3 style={{ color: '#1e3a8a', fontSize: '1.15rem', marginTop: 0, marginBottom: '0.75rem' }}>
+                Belangrijke disclaimer:
+              </h3>
+              <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: '0 0 1rem 0' }}>
+                Dit kaartspel is een onafhankelijk, creatief initiatief, ontworpen als praktisch hulpmiddel om de dialoog over patronen en behoeften op een speelse manier te faciliteren. Het is géén officieel product van, en niet formeel getoetst of goedgekeurd door, de Vereniging voor Schematherapie (VSt) of de International Society of Schema Therapy (ISST).
+              </p>
               <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
-                <strong>Belangrijke disclaimer:</strong> Dit kaartspel is een onafhankelijk, creatief initiatief, ontworpen als praktisch hulpmiddel om de dialoog over patronen en behoeften op een speelse manier te faciliteren. Het is géén officieel product van, en niet formeel getoetst of goedgekeurd door, de Vereniging voor Schematherapie (VSt) of de International Society of Schema Therapy (ISST). Het deck is nadrukkelijk bedoeld als aanvullende, laagdrempelige ondersteuning en niet als vervanging voor officiële klinische instrumenten of een professionele behandeling.
+                Om volledige transparantie te bieden, zijn de exacte teksten, begrippen en de indeling van alle kaarten openbaar in te zien op deze website. Therapeuten kunnen zo vooraf tot in detail controleren wat het deck bevat en zelf beoordelen of dit aansluit bij hun visie en werkwijze. De keuze om deze kaarten als hulpmiddel in te zetten binnen een klinische setting of sessie valt dan ook volledig onder de eigen professionele verantwoordelijkheid van de behandelend therapeut. Het spel is nadrukkelijk bedoeld als aanvullende, laagdrempelige ondersteuning en is geen vervanging voor officiële klinische instrumenten of een gedegen professionele behandeling.
               </p>
             </div>
           </div>
