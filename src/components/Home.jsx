@@ -278,7 +278,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
           <PlayingCardsIcon size={24} useGradient={true} /> De Schematherapie Kaartenset
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
-          Gebruik deze visuele toolset voor psycho-educatie om het patroon van trigger tot gezonde volwassene inzichtelijk te maken, of speel het als interactief spel.
+          Gebruik deze visuele toolset voor psycho-educatie in de spreekkamer, of zet het in als interactieve studietool voor professionals in opleiding.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
           <button 

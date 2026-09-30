@@ -188,7 +188,7 @@ export default function OrderCards({ onBack }) {
           Een professioneel gedrukte set voor in jouw praktijk
         </h2>
         <p style={{ marginTop: '1.25rem', fontSize: '1.15rem', color: '#475569', lineHeight: '1.6' }}>
-          Kun je zelf niet printen of wil je een hoogwaardige afdruk zonder zelf te hoeven knippen en snijden? Til je therapiesessies naar een hoger niveau met deze luxe kaartenset. Ontworpen om de abstracte theorie van schematherapie direct visueel en tastbaar te maken voor je cliënten. Perfect voor op tafel, overzichtelijk, en een onmisbare interactieve tool voor in de spreekkamer.
+          Kun je zelf niet printen of wil je een hoogwaardige afdruk zonder zelf te hoeven knippen en snijden? Til je therapiesessies naar een hoger niveau met deze luxe kaartenset. Ontworpen om de abstracte theorie van schematherapie direct visueel en tastbaar te maken voor je cliënten. Perfect voor op tafel, overzichtelijk, en een onmisbare interactieve tool voor in de spreekkamer. Daarnaast vormt de set een uiterst effectieve studietool voor professionals in opleiding, waarbij de kleuren fungeren als visuele flashcards om de theorie sneller eigen te maken.
         </p>
       </div>
 
@@ -196,7 +196,7 @@ export default function OrderCards({ onBack }) {
       <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '900px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10 }}>
         <div className="inner-box" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '2.5rem' }}>
           
-          <h2 style={{ fontSize: '2rem', margin: '0 0 0.5rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>Het Schematherapie Spel</h2>
+          <h2 style={{ fontSize: '2rem', margin: '0 0 0.5rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>De Schematherapie Kaartenset</h2>
           <p style={{ fontSize: '1.1rem', color: '#64748b', margin: '0 0 2rem 0', fontWeight: '500' }}>Complete Fysieke Kaartenset</p>
           
           {/* Price */}

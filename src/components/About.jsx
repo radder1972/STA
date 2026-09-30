@@ -83,6 +83,11 @@ export default function About({ onBack }) {
               Voor wie dat aankan, bieden de spelregels een bonusoptie: een "speelse gespreksvorm" die de theorie in actie brengt. De therapie is niet gereduceerd tot een simpel win-of-verlies spelletje; de mechaniek dwingt de speler tot het maken van kloppende therapeutische stappen. De regel dat een modus de 'kleurwereld' van de inhoud dwarsboomt, de verplichting om patronen te herleiden naar een basisbehoefte, en de voorwaarde dat de speler uitsluitend kan winnen door te eindigen bij de Gezonde Volwassene, zijn speelse vertalingen van serieuze klinische doelen. De set fungeert hiermee als een vehikel voor dialoog en bewustwording, en levert zo een waardevolle en verantwoorde bijdrage in de spreekkamer.
             </p>
 
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Interactieve studietool voor professionals</h3>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
+              Naast het gebruik in de spreekkamer, is de set uitermate geschikt als interactieve studietool voor professionals in opleiding (zoals psychologiestudenten, GZ-psychologen en SPV'ers). De theorie is taai om uit het hoofd te leren, maar omdat de kleuren de verbindingen tussen behoefte, schema en modus visueel maken, functioneren de kaarten als superieure flashcards. Studenten kunnen de spelregels toepassen om elkaar te overhoren, wat ze dwingt om razendsnel te schakelen tussen de theorie zonder de emotionele zwaarte van een echte sessie.
+            </p>
+
             <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #3b82f6' }}>
               <h3 style={{ color: '#1e3a8a', fontSize: '1.3rem', marginTop: 0, marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <InfoIcon size={24} /> Het doel: Psycho-educatie & Dialoog
