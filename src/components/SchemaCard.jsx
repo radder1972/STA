@@ -28,6 +28,11 @@ const formatCardTitle = (title) => {
   if (words.length === 2) {
     return <>{words[0]}<br />{words[1]}</>;
   }
+
+  if (title === 'Spontaniteit en spel') {
+    return <>Spontaniteit<br />en spel</>;
+  }
+
   return title;
 };
 
