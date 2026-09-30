@@ -94,23 +94,23 @@ const SchemaCard = ({
         {/* Front */}
         <div className="card-face-front schema-img playing-card" onClick={handleFlip} style={{ padding: '12px', boxSizing: 'border-box', cursor: flipOnClick || onClick ? 'pointer' : 'default', display: 'flex', flexDirection: 'column', backgroundColor: 'white', backgroundImage: `radial-gradient(circle at center, white 20%, ${color}40 120%)` }}>
           <CardInnerBorder color={color} />
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: src ? `${24 * s}px ${8 * s}px 0 ${8 * s}px` : '0' }}>
-            {src && <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(0.75) translateY(14%)', transformOrigin: 'bottom center', ...imageStyle }} />}
+          
+          {/* Header (Badge) */}
+          {type && getCardTypeLetter(type) && (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10, marginTop: src ? `${6 * s}px` : `${10 * s}px` }}>
+              <span style={{ fontSize: src ? `${0.8 * s}rem` : `${1.0 * s}rem`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: src ? `${1.4 * s}rem` : `${1.8 * s}rem`, height: src ? `${1.4 * s}rem` : `${1.8 * s}rem`, borderRadius: '50%', backgroundColor: color, color: 'white', marginBottom: `${4 * s}px` }}>{getCardTypeLetter(type)}</span>
+              <span style={{ fontSize: src ? `${0.3 * s}rem` : `${0.35 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black' }}>{getCardTypeLabel(type)}</span>
+            </div>
+          )}
+
+          {/* Image Container (Flex 1 ensures exact centering between Header and Footer) */}
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: src ? `${8 * s}px` : '0' }}>
+            {src && <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', ...imageStyle }} />}
           </div>
-          {type && getCardTypeLetter(type) && !src && (
-              <div style={{ position: 'absolute', top: `${22 * s}px`, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
-                <span style={{ fontSize: `${1.0 * s}rem`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: `${1.8 * s}rem`, height: `${1.8 * s}rem`, borderRadius: '50%', backgroundColor: color, color: 'white', marginBottom: `${6 * s}px` }}>{getCardTypeLetter(type)}</span>
-                <span style={{ fontSize: `${0.35 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black' }}>{getCardTypeLabel(type)}</span>
-              </div>
-          )}
-          {type && getCardTypeLetter(type) && src && (
-              <div style={{ position: 'absolute', top: `${18 * s}px`, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10 }}>
-                <span style={{ fontSize: `${0.8 * s}rem`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: `${1.4 * s}rem`, height: `${1.4 * s}rem`, borderRadius: '50%', backgroundColor: color, color: 'white', marginBottom: `${6 * s}px` }}>{getCardTypeLetter(type)}</span>
-                <span style={{ fontSize: `${0.3 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black' }}>{getCardTypeLabel(type)}</span>
-              </div>
-          )}
+
+          {/* Footer (Title) */}
           {title && (
-            <div style={{ textAlign: 'center', fontSize: `${0.75 * s}rem`, fontWeight: 'bold', margin: `${4 * s}px 0 ${16 * s}px 0`, lineHeight: '1.2' }}>
+            <div style={{ textAlign: 'center', fontSize: `${0.75 * s}rem`, fontWeight: 'bold', margin: `${4 * s}px 0 ${4 * s}px 0`, lineHeight: '1.2' }}>
               {formatCardTitle(title)}
             </div>
           )}
