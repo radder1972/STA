@@ -92,14 +92,24 @@ export default function OrderCards({ onBack }) {
         </div>
       </div>
 
-      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
+      <div style={{ 
+        display: 'flex', 
+        flexWrap: 'wrap',
+        gap: '4rem', 
+        marginBottom: '4rem', 
+        width: '100%', 
+        maxWidth: '1000px', 
+        margin: '0 auto 4rem auto', 
+        alignItems: 'center',
+        position: 'relative',
+        zIndex: 10
+      }}>
         {/* Product Photo */}
         <div style={{
-          width: '100%',
+          flex: '1 1 350px',
           borderRadius: '24px',
           overflow: 'hidden',
           boxShadow: '0 25px 50px rgba(0,0,0,0.2)',
-          marginBottom: '3rem',
           border: '1px solid var(--border-color)',
           background: 'white'
         }}>
@@ -110,6 +120,34 @@ export default function OrderCards({ onBack }) {
           />
         </div>
 
+        {/* Promotional Text */}
+        <div style={{ flex: '1 1 400px', textAlign: 'left' }}>
+          <h3 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'var(--text-main)', lineHeight: '1.2' }}>Kwaliteit voor in de Praktijk</h3>
+          <p style={{ fontSize: '1.15rem', lineHeight: '1.6', color: 'var(--text-muted)', marginBottom: '2rem' }}>
+            Het Schematherapie Spel wordt professioneel gedrukt op stevig speelkaartenkarton. Speciaal ontworpen om lang mee te gaan, zelfs bij intensief dagelijks gebruik door therapeuten en cliënten.
+          </p>
+          <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
+              <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
+              Handzaam formaat (64 x 94 mm)
+            </li>
+            <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
+              <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
+              Mooie afgeronde hoeken (radius 5 mm)
+            </li>
+            <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
+              <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
+              Hoogwaardige matte afwerking
+            </li>
+            <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-main)', fontWeight: '500', fontSize: '1.05rem' }}>
+              <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6', borderRadius: '50%', minWidth: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✓</div> 
+              Krasbestendig en vuilafstotend
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
         <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', color: 'var(--text-main)' }}>Bekijk alvast de interactieve digitale kaarten:</h3>
       </div>
 
