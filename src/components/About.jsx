@@ -9,10 +9,10 @@ export default function About({ onBack }) {
       
       {/* HEADER */}
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
-        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <InfoIcon size={48} useGameGradient={true} /> Verantwoording
+        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+          <InfoIcon size={40} useGameGradient={true} /> Verantwoording
         </h1>
-        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4', minHeight: '34px' }}>
+        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.25rem', lineHeight: '1.4', minHeight: '34px' }}>
           {activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : 'Wie zit er achter dit spel?'}
         </h2>
       </div>

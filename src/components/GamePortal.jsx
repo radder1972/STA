@@ -22,10 +22,10 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
 
 
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
-        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <HomeIcon size={48} useGameGradient={true} /> Schema Therapie Kaarten
+        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+          <HomeIcon size={40} useGameGradient={true} /> Schema Therapie Kaarten
         </h1>
-        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.5rem', lineHeight: '1.4' }}>
+        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.25rem', lineHeight: '1.4' }}>
           Breng schema's en modi tot leven op tafel
         </h2>
       </div>
