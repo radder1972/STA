@@ -49,13 +49,13 @@ export default function About({ onBack }) {
 
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Geworteld in de theorie</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1rem 0' }}>
-              Het fundament van dit deck rust stevig op het klassieke, empirisch getoetste grondmodel van Jeffrey Young (bekend van o.a. de YSQ-S3 en de SMI). We hebben de complexe materie teruggebracht tot een werkbare kern van 43 theoriekaarten, zonder concessies te doen aan de inhoudelijke diepgang:
+              Het fundament van dit deck rust stevig op het klassieke, empirisch getoetste grondmodel van Jeffrey Young (bekend van o.a. de YSQ-S3 en de SMI). We hebben de complexe materie teruggebracht tot een werkbare kern van 43 theoriekaarten in de basisset (en 55 kaarten in de volledige set inclusief uitbreiding), zonder concessies te doen aan de inhoudelijke diepgang:
             </p>
             <ul style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0', paddingLeft: '1.5rem' }}>
-              <li style={{ marginBottom: '0.5rem' }}><strong>5 Basisbehoeften (B):</strong> De universele kern van wat elk kind (en volwassene) nodig heeft.</li>
-              <li style={{ marginBottom: '0.5rem' }}><strong>18 Schema's (S):</strong> De diepgewortelde patronen en overtuigingen die ontstaan als behoeften niet vervuld worden.</li>
-              <li style={{ marginBottom: '0.5rem' }}><strong>14 Modi (M):</strong> De actuele gemoedstoestanden en overlevingsmechanismen (een zorgvuldige selectie van de meest voorkomende kernmodi uit de SMI).</li>
-              <li><strong>6 Categorieën (C):</strong> De overkoepelende groepen en copingvormen om gedrag overzichtelijk te clusteren.</li>
+              <li style={{ marginBottom: '0.5rem' }}><strong>Basisbehoeften (B):</strong> 5 behoeften in de basisset (7 in de volledige set). De universele kern van wat elk kind (en volwassene) nodig heeft.</li>
+              <li style={{ marginBottom: '0.5rem' }}><strong>Schema's (S):</strong> 18 schema's in de basisset (21 in de volledige set). De diepgewortelde patronen en overtuigingen die ontstaan als behoeften niet vervuld worden.</li>
+              <li style={{ marginBottom: '0.5rem' }}><strong>Modi (M):</strong> 14 kernmodi in de basisset (20 in de volledige set, waaronder het Blije Kind). De actuele gemoedstoestanden en overlevingsmechanismen.</li>
+              <li><strong>Categorieën (C):</strong> 6 groepen in de basisset (7 in de volledige set, inclusief Coping: Omkering) om gedrag en coping overzichtelijk te clusteren.</li>
             </ul>
 
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: '2.5rem', marginBottom: '1rem' }}>Theoretische positionering: Klassiek model vs. recente theorie-ontwikkelingen</h3>
@@ -118,11 +118,11 @@ export default function About({ onBack }) {
               Het meest unieke aan dit ontwerp is de manier waarop we kleur gebruiken om logische therapeutische verbindingen te visualiseren. De kaartenset kent twee 'kleurwerelden':
             </p>
             <ol style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1rem 0', paddingLeft: '1.5rem' }}>
-              <li style={{ marginBottom: '0.5rem' }}><strong>De Inhoud (De Domeinen):</strong> De Basisbehoeften en Schema's delen samen 5 kleuren. Een onvervulde basisbehoefte (bijv. de blauwe kaart 'Veiligheid & Verbinding') deelt zo exact dezelfde kleur als het schema dat daaruit ontstaat (bijv. het blauwe schema 'Verlating / Instabiliteit'). Dit maakt de route van oorzaak en gevolg in één oogopslag helder.</li>
-              <li><strong>Het Gedrag (De Categorieën):</strong> De Modi hebben een eigen kleurcodering, puur gebaseerd op hun modusgroep (blauw = Kind, rood = Ouder, geel = Coping, groen = Gezonde Volwassene).</li>
+              <li style={{ marginBottom: '0.5rem' }}><strong>De Inhoud (De Domeinen):</strong> De Basisbehoeften en Schema's delen samen hun kleurcodering: 5 domeinkleuren in de basisset, aangevuld tot 7 domeinkleuren in de volledige set (met paars voor Zelfcoherentie en bruin voor Rechtvaardigheid). Een onvervulde basisbehoefte (bijv. de blauwe kaart 'Veiligheid & Verbinding') deelt zo exact dezelfde kleur als het schema dat daaruit ontstaat (bijv. het blauwe schema 'Verlating / Instabiliteit'). Dit maakt de route van oorzaak en gevolg in één oogopslag helder.</li>
+              <li><strong>Het Gedrag (De Categorieën):</strong> De Modi hebben een eigen kleurcodering, puur gebaseerd op hun modusgroep (blauw = Kind, rood = Ouder, geel = Coping, groen = Gezonde kant).</li>
             </ol>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
-              Wanneer binnen een interactieve werkvorm een gele Coping-modus op een blauw Schema wordt gelegd, zien we op tafel letterlijk wat er in het brein gebeurt: het gedrag (de modus) overschrijft de onderliggende inhoud (het schema). De actieve kleur op tafel verandert. Om patronen te doorbreken, redeneert de cliënt in de theorie terug naar de Basisbehoefte om uiteindelijk te eindigen met de groene Gezonde Volwassene.
+              Wanneer binnen een interactieve werkvorm een gele Coping-modus op een blauw Schema wordt gelegd, zien we op tafel letterlijk wat er in het brein gebeurt: het gedrag (de modus) overschrijft de onderliggende inhoud (het schema). De actieve kleur op tafel verandert. Om patronen te doorbreken, redeneert de cliënt in de theorie terug naar de Basisbehoefte om uiteindelijk te eindigen met de Gezonde Volwassene of het Blije Kind.
             </p>
 
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Menselijke taal en minimalistisch design</h3>
@@ -135,7 +135,7 @@ export default function About({ onBack }) {
               De spanning tussen klinische ernst en toegankelijkheid is een belangrijk uitgangspunt bij de ontwikkeling van deze set. We positioneren het primair als een tastbare, visuele toolset voor psycho-educatie. Speelse elementen in therapie bagatelliseren de problematiek niet, maar verlagen juist de drempel om erover in gesprek te gaan. Juist bij abstracte en zware thema's, waar cliënten vaak vastlopen in diepe patronen of schaamte, helpt een fysiek object op tafel om de dynamiek te doorbreken. Het externeert het probleem: de cliënt is niet zijn afwijzingsschema of boze modus, maar kijkt naar een kaartje op tafel. Dat creëert direct een veilige, psychologische afstand waardoor het ineens veel makkelijker wordt om de eigen mechanismen te analyseren. De therapeut bepaalt of de kaarten puur als visuele tafelopstelling worden gebruikt, of dat er een interactieve spelvorm wordt ingezet.
             </p>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
-              Voor wie dat aanspreekt, bieden de werkvormen een interactieve spelvorm die de theorie in actie brengt. De theorie is niet gereduceerd tot winnen of verliezen; de dynamiek stimuleert de cliënt tot het zetten van kloppende therapeutische stappen. Dat een modus de 'kleurwereld' van de inhoud dwarsboomt, patronen herleid moeten worden naar een basisbehoefte, en dat altijd wordt geëindigd met de Gezonde Volwassene, zijn interactieve vertalingen van serieuze therapeutische doelen. De set fungeert hiermee als een vehikel voor dialoog en bewustwording, en levert zo een waardevolle en verantwoorde bijdrage in de spreekkamer.
+              Voor wie dat aanspreekt, bieden de werkvormen een interactieve spelvorm die de theorie in actie brengt. De theorie is niet gereduceerd tot winnen of verliezen; de dynamiek stimuleert de cliënt tot het zetten van kloppende therapeutische stappen. Dat een modus de 'kleurwereld' van de inhoud dwarsboomt, patronen herleid moeten worden naar een basisbehoefte, en dat altijd wordt geëindigd met een gezonde eindkaart (de Gezonde Volwassene of het Blije Kind), zijn interactieve vertalingen van serieuze therapeutische doelen. De set fungeert hiermee als een vehikel voor dialoog en bewustwording, en levert zo een waardevolle en verantwoorde bijdrage in de spreekkamer.
             </p>
 
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Interactieve studietool voor professionals</h3>
@@ -148,7 +148,7 @@ export default function About({ onBack }) {
                 <InfoIcon size={24} /> Het doel: Psycho-educatie & Dialoog
               </h3>
               <p style={{ color: '#1e3a8a', fontSize: '1.1rem', lineHeight: '1.6', margin: 0 }}>
-                Uiteindelijk is deze toolset geen speelgoed of gezelschapsspel, maar een visueel therapeutisch hulpmiddel. De dynamiek van het matchen, het inzetten van categoriekaarten en het verplicht eindigen met de Gezonde Volwassene is een optionele werkvorm voor het therapeutische gesprek. Het helpt cliënten om taal te geven aan hun patronen, afstand te nemen van hun modi, en stap voor stap de regie terug te pakken.
+                Uiteindelijk is deze toolset geen speelgoed of gezelschapsspel, maar een visueel therapeutisch hulpmiddel. De dynamiek van het matchen, het inzetten van categoriekaarten en het verplicht eindigen met een gezonde eindkaart (de Gezonde Volwassene of het Blije Kind) is een optionele werkvorm voor het therapeutische gesprek. Het helpt cliënten om taal te geven aan hun patronen, afstand te nemen van hun modi, en stap voor stap de regie terug te pakken.
               </p>
             </div>
 

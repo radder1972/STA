@@ -183,13 +183,13 @@ export default function StartHub() {
           </h2>
 
           <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', minHeight: '5.5rem' }}>
-            Verken alle 43 theoriekaarten, werkvormen en printopties. Ideaal om schema's en modi tastbaar en visueel te bestuderen in de praktijk of supervisie.
+            Verken alle 43 basiskaarten of de complete set van 55 theoriekaarten, werkvormen en printopties. Ideaal om schema's en modi tastbaar en visueel te bestuderen in de praktijk of supervisie.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
-              <span>Alle 43 kaarten incl. theorie & tips</span>
+              <span>43 basiskaarten & 12 uitbreidingskaarten</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />

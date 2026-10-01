@@ -21,7 +21,11 @@ const ColorBadge = ({ color, text }) => {
     'Blauw': { bg: '#eff6ff', text: '#1e3a8a', border: '#bfdbfe', dot: '#3b82f6' },
     'Geel': { bg: '#fefce8', text: '#854d0e', border: '#fef08a', dot: '#eab308' },
     'Groen': { bg: '#f0fdf4', text: '#166534', border: '#bbf7d0', dot: '#22c55e' },
-    'Rood': { bg: '#fef2f2', text: '#991b1b', border: '#fecaca', dot: '#ef4444' }
+    'Rood': { bg: '#fef2f2', text: '#991b1b', border: '#fecaca', dot: '#ef4444' },
+    'Oranje': { bg: '#fff7ed', text: '#9a3412', border: '#fed7aa', dot: '#f97316' },
+    'Paars': { bg: '#faf5ff', text: '#6b21a8', border: '#e9d5ff', dot: '#a855f7' },
+    'Roze': { bg: '#fdf2f8', text: '#9d174d', border: '#fbcfe8', dot: '#ec4899' },
+    'Bruin': { bg: '#fbf7ee', text: '#78350f', border: '#e6d5bc', dot: '#78350f' }
   };
   const style = colorStyles[color] || colorStyles['Blauw'];
   return (
@@ -131,7 +135,7 @@ export default function GameRules({ onBack }) {
             <CardsIcon size={28} useGameGradient={true} /> Wat zit er in de kaartenset?
           </h3>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: '#475569', marginBottom: '1.5rem' }}>
-            De kaartenset bestaat uit theoriekaarten die allemaal een eigen <strong>Letter</strong> (de kaartsoort) en <strong>Kleur</strong> (het thema of het domein) hebben. Deze eigenschappen zijn belangrijk bij het toepassen binnen interactieve werkvormen:
+            De werkvormen en spelvormen kunnen gespeeld worden met zowel de <strong>Klassieke Basisset (43 theoriekaarten)</strong> als de <strong>Volledige Set (55 theoriekaarten)</strong> inclusief de theorie-uitbreiding. Alle kaarten hebben een eigen <strong>Letter</strong> (de kaartsoort) en <strong>Kleur</strong> (het thema of het domein):
           </p>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
@@ -141,9 +145,15 @@ export default function GameRules({ onBack }) {
                 <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>B</div>
                 Basisbehoeften
               </div>
-              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(5 stuks) Vormen de kern van de therapie. Ze delen hun kleur met de bijbehorende Schema Domeinen.</div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}><strong>Basis: 5 stuks • Volledig: 7 stuks</strong><br />Vormen de kern van de therapie. Ze delen hun kleur met de bijbehorende Schema Domeinen (5 klassieke kleuren + Paars voor Zelfcoherentie en Bruin voor Rechtvaardigheid).</div>
               <div style={{ display: 'flex', gap: '4px', marginTop: '12px' }}>
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f97316' }}></div>
+                <div title="Blauw" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div>
+                <div title="Groen" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div>
+                <div title="Geel" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div>
+                <div title="Rood" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div>
+                <div title="Oranje" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f97316' }}></div>
+                <div title="Paars" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a855f7' }}></div>
+                <div title="Bruin" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#78350f' }}></div>
               </div>
             </div>
 
@@ -153,9 +163,15 @@ export default function GameRules({ onBack }) {
                 <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>S</div>
                 Schema-kaarten
               </div>
-              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(18 stuks) Tonen de hardnekkige patronen. De kleur van de kaart geeft aan binnen welk <strong>Schema Domein</strong> de kaart valt.</div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}><strong>Basis: 18 stuks • Volledig: 21 stuks</strong><br />Tonen hardnekkige patronen en overtuigingen. Gekleurd naar het specifieke <strong>Schema Domein</strong> (5 domeinen in de basisset, 7 in de volledige set).</div>
               <div style={{ display: 'flex', gap: '4px', marginTop: '12px' }}>
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f97316' }}></div>
+                <div title="Blauw" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div>
+                <div title="Groen" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div>
+                <div title="Geel" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div>
+                <div title="Rood" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div>
+                <div title="Oranje" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f97316' }}></div>
+                <div title="Paars" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a855f7' }}></div>
+                <div title="Bruin" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#78350f' }}></div>
               </div>
             </div>
             
@@ -165,9 +181,12 @@ export default function GameRules({ onBack }) {
                 <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>C</div>
                 Categorie-kaarten
               </div>
-              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(6 stuks) De Modi Categorieën (zoals Kindmodi, Oudermodi of specifieke Coping). Vaak gebruikt om overkoepelend te clusteren.</div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}><strong>Basis: 6 stuks • Volledig: 7 stuks</strong><br />De Modi Categorieën (zoals Kindmodi, Oudermodi of specifieke Coping, plus Coping: Omkering in de volledige set).</div>
               <div style={{ display: 'flex', gap: '4px', marginTop: '12px' }}>
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div>
+                <div title="Blauw" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div>
+                <div title="Groen" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div>
+                <div title="Geel" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div>
+                <div title="Rood" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div>
               </div>
             </div>
 
@@ -177,9 +196,12 @@ export default function GameRules({ onBack }) {
                 <div style={{ width: '24px', height: '24px', borderRadius: '6px', background: '#64748b', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem' }}>M</div>
                 Modus-kaarten
               </div>
-              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}>(14 stuks) Tonen actuele gemoedstoestanden. Gekleurd naar de specifieke <strong>Modus Categorie</strong> (bijv. Kindmodi of Copingmodi).</div>
+              <div style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5' }}><strong>Basis: 14 stuks • Volledig: 20 stuks</strong><br />Tonen actuele gemoedstoestanden. Gekleurd naar Modus Categorie (Kind, Ouder, Coping, Gezonde kant). De volledige set bevat o.a. ook het Blije Kind.</div>
               <div style={{ display: 'flex', gap: '4px', marginTop: '12px' }}>
-                <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div>
+                <div title="Blauw" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }}></div>
+                <div title="Groen" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div>
+                <div title="Geel" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#eab308' }}></div>
+                <div title="Rood" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }}></div>
               </div>
             </div>
           </div>
@@ -188,8 +210,9 @@ export default function GameRules({ onBack }) {
             <strong style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', fontSize: '1.1rem' }}>
               <LightbulbIcon size={20} useGameGradient={true} /> Uitleg van de kleuren (de stippen):
             </strong>
-            De theoriekaarten gebruiken kleur om logische verbindingen te leggen. Voor de Basisbehoeften en Schema's verwijst de kleur naar de 5 vaste domeinen (zoals <em>Verbondenheid en Afwijzing</em>). De set kent daardoor twee 'kleurwerelden': de Schema's/Behoeften (de inhoud) en de Modi (het gedrag). De Modus trekt de interactie naar zijn eigen kleurwereld, dwars door de inhoud heen.<br /><br />
-            Daarom kun je in een werkvorm een S-kaart moeiteloos op een B-kaart leggen, mits ze <strong>dezelfde kleur</strong> (dus hetzelfde achterliggende thema) delen. Binnen de spelvorm mag je overigens kaarten met dezelfde kleur óf dezelfde letter op elkaar leggen.
+            De theoriekaarten gebruiken kleur om logische verbindingen te leggen. Voor de Basisbehoeften en Schema's verwijst de kleur naar de inhoudelijke domeinen: de 5 klassieke domeinen in de basisset (Blauw, Groen, Geel, Rood, Oranje) of 7 domeinen in de volledige set (aangevuld met Paars voor <em>Zelfcoherentie</em> en Bruin voor <em>Rechtvaardigheid</em>).<br /><br />
+            De set kent daardoor twee 'kleurwerelden': de Schema's/Behoeften (de inhoudelijke levensdomeinen) en de Modi (het gedrag: Kind, Ouder, Coping en Gezonde kant). De Modus trekt de interactie naar zijn eigen kleurwereld, dwars door de inhoud heen.<br /><br />
+            Daarom kun je in een werkvorm een S-kaart moeiteloos op een B-kaart leggen, mits ze <strong>dezelfde kleur</strong> (dus hetzelfde achterliggende thema) delen. Binnen de spelvorm mag je kaarten met dezelfde kleur óf dezelfde letter op elkaar leggen.
           </p>
         </div>
         
@@ -198,7 +221,7 @@ export default function GameRules({ onBack }) {
             <DicesIcon size={28} useGameGradient={true} /> Voorbereiding
           </h3>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: '#475569', margin: 0 }}>
-            Schud de stapel van 43 theoriekaarten (18 S, 14 M, 5 B, 6 C). Deel elke deelnemer 5 kaarten uit. Leg de overgebleven kaarten gesloten in het midden van de tafel; dit vormt de trekstapel. Draai de bovenste kaart van de trekstapel open om de aflegstapel te beginnen (zorg bij voorkeur dat dit een Schema of een Basisbehoefte is).
+            Kies met welke set je speelt: de <strong>Klassieke Basisset van 43 theoriekaarten</strong> (18 S, 14 M, 5 B, 6 C) of de <strong>Volledige Set van 55 theoriekaarten</strong> (21 S, 20 M, 7 B, 7 C). Schud de gekozen stapel kaarten. Deel elke deelnemer 5 kaarten uit. Leg de overgebleven kaarten gesloten in het midden van de tafel; dit vormt de trekstapel. Draai de bovenste kaart van de trekstapel open om de aflegstapel te beginnen (zorg bij voorkeur dat dit een Schema of een Basisbehoefte is).
           </p>
         </div>
 
@@ -242,9 +265,10 @@ export default function GameRules({ onBack }) {
               <ul style={{ margin: '0.5rem 0 0 0', paddingLeft: '1.5rem', color: '#475569', lineHeight: '1.6', fontSize: '1.05rem' }}>
                 <li><strong>Coping: Vermijding (Geel):</strong> <em>Beurt overslaan.</em> (Je gaat het contact uit de weg).</li>
                 <li><strong>Coping: Overgave (Geel):</strong> <em>Pak 2 kaarten van de stapel.</em> (Je laat je overspoelen door het probleem).</li>
-                <li><strong>Coping: Overcompensatie (Geel):</strong> <em>Draai de beurtrichting om.</em> (Je gaat in de tegenaanval).</li>
+                <li><strong>Coping: Overcompensatie / Omkering (Geel):</strong> <em>Draai de beurtrichting om / wissel van beurt.</em> (Je gaat in de tegenaanval of keert de dynamiek om).</li>
                 <li><strong>Oudermodi (Rood):</strong> <em>Geef 1 van jouw kaarten aan de volgende deelnemer.</em> (Je legt straf of schuld bij de ander neer).</li>
                 <li><strong>Kindmodi (Blauw):</strong> <em>Ruil blind 1 kaart met de andere deelnemer.</em> (Kwetsbaarheid en behoefte aan sturing/hulp).</li>
+                <li><strong>Gezonde Volwassene (Groen):</strong> <em>Neutraliseer de vorige actie en bepaal de actieve kleur.</em> (Neemt de regie en herstelt balans).</li>
               </ul>
             </div>
           </div>
@@ -252,9 +276,23 @@ export default function GameRules({ onBack }) {
           <div className="rule-box">
             <div className="rule-number">5</div>
             <div>
-              <h4 className="rule-title">Het Einddoel</h4>
-              <p className="rule-text">De ronde is niet zomaar afgelopen als je kaarten op zijn. Je rondt de werkvorm pas af als jouw allerlaatste kaart de groene <strong>'Gezonde Volwassene'</strong> is. Wil je je laatste kaart inzetten, maar is dit níét de Gezonde Volwassene? Dan pak je een kaart van de trekstapel en ga je door. Je kunt in schematherapie immers pas echt afronden als de regie bij de Gezonde Volwassene ligt.</p>
-              <div style={{ marginTop: '1rem', padding: '1rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', color: '#1e3a8a', fontSize: '0.95rem', lineHeight: '1.6', borderLeft: '4px solid #3b82f6' }}>
+              <h4 className="rule-title">Het Einddoel: Gezonde Volwassene of Blije Kind</h4>
+              <p className="rule-text">
+                De ronde is niet zomaar afgelopen als je kaarten op zijn. Je rondt de werkvorm pas af als jouw allerlaatste kaart een gezonde groeikaart is: de groene <strong>'Gezonde Volwassene'</strong> óf het <strong>'Blije Kind'</strong> (beschikbaar in de volledige set).
+              </p>
+              <p className="rule-text" style={{ marginTop: '0.5rem' }}>
+                Wil je je laatste kaart inzetten, maar is dit een schema, copingreactie of kwetsbare/destructieve modus? Dan mag je niet uitgaan: je pakt een kaart van de trekstapel en de beurt gaat door.
+              </p>
+              <div style={{ marginTop: '1rem', padding: '1rem', background: '#f0fdf4', borderRadius: '0 12px 12px 0', color: '#166534', fontSize: '0.95rem', lineHeight: '1.6', borderLeft: '4px solid #10b981' }}>
+                <strong>Therapeutische betekenis van de uit-kaarten:</strong><br />
+                In schematherapie kent herstel twee complementaire einddoelen:
+                <ul style={{ margin: '0.4rem 0 0 0', paddingLeft: '1.25rem' }}>
+                  <li><strong>Gezonde Volwassene:</strong> De interne regisseur die grenzen bewaakt, zelfzorg organiseert en emotionele stabiliteit waarborgt.</li>
+                  <li><strong>Blije Kind:</strong> Het vermogen om weer onbevangen vreugde, speelsheid, spontaniteit en oprechte verbinding te ervaren wanneer de veiligheid is hersteld.</li>
+                </ul>
+                Het kunnen uitgaan met het Blije Kind in de volledige set weerspiegelt dat het doel van therapie niet alleen controle en beheersing is, maar juist ook het herontdekken van levensvreugde en speelsheid.
+              </div>
+              <div style={{ marginTop: '0.75rem', padding: '1rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', color: '#1e3a8a', fontSize: '0.95rem', lineHeight: '1.6', borderLeft: '4px solid #3b82f6' }}>
                 <strong>Let op:</strong> Deze spelvorm is bedoeld als een interactieve manier om schema's, modi en basisbehoeften te verkennen en te bespreken. De nadruk ligt op de <strong>dialoog</strong> (het uitleggen van de verbindingen) en psycho-educatie, niet op competitie.
               </div>
             </div>
@@ -318,7 +356,7 @@ export default function GameRules({ onBack }) {
               </div>
               <div>
                 <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '1.1rem' }}>Richting de afronding van de werkvorm...</h4>
-                <p style={{ margin: 0, lineHeight: '1.6' }}>Deelnemer 1 heeft nog maar één kaart over en geeft aan: "Laatste kaart!". Het is de <strong>M-kaart</strong> <ColorBadge color="Blauw" text="Blauw" /> - <strong>Boze Kindmodus</strong>. Omdat je volgens Regel 5 alléén mag afronden met de groene Gezonde Volwassene, mag Deelnemer 1 deze blauwe kaart wel inzetten (als het qua kleur of letter past), maar is de werkvorm nog niet voltooid. Deelnemer 1 pakt een nieuwe kaart van de trekstapel en gaat door tot de regie daadwerkelijk weer bij de Gezonde Volwassene ligt.</p>
+                <p style={{ margin: 0, lineHeight: '1.6' }}>Deelnemer 1 heeft nog maar één kaart over en geeft aan: "Laatste kaart!". Het is de <strong>M-kaart</strong> <ColorBadge color="Blauw" text="Blauw" /> - <strong>Boze Kindmodus</strong>. Omdat je volgens Regel 5 alléén mag afronden met een gezonde eindkaart (de Gezonde Volwassene of in de volledige set het Blije Kind), mag Deelnemer 1 deze blauwe kaart wel inzetten (als het qua kleur of letter past), maar is de werkvorm nog niet voltooid. Deelnemer 1 pakt een nieuwe kaart van de trekstapel en gaat door tot de regie daadwerkelijk weer bij de Gezonde Volwassene ligt of het Blije Kind weer veilig de ruimte krijgt.</p>
               </div>
             </div>
 
