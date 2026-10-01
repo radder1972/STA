@@ -17,6 +17,7 @@ import {
   modeSortOrder,
   basisbehoeftenData,
   vstBasisbehoeftenData,
+  vstSchemaData,
   modicategorieenData
 } from '../data/cards';
 
@@ -53,6 +54,7 @@ export default function KaartenOverzicht({ onBack }) {
 
   const allCards = [
     ...detailedSchemaCards,
+    ...vstSchemaData,
     ...detailedModeCards,
     ...basisbehoeftenData,
     ...vstBasisbehoeftenData,
@@ -219,18 +221,37 @@ export default function KaartenOverzicht({ onBack }) {
 
         {filter === 'vst' && (
           <div>
-            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
               <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(168, 85, 247, 0.12)', color: '#9333ea', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
                 VSt 2021 Verdiepingsdeck
               </span>
               <h2 className="box-heading" style={{ justifyContent: 'center', marginTop: '0.6rem', marginBottom: '0.5rem' }}>
-                VSt 2021 Uitbreidingsset ({vstBasisbehoeftenData.length})
+                VSt 2021 Uitbreidingsset ({vstBasisbehoeftenData.length + vstSchemaData.length})
               </h2>
               <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '750px', margin: '0 auto', lineHeight: '1.6' }}>
                 Gebaseerd op het internationale position paper (Arntz et al., 2021) en de nieuwste richtlijnen van de Vereniging voor Schematherapie. Klik op een kaart om de theorie, praktijkcasus en Gezonde Volwassene-tips te bekijken.
               </p>
             </div>
-            {renderCardList([...vstBasisbehoeftenData], 'vst-ext', { transform: 'scale(0.85)' })}
+
+            <div style={{ marginBottom: '3rem' }}>
+              <h3 style={{ textAlign: 'center', color: 'var(--text-main)', fontSize: '1.3rem', marginBottom: '0.5rem' }}>
+                Basisbehoeften ({vstBasisbehoeftenData.length})
+              </h3>
+              <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
+                De twee nieuw toegevoegde universele behoeften: Zelfcoherentie en Rechtvaardigheid.
+              </p>
+              {renderCardList([...vstBasisbehoeftenData], 'vst-behoeften', { transform: 'scale(0.85)' })}
+            </div>
+
+            <div style={{ paddingTop: '2rem', borderTop: '1px dashed var(--border-color)' }}>
+              <h3 style={{ textAlign: 'center', color: 'var(--text-main)', fontSize: '1.3rem', marginBottom: '0.5rem' }}>
+                Nieuw voorgestelde Schema's ({vstSchemaData.length})
+              </h3>
+              <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
+                De drie nieuwe schema's die ontstaan wanneer niet aan Zelfcoherentie of Rechtvaardigheid wordt voldaan.
+              </p>
+              {renderCardList([...vstSchemaData], 'vst-schemas')}
+            </div>
           </div>
         )}
 
@@ -238,9 +259,26 @@ export default function KaartenOverzicht({ onBack }) {
           <div>
             <h2 className="box-heading" style={{ justifyContent: 'center', marginBottom: '1rem' }}>Individuele Schema's (18)</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
-              Een schema is een vastgeroest patroon van denken, voelen en doen dat vaak al in de vroege jeugd is ontstaan. Ze fungeren als een soort gekleurde bril waardoor je (soms onbewust) naar jezelf, anderen en de wereld kijkt. Hieronder zie je de 18 specifieke schema's die we onderscheiden.
+              Een schema is een vastgeroest patroon van denken, voelen en doen dat vaak al in de vroege jeugd is ontstaan. Ze fungeren als een soort gekleurde bril waardoor je (soms onbewust) naar jezelf, anderen en de wereld kijkt. Hieronder zie je de 18 klassieke schema's die we onderscheiden.
             </p>
             {renderCardList(detailedSchemaCards, 'schema-ind')}
+
+            {vstSchemaData.length > 0 && (
+              <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
+                <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(168, 85, 247, 0.12)', color: '#9333ea', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+                    VSt 2021 Uitbreiding
+                  </span>
+                  <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
+                    Aanvullende Schema's ({vstSchemaData.length})
+                  </h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '650px', margin: '0 auto' }}>
+                    Nieuw voorgestelde schema's uit het internationale position paper (Arntz et al., 2021), gekoppeld aan de behoeften Zelfcoherentie en Rechtvaardigheid.
+                  </p>
+                </div>
+                {renderCardList(vstSchemaData, 'schema-vst')}
+              </div>
+            )}
           </div>
         )}
 

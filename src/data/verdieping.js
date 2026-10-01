@@ -144,6 +144,30 @@ export const verdiepingData = {
       "Vraag jezelf af: 'Helpt deze straf me om het beter te doen, of maakt het me alleen maar bang en depressief?'"
     ]
   },
+  'Gebrek aan coherente identiteit': {
+    casus: "Sanne voelt zich van binnen vaak gefragmenteerd en leeg. Als iemand vraagt: 'Wat wil jij nou echt?', raakt ze in paniek omdat ze geen duidelijke kern ervaart en bang is dat ze 'niemand' is.",
+    tips: [
+      "Schrijf dagelijks op wat jij leuk, belangrijk of juist stom vond. Zo bouw je stap voor stap een anker op voor je identiteit.",
+      "Besef dat tegenstrijdige emoties normaal zijn en niet betekenen dat je als persoon uit elkaar valt.",
+      "Versterk je Gezonde Volwassene als de 'regisseur' die over al je verschillende kanten waakt."
+    ]
+  },
+  'Gebrek aan een betekenisvolle wereld': {
+    casus: "Mark kijkt naar het nieuws en de drukte om hem heen en voelt een diepe existentiële vervreemding. Het voelt alsof hij achter dik glas naar een toneelstuk kijkt waarin hij geen enkele rol of zingeving heeft.",
+    tips: [
+      "Begin dichtbij: zingeving ontstaat vaak niet in het grote geheel, maar in kleine, tastbare contacten of betekenisvolle bezigheden.",
+      "Onderzoek welke waarden jou écht aan het hart gaan (zoals natuur, creativiteit of rechtvaardigheid) en zoek aansluiting bij gelijkgestemden.",
+      "Realiseer je dat het gevoel van 'betekenisloosheid' een beschermingsmechanisme kan zijn tegen teleurstelling of overweldiging."
+    ]
+  },
+  'Onrechtvaardigheid': {
+    casus: "Kevin heeft het gevoel dat de spelregels van het leven altijd in zijn nadeel zijn gemanipuleerd. Als een situatie niet 100% eerlijk verloopt, voelt hij een diepe machteloosheid en bitterheid: 'Zie je wel, de sterken winnen altijd en ik ben het haasje'.",
+    tips: [
+      "Maak onderscheid tussen reëel maatschappelijk onrecht en situaties waarin toeval of menselijke onhandigheid een rol speelt.",
+      "Voorkom dat je in een cynische slachtofferrol belandt; vraag jezelf af: 'Wat ligt er wél binnen mijn invloedssfeer?'",
+      "Gebruik je rechtvaardigheidsgevoel als positieve kracht om voor jezelf en anderen op te komen vanuit de Gezonde Volwassene."
+    ]
+  },
 
   // MODI (14)
   'Kwetsbare kind': {

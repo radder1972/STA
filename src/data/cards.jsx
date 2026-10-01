@@ -8,6 +8,10 @@ import imgB5 from '../assets/images/basisbehoeften/5.png';
 import imgB6 from '../assets/images/basisbehoeften/6.png';
 import imgB7 from '../assets/images/basisbehoeften/7.png';
 
+import imgCoherenteIdentiteit from '../assets/images/vst/coherente_identiteit.png';
+import imgBetekenisvolleWereld from '../assets/images/vst/betekenisvolle_wereld.png';
+import imgOnrechtvaardigheid from '../assets/images/vst/onrechtvaardigheid.png';
+
 import imgM1 from '../assets/images/modicategorieen/1.png';
 import imgM2 from '../assets/images/modicategorieen/2.png';
 import imgM3a from '../assets/images/modicategorieen/coping_overgave.png';
@@ -119,6 +123,36 @@ export const basisbehoeftenData = [
 export const vstBasisbehoeftenData = [
   { id: 'bb6', title: 'Zelfcoherentie', src: imgB6, description: basisbehoeftenText['Zelfcoherentie'], color: '#a855f7', type: 'basisbehoefte', isVst: true },
   { id: 'bb7', title: 'Rechtvaardigheid', src: imgB7, description: basisbehoeftenText['Rechtvaardigheid'], color: '#06b6d4', type: 'basisbehoefte', isVst: true },
+];
+
+export const vstSchemaData = [
+  {
+    id: 'vst_s1',
+    title: 'Gebrek aan coherente identiteit',
+    type: 'schema',
+    src: imgCoherenteIdentiteit,
+    description: 'Je ervaart jezelf niet als één geheel. Je hebt het gevoel dat je uit losse, soms tegenstrijdige delen bestaat. Dit maakt dat je vaak verwarring voelt van binnen en over wie je bent. Je hebt moeite om over jezelf te denken en te praten als een duidelijk eigen iemand.',
+    color: '#a855f7',
+    isVst: true
+  },
+  {
+    id: 'vst_s2',
+    title: 'Gebrek aan een betekenisvolle wereld',
+    type: 'schema',
+    src: imgBetekenisvolleWereld,
+    description: 'Je ervaart de wereld als verwarrend en betekenisloos, waarbij je je niet verbonden voelt met zaken die in jouw leven en in de wereld om je heen spelen.',
+    color: '#a855f7',
+    isVst: true
+  },
+  {
+    id: 'vst_s3',
+    title: 'Onrechtvaardigheid',
+    type: 'schema',
+    src: imgOnrechtvaardigheid,
+    description: 'Je ervaart je omgeving als onrechtvaardig en oneerlijk, waarbij onrecht in de maatschappij niet wordt gecorrigeerd. Je bent bang om slachtoffer van dat onrecht te worden.',
+    color: '#06b6d4',
+    isVst: true
+  }
 ];
 
 export const modicategorieenData = [
