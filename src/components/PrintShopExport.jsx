@@ -153,10 +153,10 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
     window.print();
   };
 
-  const getDeckButtonTitle = () => {
-    if (deckSelection === 'vst') return 'Theorie-uitbreiding (12 kaarten • 24 pagina\'s)';
-    if (deckSelection === 'base') return 'Basisdeck (43 kaarten • 86 pagina\'s)';
-    return 'Volledige Set (55 kaarten • 110 pagina\'s)';
+  const getDeckSubline = () => {
+    if (deckSelection === 'vst') return 'Uitbreidingsset • 12 kaarten • 24 pagina\'s';
+    if (deckSelection === 'base') return 'Basisset • 43 kaarten • 86 pagina\'s';
+    return 'Volledige set • 55 kaarten • 110 pagina\'s';
   };
 
   return (
@@ -289,18 +289,25 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
             className="btn btn-gradient-game" 
             style={{ 
               width: '100%', 
-              padding: '1.1rem', 
-              fontSize: '1.15rem', 
+              padding: '0.95rem 1.5rem', 
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'center', 
-              gap: '10px', 
-              borderRadius: '14px',
-              cursor: 'pointer',
+              gap: '14px', 
+              borderRadius: '14px', 
+              cursor: 'pointer', 
               border: 'none'
             }}
           >
-            <PrinterIcon size={22} /> Genereer Print-PDF ({getDeckButtonTitle()})
+            <PrinterIcon size={26} style={{ flexShrink: 0 }} />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', lineHeight: '1.25' }}>
+              <span style={{ fontSize: '1.22rem', fontWeight: '700', letterSpacing: '-0.01em' }}>
+                Print PDF
+              </span>
+              <span style={{ fontSize: '0.86rem', fontWeight: '500', opacity: 0.9, marginTop: '3px' }}>
+                {getDeckSubline()}
+              </span>
+            </div>
           </button>
 
           {/* Volledige Checklist voor drukker */}
