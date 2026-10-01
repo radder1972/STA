@@ -69,7 +69,8 @@ export const vstCopingData = [
     src: imgCopingOmkering,
     description: 'Je vecht tegen het schema door het tegenovergestelde te doen. Om innerlijke kwetsbaarheid te maskeren zet je een superieur pantser op.',
     color: '#eab308',
-    isVst: true
+    isVst: true,
+    style: { transform: 'scale(0.75)' }
   }
 ];
 
@@ -81,7 +82,8 @@ export const vstModiData = [
     src: imgBlijeKind,
     description: 'Voelt zich vrij, geliefd, veilig en verbonden. Reageert speels, spontaan, ondernemend en vol levenslust, zoals een onbezorgd kind.',
     color: '#34d399',
-    isVst: true
+    isVst: true,
+    style: { transform: 'scale(0.66)' }
   },
   {
     id: 'vst_m_bb',
@@ -90,7 +92,8 @@ export const vstModiData = [
     src: imgBozeBeschermer,
     description: 'Schermt gevoelens af met een bozige, cynische of afwijzende houding. Houdt anderen wantrouwend op afstand ter zelfbescherming.',
     color: '#facc15',
-    isVst: true
+    isVst: true,
+    style: { transform: 'scale(0.72)' }
   },
   {
     id: 'vst_m_po',
@@ -99,7 +102,8 @@ export const vstModiData = [
     src: imgPerfectionistischeOvercontroleerder,
     description: 'Probeert fouten dwangmatig te voorkomen door extreme perfectie en controle. Werkt keihard om elk risico uit te bannen.',
     color: '#facc15',
-    isVst: true
+    isVst: true,
+    style: { transform: 'scale(0.72)' }
   },
   {
     id: 'vst_m_bm',
@@ -108,7 +112,8 @@ export const vstModiData = [
     src: imgBedrogManipulatie,
     description: 'Gebruikt leugens, misleiding en manipulatie om doelen te bereiken, straf of afwijzing te ontlopen, of voordeel te behalen.',
     color: '#facc15',
-    isVst: true
+    isVst: true,
+    style: { transform: 'scale(0.70)' }
   },
   {
     id: 'vst_m_ae',
@@ -117,7 +122,8 @@ export const vstModiData = [
     src: imgAandachtErkenningzoeker,
     description: 'Zoekt op een theatrale manier naar goedkeuring en aandacht. Vergroot emoties of kwetsbaarheden uit om gezien te worden.',
     color: '#facc15',
-    isVst: true
+    isVst: true,
+    style: { transform: 'scale(0.62)' }
   },
   {
     id: 'vst_m_rd',
@@ -126,7 +132,8 @@ export const vstModiData = [
     src: imgRoofdier,
     description: 'Koude, meedogenloze en berekenende modus gericht op het uitschakelen van rivalen of obstakels om de eigen positie te behouden.',
     color: '#facc15',
-    isVst: true
+    isVst: true,
+    style: { transform: 'scale(0.72)' }
   }
 ];
 

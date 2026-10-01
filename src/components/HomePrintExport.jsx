@@ -74,7 +74,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
   const vstCoping = vstCopingData.map(c => ({
     ...c,
     type: 'modicategorie',
-    style: { transform: 'scale(0.85)' }
+    style: c.style || { transform: 'scale(0.75)' }
   }));
 
   // 7. Classical Modi (14)
@@ -102,7 +102,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
   const vstModi = vstModiData.map(c => ({
     ...c,
     type: 'mode',
-    style: { transform: 'scale(1.1)' }
+    style: c.style || { transform: 'scale(0.70)' }
   }));
 
   // Construct decks
