@@ -387,7 +387,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                       left: 0, 
                       right: 0, 
                       bottom: 0, 
-                      padding: '12mm 7mm', 
+                      padding: '11.5mm 7mm', 
                       display: 'flex', 
                       flexDirection: 'column', 
                       alignItems: 'center', 
@@ -395,7 +395,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                       boxSizing: 'border-box' 
                     }}>
                       <div style={{ 
-                        height: '9.5mm', 
+                        height: '10mm', 
                         width: '100%', 
                         display: 'flex', 
                         flexDirection: 'column', 

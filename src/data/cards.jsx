@@ -146,6 +146,66 @@ export const getCardTypeLetter = (type) => {
 export const formatCardTitle = (title) => {
   if (!title) return title;
   
+  // 1. Zich rechten toe-eigenen: exact 2 regels en 'toe-eigenen' nooit afbreken
+  if (title === 'Zich rechten toe-eigenen' || title.toLowerCase().includes('rechten toe')) {
+    return (
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Zich rechten</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>toe&#8209;eigenen</span>
+      </span>
+    );
+  }
+
+  // 2. Gebrek aan zelfcontrole / Zelfdiscipline: echt op twee regels proppen
+  if (
+    title === 'Gebrek aan zelfcontrole / Zelfdiscipline' ||
+    title === 'Gebrek aan zelfcontrole/zelfdiscipline' ||
+    title.startsWith('Gebrek aan zelfcontrole')
+  ) {
+    return (
+      <span style={{ display: 'inline-block', fontSize: '0.74rem', lineHeight: '1.1' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Gebrek aan zelfcontrole /</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>Zelfdiscipline</span>
+      </span>
+    );
+  }
+
+  // 3. Gebrek aan coherente identiteit: op 2 regels
+  if (title === 'Gebrek aan coherente identiteit') {
+    return (
+      <span style={{ display: 'inline-block', fontSize: '0.78rem', lineHeight: '1.12' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Gebrek aan coherente</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>identiteit</span>
+      </span>
+    );
+  }
+
+  // 4. Gebrek aan (een) betekenisvolle wereld: op 2 regels
+  if (title.startsWith('Gebrek aan') && title.includes('wereld')) {
+    const isEen = title.includes('een');
+    return (
+      <span style={{ display: 'inline-block', fontSize: '0.75rem', lineHeight: '1.1' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>{isEen ? 'Gebrek aan een' : 'Gebrek aan'}</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>betekenisvolle wereld</span>
+      </span>
+    );
+  }
+
+  // 5. Meedogenloze normen / Overmatig kritisch: op 2 regels
+  if (title.startsWith('Meedogenloze normen')) {
+    return (
+      <span style={{ display: 'inline-block', fontSize: '0.75rem', lineHeight: '1.1' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Meedogenloze normen /</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>Overmatig kritisch</span>
+      </span>
+    );
+  }
+
   if (title === 'Kwetsbaarheid voor ziekte en gevaar') {
     return <>Kwetsbaarheid voor ziekte<br />en gevaar</>;
   }
@@ -157,12 +217,6 @@ export const formatCardTitle = (title) => {
   }
   if (title === 'Afhankelijkheid / Onbekwaamheid' || title === 'Afhankelijkheid/onbekwaamheid') {
     return <>Afhankelijkheid /<br />Onbekwaamheid</>;
-  }
-  if (title === 'Gebrek aan zelfcontrole / Zelfdiscipline' || title === 'Gebrek aan zelfcontrole/zelfdiscipline') {
-    return <>Gebrek aan zelfcontrole /<br />Zelfdiscipline</>;
-  }
-  if (title === 'Meedogenloze normen / Overmatig kritisch' || title === 'Meedogenloze normen/overmatig kritisch') {
-    return <>Meedogenloze normen /<br />Overmatig kritisch</>;
   }
   if (title === 'Goedkeuring en erkenning zoeken') {
     return <>Goedkeuring en<br />erkenning zoeken</>;
@@ -185,14 +239,11 @@ export const formatCardTitle = (title) => {
   if (title === 'Spontaniteit en spel') {
     return <>Spontaniteit<br />en spel</>;
   }
-  if (title === 'Gebrek aan coherente identiteit') {
-    return <>Gebrek aan coherente<br />identiteit</>;
-  }
-  if (title === 'Gebrek aan een betekenisvolle wereld') {
-    return <>Gebrek aan een<br />betekenisvolle wereld</>;
-  }
   if (title === 'Perfectionistische overcontroleerder') {
     return <>Perfectionistische<br />overcontroleerder</>;
+  }
+  if (title === 'Wantrouwende overcontroleerder') {
+    return <>Wantrouwende<br />overcontroleerder</>;
   }
   if (title === 'Aandacht- en erkenningzoeker') {
     return <>Aandacht- en<br />erkenningzoeker</>;
