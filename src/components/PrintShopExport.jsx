@@ -394,33 +394,28 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                       justifyContent: 'flex-start', 
                       boxSizing: 'border-box' 
                     }}>
-                      <div style={{ 
-                        height: '9.5mm', 
+                      <h4 style={{ 
+                        margin: 0, 
+                        fontSize: '0.85rem', 
+                        color: 'black', 
+                        textAlign: 'center', 
                         width: '100%', 
-                        display: 'flex', 
-                        flexDirection: 'column', 
-                        alignItems: 'center', 
-                        justifyContent: 'center', 
-                        borderBottom: `2px solid ${cardColor}`, 
-                        paddingBottom: '1.5mm', 
-                        margin: '0 0 2.5mm 0', 
-                        boxSizing: 'border-box', 
-                        flexShrink: 0, 
+                        lineHeight: '1.18', 
+                        fontWeight: 800, 
+                        letterSpacing: '-0.2px',
+                        flexShrink: 0,
                         zIndex: 1 
                       }}>
-                        <h4 style={{ 
-                          margin: 0, 
-                          fontSize: '0.85rem', 
-                          color: 'black', 
-                          textAlign: 'center', 
-                          width: '100%', 
-                          lineHeight: '1.15', 
-                          fontWeight: 800,
-                          letterSpacing: '-0.2px' 
-                        }}>
-                          {formatCardTitle(card.title)}
-                        </h4>
-                      </div>
+                        {formatCardTitle(card.title)}
+                      </h4>
+                      <div style={{ 
+                        width: '100%', 
+                        height: '2px', 
+                        backgroundColor: cardColor, 
+                        margin: '2.5mm 0', 
+                        flexShrink: 0, 
+                        zIndex: 1 
+                      }} />
                       <div style={{ 
                         fontSize: descFontSize, 
                         fontWeight: 'normal', 
