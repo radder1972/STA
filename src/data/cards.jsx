@@ -155,6 +155,8 @@ export const vstSchemaData = [
   }
 ];
 
+export { vstModiData, vstCopingData } from './vstCards';
+
 export const modicategorieenData = [
   { id: 'mc1', title: 'Kindmodi', src: imgM1, description: categorieText['Kindmodi'], color: '#3b82f6', type: 'modicategorie' },
   { id: 'mc2', title: 'Oudermodi', src: imgM2, description: categorieText['Oudermodi'], color: '#ef4444', type: 'modicategorie' },

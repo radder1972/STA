@@ -384,8 +384,13 @@ export const verdiepingData = {
   }
 };
 
+import { vstVerdieping } from './vstCards';
+
 // Functie om de juiste data te halen, met fallback placeholder
 export const getVerdieping = (title) => {
+  if (vstVerdieping && vstVerdieping[title]) {
+    return vstVerdieping[title];
+  }
   if (verdiepingData[title]) {
     return verdiepingData[title];
   }
