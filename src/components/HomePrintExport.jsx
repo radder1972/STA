@@ -506,7 +506,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                   {backChunk.map((card, i) => {
                     const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'white';
                     const descFontSize = '0.80rem';
-                    const descLineHeight = '1.28';
+                    const descLineHeight = '1.35';
 
                     return (
                     <div key={`back-${i}`} style={{ width: '58mm', height: '88mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative', background: 'white', borderRadius: '6px', overflow: 'hidden' }}>

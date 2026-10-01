@@ -258,7 +258,7 @@ const SchemaCard = ({
   const descText = description || (title ? 'Geen theorie beschikbaar.' : '');
   // Uniforme typografie voor alle kaarten
   const descSize = 0.58;
-  const descLineHeight = 1.30;
+  const descLineHeight = 1.35;
   const lineClamp = 13;
 
   return (
