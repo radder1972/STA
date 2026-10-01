@@ -63,11 +63,27 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
           <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
             <CardsIcon size={32} useGameGradient={true} />
           </div>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, paddingRight: '1rem' }}>
             <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>De Theoriekaarten</h2>
-            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>
-              Bestudeer de theorie, herkenbare voorbeelden en concrete tips van alle 18 schema's, 14 modi én de VSt 2021 uitbreidingsset (55 kaarten in totaal).
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '0.85rem' }}>
+              Bestudeer alle achtergronden, herkenbare voorbeelden en praktische tips digitaal. De kaartenverzameling (55 kaarten in totaal) bestaat uit twee complementaire sets:
             </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.25rem', fontSize: '0.92rem' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: 'var(--text-main)', lineHeight: '1.5' }}>
+                <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6', marginTop: '6px', flexShrink: 0 }} />
+                <span>
+                  <strong>Basisset (43 kaarten):</strong> De klassieke Young & Arntz indeling met alle 18 schema's, 14 modi, 6 modi-categorieën en 5 basisbehoeften.
+                </span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: 'var(--text-main)', lineHeight: '1.5' }}>
+                <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#ea580c', marginTop: '6px', flexShrink: 0 }} />
+                <span>
+                  <strong>VSt 2021 Uitbreidingsset (12 kaarten):</strong> De officiële actualisatie van de Vereniging voor Schematherapie met 6 aanvullende modi (o.a. Blije Kind & Boze Beschermer), 3 schema's, Coping: Omkering en 2 behoeften.
+                </span>
+              </div>
+            </div>
+
             <button onClick={onViewKaartenOverzicht} className="btn btn-gradient-game">
               Bekijk theoriekaarten
             </button>
