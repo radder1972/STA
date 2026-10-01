@@ -455,81 +455,34 @@ export default function OrderCards({ onBack }) {
               </ul>
             </div>
             
-            {/* Overlapping Playing Card Photos */}
-            <div style={{ 
-              flex: '0 0 220px', 
-              position: 'relative', 
-              height: '310px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginLeft: '0.5rem'
-            }}>
-              {/* Oude foto (bovenste kaart) */}
-              <div 
-                style={{ 
-                  position: 'absolute',
-                  top: '0px',
-                  right: '0px',
-                  width: '165px', 
-                  borderRadius: '14px', 
-                  overflow: 'hidden', 
-                  boxShadow: '0 16px 36px rgba(0,0,0,0.22)', 
-                  border: '4px solid white', 
-                  transform: 'rotate(5deg)',
-                  background: 'white',
-                  zIndex: 2,
-                  transition: 'transform 0.25s ease, box-shadow 0.25s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'rotate(5deg) scale(1.04)';
-                  e.currentTarget.style.boxShadow = '0 20px 42px rgba(0,0,0,0.28)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'rotate(5deg)';
-                  e.currentTarget.style.boxShadow = '0 16px 36px rgba(0,0,0,0.22)';
-                }}
-              >
-                <img 
-                  src="/images/cards-mockup.jpeg" 
-                  alt="Fysieke set van de Schematherapie Theoriekaarten" 
-                  style={{ width: '100%', height: 'auto', display: 'block' }} 
-                />
-              </div>
-
-              {/* Tweede foto (onderste kaart, onder de oude foto) */}
-              <div 
-                style={{ 
-                  position: 'absolute',
-                  top: '90px',
-                  left: '0px',
-                  width: '165px', 
-                  borderRadius: '14px', 
-                  overflow: 'hidden', 
-                  boxShadow: '0 14px 30px rgba(0,0,0,0.18)', 
-                  border: '4px solid white', 
-                  transform: 'rotate(-4deg)',
-                  background: 'white',
-                  zIndex: 1,
-                  transition: 'transform 0.25s ease, box-shadow 0.25s ease, z-index 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'rotate(-4deg) scale(1.05)';
-                  e.currentTarget.style.boxShadow = '0 22px 45px rgba(0,0,0,0.3)';
-                  e.currentTarget.style.zIndex = '3';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'rotate(-4deg)';
-                  e.currentTarget.style.boxShadow = '0 14px 30px rgba(0,0,0,0.18)';
-                  e.currentTarget.style.zIndex = '1';
-                }}
-              >
-                <img 
-                  src="/images/cards-table.jpg" 
-                  alt="Fysieke theoriekaarten uitgespreid op tafel" 
-                  style={{ width: '100%', height: 'auto', display: 'block' }} 
-                />
-              </div>
+            {/* Grote Productfoto buiten de box */}
+            <div 
+              style={{ 
+                flex: '0 0 250px', 
+                borderRadius: '18px', 
+                overflow: 'hidden', 
+                boxShadow: '0 25px 50px rgba(0,0,0,0.25), 0 10px 22px rgba(0,0,0,0.12)', 
+                border: '5px solid white', 
+                transform: 'translate(36px, -24px) rotate(4deg)',
+                background: 'white',
+                position: 'relative',
+                zIndex: 4,
+                transition: 'transform 0.25s ease, box-shadow 0.25s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translate(36px, -28px) rotate(4deg) scale(1.04)';
+                e.currentTarget.style.boxShadow = '0 32px 64px rgba(0,0,0,0.32), 0 12px 26px rgba(0,0,0,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translate(36px, -24px) rotate(4deg)';
+                e.currentTarget.style.boxShadow = '0 25px 50px rgba(0,0,0,0.25), 0 10px 22px rgba(0,0,0,0.12)';
+              }}
+            >
+              <img 
+                src="/images/cards-stack.jpg" 
+                alt="Fysieke stapel Schematherapie Theoriekaarten" 
+                style={{ width: '100%', height: 'auto', display: 'block' }} 
+              />
             </div>
           </div>
 
