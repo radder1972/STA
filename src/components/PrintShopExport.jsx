@@ -82,7 +82,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
   });
   allCards.push(...modi);
 
-  const [borderMode, setBorderMode] = useState('5mm'); // '5mm' (PeterPrint), 'original' (1.6mm), 'none' (randloos)
+  const [filter, setFilter] = useState('optie1');
   const handlePrint = () => {
     window.print();
   };
@@ -131,41 +131,6 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
           Deze weergave is geoptimaliseerd voor professionele drukkerijen. Het papierformaat voor de PDF is ingesteld op <strong>Speelkaarten formaat (64x94mm inclusief 3mm afloop rondom)</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 58x88mm worden zonder witte randjes. Druk op de "Genereer Print-PDF" knop hieronder en kies "Opslaan als PDF" in Chrome.
         </p>
 
-        {/* Kader Keuze Selector */}
-        <div style={{ marginTop: '0.5rem', background: 'rgba(59, 130, 246, 0.08)', padding: '1.25rem', borderRadius: '16px', border: '1px solid rgba(59, 130, 246, 0.2)' }}>
-          <div style={{ fontWeight: 'bold', fontSize: '0.95rem', color: 'var(--text-main)', marginBottom: '0.6rem' }}>
-            Kaderinstelling (PeterPrint):
-          </div>
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '0.6rem' }}>
-            <button 
-              onClick={() => setBorderMode('5mm')} 
-              className={`btn ${borderMode === '5mm' ? 'btn-gradient-game' : 'btn-outline'}`}
-              style={{ padding: '6px 14px', fontSize: '0.85rem', cursor: 'pointer', border: 'none' }}
-            >
-              🛡️ 5 mm kader (PeterPrint norm)
-            </button>
-            <button 
-              onClick={() => setBorderMode('original')} 
-              className={`btn ${borderMode === 'original' ? 'btn-gradient-game' : 'btn-outline'}`}
-              style={{ padding: '6px 14px', fontSize: '0.85rem', cursor: 'pointer', border: 'none' }}
-            >
-              ⏪ 1.6 mm kader (Origineel)
-            </button>
-            <button 
-              onClick={() => setBorderMode('none')} 
-              className={`btn ${borderMode === 'none' ? 'btn-gradient-game' : 'btn-outline'}`}
-              style={{ padding: '6px 14px', fontSize: '0.85rem', cursor: 'pointer', border: 'none' }}
-            >
-              ✨ Randloos (Geen kader)
-            </button>
-          </div>
-          <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>
-            {borderMode === '5mm' && '✅ Het kader staat op 5 mm van de snijrand (8 mm van de paginarand). Dit voldoet aan de veiligheidsmarge van PeterPrint.'}
-            {borderMode === 'original' && '⚠️ Het originele kader (1.6 mm van de snijrand). PeterPrint waarschuwt dat kleine snijverschillen hier direct opvallen.'}
-            {borderMode === 'none' && '✨ Volledig randloos: geen kaders om de kaarten. Het kleurverloop loopt door tot de rand (professionele speelkaarten standaard).'}
-          </p>
-        </div>
-
         <button onClick={handlePrint} className="btn btn-gradient" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem', marginTop: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
           <PrinterIcon size={20} /> Genereer Print-PDF
         </button>
@@ -199,18 +164,17 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
         {allCards.map((card, idx) => {
           const cardColor = card.color || getCardColor(card.type, card.id);
           const verdieping = getVerdieping(card.title) || {};
-          const borderInset = borderMode === '5mm' ? '8mm' : '3mm';
           return (
             <React.Fragment key={idx}>
               {/* VOORKANT */}
               <div className="print-shop-page card-front">
                 <div className="print-shop-bleed" style={{ background: `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)`, position: 'relative', width: '100%', height: '100%' }}>
-                  <div style={{ position: 'absolute', top: borderInset, left: borderInset, right: borderInset, bottom: borderInset, borderRadius: '6px' }}>
-                    {borderMode !== 'none' && <CardInnerBorder color={cardColor} outerColor={borderMode === '5mm' ? undefined : 'white'} />}
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: borderMode === '5mm' ? '2mm' : '1mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ position: 'absolute', top: '3mm', left: '3mm', right: '3mm', bottom: '3mm', borderRadius: '6px' }}>
+                    <CardInnerBorder color={cardColor} outerColor="white" />
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '1mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                       {/* Header (Badge) */}
                       {card.type && getCardTypeLetter(card.type) && (
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color: cardColor, lineHeight: 1.1, zIndex: 10, marginTop: borderMode === '5mm' ? (card.src ? '4mm' : '7mm') : (card.src ? '7mm' : '11mm') }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color: cardColor, lineHeight: 1.1, zIndex: 10, marginTop: card.src ? '7mm' : '11mm' }}>
                           <span style={{ fontSize: card.src ? '14px' : '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: card.src ? '9mm' : '12mm', height: card.src ? '9mm' : '12mm', borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: '1.5mm', boxSizing: 'border-box' }}>{getCardTypeLetter(card.type)}</span>
                           <span style={{ fontSize: card.src ? '11px' : '13px', marginTop: '1mm', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black', fontWeight: 'bold' }}>{getCardTypeLabel(card.type)}</span>
                         </div>
@@ -218,12 +182,12 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
 
                       {/* Image Container */}
                       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: 0, width: '100%' }}>
-                        {card.src && <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: borderMode === '5mm' ? 'scale(1.08)' : 'scale(1.18)', ...card.style }} />}
+                        {card.src && <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.18)', ...card.style }} />}
                       </div>
 
                       {/* Footer (Title) */}
                       {card.title && (
-                        <div style={{ textAlign: 'center', fontSize: borderMode === '5mm' ? '0.85rem' : '0.9rem', fontWeight: 'bold', color: 'black', margin: borderMode === '5mm' ? '1mm 0 4mm 0' : '2mm 0 6mm 0', lineHeight: '1.2', height: borderMode === '5mm' ? '9mm' : '10mm', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
+                        <div style={{ textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold', color: 'black', margin: '2mm 0 6mm 0', lineHeight: '1.2', height: '10mm', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
                           {formatCardTitle(card.title)}
                         </div>
                       )}
@@ -235,15 +199,15 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
               {/* ACHTERKANT */}
               <div className="print-shop-page card-back" style={{ background: 'white' }}>
                 <div className="print-shop-bleed" style={{ position: 'relative', width: '100%', height: '100%' }}>
-                  <div style={{ position: 'absolute', top: borderInset, left: borderInset, right: borderInset, bottom: borderInset, background: 'white', borderRadius: '6px' }}>
-                    {borderMode !== 'none' && <CardInnerBorder color={cardColor} />}
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: borderMode === '5mm' ? '3mm 5mm' : '5mm 8mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', boxSizing: 'border-box' }}>
-                      <div style={{ height: borderMode === '5mm' ? '15mm' : '18mm', width: '100%', display: 'flex', alignItems: 'flex-end', borderBottom: `2px solid ${cardColor}`, paddingBottom: '2.5mm', margin: borderMode === '5mm' ? '0 0 3mm 0' : '0 0 4mm 0', flexShrink: 0, zIndex: 1 }}>
-                        <h4 style={{ margin: 0, fontSize: borderMode === '5mm' ? '0.85rem' : '0.9rem', color: 'black', textAlign: 'center', width: '100%' }}>
+                  <div style={{ position: 'absolute', top: '3mm', left: '3mm', right: '3mm', bottom: '3mm', background: 'white', borderRadius: '6px' }}>
+                    <CardInnerBorder color={cardColor} />
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '5mm 8mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', boxSizing: 'border-box' }}>
+                      <div style={{ height: '18mm', width: '100%', display: 'flex', alignItems: 'flex-end', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', margin: '0 0 4mm 0', flexShrink: 0, zIndex: 1 }}>
+                        <h4 style={{ margin: 0, fontSize: '0.9rem', color: 'black', textAlign: 'center', width: '100%' }}>
                           {formatCardTitle(card.title)}
                         </h4>
                       </div>
-                      <div style={{ fontSize: borderMode === '5mm' ? '0.82rem' : '0.9rem', fontWeight: 'normal', lineHeight: '1.4', color: '#111', margin: '0', textAlign: 'center', flexShrink: 0, zIndex: 1 }}>
+                      <div style={{ fontSize: '0.9rem', fontWeight: 'normal', lineHeight: '1.4', color: '#111', margin: '0', textAlign: 'center', flexShrink: 0, zIndex: 1 }}>
                         {card.description}
                       </div>
                     </div>
