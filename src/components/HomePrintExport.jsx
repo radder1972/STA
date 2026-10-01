@@ -225,7 +225,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
         <div className="inner-box" style={{ display: 'flex', flexDirection: 'column', gap: '1.35rem', margin: 0 }}>
           
           <h3 className="box-heading" style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <Info size={26} color="#3b82f6" /> Printhulp voor Thuis / Praktijk
+            <Info size={26} color="#0ea5e9" /> Printhulp voor Thuis / Praktijk
           </h3>
 
           <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
@@ -249,12 +249,12 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                     borderRadius: '8px',
                     border: 'none',
                     cursor: 'pointer',
-                    background: deckSelection === 'all' ? '#3b82f6' : 'transparent',
+                    background: deckSelection === 'all' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
                     color: deckSelection === 'all' ? 'white' : 'var(--text-main)',
                     fontWeight: deckSelection === 'all' ? 'bold' : 'normal',
                     fontSize: '0.86rem',
                     textAlign: 'center',
-                    boxShadow: deckSelection === 'all' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                    boxShadow: deckSelection === 'all' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
                     transition: 'all 0.15s ease'
                   }}
                 >
@@ -291,12 +291,12 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                     borderRadius: '8px',
                     border: 'none',
                     cursor: 'pointer',
-                    background: deckSelection === 'base' ? '#3b82f6' : 'transparent',
+                    background: deckSelection === 'base' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
                     color: deckSelection === 'base' ? 'white' : 'var(--text-main)',
                     fontWeight: deckSelection === 'base' ? 'bold' : 'normal',
                     fontSize: '0.86rem',
                     textAlign: 'center',
-                    boxShadow: deckSelection === 'base' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                    boxShadow: deckSelection === 'base' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
                     transition: 'all 0.15s ease'
                   }}
                 >
@@ -320,12 +320,12 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                     borderRadius: '8px',
                     border: 'none',
                     cursor: 'pointer',
-                    background: layoutMode === 'same' ? '#3b82f6' : 'transparent',
+                    background: layoutMode === 'same' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
                     color: layoutMode === 'same' ? 'white' : 'var(--text-main)',
                     fontWeight: layoutMode === 'same' ? 'bold' : 'normal',
                     fontSize: '0.86rem',
                     textAlign: 'center',
-                    boxShadow: layoutMode === 'same' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                    boxShadow: layoutMode === 'same' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
                     transition: 'all 0.15s ease'
                   }}
                 >
@@ -341,12 +341,12 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                     borderRadius: '8px',
                     border: 'none',
                     cursor: 'pointer',
-                    background: layoutMode === 'mirrored' ? '#3b82f6' : 'transparent',
+                    background: layoutMode === 'mirrored' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
                     color: layoutMode === 'mirrored' ? 'white' : 'var(--text-main)',
                     fontWeight: layoutMode === 'mirrored' ? 'bold' : 'normal',
                     fontSize: '0.86rem',
                     textAlign: 'center',
-                    boxShadow: layoutMode === 'mirrored' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                    boxShadow: layoutMode === 'mirrored' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
                     transition: 'all 0.15s ease'
                   }}
                 >
@@ -360,7 +360,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
           {/* Main Action Button */}
           <button 
             onClick={handlePrint} 
-            className="btn btn-gradient" 
+            className="btn btn-gradient-game" 
             style={{ 
               width: '100%', 
               padding: '1.1rem', 

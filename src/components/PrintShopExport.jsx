@@ -226,12 +226,12 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                   borderRadius: '8px',
                   border: 'none',
                   cursor: 'pointer',
-                  background: deckSelection === 'all' ? '#3b82f6' : 'transparent',
+                  background: deckSelection === 'all' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
                   color: deckSelection === 'all' ? 'white' : 'var(--text-main)',
                   fontWeight: deckSelection === 'all' ? 'bold' : 'normal',
                   fontSize: '0.86rem',
                   textAlign: 'center',
-                  boxShadow: deckSelection === 'all' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                  boxShadow: deckSelection === 'all' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
                   transition: 'all 0.15s ease'
                 }}
               >
@@ -268,12 +268,12 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                   borderRadius: '8px',
                   border: 'none',
                   cursor: 'pointer',
-                  background: deckSelection === 'base' ? '#3b82f6' : 'transparent',
+                  background: deckSelection === 'base' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
                   color: deckSelection === 'base' ? 'white' : 'var(--text-main)',
                   fontWeight: deckSelection === 'base' ? 'bold' : 'normal',
                   fontSize: '0.86rem',
                   textAlign: 'center',
-                  boxShadow: deckSelection === 'base' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                  boxShadow: deckSelection === 'base' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
                   transition: 'all 0.15s ease'
                 }}
               >
@@ -286,7 +286,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
           {/* Main Action Button */}
           <button 
             onClick={handlePrint} 
-            className="btn btn-gradient" 
+            className="btn btn-gradient-game" 
             style={{ 
               width: '100%', 
               padding: '1.1rem', 
