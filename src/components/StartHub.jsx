@@ -92,26 +92,30 @@ export default function StartHub() {
             </span>
           </div>
 
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', color: 'var(--text-main)', fontWeight: '700' }}>
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', color: 'var(--text-main)', fontWeight: '700', minHeight: '3.6rem', display: 'flex', alignItems: 'flex-start' }}>
             Vragenlijsten & Zelftest
           </h2>
 
-          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', flex: '0 0 auto' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', minHeight: '5.5rem' }}>
             Breng je onderliggende kwetsbaarheden en huidige patronen in kaart met de gevalideerde <strong>YSQ-S3</strong> en <strong>SMI</strong> vragenlijsten. Inclusief uitgebreid gecombineerd analyserapport.
           </p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginBottom: '2.5rem', flex: 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#10b981" /> 18 Schema's & 14 Modi in kaart
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>18 Schema's & 14 Modi in kaart</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#10b981" /> Gecombineerd diagnostisch rapport
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>Gecombineerd diagnostisch rapport</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#10b981" /> PDF afdrukken & CSV exporteren
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>PDF afdrukken & CSV exporteren</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#10b981" /> 100% lokaal en vertrouwelijk
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>100% lokaal en vertrouwelijk</span>
             </div>
           </div>
 
@@ -174,26 +178,30 @@ export default function StartHub() {
             </span>
           </div>
 
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', color: 'var(--text-main)', fontWeight: '700' }}>
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', color: 'var(--text-main)', fontWeight: '700', minHeight: '3.6rem', display: 'flex', alignItems: 'flex-start' }}>
             Kaarten
           </h2>
 
-          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', flex: '0 0 auto' }}>
-            Verken alle 37 theoriekaarten, speelse werkvormen en printopties. Ideaal om schema's en modi tastbaar en visueel te bestuderen of af te drukken.
+          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', minHeight: '5.5rem' }}>
+            Verken alle 37 theoriekaarten, speelse werkvormen en printopties. Ideaal om schema's en modi tastbaar en visueel te bestuderen in de praktijk of supervisie.
           </p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginBottom: '2.5rem', flex: 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#3b82f6" /> Alle 37 kaarten inclusief theorie & tips
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>Alle 37 kaarten incl. theorie & tips</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#3b82f6" /> Speelse werkvormen & spelregels
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>Speelse werkvormen & handleiding</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#3b82f6" /> Drukwerk-export (PeterPrint formaat)
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>Drukwerk-export (PeterPrint formaat)</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#3b82f6" /> Fysieke kaartenset bestellen
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>Fysieke kaartenset bestellen</span>
             </div>
           </div>
 
@@ -256,26 +264,30 @@ export default function StartHub() {
             </span>
           </div>
 
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', color: 'var(--text-main)', fontWeight: '700' }}>
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', color: 'var(--text-main)', fontWeight: '700', minHeight: '3.6rem', display: 'flex', alignItems: 'flex-start' }}>
             Tafelopstelling
           </h2>
 
-          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', flex: '0 0 auto' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', minHeight: '5.5rem' }}>
             Breng een concrete conflictsituatie of emotionele trigger interactief in kaart. Koppel de reactie (modus) aan het geraakte schema en ontvang direct advies voor je Gezonde Volwassene.
           </p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginBottom: '2.5rem', flex: 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#10b981" /> Interactieve kaartenopstelling op tafel
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>Interactieve opstelling op tafel</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#10b981" /> Automatisch voorspellen o.b.v. situatie
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>Automatisch voorspellen o.b.v. situatie</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#10b981" /> Gezonde Volwassene handelingsadvies
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>Gezonde Volwassene handelingsadvies</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#10b981" /> Uitgebreide analyse & printbaar
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>Uitgebreide analyse & printbaar</span>
             </div>
           </div>
 
