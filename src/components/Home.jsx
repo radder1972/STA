@@ -143,6 +143,15 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
 
   return (
     <div className="home-container">
+      <div className="no-print" style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1.5rem', width: '100%', maxWidth: '800px', margin: '0 auto 1.5rem auto' }}>
+        <a 
+          href="spel.html"
+          className="btn btn-outline" 
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', padding: '8px 18px', borderRadius: '9999px', fontSize: '0.95rem', fontWeight: '600', background: 'rgba(59, 130, 246, 0.05)', borderColor: 'rgba(59, 130, 246, 0.3)' }}
+        >
+          <PlayingCardsIcon size={18} useGradient={false} /> Naar het Kaartenspel →
+        </a>
+      </div>
       <div className="header">
         <h1>Schema Therapy Questionnaires</h1>
         <p style={{ fontSize: '1rem', lineHeight: '1.6' }}>
@@ -281,13 +290,13 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
           Gebruik deze visuele toolset voor psycho-educatie in de spreekkamer, of zet het in als interactieve studietool voor professionals in opleiding.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
-          <button 
-            onClick={onViewGamePortal}
+          <a 
+            href="spel.html"
             className="btn btn-gradient"
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1.1rem' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1.1rem', textDecoration: 'none', color: 'white' }}
           >
-            <PlayingCardsIcon size={20} useGradient={false} /> Ga naar de Kaartenset
-          </button>
+            <PlayingCardsIcon size={20} useGradient={false} /> Open het Kaartenspel
+          </a>
         </div>
       </div>
 

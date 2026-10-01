@@ -1,14 +1,15 @@
 import React from 'react';
-import { HomeIcon, CardsIcon, FileTextIcon, PrinterIcon, ShoppingCartIcon, InfoIcon } from './Icons';
+import { HomeIcon, CardsIcon, FileTextIcon, PrinterIcon, ShoppingCartIcon, InfoIcon, PlayingCardsIcon, ClipboardIcon } from './Icons';
 
 export default function GameNavbar({ currentView, setCurrentView }) {
   const navItems = [
     { id: 'game-portal', label: 'Home', icon: HomeIcon },
+    { id: 'tafelopstelling', label: 'Tafelopstelling', icon: PlayingCardsIcon },
     { id: 'kaartenoverzicht', label: 'Spelkaarten', icon: CardsIcon },
     { id: 'game-rules', label: 'Spelregels', icon: FileTextIcon },
-    { id: 'about', label: 'Over', icon: InfoIcon },
     { id: 'print-shop', label: 'Printen', icon: PrinterIcon },
-    { id: 'order-cards', label: 'Bestellen', icon: ShoppingCartIcon }
+    { id: 'order-cards', label: 'Bestellen', icon: ShoppingCartIcon },
+    { id: 'about', label: 'Over', icon: InfoIcon }
   ];
 
   return (
@@ -72,6 +73,28 @@ export default function GameNavbar({ currentView, setCurrentView }) {
             </button>
           );
         })}
+        <div style={{ width: '1px', background: 'var(--border-color)', margin: '0 4px', alignSelf: 'stretch' }} />
+        <a
+          href="index.html"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.5rem 1rem',
+            borderRadius: '9999px',
+            border: '1px solid rgba(59, 130, 246, 0.3)',
+            background: 'rgba(59, 130, 246, 0.05)',
+            color: 'var(--text-main)',
+            fontWeight: '600',
+            textDecoration: 'none',
+            whiteSpace: 'nowrap',
+            fontSize: '0.9rem'
+          }}
+          title="Naar de Vragenlijsten & Zelftest"
+        >
+          <ClipboardIcon size={18} />
+          <span className="game-nav-label">Zelftest</span>
+        </a>
       </div>
     </div>
   );

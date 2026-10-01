@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { HomeIcon, FileTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon, InfoIcon } from './Icons';
+import { HomeIcon, FileTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon, InfoIcon, PlayingCardsIcon } from './Icons';
 
-export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameRules, onViewPrintShop, onViewOrderCards, onViewAbout }) {
+export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameRules, onViewPrintShop, onViewOrderCards, onViewAbout, onViewTafelopstelling }) {
   const [filter, setFilter] = useState('optie1');
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,15 +30,30 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
         </h2>
       </div>
 
-      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
-        <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
-          <button className="btn btn-outline" onClick={onBack} style={{ margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
-            {"< Schematherapie app"}
-          </button>
-        </div>
+      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem', width: '100%', overflowX: 'auto' }}>
+        <a 
+          href="index.html" 
+          className="btn btn-outline" 
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', margin: 0, whiteSpace: 'nowrap' }}
+        >
+          ← Naar de Vragenlijsten & Zelftest
+        </a>
       </div>
 
       <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto', borderRadius: '24px', border: '1px solid var(--border-color)', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)' }}>
+        
+        <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
+          <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
+            <PlayingCardsIcon size={32} useGradient={true} />
+          </div>
+          <div style={{ flex: 1 }}>
+            <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Digitale Tafelopstelling</h2>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Breng een concrete situatie of trigger direct visueel in kaart door modi, schema's en behoeften interactief op tafel te leggen.</p>
+            <button onClick={onViewTafelopstelling} className="btn btn-gradient-game">
+              Open tafelopstelling
+            </button>
+          </div>
+        </div>
         
         <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
           <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
