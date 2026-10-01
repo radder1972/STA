@@ -125,7 +125,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
           </div>
           <div style={{ flex: 1 }}>
             <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Fysieke Kaarten Bestellen</h2>
-            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Wil je liever een professioneel, fysiek kaartendeck in handen? Bekijk hier de mogelijkheden om een set te bestellen.</p>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Wil je liever een professioneel, fysiek kaartendeck in handen? Bestel direct de Complete Set (55 kaarten), de Klassieke Basisset (43 kaarten) of de losse VSt 2021 Uitbreiding (12 kaarten).</p>
             <button onClick={onViewOrderCards} className="btn btn-gradient-game">
               Kaarten bestellen
             </button>
