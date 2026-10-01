@@ -16,25 +16,26 @@ export const formatCardTitle = (title) => {
     );
   }
 
-  // 2. Gebrek aan zelfcontrole / Zelfdiscipline: echt op twee regels proppen
+  // 2. Gebrek aan zelfcontrole / Zelfdiscipline: exact 2 regels, gelijke kopgrootte
   if (
     title === 'Gebrek aan zelfcontrole / Zelfdiscipline' ||
     title === 'Gebrek aan zelfcontrole/zelfdiscipline' ||
     title.startsWith('Gebrek aan zelfcontrole')
   ) {
+    const isLower = title.includes('zelfdiscipline') && !title.includes('Zelfdiscipline');
     return (
-      <span style={{ display: 'inline-block', fontSize: '0.74rem', lineHeight: '1.1' }}>
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
         <span style={{ whiteSpace: 'nowrap' }}>Gebrek aan zelfcontrole /</span>
         <br />
-        <span style={{ whiteSpace: 'nowrap' }}>Zelfdiscipline</span>
+        <span style={{ whiteSpace: 'nowrap' }}>{isLower ? 'zelfdiscipline' : 'Zelfdiscipline'}</span>
       </span>
     );
   }
 
-  // 3. Gebrek aan coherente identiteit: op 2 regels
+  // 3. Gebrek aan coherente identiteit: op 2 regels, gelijke kopgrootte
   if (title === 'Gebrek aan coherente identiteit') {
     return (
-      <span style={{ display: 'inline-block', fontSize: '0.78rem', lineHeight: '1.12' }}>
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
         <span style={{ whiteSpace: 'nowrap' }}>Gebrek aan coherente</span>
         <br />
         <span style={{ whiteSpace: 'nowrap' }}>identiteit</span>
@@ -42,11 +43,11 @@ export const formatCardTitle = (title) => {
     );
   }
 
-  // 4. Gebrek aan (een) betekenisvolle wereld: op 2 regels
+  // 4. Gebrek aan (een) betekenisvolle wereld: op 2 regels, gelijke kopgrootte
   if (title.startsWith('Gebrek aan') && title.includes('wereld')) {
     const isEen = title.includes('een');
     return (
-      <span style={{ display: 'inline-block', fontSize: '0.75rem', lineHeight: '1.1' }}>
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
         <span style={{ whiteSpace: 'nowrap' }}>{isEen ? 'Gebrek aan een' : 'Gebrek aan'}</span>
         <br />
         <span style={{ whiteSpace: 'nowrap' }}>betekenisvolle wereld</span>
@@ -54,10 +55,10 @@ export const formatCardTitle = (title) => {
     );
   }
 
-  // 5. Meedogenloze normen / Overmatig kritisch: op 2 regels
+  // 5. Meedogenloze normen / Overmatig kritisch: op 2 regels, gelijke kopgrootte
   if (title.startsWith('Meedogenloze normen')) {
     return (
-      <span style={{ display: 'inline-block', fontSize: '0.75rem', lineHeight: '1.1' }}>
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
         <span style={{ whiteSpace: 'nowrap' }}>Meedogenloze normen /</span>
         <br />
         <span style={{ whiteSpace: 'nowrap' }}>Overmatig kritisch</span>

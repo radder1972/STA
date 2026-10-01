@@ -519,7 +519,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                             left: 0, 
                             right: 0, 
                             bottom: 0, 
-                            padding: '11.5mm 7mm', 
+                            padding: '6.5mm 5mm', 
                             display: 'flex', 
                             flexDirection: 'column', 
                             alignItems: 'center', 
@@ -527,7 +527,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                             boxSizing: 'border-box' 
                           }}>
                             <div style={{ 
-                              height: '10mm', 
+                              height: '9.5mm', 
                               width: '100%', 
                               display: 'flex', 
                               flexDirection: 'column', 
@@ -547,7 +547,8 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                                 textAlign: 'center', 
                                 width: '100%', 
                                 lineHeight: '1.15', 
-                                fontWeight: 800 
+                                fontWeight: 800,
+                                letterSpacing: '-0.2px' 
                               }}>
                                 {formatCardTitle(card.title)}
                               </h4>
