@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeIcon, CardsIcon, FileTextIcon, PrinterIcon, ShoppingCartIcon, InfoIcon, PlayingCardsIcon, ClipboardIcon } from './Icons';
+import { HomeIcon, CardsIcon, FileTextIcon, PrinterIcon, ShoppingCartIcon, InfoIcon } from './Icons';
 
 export default function GameNavbar({ currentView, setCurrentView }) {
   const navItems = [
@@ -80,85 +80,6 @@ export default function GameNavbar({ currentView, setCurrentView }) {
             </button>
           );
         })}
-
-        <div style={{ width: '1px', background: 'var(--border-color)', margin: '0 4px', alignSelf: 'stretch' }} />
-
-        {/* Link naar Vragenlijsten */}
-        <a
-          href="test.html"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '9999px',
-            border: '1px solid rgba(59, 130, 246, 0.3)',
-            background: 'rgba(59, 130, 246, 0.05)',
-            color: 'var(--text-main)',
-            fontWeight: '600',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            fontSize: '0.9rem'
-          }}
-          title="Naar de Vragenlijsten & Zelftest (YSQ-S3 & SMI)"
-        >
-          <ClipboardIcon size={18} />
-          <span className="game-nav-label">Vragenlijsten</span>
-        </a>
-
-        {/* Link naar Tafelopstelling */}
-        <a
-          href="tafel.html"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '9999px',
-            border: '1px solid rgba(16, 185, 129, 0.3)',
-            background: 'rgba(16, 185, 129, 0.05)',
-            color: 'var(--text-main)',
-            fontWeight: '600',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            fontSize: '0.9rem'
-          }}
-          title="Naar de Digitale Tafelopstelling"
-        >
-          <PlayingCardsIcon size={18} useTafelGradient={true} />
-          <span className="game-nav-label">Tafelopstelling</span>
-        </a>
-
-        {/* Link naar Startpagina */}
-        <a
-          href="index.html"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '9999px',
-            border: '1px solid var(--border-color)',
-            background: 'transparent',
-            color: 'var(--text-muted)',
-            fontWeight: '500',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            fontSize: '0.9rem'
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.background = 'var(--hover-bg)';
-            e.currentTarget.style.color = 'var(--text-main)';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.background = 'transparent';
-            e.currentTarget.style.color = 'var(--text-muted)';
-          }}
-          title="Naar de Startpagina"
-        >
-          <HomeIcon size={18} />
-          <span className="game-nav-label">Startpagina</span>
-        </a>
       </div>
     </div>
   );
