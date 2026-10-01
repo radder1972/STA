@@ -43,8 +43,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
               boxShadow: '0 8px 20px rgba(234, 88, 12, 0.4), 0 2px 6px rgba(0, 0, 0, 0.15)',
               transform: 'rotate(12deg)',
               zIndex: 5,
-              border: '2px dashed rgba(255, 255, 255, 0.9)',
-              outline: '2px solid #ea580c',
+              border: 'none',
               userSelect: 'none',
               pointerEvents: 'none'
             }}
@@ -55,8 +54,8 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
             <div style={{ fontSize: '0.9rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
               12 Extra
             </div>
-            <div style={{ fontSize: '0.58rem', fontWeight: '800', letterSpacing: '0.04em', textTransform: 'uppercase', opacity: 0.95 }}>
-              Theoriekaarten
+            <div style={{ fontSize: '0.54rem', fontWeight: '800', letterSpacing: '0.04em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1.15 }}>
+              Theorie-<br />kaarten
             </div>
           </div>
 
@@ -71,7 +70,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.25rem', fontSize: '0.92rem' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: 'var(--text-main)', lineHeight: '1.5' }}>
-                <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6', marginTop: '6px', flexShrink: 0 }} />
+                <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#ea580c', marginTop: '6px', flexShrink: 0 }} />
                 <span>
                   <strong>Basisset (43 kaarten):</strong> De klassieke Young & Arntz indeling met alle 18 schema's, 14 modi, 6 modi-categorieën en 5 basisbehoeften.
                 </span>
