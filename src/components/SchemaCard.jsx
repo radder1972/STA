@@ -309,12 +309,31 @@ const SchemaCard = ({
       style={{ width, height, position: 'relative', transform: `rotate(${rotation}deg)`, pointerEvents: isInteractive ? 'auto' : 'none', ...style }} 
       title={flipOnClick ? "Klik om te draaien voor theorie" : ""}
     >
-      <div className={`card-flip-container ${flipped ? 'flipped' : ''}`} style={{ width: '100%', height: '100%' }}>
+      <div 
+        className={`card-flip-container ${flipped ? 'flipped' : ''}`} 
+        style={{ 
+          width: '100%', 
+          height: '100%',
+          position: 'relative',
+          transformStyle: 'preserve-3d',
+          WebkitTransformStyle: 'preserve-3d',
+          transition: 'transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1)',
+          transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          WebkitTransform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
+        }}
+      >
         
         {/* Front */}
         <div 
           className="card-face-front schema-img playing-card" 
           style={{ 
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
             padding: 0, 
             boxSizing: 'border-box', 
             cursor: flipOnClick || onClick ? 'pointer' : 'default', 
@@ -322,7 +341,6 @@ const SchemaCard = ({
             flexDirection: 'column', 
             backgroundColor: 'white', 
             backgroundImage: `radial-gradient(circle at center, white 30%, ${color}50 130%)`,
-            position: 'relative',
             overflow: 'hidden',
             borderRadius: `${Math.max(4, Math.round(6 * scaleRatio))}px`
           }}
@@ -368,12 +386,20 @@ const SchemaCard = ({
         <div 
           className="card-face-back playing-card" 
           style={{ 
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            transform: 'rotateY(180deg)',
+            WebkitTransform: 'rotateY(180deg)',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
             padding: 0, 
             display: 'flex', 
             flexDirection: 'column', 
             cursor: flipOnClick || onClick ? 'pointer' : 'default', 
             backgroundColor: 'white', 
-            position: 'relative', 
             overflow: 'hidden', 
             boxSizing: 'border-box',
             borderRadius: `${Math.max(4, Math.round(6 * scaleRatio))}px`
