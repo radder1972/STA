@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { ArrowLeftIcon, CardsIcon } from './Icons'
 import { getCardColor } from '../utils/colors'
 import SchemaCard from './SchemaCard'
+import { Sparkles } from 'lucide-react'
 
 import { schemaImages, modeImages } from '../utils/images'
 import { schemaDescriptions } from '../data/descriptions'
@@ -140,6 +141,13 @@ export default function KaartenOverzicht({ onBack }) {
                 onClick={() => setSelectedCard(null)} 
                 style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}
               >×</button>
+              {selectedCard.isVst && (
+                <div style={{ marginBottom: '0.5rem' }}>
+                  <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '3px 10px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block' }}>
+                    Theorie-uitbreiding
+                  </span>
+                </div>
+              )}
               <h2 style={{ color: "var(--text-main)", marginBottom: '0.5rem' }}>{selectedCard.title}</h2>
               <h4 style={{ color: (selectedCard.color || getCardColor(selectedCard.type, selectedCard.id)), marginBottom: '1.5rem' }}>Praktijkvoorbeeld & Tips</h4>
               
@@ -189,11 +197,65 @@ export default function KaartenOverzicht({ onBack }) {
           <FilterButton id="schemas" label="Schema's" />
           <FilterButton id="modicats" label="Modi Categorieën" />
           <FilterButton id="modi" label="Modi" />
-          <FilterButton id="vst" label="Theorie-uitbreiding" />
         </div>
       </div>
 
-      <div className="glass-panel" style={{ padding: '3rem', marginBottom: '2rem', borderRadius: '24px' }}>
+      <div className="glass-panel" style={{ padding: '3rem', marginBottom: '2rem', borderRadius: '24px', position: 'relative' }}>
+        
+        {/* Ronde sticker: Theorie-uitbreiding (in plaats van menu item) */}
+        <button
+          type="button"
+          onClick={() => setFilter(filter === 'vst' ? 'domeinen' : 'vst')}
+          title={filter === 'vst' ? 'Klik om terug te gaan naar het basisoverzicht' : 'Klik om de 12 theorie-uitbreidingskaarten te bekijken'}
+          style={{
+            position: 'absolute',
+            top: '-20px',
+            right: '-16px',
+            width: '84px',
+            height: '84px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
+            color: '#ffffff',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            boxShadow: filter === 'vst' 
+              ? '0 0 0 3px #ffffff, 0 8px 25px rgba(234, 88, 12, 0.65)' 
+              : '0 8px 20px rgba(234, 88, 12, 0.4), 0 2px 6px rgba(0, 0, 0, 0.15)',
+            transform: filter === 'vst' ? 'rotate(12deg) scale(1.08)' : 'rotate(12deg)',
+            zIndex: 10,
+            border: 'none',
+            cursor: 'pointer',
+            userSelect: 'none',
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+            padding: 0
+          }}
+          onMouseEnter={(e) => {
+            if (filter !== 'vst') {
+              e.currentTarget.style.transform = 'rotate(12deg) scale(1.06)';
+              e.currentTarget.style.boxShadow = '0 10px 24px rgba(234, 88, 12, 0.55), 0 2px 8px rgba(0, 0, 0, 0.2)';
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (filter !== 'vst') {
+              e.currentTarget.style.transform = 'rotate(12deg)';
+              e.currentTarget.style.boxShadow = '0 8px 20px rgba(234, 88, 12, 0.4), 0 2px 6px rgba(0, 0, 0, 0.15)';
+            }
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.58rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
+            <Sparkles size={10} /> {filter === 'vst' ? 'ACTIEF' : 'INCL.'}
+          </div>
+          <div style={{ fontSize: '0.9rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
+            12 Extra
+          </div>
+          <div style={{ fontSize: '0.54rem', fontWeight: '800', letterSpacing: '0.04em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1.15 }}>
+            Theorie-<br />kaarten
+          </div>
+        </button>
+
         <div className="inner-box" style={{ margin: 0 }}>
         
         {filter === 'domeinen' && (
@@ -207,7 +269,7 @@ export default function KaartenOverzicht({ onBack }) {
             {vstBasisbehoeftenData.length > 0 && (
               <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(168, 85, 247, 0.12)', color: '#9333ea', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
                     Theorie-uitbreiding
                   </span>
                   <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
@@ -226,7 +288,7 @@ export default function KaartenOverzicht({ onBack }) {
         {filter === 'vst' && (
           <div>
             <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-              <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(168, 85, 247, 0.12)', color: '#9333ea', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+              <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
                 Theorie-uitbreiding
               </span>
               <h2 className="box-heading" style={{ justifyContent: 'center', marginTop: '0.6rem', marginBottom: '0.5rem' }}>
@@ -235,6 +297,16 @@ export default function KaartenOverzicht({ onBack }) {
               <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '750px', margin: '0 auto', lineHeight: '1.6' }}>
                 Gebaseerd op het internationale position paper (Arntz et al., 2021). Klik op een kaart om de theorie, praktijkcasus en Gezonde Volwassene-tips te bekijken.
               </p>
+              <div style={{ marginTop: '1rem' }}>
+                <button 
+                  type="button"
+                  className="btn btn-outline" 
+                  onClick={() => setFilter('domeinen')}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', padding: '6px 14px', borderRadius: '8px' }}
+                >
+                  <ArrowLeftIcon size={14} /> Terug naar basisoverzicht
+                </button>
+              </div>
             </div>
 
             <div style={{ marginBottom: '3rem' }}>
@@ -290,7 +362,7 @@ export default function KaartenOverzicht({ onBack }) {
             {vstSchemaData.length > 0 && (
               <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(168, 85, 247, 0.12)', color: '#9333ea', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
                     Theorie-uitbreiding
                   </span>
                   <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
@@ -317,8 +389,8 @@ export default function KaartenOverzicht({ onBack }) {
             {vstCopingData.length > 0 && (
               <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 179, 8, 0.12)', color: '#ca8a04', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
-                    Theoretische Vernieuwing
+                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+                    Theorie-uitbreiding
                   </span>
                   <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
                     Aanvullende Copingkaart: Omkering ({vstCopingData.length})
@@ -344,7 +416,7 @@ export default function KaartenOverzicht({ onBack }) {
             {vstModiData.length > 0 && (
               <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(168, 85, 247, 0.12)', color: '#9333ea', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
                     Theorie-uitbreiding
                   </span>
                   <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>

@@ -270,12 +270,12 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                     borderRadius: '8px',
                     border: 'none',
                     cursor: 'pointer',
-                    background: deckSelection === 'vst' ? '#3b82f6' : 'transparent',
+                    background: deckSelection === 'vst' ? '#ea580c' : 'transparent',
                     color: deckSelection === 'vst' ? 'white' : 'var(--text-main)',
                     fontWeight: deckSelection === 'vst' ? 'bold' : 'normal',
                     fontSize: '0.86rem',
                     textAlign: 'center',
-                    boxShadow: deckSelection === 'vst' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                    boxShadow: deckSelection === 'vst' ? '0 2px 8px rgba(234, 88, 12, 0.35)' : 'none',
                     transition: 'all 0.15s ease'
                   }}
                 >
