@@ -2,6 +2,7 @@ export const schemaDescriptions = {
   // YSQ Schemas
   'Verlating / Instabiliteit': 'Het gevoel dat belangrijke personen in je leven je zullen verlaten, onbetrouwbaar zijn, of er niet altijd voor je kunnen zijn.',
   'Wantrouwen / Misbruik': 'De verwachting dat anderen je pijn zullen doen, misbruiken, vernederen, bedriegen, of misleiden.',
+  'Emotionele verwaarlozing': 'De verwachting dat jouw behoefte aan emotionele steun (zoals zorg, empathie, en bescherming) nooit voldoende vervuld zal worden.',
   'Emotioneel tekort': 'De verwachting dat jouw behoefte aan emotionele steun (zoals zorg, empathie, en bescherming) nooit voldoende vervuld zal worden.',
   'Tekortschieten / Schaamte': 'Het gevoel innerlijk gebrekkig, slecht, of minderwaardig te zijn, en de angst dat anderen dit zullen ontdekken.',
   'Sociale isolatie / Vervreemding': 'Het gevoel geïsoleerd te zijn van de rest van de wereld, anders te zijn dan anderen, en nergens echt bij te horen.',

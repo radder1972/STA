@@ -38,7 +38,7 @@ const ysqSchemaNamesMap = {
   'Abandonment': 'Verlating / Instabiliteit',
   'Mistrust': 'Wantrouwen / Misbruik',
   'Defectiveness/unlovability': 'Tekortschieten / Schaamte',
-  'Emotional deprivation': 'Emotioneel tekort',
+  'Emotional deprivation': 'Emotionele verwaarlozing',
   'Social isolation/Alienation': 'Sociale isolatie / Vervreemding',
   'Practical incompetence/Dependence': 'Afhankelijkheid / Incompetentie',
   'Vulnerability to harm/illness': 'Kwetsbaarheid voor ziekte en gevaar',

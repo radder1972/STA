@@ -36,7 +36,7 @@ const ysqSchemaNamesMap = {
   'Abandonment': 'Verlating / Instabiliteit',
   'Mistrust': 'Wantrouwen / Misbruik',
   'Defectiveness_unlovability': 'Tekortschieten / Schaamte',
-  'Emotional deprivation': 'Emotioneel tekort',
+  'Emotional deprivation': 'Emotionele verwaarlozing',
   'Social isolation_Alienation': 'Sociale isolatie / Vervreemding',
   'Practical incompetence_Dependence': 'Afhankelijkheid / Incompetentie',
   'Vulnerability to harm_illness': 'Kwetsbaarheid voor ziekte en gevaar',
@@ -88,7 +88,7 @@ const needCards = [
 ];
 
 const schemaGroups = [
-  { group: 'Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotioneel tekort', 'Tekortschieten / Schaamte', 'Sociale isolatie / Vervreemding'] },
+  { group: 'Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Tekortschieten / Schaamte', 'Sociale isolatie / Vervreemding'] },
   { group: 'Verzwakte Autonomie', titles: ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'] },
   { group: 'Verzwakte Grenzen', titles: ['Onvoldoende zelfcontrole', 'Veeleisendheid / Grandiositeit'] },
   { group: 'Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'] },

@@ -16,6 +16,14 @@ export const verdiepingData = {
       "Realiseer je dat niet iedereen is zoals de mensen uit je verleden die je pijn hebben gedaan."
     ]
   },
+  'Emotionele verwaarlozing': {
+    casus: "Sarah voelt zich vaak diep eenzaam, zelfs als ze met vrienden is. Ze vertelt zelden over haar eigen problemen, omdat ze diep van binnen gelooft dat niemand haar toch echt wil of kan begrijpen. Hierdoor voelt ze zich ongezien.",
+    tips: [
+      "Oefen met het uiten van je behoeften: geef mensen de káns om er voor je te zijn.",
+      "Daag de gedachte uit dat niemand je begrijpt; is het zo dat ze het niet willen, of weten ze niet wat je nodig hebt?",
+      "Koester de momenten waarop iemand wél oprechte empathie of steun toont, hoe klein ook."
+    ]
+  },
   'Emotioneel tekort': {
     casus: "Sarah voelt zich vaak diep eenzaam, zelfs als ze met vrienden is. Ze vertelt zelden over haar eigen problemen, omdat ze diep van binnen gelooft dat niemand haar toch echt wil of kan begrijpen. Hierdoor voelt ze zich ongezien.",
     tips: [
