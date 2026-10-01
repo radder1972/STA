@@ -18,9 +18,9 @@ export const vstBehoeftenText = {
 };
 
 export const vstSchemaText = {
-  'Gebrek aan coherente identiteit': 'Het gevoel niet één geheel te zijn, maar uit losse, verwarrende delen te bestaan. Moeite om een stabiel zelfbeeld te ervaren.',
-  'Gebrek aan een betekenisvolle wereld': 'De ervaring van een verwarrende, betekenisloze wereld. Je voelt existentiële vervreemding en mist verbinding en zingeving.',
-  'Onrechtvaardigheid': 'De overtuiging dat de maatschappij oneerlijk is en onrecht onbestraft blijft. De constante angst om slachtoffer te worden.'
+  'Gebrek aan coherente identiteit': 'Je ervaart jezelf niet als één geheel. Je hebt het gevoel dat je uit losse, soms tegenstrijdige delen bestaat. Dit maakt dat je vaak verwarring voelt van binnen en over wie je bent. Je hebt moeite om over jezelf te denken en te praten als een duidelijk eigen iemand.',
+  'Gebrek aan een betekenisvolle wereld': 'Je ervaart de wereld als verwarrend en betekenisloos, waarbij je je niet verbonden voelt met zaken die in jouw leven en in de wereld om je heen spelen.',
+  'Onrechtvaardigheid': 'Je ervaart je omgeving als onrechtvaardig en oneerlijk, waarbij onrecht in de maatschappij niet wordt gecorrigeerd. Je bent bang om slachtoffer van dat onrecht te worden.'
 };
 
 export const vstBasisbehoeftenData = [

@@ -25,28 +25,28 @@ const smiModesMap = {
 };
 
 const ysqNamesMap = {
-  'Abandonment': 'Verlating', 'Mistrust': 'Wantrouwen', 'Defectiveness/unlovability': 'Tekortschieten', 'Emotional deprivation': 'Emotionele verwaarlozing', 'Social isolation/Alienation': 'Sociaal isolement',
-  'Practical incompetence/Dependence': 'Afhankelijkheid', 'Vulnerability to harm/illness': 'Kwetsbaarheid', 'Enmeshment': 'Kluwen', 'Failure to achieve': 'Mislukken',
-  'Insufficient self-control/self-discipline': 'Onvoldoende zelfcontrole', 'Entitlement/Superiority': 'Zich rechten toe-eigenen',
+  'Abandonment': 'Verlating', 'Mistrust': 'Wantrouwen', 'Defectiveness/unlovability': 'Minderwaardigheid', 'Emotional deprivation': 'Emotionele verwaarlozing', 'Social isolation/Alienation': 'Sociaal isolement',
+  'Practical incompetence/Dependence': 'Afhankelijkheid', 'Vulnerability to harm/illness': 'Kwetsbaarheid', 'Enmeshment': 'Verstrengeling', 'Failure to achieve': 'Mislukking',
+  'Insufficient self-control/self-discipline': 'Gebrek aan zelfcontrole', 'Entitlement/Superiority': 'Zich rechten toe-eigenen',
   'Subjugation': 'Onderwerping', 'Self-sacrifice': 'Zelfopoffering', 'Admiration/Recognition-seeking': 'Erkenning zoeken',
-  'Pessimism/Worry': 'Pessimisme', 'Emotional inhibition': 'Emotionele geremdheid', 'Unrelenting Standards': 'Meedogenloze normen', 'Self-punitiveness': 'Bestraffendheid'
+  'Pessimism/Worry': 'Pessimisme', 'Emotional inhibition': 'Emotionele geremdheid', 'Unrelenting Standards': 'Meedogenloze normen', 'Self-punitiveness': 'Bestraffende houding'
 };
 
 const schemaToModesHypothesis = {
   'Abandonment': { modes: ['wi', 'ob', 'bk'], desc: 'Mensen met sterke verlatingsangst klampen zich soms wanhopig vast (Willoze Inschikkelijke) of stoten anderen juist uit voorzorg af (Onthechte Beschermer / Boze Kind).' },
   'Mistrust': { modes: ['wk', 'ob'], desc: 'Bij wantrouwen staat men vaak chronisch op scherp (Wantrouwende Overcontroleerder) of trekt men een muur op (Onthechte Beschermer).' },
-  'Defectiveness/unlovability': { modes: ['ob', 'wk', 'zh'], desc: 'Gevoelens van tekortschieten worden vaak weggedrukt (Onthechte Beschermer) of overgecompenseerd door perfectionisme of arrogantie (Zelfverheerlijker / Overcontroleerder).' },
+  'Defectiveness/unlovability': { modes: ['ob', 'wk', 'zh'], desc: 'Gevoelens van minderwaardigheid worden vaak weggedrukt (Onthechte Beschermer) of overgecompenseerd door perfectionisme of arrogantie (Zelfverheerlijker / Overcontroleerder).' },
   'Emotional deprivation': { modes: ['ob', 'oz', 'bk'], desc: 'Emotionele verwaarlozing leidt vaak tot vermijding en zelfsus-gedrag (Onthechte Beschermer / Zelfsusser), of juist tot woede (Boze kind).' },
   'Subjugation': { modes: ['wi', 'bk'], desc: 'Onderwerping vertaalt zich logischerwijs vaak in de Willoze Inschikkelijke modus, maar kan uiteindelijk omslaan in opgekropte woede (Boze Kind).' },
   'Entitlement/Superiority': { modes: ['zh', 'pa', 'ok'], desc: 'Zich rechten toe-eigenen is verbonden met de Zelfverheerlijker of Pest- en Aanval-modus, en hangt soms samen met Ongedisciplineerd gedrag.' },
-  'Insufficient self-control/self-discipline': { modes: ['ik', 'ok'], desc: 'Onvoldoende zelfcontrole is het fundament onder het Impulsieve en Ongedisciplineerde Kind.' },
+  'Insufficient self-control/self-discipline': { modes: ['ik', 'ok'], desc: 'Gebrek aan zelfcontrole is het fundament onder het Impulsieve en Ongedisciplineerde Kind.' },
   'Unrelenting Standards': { modes: ['vo', 'wk'], desc: 'Meedogenloze normen worden meestal aangestuurd door de Veeleisende Ouder en in stand gehouden door de Wantrouwende Overcontroleerder.' },
-  'Self-punitiveness': { modes: ['so'], desc: 'Bestraffendheid correspondeert vrijwel 1-op-1 met de aanwezigheid van de Straffende Oudermodus.' },
+  'Self-punitiveness': { modes: ['so'], desc: 'Een bestraffende houding correspondeert vrijwel 1-op-1 met de aanwezigheid van de Straffende Oudermodus.' },
   'Failure to achieve': { modes: ['ob', 'vo'], desc: 'De angst om te mislukken activeert vaak de Veeleisende Ouder (die falen afstraft) en leidt dan tot de Onthechte Beschermer (opgeven uit zelfbescherming).' },
   'Vulnerability to harm/illness': { modes: ['wk', 'wi'], desc: 'Kwetsbaarheid leidt vaak tot obsessieve waakzaamheid (Overcontroleerder) of vastklampen aan anderen (Willoze Inschikkelijke).' },
   'Social isolation/Alienation': { modes: ['ob', 'oz'], desc: 'Sociaal isolement wordt over het algemeen in stand gehouden door de Onthechte Beschermer of Zelfsusser.' },
   'Practical incompetence/Dependence': { modes: ['wi', 'wk'], desc: 'Bij afhankelijkheid stelt men zich vaak ondergeschikt of hulpeloos op (Willoze Inschikkelijke), of compenseert men juist met krampachtige overcontrole.' },
-  'Enmeshment': { modes: ['wi', 'oz'], desc: 'Een kluwen-schema leidt vaak tot grenzeloze aanpassing aan de ander (Willoze Inschikkelijke) of dissociatie via zelfsus-gedrag (Zelfsusser).' },
+  'Enmeshment': { modes: ['wi', 'oz'], desc: 'Een verstrengeling-schema leidt vaak tot grenzeloze aanpassing aan de ander (Willoze Inschikkelijke) of dissociatie via zelfsus-gedrag (Zelfsusser).' },
   'Self-sacrifice': { modes: ['wi', 'bk'], desc: 'Zelfopoffering is de brandstof van de Willoze Inschikkelijke modus. Vaak leidt het op de lange termijn tot wrok in de vorm van het Boze Kind.' },
   'Admiration/Recognition-seeking': { modes: ['zh', 'wi'], desc: 'Erkenning zoeken activeert vaak de Zelfverheerlijker (om indruk te maken) of de Willoze Inschikkelijke (door alles te doen om aardig gevonden te worden).' },
   'Pessimism/Worry': { modes: ['wk', 'ob'], desc: 'Pessimisme en zorgen worden vaak in toom gehouden door de Wantrouwende Overcontroleerder (alles dichttimmeren) of de Onthechte Beschermer.' },

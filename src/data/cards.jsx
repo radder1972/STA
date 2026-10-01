@@ -36,14 +36,14 @@ export const categorieText = {
 };
 
 export const basisbehoeftenToSchemas = {
-  'Veiligheid & Verbinding': ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Tekortschieten / Schaamte', 'Sociaal isolement / Vervreemding'],
-  'Veilige hechting': ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Tekortschieten / Schaamte', 'Sociaal isolement / Vervreemding'],
-  'Autonomie & Competentie': ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'],
-  'Autonomie': ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'],
-  'Vrijheid van expressie': ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'],
-  'Vrije expressie': ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'],
-  'Spontaniteit en spel': ['Negativisme / Pessimisme', 'Emotionele geremdheid', 'Meedogenloze normen', 'Bestraffendheid'],
-  'Realistische grenzen': ['Zich rechten toe-eigenen', 'Onvoldoende zelfcontrole'],
+  'Veiligheid & Verbinding': ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Minderwaardigheid / Schaamte', 'Sociaal isolement / Vervreemding'],
+  'Veilige hechting': ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Minderwaardigheid / Schaamte', 'Sociaal isolement / Vervreemding'],
+  'Autonomie & Competentie': ['Afhankelijkheid / Onbekwaamheid', 'Kwetsbaarheid voor ziekte en gevaar', 'Verstrengeling / Kluwen', 'Mislukking'],
+  'Autonomie': ['Afhankelijkheid / Onbekwaamheid', 'Kwetsbaarheid voor ziekte en gevaar', 'Verstrengeling / Kluwen', 'Mislukking'],
+  'Vrijheid van expressie': ['Onderwerping', 'Zelfopoffering', 'Goedkeuring en erkenning zoeken'],
+  'Vrije expressie': ['Onderwerping', 'Zelfopoffering', 'Goedkeuring en erkenning zoeken'],
+  'Spontaniteit en spel': ['Negativiteit en pessimisme', 'Emotionele geremdheid', 'Meedogenloze normen / Overmatig kritisch', 'Bestraffende houding'],
+  'Realistische grenzen': ['Zich rechten toe-eigenen', 'Gebrek aan zelfcontrole / Zelfdiscipline'],
   'Zelfcoherentie': ['Gebrek aan coherente identiteit', 'Gebrek aan een betekenisvolle wereld'],
   'Rechtvaardigheid': ['Onrechtvaardigheid']
 };
@@ -61,22 +61,22 @@ export const categorieToModi = {
 export const ysqSchemaNamesMap = {
   'Abandonment': 'Verlating / Instabiliteit',
   'Mistrust': 'Wantrouwen / Misbruik',
-  'Defectiveness_unlovability': 'Tekortschieten / Schaamte',
+  'Defectiveness_unlovability': 'Minderwaardigheid / Schaamte',
   'Emotional deprivation': 'Emotionele verwaarlozing',
   'Social isolation_Alienation': 'Sociaal isolement / Vervreemding',
-  'Practical incompetence_Dependence': 'Afhankelijkheid / Incompetentie',
+  'Practical incompetence_Dependence': 'Afhankelijkheid / Onbekwaamheid',
   'Vulnerability to harm_illness': 'Kwetsbaarheid voor ziekte en gevaar',
-  'Enmeshment': 'Kluwen / Onderontwikkeld zelf',
-  'Failure to achieve': 'Mislukken',
-  'Insufficient self-control_self-discipline': 'Onvoldoende zelfcontrole',
+  'Enmeshment': 'Verstrengeling / Kluwen',
+  'Failure to achieve': 'Mislukking',
+  'Insufficient self-control_self-discipline': 'Gebrek aan zelfcontrole / Zelfdiscipline',
   'Entitlement_Superiority': 'Zich rechten toe-eigenen',
   'Subjugation': 'Onderwerping',
   'Self-sacrifice': 'Zelfopoffering',
-  'Admiration_Recognition-seeking': 'Goedkeuring / Erkenning zoeken',
-  'Pessimism_Worry': 'Negativisme / Pessimisme',
+  'Admiration_Recognition-seeking': 'Goedkeuring en erkenning zoeken',
+  'Pessimism_Worry': 'Negativiteit en pessimisme',
   'Emotional inhibition': 'Emotionele geremdheid',
-  'Unrelenting Standards': 'Meedogenloze normen',
-  'Self-punitiveness': 'Bestraffendheid'
+  'Unrelenting Standards': 'Meedogenloze normen / Overmatig kritisch',
+  'Self-punitiveness': 'Bestraffende houding'
 };
 
 export const smiModesMap = {
@@ -97,11 +97,11 @@ export const smiModesMap = {
 };
 
 export const schemaGroups = [
-  { group: 'Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Tekortschieten / Schaamte', 'Sociaal isolement / Vervreemding'] },
-  { group: 'Verzwakte Autonomie', titles: ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'] },
-  { group: 'Verzwakte Grenzen', titles: ['Onvoldoende zelfcontrole', 'Zich rechten toe-eigenen'] },
-  { group: 'Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'] },
-  { group: 'Overmatige Waakzaamheid', titles: ['Emotionele geremdheid', 'Meedogenloze normen', 'Negativisme / Pessimisme', 'Bestraffendheid'] }
+  { group: 'Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Minderwaardigheid / Schaamte', 'Sociaal isolement / Vervreemding'] },
+  { group: 'Verzwakte Autonomie', titles: ['Afhankelijkheid / Onbekwaamheid', 'Kwetsbaarheid voor ziekte en gevaar', 'Verstrengeling / Kluwen', 'Mislukking'] },
+  { group: 'Verzwakte Grenzen', titles: ['Gebrek aan zelfcontrole / Zelfdiscipline', 'Zich rechten toe-eigenen'] },
+  { group: 'Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring en erkenning zoeken'] },
+  { group: 'Overmatige Waakzaamheid', titles: ['Emotionele geremdheid', 'Meedogenloze normen / Overmatig kritisch', 'Negativiteit en pessimisme', 'Bestraffende houding'] }
 ];
 export const schemaSortOrder = schemaGroups.flatMap(g => g.titles);
 
@@ -148,8 +148,29 @@ export const formatCardTitle = (title) => {
   if (title === 'Kwetsbaarheid voor ziekte en gevaar') {
     return <>Kwetsbaarheid voor ziekte<br />en gevaar</>;
   }
-  if (title === 'Kluwen / Onderontwikkeld zelf') {
-    return <>Kluwen / Onderontwikkeld<br />zelf</>;
+  if (title === 'Kluwen / Onderontwikkeld zelf' || title === 'Verstrengeling / Kluwen' || title === 'Verstrengeling/kluwen') {
+    return <>Verstrengeling /<br />Kluwen</>;
+  }
+  if (title === 'Minderwaardigheid / Schaamte' || title === 'Minderwaardigheid/schaamte') {
+    return <>Minderwaardigheid /<br />Schaamte</>;
+  }
+  if (title === 'Afhankelijkheid / Onbekwaamheid' || title === 'Afhankelijkheid/onbekwaamheid') {
+    return <>Afhankelijkheid /<br />Onbekwaamheid</>;
+  }
+  if (title === 'Gebrek aan zelfcontrole / Zelfdiscipline' || title === 'Gebrek aan zelfcontrole/zelfdiscipline') {
+    return <>Gebrek aan zelfcontrole /<br />Zelfdiscipline</>;
+  }
+  if (title === 'Meedogenloze normen / Overmatig kritisch' || title === 'Meedogenloze normen/overmatig kritisch') {
+    return <>Meedogenloze normen /<br />Overmatig kritisch</>;
+  }
+  if (title === 'Goedkeuring en erkenning zoeken') {
+    return <>Goedkeuring en<br />erkenning zoeken</>;
+  }
+  if (title === 'Negativiteit en pessimisme') {
+    return <>Negativiteit en<br />pessimisme</>;
+  }
+  if (title === 'Bestraffende houding') {
+    return <>Bestraffende<br />houding</>;
   }
   if (title === 'Veiligheid & Verbinding') {
     return <>Veiligheid &<br />Verbinding</>;

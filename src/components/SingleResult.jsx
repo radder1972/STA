@@ -37,22 +37,22 @@ const basisbehoeftenMap = {
 const ysqSchemaNamesMap = {
   'Abandonment': 'Verlating / Instabiliteit',
   'Mistrust': 'Wantrouwen / Misbruik',
-  'Defectiveness/unlovability': 'Tekortschieten / Schaamte',
+  'Defectiveness/unlovability': 'Minderwaardigheid / Schaamte',
   'Emotional deprivation': 'Emotionele verwaarlozing',
   'Social isolation/Alienation': 'Sociaal isolement / Vervreemding',
-  'Practical incompetence/Dependence': 'Afhankelijkheid / Incompetentie',
+  'Practical incompetence/Dependence': 'Afhankelijkheid / Onbekwaamheid',
   'Vulnerability to harm/illness': 'Kwetsbaarheid voor ziekte en gevaar',
-  'Enmeshment': 'Kluwen / Onderontwikkeld zelf',
-  'Failure to achieve': 'Mislukken',
-  'Insufficient self-control/self-discipline': 'Onvoldoende zelfcontrole',
+  'Enmeshment': 'Verstrengeling / Kluwen',
+  'Failure to achieve': 'Mislukking',
+  'Insufficient self-control/self-discipline': 'Gebrek aan zelfcontrole / Zelfdiscipline',
   'Entitlement/Superiority': 'Zich rechten toe-eigenen',
   'Subjugation': 'Onderwerping',
   'Self-sacrifice': 'Zelfopoffering',
-  'Admiration/Recognition-seeking': 'Goedkeuring / Erkenning zoeken',
-  'Pessimism/Worry': 'Negativisme / Pessimisme',
+  'Admiration/Recognition-seeking': 'Goedkeuring en erkenning zoeken',
+  'Pessimism/Worry': 'Negativiteit en pessimisme',
   'Emotional inhibition': 'Emotionele geremdheid',
-  'Unrelenting Standards': 'Meedogenloze normen',
-  'Self-punitiveness': 'Bestraffendheid'
+  'Unrelenting Standards': 'Meedogenloze normen / Overmatig kritisch',
+  'Self-punitiveness': 'Bestraffende houding'
 };
 
 const smiModesMap = {

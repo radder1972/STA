@@ -35,22 +35,22 @@ const StepBadge = ({ number, size = 32 }) => (
 const ysqSchemaNamesMap = {
   'Abandonment': 'Verlating / Instabiliteit',
   'Mistrust': 'Wantrouwen / Misbruik',
-  'Defectiveness_unlovability': 'Tekortschieten / Schaamte',
+  'Defectiveness_unlovability': 'Minderwaardigheid / Schaamte',
   'Emotional deprivation': 'Emotionele verwaarlozing',
   'Social isolation_Alienation': 'Sociaal isolement / Vervreemding',
-  'Practical incompetence_Dependence': 'Afhankelijkheid / Incompetentie',
+  'Practical incompetence_Dependence': 'Afhankelijkheid / Onbekwaamheid',
   'Vulnerability to harm_illness': 'Kwetsbaarheid voor ziekte en gevaar',
-  'Enmeshment': 'Kluwen / Onderontwikkeld zelf',
-  'Failure to achieve': 'Mislukken',
-  'Insufficient self-control_self-discipline': 'Onvoldoende zelfcontrole',
+  'Enmeshment': 'Verstrengeling / Kluwen',
+  'Failure to achieve': 'Mislukking',
+  'Insufficient self-control_self-discipline': 'Gebrek aan zelfcontrole / Zelfdiscipline',
   'Entitlement_Superiority': 'Zich rechten toe-eigenen',
   'Subjugation': 'Onderwerping',
   'Self-sacrifice': 'Zelfopoffering',
-  'Admiration_Recognition-seeking': 'Goedkeuring / Erkenning zoeken',
-  'Pessimism_Worry': 'Negativisme / Pessimisme',
+  'Admiration_Recognition-seeking': 'Goedkeuring en erkenning zoeken',
+  'Pessimism_Worry': 'Negativiteit en pessimisme',
   'Emotional inhibition': 'Emotionele geremdheid',
-  'Unrelenting Standards': 'Meedogenloze normen',
-  'Self-punitiveness': 'Bestraffendheid'
+  'Unrelenting Standards': 'Meedogenloze normen / Overmatig kritisch',
+  'Self-punitiveness': 'Bestraffende houding'
 };
 
 const smiModesMap = {
@@ -91,11 +91,11 @@ const needCards = [
 ];
 
 const schemaGroups = [
-  { group: 'Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Tekortschieten / Schaamte', 'Sociaal isolement / Vervreemding'] },
-  { group: 'Verzwakte Autonomie', titles: ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'] },
-  { group: 'Verzwakte Grenzen', titles: ['Onvoldoende zelfcontrole', 'Zich rechten toe-eigenen'] },
-  { group: 'Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'] },
-  { group: 'Overmatige Waakzaamheid', titles: ['Emotionele geremdheid', 'Meedogenloze normen', 'Negativisme / Pessimisme', 'Bestraffendheid'] }
+  { group: 'Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Minderwaardigheid / Schaamte', 'Sociaal isolement / Vervreemding'] },
+  { group: 'Verzwakte Autonomie', titles: ['Afhankelijkheid / Onbekwaamheid', 'Kwetsbaarheid voor ziekte en gevaar', 'Verstrengeling / Kluwen', 'Mislukking'] },
+  { group: 'Verzwakte Grenzen', titles: ['Gebrek aan zelfcontrole / Zelfdiscipline', 'Zich rechten toe-eigenen'] },
+  { group: 'Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring en erkenning zoeken'] },
+  { group: 'Overmatige Waakzaamheid', titles: ['Emotionele geremdheid', 'Meedogenloze normen / Overmatig kritisch', 'Negativiteit en pessimisme', 'Bestraffende houding'] }
 ];
 
 const schemaSortOrder = schemaGroups.flatMap(g => g.titles);

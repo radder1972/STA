@@ -434,13 +434,34 @@ export const verdiepingData = {
 
 import { vstVerdieping } from './vstCards';
 
+const vstTitleAliases = {
+  'Minderwaardigheid / Schaamte': 'Tekortschieten / Schaamte',
+  'Minderwaardigheid/schaamte': 'Tekortschieten / Schaamte',
+  'Mislukking': 'Mislukken',
+  'Afhankelijkheid / Onbekwaamheid': 'Afhankelijkheid / Incompetentie',
+  'Afhankelijkheid/onbekwaamheid': 'Afhankelijkheid / Incompetentie',
+  'Verstrengeling / Kluwen': 'Kluwen / Onderontwikkeld zelf',
+  'Verstrengeling/kluwen': 'Kluwen / Onderontwikkeld zelf',
+  'Gebrek aan zelfcontrole / Zelfdiscipline': 'Onvoldoende zelfcontrole',
+  'Gebrek aan zelfcontrole/zelfdiscipline': 'Onvoldoende zelfcontrole',
+  'Goedkeuring en erkenning zoeken': 'Goedkeuring / Erkenning zoeken',
+  'Negativiteit en pessimisme': 'Negativisme / Pessimisme',
+  'Meedogenloze normen / Overmatig kritisch': 'Meedogenloze normen',
+  'Meedogenloze normen/overmatig kritisch': 'Meedogenloze normen',
+  'Bestraffende houding': 'Bestraffendheid'
+};
+
 // Functie om de juiste data te halen, met fallback placeholder
 export const getVerdieping = (title) => {
-  if (vstVerdieping && vstVerdieping[title]) {
-    return vstVerdieping[title];
+  const lookupKey = vstTitleAliases[title] || title;
+  if (vstVerdieping && (vstVerdieping[title] || vstVerdieping[lookupKey])) {
+    return vstVerdieping[title] || vstVerdieping[lookupKey];
   }
   if (verdiepingData[title]) {
     return verdiepingData[title];
+  }
+  if (verdiepingData[lookupKey]) {
+    return verdiepingData[lookupKey];
   }
   
   return {
@@ -450,5 +471,5 @@ export const getVerdieping = (title) => {
       "Overleg met je therapeut hoe hiermee om te gaan.",
       "Blijf oefenen met de Gezonde Volwassene."
     ]
-  }
+  };
 };
