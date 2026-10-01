@@ -308,6 +308,14 @@ export const verdiepingData = {
       "Geef jezelf de tijd om te reflecteren: wat voel ik nu, en wat zegt dit over mij?"
     ]
   },
+  'Rechtvaardigheid': {
+    casus: "Wanneer Lisa merkt dat haar collega wél opslag krijgt en zij niet ondanks dezelfde prestaties, voelt ze diepe verontwaardiging. Vanuit haar basisbehoefte aan rechtvaardigheid leert ze om rustig en constructief het gesprek aan te gaan, in plaats van zich machteloos of verongelijkt terug te trekken.",
+    tips: [
+      "Spreek je uit wanneer iets oneerlijk voelt; benoem feiten en afspraken in plaats van verwijten.",
+      "Onderzoek of een situatie daadwerkelijk onrechtvaardig is, of dat er legitieme andere perspectieven meespelen.",
+      "Zet je Gezonde Volwassene in om eerlijke kaders en duidelijke grenzen voor jezelf en anderen te bewaken."
+    ]
+  },
 
   // MODI CATEGORIEËN (5)
   'Kindmodi': {

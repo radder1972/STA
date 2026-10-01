@@ -6,6 +6,7 @@ import imgB3 from '../assets/images/basisbehoeften/3.png';
 import imgB4 from '../assets/images/basisbehoeften/4.png';
 import imgB5 from '../assets/images/basisbehoeften/5.png';
 import imgB6 from '../assets/images/basisbehoeften/6.png';
+import imgB7 from '../assets/images/basisbehoeften/7.png';
 
 import imgM1 from '../assets/images/modicategorieen/1.png';
 import imgM2 from '../assets/images/modicategorieen/2.png';
@@ -20,7 +21,8 @@ export const basisbehoeftenText = {
   'Vrije expressie': 'Ruimte om je vrij uit te drukken. Eigen gevoelens (ook boosheid of verdriet) en behoeften zijn geldig en belangrijk.',
   'Spontaniteit en spel': 'Ruimte voor plezier, creativiteit en onbezorgdheid. Niet alles hoeft nuttig, perfect of efficiënt te zijn.',
   'Realistische grenzen': 'Kaders om te leren omgaan met frustratie. Leren dat je niet altijd je zin kunt krijgen en rekening moet houden met anderen.',
-  'Zelfcoherentie': 'De behoefte aan een geïntegreerd, samenhangend zelfbeeld en een stabiele identiteit. Het gevoel één geheel te zijn, met duidelijke eigen waarden, gevoelens en richting.'
+  'Zelfcoherentie': 'De behoefte aan een geïntegreerd, samenhangend zelfbeeld en een stabiele identiteit. Het gevoel één geheel te zijn, met duidelijke eigen waarden, gevoelens en richting.',
+  'Rechtvaardigheid': 'De behoefte aan eerlijkheid, billijkheid en een rechtvaardige behandeling. De zekerheid dat regels voor iedereen gelijk gelden, dat afspraken worden nageleefd en dat onrecht wordt gecorrigeerd.'
 };
 
 export const categorieText = {
@@ -116,6 +118,7 @@ export const basisbehoeftenData = [
 
 export const vstBasisbehoeftenData = [
   { id: 'bb6', title: 'Zelfcoherentie', src: imgB6, description: basisbehoeftenText['Zelfcoherentie'], color: '#a855f7', type: 'basisbehoefte', isVst: true },
+  { id: 'bb7', title: 'Rechtvaardigheid', src: imgB7, description: basisbehoeftenText['Rechtvaardigheid'], color: '#06b6d4', type: 'basisbehoefte', isVst: true },
 ];
 
 export const modicategorieenData = [
