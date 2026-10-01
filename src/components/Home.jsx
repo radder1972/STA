@@ -290,10 +290,10 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
           </a>
           <a 
             href="tafel.html"
-            className="btn btn-gradient" 
+            className="btn btn-gradient-tafel" 
             style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px', fontSize: '1rem', textDecoration: 'none', color: 'white' }}
           >
-            <PlayingCardsIcon size={18} useGradient={false} /> Tafelopstelling
+            <PlayingCardsIcon size={18} color="white" /> Tafelopstelling
           </a>
         </div>
       </div>

@@ -1,13 +1,13 @@
 import React from 'react';
 
-const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5, color="currentColor", useGradient = false, useGameGradient = false, ...rest }) => (
+const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5, color="currentColor", useGradient = false, useGameGradient = false, useTafelGradient = false, ...rest }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     width={size}
     height={size}
     fill="none"
-    stroke={useGameGradient ? "url(#gameGrad)" : (useGradient ? "url(#blueGreenGrad)" : color)}
+    stroke={useTafelGradient ? "url(#tafelGrad)" : (useGameGradient ? "url(#gameGrad)" : (useGradient ? "url(#blueGreenGrad)" : color))}
     strokeWidth={strokeWidth}
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -23,6 +23,10 @@ const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5, colo
       <linearGradient id="gameGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
         <stop offset="0%" stopColor="#64748b" />
         <stop offset="100%" stopColor="#3b82f6" />
+      </linearGradient>
+      <linearGradient id="tafelGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#059669" />
+        <stop offset="100%" stopColor="#10b981" />
       </linearGradient>
     </defs>
     {children}

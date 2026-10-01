@@ -22,11 +22,11 @@ const StepBadge = ({ number, size = 32 }) => (
   <span style={{
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
     width: `${size}px`, height: `${size}px`, borderRadius: '50%',
-    background: 'linear-gradient(135deg, #64748b 0%, #3b82f6 100%)',
+    background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
     color: '#ffffff', fontSize: `${size * 0.55}px`, fontWeight: 'bold',
     marginRight: '12px', flexShrink: 0,
     WebkitTextFillColor: '#ffffff',
-    boxShadow: '0 4px 10px rgba(59, 130, 246, 0.3)'
+    boxShadow: '0 4px 10px rgba(16, 185, 129, 0.3)'
   }}>
     {number}
   </span>
@@ -172,10 +172,10 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
       <div 
         onClick={onSelect} 
         className="glass-panel no-print" 
-        style={{ width: '150px', height: '213px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed #3b82f6', borderRadius: '12px', cursor: 'pointer', background: 'rgba(59, 130, 246, 0.05)', transition: 'all 0.2s' }}
+        style={{ width: '150px', height: '213px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed #10b981', borderRadius: '12px', cursor: 'pointer', background: 'rgba(16, 185, 129, 0.05)', transition: 'all 0.2s' }}
       >
-        <span style={{ color: '#3b82f6', fontSize: '2.5rem', marginBottom: '0.5rem' }}>+</span>
-        <span style={{ color: '#3b82f6', fontSize: '0.8rem', fontWeight: 'bold' }}>Kies Kaart</span>
+        <span style={{ color: '#10b981', fontSize: '2.5rem', marginBottom: '0.5rem' }}>+</span>
+        <span style={{ color: '#059669', fontSize: '0.8rem', fontWeight: 'bold' }}>Kies Kaart</span>
       </div>
     )}
   </div>
@@ -402,8 +402,8 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <TafelNavbar onPrint={handlePrintTafel} onClear={clearTable} />
 
           <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
-            <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-              <PlayingCardsIcon size={40} useGameGradient={true} /> Digitale Tafelopstelling
+            <h1 className="text-gradient-tafel" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+              <PlayingCardsIcon size={40} useTafelGradient={true} /> Digitale Tafelopstelling
             </h1>
             <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.25rem', lineHeight: '1.4' }}>
               Breng schema's, modi en behoeften interactief tot leven op tafel
@@ -422,7 +422,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen.
         </p>
 
-        <div style={{ textAlign: 'left', maxWidth: '750px', margin: '0 auto 2rem auto', background: 'rgba(59, 130, 246, 0.04)', padding: '3rem 5rem', borderRadius: '16px', border: '1px solid rgba(59, 130, 246, 0.15)' }}>
+        <div style={{ textAlign: 'left', maxWidth: '750px', margin: '0 auto 2rem auto', background: 'rgba(16, 185, 129, 0.04)', padding: '3rem 5rem', borderRadius: '16px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', color: 'var(--text-main)', lineHeight: '1.6' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
@@ -442,7 +442,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
         {embedded && (
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-            <button className="btn btn-gradient-game" onClick={handlePrintTafel} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <button className="btn btn-gradient-tafel" onClick={handlePrintTafel} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Printer size={18} /> Tafel Printen
             </button>
             <button className="btn btn-outline" onClick={clearTable} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -457,7 +457,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         <div className="inner-box" style={{ margin: 0 }}>
           <div style={{ maxWidth: '850px', margin: '0 auto' }}>
             <div style={{ marginBottom: '3rem' }}>
-              <h3 className="box-heading text-gradient-game" style={{ justifyContent: 'center' }}><StepBadge number="1" size={28} /> Beschrijf de situatie</h3>
+              <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center' }}><StepBadge number="1" size={28} /> Beschrijf de situatie</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                 <textarea 
@@ -479,15 +479,15 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               </div>
               
               <div>
-                <h3 className="text-gradient-game" style={{ marginBottom: '1.5rem', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><StepBadge number="2" size={28} /> Leg de kaarten op tafel</h3>
+                <h3 className="text-gradient-tafel" style={{ marginBottom: '1.5rem', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><StepBadge number="2" size={28} /> Leg de kaarten op tafel</h3>
                 <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-color)', padding: '2rem', borderRadius: '12px', border: '1px solid var(--border-color)', boxSizing: 'border-box' }}>
-                  <h4 className="text-gradient-game" style={{ margin: '0 0 1rem 0', fontSize: '1.1rem' }}>Automatisch voorspellen</h4>
+                  <h4 className="text-gradient-tafel" style={{ margin: '0 0 1rem 0', fontSize: '1.1rem' }}>Automatisch voorspellen</h4>
                   <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '1.5rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '650px' }}>
                     Laat de kaarten automatisch op tafel leggen op basis van de beschreven situatie. De AI kiest op basis van jouw trigger de best passende combinatie van kaarten.
                   </p>
 
                   <button 
-                    className="btn btn-gradient-game" 
+                    className="btn btn-gradient-tafel" 
                     onClick={predictCards} 
                     disabled={isPredicting || !situationText}
                     style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.1rem', padding: '1rem 2rem', width: '100%', justifyContent: 'center' }}
@@ -500,7 +500,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             </div>
           </div>
 
-          <h4 className="text-gradient-game no-print" style={{ marginTop: '3rem', marginBottom: '1rem', textAlign: 'center' }}>Of: Leg zelf handmatig de kaarten op tafel</h4>
+          <h4 className="text-gradient-tafel no-print" style={{ marginTop: '3rem', marginBottom: '1rem', textAlign: 'center' }}>Of: Leg zelf handmatig de kaarten op tafel</h4>
           <p className="no-print" style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '2rem', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
             Klik op een leeg vak om zelf een kaart te kiezen. 
             <strong> Tip:</strong> je kunt altijd op een gekozen kaart klikken of tikken om hem om te draaien en de theorie te lezen!
@@ -512,11 +512,11 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '150px', alignSelf: 'center' }}>
                 <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} />
               </div>
-              <div className="no-print" style={{ height: '3px', minWidth: '20px', width: '40px', background: 'linear-gradient(to right, #64748b, #3b82f6)', opacity: 0.5, margin: '0 5px', flexShrink: 1, alignSelf: 'center' }}></div>
+              <div className="no-print" style={{ height: '3px', minWidth: '20px', width: '40px', background: 'linear-gradient(to right, #059669, #10b981)', opacity: 0.6, margin: '0 5px', flexShrink: 1, alignSelf: 'center' }}></div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '150px', alignSelf: 'center' }}>
                 <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} />
               </div>
-              <div className="no-print" style={{ height: '3px', minWidth: '20px', width: '40px', background: 'linear-gradient(to right, #64748b, #3b82f6)', opacity: 0.5, margin: '0 5px', flexShrink: 1, alignSelf: 'center' }}></div>
+              <div className="no-print" style={{ height: '3px', minWidth: '20px', width: '40px', background: 'linear-gradient(to right, #059669, #10b981)', opacity: 0.6, margin: '0 5px', flexShrink: 1, alignSelf: 'center' }}></div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '150px', alignSelf: 'center' }}>
                 <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} />
               </div>
@@ -524,12 +524,12 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
             {/* Funnel Direction Arrow */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1rem 0' }}>
-              <div style={{ width: '3px', height: '35px', background: 'linear-gradient(to bottom, #3b82f6, #64748b)', opacity: 0.6, marginBottom: '-2px' }}></div>
+              <div style={{ width: '3px', height: '35px', background: 'linear-gradient(to bottom, #10b981, #059669)', opacity: 0.6, marginBottom: '-2px' }}></div>
               <div style={{ 
                 width: '40px', height: '40px', borderRadius: '50%', 
-                background: 'linear-gradient(135deg, #64748b 0%, #3b82f6 100%)', 
+                background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)', 
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: 'white', boxShadow: '0 4px 10px rgba(59, 130, 246, 0.3)',
+                color: 'white', boxShadow: '0 4px 10px rgba(16, 185, 129, 0.3)',
                 position: 'relative', zIndex: 1
               }}>
                 <ArrowDownIcon size={24} />
@@ -571,7 +571,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
         {/* Stap 3: Analyse */}
         <div className="inner-box no-print" style={{ marginTop: '2rem', margin: '2rem 0 0 0' }}>
-          <h3 className="box-heading text-gradient-game" style={{ justifyContent: 'center' }}>
+          <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center' }}>
             <StepBadge number="3" size={28} /> AI Analyse
           </h3>
           <p style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '2rem', lineHeight: '1.6', maxWidth: '700px', margin: '0 auto 2rem auto' }}>
@@ -581,11 +581,11 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           </p>
           
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
-            <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1rem', background: 'var(--bg-color)', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
-              {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useGameGradient={true} /> Genereer een gezonde reactie</>}
+            <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1rem', background: 'var(--bg-color)', border: '1px solid rgba(16, 185, 129, 0.4)' }}>
+              {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useTafelGradient={true} /> Genereer een gezonde reactie</>}
             </button>
             
-            <button className="btn btn-gradient-game" onClick={generateDeepAnalysis} disabled={isGeneratingAnalysis} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1rem' }}>
+            <button className="btn btn-gradient-tafel" onClick={generateDeepAnalysis} disabled={isGeneratingAnalysis} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1rem' }}>
               {isGeneratingAnalysis ? 'Bezig...' : <><WandIcon size={20} color="currentColor" /> Een beschrijvende analyse</>}
             </button>
           </div>
@@ -596,7 +596,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         {/* Diepgaande Analyse Weergave (Print/View) */}
         {(analysisText || isGeneratingAnalysis) && (
           <div className="inner-box" style={{ marginTop: '2rem', margin: '2rem 0 0 0' }}>
-            <h3 className="box-heading text-gradient-game" style={{ justifyContent: 'center' }}>
+            <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center' }}>
               Uitgebreide Psychologische Analyse
             </h3>
             {isGeneratingAnalysis ? (
@@ -640,7 +640,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 9999, padding: '4rem 1rem', overflowY: 'auto' }} onClick={() => setShowCardPicker(null)}>
           <div className="glass-panel" style={{ background: 'var(--bg-color)', width: '100%', maxWidth: '900px', margin: '0 auto', padding: '3rem', borderRadius: '24px', position: 'relative', boxShadow: '0 10px 40px rgba(0,0,0,0.3)' }} onClick={e => e.stopPropagation()}>
             <button onClick={() => setShowCardPicker(null)} style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}>&times;</button>
-            <h2 className="text-gradient-game" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <h2 className="text-gradient-tafel" style={{ textAlign: 'center', marginBottom: '2rem' }}>
               {showCardPicker === 'mode' ? 'Kies een Modus' : showCardPicker === 'schema' ? 'Kies een Schema' : 'Kies een Basisbehoefte'}
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

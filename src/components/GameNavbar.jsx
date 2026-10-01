@@ -115,25 +115,17 @@ export default function GameNavbar({ currentView, setCurrentView }) {
             gap: '0.5rem',
             padding: '0.5rem 1rem',
             borderRadius: '9999px',
-            border: '1px solid var(--border-color)',
-            background: 'transparent',
-            color: 'var(--text-muted)',
-            fontWeight: '500',
+            border: '1px solid rgba(16, 185, 129, 0.3)',
+            background: 'rgba(16, 185, 129, 0.05)',
+            color: 'var(--text-main)',
+            fontWeight: '600',
             textDecoration: 'none',
             whiteSpace: 'nowrap',
             fontSize: '0.9rem'
           }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.background = 'var(--hover-bg)';
-            e.currentTarget.style.color = 'var(--text-main)';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.background = 'transparent';
-            e.currentTarget.style.color = 'var(--text-muted)';
-          }}
           title="Naar de Digitale Tafelopstelling"
         >
-          <PlayingCardsIcon size={18} />
+          <PlayingCardsIcon size={18} useTafelGradient={true} />
           <span className="game-nav-label">Tafelopstelling</span>
         </a>
 

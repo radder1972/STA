@@ -218,7 +218,7 @@ export default function StartHub() {
           </a>
         </div>
 
-        {/* Optie 3: Digitale Tafelopstelling */}
+        {/* Optie 3: Tafelopstelling */}
         <div className="glass-panel" style={{
           padding: '2.5rem',
           borderRadius: '24px',
@@ -234,21 +234,21 @@ export default function StartHub() {
               width: '56px',
               height: '56px',
               borderRadius: '16px',
-              background: 'rgba(59, 130, 246, 0.1)',
+              background: 'rgba(16, 185, 129, 0.1)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#3b82f6'
+              color: '#10b981'
             }}>
-              <PlayingCardsIcon size={32} useGameGradient={true} />
+              <PlayingCardsIcon size={32} useTafelGradient={true} />
             </div>
             <span style={{
               fontSize: '0.8rem',
               fontWeight: '700',
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
-              color: '#3b82f6',
-              background: 'rgba(59, 130, 246, 0.08)',
+              color: '#059669',
+              background: 'rgba(16, 185, 129, 0.1)',
               padding: '4px 12px',
               borderRadius: '9999px'
             }}>
@@ -266,22 +266,22 @@ export default function StartHub() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginBottom: '2.5rem', flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#3b82f6" /> Interactieve kaartenopstelling op tafel
+              <CheckIcon size={18} color="#10b981" /> Interactieve kaartenopstelling op tafel
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#3b82f6" /> Automatisch voorspellen o.b.v. situatie
+              <CheckIcon size={18} color="#10b981" /> Automatisch voorspellen o.b.v. situatie
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#3b82f6" /> Gezonde Volwassene handelingsadvies
+              <CheckIcon size={18} color="#10b981" /> Gezonde Volwassene handelingsadvies
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)' }}>
-              <CheckIcon size={18} color="#3b82f6" /> Uitgebreide analyse & printbaar
+              <CheckIcon size={18} color="#10b981" /> Uitgebreide analyse & printbaar
             </div>
           </div>
 
           <a 
             href="tafel.html" 
-            className="btn btn-gradient-game"
+            className="btn btn-gradient-tafel"
             style={{
               textDecoration: 'none',
               padding: '14px 20px',
@@ -293,7 +293,7 @@ export default function StartHub() {
               justifyContent: 'center',
               gap: '10px',
               color: 'white',
-              boxShadow: '0 4px 15px rgba(59, 130, 246, 0.25)'
+              boxShadow: '0 4px 15px rgba(16, 185, 129, 0.25)'
             }}
           >
             Open Tafelopstelling <ArrowRightIcon size={18} />

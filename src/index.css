@@ -143,6 +143,19 @@ p {
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
 }
 
+.btn-gradient-tafel {
+  background: linear-gradient(to right, #059669, #10b981);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25);
+}
+
+.btn-gradient-tafel:hover {
+  background: linear-gradient(to right, #047857, #059669);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+}
+
 .btn-outline:hover {
   background: rgba(255, 255, 255, 0.05);
   transform: translateY(-2px);
@@ -240,6 +253,12 @@ p {
 
 .text-gradient-game {
   background: linear-gradient(to right, #64748b, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-tafel {
+  background: linear-gradient(to right, #047857, #10b981);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

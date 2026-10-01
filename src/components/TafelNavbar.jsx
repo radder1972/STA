@@ -36,14 +36,15 @@ export default function TafelNavbar({ onPrint, onClear }) {
             gap: '0.5rem',
             padding: '0.5rem 1rem',
             borderRadius: '9999px',
-            background: 'linear-gradient(to right, #64748b, #3b82f6)',
+            background: 'linear-gradient(to right, #059669, #10b981)',
             color: 'white',
             fontWeight: '600',
             fontSize: '0.9rem',
-            whiteSpace: 'nowrap'
+            whiteSpace: 'nowrap',
+            boxShadow: '0 4px 12px rgba(16, 185, 129, 0.25)'
           }}
         >
-          <PlayingCardsIcon size={18} />
+          <PlayingCardsIcon size={18} color="white" />
           <span>Tafelopstelling</span>
         </div>
 
