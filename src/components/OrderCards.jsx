@@ -345,8 +345,8 @@ export default function OrderCards({ onBack }) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '0.9rem 1.25rem',
-                    minHeight: '94px',
+                    padding: '1rem 1.25rem',
+                    minHeight: '116px',
                     boxSizing: 'border-box',
                     borderRadius: '14px',
                     border: isSelected ? '2px solid #3b82f6' : '1px solid #e2e8f0',
@@ -367,7 +367,8 @@ export default function OrderCards({ onBack }) {
                       flexShrink: 0
                     }} />
                     <div style={{ minWidth: 0, flex: 1, paddingRight: '0.75rem' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', lineHeight: '1.3', flexWrap: 'wrap', marginBottom: '4px' }}>
+                      {/* Regel 1: Titel + Badge */}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', lineHeight: '1.3', minHeight: '24px' }}>
                         <span style={{ fontWeight: '700', fontSize: '1.05rem', color: isSelected ? '#1e40af' : '#1e293b' }}>
                           {variant.title}
                         </span>
@@ -387,11 +388,22 @@ export default function OrderCards({ onBack }) {
                             {variant.badge}
                           </span>
                         )}
-                        <span style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: '500' }}>
-                          ({variant.cardsCount} theoriekaarten)
-                        </span>
                       </div>
-                      <div style={{ fontSize: '0.85rem', color: '#475569', lineHeight: '1.4' }}>
+
+                      {/* Regel 2: Aantal kaarten (altijd op 2e regel en vetgedrukt) */}
+                      <div style={{
+                        fontSize: '0.85rem',
+                        color: isSelected ? '#1e40af' : '#334155',
+                        fontWeight: '700',
+                        marginTop: '3px',
+                        marginBottom: '3px',
+                        lineHeight: '1.3'
+                      }}>
+                        ({variant.cardsCount} theoriekaarten)
+                      </div>
+
+                      {/* Regel 3+: Beschrijving */}
+                      <div style={{ fontSize: '0.84rem', color: '#475569', lineHeight: '1.4' }}>
                         {variant.description}
                       </div>
                     </div>
