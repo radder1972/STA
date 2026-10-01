@@ -296,67 +296,144 @@ const SchemaCard = ({
 
   const widthNum = parseFloat(width) || 150;
   const s = widthNum / 150;
+  const scaleRatio = widthNum / 219.2; // 219.2px corresponds to 58mm at standard 96 DPI
 
   const isInteractive = flipOnClick || onClick;
 
   const descText = description || (title ? 'Geen theorie beschikbaar.' : '');
-  // Uniforme typografie voor alle kaarten
-  const descSize = 0.58;
-  const descLineHeight = 1.35;
-  const lineClamp = 13;
 
   return (
     <div className={`card-scene ${className}`} style={{ width, height, position: 'relative', transform: `rotate(${rotation}deg)`, pointerEvents: isInteractive ? 'auto' : 'none', ...style }} title={flipOnClick ? "Klik om te draaien voor theorie" : ""}>
       <div className={`card-flip-container ${flipped ? 'flipped' : ''}`} style={{ width: '100%', height: '100%' }}>
         
         {/* Front */}
-        <div className="card-face-front schema-img playing-card" onClick={handleFlip} style={{ padding: '12px', boxSizing: 'border-box', cursor: flipOnClick || onClick ? 'pointer' : 'default', display: 'flex', flexDirection: 'column', backgroundColor: 'white', backgroundImage: `radial-gradient(circle at center, white 20%, ${color}40 120%)` }}>
+        <div 
+          className="card-face-front schema-img playing-card" 
+          onClick={handleFlip} 
+          style={{ 
+            padding: 0, 
+            boxSizing: 'border-box', 
+            cursor: flipOnClick || onClick ? 'pointer' : 'default', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            backgroundColor: 'white', 
+            backgroundImage: `radial-gradient(circle at center, white 30%, ${color}50 130%)`,
+            position: 'relative',
+            overflow: 'hidden',
+            borderRadius: `${Math.max(4, Math.round(6 * scaleRatio))}px`
+          }}
+        >
           <CardInnerBorder color={color} outerColor="white" />
           
-          {/* Header (Badge) */}
-          {type && getCardTypeLetter(type) && (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10, marginTop: src ? `${12 * s}px` : `${16 * s}px` }}>
-              <span style={{ fontSize: src ? `${0.8 * s}rem` : `${1.0 * s}rem`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: src ? `${1.4 * s}rem` : `${1.8 * s}rem`, height: src ? `${1.4 * s}rem` : `${1.8 * s}rem`, borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: `${4 * s}px`, boxSizing: 'border-box' }}>{getCardTypeLetter(type)}</span>
-              <span style={{ fontSize: src ? `${0.48 * s}rem` : `${0.55 * s}rem`, marginTop: `${2 * s}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black' }}>{getCardTypeLabel(type)}</span>
-            </div>
-          )}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            padding: `${(1 / 58) * widthNum}px`,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxSizing: 'border-box'
+          }}>
+            {/* Header (Badge) */}
+            {type && getCardTypeLetter(type) && (
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10, marginTop: src ? `${(7 / 58) * widthNum}px` : `${(11 / 58) * widthNum}px` }}>
+                <span style={{ fontSize: src ? `${14 * scaleRatio}px` : `${18 * scaleRatio}px`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: src ? `${(9 / 58) * widthNum}px` : `${(12 / 58) * widthNum}px`, height: src ? `${(9 / 58) * widthNum}px` : `${(12 / 58) * widthNum}px`, borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: `${(1.5 / 58) * widthNum}px`, boxSizing: 'border-box' }}>{getCardTypeLetter(type)}</span>
+                <span style={{ fontSize: src ? `${11 * scaleRatio}px` : `${13 * scaleRatio}px`, marginTop: `${(1 / 58) * widthNum}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black', fontWeight: 'bold' }}>{getCardTypeLabel(type)}</span>
+              </div>
+            )}
 
-          {/* Image Container (Flex 1 ensures exact centering between Header and Footer) */}
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: 0 }}>
-            {src && <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.18)', imageRendering: '-webkit-optimize-contrast', ...imageStyle }} />}
+            {/* Image Container (Flex 1 ensures exact centering between Header and Footer) */}
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: 0, width: '100%' }}>
+              {src && <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.18)', imageRendering: '-webkit-optimize-contrast', ...imageStyle }} />}
+            </div>
+
+            {/* Footer (Title) */}
+            {title && (
+              <div style={{ textAlign: 'center', fontSize: `${0.85 * scaleRatio}rem`, fontWeight: 'bold', color: 'black', margin: `${(2 / 58) * widthNum}px 0 ${(6 / 58) * widthNum}px 0`, lineHeight: '1.2', height: `${(10 / 58) * widthNum}px`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
+                {formatCardTitle(title)}
+              </div>
+            )}
           </div>
-
-          {/* Footer (Title) */}
-          {title && (
-            <div style={{ textAlign: 'center', fontSize: `${0.75 * s}rem`, fontWeight: '900', color: 'black', margin: `${4 * s}px 0 ${16 * s}px 0`, lineHeight: '1.2', height: `${1.8 * s}rem` }}>
-              {formatCardTitle(title)}
-            </div>
-          )}
         </div>
 
         {/* Back */}
-        <div className="card-face-back playing-card" onClick={handleFlip} style={{ display: 'flex', flexDirection: 'column', cursor: flipOnClick || onClick ? 'pointer' : 'default', padding: `${8 * s}px`, backgroundColor: 'white', backgroundImage: `radial-gradient(circle at center, white 50%, ${color}30 120%)`, boxSizing: 'border-box' }}>
+        <div 
+          className="card-face-back playing-card" 
+          onClick={handleFlip} 
+          style={{ 
+            padding: 0, 
+            display: 'flex', 
+            flexDirection: 'column', 
+            cursor: flipOnClick || onClick ? 'pointer' : 'default', 
+            backgroundColor: 'white', 
+            position: 'relative', 
+            overflow: 'hidden', 
+            boxSizing: 'border-box',
+            borderRadius: `${Math.max(4, Math.round(6 * scaleRatio))}px`
+          }}
+        >
           <CardInnerBorder color={color} />
-          <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', padding: `0 ${11 * s}px` }}>
+          <div style={{ 
+            position: 'absolute', 
+            top: 0, 
+            left: 0, 
+            right: 0, 
+            bottom: 0, 
+            padding: `${(6.5 / 58) * widthNum}px ${(8.0 / 58) * widthNum}px`, 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center', 
+            justifyContent: 'flex-start', 
+            boxSizing: 'border-box' 
+          }}>
             {title && (
               <h4 style={{ 
-                fontSize: `${0.75 * s}rem`, 
-                marginTop: `${12 * s}px`, 
-                marginBottom: `${4 * s}px`, 
-                paddingBottom: `${4 * s}px`, 
-                borderBottom: `1px solid ${color && color.startsWith('#') ? color + '50' : 'rgba(0,0,0,0.15)'}`,
-                lineHeight: '1.2', 
-                height: `${2.0 * s}rem`,
+                margin: 0, 
+                padding: 0,
+                border: 'none',
+                borderBottom: 'none',
+                fontSize: `${0.85 * scaleRatio}rem`, 
+                color: 'black', 
+                textAlign: 'center', 
+                width: '100%', 
+                lineHeight: '1.18', 
+                fontWeight: 800, 
+                letterSpacing: '-0.2px', 
+                flexShrink: 0, 
+                zIndex: 1, 
+                height: `${(8.5 / 58) * widthNum}px`, 
                 display: 'flex', 
-                flexDirection: 'column',
+                flexDirection: 'column', 
                 alignItems: 'center', 
-                justifyContent: 'center', 
-                textAlign: 'center' 
+                justifyContent: 'center' 
               }}>
                 {formatCardTitle(title)}
               </h4>
             )}
-            <div className="card-desc" style={{ fontSize: `${descSize * s}rem`, lineHeight: descLineHeight, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: lineClamp, WebkitBoxOrient: 'vertical', margin: 0, paddingBottom: `${6 * s}px`, textAlign: 'center' }}>
+            <div style={{ 
+              width: '100%', 
+              height: `${Math.max(2, Math.round(2 * scaleRatio))}px`, 
+              backgroundColor: color, 
+              margin: `${(2.5 / 58) * widthNum}px 0`, 
+              flexShrink: 0, 
+              zIndex: 1 
+            }} />
+            <div className="card-desc" style={{ 
+              fontSize: `${0.80 * scaleRatio}rem`, 
+              fontWeight: 'normal', 
+              lineHeight: '1.35', 
+              color: '#111', 
+              margin: 0, 
+              padding: 0,
+              paddingTop: 0,
+              textAlign: 'center', 
+              flexShrink: 0, 
+              zIndex: 1 
+            }}>
               {descText}
             </div>
           </div>

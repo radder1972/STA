@@ -71,22 +71,44 @@ export default function KaartenOverzicht({ onBack }) {
       {cards.map((card, idx) => {
         const uniqueKey = `${listName}-${card.title}`;
         const cardColor = card.color || getCardColor(card.type, card.id);
+        const buttonLabel = listName === 'schema-cat' 
+          ? "Praktijkvoorbeeld & Schema's" 
+          : listName === 'modi-cat' 
+            ? "Praktijkvoorbeeld & Modi" 
+            : "Praktijkvoorbeeld & Tips";
+
         return (
-        <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <SchemaCard
-            id={card.id}
-            type={card.type}
-            title={card.title}
-            description={card.description}
-            src={card.src}
-            color={cardColor}
-            width="200px"
-            height="285px"
-            imageStyle={{ ...defaultImageStyle, ...card.style }}
-            flipOnClick={false}
-            onClick={() => setSelectedCard({ ...card, listName })}
-          />
-        </div>
+          <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <SchemaCard
+              id={card.id}
+              type={card.type}
+              title={card.title}
+              description={card.description}
+              src={card.src}
+              color={cardColor}
+              width="200px"
+              height="304px"
+              imageStyle={{ ...defaultImageStyle, ...card.style }}
+              flipOnClick={true}
+            />
+            <button
+              type="button"
+              className="btn btn-outline"
+              onClick={() => setSelectedCard({ ...card, listName })}
+              style={{
+                marginTop: '0.85rem',
+                padding: '6px 14px',
+                fontSize: '0.82rem',
+                fontWeight: '600',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                borderRadius: '10px'
+              }}
+            >
+              <Sparkles size={14} color={cardColor} /> {buttonLabel}
+            </button>
+          </div>
         );
       })}
     </div>
