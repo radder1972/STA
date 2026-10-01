@@ -1031,3 +1031,15 @@ body.print-shop-export-mode {
   }
 }
 
+/* Card illustration image sharpness optimization */
+.card-face-front img,
+.a4-page-content img,
+.print-shop-page img,
+.playing-card img,
+.modal-content img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
