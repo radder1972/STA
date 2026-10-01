@@ -220,185 +220,194 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
         </div>
       </div>
 
-      {/* Unified Print Setup Panel */}
-      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '820px', margin: '0 auto 2.5rem auto', padding: '1.75rem 2rem', borderRadius: '24px' }}>
-        
-        {/* Settings Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
+      {/* Printhulp Box met geïntegreerde instellingen */}
+      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '820px', margin: '0 auto 2.5rem auto', padding: '2.5rem 3rem', borderRadius: '24px' }}>
+        <div className="inner-box" style={{ display: 'flex', flexDirection: 'column', gap: '1.35rem', margin: 0 }}>
           
-          {/* Setting 1: Kaartenset Keuze */}
-          <div>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
-              <Layers size={17} color="#3b82f6" /> 1. Kaartenset
-            </label>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '14px', border: '1px solid var(--border-color)' }}>
-              <button
-                type="button"
-                onClick={() => setDeckSelection('all')}
-                style={{
-                  padding: '10px 4px',
-                  borderRadius: '10px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: deckSelection === 'all' ? '#3b82f6' : 'transparent',
-                  color: deckSelection === 'all' ? 'white' : 'var(--text-main)',
-                  fontWeight: deckSelection === 'all' ? 'bold' : '500',
-                  fontSize: '0.86rem',
-                  textAlign: 'center',
-                  boxShadow: deckSelection === 'all' ? '0 4px 12px rgba(59, 130, 246, 0.35)' : 'none',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                <div>Volledig</div>
-                <div style={{ fontSize: '0.72rem', opacity: 0.85, fontWeight: 'normal', marginTop: '2px' }}>55 kaarten</div>
-              </button>
+          <h3 className="box-heading" style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Info size={26} color="#3b82f6" /> Printhulp voor Thuis / Praktijk
+          </h3>
 
-              <button
-                type="button"
-                onClick={() => setDeckSelection('vst')}
-                style={{
-                  padding: '10px 4px',
-                  borderRadius: '10px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: deckSelection === 'vst' ? '#3b82f6' : 'transparent',
-                  color: deckSelection === 'vst' ? 'white' : 'var(--text-main)',
-                  fontWeight: deckSelection === 'vst' ? 'bold' : '500',
-                  fontSize: '0.86rem',
-                  textAlign: 'center',
-                  boxShadow: deckSelection === 'vst' ? '0 4px 12px rgba(59, 130, 246, 0.35)' : 'none',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                <div>VSt 2021</div>
-                <div style={{ fontSize: '0.72rem', opacity: 0.85, fontWeight: 'normal', marginTop: '2px' }}>12 kaarten</div>
-              </button>
+          <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
+            Met deze weergave print je de kaarten direct op A4-papier (inkjet of laserprinter). De kaarten staan in een 3x3 grid (9 kaarten per vel). {layoutMode === 'same' ? 'De kaarten staan op voor- en achterkant op exact dezelfde plek (ideaal voor wie losse vellen afdrukt om uit te knippen en op elkaar te plakken).' : 'De achterkanten zijn horizontaal gespiegeld voor automatische dubbelzijdige invoer via de lange zijde.'}
+          </p>
 
-              <button
-                type="button"
-                onClick={() => setDeckSelection('base')}
-                style={{
-                  padding: '10px 4px',
-                  borderRadius: '10px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: deckSelection === 'base' ? '#3b82f6' : 'transparent',
-                  color: deckSelection === 'base' ? 'white' : 'var(--text-main)',
-                  fontWeight: deckSelection === 'base' ? 'bold' : '500',
-                  fontSize: '0.86rem',
-                  textAlign: 'center',
-                  boxShadow: deckSelection === 'base' ? '0 4px 12px rgba(59, 130, 246, 0.35)' : 'none',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                <div>Basisdeck</div>
-                <div style={{ fontSize: '0.72rem', opacity: 0.85, fontWeight: 'normal', marginTop: '2px' }}>43 kaarten</div>
-              </button>
+          {/* Instellingen Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', padding: '1.25rem', background: 'rgba(0,0,0,0.03)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
+            
+            {/* Setting 1: Kaartenset Keuze */}
+            <div>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
+                <Layers size={17} color="#3b82f6" /> Kaartenset
+              </label>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
+                <button
+                  type="button"
+                  onClick={() => setDeckSelection('all')}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: deckSelection === 'all' ? '#3b82f6' : 'transparent',
+                    color: deckSelection === 'all' ? 'white' : 'var(--text-main)',
+                    fontWeight: deckSelection === 'all' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: deckSelection === 'all' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>Volledig</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>55 kaarten</div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setDeckSelection('vst')}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: deckSelection === 'vst' ? '#3b82f6' : 'transparent',
+                    color: deckSelection === 'vst' ? 'white' : 'var(--text-main)',
+                    fontWeight: deckSelection === 'vst' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: deckSelection === 'vst' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>VSt 2021</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>12 kaarten</div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setDeckSelection('base')}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: deckSelection === 'base' ? '#3b82f6' : 'transparent',
+                    color: deckSelection === 'base' ? 'white' : 'var(--text-main)',
+                    fontWeight: deckSelection === 'base' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: deckSelection === 'base' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>Basisdeck</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>43 kaarten</div>
+                </button>
+              </div>
+            </div>
+
+            {/* Setting 2: Uitlijning achterkant */}
+            <div>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
+                <Files size={17} color="#3b82f6" /> Uitlijning achterzijde
+              </label>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
+                <button
+                  type="button"
+                  onClick={() => setLayoutMode('same')}
+                  style={{
+                    padding: '8px 6px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: layoutMode === 'same' ? '#3b82f6' : 'transparent',
+                    color: layoutMode === 'same' ? 'white' : 'var(--text-main)',
+                    fontWeight: layoutMode === 'same' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: layoutMode === 'same' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>Zelfde positie</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>Knippen & plakken</div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setLayoutMode('mirrored')}
+                  style={{
+                    padding: '8px 6px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: layoutMode === 'mirrored' ? '#3b82f6' : 'transparent',
+                    color: layoutMode === 'mirrored' ? 'white' : 'var(--text-main)',
+                    fontWeight: layoutMode === 'mirrored' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: layoutMode === 'mirrored' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>Gespiegeld</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>Duplex lange zijde</div>
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Setting 2: Uitlijning achterkant */}
-          <div>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
-              <Files size={17} color="#3b82f6" /> 2. Uitlijning achterzijde
-            </label>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '14px', border: '1px solid var(--border-color)' }}>
-              <button
-                type="button"
-                onClick={() => setLayoutMode('same')}
-                style={{
-                  padding: '10px 6px',
-                  borderRadius: '10px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: layoutMode === 'same' ? '#3b82f6' : 'transparent',
-                  color: layoutMode === 'same' ? 'white' : 'var(--text-main)',
-                  fontWeight: layoutMode === 'same' ? 'bold' : '500',
-                  fontSize: '0.86rem',
-                  textAlign: 'center',
-                  boxShadow: layoutMode === 'same' ? '0 4px 12px rgba(59, 130, 246, 0.35)' : 'none',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                <div>Zelfde positie</div>
-                <div style={{ fontSize: '0.72rem', opacity: 0.85, fontWeight: 'normal', marginTop: '2px' }}>Knippen & plakken</div>
-              </button>
+          {/* Main Action Button */}
+          <button 
+            onClick={handlePrint} 
+            className="btn btn-gradient" 
+            style={{ 
+              width: '100%', 
+              padding: '1.1rem', 
+              fontSize: '1.15rem', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              gap: '10px', 
+              borderRadius: '14px',
+              cursor: 'pointer',
+              border: 'none'
+            }}
+          >
+            <PrinterIcon size={22} /> Print {getDeckButtonTitle()}
+          </button>
 
-              <button
-                type="button"
-                onClick={() => setLayoutMode('mirrored')}
-                style={{
-                  padding: '10px 6px',
-                  borderRadius: '10px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: layoutMode === 'mirrored' ? '#3b82f6' : 'transparent',
-                  color: layoutMode === 'mirrored' ? 'white' : 'var(--text-main)',
-                  fontWeight: layoutMode === 'mirrored' ? 'bold' : '500',
-                  fontSize: '0.86rem',
-                  textAlign: 'center',
-                  boxShadow: layoutMode === 'mirrored' ? '0 4px 12px rgba(59, 130, 246, 0.35)' : 'none',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                <div>Gespiegeld</div>
-                <div style={{ fontSize: '0.72rem', opacity: 0.85, fontWeight: 'normal', marginTop: '2px' }}>Duplex lange zijde</div>
-              </button>
+          {/* Volledige Checklist / Tips */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', marginTop: '0.25rem' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+              <FileText size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
+                <strong>Papierformaat:</strong> A4 Staand (Portrait)
+              </p>
+            </div>
+            
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+              <Maximize size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
+                <strong>Schaal & Marges:</strong> Schaal op 100% (of Standaard). Marges op <strong>Geen</strong> (essentieel voor uitlijning!)
+              </p>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+              <Files size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
+                <strong>{layoutMode === 'mirrored' ? 'Dubbelzijdig:' : 'Afdrukmodus:'}</strong> {layoutMode === 'mirrored' ? 'Omdraaien over de lange zijde (Long edge binding)' : 'Enkelzijdig printen (vellen los afdrukken, knippen & op elkaar plakken)'}
+              </p>
+            </div>
+            
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+              <ImageIcon size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
+                <strong>Achtergrondafbeeldingen:</strong> AAN
+              </p>
             </div>
           </div>
-        </div>
 
-        {/* Main Action Button */}
-        <button 
-          onClick={handlePrint} 
-          className="btn btn-gradient-game" 
-          style={{ 
-            width: '100%', 
-            padding: '1.05rem', 
-            fontSize: '1.15rem', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            gap: '10px', 
-            borderRadius: '16px',
-            boxShadow: '0 8px 24px rgba(59, 130, 246, 0.35)',
-            cursor: 'pointer',
-            border: 'none',
-            color: 'white',
-            fontWeight: 'bold'
-          }}
-        >
-          <PrinterIcon size={22} /> Print {getDeckButtonTitle()}
-        </button>
-
-        {/* Subtitle explanation with clean SVG Info icon (no emojis) */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '1rem', color: 'var(--text-muted)', fontSize: '0.84rem', textAlign: 'center' }}>
-          <Info size={16} color="#3b82f6" style={{ flexShrink: 0 }} />
-          <span>
-            {layoutMode === 'same'
-              ? 'Kaarten staan op voor- en achterkant op exact dezelfde positie (ideaal voor losse vellen, knipwerk en insteekhoesjes).'
-              : 'Achterkanten zijn horizontaal gespiegeld (zodat ze bij dubbelzijdig afdrukken via de lange zijde perfect matchen).'}
-          </span>
-        </div>
-
-        {/* Compact Print Checklist Tips */}
-        <div style={{ marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid var(--border-color)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <FileText size={16} color="#64748b" />
-            <span><strong>Formaat:</strong> A4 Staand</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Maximize size={16} color="#64748b" />
-            <span><strong>Schaal:</strong> 100% (Marges: Geen)</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Files size={16} color="#64748b" />
-            <span><strong>Afdruk:</strong> {layoutMode === 'mirrored' ? 'Dubbelzijdig (lange zijde)' : 'Enkelzijdig (losse vellen)'}</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <ImageIcon size={16} color="#64748b" />
-            <span><strong>Achtergronden:</strong> Aanvinken</span>
-          </div>
         </div>
       </div>
 

@@ -202,123 +202,131 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
         </div>
       </div>
 
-      {/* Unified Drukkerij Setup Panel */}
-      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '820px', margin: '0 auto 2.5rem auto', padding: '1.75rem 2rem', borderRadius: '24px' }}>
-        
-        {/* Kaartenset Keuze */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
-            <Layers size={17} color="#3b82f6" /> Kaartenset voor de drukker
-          </label>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '14px', border: '1px solid var(--border-color)' }}>
-            <button
-              type="button"
-              onClick={() => setDeckSelection('all')}
-              style={{
-                padding: '10px 4px',
-                borderRadius: '10px',
-                border: 'none',
-                cursor: 'pointer',
-                background: deckSelection === 'all' ? '#3b82f6' : 'transparent',
-                color: deckSelection === 'all' ? 'white' : 'var(--text-main)',
-                fontWeight: deckSelection === 'all' ? 'bold' : '500',
-                fontSize: '0.86rem',
-                textAlign: 'center',
-                boxShadow: deckSelection === 'all' ? '0 4px 12px rgba(59, 130, 246, 0.35)' : 'none',
-                transition: 'all 0.15s ease'
-              }}
-            >
-              <div>Volledig</div>
-              <div style={{ fontSize: '0.72rem', opacity: 0.85, fontWeight: 'normal', marginTop: '2px' }}>55 kaarten • 110 p.</div>
-            </button>
+      {/* Printhulp voor Drukkerijen Box */}
+      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '820px', margin: '0 auto 2.5rem auto', padding: '2.5rem 3rem', borderRadius: '24px' }}>
+        <div className="inner-box" style={{ display: 'flex', flexDirection: 'column', gap: '1.35rem', margin: 0 }}>
+          <h3 className="box-heading" style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Info size={26} color="#3b82f6" /> Printhulp voor Drukkerijen
+          </h3>
+          <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
+            Deze weergave is geoptimaliseerd voor professionele drukkerijen. Het papierformaat voor de PDF is ingesteld op <strong>Speelkaarten formaat (64x94mm inclusief 3mm afloop rondom)</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 58x88mm worden zonder witte randjes. Klik op de knop hieronder en kies "Opslaan als PDF" in Chrome.
+          </p>
 
-            <button
-              type="button"
-              onClick={() => setDeckSelection('vst')}
-              style={{
-                padding: '10px 4px',
-                borderRadius: '10px',
-                border: 'none',
-                cursor: 'pointer',
-                background: deckSelection === 'vst' ? '#3b82f6' : 'transparent',
-                color: deckSelection === 'vst' ? 'white' : 'var(--text-main)',
-                fontWeight: deckSelection === 'vst' ? 'bold' : '500',
-                fontSize: '0.86rem',
-                textAlign: 'center',
-                boxShadow: deckSelection === 'vst' ? '0 4px 12px rgba(59, 130, 246, 0.35)' : 'none',
-                transition: 'all 0.15s ease'
-              }}
-            >
-              <div>VSt 2021</div>
-              <div style={{ fontSize: '0.72rem', opacity: 0.85, fontWeight: 'normal', marginTop: '2px' }}>12 kaarten • 24 p.</div>
-            </button>
+          {/* Kaartenset Keuze */}
+          <div style={{ padding: '1.25rem', background: 'rgba(0,0,0,0.03)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
+              <Layers size={17} color="#3b82f6" /> Kaartenset voor de drukker
+            </label>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
+              <button
+                type="button"
+                onClick={() => setDeckSelection('all')}
+                style={{
+                  padding: '8px 4px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  background: deckSelection === 'all' ? '#3b82f6' : 'transparent',
+                  color: deckSelection === 'all' ? 'white' : 'var(--text-main)',
+                  fontWeight: deckSelection === 'all' ? 'bold' : 'normal',
+                  fontSize: '0.86rem',
+                  textAlign: 'center',
+                  boxShadow: deckSelection === 'all' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <div>Volledig</div>
+                <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>55 kaarten • 110 p.</div>
+              </button>
 
-            <button
-              type="button"
-              onClick={() => setDeckSelection('base')}
-              style={{
-                padding: '10px 4px',
-                borderRadius: '10px',
-                border: 'none',
-                cursor: 'pointer',
-                background: deckSelection === 'base' ? '#3b82f6' : 'transparent',
-                color: deckSelection === 'base' ? 'white' : 'var(--text-main)',
-                fontWeight: deckSelection === 'base' ? 'bold' : '500',
-                fontSize: '0.86rem',
-                textAlign: 'center',
-                boxShadow: deckSelection === 'base' ? '0 4px 12px rgba(59, 130, 246, 0.35)' : 'none',
-                transition: 'all 0.15s ease'
-              }}
-            >
-              <div>Basisdeck</div>
-              <div style={{ fontSize: '0.72rem', opacity: 0.85, fontWeight: 'normal', marginTop: '2px' }}>43 kaarten • 86 p.</div>
-            </button>
+              <button
+                type="button"
+                onClick={() => setDeckSelection('vst')}
+                style={{
+                  padding: '8px 4px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  background: deckSelection === 'vst' ? '#3b82f6' : 'transparent',
+                  color: deckSelection === 'vst' ? 'white' : 'var(--text-main)',
+                  fontWeight: deckSelection === 'vst' ? 'bold' : 'normal',
+                  fontSize: '0.86rem',
+                  textAlign: 'center',
+                  boxShadow: deckSelection === 'vst' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <div>VSt 2021</div>
+                <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>12 kaarten • 24 p.</div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setDeckSelection('base')}
+                style={{
+                  padding: '8px 4px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  background: deckSelection === 'base' ? '#3b82f6' : 'transparent',
+                  color: deckSelection === 'base' ? 'white' : 'var(--text-main)',
+                  fontWeight: deckSelection === 'base' ? 'bold' : 'normal',
+                  fontSize: '0.86rem',
+                  textAlign: 'center',
+                  boxShadow: deckSelection === 'base' ? '0 2px 8px rgba(59, 130, 246, 0.35)' : 'none',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <div>Basisdeck</div>
+                <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>43 kaarten • 86 p.</div>
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Main Action Button */}
-        <button 
-          onClick={handlePrint} 
-          className="btn btn-gradient-game" 
-          style={{ 
-            width: '100%', 
-            padding: '1.05rem', 
-            fontSize: '1.15rem', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            gap: '10px', 
-            borderRadius: '16px',
-            boxShadow: '0 8px 24px rgba(59, 130, 246, 0.35)',
-            cursor: 'pointer',
-            border: 'none',
-            color: 'white',
-            fontWeight: 'bold'
-          }}
-        >
-          <PrinterIcon size={22} /> Genereer Print-PDF ({getDeckButtonTitle()})
-        </button>
+          {/* Main Action Button */}
+          <button 
+            onClick={handlePrint} 
+            className="btn btn-gradient" 
+            style={{ 
+              width: '100%', 
+              padding: '1.1rem', 
+              fontSize: '1.15rem', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              gap: '10px', 
+              borderRadius: '14px',
+              cursor: 'pointer',
+              border: 'none'
+            }}
+          >
+            <PrinterIcon size={22} /> Genereer Print-PDF ({getDeckButtonTitle()})
+          </button>
 
-        {/* Subtitle explanation with clean SVG Info icon (no emojis) */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '1rem', color: 'var(--text-muted)', fontSize: '0.84rem', textAlign: 'center' }}>
-          <Info size={16} color="#3b82f6" style={{ flexShrink: 0 }} />
-          <span>Formaat 64×94mm (inclusief 3mm afloop rondom). Drukker snijdt naar exact 58×88mm speelkaartformaat.</span>
-        </div>
+          {/* Volledige Checklist voor drukker */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', marginTop: '0.25rem' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+              <FileText size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
+                <strong>Papierformaat:</strong> Aangepast (wordt automatisch door de browser ingesteld op 64x94mm)
+              </p>
+            </div>
+            
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+              <Maximize size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
+                <strong>Marges:</strong> Geen
+              </p>
+            </div>
+            
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+              <ImageIcon size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
+                <strong>Achtergrondafbeeldingen:</strong> AAN
+              </p>
+            </div>
+          </div>
 
-        {/* Compact Print Checklist Tips */}
-        <div style={{ marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid var(--border-color)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <FileText size={16} color="#64748b" />
-            <span><strong>Formaat:</strong> Aangepast (64×94mm)</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Maximize size={16} color="#64748b" />
-            <span><strong>Marges:</strong> Geen</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <ImageIcon size={16} color="#64748b" />
-            <span><strong>Achtergronden:</strong> Aanvinken</span>
-          </div>
         </div>
       </div>
 
