@@ -220,12 +220,12 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
       </div>
 
       {/* Deck Selector Panel */}
-      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '2rem 2.5rem', borderRadius: '24px' }}>
+      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '1.75rem 2rem', borderRadius: '24px' }}>
         <h3 style={{ fontSize: '1.15rem', margin: '0 0 1rem 0', color: 'var(--text-main)', textAlign: 'center', fontWeight: '600' }}>
           Welke kaartenset wil je afdrukken?
         </h3>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '12px', marginBottom: '1.25rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '12px' }}>
           <button
             onClick={() => setDeckSelection('all')}
             className={`btn ${deckSelection === 'all' ? 'btn-gradient-game' : 'btn-outline'}`}
@@ -289,25 +289,6 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             <span style={{ fontSize: '0.82rem', opacity: 0.9 }}>43 kaarten • 5 vellen A4</span>
           </button>
         </div>
-
-        {deckSelection === 'vst' && (
-          <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '12px', padding: '0.85rem 1.2rem', color: '#166534', fontSize: '0.9rem', lineHeight: '1.5', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-            <Sparkles size={18} style={{ flexShrink: 0 }} />
-            <span><strong>Uitbreidingsset geselecteerd:</strong> Bevat de 12 officiële VSt 2021 kaarten (2 Basisbehoeften, 3 Schema's, 1 Copingkaart 'Omkering' en 6 Modi). Ideaal om zuinig bij te printen als je het basisdeck al hebt!</span>
-          </div>
-        )}
-        {deckSelection === 'all' && (
-          <div style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '12px', padding: '0.85rem 1.2rem', color: '#1e40af', fontSize: '0.9rem', lineHeight: '1.5', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-            <Layers size={18} style={{ flexShrink: 0 }} />
-            <span><strong>Volledige Set geselecteerd:</strong> Bevat alle 55 theoriekaarten (7 Basisbehoeften, 21 Schema's, 7 Categorieën/Coping, 20 Modi) overzichtelijk geordend per thema.</span>
-          </div>
-        )}
-        {deckSelection === 'base' && (
-          <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '0.85rem 1.2rem', color: '#334155', fontSize: '0.9rem', lineHeight: '1.5', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-            <Package size={18} style={{ flexShrink: 0 }} />
-            <span><strong>Klassiek Basisdeck geselecteerd:</strong> Bevat de 43 klassieke Young & SMI theoriekaarten.</span>
-          </div>
-        )}
       </div>
 
       {/* Printhulp Box */}
