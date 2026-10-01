@@ -25,7 +25,7 @@ export const vstSchemaText = {
 
 export const vstBasisbehoeftenData = [
   { id: 'bb6', title: 'Zelfcoherentie', src: imgZelfcoherentie, description: vstBehoeftenText['Zelfcoherentie'], color: '#a855f7', type: 'basisbehoefte', isVst: true },
-  { id: 'bb7', title: 'Rechtvaardigheid', src: imgRechtvaardigheid, description: vstBehoeftenText['Rechtvaardigheid'], color: '#06b6d4', type: 'basisbehoefte', isVst: true }
+  { id: 'bb7', title: 'Rechtvaardigheid', src: imgRechtvaardigheid, description: vstBehoeftenText['Rechtvaardigheid'], color: '#78350f', type: 'basisbehoefte', isVst: true }
 ];
 
 export const vstSchemaData = [
@@ -55,7 +55,7 @@ export const vstSchemaData = [
     type: 'schema',
     src: imgOnrechtvaardigheid,
     description: vstSchemaText['Onrechtvaardigheid'],
-    color: '#06b6d4',
+    color: '#78350f',
     isVst: true,
     style: { transform: 'scale(0.80)' }
   }

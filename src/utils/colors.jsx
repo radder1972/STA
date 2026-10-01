@@ -22,6 +22,8 @@ export const getCardColor = (type, id) => {
     if (cat3.includes(safeId)) return '#facc15'; // Domein 4: Gerichtheid op anderen -> Geel (Copingmodi)
     if (cat4.includes(safeId)) return '#f87171'; // Domein 5: Overmatige waakzaamheid -> Rood (Oudermodi)
     if (cat5.includes(safeId)) return '#fb923c'; // Domein 3: Realistische grenzen -> Oranje
+    if (safeId === 'vst_s1' || safeId === 'vst_s2' || safeId.includes('identiteit') || safeId.includes('wereld')) return '#a855f7'; // Zelfcoherentie schema's -> Paars
+    if (safeId === 'vst_s3' || safeId === 'Onrechtvaardigheid' || safeId === 'onrechtvaardigheid') return '#78350f'; // Rechtvaardigheid schema -> Warm Notenhout (Bruin)
   } else if (type === 'basisbehoefte') {
     if (id === 'veilige-hechting' || id === 'veiligheid-&-verbinding' || id === 'veiligheid-en-verbinding' || id === 'bb1') return '#60a5fa'; // Blauw
     if (id === 'autonomie' || id === 'autonomie-&-competentie' || id === 'autonomie-en-competentie' || id === 'bb2') return '#34d399'; // Groen
@@ -29,7 +31,7 @@ export const getCardColor = (type, id) => {
     if (id === 'spontaniteit-en-spel' || id === 'bb4') return '#f87171'; // Rood
     if (id === 'realistische-grenzen' || id === 'bb5') return '#fb923c'; // Oranje
     if (id === 'zelfcoherentie' || id === 'bb6') return '#a855f7'; // Paars
-    if (id === 'rechtvaardigheid' || id === 'bb7') return '#06b6d4'; // Cyaan
+    if (id === 'rechtvaardigheid' || id === 'bb7') return '#78350f'; // Warm Notenhout (Bruin)
   } else if (type === 'modicategorie') {
     if (id === 'kindmodi') return '#60a5fa';
     if (id === 'oudermodi') return '#f87171';
