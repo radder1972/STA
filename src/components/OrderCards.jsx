@@ -185,6 +185,7 @@ export default function OrderCards({ onBack }) {
       id: 'complete',
       title: 'Complete Kaartenset',
       subtitle: '55 theoriekaarten • Basisset (43) + VSt 2021 (12)',
+      description: 'De complete praktijkset: alle 43 klassieke kaarten plus alle 12 officiële VSt 2021 kaarten (7 behoeften, 21 schema\'s en 20 modi).',
       cardsCount: 55,
       price: 49.95,
       oldPrice: 56.90,
@@ -203,6 +204,7 @@ export default function OrderCards({ onBack }) {
       id: 'base',
       title: 'Klassieke Basisset',
       subtitle: '43 theoriekaarten • Klassieke theorie (Young & Arntz)',
+      description: 'De beproefde Young & Arntz theorie: 5 basisbehoeften, 18 schema\'s, 14 modi en 6 modi-categorieën voor diagnostiek en behandeling.',
       cardsCount: 43,
       price: 39.95,
       badge: null,
@@ -220,6 +222,7 @@ export default function OrderCards({ onBack }) {
       id: 'vst',
       title: 'VSt 2021 Uitbreidingsset',
       subtitle: '12 theoriekaarten • Officiële VSt 2021 actualisatie',
+      description: 'Officiële actualisatie (Arntz et al.): 6 aanvullende modi, 3 extra schema\'s, 2 nieuwe behoeften en copingvorm Omkering als update.',
       cardsCount: 12,
       price: 16.95,
       badge: 'VSt 2021',
@@ -342,9 +345,8 @@ export default function OrderCards({ onBack }) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '0.85rem 1.25rem',
-                    height: '84px',
-                    minHeight: '84px',
+                    padding: '0.9rem 1.25rem',
+                    minHeight: '94px',
                     boxSizing: 'border-box',
                     borderRadius: '14px',
                     border: isSelected ? '2px solid #3b82f6' : '1px solid #e2e8f0',
@@ -354,7 +356,7 @@ export default function OrderCards({ onBack }) {
                     boxShadow: isSelected ? '0 4px 14px rgba(59, 130, 246, 0.12)' : 'none'
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: 0, flex: 1 }}>
                     <div style={{
                       width: '20px',
                       height: '20px',
@@ -364,9 +366,9 @@ export default function OrderCards({ onBack }) {
                       boxSizing: 'border-box',
                       flexShrink: 0
                     }} />
-                    <div style={{ minWidth: 0 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', lineHeight: '1.3' }}>
-                        <span style={{ fontWeight: '700', fontSize: '1.05rem', color: isSelected ? '#1e40af' : '#1e293b', whiteSpace: 'nowrap' }}>
+                    <div style={{ minWidth: 0, flex: 1, paddingRight: '0.75rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', lineHeight: '1.3', flexWrap: 'wrap', marginBottom: '4px' }}>
+                        <span style={{ fontWeight: '700', fontSize: '1.05rem', color: isSelected ? '#1e40af' : '#1e293b' }}>
                           {variant.title}
                         </span>
                         {variant.badge && (
@@ -385,14 +387,17 @@ export default function OrderCards({ onBack }) {
                             {variant.badge}
                           </span>
                         )}
+                        <span style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: '500' }}>
+                          ({variant.cardsCount} theoriekaarten)
+                        </span>
                       </div>
-                      <div style={{ fontSize: '0.85rem', color: '#64748b', marginTop: '3px', lineHeight: '1.3', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        {variant.subtitle}
+                      <div style={{ fontSize: '0.85rem', color: '#475569', lineHeight: '1.4' }}>
+                        {variant.description}
                       </div>
                     </div>
                   </div>
 
-                  <div style={{ textAlign: 'right', flexShrink: 0, paddingLeft: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' }}>
+                  <div style={{ textAlign: 'right', flexShrink: 0, paddingLeft: '0.75rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' }}>
                     <div style={{ fontSize: '1.35rem', fontWeight: '800', color: isSelected ? '#2563eb' : '#1e293b', lineHeight: '1.2' }}>
                       € {variant.price.toFixed(2).replace('.', ',')}
                     </div>
@@ -474,30 +479,45 @@ export default function OrderCards({ onBack }) {
             <form onSubmit={handleOrderSubmit} style={{ width: '100%' }}>
               <div style={{ background: '#f8fafc', padding: '2rem', borderRadius: '16px', border: '1px solid #e2e8f0', width: '100%', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
                 
-                {/* Gekozen selectie & Aantal samenvatting */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '1.25rem', borderBottom: '1px solid #e2e8f0', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-                  <div>
-                    <span style={{ fontSize: '0.82rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '600', display: 'block' }}>Gekozen pakket</span>
-                    <span style={{ fontSize: '1.2rem', fontWeight: '700', color: '#1e293b' }}>{activeVariant.title}</span>
-                    <span style={{ fontSize: '0.88rem', color: '#64748b', marginLeft: '6px' }}>({activeVariant.cardsCount} kaarten)</span>
+                {/* Gekozen selectie & Aantal / Totaalbedrag */}
+                <div style={{ paddingBottom: '1.25rem', borderBottom: '1px solid #e2e8f0', marginBottom: '1.5rem' }}>
+                  <div style={{ marginBottom: '1.2rem' }}>
+                    <span style={{ fontSize: '0.82rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '600', display: 'block', marginBottom: '3px' }}>
+                      Gekozen pakket
+                    </span>
+                    <span style={{ fontSize: '1.25rem', fontWeight: '700', color: '#1e293b' }}>
+                      {activeVariant.title}
+                    </span>
+                    <span style={{ fontSize: '0.9rem', color: '#64748b', marginLeft: '6px' }}>
+                      ({activeVariant.cardsCount} theoriekaarten)
+                    </span>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', background: 'white', borderRadius: '10px', border: '1px solid #cbd5e1', overflow: 'hidden', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
-                      <button type="button" onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <Minus size={16} />
-                      </button>
-                      <div style={{ width: '36px', textAlign: 'center', fontSize: '1.1rem', fontWeight: '600', color: '#334155' }}>
-                        {quantity}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', gap: '1rem' }}>
+                    <div>
+                      <span style={{ fontSize: '0.82rem', color: '#64748b', display: 'block', marginBottom: '6px', fontWeight: '500' }}>
+                        Aantal sets
+                      </span>
+                      <div style={{ display: 'inline-flex', alignItems: 'center', background: 'white', borderRadius: '10px', border: '1px solid #cbd5e1', overflow: 'hidden', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
+                        <button type="button" onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <Minus size={16} />
+                        </button>
+                        <div style={{ width: '36px', textAlign: 'center', fontSize: '1.1rem', fontWeight: '600', color: '#334155' }}>
+                          {quantity}
+                        </div>
+                        <button type="button" onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <Plus size={16} />
+                        </button>
                       </div>
-                      <button type="button" onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <Plus size={16} />
-                      </button>
                     </div>
 
-                    <div style={{ textAlign: 'right' }}>
-                      <span style={{ fontSize: '0.82rem', color: '#64748b', display: 'block' }}>Totaalbedrag</span>
-                      <span style={{ fontSize: '1.5rem', fontWeight: '800', color: '#3b82f6' }}>€ {totalPrice}</span>
+                    <div style={{ textAlign: 'right', marginLeft: 'auto' }}>
+                      <span style={{ fontSize: '0.82rem', color: '#64748b', display: 'block', marginBottom: '4px', fontWeight: '500' }}>
+                        Totaalbedrag
+                      </span>
+                      <span style={{ fontSize: '1.65rem', fontWeight: '800', color: '#3b82f6', lineHeight: '1' }}>
+                        € {totalPrice}
+                      </span>
                     </div>
                   </div>
                 </div>
