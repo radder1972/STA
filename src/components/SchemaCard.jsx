@@ -16,7 +16,22 @@ export const formatCardTitle = (title) => {
     );
   }
 
-  // 2. Gebrek aan zelfcontrole / Zelfdiscipline: exact 2 regels, gelijke kopgrootte
+  // 2. Spontaniteit & Spel: exact 2 regels
+  if (
+    title === 'Spontaniteit & Spel' ||
+    title === 'Spontaniteit en spel' ||
+    title.toLowerCase().includes('spontaniteit')
+  ) {
+    return (
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Spontaniteit &</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>Spel</span>
+      </span>
+    );
+  }
+
+  // 3. Gebrek aan zelfcontrole / Zelfdiscipline: exact 2 regels, gelijke kopgrootte
   if (
     title === 'Gebrek aan zelfcontrole / Zelfdiscipline' ||
     title === 'Gebrek aan zelfcontrole/zelfdiscipline' ||
@@ -32,7 +47,7 @@ export const formatCardTitle = (title) => {
     );
   }
 
-  // 3. Gebrek aan coherente identiteit: op 2 regels, gelijke kopgrootte
+  // 4. Gebrek aan coherente identiteit: op 2 regels, gelijke kopgrootte
   if (title === 'Gebrek aan coherente identiteit') {
     return (
       <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
@@ -43,7 +58,7 @@ export const formatCardTitle = (title) => {
     );
   }
 
-  // 4. Gebrek aan (een) betekenisvolle wereld: op 2 regels, gelijke kopgrootte
+  // 5. Gebrek aan (een) betekenisvolle wereld: op 2 regels, gelijke kopgrootte
   if (title.startsWith('Gebrek aan') && title.includes('wereld')) {
     const isEen = title.includes('een');
     return (
@@ -55,7 +70,7 @@ export const formatCardTitle = (title) => {
     );
   }
 
-  // 5. Meedogenloze normen / Overmatig kritisch: op 2 regels, gelijke kopgrootte
+  // 6. Meedogenloze normen / Overmatig kritisch: op 2 regels, gelijke kopgrootte
   if (title.startsWith('Meedogenloze normen')) {
     return (
       <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
@@ -68,66 +83,117 @@ export const formatCardTitle = (title) => {
 
   if (title === 'Kwetsbaarheid voor ziekte en gevaar') {
     return (
-      <>
-        Kwetsbaarheid voor<br />ziekte en gevaar
-      </>
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Kwetsbaarheid voor</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>ziekte en gevaar</span>
+      </span>
     );
   }
   
+  // 7. Als een kop een / bevat (zoals twee woorden met een /): ALTIJD over twee regels
   if (title.includes('/')) {
-    const parts = title.split('/');
+    const parts = title.split('/').map(p => p.trim());
+    if (parts.length === 2) {
+      return (
+        <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+          <span style={{ whiteSpace: 'nowrap' }}>{parts[0]} /</span>
+          <br />
+          <span style={{ whiteSpace: 'nowrap' }}>{parts[1]}</span>
+        </span>
+      );
+    }
     return (
-      <>
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
         {parts.map((part, index) => (
           <React.Fragment key={index}>
-            <span style={{ whiteSpace: 'nowrap' }}>{part.trim()}</span>
-            {index < parts.length - 1 && (
-              <>
-                {' /'}
-                <br />
-              </>
-            )}
+            <span style={{ whiteSpace: 'nowrap' }}>{part}{index < parts.length - 1 ? ' /' : ''}</span>
+            {index < parts.length - 1 && <br />}
           </React.Fragment>
         ))}
-      </>
+      </span>
     );
   }
 
   const words = title.trim().split(/\s+/);
   if (words.length === 2) {
-    return <>{words[0]}<br />{words[1]}</>;
+    return (
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>{words[0]}</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>{words[1]}</span>
+      </span>
+    );
   }
 
   if (title === 'Veiligheid & Verbinding') {
-    return <>Veiligheid &<br />Verbinding</>;
+    return (
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Veiligheid &</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>Verbinding</span>
+      </span>
+    );
   }
 
   if (title === 'Autonomie & Competentie') {
-    return <>Autonomie &<br />Competentie</>;
+    return (
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Autonomie &</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>Competentie</span>
+      </span>
+    );
   }
 
   if (title === 'Vrijheid van expressie') {
-    return <>Vrijheid van<br />expressie</>;
-  }
-
-  if (title === 'Spontaniteit en spel') {
-    return <>Spontaniteit<br />en spel</>;
+    return (
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Vrijheid van</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>expressie</span>
+      </span>
+    );
   }
 
   if (title === 'Aandacht- en erkenningzoeker') {
-    return <>Aandacht- en<br />erkenningzoeker</>;
+    return (
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Aandacht- en</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>erkenningzoeker</span>
+      </span>
+    );
   }
 
   if (title === 'Bedrog en manipulatie') {
-    return <>Bedrog en<br />manipulatie</>;
+    return (
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Bedrog en</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>manipulatie</span>
+      </span>
+    );
   }
 
   if (title === 'Perfectionistische overcontroleerder') {
-    return <>Perfectionistische<br />overcontroleerder</>;
+    return (
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Perfectionistische</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>overcontroleerder</span>
+      </span>
+    );
   }
 
   if (title === 'Wantrouwende overcontroleerder') {
-    return <>Wantrouwende<br />overcontroleerder</>;
+    return (
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Wantrouwende</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>overcontroleerder</span>
+      </span>
+    );
   }
 
   return title;

@@ -92,7 +92,7 @@ const Basisbehoeften = ({ onBack }) => {
       {/* Behoefte 4 */}
       <div className="inner-box page-break" style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 className="box-heading" style={{ color: '#f87171', marginBottom: '1rem' }}>4. Spontaniteit en spel</h2>
+          <h2 className="box-heading" style={{ color: '#f87171', marginBottom: '1rem' }}>4. Spontaniteit & Spel</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Er moet ruimte zijn voor plezier, creativiteit en onbezorgdheid. Niet alles hoeft nuttig, perfect of efficiënt te zijn. Deze behoefte beschermt ons tegen meedogenloze normen, overmatige prestatiedruk en het gevoel dat het leven uitsluitend uit plichten bestaat.
           </p>

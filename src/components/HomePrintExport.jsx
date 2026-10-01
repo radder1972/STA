@@ -480,7 +480,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
                             {/* Footer (Title) */}
                             {card.title && (
-                              <div style={{ textAlign: 'center', fontSize: '0.85rem', fontWeight: 'bold', color: 'black', margin: '2mm 0 6mm 0', lineHeight: '1.2', height: '10mm', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
+                              <div style={{ textAlign: 'center', fontSize: '0.85rem', fontWeight: 'bold', color: 'black', margin: '2mm 0 6mm 0', lineHeight: '1.2', height: '10mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
                                 {formatCardTitle(card.title)}
                               </div>
                             )}
