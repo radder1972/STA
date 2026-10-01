@@ -41,6 +41,22 @@ export const formatCardTitle = (title) => {
     return <>Spontaniteit<br />en spel</>;
   }
 
+  if (title === 'Gebrek aan coherente identiteit') {
+    return <>Gebrek aan coherente<br />identiteit</>;
+  }
+
+  if (title === 'Gebrek aan een betekenisvolle wereld') {
+    return <>Gebrek aan een<br />betekenisvolle wereld</>;
+  }
+
+  if (title === 'Aandacht- en erkenningzoeker') {
+    return <>Aandacht- en<br />erkenningzoeker</>;
+  }
+
+  if (title === 'Bedrog en manipulatie') {
+    return <>Bedrog en<br />manipulatie</>;
+  }
+
   return title;
 };
 

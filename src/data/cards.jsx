@@ -148,6 +148,21 @@ export const formatCardTitle = (title) => {
   if (title === 'Spontaniteit en spel') {
     return <>Spontaniteit<br />en spel</>;
   }
+  if (title === 'Gebrek aan coherente identiteit') {
+    return <>Gebrek aan coherente<br />identiteit</>;
+  }
+  if (title === 'Gebrek aan een betekenisvolle wereld') {
+    return <>Gebrek aan een<br />betekenisvolle wereld</>;
+  }
+  if (title === 'Perfectionistische overcontroleerder') {
+    return <>Perfectionistische<br />overcontroleerder</>;
+  }
+  if (title === 'Aandacht- en erkenningzoeker') {
+    return <>Aandacht- en<br />erkenningzoeker</>;
+  }
+  if (title === 'Bedrog en manipulatie') {
+    return <>Bedrog en<br />manipulatie</>;
+  }
   
   if (title.length > 20 && title.includes(' / ')) {
     const parts = title.split(' / ');
