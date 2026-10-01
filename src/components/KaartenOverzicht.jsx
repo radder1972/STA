@@ -104,7 +104,7 @@ export default function KaartenOverzicht({ onBack }) {
   if (selectedCategory) {
     const isSchema = !!basisbehoeftenToSchemas[selectedCategory.title];
     const mapping = isSchema ? basisbehoeftenToSchemas[selectedCategory.title] : categorieToModi[selectedCategory.title];
-    const fullList = isSchema ? detailedSchemaCards : detailedModeCards;
+    const fullList = isSchema ? [...detailedSchemaCards, ...vstSchemaData] : [...detailedModeCards, ...vstModiData];
     const filteredCards = fullList.filter(c => mapping && mapping.includes(c.title));
 
     return (

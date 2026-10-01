@@ -43,16 +43,19 @@ export const basisbehoeftenToSchemas = {
   'Autonomie': ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'],
   'Vrije expressie': ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'],
   'Spontaniteit en spel': ['Negativisme / Pessimisme', 'Emotionele geremdheid', 'Meedogenloze normen', 'Bestraffendheid'],
-  'Realistische grenzen': ['Veeleisendheid / Grandiositeit', 'Onvoldoende zelfcontrole']
+  'Realistische grenzen': ['Veeleisendheid / Grandiositeit', 'Onvoldoende zelfcontrole'],
+  'Zelfcoherentie': ['Gebrek aan coherente identiteit', 'Gebrek aan een betekenisvolle wereld'],
+  'Rechtvaardigheid': ['Onrechtvaardigheid']
 };
 
 export const categorieToModi = {
-  'Kindmodi': ['Kwetsbare kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind', 'Boze kind'],
+  'Kindmodi': ['Kwetsbare kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind', 'Boze kind', 'Blije kind'],
   'Oudermodi': ['Straffende ouder', 'Veeleisende ouder'],
   'Coping: Overgave': ['Willoze inschikkelijke'],
-  'Coping: Vermijding': ['Onthechte beschermer', 'Onthechte zelfsusser'],
-  'Coping: Overcompensatie': ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval'],
-  'Gezonde volwassene': ['Gezonde volwassene']
+  'Coping: Vermijding': ['Onthechte beschermer', 'Onthechte zelfsusser', 'Boze beschermer'],
+  'Coping: Overcompensatie': ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'],
+  'Coping: Omkering': ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'],
+  'Gezonde volwassene': ['Gezonde volwassene', 'Blije kind']
 };
 
 export const ysqSchemaNamesMap = {
