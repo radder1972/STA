@@ -184,7 +184,7 @@ export default function OrderCards({ onBack }) {
     complete: {
       id: 'complete',
       title: 'Complete Kaartenset',
-      subtitle: 'Basisset (43) + VSt 2021 Uitbreiding (12)',
+      subtitle: '55 theoriekaarten • Basisset (43) + VSt 2021 (12)',
       cardsCount: 55,
       price: 49.95,
       oldPrice: 56.90,
@@ -202,7 +202,7 @@ export default function OrderCards({ onBack }) {
     base: {
       id: 'base',
       title: 'Klassieke Basisset',
-      subtitle: '43 theoriekaarten (Young & Arntz theorie)',
+      subtitle: '43 theoriekaarten • Klassieke theorie (Young & Arntz)',
       cardsCount: 43,
       price: 39.95,
       badge: null,
@@ -219,7 +219,7 @@ export default function OrderCards({ onBack }) {
     vst: {
       id: 'vst',
       title: 'VSt 2021 Uitbreidingsset',
-      subtitle: '12 officiële VSt theoriekaarten (Arntz et al., 2021)',
+      subtitle: '12 theoriekaarten • Officiële VSt 2021 actualisatie',
       cardsCount: 12,
       price: 16.95,
       badge: 'VSt 2021',
@@ -342,7 +342,10 @@ export default function OrderCards({ onBack }) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '1rem 1.25rem',
+                    padding: '0.85rem 1.25rem',
+                    height: '84px',
+                    minHeight: '84px',
+                    boxSizing: 'border-box',
                     borderRadius: '14px',
                     border: isSelected ? '2px solid #3b82f6' : '1px solid #e2e8f0',
                     background: isSelected ? '#f0f7ff' : '#ffffff',
@@ -362,48 +365,44 @@ export default function OrderCards({ onBack }) {
                       flexShrink: 0
                     }} />
                     <div style={{ minWidth: 0 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
-                        <span style={{ fontWeight: '700', fontSize: '1.05rem', color: isSelected ? '#1e40af' : '#1e293b' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', lineHeight: '1.3' }}>
+                        <span style={{ fontWeight: '700', fontSize: '1.05rem', color: isSelected ? '#1e40af' : '#1e293b', whiteSpace: 'nowrap' }}>
                           {variant.title}
-                        </span>
-                        <span style={{
-                          fontSize: '0.78rem',
-                          background: isSelected ? '#3b82f6' : '#f1f5f9',
-                          color: isSelected ? 'white' : '#475569',
-                          padding: '2px 8px',
-                          borderRadius: '9999px',
-                          fontWeight: '600'
-                        }}>
-                          {variant.cardsCount} kaarten
                         </span>
                         {variant.badge && (
                           <span style={{
-                            fontSize: '0.72rem',
+                            fontSize: '0.7rem',
                             background: variant.badgeColor,
                             color: 'white',
                             padding: '2px 8px',
                             borderRadius: '9999px',
                             fontWeight: '700',
                             textTransform: 'uppercase',
-                            letterSpacing: '0.03em'
+                            letterSpacing: '0.03em',
+                            whiteSpace: 'nowrap',
+                            flexShrink: 0
                           }}>
                             {variant.badge}
                           </span>
                         )}
                       </div>
-                      <div style={{ fontSize: '0.85rem', color: '#64748b', marginTop: '2px' }}>
+                      <div style={{ fontSize: '0.85rem', color: '#64748b', marginTop: '3px', lineHeight: '1.3', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                         {variant.subtitle}
                       </div>
                     </div>
                   </div>
 
-                  <div style={{ textAlign: 'right', flexShrink: 0, paddingLeft: '1rem' }}>
-                    <div style={{ fontSize: '1.35rem', fontWeight: '800', color: isSelected ? '#2563eb' : '#1e293b' }}>
+                  <div style={{ textAlign: 'right', flexShrink: 0, paddingLeft: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' }}>
+                    <div style={{ fontSize: '1.35rem', fontWeight: '800', color: isSelected ? '#2563eb' : '#1e293b', lineHeight: '1.2' }}>
                       € {variant.price.toFixed(2).replace('.', ',')}
                     </div>
-                    {variant.oldPrice && (
-                      <div style={{ fontSize: '0.82rem', color: '#94a3b8', textDecoration: 'line-through' }}>
+                    {variant.oldPrice ? (
+                      <div style={{ fontSize: '0.8rem', color: '#94a3b8', textDecoration: 'line-through', lineHeight: '1.2', marginTop: '2px' }}>
                         € {variant.oldPrice.toFixed(2).replace('.', ',')}
+                      </div>
+                    ) : (
+                      <div style={{ fontSize: '0.8rem', color: 'transparent', lineHeight: '1.2', marginTop: '2px', userSelect: 'none' }}>
+                        &nbsp;
                       </div>
                     )}
                   </div>
