@@ -170,9 +170,9 @@ const SchemaCard = ({
             {title && (
               <h4 style={{ 
                 fontSize: `${0.75 * s}rem`, 
-                marginTop: `${10 * s}px`, 
-                marginBottom: `${2 * s}px`, 
-                paddingBottom: `${6 * s}px`, 
+                marginTop: `${12 * s}px`, 
+                marginBottom: `${4 * s}px`, 
+                paddingBottom: `${4 * s}px`, 
                 borderBottom: `1px solid ${color && color.startsWith('#') ? color + '50' : 'rgba(0,0,0,0.15)'}`,
                 lineHeight: '1.2', 
                 display: 'flex', 
