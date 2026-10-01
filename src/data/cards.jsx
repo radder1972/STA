@@ -157,6 +157,9 @@ export const formatCardTitle = (title) => {
   if (title === 'Autonomie & Competentie') {
     return <>Autonomie &<br />Competentie</>;
   }
+  if (title === 'Vrijheid van expressie') {
+    return <>Vrijheid van<br />expressie</>;
+  }
   if (title === 'Spontaniteit en spel') {
     return <>Spontaniteit<br />en spel</>;
   }
