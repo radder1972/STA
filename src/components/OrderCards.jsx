@@ -616,31 +616,32 @@ export default function OrderCards({ onBack }) {
                   </div>
                 </div>
 
-                <button 
-                  type="submit"
-                  disabled={orderStatus === 'submitting'}
-                  className="btn btn-gradient-game" 
-                  style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center', 
-                    gap: '12px', 
-                    width: '100%', 
-                    padding: '1.2rem', 
-                    fontSize: '1.2rem', 
-                    borderRadius: '12px', 
-                    border: 'none',
-                    cursor: orderStatus === 'submitting' ? 'wait' : 'pointer',
-                    opacity: orderStatus === 'submitting' ? 0.7 : 1,
-                    boxShadow: '0 10px 25px rgba(59, 130, 246, 0.4)',
-                    color: 'white',
-                    marginTop: '2rem'
-                  }}
-                >
-                  <ShoppingCartIcon size={22} /> {orderStatus === 'submitting' ? 'Bezig met verzenden...' : `Bestel ${activeVariant.title} (€ ${totalPrice})`}
-                </button>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.75rem' }}>
+                  <button 
+                    type="submit"
+                    disabled={orderStatus === 'submitting'}
+                    className="btn btn-gradient-game" 
+                    style={{ 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center', 
+                      gap: '8px', 
+                      padding: '0.75rem 2.5rem', 
+                      fontSize: '1.05rem', 
+                      fontWeight: '600',
+                      borderRadius: '10px', 
+                      border: 'none',
+                      cursor: orderStatus === 'submitting' ? 'wait' : 'pointer',
+                      opacity: orderStatus === 'submitting' ? 0.7 : 1,
+                      boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)',
+                      color: 'white'
+                    }}
+                  >
+                    <ShoppingCartIcon size={18} /> {orderStatus === 'submitting' ? 'Bezig met verzenden...' : 'Bestellen'}
+                  </button>
+                </div>
                 
-                <p style={{ margin: '1rem 0 0 0', textAlign: 'center', fontSize: '0.85rem', color: '#64748b' }}>
+                <p style={{ margin: '0.85rem 0 0 0', textAlign: 'center', fontSize: '0.85rem', color: '#64748b' }}>
                   Je bestelling wordt handmatig verwerkt. Je zit nergens aan vast tot na de bevestiging.
                 </p>
               </div>
