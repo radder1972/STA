@@ -19,50 +19,62 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
         </h2>
       </div>
 
-      <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto', borderRadius: '24px', border: '1px solid var(--border-color)', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)' }}>
+      <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto', borderRadius: '24px', border: '1px solid var(--border-color)', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)', position: 'relative' }}>
         
-        {/* Optie 1: De Theoriekaarten */}
-        <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', position: 'relative' }}>
-          
-          {/* Ronde sticker: Theorie-uitbreiding (half over de box) */}
-          <div 
-            style={{
-              position: 'absolute',
-              top: '-20px',
-              right: '-16px',
-              width: '84px',
-              height: '84px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
-              color: '#ffffff',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              textAlign: 'center',
-              boxShadow: '0 8px 20px rgba(234, 88, 12, 0.4), 0 2px 6px rgba(0, 0, 0, 0.15)',
-              transform: 'rotate(12deg)',
-              zIndex: 5,
-              border: 'none',
-              userSelect: 'none',
-              pointerEvents: 'none'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.58rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
-              <Sparkles size={10} /> INCL.
-            </div>
-            <div style={{ fontSize: '0.9rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
-              12 Extra
-            </div>
-            <div style={{ fontSize: '0.54rem', fontWeight: '800', letterSpacing: '0.04em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1.15 }}>
-              Theorie-<br />kaarten
-            </div>
+        {/* Ronde sticker: Theorie-uitbreiding (helemaal bovenaan de hoofdkaart) */}
+        <button
+          type="button"
+          onClick={onViewKaartenOverzicht}
+          title="Bekijk de theoriekaarten inclusief de 12 theorie-uitbreidingskaarten"
+          style={{
+            position: 'absolute',
+            top: '-26px',
+            right: '-22px',
+            width: '112px',
+            height: '112px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
+            color: '#ffffff',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            boxShadow: '0 10px 25px rgba(234, 88, 12, 0.45), 0 3px 8px rgba(0, 0, 0, 0.15)',
+            transform: 'rotate(12deg)',
+            zIndex: 10,
+            border: 'none',
+            cursor: 'pointer',
+            userSelect: 'none',
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+            padding: 0
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'rotate(12deg) scale(1.06)';
+            e.currentTarget.style.boxShadow = '0 12px 28px rgba(234, 88, 12, 0.6), 0 4px 10px rgba(0, 0, 0, 0.2)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'rotate(12deg)';
+            e.currentTarget.style.boxShadow = '0 10px 25px rgba(234, 88, 12, 0.45), 0 3px 8px rgba(0, 0, 0, 0.15)';
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '0.66rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
+            <Sparkles size={12} /> INCL.
           </div>
+          <div style={{ fontSize: '1.15rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '2px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
+            12 Extra
+          </div>
+          <div style={{ fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.04em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1.1, whiteSpace: 'nowrap' }}>
+            Theoriekaarten
+          </div>
+        </button>
 
+        {/* Optie 1: De Theoriekaarten */}
+        <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
           <div style={{ padding: '1rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '16px', color: '#0ea5e9', border: '1px solid rgba(14, 165, 233, 0.2)' }}>
             <CardsIcon size={32} useGameGradient={true} />
           </div>
-          <div style={{ flex: 1, paddingRight: '1rem' }}>
+          <div style={{ flex: 1 }}>
             <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>De Theoriekaarten</h2>
             <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '0.85rem' }}>
               Bestudeer alle achtergronden, herkenbare voorbeelden en praktische tips digitaal. De kaartenverzameling (55 kaarten in totaal) bestaat uit twee complementaire sets:

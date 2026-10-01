@@ -209,10 +209,10 @@ export default function KaartenOverzicht({ onBack }) {
           title={filter === 'vst' ? 'Klik om terug te gaan naar het basisoverzicht' : 'Klik om de 12 theorie-uitbreidingskaarten te bekijken'}
           style={{
             position: 'absolute',
-            top: '-20px',
-            right: '-16px',
-            width: '84px',
-            height: '84px',
+            top: '-26px',
+            right: '-22px',
+            width: '112px',
+            height: '112px',
             borderRadius: '50%',
             background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
             color: '#ffffff',
@@ -222,8 +222,8 @@ export default function KaartenOverzicht({ onBack }) {
             justifyContent: 'center',
             textAlign: 'center',
             boxShadow: filter === 'vst' 
-              ? '0 0 0 3px #ffffff, 0 8px 25px rgba(234, 88, 12, 0.65)' 
-              : '0 8px 20px rgba(234, 88, 12, 0.4), 0 2px 6px rgba(0, 0, 0, 0.15)',
+              ? '0 0 0 3px #ffffff, 0 10px 30px rgba(234, 88, 12, 0.7)' 
+              : '0 10px 25px rgba(234, 88, 12, 0.45), 0 3px 8px rgba(0, 0, 0, 0.15)',
             transform: filter === 'vst' ? 'rotate(12deg) scale(1.08)' : 'rotate(12deg)',
             zIndex: 10,
             border: 'none',
@@ -235,24 +235,24 @@ export default function KaartenOverzicht({ onBack }) {
           onMouseEnter={(e) => {
             if (filter !== 'vst') {
               e.currentTarget.style.transform = 'rotate(12deg) scale(1.06)';
-              e.currentTarget.style.boxShadow = '0 10px 24px rgba(234, 88, 12, 0.55), 0 2px 8px rgba(0, 0, 0, 0.2)';
+              e.currentTarget.style.boxShadow = '0 12px 28px rgba(234, 88, 12, 0.6), 0 4px 10px rgba(0, 0, 0, 0.2)';
             }
           }}
           onMouseLeave={(e) => {
             if (filter !== 'vst') {
               e.currentTarget.style.transform = 'rotate(12deg)';
-              e.currentTarget.style.boxShadow = '0 8px 20px rgba(234, 88, 12, 0.4), 0 2px 6px rgba(0, 0, 0, 0.15)';
+              e.currentTarget.style.boxShadow = '0 10px 25px rgba(234, 88, 12, 0.45), 0 3px 8px rgba(0, 0, 0, 0.15)';
             }
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.58rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
-            <Sparkles size={10} /> {filter === 'vst' ? 'ACTIEF' : 'INCL.'}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '0.66rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
+            <Sparkles size={12} /> {filter === 'vst' ? 'ACTIEF' : 'INCL.'}
           </div>
-          <div style={{ fontSize: '0.9rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
+          <div style={{ fontSize: '1.15rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '2px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
             12 Extra
           </div>
-          <div style={{ fontSize: '0.54rem', fontWeight: '800', letterSpacing: '0.04em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1.15 }}>
-            Theorie-<br />kaarten
+          <div style={{ fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.04em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1.1, whiteSpace: 'nowrap' }}>
+            Theoriekaarten
           </div>
         </button>
 
