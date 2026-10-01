@@ -38,12 +38,14 @@ function App() {
     window.location.pathname.includes('/tafel')
   );
 
-  const isSpelApp = typeof window !== 'undefined' && !isTafelApp && (
+  const isKaartenApp = typeof window !== 'undefined' && !isTafelApp && !isTestApp && (
+    window.location.pathname.endsWith('kaarten.html') || 
     window.location.pathname.endsWith('spel.html') || 
+    window.location.pathname.includes('/kaarten') ||
     window.location.pathname.includes('/spel')
   );
 
-  const isHubApp = !isTestApp && !isTafelApp && !isSpelApp;
+  const isHubApp = !isTestApp && !isTafelApp && !isKaartenApp;
 
   const [currentView, setCurrentView] = useState(() => {
     const hash = window.location.hash.replace('#', '')
@@ -52,8 +54,8 @@ function App() {
         window.location.href = 'test.html'
         return 'hub'
       }
-      if (['spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(hash)) {
-        window.location.href = `spel.html#${hash}`
+      if (['kaarten', 'spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(hash)) {
+        window.location.href = `kaarten.html#${hash}`
         return 'hub'
       }
       if (hash === 'tafelopstelling' || hash === 'tafel') {
@@ -63,17 +65,21 @@ function App() {
       return 'hub'
     }
     if (isTafelApp) {
-      if (['spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over'].includes(hash)) {
-        window.location.href = `spel.html#${hash}`
+      if (['kaarten', 'spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(hash)) {
+        window.location.href = `kaarten.html#${hash}`
         return 'tafelopstelling'
       }
       if (hash === 'home' || hash === 'hub') {
         window.location.href = 'index.html'
         return 'tafelopstelling'
       }
+      if (hash === 'test' || hash === 'zelftest') {
+        window.location.href = 'test.html'
+        return 'tafelopstelling'
+      }
       return 'tafelopstelling'
     }
-    if (isSpelApp) {
+    if (isKaartenApp) {
       if (hash === 'tafelopstelling' || hash === 'tafel') {
         window.location.href = 'tafel.html'
         return 'game-portal'
@@ -82,8 +88,12 @@ function App() {
         window.location.href = 'index.html'
         return 'game-portal'
       }
+      if (hash === 'test' || hash === 'zelftest') {
+        window.location.href = 'test.html'
+        return 'game-portal'
+      }
       if (hash === 'spelregels') return 'game-rules'
-      if (hash === 'theoriekaarten') return 'kaartenoverzicht'
+      if (hash === 'theoriekaarten' || hash === 'kaarten') return 'kaartenoverzicht'
       if (hash === 'print-shop') return 'print-shop'
       if (hash === 'bestel-kaarten') return 'order-cards'
       if (hash === 'over') return 'about'
@@ -98,8 +108,8 @@ function App() {
       window.location.href = 'tafel.html'
       return 'home'
     }
-    if (['spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(hash)) {
-      window.location.href = `spel.html#${hash}`
+    if (['kaarten', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(hash)) {
+      window.location.href = `kaarten.html#${hash}`
       return 'home'
     }
     return 'home'
@@ -118,8 +128,8 @@ function App() {
           window.location.href = 'test.html'
           return
         }
-        if (['spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(hash)) {
-          window.location.href = `spel.html#${hash}`
+        if (['kaarten', 'spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(hash)) {
+          window.location.href = `kaarten.html#${hash}`
           return
         }
         if (hash === 'tafelopstelling' || hash === 'tafel') {
@@ -130,8 +140,8 @@ function App() {
         return
       }
       if (isTafelApp) {
-        if (['spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over'].includes(hash)) {
-          window.location.href = `spel.html#${hash}`
+        if (['kaarten', 'spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(hash)) {
+          window.location.href = `kaarten.html#${hash}`
           return
         }
         if (hash === 'home' || hash === 'hub') {
@@ -145,7 +155,7 @@ function App() {
         setCurrentView('tafelopstelling')
         return
       }
-      if (isSpelApp) {
+      if (isKaartenApp) {
         if (hash === 'tafelopstelling' || hash === 'tafel') {
           window.location.href = 'tafel.html'
           return
@@ -158,9 +168,9 @@ function App() {
           window.location.href = 'test.html'
           return
         }
-        if (hash === 'spelportaal' || hash === 'spel') setCurrentView('game-portal')
+        if (hash === 'spelportaal' || hash === 'spel' || hash === 'kaarten-home') setCurrentView('game-portal')
         else if (hash === 'spelregels') setCurrentView('game-rules')
-        else if (hash === 'theoriekaarten') setCurrentView('kaartenoverzicht')
+        else if (hash === 'theoriekaarten' || hash === 'kaarten') setCurrentView('kaartenoverzicht')
         else if (hash === 'print-shop') setCurrentView('print-shop')
         else if (hash === 'bestel-kaarten') setCurrentView('order-cards')
         else if (hash === 'over') setCurrentView('about')
@@ -176,8 +186,8 @@ function App() {
         window.location.href = 'tafel.html'
         return
       }
-      if (['spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(hash)) {
-        window.location.href = `spel.html#${hash}`
+      if (['kaarten', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(hash)) {
+        window.location.href = `kaarten.html#${hash}`
         return
       }
       if (hash === 'results') setCurrentView('results')
@@ -188,33 +198,31 @@ function App() {
     
     window.addEventListener('hashchange', handleHashChange)
     return () => window.removeEventListener('hashchange', handleHashChange)
-  }, [isSpelApp, isTafelApp, isTestApp, isHubApp])
+  }, [isKaartenApp, isTafelApp, isTestApp, isHubApp])
 
   useEffect(() => {
     let hash = ''
-    let isGameView = isSpelApp || isTafelApp
-    if (currentView === 'game-portal') { hash = 'spelportaal'; isGameView = true }
-    else if (currentView === 'tafelopstelling') { hash = isTafelApp ? '' : 'tafelopstelling'; isGameView = true }
-    else if (currentView === 'game-rules') { hash = 'spelregels'; isGameView = true }
-    else if (currentView === 'kaartenoverzicht') { hash = 'theoriekaarten'; isGameView = true }
-    else if (currentView === 'print-shop') { hash = 'print-shop'; isGameView = true }
-    else if (currentView === 'order-cards') { hash = 'bestel-kaarten'; isGameView = true }
-    else if (currentView === 'about') { hash = 'over'; isGameView = true }
+    if (currentView === 'game-portal') { hash = 'kaarten-home' }
+    else if (currentView === 'game-rules') { hash = 'spelregels' }
+    else if (currentView === 'kaartenoverzicht') { hash = 'theoriekaarten' }
+    else if (currentView === 'print-shop') { hash = 'print-shop' }
+    else if (currentView === 'order-cards') { hash = 'bestel-kaarten' }
+    else if (currentView === 'about') { hash = 'over' }
     
     // Dynamic document title
     if (isHubApp) {
       document.title = 'Schematherapie Suite - Startpagina'
     } else if (isTafelApp) {
-      document.title = 'Digitale Tafelopstelling - Schematherapie'
-    } else if (isSpelApp) {
-      document.title = 'Schematherapie Kaartenspel - Breng schema\'s en modi tot leven'
+      document.title = 'Schematherapie Tafelopstelling'
+    } else if (isKaartenApp) {
+      document.title = 'Schematherapie Kaarten'
     } else {
       document.title = 'Schematherapie Zelftest - YSQ-S3 & SMI Vragenlijsten'
     }
 
     const faviconLink = document.querySelector("link[rel~='icon']")
     if (faviconLink) {
-      faviconLink.href = (isSpelApp || isTafelApp) ? '/favicon-game.svg' : '/favicon.svg'
+      faviconLink.href = (isKaartenApp || isTafelApp) ? '/favicon-game.svg' : '/favicon.svg'
     }
     
     if (hash) {
@@ -226,7 +234,7 @@ function App() {
         window.history.pushState(null, '', window.location.pathname + window.location.search)
       }
     }
-  }, [currentView, isSpelApp, isTafelApp, isHubApp])
+  }, [currentView, isKaartenApp, isTafelApp, isHubApp])
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark'
@@ -288,8 +296,9 @@ function App() {
         <StartHub />
       )}
 
-      {!isHubApp && ['game-portal', 'tafelopstelling', 'kaartenoverzicht', 'game-rules', 'print-shop', 'home-print-export', 'order-cards', 'about'].includes(currentView) && (
-        <GameNavbar currentView={currentView} setCurrentView={setCurrentView} isTafelApp={isTafelApp} isSpelApp={isSpelApp} />
+      {/* Kaarten Navbar: uitsluitend voor de Kaarten pagina's */}
+      {isKaartenApp && ['game-portal', 'kaartenoverzicht', 'game-rules', 'print-shop', 'home-print-export', 'order-cards', 'about'].includes(currentView) && (
+        <GameNavbar currentView={currentView} setCurrentView={setCurrentView} />
       )}
 
       {currentView === 'home' && (
@@ -299,8 +308,7 @@ function App() {
           onViewResults={viewResults} 
           onImport={handleImport}
           onViewGamePortal={() => {
-            if (isSpelApp) setCurrentView('game-portal')
-            else window.location.href = 'spel.html'
+            window.location.href = 'kaarten.html'
           }}
         />
       )}
@@ -351,8 +359,7 @@ function App() {
       {currentView === 'tafelopstelling' && (
         <Tafelopstelling 
           onBack={() => {
-            if (isTafelApp) window.location.href = 'spel.html'
-            else setCurrentView('game-portal')
+            window.location.href = 'index.html'
           }} 
           completedTests={completedTests} 
           embedded={false} 
@@ -361,12 +368,8 @@ function App() {
       {currentView === 'game-portal' && (
         <GamePortal 
           onBack={() => {
-            if (isSpelApp) window.location.href = 'index.html'
-            else setCurrentView('home')
+            window.location.href = 'index.html'
           }} 
-          onViewTafelopstelling={() => {
-            window.location.href = 'tafel.html'
-          }}
           onViewKaartenOverzicht={() => setCurrentView('kaartenoverzicht')}
           onViewGameRules={() => setCurrentView('game-rules')}
           onViewPrintShop={() => setCurrentView('print-shop')}

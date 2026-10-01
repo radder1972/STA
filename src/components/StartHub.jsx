@@ -132,11 +132,11 @@ export default function StartHub() {
               boxShadow: '0 4px 15px rgba(107, 114, 128, 0.25)'
             }}
           >
-            Start de Vragenlijsten <ArrowRightIcon size={18} />
+            Open Vragenlijsten <ArrowRightIcon size={18} />
           </a>
         </div>
 
-        {/* Optie 2: Het Kaartenspel */}
+        {/* Optie 2: Kaarten */}
         <div className="glass-panel" style={{
           padding: '2.5rem',
           borderRadius: '24px',
@@ -170,16 +170,16 @@ export default function StartHub() {
               padding: '4px 12px',
               borderRadius: '9999px'
             }}>
-              Psycho-educatie
+              Theorie & Print
             </span>
           </div>
 
           <h2 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', color: 'var(--text-main)', fontWeight: '700' }}>
-            Het Kaartenspel
+            Kaarten
           </h2>
 
           <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', flex: '0 0 auto' }}>
-            Bestudeer alle theoriekaarten, interactieve werkvormen en spelregels. Ideaal om schema's en modi tastbaar en visueel te bespreken in de behandelkamer of supervisie.
+            Verken alle 37 theoriekaarten, speelse werkvormen en printopties. Ideaal om schema's en modi tastbaar en visueel te bestuderen of af te drukken.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginBottom: '2.5rem', flex: 1 }}>
@@ -198,7 +198,7 @@ export default function StartHub() {
           </div>
 
           <a 
-            href="spel.html" 
+            href="kaarten.html" 
             className="btn btn-gradient-game"
             style={{
               textDecoration: 'none',
@@ -214,7 +214,7 @@ export default function StartHub() {
               boxShadow: '0 4px 15px rgba(59, 130, 246, 0.25)'
             }}
           >
-            Open het Kaartenspel <ArrowRightIcon size={18} />
+            Open Kaarten <ArrowRightIcon size={18} />
           </a>
         </div>
 
@@ -257,7 +257,7 @@ export default function StartHub() {
           </div>
 
           <h2 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', color: 'var(--text-main)', fontWeight: '700' }}>
-            Digitale Tafelopstelling
+            Tafelopstelling
           </h2>
 
           <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', flex: '0 0 auto' }}>

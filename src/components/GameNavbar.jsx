@@ -1,32 +1,17 @@
 import React from 'react';
 import { HomeIcon, CardsIcon, FileTextIcon, PrinterIcon, ShoppingCartIcon, InfoIcon, PlayingCardsIcon, ClipboardIcon } from './Icons';
 
-export default function GameNavbar({ currentView, setCurrentView, isTafelApp = false, isSpelApp = false }) {
+export default function GameNavbar({ currentView, setCurrentView }) {
   const navItems = [
-    { id: 'game-portal', label: 'Home', icon: HomeIcon, hash: '' },
-    { id: 'tafelopstelling', label: 'Tafelopstelling', icon: PlayingCardsIcon },
-    { id: 'kaartenoverzicht', label: 'Spelkaarten', icon: CardsIcon, hash: 'theoriekaarten' },
-    { id: 'game-rules', label: 'Spelregels', icon: FileTextIcon, hash: 'spelregels' },
-    { id: 'print-shop', label: 'Printen', icon: PrinterIcon, hash: 'print-shop' },
-    { id: 'order-cards', label: 'Bestellen', icon: ShoppingCartIcon, hash: 'bestel-kaarten' },
-    { id: 'about', label: 'Over', icon: InfoIcon, hash: 'over' }
+    { id: 'game-portal', label: 'Home', icon: HomeIcon },
+    { id: 'kaartenoverzicht', label: 'Kaarten', icon: CardsIcon },
+    { id: 'game-rules', label: 'Spelregels', icon: FileTextIcon },
+    { id: 'print-shop', label: 'Printen', icon: PrinterIcon },
+    { id: 'order-cards', label: 'Bestellen', icon: ShoppingCartIcon },
+    { id: 'about', label: 'Over', icon: InfoIcon }
   ];
 
   const handleItemClick = (item) => {
-    if (item.id === 'tafelopstelling') {
-      if (!isTafelApp) {
-        window.location.href = 'tafel.html';
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-      return;
-    }
-
-    if (isTafelApp) {
-      window.location.href = item.hash ? `spel.html#${item.hash}` : 'spel.html';
-      return;
-    }
-
     setCurrentView(item.id);
   };
 
@@ -39,7 +24,10 @@ export default function GameNavbar({ currentView, setCurrentView, isTafelApp = f
       justifyContent: 'center',
       boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)',
       borderRadius: '16px',
-      marginBottom: '1rem'
+      marginBottom: '1.5rem',
+      width: '100%',
+      maxWidth: '1000px',
+      margin: '0 auto 1.5rem auto'
     }}>
       <div 
         className="hide-scrollbar"
@@ -48,7 +36,8 @@ export default function GameNavbar({ currentView, setCurrentView, isTafelApp = f
           gap: '0.5rem',
           overflowX: 'auto',
           maxWidth: '100%',
-          padding: '0.25rem'
+          padding: '0.25rem',
+          alignItems: 'center'
         }}
       >
         {navItems.map(item => {
@@ -91,7 +80,10 @@ export default function GameNavbar({ currentView, setCurrentView, isTafelApp = f
             </button>
           );
         })}
+
         <div style={{ width: '1px', background: 'var(--border-color)', margin: '0 4px', alignSelf: 'stretch' }} />
+
+        {/* Link naar Vragenlijsten */}
         <a
           href="test.html"
           style={{
@@ -108,11 +100,44 @@ export default function GameNavbar({ currentView, setCurrentView, isTafelApp = f
             whiteSpace: 'nowrap',
             fontSize: '0.9rem'
           }}
-          title="Naar de Vragenlijsten & Zelftest"
+          title="Naar de Vragenlijsten & Zelftest (YSQ-S3 & SMI)"
         >
           <ClipboardIcon size={18} />
-          <span className="game-nav-label">Zelftest</span>
+          <span className="game-nav-label">Vragenlijsten</span>
         </a>
+
+        {/* Link naar Tafelopstelling */}
+        <a
+          href="tafel.html"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.5rem 1rem',
+            borderRadius: '9999px',
+            border: '1px solid var(--border-color)',
+            background: 'transparent',
+            color: 'var(--text-muted)',
+            fontWeight: '500',
+            textDecoration: 'none',
+            whiteSpace: 'nowrap',
+            fontSize: '0.9rem'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.background = 'var(--hover-bg)';
+            e.currentTarget.style.color = 'var(--text-main)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.background = 'transparent';
+            e.currentTarget.style.color = 'var(--text-muted)';
+          }}
+          title="Naar de Digitale Tafelopstelling"
+        >
+          <PlayingCardsIcon size={18} />
+          <span className="game-nav-label">Tafelopstelling</span>
+        </a>
+
+        {/* Link naar Startpagina */}
         <a
           href="index.html"
           style={{
@@ -128,6 +153,14 @@ export default function GameNavbar({ currentView, setCurrentView, isTafelApp = f
             textDecoration: 'none',
             whiteSpace: 'nowrap',
             fontSize: '0.9rem'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.background = 'var(--hover-bg)';
+            e.currentTarget.style.color = 'var(--text-main)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.background = 'transparent';
+            e.currentTarget.style.color = 'var(--text-muted)';
           }}
           title="Naar de Startpagina"
         >

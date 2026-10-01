@@ -275,25 +275,25 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
 
       <div style={{ marginTop: '4rem', textAlign: 'center', color: 'var(--text-main)', maxWidth: '600px', margin: '4rem auto 2rem auto', padding: '1rem', borderTop: '1px solid var(--border-color)' }}>
         <p className="text-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '1.05rem' }}>
-          <PlayingCardsIcon size={24} useGradient={true} /> De Schematherapie Kaartenset
+          <CardsIcon size={24} useGradient={true} /> Kaarten & Tafelopstelling
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
-          Gebruik deze visuele toolset voor psycho-educatie in de spreekkamer, of zet het in als interactieve studietool voor professionals in opleiding.
+          Gebruik deze visuele toepassingen voor psycho-educatie in de spreekkamer, of zet ze in als interactieve studietool voor professionals in opleiding.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
           <a 
-            href="spel.html"
+            href="kaarten.html"
             className="btn btn-outline" 
             style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px', fontSize: '1rem', textDecoration: 'none' }}
           >
-            <CardsIcon size={18} /> Het Kaartenspel
+            <CardsIcon size={18} /> Kaarten
           </a>
           <a 
             href="tafel.html"
-            className="btn btn-gradient"
+            className="btn btn-gradient" 
             style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px', fontSize: '1rem', textDecoration: 'none', color: 'white' }}
           >
-            <PlayingCardsIcon size={18} useGradient={false} /> Digitale Tafelopstelling
+            <PlayingCardsIcon size={18} useGradient={false} /> Tafelopstelling
           </a>
         </div>
       </div>
