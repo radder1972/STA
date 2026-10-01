@@ -149,7 +149,7 @@ const SchemaCard = ({
         
         {/* Front */}
         <div className="card-face-front schema-img playing-card" onClick={handleFlip} style={{ padding: '12px', boxSizing: 'border-box', cursor: flipOnClick || onClick ? 'pointer' : 'default', display: 'flex', flexDirection: 'column', backgroundColor: 'white', backgroundImage: `radial-gradient(circle at center, white 20%, ${color}40 120%)` }}>
-          <CardInnerBorder color={color} />
+          <CardInnerBorder color={color} outerColor="white" />
           
           {/* Header (Badge) */}
           {type && getCardTypeLetter(type) && (
