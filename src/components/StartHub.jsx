@@ -344,7 +344,7 @@ export default function StartHub() {
           <div>
             <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.05rem' }}>Gevalideerde Theorie</h4>
             <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-              Gebaseerd op het wetenschappelijk onderbouwde schematherapie model van Jeffrey Young en de richtlijnen van de VSt / ISST.
+              Gebaseerd op het klassieke, wetenschappelijk gevalideerde schematherapie model van Jeffrey Young (18 schema's, 14 modi).
             </p>
           </div>
         </div>
