@@ -164,8 +164,8 @@ export default function KaartenOverzicht({ onBack }) {
                 style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}
               >×</button>
               {selectedCard.isVst && (
-                <div style={{ marginBottom: '0.5rem' }}>
-                  <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '3px 10px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block' }}>
+                <div style={{ marginBottom: '1.25rem' }}>
+                  <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block' }}>
                     Theorie-uitbreiding
                   </span>
                 </div>
@@ -290,11 +290,11 @@ export default function KaartenOverzicht({ onBack }) {
 
             {vstBasisbehoeftenData.length > 0 && (
               <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
-                <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+                <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
+                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block', marginBottom: '1.1rem' }}>
                     Theorie-uitbreiding
                   </span>
-                  <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
+                  <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', margin: '0 0 0.4rem 0' }}>
                     Aanvullende Basisbehoeften ({vstBasisbehoeftenData.length})
                   </h3>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '650px', margin: '0 auto' }}>
@@ -310,10 +310,10 @@ export default function KaartenOverzicht({ onBack }) {
         {filter === 'vst' && (
           <div>
             <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-              <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+              <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block', marginBottom: '1.1rem' }}>
                 Theorie-uitbreiding
               </span>
-              <h2 className="box-heading" style={{ justifyContent: 'center', marginTop: '0.6rem', marginBottom: '0.5rem' }}>
+              <h2 className="box-heading" style={{ justifyContent: 'center', margin: '0 0 0.5rem 0' }}>
                 Theorie Uitbreidingsset ({vstBasisbehoeftenData.length + vstSchemaData.length + vstCopingData.length + vstModiData.length})
               </h2>
               <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '750px', margin: '0 auto', lineHeight: '1.6' }}>
@@ -383,11 +383,11 @@ export default function KaartenOverzicht({ onBack }) {
 
             {vstSchemaData.length > 0 && (
               <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
-                <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+                <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
+                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block', marginBottom: '1.1rem' }}>
                     Theorie-uitbreiding
                   </span>
-                  <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
+                  <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', margin: '0 0 0.4rem 0' }}>
                     Aanvullende Schema's ({vstSchemaData.length})
                   </h3>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '650px', margin: '0 auto' }}>
@@ -410,11 +410,11 @@ export default function KaartenOverzicht({ onBack }) {
 
             {vstCopingData.length > 0 && (
               <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
-                <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+                <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
+                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block', marginBottom: '1.1rem' }}>
                     Theorie-uitbreiding
                   </span>
-                  <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
+                  <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', margin: '0 0 0.4rem 0' }}>
                     Aanvullende Copingkaart: Omkering ({vstCopingData.length})
                   </h3>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '650px', margin: '0 auto' }}>
@@ -437,11 +437,11 @@ export default function KaartenOverzicht({ onBack }) {
 
             {vstModiData.length > 0 && (
               <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
-                <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+                <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
+                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block', marginBottom: '1.1rem' }}>
                     Theorie-uitbreiding
                   </span>
-                  <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
+                  <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', margin: '0 0 0.4rem 0' }}>
                     Aanvullende & Forensische Modi ({vstModiData.length})
                   </h3>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '650px', margin: '0 auto' }}>
