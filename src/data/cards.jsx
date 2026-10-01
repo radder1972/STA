@@ -257,6 +257,50 @@ export const formatCardTitle = (title) => {
     );
   }
 
+  // 8. Als er 'en' in de kop staat: ALTIJD over twee regels
+  if (/\ben\b/i.test(title)) {
+    if (title === 'Goedkeuring en erkenning zoeken') {
+      return (
+        <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+          <span style={{ whiteSpace: 'nowrap' }}>Goedkeuring en</span>
+          <br />
+          <span style={{ whiteSpace: 'nowrap' }}>erkenning zoeken</span>
+        </span>
+      );
+    }
+    if (title === 'Kwetsbaarheid voor ziekte en gevaar') {
+      return (
+        <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+          <span style={{ whiteSpace: 'nowrap' }}>Kwetsbaarheid voor</span>
+          <br />
+          <span style={{ whiteSpace: 'nowrap' }}>ziekte en gevaar</span>
+        </span>
+      );
+    }
+    if (title.includes('- en')) {
+      const parts = title.split(/- en\s*/i);
+      return (
+        <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+          <span style={{ whiteSpace: 'nowrap' }}>{parts[0]}- en</span>
+          <br />
+          <span style={{ whiteSpace: 'nowrap' }}>{parts[1]}</span>
+        </span>
+      );
+    }
+    const enIndex = title.toLowerCase().indexOf(' en ');
+    if (enIndex !== -1) {
+      const part1 = title.substring(0, enIndex + 3).trim();
+      const part2 = title.substring(enIndex + 4).trim();
+      return (
+        <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+          <span style={{ whiteSpace: 'nowrap' }}>{part1}</span>
+          <br />
+          <span style={{ whiteSpace: 'nowrap' }}>{part2}</span>
+        </span>
+      );
+    }
+  }
+
   const words = title.trim().split(/\s+/);
   if (words.length === 2) {
     return (
