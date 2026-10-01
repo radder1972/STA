@@ -205,7 +205,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
           <PrinterIcon size={40} useGameGradient={true} /> Printen
         </h1>
-        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.25rem', lineHeight: '1.4' }}>Druk je eigen kaarten af</h2>
+        <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>Druk je eigen kaarten af</h2>
       </div>
 
       {/* Mode Navigation Tabs */}

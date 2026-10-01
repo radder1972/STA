@@ -53,7 +53,7 @@ export default function Results({ completedTests, onRestart, onBack, onUpdateAns
     <div className="combined-results-container">
       <div className="header" style={{ marginTop: '1rem' }}>
         <h1 className="text-gradient">Schema Therapy Questionnaires</h1>
-        <p>Rapportage & Analyse</p>
+        <p style={{ color: '#0ea5e9', fontWeight: '600', fontSize: '1.25rem', marginTop: '0.5rem' }}>Rapportage & Analyse</p>
       </div>
 
       {/* 1. Top Navigation (Actions) */}

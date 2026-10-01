@@ -106,7 +106,7 @@ export default function GameRules({ onBack }) {
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
           <FileTextIcon size={40} useGameGradient={true} /> Werkvormen & Spelregels
         </h1>
-        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.25rem', lineHeight: '1.4' }}>Zet de theorie in actie met deze speelse gespreksvorm (bonus)</h2>
+        <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>Zet de theorie in actie met deze speelse gespreksvorm (bonus)</h2>
       </div>
 
       <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>

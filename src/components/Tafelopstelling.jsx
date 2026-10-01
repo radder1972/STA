@@ -408,7 +408,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             <h1 className="text-gradient-tafel" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
               <PlayingCardsIcon size={40} useTafelGradient={true} /> Digitale Tafelopstelling
             </h1>
-            <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.25rem', lineHeight: '1.4' }}>
+            <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>
               Breng schema's, modi en behoeften interactief tot leven op tafel
             </h2>
           </div>

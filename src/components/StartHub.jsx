@@ -38,7 +38,7 @@ export default function StartHub() {
         <h1 className="text-gradient" style={{ fontSize: '3rem', fontWeight: '800', marginBottom: '1rem', lineHeight: '1.2' }}>
           Schematherapie Suite
         </h1>
-        <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', lineHeight: '1.6', margin: '0 auto' }}>
+        <p style={{ fontSize: '1.2rem', color: '#0ea5e9', fontWeight: '600', lineHeight: '1.6', margin: '0 auto' }}>
           Drie complementaire digitale toepassingen voor cliënten, therapeuten en professionals in opleiding. 
           Kies hieronder de gewenste werkvorm om direct aan de slag te gaan.
         </p>

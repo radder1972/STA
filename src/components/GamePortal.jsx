@@ -14,7 +14,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
           <CardsIcon size={40} useGameGradient={true} /> Schematherapie Kaarten
         </h1>
-        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.25rem', lineHeight: '1.4' }}>
+        <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>
           Verken alle theoriekaarten, werkvormen en printopties
         </h2>
       </div>
