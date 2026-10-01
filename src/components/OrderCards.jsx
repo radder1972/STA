@@ -190,7 +190,7 @@ export default function OrderCards({ onBack }) {
       price: 49.95,
       oldPrice: 56.90,
       badge: 'Aanbevolen',
-      badgeColor: '#2563eb',
+      badgeColor: '#0ea5e9',
       specs: [
         'Alle 55 theoriekaarten in één complete set voor in de praktijk',
         '43 klassieke theoriekaarten + 12 aanvullende theoriekaarten (Arntz et al., 2021)',
@@ -349,11 +349,11 @@ export default function OrderCards({ onBack }) {
                     minHeight: '116px',
                     boxSizing: 'border-box',
                     borderRadius: '14px',
-                    border: isSelected ? '2px solid #3b82f6' : '1px solid #e2e8f0',
-                    background: isSelected ? '#f0f7ff' : '#ffffff',
+                    border: isSelected ? '2px solid #0ea5e9' : '1px solid #e2e8f0',
+                    background: isSelected ? '#f0f9ff' : '#ffffff',
                     cursor: 'pointer',
                     transition: 'all 0.15s ease',
-                    boxShadow: isSelected ? '0 4px 14px rgba(59, 130, 246, 0.12)' : 'none'
+                    boxShadow: isSelected ? '0 4px 14px rgba(14, 165, 233, 0.18)' : 'none'
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: 0, flex: 1 }}>
@@ -361,7 +361,7 @@ export default function OrderCards({ onBack }) {
                       width: '20px',
                       height: '20px',
                       borderRadius: '50%',
-                      border: isSelected ? '6px solid #3b82f6' : '2px solid #cbd5e1',
+                      border: isSelected ? '6px solid #0ea5e9' : '2px solid #cbd5e1',
                       background: 'white',
                       boxSizing: 'border-box',
                       flexShrink: 0
@@ -369,7 +369,7 @@ export default function OrderCards({ onBack }) {
                     <div style={{ minWidth: 0, flex: 1, paddingRight: '0.75rem' }}>
                       {/* Regel 1: Titel + Badge */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', lineHeight: '1.3', minHeight: '24px' }}>
-                        <span style={{ fontWeight: '700', fontSize: '1.05rem', color: isSelected ? '#1e40af' : '#1e293b' }}>
+                        <span style={{ fontWeight: '700', fontSize: '1.05rem', color: '#0f172a' }}>
                           {variant.title}
                         </span>
                         {variant.badge && (
@@ -393,7 +393,7 @@ export default function OrderCards({ onBack }) {
                       {/* Regel 2: Aantal kaarten (altijd op 2e regel en vetgedrukt) */}
                       <div style={{
                         fontSize: '0.85rem',
-                        color: isSelected ? '#1e40af' : '#334155',
+                        color: '#334155',
                         fontWeight: '700',
                         marginTop: '3px',
                         marginBottom: '3px',
@@ -410,7 +410,7 @@ export default function OrderCards({ onBack }) {
                   </div>
 
                   <div style={{ textAlign: 'right', flexShrink: 0, paddingLeft: '0.75rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' }}>
-                    <div style={{ fontSize: '1.35rem', fontWeight: '800', color: isSelected ? '#2563eb' : '#1e293b', lineHeight: '1.2' }}>
+                    <div style={{ fontSize: '1.35rem', fontWeight: '800', color: '#0f172a', lineHeight: '1.2' }}>
                       € {variant.price.toFixed(2).replace('.', ',')}
                     </div>
                     {variant.oldPrice ? (
@@ -527,7 +527,7 @@ export default function OrderCards({ onBack }) {
                       <span style={{ fontSize: '0.82rem', color: '#64748b', display: 'block', marginBottom: '4px', fontWeight: '500' }}>
                         Totaalbedrag
                       </span>
-                      <span style={{ fontSize: '1.65rem', fontWeight: '800', color: '#3b82f6', lineHeight: '1' }}>
+                      <span style={{ fontSize: '1.65rem', fontWeight: '800', color: '#0f172a', lineHeight: '1' }}>
                         € {totalPrice}
                       </span>
                     </div>
