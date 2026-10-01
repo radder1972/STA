@@ -40,6 +40,14 @@ export const verdiepingData = {
       "Schrijf je positieve eigenschappen op (vraag eventueel anderen hierom) en lees ze vaak door."
     ]
   },
+  'Sociaal isolement / Vervreemding': {
+    casus: "Op een verjaardagsfeestje staat Karin in een hoekje. Ze kijkt naar de lachende groepjes en denkt: 'Ik hoor nergens bij, ik ben anders dan de rest.' Ze voelt zich een buitenstaander en vertrekt vroeg.",
+    tips: [
+      "Zoek naar overeenkomsten in plaats van verschillen wanneer je in een groep bent.",
+      "Besef dat de overtuiging 'anders te zijn' je gedrag beïnvloedt, waardoor je je onbewust meer isoleert.",
+      "Stel jezelf ten doel om bij sociale gelegenheden ten minste met één persoon een praatje te maken."
+    ]
+  },
   'Sociale isolatie / Vervreemding': {
     casus: "Op een verjaardagsfeestje staat Karin in een hoekje. Ze kijkt naar de lachende groepjes en denkt: 'Ik hoor nergens bij, ik ben anders dan de rest.' Ze voelt zich een buitenstaander en vertrekt vroeg.",
     tips: [

@@ -25,7 +25,7 @@ const smiModesMap = {
 };
 
 const ysqNamesMap = {
-  'Abandonment': 'Verlating', 'Mistrust': 'Wantrouwen', 'Defectiveness/unlovability': 'Tekortschieten', 'Emotional deprivation': 'Emotionele verwaarlozing', 'Social isolation/Alienation': 'Sociale isolatie',
+  'Abandonment': 'Verlating', 'Mistrust': 'Wantrouwen', 'Defectiveness/unlovability': 'Tekortschieten', 'Emotional deprivation': 'Emotionele verwaarlozing', 'Social isolation/Alienation': 'Sociaal isolement',
   'Practical incompetence/Dependence': 'Afhankelijkheid', 'Vulnerability to harm/illness': 'Kwetsbaarheid', 'Enmeshment': 'Kluwen', 'Failure to achieve': 'Mislukken',
   'Insufficient self-control/self-discipline': 'Onvoldoende zelfcontrole', 'Entitlement/Superiority': 'Veeleisendheid',
   'Subjugation': 'Onderwerping', 'Self-sacrifice': 'Zelfopoffering', 'Admiration/Recognition-seeking': 'Erkenning zoeken',
@@ -44,7 +44,7 @@ const schemaToModesHypothesis = {
   'Self-punitiveness': { modes: ['so'], desc: 'Bestraffendheid correspondeert vrijwel 1-op-1 met de aanwezigheid van de Straffende Oudermodus.' },
   'Failure to achieve': { modes: ['ob', 'vo'], desc: 'De angst om te mislukken activeert vaak de Veeleisende Ouder (die falen afstraft) en leidt dan tot de Onthechte Beschermer (opgeven uit zelfbescherming).' },
   'Vulnerability to harm/illness': { modes: ['wk', 'wi'], desc: 'Kwetsbaarheid leidt vaak tot obsessieve waakzaamheid (Overcontroleerder) of vastklampen aan anderen (Willoze Inschikkelijke).' },
-  'Social isolation/Alienation': { modes: ['ob', 'oz'], desc: 'Sociale isolatie wordt over het algemeen in stand gehouden door de Onthechte Beschermer of Zelfsusser.' },
+  'Social isolation/Alienation': { modes: ['ob', 'oz'], desc: 'Sociaal isolement wordt over het algemeen in stand gehouden door de Onthechte Beschermer of Zelfsusser.' },
   'Practical incompetence/Dependence': { modes: ['wi', 'wk'], desc: 'Bij afhankelijkheid stelt men zich vaak ondergeschikt of hulpeloos op (Willoze Inschikkelijke), of compenseert men juist met krampachtige overcontrole.' },
   'Enmeshment': { modes: ['wi', 'oz'], desc: 'Een kluwen-schema leidt vaak tot grenzeloze aanpassing aan de ander (Willoze Inschikkelijke) of dissociatie via zelfsus-gedrag (Zelfsusser).' },
   'Self-sacrifice': { modes: ['wi', 'bk'], desc: 'Zelfopoffering is de brandstof van de Willoze Inschikkelijke modus. Vaak leidt het op de lange termijn tot wrok in de vorm van het Boze Kind.' },

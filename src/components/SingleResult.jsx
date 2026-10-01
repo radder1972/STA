@@ -39,7 +39,7 @@ const ysqSchemaNamesMap = {
   'Mistrust': 'Wantrouwen / Misbruik',
   'Defectiveness/unlovability': 'Tekortschieten / Schaamte',
   'Emotional deprivation': 'Emotionele verwaarlozing',
-  'Social isolation/Alienation': 'Sociale isolatie / Vervreemding',
+  'Social isolation/Alienation': 'Sociaal isolement / Vervreemding',
   'Practical incompetence/Dependence': 'Afhankelijkheid / Incompetentie',
   'Vulnerability to harm/illness': 'Kwetsbaarheid voor ziekte en gevaar',
   'Enmeshment': 'Kluwen / Onderontwikkeld zelf',

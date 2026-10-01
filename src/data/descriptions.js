@@ -5,6 +5,7 @@ export const schemaDescriptions = {
   'Emotionele verwaarlozing': 'De verwachting dat jouw behoefte aan emotionele steun (zoals zorg, empathie, en bescherming) nooit voldoende vervuld zal worden.',
   'Emotioneel tekort': 'De verwachting dat jouw behoefte aan emotionele steun (zoals zorg, empathie, en bescherming) nooit voldoende vervuld zal worden.',
   'Tekortschieten / Schaamte': 'Het gevoel innerlijk gebrekkig, slecht, of minderwaardig te zijn, en de angst dat anderen dit zullen ontdekken.',
+  'Sociaal isolement / Vervreemding': 'Het gevoel geïsoleerd te zijn van de rest van de wereld, anders te zijn dan anderen, en nergens echt bij te horen.',
   'Sociale isolatie / Vervreemding': 'Het gevoel geïsoleerd te zijn van de rest van de wereld, anders te zijn dan anderen, en nergens echt bij te horen.',
   
   'Afhankelijkheid / Incompetentie': 'Het geloof dat je niet in staat bent om je dagelijkse verantwoordelijkheden op een competente manier uit te voeren zonder aanzienlijke hulp van anderen.',
