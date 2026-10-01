@@ -221,8 +221,9 @@ export default function Tafelopstelling({ onBack, completedTests, embedded = fal
 
     setIsPredicting(true);
     try {
-      const topSchemas = completedTests?.ysq ? calculateTopScores(completedTests.ysq, ysqScoring, ysqSchemaNamesMap).join(', ') : 'Onbekend';
-      const topModes = completedTests?.smi ? calculateTopScores(completedTests.smi, smiScoring, smiModesMap).join(', ') : 'Onbekend';
+      const hasProfile = !!(completedTests?.ysq || completedTests?.smi);
+      const topSchemas = completedTests?.ysq ? calculateTopScores(completedTests.ysq, ysqScoring, ysqSchemaNamesMap).join(', ') : '';
+      const topModes = completedTests?.smi ? calculateTopScores(completedTests.smi, smiScoring, smiModesMap).join(', ') : '';
 
       const apiKey = localStorage.getItem('gemini_api_key') || DEFAULT_KEY;
       const genAI = new GoogleGenerativeAI(apiKey);
@@ -234,12 +235,14 @@ export default function Tafelopstelling({ onBack, completedTests, embedded = fal
 
       const prompt = `Je bent een expert in schematherapie. De cliënt heeft de volgende situatie/trigger meegemaakt:
 "${situationText}"
-
+${hasProfile ? `
 Profiel van deze cliënt (hoogst scorende schema's en modi uit hun test):
 Top Schema's: ${topSchemas}
 Top Modi: ${topModes}
 
-Kies de best passende Modus, Schema en Onvervulde Basisbehoefte voor deze situatie, bij voorkeur rekening houdend met hun profiel (kies de schema's/modi uit hun profiel als ze passen bij de situatie, maar wijk af als de situatie overduidelijk om een andere kaart vraagt).
+Kies de best passende Modus, Schema en Onvervulde Basisbehoefte voor deze situatie, bij voorkeur rekening houdend met hun profiel (kies de schema's/modi uit hun profiel als ze passen bij de situatie, maar wijk af als de situatie overduidelijk om een andere kaart vraagt).` : `
+Kies de best passende Modus, Schema en Onvervulde Basisbehoefte voor deze specifieke situatie.`}
+
 Je MOET kiezen uit deze exacte lijsten:
 Beschikbare Modi: ${availableModes}
 Beschikbare Schema's: ${availableSchemas}
@@ -401,7 +404,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           
           <div className="no-print" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
             <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <ArrowLeftIcon size={18} /> Terug naar Start
+              <ArrowLeftIcon size={18} /> Terug naar Menu
             </button>
             <button className="btn btn-outline" onClick={handlePrintTafel} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               Tafel Printen
@@ -432,7 +435,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="2" /></div>
-              <div><strong>Leg de kaarten op tafel:</strong> Welke kaarten horen bij deze situatie? Wat deed je precies (Mijn Reactie / Modus)? Welke oude overtuiging werd geraakt (Geraakt Schema)? En welke fundamentele behoefte kwam in de knel (Onvervulde Behoefte)? Je kunt deze kaarten handmatig selecteren, óf – en dat is wel zo makkelijk – <strong>automatisch laten voorspellen</strong> door de app op basis van jouw persoonlijke testresultaten.</div>
+              <div><strong>Leg de kaarten op tafel:</strong> Welke kaarten horen bij deze situatie? Wat deed je precies (Mijn Reactie / Modus)? Welke oude overtuiging werd geraakt (Geraakt Schema)? En welke fundamentele behoefte kwam in de knel (Onvervulde Behoefte)? Je kunt deze kaarten handmatig selecteren, óf – en dat is wel zo makkelijk – <strong>automatisch laten voorspellen</strong> door de app op basis van de ingevoerde situatie.</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="3" /></div>
@@ -484,18 +487,18 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-color)', padding: '2rem', borderRadius: '12px', border: '1px solid var(--border-color)', boxSizing: 'border-box' }}>
                   <h4 className="text-gradient" style={{ margin: '0 0 1rem 0', fontSize: '1.1rem' }}>Automatisch voorspellen</h4>
                   <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '1.5rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '650px' }}>
-                  Laat de kaarten automatisch op tafel leggen op basis van de beschreven situatie. Jouw persoonlijke scores (schema's en modi) vormen hierbij de basis voor een passend voorstel.
-                </p>
+                    Laat de kaarten automatisch op tafel leggen op basis van de beschreven situatie. De AI kiest op basis van jouw trigger de best passende combinatie van kaarten.
+                  </p>
 
-                <button 
-                  className="btn btn-gradient" 
-                  onClick={predictCards} 
-                  disabled={isPredicting || !situationText}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.1rem', padding: '1rem 2rem', width: '100%', justifyContent: 'center' }}
-                  title="Voorspel de kaarten op basis van je situatie en testresultaten"
-                >
-                  {isPredicting ? 'Bezig...' : <><WandIcon size={24} color="currentColor" /> Voorspel kaarten</>}
-                </button>
+                  <button 
+                    className="btn btn-gradient" 
+                    onClick={predictCards} 
+                    disabled={isPredicting || !situationText}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.1rem', padding: '1rem 2rem', width: '100%', justifyContent: 'center' }}
+                    title="Voorspel de kaarten op basis van de ingevoerde situatie"
+                  >
+                    {isPredicting ? 'Bezig...' : <><WandIcon size={24} color="currentColor" /> Voorspel kaarten</>}
+                  </button>
                 </div>
               </div>
             </div>

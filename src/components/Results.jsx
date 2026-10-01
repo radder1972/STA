@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SingleResult from './SingleResult'
 import CombinedAnalysis from './CombinedAnalysis'
-import Tafelopstelling from './Tafelopstelling'
 import { DownloadIcon, RefreshIcon, ArrowLeftIcon } from './Icons'
 import ysqData from '../data/ysq-s3.json'
 import smiData from '../data/smi.json'
@@ -101,13 +100,6 @@ export default function Results({ completedTests, onRestart, onBack, onUpdateAns
             >
               Analyse
             </button>
-            <button 
-              className={`btn ${activeTab === 'tafelopstelling' ? 'btn-gradient' : 'btn-outline'}`}
-              onClick={() => setActiveTab('tafelopstelling')}
-              style={{ margin: 0, border: 'none' }}
-            >
-              Tafelopstelling
-            </button>
           </div>
         </div>
       )}
@@ -131,10 +123,6 @@ export default function Results({ completedTests, onRestart, onBack, onUpdateAns
             <CombinedAnalysis ysqAnswers={completedTests.ysq} smiAnswers={completedTests.smi} />
           </div>
         )}
-        
-        <div className={`tafelopstelling-wrapper ${activeTab === 'tafelopstelling' ? 'print-visible' : 'print-none'}`} style={{ display: activeTab === 'tafelopstelling' ? 'block' : 'none', pageBreakBefore: 'always', marginTop: activeTab === 'tafelopstelling' ? '0' : '4rem'}}>
-          <Tafelopstelling onBack={onBack} completedTests={completedTests} embedded={true} />
-        </div>
       </div>
     </div>
   )

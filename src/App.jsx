@@ -33,15 +33,20 @@ function App() {
 
   const [currentView, setCurrentView] = useState(() => {
     const hash = window.location.hash.replace('#', '')
+    if (!isSpelApp) {
+      if (['tafelopstelling', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(hash)) {
+        window.location.href = `spel.html#${hash}`
+        return 'home'
+      }
+      return 'home'
+    }
     if (hash === 'tafelopstelling') return 'tafelopstelling'
     if (hash === 'spelregels') return 'game-rules'
     if (hash === 'theoriekaarten') return 'kaartenoverzicht'
     if (hash === 'print-shop') return 'print-shop'
     if (hash === 'bestel-kaarten') return 'order-cards'
     if (hash === 'over') return 'about'
-    if (hash === 'spelportaal' || hash === 'spel') return 'game-portal'
-    if (isSpelApp) return 'game-portal'
-    return 'home'
+    return 'game-portal'
   })
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState(null)
   const [completedTests, setCompletedTests] = useState({ ysq: null, smi: null })
@@ -52,6 +57,17 @@ function App() {
     
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '')
+      if (!isSpelApp) {
+        if (['tafelopstelling', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(hash)) {
+          window.location.href = `spel.html#${hash}`
+          return
+        }
+        if (hash === 'results') setCurrentView('results')
+        else if (hash === 'basisbehoeften') setCurrentView('basisbehoeften')
+        else if (hash === 'modicategorieen') setCurrentView('modicategorieen')
+        else setCurrentView('home')
+        return
+      }
       if (hash === 'tafelopstelling') setCurrentView('tafelopstelling')
       else if (hash === 'spelportaal' || hash === 'spel') setCurrentView('game-portal')
       else if (hash === 'spelregels') setCurrentView('game-rules')
@@ -59,7 +75,7 @@ function App() {
       else if (hash === 'print-shop') setCurrentView('print-shop')
       else if (hash === 'bestel-kaarten') setCurrentView('order-cards')
       else if (hash === 'over') setCurrentView('about')
-      else setCurrentView(isSpelApp ? 'game-portal' : 'home')
+      else setCurrentView('game-portal')
     }
     
     window.addEventListener('hashchange', handleHashChange)
