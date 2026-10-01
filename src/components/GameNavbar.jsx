@@ -93,7 +93,7 @@ export default function GameNavbar({ currentView, setCurrentView, isTafelApp = f
         })}
         <div style={{ width: '1px', background: 'var(--border-color)', margin: '0 4px', alignSelf: 'stretch' }} />
         <a
-          href="index.html"
+          href="test.html"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -112,6 +112,27 @@ export default function GameNavbar({ currentView, setCurrentView, isTafelApp = f
         >
           <ClipboardIcon size={18} />
           <span className="game-nav-label">Zelftest</span>
+        </a>
+        <a
+          href="index.html"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.5rem 1rem',
+            borderRadius: '9999px',
+            border: '1px solid var(--border-color)',
+            background: 'transparent',
+            color: 'var(--text-muted)',
+            fontWeight: '500',
+            textDecoration: 'none',
+            whiteSpace: 'nowrap',
+            fontSize: '0.9rem'
+          }}
+          title="Naar de Startpagina"
+        >
+          <HomeIcon size={18} />
+          <span className="game-nav-label">Startpagina</span>
         </a>
       </div>
     </div>

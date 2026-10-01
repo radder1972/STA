@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon } from './Icons';
+import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon } from './Icons';
 import { Printer } from 'lucide-react';
 import { schemaImages, modeImages } from '../utils/images';
 import ysqScoring from '../data/ysq-scoring.json';
@@ -409,8 +409,11 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
           <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
             <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
+              <a href="index.html" className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                <ArrowLeftIcon size={18} /> Startpagina
+              </a>
               <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
-                <ArrowLeftIcon size={18} /> Naar het Kaartenspel
+                <CardsIcon size={18} /> Kaartenspel
               </button>
               <button className="btn btn-gradient-game" onClick={handlePrintTafel} style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
                 <Printer size={18} /> Tafel Printen

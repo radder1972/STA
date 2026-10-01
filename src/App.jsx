@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { SunIcon, MoonIcon } from './components/Icons'
+import StartHub from './components/StartHub'
 import Home from './components/Home'
 import Questionnaire from './components/Questionnaire'
 import Results from './components/Results'
@@ -26,6 +27,11 @@ window.addEventListener('unhandledrejection', function(event) {
 });
 
 function App() {
+  const isTestApp = typeof window !== 'undefined' && (
+    window.location.pathname.endsWith('test.html') || 
+    window.location.pathname.includes('/test')
+  );
+
   const isTafelApp = typeof window !== 'undefined' && (
     window.location.pathname.endsWith('tafel.html') || 
     window.location.pathname.endsWith('tafelopstelling.html') ||
@@ -37,18 +43,43 @@ function App() {
     window.location.pathname.includes('/spel')
   );
 
+  const isHubApp = !isTestApp && !isTafelApp && !isSpelApp;
+
   const [currentView, setCurrentView] = useState(() => {
     const hash = window.location.hash.replace('#', '')
+    if (isHubApp) {
+      if (hash === 'test' || hash === 'zelftest') {
+        window.location.href = 'test.html'
+        return 'hub'
+      }
+      if (['spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(hash)) {
+        window.location.href = `spel.html#${hash}`
+        return 'hub'
+      }
+      if (hash === 'tafelopstelling' || hash === 'tafel') {
+        window.location.href = 'tafel.html'
+        return 'hub'
+      }
+      return 'hub'
+    }
     if (isTafelApp) {
       if (['spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over'].includes(hash)) {
         window.location.href = `spel.html#${hash}`
         return 'tafelopstelling'
       }
+      if (hash === 'home' || hash === 'hub') {
+        window.location.href = 'index.html'
+        return 'tafelopstelling'
+      }
       return 'tafelopstelling'
     }
     if (isSpelApp) {
-      if (hash === 'tafelopstelling') {
+      if (hash === 'tafelopstelling' || hash === 'tafel') {
         window.location.href = 'tafel.html'
+        return 'game-portal'
+      }
+      if (hash === 'home' || hash === 'hub') {
+        window.location.href = 'index.html'
         return 'game-portal'
       }
       if (hash === 'spelregels') return 'game-rules'
@@ -58,8 +89,12 @@ function App() {
       if (hash === 'over') return 'about'
       return 'game-portal'
     }
-    // Test app (index.html)
-    if (hash === 'tafelopstelling') {
+    // isTestApp (test.html)
+    if (hash === 'hub' || hash === 'home-hub') {
+      window.location.href = 'index.html'
+      return 'home'
+    }
+    if (hash === 'tafelopstelling' || hash === 'tafel') {
       window.location.href = 'tafel.html'
       return 'home'
     }
@@ -78,21 +113,49 @@ function App() {
     
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '')
+      if (isHubApp) {
+        if (hash === 'test' || hash === 'zelftest') {
+          window.location.href = 'test.html'
+          return
+        }
+        if (['spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(hash)) {
+          window.location.href = `spel.html#${hash}`
+          return
+        }
+        if (hash === 'tafelopstelling' || hash === 'tafel') {
+          window.location.href = 'tafel.html'
+          return
+        }
+        setCurrentView('hub')
+        return
+      }
       if (isTafelApp) {
         if (['spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over'].includes(hash)) {
           window.location.href = `spel.html#${hash}`
           return
         }
-        if (hash === 'home' || hash === 'zelftest') {
+        if (hash === 'home' || hash === 'hub') {
           window.location.href = 'index.html'
+          return
+        }
+        if (hash === 'zelftest' || hash === 'test') {
+          window.location.href = 'test.html'
           return
         }
         setCurrentView('tafelopstelling')
         return
       }
       if (isSpelApp) {
-        if (hash === 'tafelopstelling') {
+        if (hash === 'tafelopstelling' || hash === 'tafel') {
           window.location.href = 'tafel.html'
+          return
+        }
+        if (hash === 'home' || hash === 'hub') {
+          window.location.href = 'index.html'
+          return
+        }
+        if (hash === 'zelftest' || hash === 'test') {
+          window.location.href = 'test.html'
           return
         }
         if (hash === 'spelportaal' || hash === 'spel') setCurrentView('game-portal')
@@ -104,8 +167,12 @@ function App() {
         else setCurrentView('game-portal')
         return
       }
-      // Test app
-      if (hash === 'tafelopstelling') {
+      // isTestApp
+      if (hash === 'hub' || hash === 'home-hub') {
+        window.location.href = 'index.html'
+        return
+      }
+      if (hash === 'tafelopstelling' || hash === 'tafel') {
         window.location.href = 'tafel.html'
         return
       }
@@ -121,7 +188,7 @@ function App() {
     
     window.addEventListener('hashchange', handleHashChange)
     return () => window.removeEventListener('hashchange', handleHashChange)
-  }, [isSpelApp, isTafelApp])
+  }, [isSpelApp, isTafelApp, isTestApp, isHubApp])
 
   useEffect(() => {
     let hash = ''
@@ -135,7 +202,9 @@ function App() {
     else if (currentView === 'about') { hash = 'over'; isGameView = true }
     
     // Dynamic document title
-    if (isTafelApp) {
+    if (isHubApp) {
+      document.title = 'Schematherapie Suite - Startpagina'
+    } else if (isTafelApp) {
       document.title = 'Digitale Tafelopstelling - Schematherapie'
     } else if (isSpelApp) {
       document.title = 'Schematherapie Kaartenspel - Breng schema\'s en modi tot leven'
@@ -157,7 +226,7 @@ function App() {
         window.history.pushState(null, '', window.location.pathname + window.location.search)
       }
     }
-  }, [currentView, isSpelApp, isTafelApp])
+  }, [currentView, isSpelApp, isTafelApp, isHubApp])
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark'
@@ -214,8 +283,12 @@ function App() {
   }
 
   return (
-    <div className="app-container" style={{ position: 'relative' }}>
-      {['game-portal', 'tafelopstelling', 'kaartenoverzicht', 'game-rules', 'print-shop', 'home-print-export', 'order-cards', 'about'].includes(currentView) && (
+    <div className={isHubApp ? "hub-wrapper" : "app-container"} style={isHubApp ? { maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' } : { position: 'relative' }}>
+      {currentView === 'hub' && (
+        <StartHub />
+      )}
+
+      {!isHubApp && ['game-portal', 'tafelopstelling', 'kaartenoverzicht', 'game-rules', 'print-shop', 'home-print-export', 'order-cards', 'about'].includes(currentView) && (
         <GameNavbar currentView={currentView} setCurrentView={setCurrentView} isTafelApp={isTafelApp} isSpelApp={isSpelApp} />
       )}
 
@@ -307,7 +380,7 @@ function App() {
       {currentView === 'about' && (
         <About onBack={() => setCurrentView('game-portal')} />
       )}
-      {currentView !== 'questionnaire' && (
+      {currentView !== 'questionnaire' && currentView !== 'hub' && (
         <div className="no-print" style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
           v{packageJson.version}
         </div>
