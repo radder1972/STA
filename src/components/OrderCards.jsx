@@ -308,7 +308,7 @@ export default function OrderCards({ onBack }) {
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
           <ShoppingCartIcon size={40} useGameGradient={true} /> Bestellen
         </h1>
-        <h2 style={{ color: 'var(--text-muted)', margin: 0, fontWeight: '500', fontSize: '1.25rem', lineHeight: '1.4' }}>
+        <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>
           Een professioneel gedrukte set voor in jouw praktijk
         </h2>
         <p style={{ marginTop: '1.25rem', fontSize: '1.15rem', color: '#475569', lineHeight: '1.6' }}>
@@ -323,7 +323,7 @@ export default function OrderCards({ onBack }) {
           <h2 style={{ fontSize: '2rem', margin: '0 0 0.4rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>
             De Schematherapie Kaartenset
           </h2>
-          <p style={{ fontSize: '1.05rem', color: '#64748b', margin: '0 0 1.5rem 0', fontWeight: '500' }}>
+          <p style={{ fontSize: '1.05rem', color: '#0ea5e9', margin: '0 0 1.5rem 0', fontWeight: '600' }}>
             Kies jouw gewenste uitvoering:
           </p>
 
