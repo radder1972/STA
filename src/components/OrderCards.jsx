@@ -533,6 +533,114 @@ export default function OrderCards({ onBack }) {
             </div>
           </div>
 
+          {/* CAROUSEL: Bekijk alvast de kaarten */}
+          <div style={{ 
+            marginBottom: '2.5rem', 
+            padding: '2.5rem 1.5rem', 
+            background: 'rgba(0,0,0,0.02)', 
+            borderRadius: '20px', 
+            border: '1px solid var(--border-color)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center'
+          }}>
+            <h3 style={{ fontSize: '1.75rem', marginBottom: '0.4rem', color: 'var(--text-main)', fontWeight: '700' }}>
+              Bekijk alvast de kaarten
+            </h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', margin: '0 0 2rem 0' }}>
+              Blader digitaal door de geselecteerde set ({activeVariant.title} • {activeVariant.cardsCount} kaarten)
+            </p>
+
+            {/* Interactive Single Card Carousel */}
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              gap: '1.75rem', 
+              marginBottom: '1.25rem', 
+              width: '100%', 
+              maxWidth: '650px' 
+            }}>
+              <button 
+                type="button"
+                onClick={handlePrev} 
+                className="btn btn-gradient-game" 
+                style={{ 
+                  borderRadius: '50%', 
+                  width: '56px', 
+                  height: '56px', 
+                  padding: 0, 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  boxShadow: '0 10px 25px rgba(59, 130, 246, 0.35)',
+                  cursor: 'pointer',
+                  border: 'none',
+                  flexShrink: 0
+                }}
+                onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(59, 130, 246, 0.55)'; }}
+                onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 10px 25px rgba(59, 130, 246, 0.35)'; }}
+              >
+                <ArrowLeftIcon size={24} />
+              </button>
+
+              <div style={{ 
+                position: 'relative', 
+                width: '260px', 
+                height: '370px', 
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                perspective: '1200px' 
+              }}>
+                {currentCard && (
+                  <SchemaCard 
+                    key={currentCard.id || currentCard.title}
+                    id={currentCard.id}
+                    type={currentCard.type}
+                    title={currentCard.title}
+                    src={currentCard.src}
+                    description={currentCard.description}
+                    color={currentCard.color}
+                    width="240px"
+                    height="340px"
+                    flipOnClick={true}
+                    style={{ boxShadow: '0 25px 50px rgba(0,0,0,0.2)' }}
+                    imageStyle={currentCard.style}
+                  />
+                )}
+              </div>
+
+              <button 
+                type="button"
+                onClick={handleNext} 
+                className="btn btn-gradient-game" 
+                style={{ 
+                  borderRadius: '50%', 
+                  width: '56px', 
+                  height: '56px', 
+                  padding: 0, 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  boxShadow: '0 10px 25px rgba(59, 130, 246, 0.35)',
+                  cursor: 'pointer',
+                  border: 'none',
+                  flexShrink: 0
+                }}
+                onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(59, 130, 246, 0.55)'; }}
+                onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 10px 25px rgba(59, 130, 246, 0.35)'; }}
+              >
+                <ArrowRightIcon size={24} />
+              </button>
+            </div>
+
+            <div style={{ color: 'var(--text-muted)', fontSize: '1rem', fontWeight: '500' }}>
+              Kaart {currentIndex + 1} van {currentCards.length}
+            </div>
+          </div>
+
           {/* Order Actions */}
           {orderStatus === 'success' ? (
             <div style={{ background: '#f0fdf4', padding: '2.5rem', borderRadius: '16px', border: '1px solid #bbf7d0', textAlign: 'center', width: '100%' }}>
@@ -708,94 +816,6 @@ export default function OrderCards({ onBack }) {
           )}
 
         </div>
-      </div>
-
-      {/* CAROUSEL HEADER */}
-      <div style={{ textAlign: 'center', marginBottom: '2.5rem', width: '100%', maxWidth: '800px', margin: '0 auto 2.5rem auto', position: 'relative', zIndex: 10 }}>
-        <h3 style={{ fontSize: '2rem', marginBottom: '0.5rem', color: 'var(--text-main)' }}>Bekijk alvast de kaarten</h3>
-        <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', margin: 0 }}>
-          Blader digitaal door de geselecteerde set ({activeVariant.title} • {activeVariant.cardsCount} kaarten)
-        </p>
-      </div>
-
-      {/* Interactive Single Card Carousel */}
-      <div style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        gap: '2rem', 
-        marginBottom: '2rem', 
-        width: '100%', 
-        maxWidth: '800px' 
-      }}>
-        <button 
-          onClick={handlePrev} 
-          className="btn btn-gradient-game" 
-          style={{ 
-            borderRadius: '50%', 
-            width: '60px', 
-            height: '60px', 
-            padding: 0, 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            boxShadow: '0 10px 25px rgba(59, 130, 246, 0.4)'
-          }}
-          onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(59, 130, 246, 0.6)'; }}
-          onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 10px 25px rgba(59, 130, 246, 0.4)'; }}
-        >
-          <ArrowLeftIcon size={24} />
-        </button>
-
-        <div style={{ 
-          position: 'relative', 
-          width: '260px', 
-          height: '370px', 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          perspective: '1200px' 
-        }}>
-          {currentCard && (
-            <SchemaCard 
-              key={currentCard.id || currentCard.title}
-              id={currentCard.id}
-              type={currentCard.type}
-              title={currentCard.title}
-              src={currentCard.src}
-              description={currentCard.description}
-              color={currentCard.color}
-              width="240px"
-              height="340px"
-              flipOnClick={true}
-              style={{ boxShadow: '0 25px 50px rgba(0,0,0,0.2)' }}
-              imageStyle={currentCard.style}
-            />
-          )}
-        </div>
-
-        <button 
-          onClick={handleNext} 
-          className="btn btn-gradient-game" 
-          style={{ 
-            borderRadius: '50%', 
-            width: '60px', 
-            height: '60px', 
-            padding: 0, 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            boxShadow: '0 10px 25px rgba(59, 130, 246, 0.4)'
-          }}
-          onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(59, 130, 246, 0.6)'; }}
-          onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 10px 25px rgba(59, 130, 246, 0.4)'; }}
-        >
-          <ArrowRightIcon size={24} />
-        </button>
-      </div>
-
-      <div style={{ color: 'var(--text-muted)', marginBottom: '4rem', fontSize: '1.1rem', fontWeight: '500' }}>
-        Kaart {currentIndex + 1} van {currentCards.length}
       </div>
 
     </div>
