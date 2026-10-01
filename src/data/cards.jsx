@@ -14,8 +14,11 @@ import imgM3c from '../assets/images/modicategorieen/coping_overcompensatie.png'
 import imgM4 from '../assets/images/modicategorieen/4.png';
 
 export const basisbehoeftenText = {
+  'Veiligheid & Verbinding': 'Veiligheid, stabiliteit, verzorging en onvoorwaardelijke acceptatie. Een thuishaven zonder angst voor verlating of afwijzing.',
   'Veilige hechting': 'Veiligheid, stabiliteit, verzorging en onvoorwaardelijke acceptatie. Een thuishaven zonder angst voor verlating of afwijzing.',
+  'Autonomie & Competentie': 'Ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen als onafhankelijk individu.',
   'Autonomie': 'Ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen als onafhankelijk individu.',
+  'Vrijheid van expressie': 'Ruimte om je vrij uit te drukken. Eigen gevoelens (ook boosheid of verdriet) en behoeften zijn geldig en belangrijk.',
   'Vrije expressie': 'Ruimte om je vrij uit te drukken. Eigen gevoelens (ook boosheid of verdriet) en behoeften zijn geldig en belangrijk.',
   'Spontaniteit en spel': 'Ruimte voor plezier, creativiteit en onbezorgdheid. Niet alles hoeft nuttig, perfect of efficiënt te zijn.',
   'Realistische grenzen': 'Kaders om te leren omgaan met frustratie. Leren dat je niet altijd je zin kunt krijgen en rekening moet houden met anderen.',
@@ -33,8 +36,11 @@ export const categorieText = {
 };
 
 export const basisbehoeftenToSchemas = {
+  'Veiligheid & Verbinding': ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Tekortschieten / Schaamte', 'Sociaal isolement / Vervreemding'],
   'Veilige hechting': ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Tekortschieten / Schaamte', 'Sociaal isolement / Vervreemding'],
+  'Autonomie & Competentie': ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'],
   'Autonomie': ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'],
+  'Vrijheid van expressie': ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'],
   'Vrije expressie': ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'],
   'Spontaniteit en spel': ['Negativisme / Pessimisme', 'Emotionele geremdheid', 'Meedogenloze normen', 'Bestraffendheid'],
   'Realistische grenzen': ['Zich rechten toe-eigenen', 'Onvoldoende zelfcontrole'],
@@ -110,9 +116,9 @@ export const modeGroups = [
 export const modeSortOrder = modeGroups.flatMap(g => g.titles);
 
 export const basisbehoeftenData = [
-  { id: 'bb1', title: 'Veilige hechting', src: imgB1, description: basisbehoeftenText['Veilige hechting'], color: '#3b82f6', type: 'basisbehoefte' },
-  { id: 'bb2', title: 'Autonomie', src: imgB2, description: basisbehoeftenText['Autonomie'], color: '#10b981', type: 'basisbehoefte' },
-  { id: 'bb3', title: 'Vrije expressie', src: imgB3, description: basisbehoeftenText['Vrije expressie'], color: '#eab308', type: 'basisbehoefte' },
+  { id: 'bb1', title: 'Veiligheid & Verbinding', src: imgB1, description: basisbehoeftenText['Veiligheid & Verbinding'], color: '#3b82f6', type: 'basisbehoefte' },
+  { id: 'bb2', title: 'Autonomie & Competentie', src: imgB2, description: basisbehoeftenText['Autonomie & Competentie'], color: '#10b981', type: 'basisbehoefte' },
+  { id: 'bb3', title: 'Vrijheid van expressie', src: imgB3, description: basisbehoeftenText['Vrijheid van expressie'], color: '#eab308', type: 'basisbehoefte' },
   { id: 'bb4', title: 'Spontaniteit en spel', src: imgB4, description: basisbehoeftenText['Spontaniteit en spel'], color: '#ef4444', type: 'basisbehoefte' },
   { id: 'bb5', title: 'Realistische grenzen', src: imgB5, description: basisbehoeftenText['Realistische grenzen'], color: '#f97316', type: 'basisbehoefte' },
 ];

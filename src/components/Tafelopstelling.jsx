@@ -72,17 +72,20 @@ const smiModesMap = {
 
 
 const needDescriptions = {
+  'Veiligheid & Verbinding': "Dit is de meest fundamentele behoefte. Het draait om veiligheid, stabiliteit, verzorging en onvoorwaardelijke acceptatie. Een kind moet voelen dat het gewenst is en dat de opvoeders een veilige thuishaven bieden waarop altijd kan worden teruggevallen, zonder angst voor verlating of afwijzing.",
   'Veilige hechting': "Dit is de meest fundamentele behoefte. Het draait om veiligheid, stabiliteit, verzorging en onvoorwaardelijke acceptatie. Een kind moet voelen dat het gewenst is en dat de opvoeders een veilige thuishaven bieden waarop altijd kan worden teruggevallen, zonder angst voor verlating of afwijzing.",
-  'Autonomie': "Dit is de behoefte om je als een onafhankelijk, capabel individu te ontwikkelen. Het gaat om de ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen. Als deze behoefte in de knel komt, voelt iemand zich als volwassene vaak extreem afhankelijk of kwetsbaar.",
+  'Autonomie & Competentie': "Dit is de behoefte om je als een onafhankelijk, competent individu te ontwikkelen. Het gaat om de ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen. Als deze behoefte in de knel komt, voelt iemand zich als volwassene vaak extreem afhankelijk of kwetsbaar.",
+  'Autonomie': "Dit is de behoefte om je als een onafhankelijk, competent individu te ontwikkelen. Het gaat om de ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen. Als deze behoefte in de knel komt, voelt iemand zich als volwassene vaak extreem afhankelijk of kwetsbaar.",
+  'Vrijheid van expressie': "Ieder mens heeft de behoefte om zich vrij uit te drukken. Het kind moet ervaren dat de eigen gevoelens (ook boosheid of verdriet) en behoeften geldig zijn, en niet minder belangrijk zijn dan die van anderen. Wanneer deze behoefte wordt onderdrukt, ontstaat vaak zelfopoffering of onderwerping.",
   'Vrije expressie': "Ieder mens heeft de behoefte om zich vrij uit te drukken. Het kind moet ervaren dat de eigen gevoelens (ook boosheid of verdriet) en behoeften geldig zijn, en niet minder belangrijk zijn dan die van anderen. Wanneer deze behoefte wordt onderdrukt, ontstaat vaak zelfopoffering of onderwerping.",
   'Spontaniteit en spel': "Er moet ruimte zijn voor plezier, creativiteit en onbezorgdheid. Niet alles hoeft nuttig, perfect of efficiënt te zijn. Deze behoefte beschermt ons tegen meedogenloze normen, overmatige prestatiedruk en het gevoel dat het leven uitsluitend uit plichten bestaat.",
   'Realistische grenzen': "Naast vrijheid heeft een kind kaders nodig om te leren omgaan met frustratie. Dit betekent leren dat je niet altijd je zin kunt krijgen, dat je rekening moet houden met anderen, en dat je discipline moet opbrengen voor taken die minder leuk zijn. Het ontbreken hiervan leidt vaak tot onvoldoende zelfcontrole of veeleisendheid richting anderen."
 };
 
 const needCards = [
-  { src: imgB1, title: 'Veilige hechting', type: 'need', description: needDescriptions['Veilige hechting'], color: '#60a5fa' },
-  { src: imgB2, title: 'Autonomie', type: 'need', description: needDescriptions['Autonomie'], color: '#34d399' },
-  { src: imgB3, title: 'Vrije expressie', type: 'need', description: needDescriptions['Vrije expressie'], color: '#facc15' },
+  { src: imgB1, title: 'Veiligheid & Verbinding', type: 'need', description: needDescriptions['Veiligheid & Verbinding'], color: '#60a5fa' },
+  { src: imgB2, title: 'Autonomie & Competentie', type: 'need', description: needDescriptions['Autonomie & Competentie'], color: '#34d399' },
+  { src: imgB3, title: 'Vrijheid van expressie', type: 'need', description: needDescriptions['Vrijheid van expressie'], color: '#facc15' },
   { src: imgB4, title: 'Spontaniteit en spel', type: 'need', description: needDescriptions['Spontaniteit en spel'], color: '#f87171' },
   { src: imgB5, title: 'Realistische grenzen', type: 'need', description: needDescriptions['Realistische grenzen'], color: '#fb923c' },
 ];

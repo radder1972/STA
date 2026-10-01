@@ -118,7 +118,7 @@ export default function About({ onBack }) {
               Het meest unieke aan dit ontwerp is de manier waarop we kleur gebruiken om logische therapeutische verbindingen te visualiseren. Het spel kent twee 'kleurwerelden':
             </p>
             <ol style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1rem 0', paddingLeft: '1.5rem' }}>
-              <li style={{ marginBottom: '0.5rem' }}><strong>De Inhoud (De Domeinen):</strong> De Basisbehoeften en Schema's delen samen 5 kleuren. Een onvervulde basisbehoefte (bijv. de blauwe kaart 'Veilige hechting') deelt zo exact dezelfde kleur als het schema dat daaruit ontstaat (bijv. het blauwe schema 'Verlating'). Dit maakt de route van oorzaak en gevolg in één oogopslag helder.</li>
+              <li style={{ marginBottom: '0.5rem' }}><strong>De Inhoud (De Domeinen):</strong> De Basisbehoeften en Schema's delen samen 5 kleuren. Een onvervulde basisbehoefte (bijv. de blauwe kaart 'Veiligheid & Verbinding') deelt zo exact dezelfde kleur als het schema dat daaruit ontstaat (bijv. het blauwe schema 'Verlating / Instabiliteit'). Dit maakt de route van oorzaak en gevolg in één oogopslag helder.</li>
               <li><strong>Het Gedrag (De Categorieën):</strong> De Modi hebben een eigen kleurcodering, puur gebaseerd op hun modusgroep (blauw = Kind, rood = Ouder, geel = Coping, groen = Gezonde Volwassene).</li>
             </ol>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>

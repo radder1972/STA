@@ -304,11 +304,11 @@ export default function GameRules({ onBack }) {
 
             <TurnBox turnNumber="4" playerTitle="Speler 1 (Cliënt)">
               <ul style={{ margin: 0, paddingLeft: '1.5rem', lineHeight: '1.6', marginBottom: '1rem' }}>
-                <li style={{ marginBottom: '0.5rem' }}><strong>De Kaart:</strong> Speler 1 kijkt naar de aflegstapel en speelt de <strong>B-kaart</strong> <ColorBadge color="Geel" text="Geel" /> - <strong>Basisbehoefte: Vrije Expressie</strong>.</li>
+                <li style={{ marginBottom: '0.5rem' }}><strong>De Kaart:</strong> Speler 1 kijkt naar de aflegstapel en speelt de <strong>B-kaart</strong> <ColorBadge color="Geel" text="Geel" /> - <strong>Basisbehoefte: Vrijheid van expressie</strong>.</li>
                 <li><strong>De Spelregel:</strong> Dit is een perfecte uitvoering van Regel 3 ('Terug naar de Kern'). Een B-kaart mag uitsluitend op een S-kaart gelegd worden, mits de kleur matcht (van Geel naar Geel).</li>
               </ul>
               <div style={{ marginTop: '1rem', padding: '1rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', color: '#1e3a8a', fontSize: '0.95rem', lineHeight: '1.6', borderLeft: '4px solid #3b82f6' }}>
-                <strong>Therapeutische twist:</strong> Speler 1 benoemt het patroon:<br/><em>"Onder die drang om altijd maar voor anderen te zorgen en mezelf weg te cijferen (Zelfopoffering), zit eigenlijk mijn onvervulde basisbehoefte om gewoon mijn eigen grenzen en emoties te mogen uiten (Vrije expressie)."</em>
+                <strong>Therapeutische twist:</strong> Speler 1 benoemt het patroon:<br/><em>"Onder die drang om altijd maar voor anderen te zorgen en mezelf weg te cijferen (Zelfopoffering), zit eigenlijk mijn onvervulde basisbehoefte om gewoon mijn eigen grenzen en emoties te mogen uiten (Vrijheid van expressie)."</em>
               </div>
             </TurnBox>
 

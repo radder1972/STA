@@ -32,7 +32,7 @@ const Basisbehoeften = ({ onBack }) => {
       {/* Behoefte 1 */}
       <div className="inner-box page-break" style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 className="box-heading" style={{ color: '#60a5fa', marginBottom: '1rem' }}>1. Veilige hechting en verbondenheid</h2>
+          <h2 className="box-heading" style={{ color: '#60a5fa', marginBottom: '1rem' }}>1. Veiligheid & Verbinding</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Dit is de meest fundamentele behoefte. Het draait om veiligheid, stabiliteit, verzorging en onvoorwaardelijke acceptatie. Een kind moet voelen dat het gewenst is en dat de opvoeders een veilige thuishaven bieden waarop altijd kan worden teruggevallen, zonder angst voor verlating of afwijzing.
           </p>
@@ -52,9 +52,9 @@ const Basisbehoeften = ({ onBack }) => {
       {/* Behoefte 2 */}
       <div className="inner-box page-break" style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 className="box-heading" style={{ color: '#34d399', marginBottom: '1rem' }}>2. Autonomie, competentie en identiteitsgevoel</h2>
+          <h2 className="box-heading" style={{ color: '#34d399', marginBottom: '1rem' }}>2. Autonomie & Competentie</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
-            Dit is de behoefte om je als een onafhankelijk, capabel individu te ontwikkelen. Het gaat om de ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen. Als deze behoefte in de knel komt, voelt iemand zich als volwassene vaak extreem afhankelijk of kwetsbaar.
+            Dit is de behoefte om je als een onafhankelijk, competent individu te ontwikkelen. Het gaat om de ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen. Als deze behoefte in de knel komt, voelt iemand zich als volwassene vaak extreem afhankelijk of kwetsbaar.
           </p>
         </div>
         <SchemaCard 
@@ -72,7 +72,7 @@ const Basisbehoeften = ({ onBack }) => {
       {/* Behoefte 3 */}
       <div className="inner-box page-break" style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 className="box-heading" style={{ color: '#facc15', marginBottom: '1rem' }}>3. Vrijheid om behoeften en emoties te uiten</h2>
+          <h2 className="box-heading" style={{ color: '#facc15', marginBottom: '1rem' }}>3. Vrijheid van expressie</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Ieder mens heeft de behoefte om zich vrij uit te drukken. Het kind moet ervaren dat de eigen gevoelens (ook boosheid of verdriet) en behoeften geldig zijn, en niet minder belangrijk zijn dan die van anderen. Wanneer deze behoefte wordt onderdrukt, ontstaat vaak zelfopoffering of onderwerping.
           </p>
@@ -112,7 +112,7 @@ const Basisbehoeften = ({ onBack }) => {
       {/* Behoefte 5 */}
       <div className="inner-box page-break" style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <h2 className="box-heading" style={{ color: '#fb923c', marginBottom: '1rem' }}>5. Realistische grenzen en zelfcontrole</h2>
+          <h2 className="box-heading" style={{ color: '#fb923c', marginBottom: '1rem' }}>5. Realistische grenzen</h2>
           <p style={{ lineHeight: '1.6', color: 'var(--text-main)' }}>
             Naast vrijheid heeft een kind kaders nodig om te leren omgaan met frustratie. Dit betekent leren dat je niet altijd je zin kunt krijgen, dat je rekening moet houden met anderen, en dat je discipline moet opbrengen voor taken die minder leuk zijn. Het ontbreken hiervan leidt vaak tot onvoldoende zelfcontrole of veeleisendheid richting anderen.
           </p>
