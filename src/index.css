@@ -843,8 +843,7 @@ p {
 /* Card Flip and Hover Animations */
 .card-scene {
   perspective: 1000px;
-  width: 230px;
-  height: 330px;
+  -webkit-perspective: 1000px;
   flex-shrink: 0;
   cursor: pointer;
   position: relative;
@@ -853,30 +852,31 @@ p {
   border-radius: 12px;
 }
 
-.card-scene {
-  perspective: 1000px;
-  z-index: 1;
-}
-
 .card-scene:hover {
   z-index: 50;
 }
-
 
 .card-flip-container {
   width: 100%;
   height: 100%;
   position: relative;
-  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 
-.card-scene:hover .card-flip-container {
-  transform: rotateY(180deg) translateY(-12px) scale(1.5);
+.card-scene:hover .card-flip-container:not(.flipped) {
+  transform: translateY(-4px);
 }
 
 .card-flip-container.flipped {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+.card-scene:hover .card-flip-container.flipped {
+  transform: rotateY(180deg) translateY(-4px);
+  -webkit-transform: rotateY(180deg) translateY(-4px);
 }
 
 .card-face-front, .card-face-back {
@@ -884,6 +884,7 @@ p {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   background-color: white;
@@ -924,6 +925,7 @@ p {
 
 .card-face-back {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
   background: #ffffff;
   text-align: center;
 }

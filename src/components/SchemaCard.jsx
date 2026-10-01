@@ -303,13 +303,17 @@ const SchemaCard = ({
   const descText = description || (title ? 'Geen theorie beschikbaar.' : '');
 
   return (
-    <div className={`card-scene ${className}`} style={{ width, height, position: 'relative', transform: `rotate(${rotation}deg)`, pointerEvents: isInteractive ? 'auto' : 'none', ...style }} title={flipOnClick ? "Klik om te draaien voor theorie" : ""}>
+    <div 
+      className={`card-scene ${className}`} 
+      onClick={handleFlip}
+      style={{ width, height, position: 'relative', transform: `rotate(${rotation}deg)`, pointerEvents: isInteractive ? 'auto' : 'none', ...style }} 
+      title={flipOnClick ? "Klik om te draaien voor theorie" : ""}
+    >
       <div className={`card-flip-container ${flipped ? 'flipped' : ''}`} style={{ width: '100%', height: '100%' }}>
         
         {/* Front */}
         <div 
           className="card-face-front schema-img playing-card" 
-          onClick={handleFlip} 
           style={{ 
             padding: 0, 
             boxSizing: 'border-box', 
@@ -363,7 +367,6 @@ const SchemaCard = ({
         {/* Back */}
         <div 
           className="card-face-back playing-card" 
-          onClick={handleFlip} 
           style={{ 
             padding: 0, 
             display: 'flex', 
