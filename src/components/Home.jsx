@@ -283,10 +283,17 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
           <a 
             href="spel.html"
-            className="btn btn-gradient"
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1.1rem', textDecoration: 'none', color: 'white' }}
+            className="btn btn-outline" 
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px', fontSize: '1rem', textDecoration: 'none' }}
           >
-            <PlayingCardsIcon size={20} useGradient={false} /> Open het Kaartenspel
+            <CardsIcon size={18} /> Het Kaartenspel
+          </a>
+          <a 
+            href="tafel.html"
+            className="btn btn-gradient"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px', fontSize: '1rem', textDecoration: 'none', color: 'white' }}
+          >
+            <PlayingCardsIcon size={18} useGradient={false} /> Digitale Tafelopstelling
           </a>
         </div>
       </div>

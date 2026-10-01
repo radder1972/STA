@@ -44,14 +44,18 @@ export default function GamePortal({ onBack, onViewKaartenOverzicht, onViewGameR
         
         <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
           <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
-            <PlayingCardsIcon size={32} useGradient={true} />
+            <PlayingCardsIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1 }}>
             <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Digitale Tafelopstelling</h2>
             <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Breng een concrete situatie of trigger direct visueel in kaart door modi, schema's en behoeften interactief op tafel te leggen.</p>
-            <button onClick={onViewTafelopstelling} className="btn btn-gradient-game">
-              Open tafelopstelling
-            </button>
+            <a 
+              href="tafel.html" 
+              className="btn btn-gradient-game"
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'white' }}
+            >
+              <PlayingCardsIcon size={20} useGameGradient={false} /> Open tafelopstelling
+            </a>
           </div>
         </div>
         

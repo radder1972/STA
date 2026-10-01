@@ -410,7 +410,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
             <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
               <button className="btn btn-outline" onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
-                <ArrowLeftIcon size={18} /> Terug naar Menu
+                <ArrowLeftIcon size={18} /> Naar het Kaartenspel
               </button>
               <button className="btn btn-gradient-game" onClick={handlePrintTafel} style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, border: 'none', whiteSpace: 'nowrap' }}>
                 <Printer size={18} /> Tafel Printen

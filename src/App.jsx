@@ -26,27 +26,48 @@ window.addEventListener('unhandledrejection', function(event) {
 });
 
 function App() {
-  const isSpelApp = typeof window !== 'undefined' && (
+  const isTafelApp = typeof window !== 'undefined' && (
+    window.location.pathname.endsWith('tafel.html') || 
+    window.location.pathname.endsWith('tafelopstelling.html') ||
+    window.location.pathname.includes('/tafel')
+  );
+
+  const isSpelApp = typeof window !== 'undefined' && !isTafelApp && (
     window.location.pathname.endsWith('spel.html') || 
     window.location.pathname.includes('/spel')
   );
 
   const [currentView, setCurrentView] = useState(() => {
     const hash = window.location.hash.replace('#', '')
-    if (!isSpelApp) {
-      if (['tafelopstelling', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(hash)) {
+    if (isTafelApp) {
+      if (['spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over'].includes(hash)) {
         window.location.href = `spel.html#${hash}`
-        return 'home'
+        return 'tafelopstelling'
       }
+      return 'tafelopstelling'
+    }
+    if (isSpelApp) {
+      if (hash === 'tafelopstelling') {
+        window.location.href = 'tafel.html'
+        return 'game-portal'
+      }
+      if (hash === 'spelregels') return 'game-rules'
+      if (hash === 'theoriekaarten') return 'kaartenoverzicht'
+      if (hash === 'print-shop') return 'print-shop'
+      if (hash === 'bestel-kaarten') return 'order-cards'
+      if (hash === 'over') return 'about'
+      return 'game-portal'
+    }
+    // Test app (index.html)
+    if (hash === 'tafelopstelling') {
+      window.location.href = 'tafel.html'
       return 'home'
     }
-    if (hash === 'tafelopstelling') return 'tafelopstelling'
-    if (hash === 'spelregels') return 'game-rules'
-    if (hash === 'theoriekaarten') return 'kaartenoverzicht'
-    if (hash === 'print-shop') return 'print-shop'
-    if (hash === 'bestel-kaarten') return 'order-cards'
-    if (hash === 'over') return 'about'
-    return 'game-portal'
+    if (['spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(hash)) {
+      window.location.href = `spel.html#${hash}`
+      return 'home'
+    }
+    return 'home'
   })
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState(null)
   const [completedTests, setCompletedTests] = useState({ ysq: null, smi: null })
@@ -57,36 +78,56 @@ function App() {
     
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '')
-      if (!isSpelApp) {
-        if (['tafelopstelling', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(hash)) {
+      if (isTafelApp) {
+        if (['spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over'].includes(hash)) {
           window.location.href = `spel.html#${hash}`
           return
         }
-        if (hash === 'results') setCurrentView('results')
-        else if (hash === 'basisbehoeften') setCurrentView('basisbehoeften')
-        else if (hash === 'modicategorieen') setCurrentView('modicategorieen')
-        else setCurrentView('home')
+        if (hash === 'home' || hash === 'zelftest') {
+          window.location.href = 'index.html'
+          return
+        }
+        setCurrentView('tafelopstelling')
         return
       }
-      if (hash === 'tafelopstelling') setCurrentView('tafelopstelling')
-      else if (hash === 'spelportaal' || hash === 'spel') setCurrentView('game-portal')
-      else if (hash === 'spelregels') setCurrentView('game-rules')
-      else if (hash === 'theoriekaarten') setCurrentView('kaartenoverzicht')
-      else if (hash === 'print-shop') setCurrentView('print-shop')
-      else if (hash === 'bestel-kaarten') setCurrentView('order-cards')
-      else if (hash === 'over') setCurrentView('about')
-      else setCurrentView('game-portal')
+      if (isSpelApp) {
+        if (hash === 'tafelopstelling') {
+          window.location.href = 'tafel.html'
+          return
+        }
+        if (hash === 'spelportaal' || hash === 'spel') setCurrentView('game-portal')
+        else if (hash === 'spelregels') setCurrentView('game-rules')
+        else if (hash === 'theoriekaarten') setCurrentView('kaartenoverzicht')
+        else if (hash === 'print-shop') setCurrentView('print-shop')
+        else if (hash === 'bestel-kaarten') setCurrentView('order-cards')
+        else if (hash === 'over') setCurrentView('about')
+        else setCurrentView('game-portal')
+        return
+      }
+      // Test app
+      if (hash === 'tafelopstelling') {
+        window.location.href = 'tafel.html'
+        return
+      }
+      if (['spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(hash)) {
+        window.location.href = `spel.html#${hash}`
+        return
+      }
+      if (hash === 'results') setCurrentView('results')
+      else if (hash === 'basisbehoeften') setCurrentView('basisbehoeften')
+      else if (hash === 'modicategorieen') setCurrentView('modicategorieen')
+      else setCurrentView('home')
     }
     
     window.addEventListener('hashchange', handleHashChange)
     return () => window.removeEventListener('hashchange', handleHashChange)
-  }, [isSpelApp])
+  }, [isSpelApp, isTafelApp])
 
   useEffect(() => {
     let hash = ''
-    let isGameView = isSpelApp
+    let isGameView = isSpelApp || isTafelApp
     if (currentView === 'game-portal') { hash = 'spelportaal'; isGameView = true }
-    else if (currentView === 'tafelopstelling') { hash = 'tafelopstelling'; isGameView = true }
+    else if (currentView === 'tafelopstelling') { hash = isTafelApp ? '' : 'tafelopstelling'; isGameView = true }
     else if (currentView === 'game-rules') { hash = 'spelregels'; isGameView = true }
     else if (currentView === 'kaartenoverzicht') { hash = 'theoriekaarten'; isGameView = true }
     else if (currentView === 'print-shop') { hash = 'print-shop'; isGameView = true }
@@ -94,7 +135,9 @@ function App() {
     else if (currentView === 'about') { hash = 'over'; isGameView = true }
     
     // Dynamic document title
-    if (isGameView) {
+    if (isTafelApp) {
+      document.title = 'Digitale Tafelopstelling - Schematherapie'
+    } else if (isSpelApp) {
       document.title = 'Schematherapie Kaartenspel - Breng schema\'s en modi tot leven'
     } else {
       document.title = 'Schematherapie Zelftest - YSQ-S3 & SMI Vragenlijsten'
@@ -102,7 +145,7 @@ function App() {
 
     const faviconLink = document.querySelector("link[rel~='icon']")
     if (faviconLink) {
-      faviconLink.href = isGameView ? '/favicon-game.svg' : '/favicon.svg'
+      faviconLink.href = (isSpelApp || isTafelApp) ? '/favicon-game.svg' : '/favicon.svg'
     }
     
     if (hash) {
@@ -114,7 +157,7 @@ function App() {
         window.history.pushState(null, '', window.location.pathname + window.location.search)
       }
     }
-  }, [currentView, isSpelApp])
+  }, [currentView, isSpelApp, isTafelApp])
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark'
@@ -173,7 +216,7 @@ function App() {
   return (
     <div className="app-container" style={{ position: 'relative' }}>
       {['game-portal', 'tafelopstelling', 'kaartenoverzicht', 'game-rules', 'print-shop', 'home-print-export', 'order-cards', 'about'].includes(currentView) && (
-        <GameNavbar currentView={currentView} setCurrentView={setCurrentView} />
+        <GameNavbar currentView={currentView} setCurrentView={setCurrentView} isTafelApp={isTafelApp} isSpelApp={isSpelApp} />
       )}
 
       {currentView === 'home' && (
@@ -234,7 +277,10 @@ function App() {
       )}
       {currentView === 'tafelopstelling' && (
         <Tafelopstelling 
-          onBack={() => setCurrentView('game-portal')} 
+          onBack={() => {
+            if (isTafelApp) window.location.href = 'spel.html'
+            else setCurrentView('game-portal')
+          }} 
           completedTests={completedTests} 
           embedded={false} 
         />
@@ -245,7 +291,9 @@ function App() {
             if (isSpelApp) window.location.href = 'index.html'
             else setCurrentView('home')
           }} 
-          onViewTafelopstelling={() => setCurrentView('tafelopstelling')}
+          onViewTafelopstelling={() => {
+            window.location.href = 'tafel.html'
+          }}
           onViewKaartenOverzicht={() => setCurrentView('kaartenoverzicht')}
           onViewGameRules={() => setCurrentView('game-rules')}
           onViewPrintShop={() => setCurrentView('print-shop')}
