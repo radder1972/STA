@@ -9,6 +9,8 @@ import imgBozeBeschermer from '../assets/images/vst/boze_beschermer.png';
 import imgPerfectionistischeOvercontroleerder from '../assets/images/vst/perfectionistische_overcontroleerder.png';
 import imgCopingOmkering from '../assets/images/vst/coping_omkering.png';
 import imgBedrogManipulatie from '../assets/images/vst/bedrog_en_manipulatie.png';
+import imgAandachtErkenningzoeker from '../assets/images/vst/aandacht_erkenningzoeker.png';
+import imgRoofdier from '../assets/images/vst/roofdier.png';
 
 export const vstBehoeftenText = {
   'Zelfcoherentie': 'De behoefte aan een geïntegreerd, samenhangend zelfbeeld en een stabiele identiteit. Het gevoel één geheel te zijn, met duidelijke eigen waarden, gevoelens en richting.',
@@ -104,6 +106,24 @@ export const vstModiData = [
     description: 'In deze modus bedrieg je, lieg je, of manipuleer je anderen om een bepaald doel te bereiken, zoals het ontlopen van straf of afwijzing, of om een voordeel voor jezelf te behalen.',
     color: '#facc15',
     isVst: true
+  },
+  {
+    id: 'vst_m_ae',
+    title: 'Aandacht- en erkenningzoeker',
+    type: 'mode',
+    src: imgAandachtErkenningzoeker,
+    description: 'In deze modus probeer je op een nadrukkelijke manier goedkeuring en aandacht van anderen te krijgen, bijvoorbeeld door je gedrag, je lichamelijke kwetsbaarheden, of emoties uit te vergroten, of door neutraal contact te erotiseren.',
+    color: '#facc15',
+    isVst: true
+  },
+  {
+    id: 'vst_m_rd',
+    title: 'Roofdier',
+    type: 'mode',
+    src: imgRoofdier,
+    description: 'In deze modus ben je op een koude, roekeloze en berekenende manier gericht op het uitschakelen van een dreiging, obstakel, rivaal of vijand. Je neemt wraak op anderen, probeert hiermee je positie te behouden, jezelf onkwetsbaar te voelen, of je vindt dat ze je in de weg staan.',
+    color: '#facc15',
+    isVst: true
   }
 ];
 
@@ -186,6 +206,22 @@ export const vstVerdieping = {
       "Wees eerlijk naar jezelf: wat probeer je met manipulatie of een leugen te vermijden (bijvoorbeeld schaamte, straf of afwijzing)?",
       "Ervaar dat het dragen van een onecht masker je vervreemdt van anderen en van je eigen waarden.",
       "Gebruik de Gezonde Volwassene om fouten openlijk te erkennen; echte verbinding ontstaat door transparantie en authenticiteit."
+    ]
+  },
+  'Aandacht- en erkenningzoeker': {
+    casus: "Op een feestje praat Jasper onophoudelijk over zijn prestaties, lacht hij overdreven theatraal en zoekt hij continu het middelpunt van de belangstelling. Zodra de aandacht naar iemand anders verschuift, voelt hij zich van binnen meteen onzichtbaar, leeg en waardeloos.",
+    tips: [
+      "Merk op wanneer je de drang voelt om in de schijnwerpers te staan; welke onderliggende eenzaamheid of onzekerheid probeer je te overstemmen?",
+      "Oefen met luisteren en oprechte interesse tonen in anderen, zonder dat het gesprek per se over jou hoeft te gaan.",
+      "Laat de Gezonde Volwassene je geruststellen: je bent al waardevol en gezien, ook als je even rustig op de achtergrond blijft."
+    ]
+  },
+  'Roofdier': {
+    casus: "Wanneer Raymond merkt dat een collega kritiek heeft geuit op zijn functioneren, voelt hij geen verdriet maar koude, berekende woede. Hij beraamt nauwgezet een plan om vertrouwelijke fouten van die collega naar voren te schuiven in het directieoverleg om hem doelgericht uit te schakelen en zijn eigen positie veilig te stellen.",
+    tips: [
+      "Herken de koude, berekende wraakneiging als een uiterste beschermingsreactie tegen diepe angst voor verlies van controle of kwetsbaarheid.",
+      "Pauzeer bewust: wraakacties of het uitschakelen van anderen beschadigen relaties en versterken juist een onveilige, vijandige leefwereld.",
+      "Schakel over naar de Gezonde Volwassene om conflicten op een constructieve, ethische en proportionele manier op te lossen."
     ]
   }
 };
