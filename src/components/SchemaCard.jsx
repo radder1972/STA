@@ -183,7 +183,7 @@ const SchemaCard = ({
                 {formatCardTitle(title)}
               </h4>
             )}
-            <div className="card-desc" style={{ fontSize: `${descSize * s}rem`, lineHeight: descLineHeight, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: lineClamp, WebkitBoxOrient: 'vertical', margin: 'auto 0', paddingBottom: `${4 * s}px`, textAlign: 'center' }}>
+            <div className="card-desc" style={{ fontSize: `${descSize * s}rem`, lineHeight: descLineHeight, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: lineClamp, WebkitBoxOrient: 'vertical', margin: 0, paddingBottom: `${6 * s}px`, textAlign: 'center' }}>
               {descText}
             </div>
           </div>

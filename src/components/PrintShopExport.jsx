@@ -381,8 +381,8 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                 <div className="print-shop-bleed" style={{ position: 'relative', width: '100%', height: '100%' }}>
                   <div style={{ position: 'absolute', top: '3mm', left: '3mm', right: '3mm', bottom: '3mm', background: 'white', borderRadius: '6px' }}>
                     <CardInnerBorder color={cardColor} />
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '5mm 7mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', boxSizing: 'border-box' }}>
-                      <div style={{ height: '18mm', width: '100%', display: 'flex', alignItems: 'flex-end', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', margin: '0 0 3mm 0', flexShrink: 0, zIndex: 1 }}>
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '5mm 8mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', boxSizing: 'border-box' }}>
+                      <div style={{ height: '18mm', width: '100%', display: 'flex', alignItems: 'flex-end', borderBottom: `2px solid ${cardColor}`, paddingBottom: '3mm', margin: '0 0 4mm 0', flexShrink: 0, zIndex: 1 }}>
                         <h4 style={{ margin: 0, fontSize: '0.88rem', color: 'black', textAlign: 'center', width: '100%', lineHeight: '1.2' }}>
                           {formatCardTitle(card.title)}
                         </h4>
@@ -392,7 +392,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                         fontWeight: 'normal', 
                         lineHeight: descLineHeight, 
                         color: '#111', 
-                        margin: 'auto 0', 
+                        margin: '0', 
                         textAlign: 'center', 
                         flexShrink: 0, 
                         zIndex: 1 
