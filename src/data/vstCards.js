@@ -13,14 +13,14 @@ import imgAandachtErkenningzoeker from '../assets/images/vst/aandacht_erkenningz
 import imgRoofdier from '../assets/images/vst/roofdier.png';
 
 export const vstBehoeftenText = {
-  'Zelfcoherentie': 'De behoefte aan een geïntegreerd, samenhangend zelfbeeld en een stabiele identiteit. Het gevoel één geheel te zijn, met duidelijke eigen waarden, gevoelens en richting.',
-  'Rechtvaardigheid': 'De behoefte aan eerlijkheid, billijkheid en een rechtvaardige behandeling. De zekerheid dat regels voor iedereen gelijk gelden, dat afspraken worden nageleefd en dat onrecht wordt gecorrigeerd.'
+  'Zelfcoherentie': 'De behoefte aan een geïntegreerd zelfbeeld en een stabiele identiteit: het gevoel één geheel te zijn met eigen waarden en richting.',
+  'Rechtvaardigheid': 'De behoefte aan eerlijkheid en een rechtvaardige behandeling: de zekerheid dat regels gelijk gelden en onrecht wordt hersteld.'
 };
 
 export const vstSchemaText = {
-  'Gebrek aan coherente identiteit': 'Je ervaart jezelf niet als één geheel. Je hebt het gevoel dat je uit losse, soms tegenstrijdige delen bestaat. Dit maakt dat je vaak verwarring voelt van binnen en over wie je bent. Je hebt moeite om over jezelf te denken en te praten als een duidelijk eigen iemand.',
-  'Gebrek aan een betekenisvolle wereld': 'Je ervaart de wereld als verwarrend en betekenisloos, waarbij je je niet verbonden voelt met zaken die in jouw leven en in de wereld om je heen spelen.',
-  'Onrechtvaardigheid': 'Je ervaart je omgeving als onrechtvaardig en oneerlijk, waarbij onrecht in de maatschappij niet wordt gecorrigeerd. Je bent bang om slachtoffer van dat onrecht te worden.'
+  'Gebrek aan coherente identiteit': 'Het gevoel niet één geheel te zijn, maar uit losse, verwarrende delen te bestaan. Moeite om een stabiel zelfbeeld te ervaren.',
+  'Gebrek aan een betekenisvolle wereld': 'De ervaring van een verwarrende, betekenisloze wereld. Je voelt existentiële vervreemding en mist verbinding en zingeving.',
+  'Onrechtvaardigheid': 'De overtuiging dat de maatschappij oneerlijk is en onrecht onbestraft blijft. De constante angst om slachtoffer te worden.'
 };
 
 export const vstBasisbehoeftenData = [
@@ -64,7 +64,7 @@ export const vstCopingData = [
     title: 'Coping: Omkering',
     type: 'modicategorie',
     src: imgCopingOmkering,
-    description: 'Je vecht tegen het schema door je precies tegenovergesteld te gedragen aan wat het schema dicteert: van binnen voel je je kwetsbaar of ontoereikend, maar naar buiten toe zet je een onkwetsbare, krachtige of superieure houding neer.',
+    description: 'Je vecht tegen het schema door het tegenovergestelde te doen. Om innerlijke kwetsbaarheid te maskeren zet je een superieur pantser op.',
     color: '#eab308',
     isVst: true
   }
@@ -76,7 +76,7 @@ export const vstModiData = [
     title: 'Blije kind',
     type: 'mode',
     src: imgBlijeKind,
-    description: 'In deze modus voel je je vrij, geliefd, tevreden, beschermd, begrepen, veilig, gewaardeerd en verbonden met anderen. Je kunt spontaan reageren, je bent ondernemend, optimistisch en speels, zoals een gelukkig klein kind.',
+    description: 'Voelt zich vrij, geliefd, veilig en verbonden. Reageert speels, spontaan, ondernemend en vol levenslust, zoals een onbezorgd kind.',
     color: '#34d399',
     isVst: true
   },
@@ -85,7 +85,7 @@ export const vstModiData = [
     title: 'Boze beschermer',
     type: 'mode',
     src: imgBozeBeschermer,
-    description: 'In deze modus scherm je jezelf af voor (heftige) gevoelens en probeer je anderen op afstand te houden door een bozige, cynische, pessimistische of afwijzende houding aan te nemen. Je wantrouwt anderen, en laat boosheid zien om jezelf te beschermen tegen vermeende dreiging.',
+    description: 'Schermt gevoelens af met een bozige, cynische of afwijzende houding. Houdt anderen wantrouwend op afstand ter zelfbescherming.',
     color: '#facc15',
     isVst: true
   },
@@ -94,7 +94,7 @@ export const vstModiData = [
     title: 'Perfectionistische overcontroleerder',
     type: 'mode',
     src: imgPerfectionistischeOvercontroleerder,
-    description: 'In deze modus probeer je jezelf te beschermen tegen het maken van fouten of andere risico’s door zeer perfectionistisch te zijn. Je controleert jezelf of anderen op een dwangmatige manier. Je werkt hard en doet er alles aan om dingen zo goed mogelijk te doen.',
+    description: 'Probeert fouten dwangmatig te voorkomen door extreme perfectie en controle. Werkt keihard om elk risico uit te bannen.',
     color: '#facc15',
     isVst: true
   },
@@ -103,7 +103,7 @@ export const vstModiData = [
     title: 'Bedrog en manipulatie',
     type: 'mode',
     src: imgBedrogManipulatie,
-    description: 'In deze modus bedrieg je, lieg je, of manipuleer je anderen om een bepaald doel te bereiken, zoals het ontlopen van straf of afwijzing, of om een voordeel voor jezelf te behalen.',
+    description: 'Gebruikt leugens, misleiding en manipulatie om doelen te bereiken, straf of afwijzing te ontlopen, of voordeel te behalen.',
     color: '#facc15',
     isVst: true
   },
@@ -112,7 +112,7 @@ export const vstModiData = [
     title: 'Aandacht- en erkenningzoeker',
     type: 'mode',
     src: imgAandachtErkenningzoeker,
-    description: 'In deze modus probeer je op een nadrukkelijke manier goedkeuring en aandacht van anderen te krijgen, bijvoorbeeld door je gedrag, je lichamelijke kwetsbaarheden, of emoties uit te vergroten, of door neutraal contact te erotiseren.',
+    description: 'Zoekt op een theatrale manier naar goedkeuring en aandacht. Vergroot emoties of kwetsbaarheden uit om gezien te worden.',
     color: '#facc15',
     isVst: true
   },
@@ -121,7 +121,7 @@ export const vstModiData = [
     title: 'Roofdier',
     type: 'mode',
     src: imgRoofdier,
-    description: 'In deze modus ben je op een koude, roekeloze en berekenende manier gericht op het uitschakelen van een dreiging, obstakel, rivaal of vijand. Je neemt wraak op anderen, probeert hiermee je positie te behouden, jezelf onkwetsbaar te voelen, of je vindt dat ze je in de weg staan.',
+    description: 'Koude, meedogenloze en berekenende modus gericht op het uitschakelen van rivalen of obstakels om de eigen positie te behouden.',
     color: '#facc15',
     isVst: true
   }

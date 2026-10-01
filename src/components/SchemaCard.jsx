@@ -100,6 +100,21 @@ const SchemaCard = ({
 
   const isInteractive = flipOnClick || onClick;
 
+  const descText = description || (title ? 'Geen theorie beschikbaar.' : '');
+  const descLen = descText.length;
+  let descSize = 0.65;
+  let descLineHeight = 1.35;
+  let lineClamp = 11;
+  if (descLen > 220) {
+    descSize = 0.52;
+    descLineHeight = 1.22;
+    lineClamp = 15;
+  } else if (descLen > 150) {
+    descSize = 0.58;
+    descLineHeight = 1.28;
+    lineClamp = 13;
+  }
+
   return (
     <div className={`card-scene ${className}`} style={{ width, height, position: 'relative', transform: `rotate(${rotation}deg)`, pointerEvents: isInteractive ? 'auto' : 'none', ...style }} title={flipOnClick ? "Klik om te draaien voor theorie" : ""}>
       <div className={`card-flip-container ${flipped ? 'flipped' : ''}`} style={{ width: '100%', height: '100%' }}>
@@ -149,8 +164,8 @@ const SchemaCard = ({
                 {title}
               </h4>
             )}
-            <div className="card-desc" style={{ fontSize: `${0.65 * s}rem`, lineHeight: '1.35', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 11, WebkitBoxOrient: 'vertical', margin: 0, paddingBottom: `${6 * s}px` }}>
-              {description || (title ? 'Geen theorie beschikbaar.' : '')}
+            <div className="card-desc" style={{ fontSize: `${descSize * s}rem`, lineHeight: descLineHeight, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: lineClamp, WebkitBoxOrient: 'vertical', margin: 0, paddingBottom: `${6 * s}px` }}>
+              {descText}
             </div>
           </div>
         </div>
