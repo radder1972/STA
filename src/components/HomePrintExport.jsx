@@ -519,7 +519,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                             left: 0, 
                             right: 0, 
                             bottom: 0, 
-                            padding: '6.5mm 5mm', 
+                            padding: '6.5mm 6.5mm', 
                             display: 'flex', 
                             flexDirection: 'column', 
                             alignItems: 'center', 
