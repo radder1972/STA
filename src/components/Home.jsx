@@ -303,7 +303,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
           <InfoIcon size={24} useGradient={true} /> Meer weten over Schematherapie?
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
-          Wilt u meer achtergrondinformatie over de theorie achter schema's en modi, of zoekt u een geregistreerde behandelaar? Bezoek dan de officiële website van de <strong>Nederlandse Vereniging voor Schematherapie</strong>.
+          Wilt u meer achtergrondinformatie over de theorie achter schema's en modi, of zoekt u een geregistreerde behandelaar? Bezoek dan de website van de <strong>Vereniging voor Schematherapie</strong>.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
           <a 

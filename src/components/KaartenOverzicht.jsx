@@ -189,7 +189,7 @@ export default function KaartenOverzicht({ onBack }) {
           <FilterButton id="schemas" label="Schema's" />
           <FilterButton id="modicats" label="Modi Categorieën" />
           <FilterButton id="modi" label="Modi" />
-          <FilterButton id="vst" label="VSt 2021 Uitbreiding" />
+          <FilterButton id="vst" label="Theorie-uitbreiding" />
         </div>
       </div>
 
@@ -208,13 +208,13 @@ export default function KaartenOverzicht({ onBack }) {
               <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
                   <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(168, 85, 247, 0.12)', color: '#9333ea', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
-                    VSt 2021 Uitbreiding
+                    Theorie-uitbreiding
                   </span>
                   <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
                     Aanvullende Basisbehoeften ({vstBasisbehoeftenData.length})
                   </h3>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '650px', margin: '0 auto' }}>
-                    Recent toegevoegd door de Vereniging voor Schematherapie als waardevolle theoretische verdieping.
+                    Aanvullende basisbehoeften uit recente theorievorming (Arntz et al., 2021).
                   </p>
                 </div>
                 {renderCardList(vstBasisbehoeftenData, 'schema-cat-vst', { transform: 'scale(0.85)' })}
@@ -227,13 +227,13 @@ export default function KaartenOverzicht({ onBack }) {
           <div>
             <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
               <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(168, 85, 247, 0.12)', color: '#9333ea', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
-                VSt 2021 Verdiepingsdeck
+                Theorie-uitbreiding
               </span>
               <h2 className="box-heading" style={{ justifyContent: 'center', marginTop: '0.6rem', marginBottom: '0.5rem' }}>
-                VSt 2021 Uitbreidingsset ({vstBasisbehoeftenData.length + vstSchemaData.length + vstCopingData.length + vstModiData.length})
+                Theorie Uitbreidingsset ({vstBasisbehoeftenData.length + vstSchemaData.length + vstCopingData.length + vstModiData.length})
               </h2>
               <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '750px', margin: '0 auto', lineHeight: '1.6' }}>
-                Gebaseerd op het internationale position paper (Arntz et al., 2021) en de officiële VSt-richtlijnen. Klik op een kaart om de theorie, praktijkcasus en Gezonde Volwassene-tips te bekijken.
+                Gebaseerd op het internationale position paper (Arntz et al., 2021). Klik op een kaart om de theorie, praktijkcasus en Gezonde Volwassene-tips te bekijken.
               </p>
             </div>
 
@@ -262,7 +262,7 @@ export default function KaartenOverzicht({ onBack }) {
                 Coping Categoriekaart ({vstCopingData.length})
               </h3>
               <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
-                De officiële vernieuwde benaming en verheldering voor overcompensatie: Coping: Omkering.
+                Vernieuwde benaming en verheldering voor overcompensatie: Coping: Omkering.
               </p>
               {renderCardList([...vstCopingData], 'vst-coping', { transform: 'scale(0.85)' })}
             </div>
@@ -272,7 +272,7 @@ export default function KaartenOverzicht({ onBack }) {
                 Aanvullende & Forensische Modi ({vstModiData.length})
               </h3>
               <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
-                Aanvullende modi uit de actuele VSt-theorie: het Blije Kind, de Boze Beschermer, Perfectionistische Overcontroleerder en Bedrog & Manipulatie.
+                Aanvullende modi uit de literatuur (Arntz et al., 2021): het Blije Kind, de Boze Beschermer, Perfectionistische Overcontroleerder en Bedrog & Manipulatie.
               </p>
               {renderCardList([...vstModiData], 'vst-modi')}
             </div>
@@ -291,7 +291,7 @@ export default function KaartenOverzicht({ onBack }) {
               <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
                   <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(168, 85, 247, 0.12)', color: '#9333ea', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
-                    VSt 2021 Uitbreiding
+                    Theorie-uitbreiding
                   </span>
                   <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
                     Aanvullende Schema's ({vstSchemaData.length})
@@ -318,13 +318,13 @@ export default function KaartenOverzicht({ onBack }) {
               <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
                   <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 179, 8, 0.12)', color: '#ca8a04', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
-                    VSt 2021 Vernieuwing
+                    Theoretische Vernieuwing
                   </span>
                   <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
                     Aanvullende Copingkaart: Omkering ({vstCopingData.length})
                   </h3>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '650px', margin: '0 auto' }}>
-                    Door de VSt geïntroduceerd als de nieuwe benaming en verheldering voor overcompensatie.
+                    Geïntroduceerd in de literatuur (Arntz et al., 2021) als vernieuwde benaming voor overcompensatie.
                   </p>
                 </div>
                 {renderCardList(vstCopingData, 'modi-cat-vst', { transform: 'scale(0.85)' })}
@@ -345,13 +345,13 @@ export default function KaartenOverzicht({ onBack }) {
               <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
                   <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(168, 85, 247, 0.12)', color: '#9333ea', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
-                    VSt 2021 Uitbreiding
+                    Theorie-uitbreiding
                   </span>
                   <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
                     Aanvullende & Forensische Modi ({vstModiData.length})
                   </h3>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '650px', margin: '0 auto' }}>
-                    Extra modi uit het VSt-overzicht, waaronder het Blije Kind, de Boze Beschermer, Perfectionistische Overcontroleerder en Bedrog & Manipulatie.
+                    Aanvullende en forensische modi uit de literatuur (Arntz et al., 2021), waaronder het Blije Kind, de Boze Beschermer, Perfectionistische Overcontroleerder en Bedrog & Manipulatie.
                   </p>
                 </div>
                 {renderCardList(vstModiData, 'modi-vst')}

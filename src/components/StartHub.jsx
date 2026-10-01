@@ -356,7 +356,7 @@ export default function StartHub() {
           <div>
             <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.05rem' }}>Meer Informatie</h4>
             <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-              Zoek je achtergrondinformatie of een geregistreerde therapeut? Bezoek de officiële website van de{' '}
+              Zoek je achtergrondinformatie of een geregistreerde therapeut? Bezoek de website van de{' '}
               <a href="https://www.schematherapie.nl/home" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', fontWeight: '600' }}>
                 Vereniging voor Schematherapie
               </a>.

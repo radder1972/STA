@@ -58,12 +58,12 @@ export default function About({ onBack }) {
               <li><strong>6 Categorieën (C):</strong> De overkoepelende groepen en copingvormen om gedrag overzichtelijk te clusteren.</li>
             </ul>
 
-            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: '2.5rem', marginBottom: '1rem' }}>Theoretische positionering: Klassiek model vs. recente VSt-ontwikkelingen</h3>
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: '2.5rem', marginBottom: '1rem' }}>Theoretische positionering: Klassiek model vs. recente theorie-ontwikkelingen</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.25rem 0' }}>
-              De theorie rondom schematherapie blijft in beweging. De Vereniging voor Schematherapie (VSt) heeft op basis van een internationaal position paper uit 2021 een aantal nieuwere toevoegingen geïntroduceerd. Voor dit kaartendeck is echter een bewuste en gefundeerde keuze gemaakt om uit te gaan van het <strong>klassieke, afgebakende en empirisch gevalideerde model van Jeffrey Young</strong>. 
+              De theorie rondom schematherapie blijft in beweging. Op basis van een internationaal position paper (Arntz et al., 2021) zijn er in de vakliteratuur verschillende theoretische toevoegingen voorgesteld. Voor de basisset van dit kaartendeck is een bewuste en gefundeerde keuze gemaakt om primair uit te gaan van het <strong>klassieke, afgebakende en empirisch gevalideerde model van Jeffrey Young</strong>. 
             </p>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.5rem 0' }}>
-              De belangrijkste verschillen met recente VSt-overzichten op een rij:
+              De belangrijkste verschillen met nieuwere theoretische voorstellen op een rij:
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.8rem' }}>
@@ -72,7 +72,7 @@ export default function About({ onBack }) {
                   1. Vijf in plaats van zeven basisbehoeften
                 </strong>
                 <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
-                  Het deck hanteert de 5 oorspronkelijke basisbehoeften. In recentere kaders heeft de VSt twee behoeften toegevoegd (<em>'Zelfcoherentie'</em> en <em>'Rechtvaardigheid'</em>). Wij kiezen voor de klassieke 5 behoeften vanwege hun directe, eenduidige aansluiting op de 5 schemadomeinen.
+                  Het basisdeck hanteert de 5 oorspronkelijke basisbehoeften. In recentere theorievorming zijn twee behoeften toegevoegd (<em>'Zelfcoherentie'</em> en <em>'Rechtvaardigheid'</em>). Wij kiezen in de basis voor de klassieke 5 behoeften vanwege hun directe, eenduidige aansluiting op de 5 schemadomeinen.
                 </span>
               </div>
 
@@ -81,7 +81,7 @@ export default function About({ onBack }) {
                   2. Achttien in plaats van eenentwintig schema's
                 </strong>
                 <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
-                  Het deck bevat de 18 klassieke schema's die één-op-één aansluiten bij gevalideerde meetinstrumenten zoals de YSQ-S3. De drie nieuw voorgestelde schema's (<em>'Gebrek aan coherente identiteit'</em>, <em>'Gebrek aan een betekenisvolle wereld'</em> en <em>'Onrechtvaardigheid'</em>) worden door de VSt gezien als een interessante theoretische verdieping, maar zijn nog niet empirisch getoetst en vereisen nader wetenschappelijk onderzoek.
+                  Het basisdeck bevat de 18 klassieke schema's die één-op-één aansluiten bij gevalideerde meetinstrumenten zoals de YSQ-S3. De drie nieuw voorgestelde schema's (<em>'Gebrek aan coherente identiteit'</em>, <em>'Gebrek aan een betekenisvolle wereld'</em> en <em>'Onrechtvaardigheid'</em>) vormen een waardevolle theoretische verdieping en zijn beschikbaar in de theorie-uitbreidingsset.
                 </span>
               </div>
 
@@ -90,7 +90,7 @@ export default function About({ onBack }) {
                   3. Terminologie: 'Overcompensatie' versus 'Omkering'
                 </strong>
                 <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
-                  In ons deck gebruiken we de internationaal vertrouwde term <em>Coping: Overcompensatie</em> (op de gele categoriekaart). Binnen recente VSt-publicaties wordt deze schemacoping ook wel 'omkering' genoemd. Beide begrippen beschrijven exact hetzelfde mechanisme: vechten tegen het schema door het tegenovergestelde gedrag te vertonen.
+                  In ons deck gebruiken we de internationaal vertrouwde term <em>Coping: Overcompensatie</em> (op de gele categoriekaart). In nieuwere publicaties wordt deze schemacoping ook wel 'omkering' genoemd. Beide begrippen beschrijven exact hetzelfde mechanisme: vechten tegen het schema door het tegenovergestelde gedrag te vertonen.
                 </span>
               </div>
 
@@ -99,7 +99,7 @@ export default function About({ onBack }) {
                   4. Selectie van 14 kernmodi (geen forensische / specialistische modi)
                 </strong>
                 <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
-                  Het VSt-overzicht bevat een bredere waaier aan disfunctionele copingmodi, waaronder specialistische en forensische modi zoals <em>'Bedrog en manipulatie'</em> of <em>'Roofdier'</em>. Voor de algemene praktijk, psycho-educatie en de veiligheid in een therapeutische spelsituatie hebben we bewust gekozen voor een compacte, breed herkenbare selectie van 14 kernmodi conform de Schema Mode Inventory (SMI).
+                  In de bredere theorie bestaat een grotere waaier aan disfunctionele copingmodi, waaronder specialistische en forensische modi zoals <em>'Bedrog en manipulatie'</em> of <em>'Roofdier'</em>. Voor de algemene praktijk, psycho-educatie en de veiligheid in een therapeutische spelsituatie hebben we in de basisset bewust gekozen voor een compacte, breed herkenbare selectie van 14 kernmodi conform de Schema Mode Inventory (SMI).
                 </span>
               </div>
             </div>
@@ -109,7 +109,7 @@ export default function About({ onBack }) {
                 Waarom deze keuze voor de praktijk?
               </h4>
               <p style={{ color: '#047857', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
-                Zoals de VSt in haar documenten zelf aangeeft, vormen de nieuwe ontwikkelingen een waardevolle verdieping, maar zijn ze nog niet empirisch vastgelegd in de standaard diagnostiek. Voor een visuele en interactieve interventie op tafel staat <strong>behapbaarheid en herkenbaarheid voorop</strong>. Een overdaad aan complexe, experimentele nuances zorgt bij cliënten snel voor cognitieve overbelasting. Door uit te gaan van het robuuste 18-schema's en 5-domeinen fundament van Young behoudt het deck zijn maximale didactische kracht, wetenschappelijke helderheid en directe bruikbaarheid in de spreekkamer.
+                Voor een visuele en interactieve interventie op tafel staat <strong>behapbaarheid en herkenbaarheid voorop</strong>. Een overdaad aan complexe nuances zorgt bij cliënten snel voor cognitieve overbelasting. Door uit te gaan van het robuuste 18-schema's en 5-domeinen fundament van Young behoudt het deck zijn maximale didactische kracht, wetenschappelijke helderheid en directe bruikbaarheid in de spreekkamer. Voor therapeuten die ook de nieuwere concepten willen gebruiken, is er de theorie-uitbreidingsset.
               </p>
             </div>
 
@@ -167,10 +167,10 @@ export default function About({ onBack }) {
                 Belangrijke disclaimer:
               </h3>
               <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: '0 0 1rem 0' }}>
-                Dit kaartspel is een onafhankelijk, creatief initiatief, ontworpen als praktisch hulpmiddel om de dialoog over patronen en behoeften op een speelse manier te faciliteren. Het is géén officieel product van, en niet formeel getoetst of goedgekeurd door, de Vereniging voor Schematherapie (VSt) of de International Society of Schema Therapy (ISST).
+                Dit kaartspel is een onafhankelijk, creatief initiatief, ontworpen als praktisch hulpmiddel om de dialoog over patronen en behoeften op een visuele en tastbare manier te faciliteren. Het is een onafhankelijke uitgave en niet verbonden aan of geaccrediteerd door beroepsverenigingen.
               </p>
               <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
-                Om volledige transparantie te bieden, zijn de exacte teksten, begrippen en de indeling van alle kaarten openbaar in te zien op deze website. Therapeuten kunnen zo vooraf tot in detail controleren wat het deck bevat en zelf beoordelen of dit aansluit bij hun visie en werkwijze. De keuze om deze kaarten als hulpmiddel in te zetten binnen een klinische setting of sessie valt dan ook volledig onder de eigen professionele verantwoordelijkheid van de behandelend therapeut. Het spel is nadrukkelijk bedoeld als aanvullende, laagdrempelige ondersteuning en is geen vervanging voor officiële klinische instrumenten of een gedegen professionele behandeling.
+                Om volledige transparantie te bieden, zijn de exacte teksten, begrippen en de indeling van alle kaarten openbaar in te zien op deze website. Therapeuten kunnen zo vooraf tot in detail controleren wat het deck bevat en zelf beoordelen of dit aansluit bij hun visie en werkwijze. De keuze om deze kaarten als hulpmiddel in te zetten binnen een sessie valt dan ook onder de eigen professionele verantwoordelijkheid van de behandelend professional. Het spel is nadrukkelijk bedoeld als aanvullende, laagdrempelige ondersteuning en is geen vervanging voor klinische diagnostiek of een gedegen professionele behandeling.
               </p>
             </div>
           </div>

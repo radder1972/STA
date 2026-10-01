@@ -154,7 +154,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
   };
 
   const getDeckButtonTitle = () => {
-    if (deckSelection === 'vst') return 'VSt 2021 Uitbreiding (12 kaarten • 2 vellen A4)';
+    if (deckSelection === 'vst') return 'Theorie-uitbreiding (12 kaarten • 2 vellen A4)';
     if (deckSelection === 'base') return 'Basisdeck (43 kaarten • 5 vellen A4)';
     return 'Volledige Set (55 kaarten • 7 vellen A4)';
   };
@@ -279,7 +279,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                     transition: 'all 0.15s ease'
                   }}
                 >
-                  <div>VSt 2021</div>
+                  <div>Uitbreiding</div>
                   <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>12 kaarten</div>
                 </button>
 

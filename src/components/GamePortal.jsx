@@ -24,7 +24,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
         {/* Optie 1: De Theoriekaarten */}
         <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', position: 'relative' }}>
           
-          {/* Ronde sticker: VSt 2021 Uitbreidingsset (half over de box) */}
+          {/* Ronde sticker: Theorie-uitbreiding (half over de box) */}
           <div 
             style={{
               position: 'absolute',
@@ -52,11 +52,11 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
             <div style={{ display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.58rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
               <Sparkles size={10} /> INCL.
             </div>
-            <div style={{ fontSize: '0.95rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
-              VSt 2021
+            <div style={{ fontSize: '0.9rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
+              12 Extra
             </div>
             <div style={{ fontSize: '0.58rem', fontWeight: '800', letterSpacing: '0.04em', textTransform: 'uppercase', opacity: 0.95 }}>
-              Uitbreiding
+              Theoriekaarten
             </div>
           </div>
 
@@ -79,7 +79,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: 'var(--text-main)', lineHeight: '1.5' }}>
                 <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#ea580c', marginTop: '6px', flexShrink: 0 }} />
                 <span>
-                  <strong>VSt 2021 Uitbreidingsset (12 kaarten):</strong> De officiële actualisatie van de Vereniging voor Schematherapie met 6 aanvullende modi (o.a. Blije Kind & Boze Beschermer), 3 schema's, Coping: Omkering en 2 behoeften.
+                  <strong>Theorie-uitbreidingsset (12 kaarten):</strong> Theoretische actualisatie (Arntz et al., 2021) met 6 aanvullende modi (o.a. Blije Kind & Boze Beschermer), 3 schema's, Coping: Omkering en 2 behoeften.
                 </span>
               </div>
             </div>
@@ -125,7 +125,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
           </div>
           <div style={{ flex: 1 }}>
             <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Fysieke Kaarten Bestellen</h2>
-            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Wil je liever een professioneel, fysiek kaartendeck in handen? Bestel direct de Complete Set (55 kaarten), de Klassieke Basisset (43 kaarten) of de losse VSt 2021 Uitbreiding (12 kaarten).</p>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Wil je liever een professioneel, fysiek kaartendeck in handen? Bestel direct de Complete Set (55 kaarten), de Klassieke Basisset (43 kaarten) of de losse Theorie-uitbreiding (12 kaarten).</p>
             <button onClick={onViewOrderCards} className="btn btn-gradient-game">
               Kaarten bestellen
             </button>
