@@ -13,8 +13,8 @@ import imgAandachtErkenningzoeker from '../assets/images/vst/aandacht_erkenningz
 import imgRoofdier from '../assets/images/vst/roofdier.png';
 
 export const vstBehoeftenText = {
-  'Zelfcoherentie': 'De behoefte aan een geïntegreerd zelfbeeld en een stabiele identiteit: het gevoel één geheel te zijn met eigen waarden en richting.',
-  'Rechtvaardigheid': 'De behoefte aan eerlijkheid en een rechtvaardige behandeling: de zekerheid dat regels gelijk gelden en onrecht wordt hersteld.'
+  'Zelfcoherentie': 'Er wordt tegemoet gekomen aan je verlangen om jezelf te zien als samenhangend geheel, je psychisch gezond te voelen en een zinvol leven te leiden. Aan deze behoefte kan pas worden voldaan als ook aan andere behoeften is voldaan.',
+  'Rechtvaardigheid': 'De wereld leren kennen in een sfeer van rechtvaardigheid, waarin onrecht waar mogelijk wordt gecorrigeerd en waarin jou uitleg gegeven wordt over regels.'
 };
 
 export const vstSchemaText = {

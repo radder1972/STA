@@ -72,14 +72,17 @@ const smiModesMap = {
 
 
 const needDescriptions = {
-  'Veiligheid & Verbinding': "Dit is de meest fundamentele behoefte. Het draait om veiligheid, stabiliteit, verzorging en onvoorwaardelijke acceptatie. Een kind moet voelen dat het gewenst is en dat de opvoeders een veilige thuishaven bieden waarop altijd kan worden teruggevallen, zonder angst voor verlating of afwijzing.",
-  'Veilige hechting': "Dit is de meest fundamentele behoefte. Het draait om veiligheid, stabiliteit, verzorging en onvoorwaardelijke acceptatie. Een kind moet voelen dat het gewenst is en dat de opvoeders een veilige thuishaven bieden waarop altijd kan worden teruggevallen, zonder angst voor verlating of afwijzing.",
-  'Autonomie & Competentie': "Dit is de behoefte om je als een onafhankelijk, competent individu te ontwikkelen. Het gaat om de ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen. Als deze behoefte in de knel komt, voelt iemand zich als volwassene vaak extreem afhankelijk of kwetsbaar.",
-  'Autonomie': "Dit is de behoefte om je als een onafhankelijk, competent individu te ontwikkelen. Het gaat om de ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen. Als deze behoefte in de knel komt, voelt iemand zich als volwassene vaak extreem afhankelijk of kwetsbaar.",
-  'Vrijheid van expressie': "Ieder mens heeft de behoefte om zich vrij uit te drukken. Het kind moet ervaren dat de eigen gevoelens (ook boosheid of verdriet) en behoeften geldig zijn, en niet minder belangrijk zijn dan die van anderen. Wanneer deze behoefte wordt onderdrukt, ontstaat vaak zelfopoffering of onderwerping.",
-  'Vrije expressie': "Ieder mens heeft de behoefte om zich vrij uit te drukken. Het kind moet ervaren dat de eigen gevoelens (ook boosheid of verdriet) en behoeften geldig zijn, en niet minder belangrijk zijn dan die van anderen. Wanneer deze behoefte wordt onderdrukt, ontstaat vaak zelfopoffering of onderwerping.",
-  'Spontaniteit en spel': "Er moet ruimte zijn voor plezier, creativiteit en onbezorgdheid. Niet alles hoeft nuttig, perfect of efficiënt te zijn. Deze behoefte beschermt ons tegen meedogenloze normen, overmatige prestatiedruk en het gevoel dat het leven uitsluitend uit plichten bestaat.",
-  'Realistische grenzen': "Naast vrijheid heeft een kind kaders nodig om te leren omgaan met frustratie. Dit betekent leren dat je niet altijd je zin kunt krijgen, dat je rekening moet houden met anderen, en dat je discipline moet opbrengen voor taken die minder leuk zijn. Het ontbreken hiervan leidt vaak tot onvoldoende zelfcontrole of veeleisendheid richting anderen."
+  'Veiligheid & Verbinding': "Deze ervaren met anderen. Zorg en aandacht krijgen in een veilige, betrouwbare omgeving. Je beschermd, verbonden en gewaardeerd voelen.",
+  'Veilige hechting': "Deze ervaren met anderen. Zorg en aandacht krijgen in een veilige, betrouwbare omgeving. Je beschermd, verbonden en gewaardeerd voelen.",
+  'Autonomie & Competentie': "De wereld mogen onderzoeken. Je eigen keuzes leren maken en ervaringen opdoen, op een veilige manier.",
+  'Autonomie': "De wereld mogen onderzoeken. Je eigen keuzes leren maken en ervaringen opdoen, op een veilige manier.",
+  'Vrijheid van expressie': "Je gevoelens en belevingen mogen uiten en ervaren. Voelen dat je mag zijn wie je bent.",
+  'Vrije expressie': "Je gevoelens en belevingen mogen uiten en ervaren. Voelen dat je mag zijn wie je bent.",
+  'Spontaniteit en spel': "De ruimte hebben om te ontdekken, leren, voelen, verbazen, experimenteren en ervaren, en daarvan te genieten.",
+  'Spontaniteit & Spel': "De ruimte hebben om te ontdekken, leren, voelen, verbazen, experimenteren en ervaren, en daarvan te genieten.",
+  'Realistische grenzen': "Vaardigheden leren om je eigen en andermans grenzen te respecteren, en om te kunnen functioneren in een groep. Je emoties op een gezonde manier leren reguleren.",
+  'Zelfcoherentie': "Er wordt tegemoet gekomen aan je verlangen om jezelf te zien als samenhangend geheel, je psychisch gezond te voelen en een zinvol leven te leiden. Aan deze behoefte kan pas worden voldaan als ook aan andere behoeften is voldaan.",
+  'Rechtvaardigheid': "De wereld leren kennen in een sfeer van rechtvaardigheid, waarin onrecht waar mogelijk wordt gecorrigeerd en waarin jou uitleg gegeven wordt over regels."
 };
 
 const needCards = [

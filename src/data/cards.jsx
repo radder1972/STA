@@ -14,16 +14,17 @@ import imgM3c from '../assets/images/modicategorieen/coping_overcompensatie.png'
 import imgM4 from '../assets/images/modicategorieen/4.png';
 
 export const basisbehoeftenText = {
-  'Veiligheid & Verbinding': 'Veiligheid, stabiliteit, verzorging en onvoorwaardelijke acceptatie. Een thuishaven zonder angst voor verlating of afwijzing.',
-  'Veilige hechting': 'Veiligheid, stabiliteit, verzorging en onvoorwaardelijke acceptatie. Een thuishaven zonder angst voor verlating of afwijzing.',
-  'Autonomie & Competentie': 'Ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen als onafhankelijk individu.',
-  'Autonomie': 'Ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen als onafhankelijk individu.',
-  'Vrijheid van expressie': 'Ruimte om je vrij uit te drukken. Eigen gevoelens (ook boosheid of verdriet) en behoeften zijn geldig en belangrijk.',
-  'Vrije expressie': 'Ruimte om je vrij uit te drukken. Eigen gevoelens (ook boosheid of verdriet) en behoeften zijn geldig en belangrijk.',
-  'Spontaniteit en spel': 'Ruimte voor plezier, creativiteit en onbezorgdheid. Niet alles hoeft nuttig, perfect of efficiënt te zijn.',
-  'Realistische grenzen': 'Kaders om te leren omgaan met frustratie. Leren dat je niet altijd je zin kunt krijgen en rekening moet houden met anderen.',
-  'Zelfcoherentie': 'De behoefte aan een geïntegreerd, samenhangend zelfbeeld en een stabiele identiteit. Het gevoel één geheel te zijn, met duidelijke eigen waarden, gevoelens en richting.',
-  'Rechtvaardigheid': 'De behoefte aan eerlijkheid, billijkheid en een rechtvaardige behandeling. De zekerheid dat regels voor iedereen gelijk gelden, dat afspraken worden nageleefd en dat onrecht wordt gecorrigeerd.'
+  'Veiligheid & Verbinding': 'Deze ervaren met anderen. Zorg en aandacht krijgen in een veilige, betrouwbare omgeving. Je beschermd, verbonden en gewaardeerd voelen.',
+  'Veilige hechting': 'Deze ervaren met anderen. Zorg en aandacht krijgen in een veilige, betrouwbare omgeving. Je beschermd, verbonden en gewaardeerd voelen.',
+  'Autonomie & Competentie': 'De wereld mogen onderzoeken. Je eigen keuzes leren maken en ervaringen opdoen, op een veilige manier.',
+  'Autonomie': 'De wereld mogen onderzoeken. Je eigen keuzes leren maken en ervaringen opdoen, op een veilige manier.',
+  'Vrijheid van expressie': 'Je gevoelens en belevingen mogen uiten en ervaren. Voelen dat je mag zijn wie je bent.',
+  'Vrije expressie': 'Je gevoelens en belevingen mogen uiten en ervaren. Voelen dat je mag zijn wie je bent.',
+  'Spontaniteit en spel': 'De ruimte hebben om te ontdekken, leren, voelen, verbazen, experimenteren en ervaren, en daarvan te genieten.',
+  'Spontaniteit & Spel': 'De ruimte hebben om te ontdekken, leren, voelen, verbazen, experimenteren en ervaren, en daarvan te genieten.',
+  'Realistische grenzen': 'Vaardigheden leren om je eigen en andermans grenzen te respecteren, en om te kunnen functioneren in een groep. Je emoties op een gezonde manier leren reguleren.',
+  'Zelfcoherentie': 'Er wordt tegemoet gekomen aan je verlangen om jezelf te zien als samenhangend geheel, je psychisch gezond te voelen en een zinvol leven te leiden. Aan deze behoefte kan pas worden voldaan als ook aan andere behoeften is voldaan.',
+  'Rechtvaardigheid': 'De wereld leren kennen in een sfeer van rechtvaardigheid, waarin onrecht waar mogelijk wordt gecorrigeerd en waarin jou uitleg gegeven wordt over regels.'
 };
 
 export const categorieText = {
