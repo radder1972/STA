@@ -58,14 +58,14 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
             e.currentTarget.style.boxShadow = '0 10px 25px rgba(234, 88, 12, 0.45), 0 3px 8px rgba(0, 0, 0, 0.15)';
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '0.66rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
-            <Sparkles size={12} /> INCL.
+          <div style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
+            <Sparkles size={11} /> Inclusief
           </div>
           <div style={{ fontSize: '1.15rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '2px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
             12 Extra
           </div>
-          <div style={{ fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.04em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1.1, whiteSpace: 'nowrap' }}>
-            Theoriekaarten
+          <div style={{ fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.05em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1.15 }}>
+            Theorie-<br />kaarten
           </div>
         </button>
 
