@@ -13,6 +13,7 @@ export const schemaDescriptions = {
   'Kluwen / Onderontwikkeld zelf': 'Buitensporige emotionele betrokkenheid bij en verbondenheid met een of meer belangrijke anderen, wat ten koste gaat van een eigen identiteit.',
   'Mislukken': 'De overtuiging dat je hebt gefaald, onvermijdelijk zult falen, of fundamenteel tekortschiet in vergelijking met anderen op het gebied van prestaties.',
   
+  'Zich rechten toe-eigenen': 'De overtuiging dat je superieur bent aan anderen en speciale rechten of privileges verdient, vaak ten koste van anderen.',
   'Veeleisendheid / Grandiositeit': 'De overtuiging dat je superieur bent aan anderen en speciale rechten of privileges verdient, vaak ten koste van anderen.',
   'Onvoldoende zelfcontrole': 'Moeite om frustratietolerantie te behouden, eigen emoties of impulsen te beheersen, en onvoldoende discipline om doelen te bereiken.',
   

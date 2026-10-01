@@ -45,7 +45,7 @@ const ysqSchemaNamesMap = {
   'Enmeshment': 'Kluwen / Onderontwikkeld zelf',
   'Failure to achieve': 'Mislukken',
   'Insufficient self-control/self-discipline': 'Onvoldoende zelfcontrole',
-  'Entitlement/Superiority': 'Veeleisendheid / Grandiositeit',
+  'Entitlement/Superiority': 'Zich rechten toe-eigenen',
   'Subjugation': 'Onderwerping',
   'Self-sacrifice': 'Zelfopoffering',
   'Admiration/Recognition-seeking': 'Goedkeuring / Erkenning zoeken',

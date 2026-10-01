@@ -88,6 +88,14 @@ export const verdiepingData = {
       "Vervang de gedachte 'ik zal toch falen' door 'ik ga het proberen en kijken hoe ver ik kom'."
     ]
   },
+  'Zich rechten toe-eigenen': {
+    casus: "In de file haalt Robert geïrriteerd iedereen via de vluchtstrook in. Hij vindt dat de normale regels niet voor hem gelden, omdat zijn afspraak veel belangrijker is dan die van de andere automobilisten.",
+    tips: [
+      "Sta bewust stil bij de behoeften en rechten van anderen. Oefen empathie.",
+      "Accepteer dat normale grenzen (zoals regels en wachttijden) ook voor jou gelden en frustratie erbij hoort.",
+      "Onderzoek of deze veeleisendheid eigenlijk een manier is om diepe onzekerheid te verbergen."
+    ]
+  },
   'Veeleisendheid / Grandiositeit': {
     casus: "In de file haalt Robert geïrriteerd iedereen via de vluchtstrook in. Hij vindt dat de normale regels niet voor hem gelden, omdat zijn afspraak veel belangrijker is dan die van de andere automobilisten.",
     tips: [

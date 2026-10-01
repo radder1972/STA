@@ -37,7 +37,7 @@ export const basisbehoeftenToSchemas = {
   'Autonomie': ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'],
   'Vrije expressie': ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'],
   'Spontaniteit en spel': ['Negativisme / Pessimisme', 'Emotionele geremdheid', 'Meedogenloze normen', 'Bestraffendheid'],
-  'Realistische grenzen': ['Veeleisendheid / Grandiositeit', 'Onvoldoende zelfcontrole'],
+  'Realistische grenzen': ['Zich rechten toe-eigenen', 'Onvoldoende zelfcontrole'],
   'Zelfcoherentie': ['Gebrek aan coherente identiteit', 'Gebrek aan een betekenisvolle wereld'],
   'Rechtvaardigheid': ['Onrechtvaardigheid']
 };
@@ -63,7 +63,7 @@ export const ysqSchemaNamesMap = {
   'Enmeshment': 'Kluwen / Onderontwikkeld zelf',
   'Failure to achieve': 'Mislukken',
   'Insufficient self-control_self-discipline': 'Onvoldoende zelfcontrole',
-  'Entitlement_Superiority': 'Veeleisendheid / Grandiositeit',
+  'Entitlement_Superiority': 'Zich rechten toe-eigenen',
   'Subjugation': 'Onderwerping',
   'Self-sacrifice': 'Zelfopoffering',
   'Admiration_Recognition-seeking': 'Goedkeuring / Erkenning zoeken',
@@ -93,7 +93,7 @@ export const smiModesMap = {
 export const schemaGroups = [
   { group: 'Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Tekortschieten / Schaamte', 'Sociaal isolement / Vervreemding'] },
   { group: 'Verzwakte Autonomie', titles: ['Afhankelijkheid / Incompetentie', 'Kwetsbaarheid voor ziekte en gevaar', 'Kluwen / Onderontwikkeld zelf', 'Mislukken'] },
-  { group: 'Verzwakte Grenzen', titles: ['Onvoldoende zelfcontrole', 'Veeleisendheid / Grandiositeit'] },
+  { group: 'Verzwakte Grenzen', titles: ['Onvoldoende zelfcontrole', 'Zich rechten toe-eigenen'] },
   { group: 'Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring / Erkenning zoeken'] },
   { group: 'Overmatige Waakzaamheid', titles: ['Emotionele geremdheid', 'Meedogenloze normen', 'Negativisme / Pessimisme', 'Bestraffendheid'] }
 ];
