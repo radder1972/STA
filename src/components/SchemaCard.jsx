@@ -302,7 +302,9 @@ const SchemaCard = ({
                 paddingBottom: `${4 * s}px`, 
                 borderBottom: `1px solid ${color && color.startsWith('#') ? color + '50' : 'rgba(0,0,0,0.15)'}`,
                 lineHeight: '1.2', 
+                height: `${2.0 * s}rem`,
                 display: 'flex', 
+                flexDirection: 'column',
                 alignItems: 'center', 
                 justifyContent: 'center', 
                 textAlign: 'center' 

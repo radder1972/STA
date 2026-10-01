@@ -404,7 +404,12 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                         fontWeight: 800, 
                         letterSpacing: '-0.2px',
                         flexShrink: 0,
-                        zIndex: 1 
+                        zIndex: 1,
+                        height: '8.5mm',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center'
                       }}>
                         {formatCardTitle(card.title)}
                       </h4>
