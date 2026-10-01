@@ -188,8 +188,8 @@ export default function OrderCards({ onBack }) {
       cardsCount: 55,
       price: 49.95,
       oldPrice: 56.90,
-      badge: 'Meest Gekozen',
-      badgeColor: '#3b82f6',
+      badge: 'Aanbevolen',
+      badgeColor: '#2563eb',
       specs: [
         'Alle 55 theoriekaarten in één complete professionele set',
         '43 klassieke theoriekaarten + 12 officiële VSt 2021 kaarten',
@@ -202,10 +202,10 @@ export default function OrderCards({ onBack }) {
     base: {
       id: 'base',
       title: 'Klassieke Basisset',
-      subtitle: '43 theoriekaarten (Young & Arntz)',
+      subtitle: '43 theoriekaarten (Young & Arntz theorie)',
       cardsCount: 43,
       price: 39.95,
-      badge: 'Klassieke Standaard',
+      badge: null,
       badgeColor: '#10b981',
       specs: [
         '43 theoriekaarten volgens de beproefde Young- & Arntz-theorie',
@@ -219,10 +219,10 @@ export default function OrderCards({ onBack }) {
     vst: {
       id: 'vst',
       title: 'VSt 2021 Uitbreidingsset',
-      subtitle: '12 officiële VSt theoriekaarten',
+      subtitle: '12 officiële VSt theoriekaarten (Arntz et al., 2021)',
       cardsCount: 12,
       price: 16.95,
-      badge: 'VSt 2021 Update',
+      badge: 'VSt 2021',
       badgeColor: '#ea580c',
       specs: [
         '12 officiële uitbreidingskaarten (Arntz et al., 2021)',
@@ -312,145 +312,126 @@ export default function OrderCards({ onBack }) {
           Een professioneel gedrukte set voor in jouw praktijk
         </h2>
         <p style={{ marginTop: '1.25rem', fontSize: '1.15rem', color: '#475569', lineHeight: '1.6' }}>
-          Kun je zelf niet printen of wil je een hoogwaardige afdruk zonder zelf te hoeven knippen en snijden? Til je therapiesessies naar een hoger niveau met deze luxe theoriekaartenset. Ontworpen om de abstracte theorie van schematherapie direct visueel en tastbaar te maken voor cliënten. Kies hieronder jouw gewenste uitvoering: de complete set, de klassieke basisset of de losse VSt 2021 uitbreiding.
+          Kun je zelf niet printen of wil je een hoogwaardige afdruk zonder zelf te hoeven knippen en snijden? Til je therapiesessies naar een hoger niveau met deze luxe kaartenset. Ontworpen om de abstracte theorie van schematherapie direct visueel en tastbaar te maken voor cliënten.
         </p>
       </div>
 
       {/* WEBSHOP HERO SECTION */}
-      <div className="glass-panel" style={{ padding: '2.5rem', width: '100%', maxWidth: '960px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10, borderRadius: '24px' }}>
+      <div className="glass-panel" style={{ padding: '2.5rem', width: '100%', maxWidth: '850px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10, borderRadius: '24px' }}>
         <div className="inner-box" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '2.5rem', borderRadius: '20px' }}>
           
-          {/* VARIANT SELECTOR */}
-          <div style={{ marginBottom: '2.5rem' }}>
-            <label style={{ display: 'block', fontSize: '1.1rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '1.2rem' }}>
-              1. Kies jouw uitvoering:
-            </label>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.2rem' }}>
-              {Object.values(VARIANTS).map((variant) => {
-                const isSelected = selectedVariant === variant.id;
-                return (
-                  <div
-                    key={variant.id}
-                    onClick={() => { 
-                      setSelectedVariant(variant.id); 
-                      setCurrentIndex(0); 
-                    }}
-                    style={{
-                      border: isSelected ? '2px solid #3b82f6' : '1px solid #e2e8f0',
-                      borderRadius: '16px',
-                      padding: '1.4rem',
-                      background: isSelected ? 'rgba(59, 130, 246, 0.05)' : 'white',
-                      boxShadow: isSelected ? '0 8px 24px rgba(59, 130, 246, 0.16)' : '0 2px 6px rgba(0,0,0,0.03)',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s ease',
-                      position: 'relative',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      transform: isSelected ? 'translateY(-2px)' : 'none'
-                    }}
-                  >
-                    {/* Badge */}
-                    {variant.badge && (
-                      <div style={{
-                        position: 'absolute',
-                        top: '-11px',
-                        right: '12px',
-                        background: variant.badgeColor || '#3b82f6',
-                        color: 'white',
-                        fontSize: '0.72rem',
-                        fontWeight: '700',
-                        padding: '3px 10px',
-                        borderRadius: '9999px',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.04em',
-                        boxShadow: '0 2px 6px rgba(0,0,0,0.15)'
-                      }}>
-                        {variant.badge}
-                      </div>
-                    )}
+          <h2 style={{ fontSize: '2rem', margin: '0 0 0.4rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>
+            De Schematherapie Kaartenset
+          </h2>
+          <p style={{ fontSize: '1.05rem', color: '#64748b', margin: '0 0 1.5rem 0', fontWeight: '500' }}>
+            Kies jouw gewenste uitvoering:
+          </p>
 
-                    <div>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
-                        <h3 style={{ margin: 0, fontSize: '1.15rem', color: isSelected ? '#1e40af' : '#1e293b', fontWeight: '700' }}>
+          {/* 3 HORIZONTAL VARIANT ROWS */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '2rem' }}>
+            {Object.values(VARIANTS).map((variant) => {
+              const isSelected = selectedVariant === variant.id;
+              return (
+                <div
+                  key={variant.id}
+                  onClick={() => { 
+                    setSelectedVariant(variant.id); 
+                    setCurrentIndex(0); 
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '1rem 1.25rem',
+                    borderRadius: '14px',
+                    border: isSelected ? '2px solid #3b82f6' : '1px solid #e2e8f0',
+                    background: isSelected ? '#f0f7ff' : '#ffffff',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease',
+                    boxShadow: isSelected ? '0 4px 14px rgba(59, 130, 246, 0.12)' : 'none'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: 0 }}>
+                    <div style={{
+                      width: '20px',
+                      height: '20px',
+                      borderRadius: '50%',
+                      border: isSelected ? '6px solid #3b82f6' : '2px solid #cbd5e1',
+                      background: 'white',
+                      boxSizing: 'border-box',
+                      flexShrink: 0
+                    }} />
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                        <span style={{ fontWeight: '700', fontSize: '1.05rem', color: isSelected ? '#1e40af' : '#1e293b' }}>
                           {variant.title}
-                        </h3>
-                        <div style={{
-                          width: '22px',
-                          height: '22px',
-                          borderRadius: '50%',
-                          border: isSelected ? '6px solid #3b82f6' : '2px solid #cbd5e1',
-                          background: 'white',
-                          boxSizing: 'border-box',
-                          flexShrink: 0
-                        }} />
-                      </div>
-
-                      <p style={{ margin: '0 0 1.2rem 0', fontSize: '0.88rem', color: '#64748b' }}>
-                        {variant.subtitle}
-                      </p>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginTop: 'auto', paddingTop: '0.9rem', borderTop: '1px solid #f1f5f9' }}>
-                      <span style={{ fontSize: '1.45rem', fontWeight: '800', color: isSelected ? '#3b82f6' : '#1e293b' }}>
-                        € {variant.price.toFixed(2).replace('.', ',')}
-                      </span>
-                      {variant.oldPrice && (
-                        <span style={{ fontSize: '0.9rem', color: '#94a3b8', textDecoration: 'line-through' }}>
-                          € {variant.oldPrice.toFixed(2).replace('.', ',')}
                         </span>
-                      )}
-                      <span style={{ fontSize: '0.82rem', color: '#94a3b8', marginLeft: 'auto' }}>
-                        {variant.cardsCount} kaarten
-                      </span>
+                        <span style={{
+                          fontSize: '0.78rem',
+                          background: isSelected ? '#3b82f6' : '#f1f5f9',
+                          color: isSelected ? 'white' : '#475569',
+                          padding: '2px 8px',
+                          borderRadius: '9999px',
+                          fontWeight: '600'
+                        }}>
+                          {variant.cardsCount} kaarten
+                        </span>
+                        {variant.badge && (
+                          <span style={{
+                            fontSize: '0.72rem',
+                            background: variant.badgeColor,
+                            color: 'white',
+                            padding: '2px 8px',
+                            borderRadius: '9999px',
+                            fontWeight: '700',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.03em'
+                          }}>
+                            {variant.badge}
+                          </span>
+                        )}
+                      </div>
+                      <div style={{ fontSize: '0.85rem', color: '#64748b', marginTop: '2px' }}>
+                        {variant.subtitle}
+                      </div>
                     </div>
                   </div>
-                );
-              })}
-            </div>
+
+                  <div style={{ textAlign: 'right', flexShrink: 0, paddingLeft: '1rem' }}>
+                    <div style={{ fontSize: '1.35rem', fontWeight: '800', color: isSelected ? '#2563eb' : '#1e293b' }}>
+                      € {variant.price.toFixed(2).replace('.', ',')}
+                    </div>
+                    {variant.oldPrice && (
+                      <div style={{ fontSize: '0.82rem', color: '#94a3b8', textDecoration: 'line-through' }}>
+                        € {variant.oldPrice.toFixed(2).replace('.', ',')}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
-          <div style={{ height: '1px', background: '#f1f5f9', margin: '0 0 2.5rem 0' }} />
-
-          {/* PRODUCT DETAILS HEADER */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <h2 style={{ fontSize: '1.85rem', margin: '0 0 0.4rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>
-              {activeVariant.title}
-            </h2>
-            <p style={{ fontSize: '1.05rem', color: '#64748b', margin: 0, fontWeight: '500' }}>
-              {activeVariant.subtitle} ({activeVariant.cardsCount} theoriekaarten)
-            </p>
-          </div>
-          
-          {/* Price */}
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', marginBottom: '2rem' }}>
-            <span style={{ fontSize: '2.5rem', fontWeight: '800', color: '#3b82f6' }}>€ {totalPrice}</span>
-            {quantity > 1 && (
-              <span style={{ fontSize: '1.1rem', color: 'var(--text-muted)' }}>
-                (€ {pricePerUnit.toFixed(2).replace('.', ',')} per stuk)
-              </span>
-            )}
-          </div>
-
-          {/* Specifications Box with Overlapping Image */}
+          {/* Specifications Box with Angled Mockup Image */}
           <div style={{ 
             display: 'flex', 
-            flexWrap: 'wrap', 
+            flexWrap: 'nowrap', 
             alignItems: 'center', 
             background: 'var(--inner-box-bg, rgba(255,255,255,0.05))', 
             borderRadius: '16px', 
             padding: '1.5rem', 
-            marginBottom: '3rem', 
+            paddingRight: '1rem',
+            marginBottom: '2.5rem', 
             border: '1px solid var(--border-color)',
-            position: 'relative',
-            gap: '1.5rem'
+            position: 'relative'
           }}>
-            {/* Specifications Text */}
-            <div style={{ flex: '1 1 320px', zIndex: 1 }}>
-              <h4 style={{ margin: '0 0 1rem 0', fontSize: '1.1rem', color: 'var(--text-main)' }}>Specificaties & Inhoud:</h4>
-              <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+            <div style={{ flex: '1 1 auto', zIndex: 1 }}>
+              <h4 style={{ margin: '0 0 0.8rem 0', fontSize: '1.05rem', color: 'var(--text-main)' }}>
+                Inhoud van {activeVariant.title}:
+              </h4>
+              <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                 {activeVariant.specs.map((spec, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', color: '#334155', fontSize: '1.02rem', fontWeight: '500' }}>
+                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: '#334155', fontSize: '0.98rem', fontWeight: '500' }}>
                     <div style={{ color: '#3b82f6', display: 'flex', marginTop: '2px', fontWeight: 'bold' }}>✓</div> 
                     <span>{spec}</span>
                   </li>
@@ -458,21 +439,20 @@ export default function OrderCards({ onBack }) {
               </ul>
             </div>
             
-            {/* Product Mockup Image */}
             <div style={{ 
               flex: '0 0 210px', 
               borderRadius: '16px', 
               overflow: 'hidden', 
-              boxShadow: '0 20px 40px rgba(0,0,0,0.18)', 
+              boxShadow: '0 20px 40px rgba(0,0,0,0.2)', 
               border: '5px solid white', 
+              transform: 'translate(25px, -20px) rotate(4deg)',
               background: 'white',
-              margin: '0 auto',
               position: 'relative',
               zIndex: 2
             }}>
               <img 
                 src="/images/cards-mockup.jpeg" 
-                alt="Fysieke kaartenset" 
+                alt="Fysieke set van Het Schematherapie Spel" 
                 style={{ width: '100%', height: 'auto', display: 'block' }} 
               />
             </div>
@@ -494,16 +474,16 @@ export default function OrderCards({ onBack }) {
           ) : (
             <form onSubmit={handleOrderSubmit} style={{ width: '100%' }}>
               <div style={{ background: '#f8fafc', padding: '2rem', borderRadius: '16px', border: '1px solid #e2e8f0', width: '100%', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', color: '#1e293b', fontWeight: '600' }}>2. Jouw Gegevens & Afleveradres</h3>
                 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-                  
-                  {/* Aantal Selector */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid #e2e8f0', marginBottom: '0.5rem' }}>
-                    <div>
-                      <span style={{ fontSize: '1.05rem', color: '#1e293b', fontWeight: '600', display: 'block' }}>Aantal:</span>
-                      <span style={{ fontSize: '0.85rem', color: '#64748b' }}>{activeVariant.title}</span>
-                    </div>
+                {/* Gekozen selectie & Aantal samenvatting */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '1.25rem', borderBottom: '1px solid #e2e8f0', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+                  <div>
+                    <span style={{ fontSize: '0.82rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '600', display: 'block' }}>Gekozen pakket</span>
+                    <span style={{ fontSize: '1.2rem', fontWeight: '700', color: '#1e293b' }}>{activeVariant.title}</span>
+                    <span style={{ fontSize: '0.88rem', color: '#64748b', marginLeft: '6px' }}>({activeVariant.cardsCount} kaarten)</span>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', background: 'white', borderRadius: '10px', border: '1px solid #cbd5e1', overflow: 'hidden', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
                       <button type="button" onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Minus size={16} />
@@ -515,8 +495,17 @@ export default function OrderCards({ onBack }) {
                         <Plus size={16} />
                       </button>
                     </div>
-                  </div>
 
+                    <div style={{ textAlign: 'right' }}>
+                      <span style={{ fontSize: '0.82rem', color: '#64748b', display: 'block' }}>Totaalbedrag</span>
+                      <span style={{ fontSize: '1.5rem', fontWeight: '800', color: '#3b82f6' }}>€ {totalPrice}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <h3 style={{ fontSize: '1.15rem', marginBottom: '1.25rem', color: '#1e293b', fontWeight: '600' }}>Jouw Gegevens & Afleveradres</h3>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                   <div>
                     <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', color: '#475569', fontWeight: '500' }}>Naam</label>
                     <input 
