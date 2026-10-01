@@ -280,10 +280,7 @@ export default function GameRules({ onBack }) {
               <p className="rule-text">
                 De ronde is niet zomaar afgelopen als je kaarten op zijn. Je rondt de werkvorm pas af als jouw allerlaatste kaart een gezonde groeikaart is: de groene <strong>'Gezonde Volwassene'</strong> óf het <strong>'Blije Kind'</strong> (beschikbaar in de volledige set).
               </p>
-              <p className="rule-text" style={{ marginTop: '0.5rem' }}>
-                Wil je je laatste kaart inzetten, maar is dit een schema, copingreactie of kwetsbare/destructieve modus? Dan mag je niet uitgaan: je pakt een kaart van de trekstapel en de beurt gaat door.
-              </p>
-              <div style={{ marginTop: '1rem', padding: '1rem', background: '#f0fdf4', borderRadius: '0 12px 12px 0', color: '#166534', fontSize: '0.95rem', lineHeight: '1.6', borderLeft: '4px solid #10b981' }}>
+              <div style={{ marginTop: '1rem', padding: '1rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', color: '#1e3a8a', fontSize: '0.95rem', lineHeight: '1.6', borderLeft: '4px solid #3b82f6' }}>
                 <strong>Therapeutische betekenis van de uit-kaarten:</strong><br />
                 In schematherapie kent herstel twee complementaire einddoelen:
                 <ul style={{ margin: '0.4rem 0 0 0', paddingLeft: '1.25rem' }}>
@@ -292,6 +289,9 @@ export default function GameRules({ onBack }) {
                 </ul>
                 Het kunnen uitgaan met het Blije Kind in de volledige set weerspiegelt dat het doel van therapie niet alleen controle en beheersing is, maar juist ook het herontdekken van levensvreugde en speelsheid.
               </div>
+              <p className="rule-text" style={{ marginTop: '1rem' }}>
+                Wil je je laatste kaart inzetten, maar is dit een schema, copingreactie of kwetsbare/destructieve modus? Dan mag je niet uitgaan: je pakt een kaart van de trekstapel en de beurt gaat door.
+              </p>
               <div style={{ marginTop: '0.75rem', padding: '1rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', color: '#1e3a8a', fontSize: '0.95rem', lineHeight: '1.6', borderLeft: '4px solid #3b82f6' }}>
                 <strong>Let op:</strong> Deze spelvorm is bedoeld als een interactieve manier om schema's, modi en basisbehoeften te verkennen en te bespreken. De nadruk ligt op de <strong>dialoog</strong> (het uitleggen van de verbindingen) en psycho-educatie, niet op competitie.
               </div>
