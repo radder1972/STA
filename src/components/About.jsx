@@ -13,7 +13,7 @@ export default function About({ onBack }) {
           <InfoIcon size={40} useGameGradient={true} /> Verantwoording
         </h1>
         <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4', minHeight: '34px' }}>
-          {activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : 'Wie zit er achter dit spel?'}
+          {activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : 'Wie zit er achter deze kaartenset?'}
         </h2>
       </div>
 
@@ -99,7 +99,7 @@ export default function About({ onBack }) {
                   4. Selectie van 14 kernmodi (geen forensische / specialistische modi)
                 </strong>
                 <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
-                  In de bredere theorie bestaat een grotere waaier aan disfunctionele copingmodi, waaronder specialistische en forensische modi zoals <em>'Bedrog en manipulatie'</em> of <em>'Roofdier'</em>. Voor de algemene praktijk, psycho-educatie en de veiligheid in een therapeutische spelsituatie hebben we in de basisset bewust gekozen voor een compacte, breed herkenbare selectie van 14 kernmodi conform de Schema Mode Inventory (SMI).
+                  In de bredere theorie bestaat een grotere waaier aan disfunctionele copingmodi, waaronder specialistische en forensische modi zoals <em>'Bedrog en manipulatie'</em> of <em>'Roofdier'</em>. Voor de algemene praktijk, psycho-educatie en de veiligheid binnen therapeutische sessies en werkvormen hebben we in de basisset bewust gekozen voor een compacte, breed herkenbare selectie van 14 kernmodi conform de Schema Mode Inventory (SMI).
                 </span>
               </div>
             </div>
@@ -115,14 +115,14 @@ export default function About({ onBack }) {
 
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Twee 'kleurwerelden' voor therapeutisch inzicht</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1rem 0' }}>
-              Het meest unieke aan dit ontwerp is de manier waarop we kleur gebruiken om logische therapeutische verbindingen te visualiseren. Het spel kent twee 'kleurwerelden':
+              Het meest unieke aan dit ontwerp is de manier waarop we kleur gebruiken om logische therapeutische verbindingen te visualiseren. De kaartenset kent twee 'kleurwerelden':
             </p>
             <ol style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1rem 0', paddingLeft: '1.5rem' }}>
               <li style={{ marginBottom: '0.5rem' }}><strong>De Inhoud (De Domeinen):</strong> De Basisbehoeften en Schema's delen samen 5 kleuren. Een onvervulde basisbehoefte (bijv. de blauwe kaart 'Veiligheid & Verbinding') deelt zo exact dezelfde kleur als het schema dat daaruit ontstaat (bijv. het blauwe schema 'Verlating / Instabiliteit'). Dit maakt de route van oorzaak en gevolg in één oogopslag helder.</li>
               <li><strong>Het Gedrag (De Categorieën):</strong> De Modi hebben een eigen kleurcodering, puur gebaseerd op hun modusgroep (blauw = Kind, rood = Ouder, geel = Coping, groen = Gezonde Volwassene).</li>
             </ol>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
-              Wanneer een speler in het spel een gele Coping-modus op een blauw Schema legt, zien we op tafel letterlijk wat er in het brein gebeurt: het gedrag (de modus) overschrijft de onderliggende inhoud (het schema). De actieve kleur op tafel verandert. Om patronen te doorbreken, moet de speler (de cliënt) in de theorie terug redeneren naar de Basisbehoefte om uiteindelijk te kunnen eindigen met de groene Gezonde Volwassene.
+              Wanneer binnen een interactieve werkvorm een gele Coping-modus op een blauw Schema wordt gelegd, zien we op tafel letterlijk wat er in het brein gebeurt: het gedrag (de modus) overschrijft de onderliggende inhoud (het schema). De actieve kleur op tafel verandert. Om patronen te doorbreken, redeneert de cliënt in de theorie terug naar de Basisbehoefte om uiteindelijk te eindigen met de groene Gezonde Volwassene.
             </p>
 
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Menselijke taal en minimalistisch design</h3>
@@ -132,15 +132,15 @@ export default function About({ onBack }) {
 
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>De balans tussen ernst en toegankelijkheid</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1rem 0' }}>
-              De spanning tussen klinische ernst en toegankelijkheid is een belangrijk uitgangspunt bij de ontwikkeling van deze set. We positioneren het primair als een tastbare, visuele toolset voor psycho-educatie. Speelse elementen in therapie bagatelliseren de problematiek niet, maar verlagen juist de drempel om erover in gesprek te gaan. Juist bij abstracte en zware thema's, waar cliënten vaak vastlopen in diepe patronen of schaamte, helpt een fysiek object op tafel om de dynamiek te doorbreken. Het externeert het probleem: de cliënt is niet zijn afwijzingsschema of boze modus, maar kijkt naar een kaartje op tafel. Dat creëert direct een veilige, psychologische afstand waardoor het ineens veel makkelijker wordt om de eigen mechanismen te analyseren. De therapeut bepaalt of ze de kaarten simpelweg gebruiken om de theorie letterlijk op tafel te leggen, of dat ze het spel-element toevoegen.
+              De spanning tussen klinische ernst en toegankelijkheid is een belangrijk uitgangspunt bij de ontwikkeling van deze set. We positioneren het primair als een tastbare, visuele toolset voor psycho-educatie. Speelse elementen in therapie bagatelliseren de problematiek niet, maar verlagen juist de drempel om erover in gesprek te gaan. Juist bij abstracte en zware thema's, waar cliënten vaak vastlopen in diepe patronen of schaamte, helpt een fysiek object op tafel om de dynamiek te doorbreken. Het externeert het probleem: de cliënt is niet zijn afwijzingsschema of boze modus, maar kijkt naar een kaartje op tafel. Dat creëert direct een veilige, psychologische afstand waardoor het ineens veel makkelijker wordt om de eigen mechanismen te analyseren. De therapeut bepaalt of de kaarten puur als visuele tafelopstelling worden gebruikt, of dat er een interactieve spelvorm wordt ingezet.
             </p>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
-              Voor wie dat aankan, bieden de spelregels een bonusoptie: een "speelse gespreksvorm" die de theorie in actie brengt. De therapie is niet gereduceerd tot een simpel win-of-verlies spelletje; de mechaniek dwingt de speler tot het maken van kloppende therapeutische stappen. De regel dat een modus de 'kleurwereld' van de inhoud dwarsboomt, de verplichting om patronen te herleiden naar een basisbehoefte, en de voorwaarde dat de speler uitsluitend kan winnen door te eindigen bij de Gezonde Volwassene, zijn speelse vertalingen van serieuze klinische doelen. De set fungeert hiermee als een vehikel voor dialoog en bewustwording, en levert zo een waardevolle en verantwoorde bijdrage in de spreekkamer.
+              Voor wie dat aanspreekt, bieden de werkvormen een interactieve spelvorm die de theorie in actie brengt. De theorie is niet gereduceerd tot winnen of verliezen; de dynamiek stimuleert de cliënt tot het zetten van kloppende therapeutische stappen. Dat een modus de 'kleurwereld' van de inhoud dwarsboomt, patronen herleid moeten worden naar een basisbehoefte, en dat altijd wordt geëindigd met de Gezonde Volwassene, zijn interactieve vertalingen van serieuze therapeutische doelen. De set fungeert hiermee als een vehikel voor dialoog en bewustwording, en levert zo een waardevolle en verantwoorde bijdrage in de spreekkamer.
             </p>
 
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Interactieve studietool voor professionals</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
-              Naast het gebruik in de spreekkamer, is de set uitermate geschikt als interactieve studietool voor professionals in opleiding (zoals psychologiestudenten, GZ-psychologen en SPV'ers). De theorie is taai om uit het hoofd te leren, maar omdat de kleuren de verbindingen tussen behoefte, schema en modus visueel maken, functioneren de kaarten als superieure flashcards. Studenten kunnen de spelregels toepassen om elkaar te overhoren, wat ze dwingt om razendsnel te schakelen tussen de theorie zonder de emotionele zwaarte van een echte sessie.
+              Naast het gebruik in de spreekkamer, is de set uitermate geschikt als interactieve studietool voor professionals in opleiding (zoals psychologiestudenten, GZ-psychologen en SPV'ers). De theorie is taai om uit het hoofd te leren, maar omdat de kleuren de verbindingen tussen behoefte, schema en modus visueel maken, functioneren de kaarten als superieure flashcards. Studenten kunnen de verschillende spelvormen toepassen om elkaar te overhoren, wat hen stimuleert om razendsnel te schakelen tussen de theorie zonder de emotionele zwaarte van een echte sessie.
             </p>
 
             <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #3b82f6' }}>
@@ -148,7 +148,7 @@ export default function About({ onBack }) {
                 <InfoIcon size={24} /> Het doel: Psycho-educatie & Dialoog
               </h3>
               <p style={{ color: '#1e3a8a', fontSize: '1.1rem', lineHeight: '1.6', margin: 0 }}>
-                Uiteindelijk is deze toolset geen gewone spelletjesdoos. Het is een visueel hulpmiddel. De dynamiek van het matchen, het inzetten van categoriekaarten en het verplicht eindigen met de Gezonde Volwassene is een optioneel, speels voertuig voor het therapeutische gesprek. Het helpt cliënten om taal te geven aan hun patronen, afstand te nemen van hun modi, en stap voor stap de regie terug te pakken.
+                Uiteindelijk is deze toolset geen speelgoed of gezelschapsspel, maar een visueel therapeutisch hulpmiddel. De dynamiek van het matchen, het inzetten van categoriekaarten en het verplicht eindigen met de Gezonde Volwassene is een optionele werkvorm voor het therapeutische gesprek. Het helpt cliënten om taal te geven aan hun patronen, afstand te nemen van hun modi, en stap voor stap de regie terug te pakken.
               </p>
             </div>
 
@@ -159,7 +159,7 @@ export default function About({ onBack }) {
           <div className="inner-box fade-in" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '3rem' }}>
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Over de maker & Verantwoording</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
-              Deze theoriekaarten zijn met veel zorg en aandacht ontwikkeld vanuit de wens om de waardevolle, maar soms complexe materie van schematherapie visueel en direct toepasbaar te maken. De inhoud, de begrippen en de mechanismen in dit spel zijn zorgvuldig samengesteld op basis van erkende vakliteratuur, de grondbeginselen van Jeffrey Young (het klassieke 18-schema's en 5-domeinen model) en de gangbare diagnostische indelingen (YSQ en SMI).
+              Deze theoriekaarten zijn met veel zorg en aandacht ontwikkeld vanuit de wens om de waardevolle, maar soms complexe materie van schematherapie visueel en direct toepasbaar te maken. De inhoud, de begrippen en de mechanismen in deze kaartenset zijn zorgvuldig samengesteld op basis van erkende vakliteratuur, de grondbeginselen van Jeffrey Young (het klassieke 18-schema's en 5-domeinen model) en de gangbare diagnostische indelingen (YSQ en SMI).
             </p>
 
             <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #3b82f6' }}>
@@ -167,10 +167,10 @@ export default function About({ onBack }) {
                 Belangrijke disclaimer:
               </h3>
               <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: '0 0 1rem 0' }}>
-                Dit kaartspel is een onafhankelijk, creatief initiatief, ontworpen als praktisch hulpmiddel om de dialoog over patronen en behoeften op een visuele en tastbare manier te faciliteren. Het is een onafhankelijke uitgave en niet verbonden aan of geaccrediteerd door beroepsverenigingen.
+                Deze kaartenset is een onafhankelijk, creatief initiatief, ontworpen als praktisch hulpmiddel om de dialoog over patronen en behoeften op een visuele en tastbare manier te faciliteren. Het is een onafhankelijke uitgave en niet verbonden aan of geaccrediteerd door beroepsverenigingen.
               </p>
               <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
-                Om volledige transparantie te bieden, zijn de exacte teksten, begrippen en de indeling van alle kaarten openbaar in te zien op deze website. Therapeuten kunnen zo vooraf tot in detail controleren wat het deck bevat en zelf beoordelen of dit aansluit bij hun visie en werkwijze. De keuze om deze kaarten als hulpmiddel in te zetten binnen een sessie valt dan ook onder de eigen professionele verantwoordelijkheid van de behandelend professional. Het spel is nadrukkelijk bedoeld als aanvullende, laagdrempelige ondersteuning en is geen vervanging voor klinische diagnostiek of een gedegen professionele behandeling.
+                Om volledige transparantie te bieden, zijn de exacte teksten, begrippen en de indeling van alle kaarten openbaar in te zien op deze website. Therapeuten kunnen zo vooraf tot in detail controleren wat het deck bevat en zelf beoordelen of dit aansluit bij hun visie en werkwijze. De keuze om deze kaarten als hulpmiddel in te zetten binnen een sessie valt dan ook onder de eigen professionele verantwoordelijkheid van de behandelend professional. De kaartenset is nadrukkelijk bedoeld als aanvullende, laagdrempelige ondersteuning en is geen vervanging voor klinische diagnostiek of een gedegen professionele behandeling.
               </p>
             </div>
           </div>

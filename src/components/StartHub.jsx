@@ -183,7 +183,7 @@ export default function StartHub() {
           </h2>
 
           <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', minHeight: '5.5rem' }}>
-            Verken alle 43 theoriekaarten, speelse werkvormen en printopties. Ideaal om schema's en modi tastbaar en visueel te bestuderen in de praktijk of supervisie.
+            Verken alle 43 theoriekaarten, werkvormen en printopties. Ideaal om schema's en modi tastbaar en visueel te bestuderen in de praktijk of supervisie.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
@@ -193,7 +193,7 @@ export default function StartHub() {
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
-              <span>Speelse werkvormen & handleiding</span>
+              <span>Werkvormen & spelvormen handleiding</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />

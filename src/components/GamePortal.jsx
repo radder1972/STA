@@ -90,14 +90,14 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
           </div>
         </div>
 
-        {/* Optie 2: Werkvormen & Spelregels */}
+        {/* Optie 2: Werkvormen & Spelvormen */}
         <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
           <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
             <FileTextIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1 }}>
-            <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Werkvormen & Spelregels</h2>
-            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Lees hoe je de theoriekaarten inzet als visuele tool en ontdek de speelse bonus-werkvorm.</p>
+            <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Werkvormen & Spelvormen</h2>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Lees hoe je de theoriekaarten inzet als visuele tool en ontdek interactieve werkvormen en spelvormen.</p>
             <button onClick={onViewGameRules} className="btn btn-gradient-game">
               Lees de werkvormen
             </button>

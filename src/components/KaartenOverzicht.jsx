@@ -175,7 +175,7 @@ export default function KaartenOverzicht({ onBack }) {
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <CardsIcon size={40} useGameGradient={true} /> Spelkaarten
+          <CardsIcon size={40} useGameGradient={true} /> Theoriekaarten
         </h1>
         <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>Bestudeer theorie, voorbeelden en tips</h2>
       </div>

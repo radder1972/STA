@@ -195,7 +195,7 @@ export default function OrderCards({ onBack }) {
         'Alle 55 theoriekaarten in één complete set voor in de praktijk',
         '43 klassieke theoriekaarten + 12 aanvullende theoriekaarten (Arntz et al., 2021)',
         'Inclusief 7 basisbehoeften, 21 schema\'s, 20 modi en 7 categorieën',
-        'Handzaam speelkaartenformaat (64 x 94 mm) met afgeronde hoeken',
+        'Handzaam kaartformaat (64 x 94 mm) met afgeronde hoeken',
         'Luxe matte afwerking, vuilafstotend en krasvast voor intensief praktijkgebruik'
       ],
       cards: completeCards
@@ -213,7 +213,7 @@ export default function OrderCards({ onBack }) {
         '43 theoriekaarten volgens de beproefde Young- & Arntz-theorie',
         '18 schema\'s, 14 modi, 6 modi-categorieën en 5 basisbehoeften',
         'Consistente domein-kleurcodering voor directe visuele herkenning op tafel',
-        'Handzaam speelkaartenformaat (64 x 94 mm) met afgeronde hoeken',
+        'Handzaam kaartformaat (64 x 94 mm) met afgeronde hoeken',
         'Luxe matte afwerking, vuilafstotend en krasvast'
       ],
       cards: baseCards
@@ -468,7 +468,7 @@ export default function OrderCards({ onBack }) {
             }}>
               <img 
                 src="/images/cards-mockup.jpeg" 
-                alt="Fysieke set van Het Schematherapie Spel" 
+                alt="Fysieke set van de Schematherapie Theoriekaarten" 
                 style={{ width: '100%', height: 'auto', display: 'block' }} 
               />
             </div>

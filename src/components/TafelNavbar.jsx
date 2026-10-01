@@ -161,7 +161,7 @@ export default function TafelNavbar({ onPrint, onClear }) {
             e.currentTarget.style.background = 'transparent';
             e.currentTarget.style.color = 'var(--text-muted)';
           }}
-          title="Naar Kaarten (Theorie, Spelregels & Printen)"
+          title="Naar Kaarten (Theorie, Werkvormen & Printen)"
         >
           <CardsIcon size={18} />
           <span>Kaarten</span>
