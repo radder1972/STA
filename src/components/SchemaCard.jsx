@@ -293,7 +293,7 @@ const SchemaCard = ({
         {/* Back */}
         <div className="card-face-back playing-card" onClick={handleFlip} style={{ display: 'flex', flexDirection: 'column', cursor: flipOnClick || onClick ? 'pointer' : 'default', padding: `${8 * s}px`, backgroundColor: 'white', backgroundImage: `radial-gradient(circle at center, white 50%, ${color}30 120%)`, boxSizing: 'border-box' }}>
           <CardInnerBorder color={color} />
-          <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', padding: `0 ${8 * s}px` }}>
+          <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', padding: `0 ${11 * s}px` }}>
             {title && (
               <h4 style={{ 
                 fontSize: `${0.75 * s}rem`, 
