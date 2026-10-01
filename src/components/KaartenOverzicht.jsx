@@ -304,7 +304,7 @@ export default function KaartenOverzicht({ onBack }) {
                   onClick={() => setFilter('domeinen')}
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', padding: '6px 14px', borderRadius: '8px' }}
                 >
-                  <ArrowLeftIcon size={14} /> Terug naar basisoverzicht
+                  <ArrowLeftIcon size={14} color="#0ea5e9" /> Terug naar basisoverzicht
                 </button>
               </div>
             </div>

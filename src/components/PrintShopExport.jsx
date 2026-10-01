@@ -206,7 +206,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
       <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '820px', margin: '0 auto 2.5rem auto', padding: '2.5rem 3rem', borderRadius: '24px' }}>
         <div className="inner-box" style={{ display: 'flex', flexDirection: 'column', gap: '1.35rem', margin: 0 }}>
           <h3 className="box-heading" style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <Info size={26} color="#3b82f6" /> Printhulp voor Drukkerijen
+            <Info size={26} color="#0ea5e9" /> Printhulp voor Drukkerijen
           </h3>
           <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
             Deze weergave is geoptimaliseerd voor professionele drukkerijen. Het papierformaat voor de PDF is ingesteld op <strong>Kaartformaat (64x94mm inclusief 3mm afloop rondom)</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 58x88mm worden zonder witte randjes. Klik op de knop hieronder en kies "Opslaan als PDF" in Chrome.
@@ -215,7 +215,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
           {/* Kaartenset Keuze */}
           <div style={{ padding: '1.25rem', background: 'rgba(0,0,0,0.03)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
             <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
-              <Layers size={17} color="#3b82f6" /> Kaartenset voor de drukker
+              <Layers size={17} color="#0ea5e9" /> Kaartenset voor de drukker
             </label>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
               <button
@@ -306,21 +306,21 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
           {/* Volledige Checklist voor drukker */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', marginTop: '0.25rem' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <FileText size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <FileText size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
                 <strong>Papierformaat:</strong> Aangepast (wordt automatisch door de browser ingesteld op 64x94mm)
               </p>
             </div>
             
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <Maximize size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <Maximize size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
                 <strong>Marges:</strong> Geen
               </p>
             </div>
             
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <ImageIcon size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <ImageIcon size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
                 <strong>Achtergrondafbeeldingen:</strong> AAN
               </p>

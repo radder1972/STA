@@ -21,8 +21,8 @@ const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5, colo
         <stop offset="100%" stopColor="#9ca3af" />
       </linearGradient>
       <linearGradient id="gameGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="#64748b" />
-        <stop offset="100%" stopColor="#3b82f6" />
+        <stop offset="0%" stopColor="#0ea5e9" />
+        <stop offset="100%" stopColor="#2563eb" />
       </linearGradient>
       <linearGradient id="tafelGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
         <stop offset="0%" stopColor="#059669" />
@@ -98,7 +98,7 @@ export const CardsIcon = (props) => (
     <rect x="3" y="6" width="9" height="13" rx="1.5" transform="rotate(-15 7.5 12.5)" />
     <rect x="12" y="6" width="9" height="13" rx="1.5" transform="rotate(15 16.5 12.5)" />
     <rect x="7.5" y="4" width="9" height="13" rx="1.5" fill="var(--bg-color)" />
-    <rect x="7.5" y="4" width="9" height="13" rx="1.5" fill="currentColor" fillOpacity="0.2" />
+    <rect x="7.5" y="4" width="9" height="13" rx="1.5" fill={props.useGameGradient ? "#0ea5e9" : "currentColor"} fillOpacity={props.useGameGradient ? 0.2 : 0.2} />
   </IconBase>
 );
 
@@ -150,7 +150,7 @@ export const InfoIcon = (props) => (
   <IconBase {...props}>
     <circle cx="12" cy="12" r="10" />
     <line x1="12" y1="11" x2="12" y2="16" />
-    <circle cx="12" cy="7.5" r="1" />
+    <circle cx="12" cy="7.5" r="1" fill={props.useGameGradient ? "#0ea5e9" : "currentColor"} />
   </IconBase>
 );
 
@@ -254,7 +254,7 @@ export const ScrollTextIcon = (props) => (
 export const PrinterIcon = (props) => (
   <IconBase {...props}>
     <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-    <path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6" />
+    <path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6" stroke={props.useGameGradient ? "#0ea5e9" : undefined} />
     <rect x="6" y="14" width="12" height="8" rx="1" />
   </IconBase>
 );
@@ -276,7 +276,7 @@ export const BookOpenIcon = (props) => (
 export const FileTextIcon = (props) => (
   <IconBase {...props}>
     <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
-    <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+    <path d="M14 2v5a1 1 0 0 0 1 1h5" stroke={props.useGameGradient ? "#0ea5e9" : undefined} />
     <path d="M10 9H8" />
     <path d="M16 13H8" />
     <path d="M16 17H8" />
@@ -287,17 +287,17 @@ export const DicesIcon = (props) => (
   <IconBase {...props}>
     <rect width="12" height="12" x="2" y="10" rx="2" ry="2" />
     <path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6" />
-    <path d="M6 18h.01" />
-    <path d="M10 14h.01" />
-    <path d="M15 6h.01" />
-    <path d="M18 9h.01" />
+    <path d="M6 18h.01" stroke={props.useGameGradient ? "#0ea5e9" : "currentColor"} strokeWidth={props.useGameGradient ? 2.5 : 1.5} />
+    <path d="M10 14h.01" stroke={props.useGameGradient ? "#0ea5e9" : "currentColor"} strokeWidth={props.useGameGradient ? 2.5 : 1.5} />
+    <path d="M15 6h.01" stroke={props.useGameGradient ? "#0ea5e9" : "currentColor"} strokeWidth={props.useGameGradient ? 2.5 : 1.5} />
+    <path d="M18 9h.01" stroke={props.useGameGradient ? "#0ea5e9" : "currentColor"} strokeWidth={props.useGameGradient ? 2.5 : 1.5} />
   </IconBase>
 );
 
 export const ShoppingCartIcon = (props) => (
   <IconBase {...props}>
-    <circle cx="8" cy="21" r="1" />
-    <circle cx="19" cy="21" r="1" />
+    <circle cx="8" cy="21" r="1" fill={props.useGameGradient ? "#0ea5e9" : "currentColor"} stroke={props.useGameGradient ? "#0ea5e9" : undefined} />
+    <circle cx="19" cy="21" r="1" fill={props.useGameGradient ? "#0ea5e9" : "currentColor"} stroke={props.useGameGradient ? "#0ea5e9" : undefined} />
     <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
   </IconBase>
 );

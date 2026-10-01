@@ -238,7 +238,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             {/* Setting 1: Kaartenset Keuze */}
             <div>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
-                <Layers size={17} color="#3b82f6" /> Kaartenset
+                <Layers size={17} color="#0ea5e9" /> Kaartenset
               </label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
                 <button
@@ -309,7 +309,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             {/* Setting 2: Uitlijning achterkant */}
             <div>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
-                <Files size={17} color="#3b82f6" /> Uitlijning achterzijde
+                <Files size={17} color="#0ea5e9" /> Uitlijning achterzijde
               </label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
                 <button
@@ -380,28 +380,28 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
           {/* Volledige Checklist / Tips */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', marginTop: '0.25rem' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <FileText size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <FileText size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
                 <strong>Papierformaat:</strong> A4 Staand (Portrait)
               </p>
             </div>
             
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <Maximize size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <Maximize size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
                 <strong>Schaal & Marges:</strong> Schaal op 100% (of Standaard). Marges op <strong>Geen</strong> (essentieel voor uitlijning!)
               </p>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <Files size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <Files size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
                 <strong>{layoutMode === 'mirrored' ? 'Dubbelzijdig:' : 'Afdrukmodus:'}</strong> {layoutMode === 'mirrored' ? 'Omdraaien over de lange zijde (Long edge binding)' : 'Enkelzijdig printen (vellen los afdrukken, knippen & op elkaar plakken)'}
               </p>
             </div>
             
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <ImageIcon size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <ImageIcon size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
                 <strong>Achtergrondafbeeldingen:</strong> AAN
               </p>

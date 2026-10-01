@@ -448,7 +448,7 @@ export default function OrderCards({ onBack }) {
               <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                 {activeVariant.specs.map((spec, i) => (
                   <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: '#334155', fontSize: '0.98rem', fontWeight: '500' }}>
-                    <div style={{ color: '#3b82f6', display: 'flex', marginTop: '2px', fontWeight: 'bold' }}>✓</div> 
+                    <div style={{ color: '#0ea5e9', display: 'flex', marginTop: '2px', fontWeight: 'bold' }}>✓</div> 
                     <span>{spec}</span>
                   </li>
                 ))}
@@ -511,13 +511,13 @@ export default function OrderCards({ onBack }) {
                         Aantal sets
                       </span>
                       <div style={{ display: 'inline-flex', alignItems: 'center', background: 'white', borderRadius: '10px', border: '1px solid #cbd5e1', overflow: 'hidden', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
-                        <button type="button" onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <button type="button" onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: '#0ea5e9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <Minus size={16} />
                         </button>
                         <div style={{ width: '36px', textAlign: 'center', fontSize: '1.1rem', fontWeight: '600', color: '#334155' }}>
                           {quantity}
                         </div>
-                        <button type="button" onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <button type="button" onClick={increaseQuantity} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: '#0ea5e9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <Plus size={16} />
                         </button>
                       </div>

@@ -59,7 +59,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
             </div>
           </div>
 
-          <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
+          <div style={{ padding: '1rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '16px', color: '#0ea5e9', border: '1px solid rgba(14, 165, 233, 0.2)' }}>
             <CardsIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1, paddingRight: '1rem' }}>
@@ -91,7 +91,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
 
         {/* Optie 2: Werkvormen & Spelvormen */}
         <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
-          <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
+          <div style={{ padding: '1rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '16px', color: '#0ea5e9', border: '1px solid rgba(14, 165, 233, 0.2)' }}>
             <FileTextIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1 }}>
@@ -105,7 +105,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
 
         {/* Optie 3: Kaarten Printen */}
         <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
-          <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
+          <div style={{ padding: '1rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '16px', color: '#0ea5e9', border: '1px solid rgba(14, 165, 233, 0.2)' }}>
             <PrinterIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1 }}>
@@ -119,7 +119,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
 
         {/* Optie 4: Fysieke Kaarten Bestellen */}
         <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
-          <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
+          <div style={{ padding: '1rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '16px', color: '#0ea5e9', border: '1px solid rgba(14, 165, 233, 0.2)' }}>
             <ShoppingCartIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1 }}>
@@ -133,7 +133,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
 
         {/* Optie 5: Over de kaarten */}
         <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
-          <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '16px', color: '#3b82f6' }}>
+          <div style={{ padding: '1rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '16px', color: '#0ea5e9', border: '1px solid rgba(14, 165, 233, 0.2)' }}>
             <InfoIcon size={32} useGameGradient={true} />
           </div>
           <div style={{ flex: 1 }}>

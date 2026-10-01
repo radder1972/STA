@@ -25,14 +25,14 @@ export default function About({ onBack }) {
             className={activeTab === 'waarom' ? "btn btn-gradient-game" : "btn btn-outline"} 
             style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            <FileTextIcon size={18} /> Over de kaarten
+            <FileTextIcon size={18} color={activeTab === 'waarom' ? 'white' : '#0ea5e9'} /> Over de kaarten
           </button>
           <button 
             onClick={() => setActiveTab('maker')}
             className={activeTab === 'maker' ? "btn btn-gradient-game" : "btn btn-outline"} 
             style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            <InfoIcon size={18} /> Over de maker
+            <InfoIcon size={18} color={activeTab === 'maker' ? 'white' : '#0ea5e9'} /> Over de maker
           </button>
         </div>
       </div>

@@ -156,11 +156,11 @@ export default function StartHub() {
               width: '56px',
               height: '56px',
               borderRadius: '16px',
-              background: 'rgba(59, 130, 246, 0.1)',
+              background: 'rgba(14, 165, 233, 0.1)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#3b82f6'
+              color: '#0ea5e9'
             }}>
               <CardsIcon size={32} useGameGradient={true} />
             </div>
@@ -188,19 +188,19 @@ export default function StartHub() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
-              <CheckIcon size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <span>Alle 43 kaarten incl. theorie & tips</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
-              <CheckIcon size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <span>Werkvormen & spelvormen handleiding</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
-              <CheckIcon size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <span>Drukwerk-export (PeterPrint formaat)</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
-              <CheckIcon size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <span>Fysieke kaartenset bestellen</span>
             </div>
           </div>
