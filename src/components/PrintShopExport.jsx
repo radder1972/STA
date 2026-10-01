@@ -342,8 +342,8 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
         {activeCards.map((card, idx) => {
           const cardColor = card.color || getCardColor(card.type, card.id);
           const descLength = card?.description?.length || 0;
-          const descFontSize = descLength > 160 ? '0.78rem' : (descLength > 120 ? '0.84rem' : '0.88rem');
-          const descLineHeight = descLength > 160 ? '1.3' : '1.38';
+          const descFontSize = descLength > 320 ? '0.64rem' : (descLength > 220 ? '0.72rem' : (descLength > 160 ? '0.78rem' : (descLength > 120 ? '0.84rem' : '0.88rem')));
+          const descLineHeight = descLength > 320 ? '1.18' : (descLength > 160 ? '1.26' : '1.38');
 
           return (
             <React.Fragment key={idx}>

@@ -133,7 +133,11 @@ const SchemaCard = ({
   let descSize = 0.65;
   let descLineHeight = 1.35;
   let lineClamp = 11;
-  if (descLen > 220) {
+  if (descLen > 330) {
+    descSize = 0.46;
+    descLineHeight = 1.16;
+    lineClamp = 19;
+  } else if (descLen > 220) {
     descSize = 0.52;
     descLineHeight = 1.22;
     lineClamp = 15;

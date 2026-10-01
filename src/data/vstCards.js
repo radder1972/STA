@@ -80,7 +80,7 @@ export const vstModiData = [
     title: 'Blije kind',
     type: 'mode',
     src: imgBlijeKind,
-    description: 'Voelt zich vrij, geliefd, veilig en verbonden. Reageert speels, spontaan, ondernemend en vol levenslust, zoals een onbezorgd kind.',
+    description: 'In deze modus voel je je vrij, geliefd, tevreden, beschermd, begrepen, veilig, gewaardeerd en verbonden met anderen. Je kunt spontaan reageren, je bent ondernemend, optimistisch en speels, zoals een gelukkig klein kind.',
     color: '#34d399',
     isVst: true,
     style: { transform: 'scale(0.66)' }
@@ -90,7 +90,7 @@ export const vstModiData = [
     title: 'Boze beschermer',
     type: 'mode',
     src: imgBozeBeschermer,
-    description: 'Schermt gevoelens af met een bozige, cynische of afwijzende houding. Houdt anderen wantrouwend op afstand ter zelfbescherming.',
+    description: 'In deze modus scherm je jezelf af voor (heftige) gevoelens en probeer je anderen op afstand te houden door een bozige, cynische, pessimistische of afwijzende houding aan te nemen. Je wantrouwt anderen, en laat boosheid zien om jezelf te beschermen tegen vermeende dreiging.',
     color: '#facc15',
     isVst: true,
     style: { transform: 'scale(0.72)' }
@@ -100,7 +100,7 @@ export const vstModiData = [
     title: 'Perfectionistische overcontroleerder',
     type: 'mode',
     src: imgPerfectionistischeOvercontroleerder,
-    description: 'Probeert fouten dwangmatig te voorkomen door extreme perfectie en controle. Werkt keihard om elk risico uit te bannen.',
+    description: 'In deze modus probeer je jezelf te beschermen tegen het maken van fouten of andere risico’s door zeer perfectionistisch te zijn. Je controleert jezelf of anderen op een dwangmatige manier. Je werkt hard en doet er alles aan om dingen zo goed mogelijk te doen.',
     color: '#facc15',
     isVst: true,
     style: { transform: 'scale(0.72)' }
@@ -110,7 +110,7 @@ export const vstModiData = [
     title: 'Bedrog en manipulatie',
     type: 'mode',
     src: imgBedrogManipulatie,
-    description: 'Gebruikt leugens, misleiding en manipulatie om doelen te bereiken, straf of afwijzing te ontlopen, of voordeel te behalen.',
+    description: 'In deze modus bedrieg je, lieg je, of manipuleer je anderen om een bepaald doel te bereiken, zoals het ontlopen van straf of afwijzing, of om een voordeel voor jezelf te behalen.',
     color: '#facc15',
     isVst: true,
     style: { transform: 'scale(0.70)' }
@@ -120,7 +120,7 @@ export const vstModiData = [
     title: 'Aandacht- en erkenningzoeker',
     type: 'mode',
     src: imgAandachtErkenningzoeker,
-    description: 'Zoekt op een theatrale manier naar goedkeuring en aandacht. Vergroot emoties of kwetsbaarheden uit om gezien te worden.',
+    description: 'In deze modus probeer je op een nadrukkelijke manier goedkeuring en aandacht van anderen te krijgen, bijvoorbeeld door je gedrag, je lichamelijke kwetsbaarheden, of emoties uit te vergroten, of door neutraal contact te erotiseren.',
     color: '#facc15',
     isVst: true,
     style: { transform: 'scale(0.62)' }
@@ -130,7 +130,7 @@ export const vstModiData = [
     title: 'Roofdier',
     type: 'mode',
     src: imgRoofdier,
-    description: 'Koude, meedogenloze en berekenende modus gericht op het uitschakelen van rivalen of obstakels om de eigen positie te behouden.',
+    description: 'In deze modus ben je op een koude, roekeloze en berekenende manier gericht op het uitschakelen van een dreiging, obstakel, rivaal of vijand. Je neemt wraak op anderen, probeert hiermee je positie te behouden, jezelf onkwetsbaar te voelen, of je vindt dat ze je in de weg staan.',
     color: '#facc15',
     isVst: true,
     style: { transform: 'scale(0.72)' }

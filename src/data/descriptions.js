@@ -76,26 +76,35 @@ export const schemaDescriptions = {
   'Gebrek aan een betekenisvolle wereld': 'Je ervaart de wereld als verwarrend en betekenisloos, waarbij je je niet verbonden voelt met zaken die in jouw leven en in de wereld om je heen spelen.',
   'Onrechtvaardigheid': 'Je ervaart je omgeving als onrechtvaardig en oneerlijk, waarbij onrecht in de maatschappij niet wordt gecorrigeerd. Je bent bang om slachtoffer van dat onrecht te worden.',
 
-  // SMI Modes
-  // Child Modes
-  'Kwetsbare kind': 'Voelt zich eenzaam, verlaten, misbruikt, onbegrepen, niet gesteund, angstig of kwetsbaar. Draagt de pijn van vroege onvervulde behoeften.',
-  'Razende kind': 'Ervaart intense woede of razernij, vaak als uiting van diepe pijn of het gevoel oneerlijk behandeld te zijn. Verliest de controle over emoties.',
-  'Boze kind': 'Voelt zich gefrustreerd, boos of koppig, omdat in basisbehoeften niet wordt voorzien. Kan opstandig, passief-agressief of veeleisend overkomen.',
-  'Impulsieve kind': 'Handelt impulsief op basis van onmiddellijke verlangens zonder rekening te houden met mogelijke gevolgen of gevoelens van anderen.',
-  'Ongedisciplineerde kind': 'Kan zichzelf niet aanzetten tot saaie of routinematige taken, geeft snel op en heeft grote moeite met frustratietolerantie.',
+  // SMI & VSt Modi
+  // Kindmodi
+  'Kwetsbare kind': 'In deze modus voel je intense emoties als (verlatings-)angst, wanhoop of verdriet. Je voelt je minderwaardig, bent bang voor andere mensen en je kunt je niet voorstellen dat ze om jou als persoon geven. Je verwacht dat ze iets van je willen en dat anderen je gaan afwijzen. Soms schaam je je voor jezelf en heb je het gevoel er niet bij te horen.',
+  'Boze kind': 'In deze modus voel je intense gevoelens van frustratie, woede en ongeduld, omdat niet aan je basale behoeften wordt voldaan. Je kunt je daarnaast in de steek gelaten, gekleineerd, oneerlijk behandeld of verraden voelen. Je uit je woede op een heftige manier, zowel verbaal als non-verbaal, vergelijkbaar met een klein kind dat een woedeaanval heeft.',
+  'Boze of woedende kind': 'In deze modus voel je intense gevoelens van frustratie, woede en ongeduld, omdat niet aan je basale behoeften wordt voldaan. Je kunt je daarnaast in de steek gelaten, gekleineerd, oneerlijk behandeld of verraden voelen. Je uit je woede op een heftige manier, zowel verbaal als non-verbaal, vergelijkbaar met een klein kind dat een woedeaanval heeft.',
+  'Razende kind': 'In deze modus ben je kwaad, zoals het Woedende Kind, maar verlies je hierbij de controle. Je kunt kwetsend zijn, of mensen of voorwerpen beschadigen, net zoals een klein kind dat tegen de schenen van zijn ouder schopt, of zijn eigen speelgoed kapot maakt.',
+  'Impulsieve kind': 'In deze modus lukt het je niet om je gevoelens en impulsieve neigingen in te houden, en kun je onverstandige dingen doen. Je wil op een egoïstische en ongecontroleerde wijze jouw behoeften vervuld krijgen.',
+  'Ongedisciplineerde kind': 'In deze modus lukt het je niet om routinematige taken of taken die je tegenstaan af te maken. Je hebt veel moeite met het verdragen van ongemakken (zoals frustratie, pijn, ruzie of inspanning) en kunt je hakken in het zand zetten (‘Ik doe dit niet, doe het zelf maar’) of taken vermijden.',
 
-  // Coping Modes (Overgave, Vermijden, Omkering)
-  'Willoze inschikkelijke': 'Gedraagt zich passief, afhankelijk en onderdanig. Accepteert het schema als waar en tolereert (emotioneel) misbruik om conflict of verlating te voorkomen.',
-  'Onthechte beschermer': 'Sluit emoties af en isoleert zich psychologisch om pijn te vermijden. Voelt zich vaak leeg, robotachtig, verveeld of afgesneden van anderen.',
-  'Onthechte zelfsusser': 'Zoekt afleiding door dwangmatige, sussende of verslavende activiteiten (gamen, eten, werk, middelen) om pijnlijke emoties niet te hoeven voelen.',
-  'Wantrouwende overcontroleerder': 'Houdt voortdurend de wacht tegen vermeende dreigingen. Controleert overmatig situaties of anderen om zichzelf te beschermen tegen kwaad.',
-  'Zelfverheerlijker': 'Gedraagt zich superieur, grandioos of competitief. Gebruikt status of macht om onderliggende gevoelens van minderwaardigheid of zwakte te overschreeuwen.',
-  'Pest en aanval': 'Valt anderen (psychologisch of fysiek) aan om te voorkomen dat men zelf gekwetst of gecontroleerd wordt. Handelt vanuit de overtuiging "eten of gegeten worden".',
+  // Disfunctionele Copingmodi (Overgave, Vermijden, Omkering)
+  'Willoze inschikkelijke': 'In deze modus geef je je over aan de wil van anderen om onenigheid of verwachte problemen te voorkomen. Hierbij onderdruk je jouw behoeften en emoties, waardoor boosheid vaak wordt opgekropt. Door je onderdanig, passief en/of gehoorzaam te gedragen hoop je op goedkeuring. In deze modus kan je het risico lopen dat mensen misbruik van je maken.',
+  'Onthechte beschermer': 'In deze modus scherm je jezelf af voor (heftige) gevoelens, omdat je denkt dat gevoelens een teken van zwakte zijn of je helemaal kunnen overspoelen. In het contact met anderen ben je afwezig en je probeert je gevoel uit te schakelen. Mogelijk voel je je hierbij leeg, ongevoelig of alsof je buiten jezelf bent geraakt. Als je zo buiten jezelf raakt dat je haast niet meer aanspreekbaar bent, noemen we dit ‘dissociatie’. Je kunt je leeg, onthecht en vervreemd voelen.',
+  'Boze beschermer': 'In deze modus scherm je jezelf af voor (heftige) gevoelens en probeer je anderen op afstand te houden door een bozige, cynische, pessimistische of afwijzende houding aan te nemen. Je wantrouwt anderen, en laat boosheid zien om jezelf te beschermen tegen vermeende dreiging.',
+  'Onthechte zelfsusser': 'In deze modus zoek je afleiding om negatieve emoties niet te hoeven voelen. Je doet dit door middelen te gebruiken (drugs, alcohol), heel veel eten (of juist heel weinig eten), of door stimulerende activiteiten te doen (fanatiek of veel bezig zijn met bijvoorbeeld werken, internetten, series kijken, gamen, gokken, sporten of seks).',
+  'Perfectionistische overcontroleerder': 'In deze modus probeer je jezelf te beschermen tegen het maken van fouten of andere risico’s door zeer perfectionistisch te zijn. Je controleert jezelf of anderen op een dwangmatige manier. Je werkt hard en doet er alles aan om dingen zo goed mogelijk te doen.',
+  'Wantrouwende overcontroleerder': 'In deze modus probeer je jezelf te beschermen tegen dreiging van anderen. Dit doe je door anderen extreem te controleren, en hun bedoelingen te checken.',
+  'Aandacht- en erkenningzoeker': 'In deze modus probeer je op een nadrukkelijke manier goedkeuring en aandacht van anderen te krijgen, bijvoorbeeld door je gedrag, je lichamelijke kwetsbaarheden, of emoties uit te vergroten, of door neutraal contact te erotiseren.',
+  'Zelfverheerlijker': 'In deze modus voel je je superieur aan anderen en denk je speciale rechten te hebben. Je wilt je zin doordrijven zonder rekening te hoeven houden met anderen. Je benadrukt je prestaties en kleineert anderen om jouw gevoel van eigenwaarde te vergroten, of omdat je vindt dat je daar recht op hebt.',
+  'Pest en aanval': 'In deze modus voorkom je dat je vernederd of gekwetst wordt door juist anderen te pesten, te intimideren of aan te vallen.',
+  'Bedrog en manipulatie': 'In deze modus bedrieg je, lieg je, of manipuleer je anderen om een bepaald doel te bereiken, zoals het ontlopen van straf of afwijzing, of om een voordeel voor jezelf te behalen.',
+  'Roofdier': 'In deze modus ben je op een koude, roekeloze en berekenende manier gericht op het uitschakelen van een dreiging, obstakel, rivaal of vijand. Je neemt wraak op anderen, probeert hiermee je positie te behouden, jezelf onkwetsbaar te voelen, of je vindt dat ze je in de weg staan.',
 
-  // Parent Modes
-  'Veeleisende ouder': 'Zet je voortdurend onder druk om aan onrealistisch hoge normen te voldoen (perfectie, altijd voor anderen zorgen) en vindt dat het nooit goed genoeg is.',
-  'Straffende ouder': 'Is hard, kritisch en bestraffend naar jezelf. Roept gevoelens op van schaamte, zelfhaat en de diepe overtuiging dat je straf verdient voor fouten.',
+  // Disfunctionele Oudermodi
+  'Veeleisende ouder': 'In deze modus vind je dat je alles perfect moet doen en moet kunnen. Je moet voldoen aan strenge regels, normen en waarden. Je moet daarbij bijvoorbeeld overdreven efficiënt zijn. Je gelooft dat je het nooit goed genoeg doet en harder je best moet doen. Bij deze modus horen ook je geïnternaliseerde regels en normen van (één van je) ouders, andere opvoeders, leeftijdgenoten, je cultuur of van de maatschappij.',
+  'Veeleisende oudermodus': 'In deze modus vind je dat je alles perfect moet doen en moet kunnen. Je moet voldoen aan strenge regels, normen en waarden. Je moet daarbij bijvoorbeeld overdreven efficiënt zijn. Je gelooft dat je het nooit goed genoeg doet en harder je best moet doen. Bij deze modus horen ook je geïnternaliseerde regels en normen van (één van je) ouders, andere opvoeders, leeftijdgenoten, je cultuur of van de maatschappij.',
+  'Straffende ouder': 'In deze modus geef je jezelf op je kop. Je bent boos op jezelf voor wat je verkeerd doet of hebt gedaan, en je vindt dat je daar voor gestraft moet worden. Deze modus omvat straffende boodschappen die je vroeger kreeg van (één van) je ouders, andere opvoeders of leeftijdgenoten. De Schuldinducerende ouder zorgt ervoor dat je je (onterecht) heel schuldig voelt.',
+  'Straffende oudermodus': 'In deze modus geef je jezelf op je kop. Je bent boos op jezelf voor wat je verkeerd doet of hebt gedaan, en je vindt dat je daar voor gestraft moet worden. Deze modus omvat straffende boodschappen die je vroeger kreeg van (één van) je ouders, andere opvoeders of leeftijdgenoten. De Schuldinducerende ouder zorgt ervoor dat je je (onterecht) heel schuldig voelt.',
 
-  // Healthy Adult
-  'Gezonde volwassene': 'Zorgt voor het kwetsbare kind, stelt grenzen aan het boze/impulsieve kind en de beschermmodi, en bestrijdt de disfunctionele oudermodi. Handelt rationeel, gezond en effectief.'
+  // Functionele Modi
+  'Gezonde volwassene': 'In deze modus heb je positieve en genuanceerde gedachten en gevoelens over jezelf en anderen. Je kunt begrip opbrengen voor een ander en iets vanuit meerdere gezichtspunten bekijken. Je hebt een stabiel gevoel van eigenwaarde en een gepast zelfbeeld. Je hebt inzicht in het effect van jouw gedrag op een ander. Je hebt betekenisvolle doelen en bent in staat deze op een evenwichtige manier na te streven. Je weet om te gaan met tegenslagen. Je doet dingen die goed voor je zijn en die leiden tot gezonde relaties.',
+  'Blije kind': 'In deze modus voel je je vrij, geliefd, tevreden, beschermd, begrepen, veilig, gewaardeerd en verbonden met anderen. Je kunt spontaan reageren, je bent ondernemend, optimistisch en speels, zoals een gelukkig klein kind.'
 };
