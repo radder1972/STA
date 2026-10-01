@@ -67,7 +67,7 @@ export default function About({ onBack }) {
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.8rem' }}>
-              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', borderLeft: '4px solid #3b82f6' }}>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
                 <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>
                   1. Vijf in plaats van zeven basisbehoeften
                 </strong>
@@ -76,7 +76,7 @@ export default function About({ onBack }) {
                 </span>
               </div>
 
-              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', borderLeft: '4px solid #3b82f6' }}>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
                 <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>
                   2. Achttien in plaats van eenentwintig schema's
                 </strong>
@@ -85,7 +85,7 @@ export default function About({ onBack }) {
                 </span>
               </div>
 
-              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', borderLeft: '4px solid #3b82f6' }}>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
                 <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>
                   3. Terminologie: 'Overcompensatie' versus 'Omkering'
                 </strong>
@@ -94,7 +94,7 @@ export default function About({ onBack }) {
                 </span>
               </div>
 
-              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', borderLeft: '4px solid #3b82f6' }}>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
                 <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>
                   4. Selectie van 14 kernmodi (geen forensische / specialistische modi)
                 </strong>
@@ -104,11 +104,11 @@ export default function About({ onBack }) {
               </div>
             </div>
 
-            <div style={{ padding: '1.5rem', background: '#f0fdf4', borderRadius: '12px', borderLeft: '4px solid #10b981', marginBottom: '2.5rem' }}>
-              <h4 style={{ color: '#065f46', fontSize: '1.15rem', marginTop: 0, marginBottom: '0.5rem' }}>
+            <div style={{ padding: '1.5rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #3b82f6', marginBottom: '2.5rem' }}>
+              <h4 style={{ color: '#1e3a8a', fontSize: '1.15rem', marginTop: 0, marginBottom: '0.5rem' }}>
                 Waarom deze keuze voor de praktijk?
               </h4>
-              <p style={{ color: '#047857', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
+              <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
                 Voor een visuele en interactieve interventie op tafel staat <strong>behapbaarheid en herkenbaarheid voorop</strong>. Een overdaad aan complexe nuances zorgt bij cliënten snel voor cognitieve overbelasting. Door uit te gaan van het robuuste 18-schema's en 5-domeinen fundament van Young behoudt het deck zijn maximale didactische kracht, wetenschappelijke helderheid en directe bruikbaarheid in de spreekkamer. Voor therapeuten die ook de nieuwere concepten willen gebruiken, is er de theorie-uitbreidingsset.
               </p>
             </div>
