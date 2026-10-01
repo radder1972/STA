@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeftIcon, PrinterIcon } from './Icons';
+import { PrinterIcon } from './Icons';
 import { FileText, Maximize, Image as ImageIcon, Info, Files, Sparkles, Layers, Package } from 'lucide-react';
 import { getCardColor, CardInnerBorder } from '../utils/colors';
 import { schemaImages, modeImages } from '../utils/images';
@@ -20,6 +20,7 @@ import {
 
 export default function HomePrintExport({ onBack, onViewPrintShop }) {
   const [deckSelection, setDeckSelection] = useState('all'); // 'all', 'vst', 'base'
+  const [layoutMode, setLayoutMode] = useState('same'); // 'same' (1-op-1 uitlijning voor knippen & plakken / scherm) of 'mirrored' (duplex)
 
   // 1. Classical Basisbehoeften (5)
   const classicalBasisbehoeften = basisbehoeftenData.map(c => ({
@@ -291,6 +292,67 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
         </div>
       </div>
 
+      {/* Uitlijning Achterkanten Selector */}
+      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2rem auto', padding: '1.5rem 2rem', borderRadius: '24px' }}>
+        <h3 style={{ fontSize: '1.1rem', margin: '0 0 1rem 0', color: 'var(--text-main)', textAlign: 'center', fontWeight: '600' }}>
+          Uitlijning van de achterkant
+        </h3>
+        
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '12px' }}>
+          <button
+            onClick={() => setLayoutMode('same')}
+            className={`btn ${layoutMode === 'same' ? 'btn-gradient-game' : 'btn-outline'}`}
+            style={{ 
+              padding: '1rem', 
+              borderRadius: '16px', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center', 
+              gap: '6px',
+              border: layoutMode === 'same' ? 'none' : '1px solid #cbd5e1',
+              boxShadow: layoutMode === 'same' ? '0 8px 20px rgba(59, 130, 246, 0.35)' : 'none',
+              cursor: 'pointer'
+            }}
+          >
+            <span style={{ fontWeight: 'bold', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <FileText size={18} /> Zelfde positie (Standaard)
+            </span>
+            <span style={{ fontSize: '0.82rem', opacity: 0.9, textAlign: 'center' }}>
+              Voor knippen & op elkaar plakken, hoesjes of schermcontrole
+            </span>
+          </button>
+
+          <button
+            onClick={() => setLayoutMode('mirrored')}
+            className={`btn ${layoutMode === 'mirrored' ? 'btn-gradient-game' : 'btn-outline'}`}
+            style={{ 
+              padding: '1rem', 
+              borderRadius: '16px', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center', 
+              gap: '6px',
+              border: layoutMode === 'mirrored' ? 'none' : '1px solid #cbd5e1',
+              boxShadow: layoutMode === 'mirrored' ? '0 8px 20px rgba(59, 130, 246, 0.35)' : 'none',
+              cursor: 'pointer'
+            }}
+          >
+            <span style={{ fontWeight: 'bold', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <Files size={18} /> Gespiegeld (Dubbelzijdig)
+            </span>
+            <span style={{ fontSize: '0.82rem', opacity: 0.9, textAlign: 'center' }}>
+              Horizontaal gespiegeld voor automatische duplex via lange zijde
+            </span>
+          </button>
+        </div>
+
+        <p style={{ margin: '1rem 0 0 0', fontSize: '0.84rem', color: 'var(--text-muted)', textAlign: 'center', lineHeight: '1.45' }}>
+          {layoutMode === 'same' 
+            ? '✅ Kaarten staan op voor- en achterkant op exact dezelfde rij en kolom. Ideaal wanneer je losse vellen afdrukt om uit te knippen.' 
+            : '🔄 Kolommen zijn omgedraaid (links ↔ rechts). Als je printer het vel over de lange zijde omdraait, valt de achterkant exact achter de voorkant.'}
+        </p>
+      </div>
+
       {/* Printhulp Box */}
       <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '800px', margin: '0 auto 2.5rem auto', padding: '2.5rem 3rem', borderRadius: '24px' }}>
         <div className="inner-box" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', margin: 0 }}>
@@ -298,7 +360,10 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             <Info size={26} color="#3b82f6" /> Printhulp voor Thuis / Praktijk
           </h3>
           <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
-            Met deze weergave print je de kaarten direct op A4-papier (inkjet of laserprinter). De kaarten staan in een 3x3 grid. De achterkant-pagina's zijn <strong>horizontaal gespiegeld</strong>, zodat ze perfect achter de voorkanten vallen als je dubbelzijdig print (omdraaien over de lange zijde).
+            Met deze weergave print je de kaarten direct op A4-papier (inkjet of laserprinter). De kaarten staan in een 3x3 grid (9 kaarten per vel). 
+            {layoutMode === 'same' 
+              ? ' De kaarten staan op voor- en achterkant op dezelfde plek (ideaal voor losse vellen en knipwerk).' 
+              : ' De achterkanten zijn horizontaal gespiegeld voor automatische dubbelzijdige invoer.'}
           </p>
 
           <button onClick={handlePrint} className="btn btn-gradient" style={{ width: '100%', padding: '1.1rem', fontSize: '1.15rem', marginTop: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', borderRadius: '14px' }}>
@@ -316,14 +381,14 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
               <Maximize size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
-                <strong>Schaal & Marges:</strong> Schaal op 100% (of Standaard). Marges op <strong>Geen</strong> (essentieel voor dubbelzijdige uitlijning!)
+                <strong>Schaal & Marges:</strong> Schaal op 100% (of Standaard). Marges op <strong>Geen</strong> (essentieel voor uitlijning!)
               </p>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
               <Files size={20} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
-                <strong>Dubbelzijdig:</strong> Omdraaien over de lange zijde (Long edge binding)
+                <strong>{layoutMode === 'mirrored' ? 'Dubbelzijdig:' : 'Afdrukmodus:'}</strong> {layoutMode === 'mirrored' ? 'Omdraaien over de lange zijde (Long edge binding)' : 'Enkelzijdig printen (vellen los afdrukken, knippen & op elkaar plakken)'}
               </p>
             </div>
             
@@ -347,25 +412,32 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             frontChunk.push(chunk[i] || null);
           }
 
-          // Reorder the back page so it mirrors horizontally for double sided print
-          // Original:
-          // 0 1 2
-          // 3 4 5
-          // 6 7 8
-          // Mirrored:
-          // 2 1 0
-          // 5 4 3
-          // 8 7 6
+          // Reorder the back page according to layoutMode
           const backChunk = [];
-          for (let row = 0; row < 3; row++) {
-            for (let col = 0; col < 3; col++) {
-              const originalIndex = row * 3 + (2 - col);
-              backChunk.push(chunk[originalIndex] || null); // null for empty slots on last page
+          if (layoutMode === 'mirrored') {
+            for (let row = 0; row < 3; row++) {
+              for (let col = 0; col < 3; col++) {
+                const originalIndex = row * 3 + (2 - col);
+                backChunk.push(chunk[originalIndex] || null); // null for empty slots on last page
+              }
+            }
+          } else {
+            // 'same': exact identical positions on front and back
+            for (let i = 0; i < 9; i++) {
+              backChunk.push(chunk[i] || null);
             }
           }
 
+          const cardCount = chunk.filter(Boolean).length;
+
           return (
             <React.Fragment key={chunkIdx}>
+              {/* PAGE INDICATOR (PREVIEW ONLY) */}
+              <div className="no-print" style={{ width: '210mm', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '1rem 0 -1.25rem 0', padding: '0 4px', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
+                <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>Vel {chunkIdx + 1} van {chunks.length} • Voorkanten</span>
+                <span>{cardCount} {cardCount === 1 ? 'kaart' : 'kaarten'}</span>
+              </div>
+
               {/* PAGE: FRONTS */}
               <div className="a4-page" style={{ width: '210mm', height: '297mm', background: 'white', padding: '10mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
                 <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 58mm)', gridTemplateRows: 'repeat(3, 88mm)', gap: '5mm', justifyContent: 'center', alignContent: 'start', height: '100%' }}>
@@ -402,6 +474,14 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                     </div>
                   )})}
                 </div>
+              </div>
+
+              {/* PAGE INDICATOR (PREVIEW ONLY) */}
+              <div className="no-print" style={{ width: '210mm', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '1rem 0 -1.25rem 0', padding: '0 4px', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
+                <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>Vel {chunkIdx + 1} van {chunks.length} • Achterkanten</span>
+                <span style={{ fontSize: '0.82rem', background: 'rgba(0,0,0,0.06)', padding: '2px 8px', borderRadius: '6px' }}>
+                  {layoutMode === 'same' ? 'Zelfde positie als voorkant' : 'Horizontaal gespiegeld (duplex)'}
+                </span>
               </div>
 
               {/* PAGE: BACKS */}
