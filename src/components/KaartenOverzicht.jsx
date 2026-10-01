@@ -16,6 +16,7 @@ import {
   schemaSortOrder,
   modeSortOrder,
   basisbehoeftenData,
+  vstBasisbehoeftenData,
   modicategorieenData
 } from '../data/cards';
 
@@ -54,6 +55,7 @@ export default function KaartenOverzicht({ onBack }) {
     ...detailedSchemaCards,
     ...detailedModeCards,
     ...basisbehoeftenData,
+    ...vstBasisbehoeftenData,
     ...modicategorieenData
   ];
 
@@ -181,6 +183,7 @@ export default function KaartenOverzicht({ onBack }) {
           <FilterButton id="schemas" label="Schema's" />
           <FilterButton id="modicats" label="Modi Categorieën" />
           <FilterButton id="modi" label="Modi" />
+          <FilterButton id="vst" label="VSt 2021 Uitbreiding" />
         </div>
       </div>
 
@@ -189,11 +192,45 @@ export default function KaartenOverzicht({ onBack }) {
         
         {filter === 'domeinen' && (
           <div>
-            <h2 className="box-heading" style={{ justifyContent: 'center', marginBottom: '1rem' }}>Schema Domeinen (Basisbehoeften) (5)</h2>
+            <h2 className="box-heading" style={{ justifyContent: 'center', marginBottom: '1rem' }}>Schema Domeinen (Klassieke Basisbehoeften) (5)</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
-              Ieder mens heeft fundamentele emotionele basisbehoeften, zoals de behoefte aan veiligheid, verbondenheid, autonomie en spontaniteit. Als er in de kindertijd structureel niet aan deze behoeften is voldaan, kunnen er hardnekkige, negatieve patronen (schema's) ontstaan. De schema's vallen onder de volgende 5 domeinen.
+              Ieder mens heeft fundamentele emotionele basisbehoeften, zoals de behoefte aan veiligheid, verbondenheid, autonomie en spontaniteit. Als er in de kindertijd structureel niet aan deze behoeften is voldaan, kunnen er hardnekkige, negatieve patronen (schema's) ontstaan. De schema's vallen onder de volgende 5 klassieke domeinen.
             </p>
             {renderCardList(basisbehoeftenData, 'schema-cat', { transform: 'scale(0.85)' })}
+
+            {vstBasisbehoeftenData.length > 0 && (
+              <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
+                <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+                  <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(168, 85, 247, 0.12)', color: '#9333ea', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+                    VSt 2021 Uitbreiding
+                  </span>
+                  <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginTop: '0.6rem', marginBottom: '0.4rem' }}>
+                    Aanvullende Basisbehoeften ({vstBasisbehoeftenData.length})
+                  </h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '650px', margin: '0 auto' }}>
+                    Recent toegevoegd door de Vereniging voor Schematherapie als waardevolle theoretische verdieping.
+                  </p>
+                </div>
+                {renderCardList(vstBasisbehoeftenData, 'schema-cat-vst', { transform: 'scale(0.85)' })}
+              </div>
+            )}
+          </div>
+        )}
+
+        {filter === 'vst' && (
+          <div>
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(168, 85, 247, 0.12)', color: '#9333ea', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700' }}>
+                VSt 2021 Verdiepingsdeck
+              </span>
+              <h2 className="box-heading" style={{ justifyContent: 'center', marginTop: '0.6rem', marginBottom: '0.5rem' }}>
+                VSt 2021 Uitbreidingsset ({vstBasisbehoeftenData.length})
+              </h2>
+              <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '750px', margin: '0 auto', lineHeight: '1.6' }}>
+                Gebaseerd op het internationale position paper (Arntz et al., 2021) en de nieuwste richtlijnen van de Vereniging voor Schematherapie. Klik op een kaart om de theorie, praktijkcasus en Gezonde Volwassene-tips te bekijken.
+              </p>
+            </div>
+            {renderCardList([...vstBasisbehoeftenData], 'vst-ext', { transform: 'scale(0.85)' })}
           </div>
         )}
 

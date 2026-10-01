@@ -300,6 +300,14 @@ export const verdiepingData = {
       "Oefen met het verdragen van de frustratie zonder direct uit te vallen of je privileges op te eisen."
     ]
   },
+  'Zelfcoherentie': {
+    casus: "Daan merkt dat hij zich in elk gezelschap anders gedraagt en voelt zich soms een kameleon. Door bewust stil te staan bij zijn eigen kernwaarden en gevoelens, leert hij ervaren wie hij werkelijk is als één samenhangend persoon.",
+    tips: [
+      "Onderzoek welke waarden en interesses écht van jou zijn, ongeacht wie er in de kamer is.",
+      "Erken dat verschillende gevoelens of kanten van jezelf samen één rijk en compleet geheel vormen.",
+      "Geef jezelf de tijd om te reflecteren: wat voel ik nu, en wat zegt dit over mij?"
+    ]
+  },
 
   // MODI CATEGORIEËN (5)
   'Kindmodi': {

@@ -5,6 +5,7 @@ import imgB2 from '../assets/images/basisbehoeften/2.png';
 import imgB3 from '../assets/images/basisbehoeften/3.png';
 import imgB4 from '../assets/images/basisbehoeften/4.png';
 import imgB5 from '../assets/images/basisbehoeften/5.png';
+import imgB6 from '../assets/images/basisbehoeften/6.png';
 
 import imgM1 from '../assets/images/modicategorieen/1.png';
 import imgM2 from '../assets/images/modicategorieen/2.png';
@@ -18,7 +19,8 @@ export const basisbehoeftenText = {
   'Autonomie': 'Ruimte om zelf de wereld te ontdekken, fouten te mogen maken en vertrouwen te krijgen in je eigen kunnen als onafhankelijk individu.',
   'Vrije expressie': 'Ruimte om je vrij uit te drukken. Eigen gevoelens (ook boosheid of verdriet) en behoeften zijn geldig en belangrijk.',
   'Spontaniteit en spel': 'Ruimte voor plezier, creativiteit en onbezorgdheid. Niet alles hoeft nuttig, perfect of efficiënt te zijn.',
-  'Realistische grenzen': 'Kaders om te leren omgaan met frustratie. Leren dat je niet altijd je zin kunt krijgen en rekening moet houden met anderen.'
+  'Realistische grenzen': 'Kaders om te leren omgaan met frustratie. Leren dat je niet altijd je zin kunt krijgen en rekening moet houden met anderen.',
+  'Zelfcoherentie': 'De behoefte aan een geïntegreerd, samenhangend zelfbeeld en een stabiele identiteit. Het gevoel één geheel te zijn, met duidelijke eigen waarden, gevoelens en richting.'
 };
 
 export const categorieText = {
@@ -110,6 +112,10 @@ export const basisbehoeftenData = [
   { id: 'bb3', title: 'Vrije expressie', src: imgB3, description: basisbehoeftenText['Vrije expressie'], color: '#eab308', type: 'basisbehoefte' },
   { id: 'bb4', title: 'Spontaniteit en spel', src: imgB4, description: basisbehoeftenText['Spontaniteit en spel'], color: '#ef4444', type: 'basisbehoefte' },
   { id: 'bb5', title: 'Realistische grenzen', src: imgB5, description: basisbehoeftenText['Realistische grenzen'], color: '#f97316', type: 'basisbehoefte' },
+];
+
+export const vstBasisbehoeftenData = [
+  { id: 'bb6', title: 'Zelfcoherentie', src: imgB6, description: basisbehoeftenText['Zelfcoherentie'], color: '#a855f7', type: 'basisbehoefte', isVst: true },
 ];
 
 export const modicategorieenData = [
