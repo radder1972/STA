@@ -36,7 +36,8 @@ export const vstSchemaData = [
     src: imgCoherenteIdentiteit,
     description: vstSchemaText['Gebrek aan coherente identiteit'],
     color: '#a855f7',
-    isVst: true
+    isVst: true,
+    style: { transform: 'scale(0.72)' }
   },
   {
     id: 'vst_s2',
@@ -45,7 +46,8 @@ export const vstSchemaData = [
     src: imgBetekenisvolleWereld,
     description: vstSchemaText['Gebrek aan een betekenisvolle wereld'],
     color: '#a855f7',
-    isVst: true
+    isVst: true,
+    style: { transform: 'scale(0.68)' }
   },
   {
     id: 'vst_s3',
@@ -54,7 +56,8 @@ export const vstSchemaData = [
     src: imgOnrechtvaardigheid,
     description: vstSchemaText['Onrechtvaardigheid'],
     color: '#06b6d4',
-    isVst: true
+    isVst: true,
+    style: { transform: 'scale(0.80)' }
   }
 ];
 

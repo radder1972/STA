@@ -67,7 +67,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
   const vstSchemas = vstSchemaData.map(c => ({
     ...c,
     type: 'schema',
-    style: { transform: 'scale(1)' }
+    style: c.style || { transform: 'scale(0.75)' }
   }));
 
   // 5. Classical Modi Categorieën (6)
