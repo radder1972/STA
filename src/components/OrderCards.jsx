@@ -441,27 +441,27 @@ export default function OrderCards({ onBack }) {
             border: '1px solid var(--border-color)',
             position: 'relative'
           }}>
-            <div style={{ flex: '1 1 auto', zIndex: 1 }}>
-              <h4 style={{ margin: '0 0 0.8rem 0', fontSize: '1.05rem', color: 'var(--text-main)' }}>
+            <div style={{ flex: '1 1 auto', zIndex: 1, paddingRight: '1.25rem' }}>
+              <h4 style={{ margin: '0 0 0.9rem 0', fontSize: '1.1rem', fontWeight: '700', color: '#0f172a', lineHeight: '1.4' }}>
                 Inhoud van {activeVariant.title}:
               </h4>
-              <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+              <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {activeVariant.specs.map((spec, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: '#334155', fontSize: '0.98rem', fontWeight: '500' }}>
-                    <div style={{ color: '#0ea5e9', display: 'flex', marginTop: '2px', fontWeight: 'bold' }}>✓</div> 
-                    <span>{spec}</span>
+                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: '#334155', fontSize: '0.96rem', lineHeight: '1.55', fontWeight: '400' }}>
+                    <Check size={16} color="#0ea5e9" strokeWidth={2.5} style={{ flexShrink: 0, marginTop: '4px' }} />
+                    <span style={{ lineHeight: '1.55' }}>{spec}</span>
                   </li>
                 ))}
               </ul>
             </div>
             
             <div style={{ 
-              flex: '0 0 210px', 
+              flex: '0 0 190px', 
               borderRadius: '16px', 
               overflow: 'hidden', 
               boxShadow: '0 20px 40px rgba(0,0,0,0.2)', 
               border: '5px solid white', 
-              transform: 'translate(25px, -20px) rotate(4deg)',
+              transform: 'translate(20px, -15px) rotate(3deg)',
               background: 'white',
               position: 'relative',
               zIndex: 2
