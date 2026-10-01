@@ -151,6 +151,12 @@ export const formatCardTitle = (title) => {
   if (title === 'Kluwen / Onderontwikkeld zelf') {
     return <>Kluwen / Onderontwikkeld<br />zelf</>;
   }
+  if (title === 'Veiligheid & Verbinding') {
+    return <>Veiligheid &<br />Verbinding</>;
+  }
+  if (title === 'Autonomie & Competentie') {
+    return <>Autonomie &<br />Competentie</>;
+  }
   if (title === 'Spontaniteit en spel') {
     return <>Spontaniteit<br />en spel</>;
   }

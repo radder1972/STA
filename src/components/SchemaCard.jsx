@@ -37,6 +37,14 @@ export const formatCardTitle = (title) => {
     return <>{words[0]}<br />{words[1]}</>;
   }
 
+  if (title === 'Veiligheid & Verbinding') {
+    return <>Veiligheid &<br />Verbinding</>;
+  }
+
+  if (title === 'Autonomie & Competentie') {
+    return <>Autonomie &<br />Competentie</>;
+  }
+
   if (title === 'Spontaniteit en spel') {
     return <>Spontaniteit<br />en spel</>;
   }
@@ -177,7 +185,7 @@ const SchemaCard = ({
                 justifyContent: 'center', 
                 textAlign: 'center' 
               }}>
-                {title}
+                {formatCardTitle(title)}
               </h4>
             )}
             <div className="card-desc" style={{ fontSize: `${descSize * s}rem`, lineHeight: descLineHeight, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: lineClamp, WebkitBoxOrient: 'vertical', margin: 0, paddingBottom: `${6 * s}px` }}>
