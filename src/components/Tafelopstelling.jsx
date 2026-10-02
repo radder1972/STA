@@ -677,18 +677,18 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               ) : (
                 (showCardPicker === 'schema' ? schemaGroups : modeGroups).map((group, groupIdx) => {
                   const cards = showCardPicker === 'schema' ? schemaCards : modeCards;
-                  const groupCards = group.titles.map(title => cards.find(c => c.title === title)).filter(Boolean);
+                  const groupCards = group.titles.map(title => cards.find(c => c.title.toLowerCase() === title.toLowerCase() || c.title === title)).filter(Boolean);
                   if (groupCards.length === 0) return null;
                   
                   const firstCard = groupCards[0];
-                  const groupColor = firstCard ? getCardColor(firstCard.type, firstCard.id) : 'var(--text-main)';
+                  const groupColor = firstCard ? (firstCard.color || getCardColor(firstCard.type, firstCard.id, firstCard.title)) : 'var(--text-main)';
                   
                   return (
                     <div key={groupIdx} style={{ marginBottom: '1.5rem' }}>
                       <h4 style={{ color: groupColor, borderBottom: `2px solid ${groupColor}40`, paddingBottom: '0.5rem', marginBottom: '1rem', textAlign: 'left' }}>{group.group}</h4>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'flex-start' }}>
                         {groupCards.map((card, idx) => {
-                          const cardColor = getCardColor(card.type, card.id);
+                          const cardColor = card.color || getCardColor(card.type, card.id, card.title);
                           return (
                           <SchemaCard
                             key={idx}

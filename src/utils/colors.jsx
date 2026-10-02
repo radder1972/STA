@@ -1,44 +1,64 @@
-export const getCardColor = (type, id) => {
-  if (type === 'mode') {
-    const childModes = ['kk', 'rk', 'ik', 'ok', 'bk'];
-    const parentModes = ['so', 'vo'];
-    const copingModes = ['wi', 'ob', 'oz', 'wk', 'zh', 'pa'];
-    
-    if (childModes.includes(id)) return '#60a5fa'; // Blauw
-    if (parentModes.includes(id)) return '#f87171'; // Rood
-    if (copingModes.includes(id)) return '#facc15'; // Geel
-    if (id === 'gv') return '#34d399'; // Groen
-  } else if (type === 'schema') {
-    const safeId = id.replace('/', '_');
-    const cat1 = ['Abandonment', 'Mistrust', 'Emotional deprivation', 'Defectiveness_unlovability', 'Social isolation_Alienation'];
-    const cat2 = ['Practical incompetence_Dependence', 'Vulnerability to harm_illness', 'Enmeshment', 'Failure to achieve'];
-    const cat3 = ['Subjugation', 'Self-sacrifice', 'Admiration_Recognition-seeking'];
-    const cat4 = ['Pessimism_Worry', 'Emotional inhibition', 'Unrelenting Standards', 'Self-punitiveness'];
-    const cat5 = ['Entitlement_Superiority', 'Insufficient self-control_self-discipline'];
-    
-    // YSQ Domains
-    if (cat1.includes(safeId)) return '#60a5fa'; // Domein 1: Onthechting/Afwijzing -> Blauw (Triggert Kindmodi)
-    if (cat2.includes(safeId)) return '#34d399'; // Domein 2: Autonomie -> Groen (Gezonde Volwassene)
-    if (cat3.includes(safeId)) return '#facc15'; // Domein 4: Gerichtheid op anderen -> Geel (Copingmodi)
-    if (cat4.includes(safeId)) return '#f87171'; // Domein 5: Overmatige waakzaamheid -> Rood (Oudermodi)
-    if (cat5.includes(safeId)) return '#fb923c'; // Domein 3: Realistische grenzen -> Oranje
-    if (safeId === 'vst_s1' || safeId === 'vst_s2' || safeId.includes('identiteit') || safeId.includes('wereld')) return '#a855f7'; // Zelfcoherentie schema's -> Paars
-    if (safeId === 'vst_s3' || safeId === 'Onrechtvaardigheid' || safeId === 'onrechtvaardigheid') return '#78350f'; // Rechtvaardigheid schema -> Warm Notenhout (Bruin)
-  } else if (type === 'basisbehoefte') {
-    if (id === 'veilige-hechting' || id === 'veiligheid-&-verbinding' || id === 'veiligheid-en-verbinding' || id === 'bb1') return '#60a5fa'; // Blauw
-    if (id === 'autonomie' || id === 'autonomie-&-competentie' || id === 'autonomie-en-competentie' || id === 'bb2') return '#34d399'; // Groen
-    if (id === 'vrije-expressie' || id === 'vrijheid-van-expressie' || id === 'bb3') return '#facc15'; // Geel
-    if (id === 'spontaniteit-en-spel' || id === 'bb4') return '#f87171'; // Rood
-    if (id === 'realistische-grenzen' || id === 'bb5') return '#fb923c'; // Oranje
-    if (id === 'zelfcoherentie' || id === 'bb6') return '#a855f7'; // Paars
-    if (id === 'rechtvaardigheid' || id === 'bb7') return '#78350f'; // Warm Notenhout (Bruin)
-  } else if (type === 'modicategorie') {
-    if (id === 'kindmodi') return '#60a5fa';
-    if (id === 'oudermodi') return '#f87171';
-    if (id.startsWith('coping')) return '#facc15';
-    if (id === 'gezonde-volwassene') return '#34d399';
+export const getCardColor = (type, id, title) => {
+  // Allow passing a full card object as the first argument: getCardColor(card)
+  if (type && typeof type === 'object') {
+    if (type.color) return type.color;
+    title = type.title;
+    id = type.id;
+    type = type.type;
   }
-  
+
+  const safeType = (type || '').toLowerCase();
+  const safeId = (id || '').toString();
+  const safeTitle = (title || '').toString().toLowerCase();
+
+  if (safeType === 'mode') {
+    if (safeId === 'vst_m_bk' || safeId === 'bk' || safeTitle.includes('blije kind')) return '#34d399'; // Groen
+    if (safeId === 'gv' || safeTitle.includes('gezonde volwassene')) return '#34d399'; // Groen
+
+    const childModes = ['kk', 'rk', 'ik', 'ok'];
+    if (childModes.includes(safeId) || safeTitle.includes('kwetsbare') || safeTitle.includes('razende') || safeTitle.includes('impulsieve') || safeTitle.includes('ongedisciplineerde') || safeTitle.includes('boze kind')) return '#60a5fa'; // Blauw
+
+    const parentModes = ['so', 'vo'];
+    if (parentModes.includes(safeId) || safeTitle.includes('straffende') || safeTitle.includes('veeleisende')) return '#f87171'; // Rood
+
+    // Coping modes: all yellow (#facc15 / #eab308)
+    const copingModes = ['wi', 'ob', 'oz', 'wk', 'zh', 'pa', 'vst_m_bb', 'vst_m_po', 'vst_m_bm', 'vst_m_ae', 'vst_m_rd', 'mc3d'];
+    if (copingModes.includes(safeId) || safeTitle.includes('inschikkelijke') || safeTitle.includes('beschermer') || safeTitle.includes('zelfsusser') || safeTitle.includes('overcontroleerder') || safeTitle.includes('zelfverheerlijker') || safeTitle.includes('pest') || safeTitle.includes('bedrog') || safeTitle.includes('erkenningzoeker') || safeTitle.includes('roofdier') || safeTitle.includes('coping')) return '#facc15'; // Geel
+  } else if (safeType === 'schema') {
+    const cleanId = safeId.replace('/', '_');
+    
+    if (cleanId === 'vst_s1' || cleanId === 'vst_s2' || safeTitle.includes('coherente identiteit') || safeTitle.includes('betekenisvolle wereld')) return '#a855f7'; // Paars
+    if (cleanId === 'vst_s3' || safeTitle.includes('onrechtvaardigheid')) return '#78350f'; // Bruin
+
+    const cat1 = ['Abandonment', 'Mistrust', 'Emotional deprivation', 'Defectiveness_unlovability', 'Social isolation_Alienation'];
+    if (cat1.includes(cleanId) || safeTitle.includes('verlating') || safeTitle.includes('wantrouwen') || safeTitle.includes('emotioneel') || safeTitle.includes('minderwaardigheid') || safeTitle.includes('isolement')) return '#60a5fa'; // Blauw
+
+    const cat2 = ['Practical incompetence_Dependence', 'Vulnerability to harm_illness', 'Enmeshment', 'Failure to achieve'];
+    if (cat2.includes(cleanId) || safeTitle.includes('afhankelijkheid') || safeTitle.includes('kwetsbaarheid') || safeTitle.includes('verstrengeling') || safeTitle.includes('mislukking')) return '#34d399'; // Groen
+
+    const cat3 = ['Subjugation', 'Self-sacrifice', 'Admiration_Recognition-seeking'];
+    if (cat3.includes(cleanId) || safeTitle.includes('onderwerping') || safeTitle.includes('zelfopoffering') || safeTitle.includes('goedkeuring')) return '#facc15'; // Geel
+
+    const cat4 = ['Pessimism_Worry', 'Emotional inhibition', 'Unrelenting Standards', 'Self-punitiveness'];
+    if (cat4.includes(cleanId) || safeTitle.includes('pessimisme') || safeTitle.includes('geremdheid') || safeTitle.includes('normen') || safeTitle.includes('bestraffend')) return '#f87171'; // Rood
+
+    const cat5 = ['Entitlement_Superiority', 'Insufficient self-control_self-discipline'];
+    if (cat5.includes(cleanId) || safeTitle.includes('rechten') || safeTitle.includes('zelfcontrole')) return '#fb923c'; // Oranje
+  } else if (safeType === 'basisbehoefte' || safeType === 'need') {
+    if (safeId === 'bb1' || safeTitle.includes('veiligheid') || safeTitle.includes('hechting')) return '#60a5fa'; // Blauw
+    if (safeId === 'bb2' || safeTitle.includes('autonomie')) return '#34d399'; // Groen
+    if (safeId === 'bb3' || safeTitle.includes('expressie')) return '#facc15'; // Geel
+    if (safeId === 'bb4' || safeTitle.includes('spontaniteit') || safeTitle.includes('spel')) return '#f87171'; // Rood
+    if (safeId === 'bb5' || safeTitle.includes('grenzen')) return '#fb923c'; // Oranje
+    if (safeId === 'bb6' || safeTitle.includes('zelfcoherentie')) return '#a855f7'; // Paars
+    if (safeId === 'bb7' || safeTitle.includes('rechtvaardigheid')) return '#78350f'; // Bruin
+  } else if (safeType === 'modicategorie') {
+    if (safeId === 'kindmodi' || safeTitle.includes('kind')) return '#60a5fa';
+    if (safeId === 'oudermodi' || safeTitle.includes('ouder')) return '#f87171';
+    if (safeId.startsWith('coping') || safeTitle.includes('coping')) return '#facc15';
+    if (safeId === 'gezonde-volwassene' || safeTitle.includes('volwassene')) return '#34d399';
+  }
+
   return 'rgba(0,0,0,0.15)'; // Default subtiel grijs randje
 };
 
@@ -53,22 +73,22 @@ export const CardInnerBorder = ({ color, outerColor }) => {
       <style>{`
         .card-scene:hover .${safeClass} {
            box-shadow: 0 12px 35px ${hoverShadowColor} !important;
-        }
+         }
         .${safeClass} ~ div img,
         .${safeClass} ~ img {
            filter: drop-shadow(0 0 0 ${color}) drop-shadow(0 4px 10px ${color}60) !important;
-        }
+         }
         .${safeClass} ~ button.btn-card:hover {
            background: ${color} !important;
            border-color: ${color} !important;
            color: white !important;
            box-shadow: 0 4px 15px ${color}60 !important;
-        }
+         }
         .${safeClass} ~ button.btn-card:hover .btn-text {
            background: none !important;
            -webkit-text-fill-color: white !important;
            color: white !important;
-        }
+         }
       `}</style>
       <div className={safeClass} style={{ 
         position: 'absolute', 
