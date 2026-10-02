@@ -14,7 +14,7 @@ export default function TafelNavbar({ onPrint, onClear }) {
       borderRadius: '16px',
       marginBottom: '2rem',
       width: '100%',
-      maxWidth: '1000px',
+      maxWidth: '950px',
       margin: '0 auto 2rem auto'
     }}>
       <div 

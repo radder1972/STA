@@ -393,7 +393,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen.
         </p>
 
-        <div style={{ textAlign: 'left', maxWidth: '950px', margin: '0 auto 2rem auto', background: 'rgba(16, 185, 129, 0.04)', padding: '2.5rem 3rem', borderRadius: '24px', border: '1px solid rgba(16, 185, 129, 0.2)', boxSizing: 'border-box' }}>
+        <div className="glass-panel" style={{ textAlign: 'left', maxWidth: '950px', width: '100%', margin: '0 auto 2rem auto', background: 'rgba(16, 185, 129, 0.04)', padding: '2.5rem 2.5rem', borderRadius: '24px', border: '1px solid rgba(16, 185, 129, 0.25)', boxSizing: 'border-box' }}>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', color: 'var(--text-main)', lineHeight: '1.6' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
@@ -423,7 +423,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         )}
       </div>
 
-      <div className="glass-panel" style={{ padding: '2.5rem 2rem', borderRadius: '24px', maxWidth: '950px', margin: '0 auto', boxSizing: 'border-box' }}>
+      <div className="glass-panel" style={{ padding: '2.5rem 2.5rem', borderRadius: '24px', maxWidth: '950px', width: '100%', margin: '0 auto', boxSizing: 'border-box' }}>
         
         <div className="inner-box" style={{ margin: 0, width: '100%' }}>
           <div style={{ width: '100%', margin: '0 auto' }}>
