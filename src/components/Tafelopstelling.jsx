@@ -393,7 +393,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen.
         </p>
 
-        <div style={{ textAlign: 'left', maxWidth: '750px', margin: '0 auto 2rem auto', background: 'rgba(16, 185, 129, 0.04)', padding: '3rem 5rem', borderRadius: '16px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
+        <div style={{ textAlign: 'left', maxWidth: '950px', margin: '0 auto 2rem auto', background: 'rgba(16, 185, 129, 0.04)', padding: '2.5rem 3rem', borderRadius: '24px', border: '1px solid rgba(16, 185, 129, 0.2)', boxSizing: 'border-box' }}>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', color: 'var(--text-main)', lineHeight: '1.6' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
@@ -423,10 +423,10 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         )}
       </div>
 
-      <div className="glass-panel" style={{ padding: '3rem', borderRadius: '24px', maxWidth: '1000px', margin: '0 auto' }}>
+      <div className="glass-panel" style={{ padding: '2.5rem 2rem', borderRadius: '24px', maxWidth: '950px', margin: '0 auto', boxSizing: 'border-box' }}>
         
-        <div className="inner-box" style={{ margin: 0 }}>
-          <div style={{ maxWidth: '850px', margin: '0 auto' }}>
+        <div className="inner-box" style={{ margin: 0, width: '100%' }}>
+          <div style={{ width: '100%', margin: '0 auto' }}>
             <div style={{ marginBottom: '3rem' }}>
               <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center' }}><StepBadge number="1" size={28} /> Beschrijf de situatie</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
@@ -479,7 +479,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', width: '100%' }}>
             
             {/* Top Row: De 3 Kaarten */}
-            <div className="tafel-cards-container" style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', gap: '1rem', width: '100%', minWidth: 'max-content', margin: '0 auto', padding: '3rem 1rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)', alignItems: 'stretch' }}>
+            <div className="tafel-cards-container" style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', gap: '1rem', width: 'calc(100% + 2rem)', margin: '0 -1rem', padding: '2.5rem 1rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)', alignItems: 'stretch', overflowX: 'auto', boxSizing: 'border-box' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '150px', alignSelf: 'center' }}>
                 <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} />
               </div>
