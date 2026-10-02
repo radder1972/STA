@@ -183,20 +183,21 @@ export default function OrderCards({ onBack }) {
   const VARIANTS = {
     complete: {
       id: 'complete',
-      title: 'Complete Kaartenset',
-      subtitle: '55 theoriekaarten • Basisset (43) + Uitbreiding (12)',
-      description: 'De complete praktijkset: alle 43 klassieke kaarten plus alle 12 aanvullende theoriekaarten (7 behoeften, 21 schema\'s en 20 modi).',
+      title: 'Complete Kaartenset (55 Kaarten)',
+      subtitle: '55 theoriekaarten • 100% VSt 2021 Afgestemd',
+      description: 'De complete praktijkset: alle 55 kaarten (7 basisbehoeften, 18 schema\'s, 14 modi en coping/categorieën) met slimme B/S/M type-badges.',
       cardsCount: 55,
-      price: 49.95,
-      oldPrice: 56.90,
-      badge: 'Aanbevolen',
+      price: 19.95,
+      oldPrice: 49.95,
+      badge: 'Populair — € 19,95',
       badgeColor: '#0ea5e9',
       specs: [
-        'Alle 55 theoriekaarten in één complete set voor in de praktijk',
-        '43 klassieke theoriekaarten + 12 aanvullende theoriekaarten (Arntz et al., 2021)',
-        'Inclusief 7 basisbehoeften, 21 schema\'s, 20 modi en 7 categorieën',
-        'Handzaam kaartformaat (64 x 94 mm) met afgeronde hoeken',
-        'Luxe matte afwerking, vuilafstotend en krasvast voor intensief praktijkgebruik'
+        'Alle 55 theoriekaarten in één complete set voor in de praktijk én thuis',
+        '100% Afgestemd op VSt (2021) behandelrichtlijnen van Arntz et al.',
+        'Slimme B/S/M type-badges bovenaan elke kaart voor direct sorteren op tafel',
+        'Minimalistische poppetjes-illustraties met zachte pastel-gradiënt randen',
+        'Handzaam speelkaartformaat (63.5 x 88.9 mm) met luxe matte afwerking',
+        'Brievenbuspost € 3,95 in NL & BE (vandaag besteld = binnen 1-2 werkdagen in huis)'
       ],
       cards: completeCards
     },
