@@ -53,7 +53,9 @@ export const basisbehoeftenToSchemas = {
 
 export const categorieToModi = {
   'Kindmodi': ['Kwetsbare kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind', 'Boze kind'],
+  'Disfunctionele oudermodi': ['Straffende ouder', 'Veeleisende ouder'],
   'Oudermodi': ['Straffende ouder', 'Veeleisende ouder'],
+  'Disfunctionele copingmodi': ['Willoze inschikkelijke', 'Onthechte beschermer', 'Onthechte zelfsusser', 'Boze beschermer', 'Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'],
   'Coping: Overgave': ['Willoze inschikkelijke'],
   'Coping: Vermijding': ['Onthechte beschermer', 'Onthechte zelfsusser', 'Boze beschermer'],
   'Coping: Overcompensatie': ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'],
@@ -111,11 +113,11 @@ export const schemaGroups = [
 export const schemaSortOrder = schemaGroups.flatMap(g => g.titles);
 
 export const modeGroups = [
-  { group: 'Kindmodi (Disfunctioneel)', titles: ['Kwetsbare kind', 'Boze kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind'] },
+  { group: 'Kindmodi', titles: ['Kwetsbare kind', 'Boze kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind'] },
   { group: 'Coping: Overgave', titles: ['Willoze inschikkelijke'] },
   { group: 'Coping: Vermijding', titles: ['Onthechte beschermer', 'Onthechte zelfsusser', 'Boze beschermer'] },
   { group: 'Coping: Overcompensatie', titles: ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'] },
-  { group: 'Oudermodi', titles: ['Straffende ouder', 'Veeleisende ouder'] },
+  { group: 'Disfunctionele Oudermodi', titles: ['Straffende ouder', 'Veeleisende ouder'] },
   { group: 'Functionele Modi', titles: ['Gezonde volwassene', 'Blije kind'] }
 ];
 export const modeSortOrder = modeGroups.flatMap(g => g.titles);
