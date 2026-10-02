@@ -12,11 +12,11 @@ export const getCardColor = (type, id, title) => {
   const safeTitle = (title || '').toString().toLowerCase();
 
   if (safeType === 'mode') {
-    if (safeId === 'vst_m_bk' || safeId === 'bk' || safeTitle.includes('blije kind')) return '#34d399'; // Groen
-    if (safeId === 'gv' || safeTitle.includes('gezonde volwassene')) return '#34d399'; // Groen
+    if (safeId === 'vst_m_bk' || safeTitle.includes('blije kind')) return '#34d399'; // Groen (Blije Kind)
+    if (safeId === 'gv' || safeTitle.includes('gezonde volwassene')) return '#34d399'; // Groen (Gezonde Volwassene)
 
-    const childModes = ['kk', 'rk', 'ik', 'ok'];
-    if (childModes.includes(safeId) || safeTitle.includes('kwetsbare') || safeTitle.includes('razende') || safeTitle.includes('impulsieve') || safeTitle.includes('ongedisciplineerde') || safeTitle.includes('boze kind')) return '#60a5fa'; // Blauw
+    const childModes = ['kk', 'rk', 'ik', 'ok', 'bk'];
+    if (childModes.includes(safeId) || safeTitle.includes('kwetsbare') || safeTitle.includes('razende') || safeTitle.includes('impulsieve') || safeTitle.includes('ongedisciplineerde') || safeTitle.includes('boze kind')) return '#60a5fa'; // Blauw (Kindmodi)
 
     const parentModes = ['so', 'vo'];
     if (parentModes.includes(safeId) || safeTitle.includes('straffende') || safeTitle.includes('veeleisende')) return '#f87171'; // Rood
