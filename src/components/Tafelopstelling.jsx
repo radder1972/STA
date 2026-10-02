@@ -630,6 +630,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                       height="228px"
                       imageStyle={card.style}
                       flipOnClick={false}
+                      zoomOnClick={false}
                       onClick={() => handleSelectCard(card)}
                       className="picker-card"
                       style={{ margin: 0 }}
@@ -664,6 +665,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                             height="228px"
                             imageStyle={card.style}
                             flipOnClick={false}
+                            zoomOnClick={false}
                             onClick={() => handleSelectCard(card)}
                             className="picker-card"
                             style={{ margin: 0 }}
