@@ -140,7 +140,7 @@ export const modicategorieenData = [
 export const getCardTypeLetter = (type) => {
   if (type === 'schema') return 'S';
   if (type === 'mode') return 'M';
-  if (type === 'basisbehoefte') return 'B';
+  if (type === 'basisbehoefte' || type === 'need') return 'B';
   if (type === 'modicategorie') return 'C';
   return '';
 };

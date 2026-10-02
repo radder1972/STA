@@ -125,6 +125,7 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
         )}
         <SchemaCard 
           id={card.id}
+          type={card.type}
           title={card.title}
           description={card.description}
           src={card.src}
@@ -620,6 +621,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                     <SchemaCard
                       key={idx}
                       id={card.id}
+                      type={card.type}
                       title={card.title}
                       description={card.description}
                       src={card.src}
@@ -653,6 +655,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                           <SchemaCard
                             key={idx}
                             id={card.id}
+                            type={card.type}
                             title={card.title}
                             description={card.description}
                             src={card.src}

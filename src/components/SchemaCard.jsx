@@ -246,7 +246,7 @@ export const formatCardTitle = (title) => {
 export const getCardTypeLetter = (type) => {
   if (type === 'schema') return 'S';
   if (type === 'mode') return 'M';
-  if (type === 'basisbehoefte') return 'B';
+  if (type === 'basisbehoefte' || type === 'need') return 'B';
   if (type === 'modicategorie') return 'C';
   return '';
 };
@@ -254,7 +254,7 @@ export const getCardTypeLetter = (type) => {
 export const getCardTypeLabel = (type) => {
   if (type === 'schema') return "Schema";
   if (type === 'mode') return "Modus";
-  if (type === 'basisbehoefte') return "Basisbehoefte";
+  if (type === 'basisbehoefte' || type === 'need') return "Basisbehoefte";
   if (type === 'modicategorie') return "Categorie";
   return '';
 };
