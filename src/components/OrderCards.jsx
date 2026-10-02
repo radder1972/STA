@@ -183,7 +183,7 @@ export default function OrderCards({ onBack }) {
   const VARIANTS = {
     complete: {
       id: 'complete',
-      title: 'Complete Kaartenset (55 Kaarten)',
+      title: 'Complete Kaartenset',
       subtitle: '55 theoriekaarten • 100% VSt 2021 Afgestemd',
       description: 'De complete praktijkset: alle 55 kaarten (7 basisbehoeften, 18 schema\'s, 14 modi en coping/categorieën) met slimme B/S/M type-badges.',
       cardsCount: 55,
