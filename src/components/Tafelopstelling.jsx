@@ -18,6 +18,20 @@ import imgB5 from '../assets/images/basisbehoeften/5.png';
 import imgM4 from '../assets/images/modicategorieen/4.png';
 
 
+import {
+  ysqSchemaNamesMap,
+  smiModesMap,
+  schemaGroups,
+  modeGroups,
+  schemaSortOrder,
+  modeSortOrder,
+  basisbehoeftenData,
+  vstBasisbehoeftenData,
+  vstSchemaData,
+  vstCopingData,
+  vstModiData
+} from '../data/cards';
+
 const StepBadge = ({ number, size = 32 }) => (
   <span style={{
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
@@ -32,82 +46,31 @@ const StepBadge = ({ number, size = 32 }) => (
   </span>
 );
 
-const ysqSchemaNamesMap = {
-  'Abandonment': 'Verlating / Instabiliteit',
-  'Mistrust': 'Wantrouwen / Misbruik',
-  'Defectiveness_unlovability': 'Minderwaardigheid / Schaamte',
-  'Emotional deprivation': 'Emotionele verwaarlozing',
-  'Social isolation_Alienation': 'Sociaal isolement / Vervreemding',
-  'Practical incompetence_Dependence': 'Afhankelijkheid / Onbekwaamheid',
-  'Vulnerability to harm_illness': 'Kwetsbaarheid voor ziekte en gevaar',
-  'Enmeshment': 'Verstrengeling / Kluwen',
-  'Failure to achieve': 'Mislukking',
-  'Insufficient self-control_self-discipline': 'Gebrek aan zelfcontrole / Zelfdiscipline',
-  'Entitlement_Superiority': 'Zich rechten toe-eigenen',
-  'Subjugation': 'Onderwerping',
-  'Self-sacrifice': 'Zelfopoffering',
-  'Admiration_Recognition-seeking': 'Goedkeuring en erkenning zoeken',
-  'Pessimism_Worry': 'Negativiteit en pessimisme',
-  'Emotional inhibition': 'Emotionele geremdheid',
-  'Unrelenting Standards': 'Meedogenloze normen / Overmatig kritisch',
-  'Self-punitiveness': 'Bestraffende houding'
-};
-
-const smiModesMap = {
-  'kk': 'Kwetsbare kind',
-  'rk': 'Razende kind',
-  'ik': 'Impulsieve kind',
-  'ok': 'Ongedisciplineerde kind',
-  'bk': 'Boze kind',
-  'wi': 'Willoze inschikkelijke',
-  'ob': 'Onthechte beschermer',
-  'oz': 'Onthechte zelfsusser',
-  'wk': 'Wantrouwende overcontroleerder',
-  'zh': 'Zelfverheerlijker',
-  'pa': 'Pest en aanval',
-  'so': 'Straffende ouder',
-  'vo': 'Veeleisende ouder',
-  'gv': 'Gezonde volwassene'
-};
-
-
-const needDescriptions = {
-  'Veiligheid & Verbinding': "Deze ervaren met anderen. Zorg en aandacht krijgen in een veilige, betrouwbare omgeving. Je beschermd, verbonden en gewaardeerd voelen.",
-  'Veilige hechting': "Deze ervaren met anderen. Zorg en aandacht krijgen in een veilige, betrouwbare omgeving. Je beschermd, verbonden en gewaardeerd voelen.",
-  'Autonomie & Competentie': "De wereld mogen onderzoeken. Je eigen keuzes leren maken en ervaringen opdoen, op een veilige manier.",
-  'Autonomie': "De wereld mogen onderzoeken. Je eigen keuzes leren maken en ervaringen opdoen, op een veilige manier.",
-  'Vrijheid van expressie': "Je gevoelens en belevingen mogen uiten en ervaren. Voelen dat je mag zijn wie je bent.",
-  'Vrije expressie': "Je gevoelens en belevingen mogen uiten en ervaren. Voelen dat je mag zijn wie je bent.",
-  'Spontaniteit en spel': "De ruimte hebben om te ontdekken, leren, voelen, verbazen, experimenteren en ervaren, en daarvan te genieten.",
-  'Spontaniteit & Spel': "De ruimte hebben om te ontdekken, leren, voelen, verbazen, experimenteren en ervaren, en daarvan te genieten.",
-  'Realistische grenzen': "Vaardigheden leren om je eigen en andermans grenzen te respecteren, en om te kunnen functioneren in een groep. Je emoties op een gezonde manier leren reguleren.",
-  'Zelfcoherentie': "Er wordt tegemoet gekomen aan je verlangen om jezelf te zien als samenhangend geheel, je psychisch gezond te voelen en een zinvol leven te leiden. Aan deze behoefte kan pas worden voldaan als ook aan andere behoeften is voldaan.",
-  'Rechtvaardigheid': "De wereld leren kennen in een sfeer van rechtvaardigheid, waarin onrecht waar mogelijk wordt gecorrigeerd en waarin jou uitleg gegeven wordt over regels."
-};
-
 const needCards = [
-  { src: imgB1, title: 'Veiligheid & Verbinding', type: 'need', description: needDescriptions['Veiligheid & Verbinding'], color: '#60a5fa' },
-  { src: imgB2, title: 'Autonomie & Competentie', type: 'need', description: needDescriptions['Autonomie & Competentie'], color: '#34d399' },
-  { src: imgB3, title: 'Vrijheid van expressie', type: 'need', description: needDescriptions['Vrijheid van expressie'], color: '#facc15' },
-  { src: imgB4, title: 'Spontaniteit & Spel', type: 'need', description: needDescriptions['Spontaniteit & Spel'], color: '#f87171' },
-  { src: imgB5, title: 'Realistische grenzen', type: 'need', description: needDescriptions['Realistische grenzen'], color: '#fb923c' },
-];
+  ...basisbehoeftenData,
+  ...vstBasisbehoeftenData
+].map(card => ({
+  ...card,
+  type: 'need'
+}));
 
-const schemaGroups = [
-  { group: 'Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Minderwaardigheid / Schaamte', 'Sociaal isolement / Vervreemding'] },
-  { group: 'Verzwakte Autonomie', titles: ['Afhankelijkheid / Onbekwaamheid', 'Kwetsbaarheid voor ziekte en gevaar', 'Verstrengeling / Kluwen', 'Mislukking'] },
-  { group: 'Verzwakte Grenzen', titles: ['Gebrek aan zelfcontrole / Zelfdiscipline', 'Zich rechten toe-eigenen'] },
-  { group: 'Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring en erkenning zoeken'] },
-  { group: 'Overmatige Waakzaamheid', titles: ['Emotionele geremdheid', 'Meedogenloze normen / Overmatig kritisch', 'Negativiteit en pessimisme', 'Bestraffende houding'] }
-];
-
-const schemaSortOrder = schemaGroups.flatMap(g => g.titles);
-
-const schemaCards = Object.keys(schemaImages).map(path => {
+const detailedSchemaCards = Object.keys(schemaImages).map(path => {
   const filename = path.split('/').pop().replace('.png', '');
   const title = ysqSchemaNamesMap[filename] || filename.replace(/_/g, ' ');
-  return { id: filename, src: schemaImages[path], title, type: 'schema', description: schemaDescriptions[title], style: { transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' } };
-}).sort((a, b) => {
+  return {
+    id: filename,
+    src: schemaImages[path],
+    title,
+    type: 'schema',
+    description: schemaDescriptions[title],
+    style: { transform: title === 'Kwetsbaarheid voor Ziekte en Gevaar' || title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }
+  };
+});
+
+const schemaCards = [
+  ...detailedSchemaCards,
+  ...vstSchemaData
+].sort((a, b) => {
   const indexA = schemaSortOrder.indexOf(a.title);
   const indexB = schemaSortOrder.indexOf(b.title);
   if (indexA === -1 && indexB === -1) return a.title.localeCompare(b.title);
@@ -116,22 +79,23 @@ const schemaCards = Object.keys(schemaImages).map(path => {
   return indexA - indexB;
 });
 
-const modeGroups = [
-  { group: 'Kindmodi', titles: ['Kwetsbare kind', 'Boze kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind'] },
-  { group: 'Coping: Overgave', titles: ['Willoze inschikkelijke'] },
-  { group: 'Coping: Vermijding', titles: ['Onthechte beschermer', 'Onthechte zelfsusser'] },
-  { group: 'Coping: Overcompensatie', titles: ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval'] },
-  { group: 'Oudermodi', titles: ['Straffende ouder', 'Veeleisende ouder'] },
-  { group: 'Gezonde Volwassene', titles: ['Gezonde volwassene'] }
-];
-
-const modeSortOrder = modeGroups.flatMap(g => g.titles);
-
-const modeCards = Object.keys(modeImages).map(path => {
+const detailedModeCards = Object.keys(modeImages).map(path => {
   const filename = path.split('/').pop().replace('.png', '');
   const title = smiModesMap[filename] || filename;
-  return { id: filename, src: modeImages[path], title, type: 'mode', description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
-}).sort((a, b) => {
+  return {
+    id: filename,
+    src: modeImages[path],
+    title,
+    type: 'mode',
+    description: schemaDescriptions[title],
+    style: { transform: 'scale(1.1)' }
+  };
+});
+
+const modeCards = [
+  ...detailedModeCards,
+  ...vstModiData
+].sort((a, b) => {
   const indexA = modeSortOrder.indexOf(a.title);
   const indexB = modeSortOrder.indexOf(b.title);
   if (indexA === -1 && indexB === -1) return a.title.localeCompare(b.title);

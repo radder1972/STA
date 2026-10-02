@@ -99,19 +99,20 @@ export const smiModesMap = {
 };
 
 export const schemaGroups = [
-  { group: 'Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotionele verwaarlozing', 'Minderwaardigheid / Schaamte', 'Sociaal isolement / Vervreemding'] },
-  { group: 'Verzwakte Autonomie', titles: ['Afhankelijkheid / Onbekwaamheid', 'Kwetsbaarheid voor ziekte en gevaar', 'Verstrengeling / Kluwen', 'Mislukking'] },
-  { group: 'Verzwakte Grenzen', titles: ['Gebrek aan zelfcontrole / Zelfdiscipline', 'Zich rechten toe-eigenen'] },
-  { group: 'Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring en erkenning zoeken'] },
-  { group: 'Overmatige Waakzaamheid', titles: ['Emotionele geremdheid', 'Meedogenloze normen / Overmatig kritisch', 'Negativiteit en pessimisme', 'Bestraffende houding'] }
+  { group: 'Verlating & Afwijzing', titles: ['Verlating / Instabiliteit', 'Wantrouwen / Misbruik', 'Emotioneel Tekort', 'Minderwaardigheid / Schaamte', 'Sociaal Isolement / Vervreemding'] },
+  { group: 'Verzwakte Autonomie', titles: ['Afhankelijkheid / Onbekwaamheid', 'Kwetsbaarheid voor Ziekte en Gevaar', 'Verstrengeling / Onontwikkeld Zelf', 'Mislukking'] },
+  { group: 'Verzwakte Grenzen', titles: ['Gebrek aan Zelfcontrole / Zelfdiscipline', 'Zich Rechten Toe-eigenen / Grandiositeit'] },
+  { group: 'Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring en Erkenning Zoeken'] },
+  { group: 'Overmatige Waakzaamheid', titles: ['Emotionele Geremdheid', 'Meedogenloze Normen / Overmatig Kritisch', 'Negativiteit / Pessimisme', 'Bestraffendheid'] },
+  { group: 'Zelfcoherentie & Rechtvaardigheid (VSt)', titles: ['Gebrek aan coherente identiteit', 'Gebrek aan een betekenisvolle wereld', 'Onrechtvaardigheid'] }
 ];
 export const schemaSortOrder = schemaGroups.flatMap(g => g.titles);
 
 export const modeGroups = [
-  { group: 'Kindmodi', titles: ['Kwetsbare kind', 'Boze kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind'] },
+  { group: 'Kindmodi', titles: ['Kwetsbare kind', 'Boze kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind', 'Blije kind'] },
   { group: 'Coping: Overgave', titles: ['Willoze inschikkelijke'] },
-  { group: 'Coping: Vermijding', titles: ['Onthechte beschermer', 'Onthechte zelfsusser'] },
-  { group: 'Coping: Overcompensatie', titles: ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval'] },
+  { group: 'Coping: Vermijding', titles: ['Onthechte beschermer', 'Onthechte zelfsusser', 'Boze beschermer'] },
+  { group: 'Coping: Overcompensatie', titles: ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'] },
   { group: 'Oudermodi', titles: ['Straffende ouder', 'Veeleisende ouder'] },
   { group: 'Gezonde Volwassene', titles: ['Gezonde volwassene'] }
 ];
