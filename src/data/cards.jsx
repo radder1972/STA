@@ -28,13 +28,15 @@ export const basisbehoeftenText = {
 };
 
 export const categorieText = {
-  'Kindmodi': 'De modus waarin je je kwetsbaar, eenzaam, boos of impulsief voelt, net als een kind van vroeger dat iets tekortkwam.',
-  'Oudermodi': 'De geïnternaliseerde stem van een veeleisende of straffende ouder. Een innerlijke criticus die zegt dat je tekortschiet.',
+  'Kindmodi': 'De kwetsbare en ontregelde kindkanten (het kwetsbare, boze, razende, impulsieve of ongedisciplineerde kind) die ontstaan zijn toen er niet aan basisbehoeften werd voldaan.',
+  'Disfunctionele copingmodi': 'Ongezonde reacties om emotionele pijn te hanteren: overgave (aanpassen), vermijding (vluchten/verdoven) of overcompensatie/omkering (vechten).',
   'Coping: Overgave': 'Je gedraagt je alsof het schema 100% waar is. Je past je aan en ondergaat de situatie passief.',
   'Coping: Vermijding': 'Je vermijdt de emotionele pijn van het schema door situaties uit de weg te gaan of jezelf af te leiden/verdoven.',
   'Coping: Overcompensatie': 'Je vecht tegen het schema door je precies tegenovergesteld te gedragen aan wat het schema dicteert.',
-  'Gezonde volwassene': 'De gezonde kant die zorgt voor het kwetsbare kind, gezonde grenzen stelt en de strenge oudermodi bestrijdt.',
-  'Functionele modi': 'De gezonde en wenselijke kanten (de Gezonde Volwassene en het Blije Kind) die zorgen voor herstel, plezier en emotionele regie.'
+  'Disfunctionele oudermodi': 'De geïnternaliseerde negatieve stemmen uit de jeugd (de straffende of veeleisende ouder) die zeggen dat je tekortschiet of straf verdient.',
+  'Oudermodi': 'De geïnternaliseerde negatieve stemmen uit de jeugd (de straffende of veeleisende ouder) die zeggen dat je tekortschiet of straf verdient.',
+  'Functionele modi': 'De gezonde en helpende kanten (de Gezonde Volwassene en het Blije Kind) die zorgen voor emotionele regie, zelfzorg, verbinding en plezier.',
+  'Gezonde volwassene': 'De gezonde kant die zorgt voor het kwetsbare kind, gezonde grenzen stelt en de strenge oudermodi bestrijdt.'
 };
 
 export const basisbehoeftenToSchemas = {
@@ -53,15 +55,15 @@ export const basisbehoeftenToSchemas = {
 
 export const categorieToModi = {
   'Kindmodi': ['Kwetsbare kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind', 'Boze kind'],
+  'Disfunctionele copingmodi': ['Willoze inschikkelijke', 'Onthechte beschermer', 'Onthechte zelfsusser', 'Boze beschermer', 'Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'],
   'Disfunctionele oudermodi': ['Straffende ouder', 'Veeleisende ouder'],
   'Oudermodi': ['Straffende ouder', 'Veeleisende ouder'],
-  'Disfunctionele copingmodi': ['Willoze inschikkelijke', 'Onthechte beschermer', 'Onthechte zelfsusser', 'Boze beschermer', 'Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'],
+  'Functionele modi': ['Gezonde volwassene', 'Blije kind'],
+  'Gezonde volwassene': ['Gezonde volwassene', 'Blije kind'],
   'Coping: Overgave': ['Willoze inschikkelijke'],
   'Coping: Vermijding': ['Onthechte beschermer', 'Onthechte zelfsusser', 'Boze beschermer'],
   'Coping: Overcompensatie': ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'],
-  'Coping: Omkering': ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'],
-  'Functionele modi': ['Gezonde volwassene', 'Blije kind'],
-  'Gezonde volwassene': ['Gezonde volwassene', 'Blije kind']
+  'Coping: Omkering': ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier']
 };
 
 export const ysqSchemaNamesMap = {
@@ -114,9 +116,7 @@ export const schemaSortOrder = schemaGroups.flatMap(g => g.titles);
 
 export const modeGroups = [
   { group: 'Kindmodi', titles: ['Kwetsbare kind', 'Boze kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind'] },
-  { group: 'Coping: Overgave', titles: ['Willoze inschikkelijke'] },
-  { group: 'Coping: Vermijding', titles: ['Onthechte beschermer', 'Onthechte zelfsusser', 'Boze beschermer'] },
-  { group: 'Coping: Overcompensatie', titles: ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'] },
+  { group: 'Disfunctionele Copingmodi', titles: ['Willoze inschikkelijke', 'Onthechte beschermer', 'Onthechte zelfsusser', 'Boze beschermer', 'Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'] },
   { group: 'Disfunctionele Oudermodi', titles: ['Straffende ouder', 'Veeleisende ouder'] },
   { group: 'Functionele Modi', titles: ['Gezonde volwassene', 'Blije kind'] }
 ];
@@ -134,11 +134,9 @@ export { vstBasisbehoeftenData, vstSchemaData, vstModiData, vstCopingData } from
 
 export const modicategorieenData = [
   { id: 'mc1', title: 'Kindmodi', src: imgM1, description: categorieText['Kindmodi'], color: '#3b82f6', type: 'modicategorie' },
-  { id: 'mc2', title: 'Oudermodi', src: imgM2, description: categorieText['Oudermodi'], color: '#ef4444', type: 'modicategorie' },
-  { id: 'mc3a', title: 'Coping: Overgave', src: imgM3a, description: categorieText['Coping: Overgave'], color: '#eab308', type: 'modicategorie' },
-  { id: 'mc3b', title: 'Coping: Vermijding', src: imgM3b, description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' }, color: '#eab308', type: 'modicategorie' },
-  { id: 'mc3c', title: 'Coping: Overcompensatie', src: imgM3c, description: categorieText['Coping: Overcompensatie'], color: '#eab308', type: 'modicategorie' },
-  { id: 'mc4', title: 'Gezonde volwassene', src: imgM4, description: categorieText['Gezonde volwassene'], color: '#10b981', type: 'modicategorie' },
+  { id: 'mc3', title: 'Disfunctionele copingmodi', src: imgM3b, description: categorieText['Disfunctionele copingmodi'], color: '#eab308', type: 'modicategorie' },
+  { id: 'mc2', title: 'Disfunctionele oudermodi', src: imgM2, description: categorieText['Disfunctionele oudermodi'], color: '#ef4444', type: 'modicategorie' },
+  { id: 'mc4', title: 'Functionele modi', src: imgM4, description: categorieText['Functionele modi'], color: '#10b981', type: 'modicategorie' },
 ];
 
 export const getCardTypeLetter = (type) => {
