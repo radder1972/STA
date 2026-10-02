@@ -185,11 +185,11 @@ export default function OrderCards({ onBack }) {
       id: 'complete',
       title: 'Complete Kaartenset',
       subtitle: '55 theoriekaarten • 100% VSt 2021 Afgestemd',
-      description: 'De complete praktijkset: alle 55 kaarten (7 basisbehoeften, 18 schema\'s, 14 modi en coping/categorieën) met slimme B/S/M type-badges.',
+      description: 'De complete praktijkset met 7 basisbehoeften, 18 schema\'s, 14 modi en coping/categorieën (met B/S/M type-badges).',
       cardsCount: 55,
       price: 19.95,
       oldPrice: 49.95,
-      badge: 'Populair — € 19,95',
+      badge: 'POPULAIR',
       badgeColor: '#0ea5e9',
       specs: [
         'Alle 55 theoriekaarten in één complete set voor in de praktijk én thuis',
@@ -346,9 +346,7 @@ export default function OrderCards({ onBack }) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '1rem 1.25rem',
-                    height: '124px',
-                    minHeight: '124px',
+                    padding: '1.1rem 1.25rem',
                     boxSizing: 'border-box',
                     borderRadius: '14px',
                     border: isSelected ? '2px solid #0ea5e9' : '1px solid #e2e8f0',
@@ -369,14 +367,14 @@ export default function OrderCards({ onBack }) {
                       flexShrink: 0
                     }} />
                     <div style={{ minWidth: 0, flex: 1, paddingRight: '0.75rem' }}>
-                      {/* Regel 1: Titel + Badge */}
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', lineHeight: '1.3', minHeight: '24px' }}>
+                      {/* Titel + Aantal + Badge */}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', lineHeight: '1.3', flexWrap: 'wrap', marginBottom: '4px' }}>
                         <span style={{ fontWeight: '700', fontSize: '1.05rem', color: '#0f172a' }}>
-                          {variant.title}
+                          {variant.title} <span style={{ color: '#475569', fontWeight: '600', fontSize: '0.95rem' }}>({variant.cardsCount} kaarten)</span>
                         </span>
                         {variant.badge && (
                           <span style={{
-                            fontSize: '0.7rem',
+                            fontSize: '0.68rem',
                             background: variant.badgeColor,
                             color: 'white',
                             padding: '2px 8px',
@@ -392,19 +390,7 @@ export default function OrderCards({ onBack }) {
                         )}
                       </div>
 
-                      {/* Regel 2: Aantal kaarten (altijd op 2e regel en vetgedrukt) */}
-                      <div style={{
-                        fontSize: '0.85rem',
-                        color: '#334155',
-                        fontWeight: '700',
-                        marginTop: '3px',
-                        marginBottom: '3px',
-                        lineHeight: '1.3'
-                      }}>
-                        ({variant.cardsCount} theoriekaarten)
-                      </div>
-
-                      {/* Regel 3+: Beschrijving */}
+                      {/* Beschrijving */}
                       <div style={{ fontSize: '0.84rem', color: '#475569', lineHeight: '1.4' }}>
                         {variant.description}
                       </div>
