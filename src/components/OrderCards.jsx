@@ -207,14 +207,15 @@ export default function OrderCards({ onBack }) {
       subtitle: '43 theoriekaarten • Young & Arntz standaard',
       description: 'De beproefde Young & Arntz theorie: 5 basisbehoeften, 18 schema\'s, 14 modi en 6 modi-categorieën voor diagnostiek en behandeling.',
       cardsCount: 43,
-      price: 39.95,
+      price: 16.95,
+      oldPrice: 39.95,
       badge: null,
       badgeColor: '#10b981',
       specs: [
         '43 theoriekaarten volgens de beproefde Young- & Arntz-theorie',
         '18 schema\'s, 14 modi, 6 modi-categorieën en 5 basisbehoeften',
         'Consistente domein-kleurcodering voor directe visuele herkenning op tafel',
-        'Handzaam kaartformaat (64 x 94 mm) met afgeronde hoeken',
+        'Handzaam speelkaartformaat (63.5 x 88.9 mm) met afgeronde hoeken',
         'Luxe matte afwerking, vuilafstotend en krasvast'
       ],
       cards: baseCards
@@ -225,7 +226,8 @@ export default function OrderCards({ onBack }) {
       subtitle: '12 theoriekaarten • Aanvullende theorie (Arntz et al., 2021)',
       description: 'Theoretische actualisatie (Arntz et al.): 6 aanvullende modi, 3 extra schema\'s, 2 nieuwe behoeften en copingvorm Omkering als update.',
       cardsCount: 12,
-      price: 16.95,
+      price: 9.95,
+      oldPrice: 16.95,
       badge: 'Uitbreiding',
       badgeColor: '#ea580c',
       specs: [
