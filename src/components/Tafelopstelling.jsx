@@ -479,7 +479,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', width: '100%' }}>
             
             {/* Top Row: De 3 Kaarten */}
-            <div className="tafel-cards-container" style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', gap: '1rem', width: 'calc(100% + 2rem)', margin: '0 -1rem', padding: '2.5rem 1rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)', alignItems: 'stretch', overflowX: 'auto', boxSizing: 'border-box' }}>
+            <div className="tafel-cards-container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.5rem', width: '100%', margin: '0 auto', padding: '2.5rem 1.5rem', background: 'rgba(16, 185, 129, 0.04)', borderRadius: '20px', border: '1px solid rgba(16, 185, 129, 0.2)', alignItems: 'center', boxSizing: 'border-box', overflow: 'visible' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '150px', alignSelf: 'center' }}>
                 <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} />
               </div>
