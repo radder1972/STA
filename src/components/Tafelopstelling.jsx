@@ -108,13 +108,13 @@ const healthyAdultCard = { id: 'gv', src: imgM4, title: 'Gezonde volwassene', ty
 
 
 
-const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
+const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false, labelPosition = 'top' }) => {
   const [flipped, setFlipped] = useState(false);
   const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'rgba(0,0,0,0.15)';
   
   return (
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    {label && <div style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>}
+    {label && labelPosition === 'top' && <div style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>}
     {card ? (
       <div style={{ position: 'relative', display: 'inline-block' }}>
         {isStacked && (
@@ -149,6 +149,7 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false }) => {
         <span style={{ color: '#059669', fontSize: '0.8rem', fontWeight: 'bold' }}>Kies Kaart</span>
       </div>
     )}
+    {label && labelPosition === 'bottom' && <div style={{ fontWeight: 'bold', fontSize: '1rem', marginTop: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>}
   </div>
 )};
 
@@ -478,51 +479,33 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', width: '100%' }}>
             
-            {/* Driehoeksverhouding: De 3 Kaarten in een Driehoek */}
-            <div className="tafel-cards-container" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', margin: '0 auto', padding: '3.5rem 1.5rem 2.5rem 1.5rem', background: 'rgba(16, 185, 129, 0.04)', borderRadius: '24px', border: '1px solid rgba(16, 185, 129, 0.25)', boxSizing: 'border-box', overflow: 'visible' }}>
+            {/* Driehoeksopstelling: De 3 Kaarten */}
+            <div className="tafel-cards-container" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', margin: '0 auto', padding: '2.5rem 1.5rem 2.5rem 1.5rem', background: 'rgba(16, 185, 129, 0.04)', borderRadius: '24px', border: '1px solid rgba(16, 185, 129, 0.25)', boxSizing: 'border-box', overflow: 'visible' }}>
               
-              {/* Header Badge voor de Driehoek */}
-              <div className="no-print" style={{
-                position: 'absolute',
-                top: '-14px',
-                background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
-                color: 'white',
-                fontSize: '0.78rem',
-                fontWeight: 'bold',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                padding: '4px 18px',
-                borderRadius: '9999px',
-                boxShadow: '0 4px 10px rgba(16, 185, 129, 0.3)',
-                zIndex: 10
-              }}>
-                Driehoeksverhouding
-              </div>
-
               {/* Bovenste rij: Mijn Reactie (Modus) <---> Geraakt Schema */}
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem', width: '100%', maxWidth: '560px', position: 'relative', zIndex: 2 }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} />
+                  <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} labelPosition="top" />
                 </div>
 
                 {/* Horizontale verbinding top */}
-                <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 1, minWidth: '40px', marginTop: '1.5rem' }}>
-                  <div style={{ height: '3px', width: '100%', minWidth: '40px', background: 'linear-gradient(to right, #059669, #10b981)', borderRadius: '2px', opacity: 0.8 }}></div>
+                <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 1, minWidth: '30px', marginTop: '1.5rem' }}>
+                  <div style={{ height: '3px', width: '100%', minWidth: '30px', background: 'linear-gradient(to right, #059669, #10b981)', borderRadius: '2px', opacity: 0.8 }}></div>
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} />
+                  <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} labelPosition="top" />
                 </div>
               </div>
 
-              {/* Diagonale Verbindingslijnen naar de onderste punt */}
-              <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', maxWidth: '380px', height: '40px', margin: '0.25rem 0', position: 'relative', zIndex: 1 }}>
+              {/* Subtiele kleine diagonale verbindingslijnen */}
+              <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', maxWidth: '280px', height: '20px', margin: '0.5rem 0', position: 'relative', zIndex: 1 }}>
                 {/* Diagonale lijn links (Mijn Reactie -> Onvervulde Behoefte) */}
                 <div style={{
-                  width: '110px',
+                  width: '40px',
                   height: '3px',
                   background: 'linear-gradient(135deg, #059669, #10b981)',
-                  transform: 'rotate(26deg)',
+                  transform: 'rotate(40deg)',
                   transformOrigin: 'top left',
                   opacity: 0.7,
                   borderRadius: '2px'
@@ -530,19 +513,19 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
                 {/* Diagonale lijn rechts (Geraakt Schema -> Onvervulde Behoefte) */}
                 <div style={{
-                  width: '110px',
+                  width: '40px',
                   height: '3px',
                   background: 'linear-gradient(225deg, #059669, #10b981)',
-                  transform: 'rotate(-26deg)',
+                  transform: 'rotate(-40deg)',
                   transformOrigin: 'top right',
                   opacity: 0.7,
                   borderRadius: '2px'
                 }} />
               </div>
 
-              {/* Onderste punt van de driehoek: Onvervulde Behoefte */}
+              {/* Onderste punt van de driehoek: Onvervulde Behoefte (Label ONDER de kaart) */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 2 }}>
-                <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} />
+                <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} labelPosition="bottom" />
               </div>
 
             </div>
