@@ -33,7 +33,8 @@ export const categorieText = {
   'Coping: Overgave': 'Je gedraagt je alsof het schema 100% waar is. Je past je aan en ondergaat de situatie passief.',
   'Coping: Vermijding': 'Je vermijdt de emotionele pijn van het schema door situaties uit de weg te gaan of jezelf af te leiden/verdoven.',
   'Coping: Overcompensatie': 'Je vecht tegen het schema door je precies tegenovergesteld te gedragen aan wat het schema dicteert.',
-  'Gezonde volwassene': 'De gezonde kant die zorgt voor het kwetsbare kind, gezonde grenzen stelt en de strenge oudermodi bestrijdt.'
+  'Gezonde volwassene': 'De gezonde kant die zorgt voor het kwetsbare kind, gezonde grenzen stelt en de strenge oudermodi bestrijdt.',
+  'Functionele modi': 'De gezonde en wenselijke kanten (de Gezonde Volwassene en het Blije Kind) die zorgen voor herstel, plezier en emotionele regie.'
 };
 
 export const basisbehoeftenToSchemas = {
@@ -51,12 +52,13 @@ export const basisbehoeftenToSchemas = {
 };
 
 export const categorieToModi = {
-  'Kindmodi': ['Kwetsbare kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind', 'Boze kind', 'Blije kind'],
+  'Kindmodi': ['Kwetsbare kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind', 'Boze kind'],
   'Oudermodi': ['Straffende ouder', 'Veeleisende ouder'],
   'Coping: Overgave': ['Willoze inschikkelijke'],
   'Coping: Vermijding': ['Onthechte beschermer', 'Onthechte zelfsusser', 'Boze beschermer'],
   'Coping: Overcompensatie': ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'],
   'Coping: Omkering': ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'],
+  'Functionele modi': ['Gezonde volwassene', 'Blije kind'],
   'Gezonde volwassene': ['Gezonde volwassene', 'Blije kind']
 };
 
@@ -109,12 +111,12 @@ export const schemaGroups = [
 export const schemaSortOrder = schemaGroups.flatMap(g => g.titles);
 
 export const modeGroups = [
-  { group: 'Kindmodi', titles: ['Kwetsbare kind', 'Boze kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind', 'Blije kind'] },
+  { group: 'Kindmodi (Disfunctioneel)', titles: ['Kwetsbare kind', 'Boze kind', 'Razende kind', 'Impulsieve kind', 'Ongedisciplineerde kind'] },
   { group: 'Coping: Overgave', titles: ['Willoze inschikkelijke'] },
   { group: 'Coping: Vermijding', titles: ['Onthechte beschermer', 'Onthechte zelfsusser', 'Boze beschermer'] },
   { group: 'Coping: Overcompensatie', titles: ['Wantrouwende overcontroleerder', 'Zelfverheerlijker', 'Pest en aanval', 'Perfectionistische overcontroleerder', 'Bedrog en manipulatie', 'Aandacht- en erkenningzoeker', 'Roofdier'] },
   { group: 'Oudermodi', titles: ['Straffende ouder', 'Veeleisende ouder'] },
-  { group: 'Gezonde Volwassene', titles: ['Gezonde volwassene'] }
+  { group: 'Functionele Modi', titles: ['Gezonde volwassene', 'Blije kind'] }
 ];
 export const modeSortOrder = modeGroups.flatMap(g => g.titles);
 
