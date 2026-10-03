@@ -513,6 +513,17 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
     }).sort((a, b) => b.mean - a.mean).slice(0, 5).map(s => s.name);
   };
 
+  const matchLabel = (value) => {
+    let level = String(value ?? '').toLowerCase().trim();
+    const num = parseFloat(level);
+    if (!isNaN(num)) {
+      level = num >= 75 ? 'sterk' : num >= 50 ? 'matig' : 'zwak';
+    }
+    if (level.startsWith('sterk')) return 'Sterke match';
+    if (level.startsWith('zwak')) return 'Zwakke match';
+    return 'Matige match';
+  };
+
   const predictCards = async () => {
     if (!situationText) {
       alert("Beschrijf eerst kort de situatie/trigger in het tekstvak.");
@@ -555,7 +566,7 @@ Profiel & Praktijkobservaties van deze cliënt:
 Top Schema's: ${topSchemas}
 Top Modi: ${topModes}` : ''}
 
-Stel 2 tot 3 differentiële hypotheses op voor de best passende Modus en het best passende Schema, plus de meest waarschijnlijke Onvervulde Basisbehoefte. Geef voor elke hypothese een geschat match-percentage (bijv. 85, 60) en een korte heldere onderbouwing (Explainable AI conform VSt 2021 criteria).
+Stel 2 tot 3 differentiële hypotheses op voor de best passende Modus en het best passende Schema, plus de meest waarschijnlijke Onvervulde Basisbehoefte. Geef voor elke hypothese een kwalitatieve indicatie van hoe sterk deze past, uitsluitend als "sterk", "matig" of "zwak" (dus geen percentage), en een korte heldere onderbouwing (Explainable AI conform VSt 2021 criteria).
 
 Je MOET kiezen uit deze exacte lijsten:
 Beschikbare Modi: ${availableModes}
@@ -565,14 +576,14 @@ Beschikbare Behoeften: ${availableNeeds}
 Geef je antwoord ALLEEN als een geldig JSON object in dit exacte formaat, zonder extra tekst of markdown eromheen:
 {
   "modes": [
-    { "title": "exacte titel uit de lijst", "match": 85, "reason": "Korte heldere onderbouwing van 1 zin op basis van de casus en VSt-criteria." },
-    { "title": "exacte titel uit de lijst", "match": 60, "reason": "Korte heldere onderbouwing van 1 zin." }
+    { "title": "exacte titel uit de lijst", "match": "sterk", "reason": "Korte heldere onderbouwing van 1 zin op basis van de casus en VSt-criteria." },
+    { "title": "exacte titel uit de lijst", "match": "matig", "reason": "Korte heldere onderbouwing van 1 zin." }
   ],
   "schemas": [
-    { "title": "exacte titel uit de lijst", "match": 80, "reason": "Korte heldere onderbouwing van 1 zin." },
-    { "title": "exacte titel uit de lijst", "match": 55, "reason": "Korte heldere onderbouwing van 1 zin." }
+    { "title": "exacte titel uit de lijst", "match": "sterk", "reason": "Korte heldere onderbouwing van 1 zin." },
+    { "title": "exacte titel uit de lijst", "match": "matig", "reason": "Korte heldere onderbouwing van 1 zin." }
   ],
-  "need": { "title": "exacte titel uit de lijst", "match": 90, "reason": "Korte heldere onderbouwing van 1 zin." }
+  "need": { "title": "exacte titel uit de lijst", "match": "sterk", "reason": "Korte heldere onderbouwing van 1 zin." }
 }`;
 
       const result = await model.generateContent(prompt);
@@ -810,6 +821,16 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                   <AlertTriangleIcon size={16} color="#059669" style={{ flexShrink: 0, marginTop: '2px' }} />
                   <span><strong>Privacy:</strong> Voer geen herleidbare gegevens in (zoals namen, geboortedata of werkgevers). De tekst wordt voor de analyse verwerkt door een externe AI-dienst (Google Gemini). Anonimiseer de casus.</span>
                 </div>
+                <details className="no-print" style={{ marginTop: '0.5rem', fontSize: '0.82rem', lineHeight: '1.6', color: 'var(--text-muted)', textAlign: 'left' }}>
+                  <summary style={{ cursor: 'pointer', fontWeight: '600', color: '#059669', userSelect: 'none' }}>Privacyverklaring Tafelopstelling</summary>
+                  <div style={{ marginTop: '0.6rem', padding: '0.9rem 1.1rem', borderRadius: '12px', border: '1px solid rgba(16, 185, 129, 0.25)', background: 'rgba(16, 185, 129, 0.04)' }}>
+                    <p style={{ margin: '0 0 0.6rem 0' }}><strong>Welke gegevens worden verwerkt?</strong> Alleen de tekst die u zelf in het veld &ldquo;situatie&rdquo; typt, samen met uw gekozen basisbehoefte en eventuele geüploade testscores. Er is geen account of inlog.</p>
+                    <p style={{ margin: '0 0 0.6rem 0' }}><strong>Waar gaan ze naartoe?</strong> Wanneer u een AI-functie gebruikt (hypotheses, GV-respons of ketenanalyse), wordt deze informatie vanuit uw browser naar de AI-dienst Google Gemini gestuurd om het antwoord te genereren. Voor wat Google daarmee doet gelden de voorwaarden van Google.</p>
+                    <p style={{ margin: '0 0 0.6rem 0' }}><strong>Wordt er iets opgeslagen?</strong> De applicatie slaat uw casustekst niet op en stuurt die niet naar een eigen server. De invoer bestaat alleen in uw browser en verdwijnt zodra u de pagina herlaadt of sluit. De applicatie zelf gebruikt geen cookies voor tracking en geen analysetools.</p>
+                    <p style={{ margin: '0 0 0.6rem 0' }}><strong>Wat vragen wij van u?</strong> Voer geen herleidbare gegevens in, zoals namen, geboortedatums, adressen of werkgevers, en anonimiseer de casus. De tool is niet bedoeld voor het verwerken van identificeerbare gezondheidsgegevens en er is geen verwerkersovereenkomst met Google via deze tool afgesloten. U blijft als professional zelf verantwoordelijk voor de zorgvuldige omgang met cliëntgegevens.</p>
+                    <p style={{ margin: 0 }}><strong>Let op bij de uitkomst:</strong> AI-antwoorden kunnen onjuist of onvolledig zijn. Zij zijn een suggestie ter ondersteuning van uw eigen professionele oordeel en geen vervanging voor formele diagnostiek of een gedegen professionele behandeling.</p>
+                  </div>
+                </details>
                 <div className="tafel-print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)', width: '100%', textAlign: 'left', background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', boxSizing: 'border-box' }}>
                   {situationText || "Geen situatie beschreven."}
                 </div>
@@ -1195,7 +1216,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                                 <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '10px 14px', borderRadius: '12px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', flexWrap: 'wrap' }}>
                                   <div style={{ flex: 1, minWidth: '220px' }}>
                                     <span style={{ fontWeight: '700', color: 'var(--text-main)' }}>{i + 1}. {h.title}</span>
-                                    <span style={{ marginLeft: '8px', padding: '2px 8px', borderRadius: '9999px', background: 'rgba(16, 185, 129, 0.15)', color: '#059669', fontWeight: '700', fontSize: '0.78rem' }}>{h.match}% Match</span>
+                                    <span style={{ marginLeft: '8px', padding: '2px 8px', borderRadius: '9999px', background: 'rgba(16, 185, 129, 0.15)', color: '#059669', fontWeight: '700', fontSize: '0.78rem' }}>{matchLabel(h.match)}</span>
                                     <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: '1.4', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                       <LightbulbIcon size={14} color="#059669" /> <em>Reden: {h.reason}</em>
                                     </div>
@@ -1230,7 +1251,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                                 <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '10px 14px', borderRadius: '12px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', flexWrap: 'wrap' }}>
                                   <div style={{ flex: 1, minWidth: '220px' }}>
                                     <span style={{ fontWeight: '700', color: 'var(--text-main)' }}>{i + 1}. {h.title}</span>
-                                    <span style={{ marginLeft: '8px', padding: '2px 8px', borderRadius: '9999px', background: 'rgba(59, 130, 246, 0.15)', color: '#2563eb', fontWeight: '700', fontSize: '0.78rem' }}>{h.match}% Match</span>
+                                    <span style={{ marginLeft: '8px', padding: '2px 8px', borderRadius: '9999px', background: 'rgba(59, 130, 246, 0.15)', color: '#2563eb', fontWeight: '700', fontSize: '0.78rem' }}>{matchLabel(h.match)}</span>
                                     <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: '1.4', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                       <LightbulbIcon size={14} color="#2563eb" /> <em>Reden: {h.reason}</em>
                                     </div>
