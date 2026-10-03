@@ -5,6 +5,26 @@ import { CardInnerBorder } from '../utils/colors';
 export const formatCardTitle = (title) => {
   if (!title) return title;
   
+  if (title === 'Disfunctionele kindmodi' || title.toLowerCase() === 'disfunctionele kindmodi') {
+    return (
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Disfunctionele</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>kindmodi</span>
+      </span>
+    );
+  }
+
+  if (title === 'Disfunctionele oudermodi' || title.toLowerCase() === 'disfunctionele oudermodi') {
+    return (
+      <span style={{ display: 'inline-block', lineHeight: '1.15' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>Disfunctionele</span>
+        <br />
+        <span style={{ whiteSpace: 'nowrap' }}>oudermodi</span>
+      </span>
+    );
+  }
+  
   // 1. Zich rechten toe-eigenen: exact 2 regels en 'toe-eigenen' nooit afbreken
   if (title === 'Zich rechten toe-eigenen' || title.toLowerCase().includes('rechten toe')) {
     return (
@@ -268,9 +288,9 @@ export const getCardTypeLabel = (type, title = '', id = '') => {
     const t = (title || '').toLowerCase();
     if (t.includes('kind')) {
       if (t.includes('blije kind')) return "Functionele Modus";
-      return "Kindmodus";
+      return "Disfunctionele Kindmodus";
     }
-    if (t.includes('ouder')) return "Oudermodus";
+    if (t.includes('ouder')) return "Disfunctionele Oudermodus";
     if (t.includes('volwassene')) return "Functionele Modus";
     return "Copingmodus";
   }

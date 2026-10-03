@@ -133,8 +133,8 @@ export const basisbehoeftenData = [
 export { vstBasisbehoeftenData, vstSchemaData, vstModiData, vstCopingData } from './vstCards';
 
 export const modicategorieenData = [
-  { id: 'mc1', title: 'Kindmodi', src: imgM1, description: categorieText['Kindmodi'], color: '#3b82f6', type: 'modicategorie' },
-  { id: 'mc2', title: 'Oudermodi', src: imgM2, description: categorieText['Oudermodi'], color: '#ef4444', type: 'modicategorie' },
+  { id: 'mc1', title: 'Disfunctionele kindmodi', src: imgM1, description: categorieText['Kindmodi'], color: '#3b82f6', type: 'modicategorie' },
+  { id: 'mc2', title: 'Disfunctionele oudermodi', src: imgM2, description: categorieText['Oudermodi'], color: '#ef4444', type: 'modicategorie' },
   { id: 'mc3a', title: 'Coping: Overgave', src: imgM3a, description: categorieText['Coping: Overgave'], color: '#eab308', type: 'modicategorie' },
   { id: 'mc3b', title: 'Coping: Vermijding', src: imgM3b, description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' }, color: '#eab308', type: 'modicategorie' },
   { id: 'mc3c', title: 'Coping: Overcompensatie', src: imgM3c, description: categorieText['Coping: Overcompensatie'], color: '#eab308', type: 'modicategorie' },
@@ -163,13 +163,12 @@ export const getCardTypeLabel = (type, title = '', id = '') => {
   if (type === 'basisbehoefte' || type === 'need') return "Basisbehoefte";
   if (type === 'modicategorie') return "Categorie";
   if (type === 'mode') {
-    if (isForensicMode(title, id)) return "Forensische Modus";
     const t = (title || '').toLowerCase();
     if (t.includes('kind')) {
       if (t.includes('blije kind')) return "Functionele Modus";
-      return "Kindmodus";
+      return "Disfunctionele Kindmodus";
     }
-    if (t.includes('ouder')) return "Oudermodus";
+    if (t.includes('ouder')) return "Disfunctionele Oudermodus";
     if (t.includes('volwassene')) return "Functionele Modus";
     return "Copingmodus";
   }
