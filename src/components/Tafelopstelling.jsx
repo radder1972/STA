@@ -855,9 +855,6 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                     {/* Optie 1: Koppel testresultaten */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', alignItems: 'center', textAlign: 'center' }}>
                       <div>
-                        <div style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '3px' }}>
-                          Optioneel
-                        </div>
                         <div style={{ fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-main)' }}>
                           Koppel testresultaten (YSQ / SMI)
                         </div>
@@ -893,7 +890,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                           }}
                         >
                           <UploadIcon size={15} color="#0284c7" />
-                          <span>{(completedTests?.ysq || completedTests?.smi) ? 'Ander CSV-bestand inlezen' : 'Lees je CSV-score binnen'}</span>
+                          <span>{(completedTests?.ysq || completedTests?.smi) ? 'Ander CSV-bestand inlezen' : 'CSV-scorebestand inlezen'}</span>
                         </button>
 
                         {!completedTests?.ysq && (
@@ -929,9 +926,6 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                     {/* Optie 2: 2021 analyse uitbreiding */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', alignItems: 'center', textAlign: 'center' }}>
                       <div>
-                        <div style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '3px' }}>
-                          Optioneel
-                        </div>
                         <div style={{ fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-main)' }}>
                           2021 analyse uitbreiding
                         </div>
