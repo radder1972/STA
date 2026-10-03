@@ -823,7 +823,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                     />
                   </div>
 
-                  {/* Options Box with Equal UI Hierarchy */}
+                  {/* Options Box: Stap 2B and Stap 2C */}
                   <div style={{
                     width: '100%',
                     maxWidth: '660px',
@@ -846,19 +846,13 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                       onChange={handleCsvUpload} 
                     />
 
-                    <div style={{ textAlign: 'center', marginBottom: '-0.5rem' }}>
-                      <div style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669' }}>
-                        Stap 2B: Optionele Invoer & Verrijking
-                      </div>
-                    </div>
-
-                    {/* Optie 1: Koppel testresultaten */}
+                    {/* Stap 2B: Koppel testresultaten */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', alignItems: 'center', textAlign: 'center' }}>
                       <div>
-                        <div style={{ fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-main)' }}>
-                          Koppel testresultaten (YSQ / SMI)
+                        <div style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '0.25rem' }}>
+                          Stap 2B: Koppel Testresultaten (YSQ / SMI) <span style={{ fontWeight: '500', opacity: 0.75 }}>(Optioneel)</span>
                         </div>
-                        <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)', marginTop: '2px' }}>
+                        <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)' }}>
                           Voor een nog nauwkeurigere differentiële hypothese op maat
                         </div>
                       </div>
@@ -923,13 +917,13 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                     {/* Scheidingslijn */}
                     <div style={{ borderTop: '1px solid rgba(0,0,0,0.08)', width: '100%' }} />
 
-                    {/* Optie 2: 2021 analyse uitbreiding */}
+                    {/* Stap 2C: 2021 analyse uitbreiding */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', alignItems: 'center', textAlign: 'center' }}>
                       <div>
-                        <div style={{ fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-main)' }}>
-                          2021 analyse uitbreiding
+                        <div style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '0.25rem' }}>
+                          Stap 2C: 2021 Analyse Uitbreiding <span style={{ fontWeight: '500', opacity: 0.75 }}>(Optioneel)</span>
                         </div>
-                        <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)', marginTop: '2px' }}>
+                        <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)' }}>
                           Handmatig toevoegen op basis van klinische observatie
                         </div>
                       </div>
