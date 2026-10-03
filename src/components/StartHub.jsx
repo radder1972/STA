@@ -151,6 +151,28 @@ export default function StartHub() {
           boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
           position: 'relative'
         }}>
+          {/* Badge / Sticker: VSt 2021 Update */}
+          <div style={{
+            position: 'absolute',
+            top: '-14px',
+            right: '18px',
+            background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
+            color: 'white',
+            fontSize: '0.72rem',
+            fontWeight: '800',
+            textTransform: 'uppercase',
+            letterSpacing: '0.06em',
+            padding: '6px 14px',
+            borderRadius: '9999px',
+            boxShadow: '0 4px 14px rgba(234, 88, 12, 0.4)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '5px',
+            zIndex: 10
+          }}>
+            <Sparkles size={13} /> VSt 2021 Update
+          </div>
+
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
             <div style={{
               width: '56px',
@@ -183,13 +205,17 @@ export default function StartHub() {
           </h2>
 
           <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', minHeight: '5.5rem' }}>
-            Verken alle 43 basiskaarten of de complete set van 55 theoriekaarten, werkvormen en printopties. Ideaal om schema's en modi tastbaar en visueel te bestuderen in de praktijk of supervisie.
+            Verken de 43 klassieke basiskaarten en de herziene 55-delige theoriekaartenset (VSt 2021). Ideaal om schema's en modi tastbaar en visueel te bestuderen in de praktijk of supervisie.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
-              <span>43 basiskaarten & 12 uitbreidingskaarten</span>
+              <span>43 basiskaarten & 12 VSt 2021 theoriekaarten</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
+              <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>Inclusief herziene set 2021 (Arntz et al.)</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
@@ -197,11 +223,7 @@ export default function StartHub() {
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
-              <span>Drukwerk-export (PeterPrint formaat)</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
-              <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
-              <span>Fysieke kaartenset bestellen</span>
+              <span>Drukwerk-export & fysieke kaartenset</span>
             </div>
           </div>
 
@@ -342,9 +364,9 @@ export default function StartHub() {
             <BrainIcon size={24} />
           </div>
           <div>
-            <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.05rem' }}>Gevalideerde Theorie</h4>
+            <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.05rem' }}>Gevalideerde Theorie & VSt 2021</h4>
             <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-              Gebaseerd op het klassieke, wetenschappelijk gevalideerde schematherapie model van Jeffrey Young (18 schema's, 14 modi).
+              Gebaseerd op het klassieke schematherapie model van Jeffrey Young en de officiële VSt 2021 herziening (Arntz et al., 2021: 21 schema's, 20 modi, 7 basisbehoeften).
             </p>
           </div>
         </div>
