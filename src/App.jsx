@@ -222,7 +222,7 @@ function App() {
 
     const faviconLink = document.querySelector("link[rel~='icon']")
     if (faviconLink) {
-      faviconLink.href = isTafelApp ? '/favicon-tafel.svg' : (isKaartenApp ? '/favicon-game.svg' : '/favicon.svg')
+      faviconLink.href = isHubApp ? '/favicon-hub.svg' : (isTafelApp ? '/favicon-tafel.svg' : (isKaartenApp ? '/favicon-game.svg' : '/favicon.svg'))
     }
     
     if (hash) {

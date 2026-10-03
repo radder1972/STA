@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <style>
+    rect { stroke: #64748b; }
+    .bg { fill: white; }
+    .overlay { fill: #64748b; fill-opacity: 0.2; }
+    @media (prefers-color-scheme: dark) {
+      rect { stroke: #94a3b8; }
+      .bg { fill: #1e293b; }
+      .overlay { fill: #94a3b8; fill-opacity: 0.2; }
+    }
+  </style>
+  <rect x="3" y="6" width="9" height="13" rx="1.5" transform="rotate(-15 7.5 12.5)" />
+  <rect x="12" y="6" width="9" height="13" rx="1.5" transform="rotate(15 16.5 12.5)" />
+  <rect class="bg" x="7.5" y="4" width="9" height="13" rx="1.5" />
+  <rect class="overlay" x="7.5" y="4" width="9" height="13" rx="1.5" />
+</svg>
