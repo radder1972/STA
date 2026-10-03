@@ -446,7 +446,7 @@ const SchemaCard = ({
           height, 
           position: 'relative', 
           transform: isHovered && flipOnHover 
-            ? `rotate(${rotation}deg) scale(1.22) translateY(-10px)` 
+            ? `rotate(${rotation}deg) scale(1.28) translateY(-10px)` 
             : `rotate(${rotation}deg) scale(1)`, 
           zIndex: isHovered ? 50 : 1,
           transition: 'transform 0.4s cubic-bezier(0.34, 1.25, 0.64, 1), z-index 0.1s ease',
@@ -611,11 +611,11 @@ const SchemaCard = ({
               <div className="card-desc" style={{ 
                 fontSize: `${0.80 * scaleRatio}rem`, 
                 fontWeight: 'normal', 
-                lineHeight: '1.35', 
+                lineHeight: '1.38', 
                 color: '#111', 
                 margin: 0, 
                 padding: 0,
-                paddingTop: 0,
+                paddingBottom: `${(7 / 58) * widthNum}px`,
                 textAlign: 'center', 
                 flexShrink: 0, 
                 zIndex: 1,
@@ -699,8 +699,8 @@ const SchemaCard = ({
               description={description}
               src={src}
               color={color}
-              width="320px"
-              height="454px"
+              width="360px"
+              height="511px"
               imageStyle={imageStyle}
               flipOnClick={true}
               zoomOnClick={false}
