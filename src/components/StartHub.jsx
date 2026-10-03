@@ -104,9 +104,55 @@ export default function StartHub() {
             </span>
           </div>
 
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', color: 'var(--text-main)', fontWeight: '700', minHeight: '3.6rem', display: 'flex', alignItems: 'flex-start' }}>
-            Vragenlijsten & Zelftest
-          </h2>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.8rem', minHeight: '3.6rem' }}>
+            <h2 style={{ fontSize: '1.45rem', color: 'var(--text-main)', fontWeight: '700', margin: 0, paddingTop: '4px', maxWidth: '200px', lineHeight: '1.25' }}>
+              Vragenlijsten & Zelftest
+            </h2>
+
+            {/* Ronde Sticker: YSQ / SMI BASIS TESTEN */}
+            <div style={{
+              position: 'relative',
+              width: '76px',
+              height: '76px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #475569 0%, #64748b 100%)',
+              color: '#ffffff',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              boxShadow: '0 6px 20px rgba(71, 85, 105, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15)',
+              transform: 'rotate(-6deg)',
+              userSelect: 'none',
+              padding: '6px 4px 4px 4px',
+              flexShrink: 0,
+              marginTop: '-10px',
+              overflow: 'visible'
+            }}>
+              {/* Groter Sterrenlogo dat over de top van de cirkel loopt */}
+              <div style={{
+                position: 'absolute',
+                top: '-13px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25))',
+                zIndex: 2
+              }}>
+                <SparklesIcon size={24} color="white" />
+              </div>
+
+              <div style={{ fontSize: '0.58rem', fontWeight: '800', letterSpacing: '0.07em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1, marginTop: '4px' }}>
+                YSQ / SMI
+              </div>
+              <div style={{ fontSize: '0.92rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.05', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
+                BASIS
+              </div>
+              <div style={{ fontSize: '0.58rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1 }}>
+                TESTEN
+              </div>
+            </div>
+          </div>
 
           <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', minHeight: '5.5rem' }}>
             Breng je onderliggende kwetsbaarheden en huidige patronen in kaart met de gevalideerde <strong>YSQ-S3</strong> en <strong>SMI</strong> vragenlijsten. Inclusief uitgebreid gecombineerd analyserapport.
