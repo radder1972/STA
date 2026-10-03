@@ -199,11 +199,26 @@ const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '1.25rem' }}>
-      <label style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontWeight: '700', fontSize: '0.95rem', color: 'var(--text-main)', marginBottom: '0.25rem', textAlign: 'center' }}>
-        <HandIcon size={20} useTafelGradient />
-        <span>Welke basisbehoefte kwam in deze situatie het meest in het geding?</span>
-        <span style={{ fontWeight: '400', color: 'var(--text-muted)' }}>(Optioneel / Aanbevolen voor CDS)</span>
-      </label>
+      <div style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
+        <div style={{ 
+          fontSize: '0.78rem', 
+          fontWeight: '700', 
+          textTransform: 'uppercase', 
+          letterSpacing: '0.06em', 
+          color: '#059669', 
+          marginBottom: '0.35rem' 
+        }}>
+          Optioneel / Aanbevolen voor CDS
+        </div>
+        <div style={{ 
+          fontSize: '1rem', 
+          fontWeight: '700', 
+          color: 'var(--text-main)', 
+          lineHeight: '1.4'
+        }}>
+          Welke basisbehoefte kwam in deze situatie het meest in het geding?
+        </div>
+      </div>
 
       <div style={{ 
         display: 'flex', 
@@ -304,7 +319,7 @@ const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed }) => {
         </div>
       ) : (
         <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.5rem', textAlign: 'center' }}>
-          💡 Klik op een kaart in de waaier om de geraakte basisbehoefte te selecteren.
+          Klik op een kaart in de waaier om de geraakte basisbehoefte te selecteren.
         </div>
       )}
     </div>
