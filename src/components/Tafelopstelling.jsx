@@ -224,8 +224,8 @@ const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed }) => {
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'flex-end', 
-        padding: '2.5rem 1rem 1.5rem 1rem', 
-        minHeight: '220px', 
+        padding: '3.25rem 1rem 1.75rem 1rem', 
+        minHeight: '230px', 
         width: '100%',
         position: 'relative',
         overflow: 'visible'
@@ -305,20 +305,47 @@ const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed }) => {
       </div>
 
       {selectedNeedTitle ? (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '0.75rem' }}>
-          <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#059669' }}>
-            ✓ Geselecteerd: {selectedNeedTitle}
-          </span>
+        <div style={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center', 
+          gap: '0.6rem', 
+          marginTop: '1.25rem',
+          background: 'rgba(16, 185, 129, 0.06)',
+          border: '1px solid rgba(16, 185, 129, 0.25)',
+          borderRadius: '16px',
+          padding: '12px 24px',
+          boxShadow: '0 4px 12px rgba(16, 185, 129, 0.08)'
+        }}>
+          <div style={{ fontSize: '1rem', fontWeight: '700', color: '#059669', textAlign: 'center' }}>
+            ✓ Geselecteerd: <span>{selectedNeedTitle}</span>
+          </div>
           <button 
             type="button"
             onClick={() => onSelectNeed('')}
-            style={{ border: 'none', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', fontSize: '0.8rem', fontWeight: '600', padding: '4px 12px', borderRadius: '9999px', cursor: 'pointer' }}
+            style={{ 
+              border: '1px solid rgba(239, 68, 68, 0.3)', 
+              background: 'rgba(239, 68, 68, 0.08)', 
+              color: '#dc2626', 
+              fontSize: '0.88rem', 
+              fontWeight: '600', 
+              padding: '6px 18px', 
+              borderRadius: '9999px', 
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = 'rgba(239, 68, 68, 0.16)';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = 'rgba(239, 68, 68, 0.08)';
+            }}
           >
             Wissen / AI laten inschatten
           </button>
         </div>
       ) : (
-        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.5rem', textAlign: 'center' }}>
+        <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '0.75rem', textAlign: 'center' }}>
           Klik op een kaart in de waaier om de geraakte basisbehoefte te selecteren.
         </div>
       )}
