@@ -309,7 +309,6 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
     boxSizing: 'border-box',
     textDecoration: 'none',
     transition: 'all 0.2s ease',
-    marginBottom: marginBottom,
     boxShadow: `0 2px 8px ${currentTheme.border}`
   };
 
@@ -337,23 +336,29 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
     </a>
   );
 
-  if (!showDrapedLogo) {
-    return badgeElement;
-  }
-
   return (
-    <div style={{ position: 'relative', zIndex: 2, display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{
+      position: 'relative',
+      zIndex: 2,
+      display: 'inline-flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginBottom: marginBottom,
+      height: '34px'
+    }}>
       {badgeElement}
-      <div style={{
-        position: 'absolute',
-        top: '-12px',
-        right: '-24px',
-        zIndex: -1,
-        pointerEvents: 'none',
-        opacity: 0.28
-      }}>
-        <ThreeSparklesLogo size={85} theme={theme} />
-      </div>
+      {showDrapedLogo && (
+        <div style={{
+          position: 'absolute',
+          top: '-12px',
+          right: '-24px',
+          zIndex: -1,
+          pointerEvents: 'none',
+          opacity: 0.28
+        }}>
+          <ThreeSparklesLogo size={85} theme={theme} />
+        </div>
+      )}
     </div>
   );
 };

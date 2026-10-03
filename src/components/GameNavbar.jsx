@@ -21,8 +21,8 @@ export default function GameNavbar({ currentView, setCurrentView }) {
       flexDirection: 'column',
       alignItems: 'center',
       width: '100%',
-      maxWidth: '1000px',
-      margin: '0 auto 1.5rem auto'
+      maxWidth: '950px',
+      margin: '0 auto 2rem auto'
     }}>
       {/* Top Platform Return Badge */}
       <PlatformBadge theme="kaarten" marginBottom="1.5rem" />

@@ -15,7 +15,7 @@ import packageJson from '../../package.json';
 
 export default function StartHub() {
   return (
-    <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '3rem 1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
+    <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem 1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
       
       {/* Top Badge */}
       <PlatformBadge isCurrent={true} theme="hub" marginBottom="1.5rem" />
