@@ -251,7 +251,7 @@ export const SparklesIcon = (props) => (
   </IconBase>
 );
 
-export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom = '1.75rem', showDrapedLogo = true }) => {
+export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom = '1.75rem', showDrapedLogo = true, href = 'index.html' }) => {
   const themeStyles = {
     tafel: {
       color: '#059669',
@@ -324,7 +324,7 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
     </div>
   ) : (
     <a
-      href="index.html"
+      href={href}
       style={badgeStyle}
       onMouseOver={(e) => {
         e.currentTarget.style.background = currentTheme.hoverBg;

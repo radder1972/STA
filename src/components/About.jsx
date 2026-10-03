@@ -4,8 +4,8 @@ import Verantwoording, { CONTACT_EMAIL } from './Verantwoording';
 
 // Gedeelde 'Over'-pagina voor de hele suite (Kaarten, Tafelopstelling, Hub en Vragenlijsten).
 // theme: 'game' (Kaarten, blauw), 'tafel' (groen), 'test' (Vragenlijsten, leisteen) of 'hub' (Suite, verloop)
-// showBack: toon bovenaan het platformlabel en een Terug-knop (voor apps zonder menubalk)
-export default function About({ onBack, initialTab = 'suite', theme = 'game', showBack = false }) {
+// showBadge: toon bovenaan het platformlabel (DSP-banner) dat terugleidt naar het platform; voor apps zonder menubalk
+export default function About({ onBack, initialTab = 'suite', theme = 'game', showBadge = false }) {
   const [activeTab, setActiveTab] = useState(initialTab);
   const themes = {
     game:  { accent: '#0ea5e9', btn: 'btn btn-gradient-game', h1: 'text-gradient-game', badge: 'kaarten' },
@@ -22,24 +22,16 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
   return (
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
       
-      {showBack && (
-        <div className="no-print" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-          <PlatformBadge theme={t.badge} isCurrent={theme === 'hub'} marginBottom="1.5rem" />
-        </div>
-      )}
-
-      {showBack && (
-        <div className="no-print" style={{ width: '100%', maxWidth: '900px', margin: '0 auto 1.5rem auto' }}>
-          <button className="btn btn-outline" onClick={onBack} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <ArrowLeftIcon size={18} /> Terug
-          </button>
+      {showBadge && (
+        <div className="no-print" style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+          <PlatformBadge theme={t.badge} href={theme === 'hub' ? '#hub' : 'index.html'} marginBottom="0.5rem" />
         </div>
       )}
 
       {/* HEADER */}
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
         <h1 className={t.h1} style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <InfoIcon size={40} useGameGradient={theme === 'game'} /> Over de suite
+          <InfoIcon size={40} useGameGradient={theme === 'game'} /> Over de Schematherapie Suite
         </h1>
         <h2 style={{ color: accent, margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4', minHeight: '34px' }}>
           {activeTab === 'suite' ? 'De gedachte achter de Schematherapie Suite' : activeTab === 'vragenlijsten' ? 'De gedachte achter de vragenlijsten' : activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : activeTab === 'tafel' ? 'De gedachte achter de Digitale Tafelopstelling' : activeTab === 'maker' ? 'Wie zit er achter de Schematherapie Suite?' : 'Voorbehouden en privacyverklaring van de suite'}
