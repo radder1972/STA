@@ -173,6 +173,46 @@ export const formatCardTypeLabel = (label) => {
   return label;
 };
 
+export const getCopingStyle = (title = '', id = '') => {
+  const t = (title || '').toLowerCase();
+  const i = (id || '').toLowerCase();
+  
+  if (t.includes('inschikkelijke') || i === 'wi') {
+    return 'OVERGAVE';
+  }
+  if (
+    t.includes('onthechte') || 
+    t.includes('boze beschermer') || 
+    i === 'ob' || 
+    i === 'oz' || 
+    i === 'bb' || 
+    i === 'vst_m_bb'
+  ) {
+    return 'VERMIJDING';
+  }
+  if (
+    t.includes('overcontroleerder') || 
+    t.includes('zelfverheerlijker') || 
+    t.includes('pest') || 
+    t.includes('bedrog') || 
+    t.includes('erkenningzoeker') || 
+    t.includes('roofdier') || 
+    i === 'wk' || 
+    i === 'zh' || 
+    i === 'pa' || 
+    i === 'vst_m_wo' || 
+    i === 'vst_m_po' || 
+    i === 'vst_m_zh' || 
+    i === 'vst_m_pa' || 
+    i === 'vst_m_bm' || 
+    i === 'vst_m_az' || 
+    i === 'vst_m_rd'
+  ) {
+    return 'OVERCOMPENSATIE';
+  }
+  return null;
+};
+
 export const getCardTypeLabel = (type, title = '', id = '') => {
   if (type === 'schema') return "Schema";
   if (type === 'basisbehoefte' || type === 'need') return "Basisbehoefte";
