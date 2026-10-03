@@ -84,6 +84,14 @@ export const DownloadIcon = (props) => (
   </IconBase>
 );
 
+export const UploadIcon = (props) => (
+  <IconBase {...props}>
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="17 8 12 3 7 8" />
+    <line x1="12" y1="3" x2="12" y2="15" />
+  </IconBase>
+);
+
 export const RefreshIcon = (props) => (
   <IconBase {...props}>
     <path d="M23 4v6h-6" />

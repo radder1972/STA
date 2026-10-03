@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon } from './Icons';
+import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon } from './Icons';
 import { Printer } from 'lucide-react';
 import TafelNavbar from './TafelNavbar';
 import { schemaImages, modeImages } from '../utils/images';
@@ -193,7 +193,8 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false, labelPos
   );
 };
 
-export default function Tafelopstelling({ onBack, completedTests, embedded = false }) {
+export default function Tafelopstelling({ onBack, completedTests: initialCompletedTests, embedded = false }) {
+  const [completedTests, setCompletedTests] = useState(initialCompletedTests || {});
   const [situationText, setSituationText] = useState('');
   const [selectedMode, setSelectedMode] = useState(null);
   const [selectedSchema, setSelectedSchema] = useState(null);
@@ -205,7 +206,57 @@ export default function Tafelopstelling({ onBack, completedTests, embedded = fal
   const [isGeneratingAnalysis, setIsGeneratingAnalysis] = useState(false);
   const [isPredicting, setIsPredicting] = useState(false);
   const [flippedCards, setFlippedCards] = useState({});
-  const [isStackedView, setIsStackedView] = useState(false);
+  const [csvUploadedName, setCsvUploadedName] = useState(null);
+  const fileInputRef = useRef(null);
+
+  const handleCsvUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const text = event.target.result;
+      const lines = text.split('\n');
+      let importedYsq = null;
+      let importedSmi = null;
+
+      for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+        const parts = line.split(',');
+        if (parts.length >= 3) {
+          const type = parts[0];
+          const qId = parseInt(parts[1], 10);
+          const score = parseInt(parts[2], 10);
+          if (!isNaN(qId) && !isNaN(score)) {
+            if (type === 'YSQ') {
+              if (!importedYsq) importedYsq = {};
+              importedYsq[qId] = score;
+            } else if (type === 'SMI') {
+              if (!importedSmi) importedSmi = {};
+              importedSmi[qId] = score;
+            }
+          }
+        }
+      }
+
+      if (importedYsq || importedSmi) {
+        setCompletedTests(prev => ({
+          ...prev,
+          ...(importedYsq ? { ysq: importedYsq } : {}),
+          ...(importedSmi ? { smi: importedSmi } : {})
+        }));
+        setCsvUploadedName(file.name);
+      } else {
+        alert("Geen geldige scores gevonden in dit CSV-bestand.");
+      }
+
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    };
+    reader.readAsText(file);
+  };
 
   const getMatchingFeedback = () => {
     if (!selectedSchema || !selectedNeed) return null;
@@ -533,21 +584,91 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               </div>
               
               <div>
-                <h3 className="text-gradient-tafel" style={{ marginBottom: '1.5rem', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><StepBadge number="2" size={28} /> Leg de kaarten op tafel</h3>
-                <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-color)', padding: '2rem', borderRadius: '12px', border: '1px solid var(--border-color)', boxSizing: 'border-box' }}>
-                  <h4 className="text-gradient-tafel" style={{ margin: '0 0 1rem 0', fontSize: '1.1rem' }}>Automatisch voorspellen</h4>
-                  <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '1.5rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '650px' }}>
-                    Laat de kaarten automatisch op tafel leggen op basis van de beschreven situatie. De AI kiest op basis van jouw trigger de best passende combinatie van kaarten.
+                <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center', marginTop: '2.5rem', marginBottom: '1.5rem' }}><StepBadge number="2" size={28} /> Leg de kaarten op tafel</h3>
+                
+                <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-color)', padding: '2.2rem 2rem', borderRadius: '20px', border: '1px solid var(--border-color)', boxSizing: 'border-box', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                  
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.75rem' }}>
+                    <WandIcon size={24} useTafelGradient={true} />
+                    <h4 className="text-gradient-tafel" style={{ margin: 0, fontSize: '1.25rem', fontWeight: '700' }}>Automatisch voorspellen</h4>
+                  </div>
+
+                  <p style={{ fontSize: '0.98rem', color: 'var(--text-main)', marginBottom: '1.5rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '680px' }}>
+                    Laat de kaarten automatisch op tafel leggen op basis van jouw beschreven situatie. De AI kiest de best passende combinatie van Modus, Geraakt Schema en Onvervulde Basisbehoefte.
                   </p>
 
+                  {/* CSV Profile Import & Status */}
+                  <div style={{
+                    width: '100%',
+                    maxWidth: '680px',
+                    marginBottom: '1.75rem',
+                    padding: '1.25rem 1.5rem',
+                    borderRadius: '16px',
+                    background: (completedTests?.ysq || completedTests?.smi)
+                      ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.12) 100%)'
+                      : 'rgba(0,0,0,0.02)',
+                    border: (completedTests?.ysq || completedTests?.smi)
+                      ? '1px solid rgba(16, 185, 129, 0.3)'
+                      : '1px stroke var(--border-color)',
+                    boxSizing: 'border-box',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '12px'
+                  }}>
+                    <input 
+                      type="file" 
+                      accept=".csv" 
+                      ref={fileInputRef} 
+                      style={{ display: 'none' }} 
+                      onChange={handleCsvUpload} 
+                    />
+
+                    {(completedTests?.ysq || completedTests?.smi) ? (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#059669', fontWeight: '600', fontSize: '0.94rem' }}>
+                        <CheckIcon size={20} color="#059669" strokeWidth={2.5} />
+                        <span>
+                          Persoonlijk testprofiel actief! {csvUploadedName ? `(${csvUploadedName})` : '(YSQ / SMI resultaten geladen)'}
+                        </span>
+                      </div>
+                    ) : (
+                      <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)', textAlign: 'center', lineHeight: '1.5' }}>
+                        💡 <strong>Tip voor nog nauwkeurigere voorspellingen:</strong> Lees je eerdere CSV-testresultaten in, zodat de AI kaarten voorspelt op basis van jouw persoonlijke profiel!
+                      </p>
+                    )}
+
+                    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px', width: '100%' }}>
+                      <button
+                        type="button"
+                        className="btn btn-outline"
+                        onClick={() => fileInputRef.current?.click()}
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', padding: '8px 16px', borderRadius: '10px', background: 'var(--bg-color)' }}
+                      >
+                        <UploadIcon size={16} color="#0ea5e9" />
+                        {(completedTests?.ysq || completedTests?.smi) ? 'Ander CSV-bestand inlezen' : 'Lees je CSV-score binnen'}
+                      </button>
+
+                      <a
+                        href="index.html"
+                        className="btn btn-outline"
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', padding: '8px 16px', borderRadius: '10px', textDecoration: 'none', color: 'var(--text-main)', background: 'var(--bg-color)' }}
+                        title="Nog geen test gedaan? Vul de vragenlijst in & download je CSV"
+                      >
+                        <FileTextIcon size={16} color="#10b981" />
+                        <span>Vragenlijst invullen & CSV downloaden</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Primary Voorspel Kaarten Button */}
                   <button 
                     className="btn btn-gradient-tafel" 
                     onClick={predictCards} 
                     disabled={isPredicting || !situationText}
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.1rem', padding: '1rem 2rem', width: '100%', justifyContent: 'center' }}
-                    title="Voorspel de kaarten op basis van de ingevoerde situatie"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.1rem', padding: '1rem 2.5rem', minWidth: '280px', justifyContent: 'center', borderRadius: '14px' }}
+                    title="Voorspel de kaarten op basis van de ingevoerde situatie en jouw profiel"
                   >
-                    {isPredicting ? 'Bezig...' : <><WandIcon size={24} color="currentColor" /> Voorspel kaarten</>}
+                    {isPredicting ? 'Bezig met voorspellen...' : <><WandIcon size={24} color="currentColor" /> Voorspel kaarten</>}
                   </button>
                 </div>
               </div>
