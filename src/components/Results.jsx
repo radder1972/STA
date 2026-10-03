@@ -106,6 +106,9 @@ export default function Results({ completedTests, onRestart, onBack, onUpdateAns
       )}
 
       <div id="print-area">
+        <div style={{ maxWidth: '900px', margin: '0 auto 1.5rem auto', padding: '0.85rem 1.25rem', borderLeft: '4px solid #94a3b8', background: 'rgba(148, 163, 184, 0.12)', borderRadius: '0 10px 10px 0', fontSize: '0.9rem', lineHeight: '1.6', color: 'var(--text-muted)', textAlign: 'left' }}>
+          <strong>Let op:</strong> de YSQ-S3 meet de 18 klassieke schema's en de SMI 14 modi. Schema's of modi daarbuiten (zoals de drie nieuw voorgestelde schema's uit VSt 2021) komen in deze uitkomsten niet naar voren en vragen om uw eigen praktijkobservatie.
+        </div>
         {/* Render based on active tab, but for print we always render all available tests */}
         {hasYsq && (
           <div className={activeTab === 'ysq' ? 'print-visible' : 'print-only'}>
