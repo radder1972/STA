@@ -367,6 +367,18 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
   const [isPredicting, setIsPredicting] = useState(false);
   const [csvUploadedName, setCsvUploadedName] = useState(null);
   const [selectedUnmetNeed, setSelectedUnmetNeed] = useState('');
+
+  const handleSelectUnmetNeed = (title) => {
+    setSelectedUnmetNeed(title);
+    if (title) {
+      const foundCard = needCards.find(c => c.title === title || c.title.toLowerCase() === title.toLowerCase());
+      if (foundCard) {
+        setSelectedNeed(foundCard);
+      }
+    } else {
+      setSelectedNeed(null);
+    }
+  };
   const [differentialHypotheses, setDifferentialHypotheses] = useState(null);
   const [vstOverwrite, setVstOverwrite] = useState({
     identity: false,
@@ -686,6 +698,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
       setSelectedMode(null);
       setSelectedSchema(null);
       setSelectedNeed(null);
+      setSelectedUnmetNeed('');
       setGvNotes('');
       setAnalysisText('');
     }
@@ -777,7 +790,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 <div className="no-print" style={{ marginTop: '1.25rem', width: '100%' }}>
                   <WaaierNeedSelector 
                     selectedNeedTitle={selectedUnmetNeed} 
-                    onSelectNeed={setSelectedUnmetNeed} 
+                    onSelectNeed={handleSelectUnmetNeed} 
                   />
                 </div>
               </div>
@@ -1186,9 +1199,8 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 }} />
               </div>
 
-              {/* Onderste punt van de driehoek: Onvervulde Behoefte */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 2 }}>
-                <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} labelPosition="bottom" />
+                <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => { setSelectedNeed(null); setSelectedUnmetNeed(''); }} labelPosition="bottom" />
               </div>
 
               {/* LIVE KAARTMATCHING FEEDBACK BANNER */}
