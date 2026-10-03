@@ -265,7 +265,6 @@ export const getCardTypeLabel = (type, title = '', id = '') => {
   if (type === 'basisbehoefte' || type === 'need') return "Basisbehoefte";
   if (type === 'modicategorie') return "Categorie";
   if (type === 'mode') {
-    if (isForensicMode(title, id)) return "Forensische Modus";
     const t = (title || '').toLowerCase();
     if (t.includes('kind')) {
       if (t.includes('blije kind')) return "Functionele Modus";
@@ -398,11 +397,11 @@ const SchemaCard = ({
               {/* Header (Badge) */}
               {type && getCardTypeLetter(type) && (
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10, marginTop: src ? `${(7 / 58) * widthNum}px` : `${(11 / 58) * widthNum}px` }}>
-                  <span style={{ fontSize: src ? `${14 * scaleRatio}px` : `${18 * scaleRatio}px`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: src ? `${(9 / 58) * widthNum}px` : `${(12 / 58) * widthNum}px`, height: src ? `${(9 / 58) * widthNum}px` : `${(12 / 58) * widthNum}px`, borderRadius: '50%', backgroundColor: isForensicMode(title, id) ? '#0f172a' : 'black', color: isForensicMode(title, id) ? '#f59e0b' : 'white', marginBottom: `${(1.5 / 58) * widthNum}px`, boxSizing: 'border-box', border: isForensicMode(title, id) ? '1px solid #f59e0b' : 'none' }}>{getCardTypeLetter(type)}</span>
-                  <span style={{ fontSize: src ? `${11 * scaleRatio}px` : `${13 * scaleRatio}px`, marginTop: `${(1 / 58) * widthNum}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: isForensicMode(title, id) ? '#b45309' : 'black', fontWeight: 'bold' }}>{getCardTypeLabel(type, title, id)}</span>
+                  <span style={{ fontSize: src ? `${14 * scaleRatio}px` : `${18 * scaleRatio}px`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: src ? `${(9 / 58) * widthNum}px` : `${(12 / 58) * widthNum}px`, height: src ? `${(9 / 58) * widthNum}px` : `${(12 / 58) * widthNum}px`, borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: `${(1.5 / 58) * widthNum}px`, boxSizing: 'border-box' }}>{getCardTypeLetter(type)}</span>
+                  <span style={{ fontSize: src ? `${11 * scaleRatio}px` : `${13 * scaleRatio}px`, marginTop: `${(1 / 58) * widthNum}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black', fontWeight: 'bold' }}>{getCardTypeLabel(type, title, id)}</span>
                   {isForensicMode(title, id) && (
-                    <span style={{ fontSize: `${8 * scaleRatio}px`, textTransform: 'uppercase', letterSpacing: '0.08em', backgroundColor: '#0f172a', color: '#f59e0b', padding: '1px 6px', borderRadius: '9999px', fontWeight: '800', marginTop: '2px', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>
-                      Forensisch
+                    <span style={{ fontSize: src ? `${9 * scaleRatio}px` : `${11 * scaleRatio}px`, textTransform: 'uppercase', letterSpacing: '0.8px', color: 'black', fontWeight: 'bold', marginTop: `${(2.5 / 58) * widthNum}px`, opacity: 0.85 }}>
+                      FORENSISCH
                     </span>
                   )}
                 </div>
