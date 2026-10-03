@@ -111,6 +111,7 @@ export default function Verantwoording({ onBack, embedded = false, showBack = tr
         <ul style={listStyle}>
           <li>Als u kaarten bestelt, vult u naam, e-mailadres, afleveradres, aantal en eventueel een opmerking in. Deze gegevens worden gebruikt om uw bestelling af te handelen.</li>
           <li>Het formulier wordt verstuurd via de formulierdienst <strong>Web3Forms</strong>, die de bestelling als e-mail doorstuurt.</li>
+          <li>Bestelgegevens worden bewaard tot de bestelling is afgehandeld, daarna maximaal 7 jaar voor de administratie.</li>
           <li>Om uw adres aan te vullen worden uw postcode en huisnummer opgevraagd bij de <strong>PDOK Locatieserver</strong> (Nederlandse overheid).</li>
         </ul>
 
