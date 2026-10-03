@@ -185,28 +185,6 @@ export default function StartHub() {
             <ThreeSparklesLogo size={52} theme="kaarten" />
           </div>
 
-          {/* Badge / Sticker: VSt 2021 Update */}
-          <div style={{
-            position: 'absolute',
-            top: '-14px',
-            right: '42px',
-            background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
-            color: 'white',
-            fontSize: '0.72rem',
-            fontWeight: '800',
-            textTransform: 'uppercase',
-            letterSpacing: '0.06em',
-            padding: '6px 14px',
-            borderRadius: '9999px',
-            boxShadow: '0 4px 14px rgba(234, 88, 12, 0.4)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '5px',
-            zIndex: 10
-          }}>
-            <SparklesIcon size={14} color="white" /> 2021 Update
-          </div>
-
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
             <div style={{
               width: '56px',
@@ -234,9 +212,41 @@ export default function StartHub() {
             </span>
           </div>
 
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', color: 'var(--text-main)', fontWeight: '700', minHeight: '3.6rem', display: 'flex', alignItems: 'flex-start' }}>
-            Kaarten
-          </h2>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.8rem', minHeight: '3.6rem' }}>
+            <h2 style={{ fontSize: '1.5rem', color: 'var(--text-main)', fontWeight: '700', margin: 0, paddingTop: '4px' }}>
+              Kaarten
+            </h2>
+
+            {/* Ronde Sticker: 2021 Update */}
+            <div style={{
+              width: '74px',
+              height: '74px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
+              color: '#ffffff',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              boxShadow: '0 6px 18px rgba(234, 88, 12, 0.4), 0 2px 6px rgba(0, 0, 0, 0.12)',
+              transform: 'rotate(10deg)',
+              userSelect: 'none',
+              padding: '4px',
+              flexShrink: 0,
+              marginTop: '-10px'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.55rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
+                <SparklesIcon size={9} color="white" /> INCLUSIEF
+              </div>
+              <div style={{ fontSize: '0.92rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.05', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
+                2021
+              </div>
+              <div style={{ fontSize: '0.58rem', fontWeight: '800', letterSpacing: '0.05em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1 }}>
+                UPDATE
+              </div>
+            </div>
+          </div>
 
           <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', minHeight: '5.5rem' }}>
             Verken de 43 klassieke basiskaarten en de herziene 55-delige theoriekaartenset (VSt 2021). Ideaal om schema's en modi tastbaar en visueel te bestuderen in de praktijk of supervisie.
