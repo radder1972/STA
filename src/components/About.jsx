@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon, PlayingCardsIcon, ClipboardIcon, PlatformBadge } from './Icons';
-import Verantwoording from './Verantwoording';
+import Verantwoording, { CONTACT_EMAIL } from './Verantwoording';
 
 // Gedeelde 'Over'-pagina voor de hele suite (Kaarten, Tafelopstelling, Hub en Vragenlijsten).
 // theme: 'game' (Kaarten, blauw), 'tafel' (groen), 'test' (Vragenlijsten, leisteen) of 'hub' (Suite, verloop)
@@ -370,7 +370,18 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
 
         {activeTab === 'maker' && (
           <div className="inner-box fade-in" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '3rem' }}>
-            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Over de maker</h3>
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Wie zijn wij?</h3>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.25rem 0' }}>
+              Wij zijn <strong>STS</strong>: een not-for-profitinitiatief, zonder winstoogmerk. Geen bedrijf met een verdienmodel en geen groot ontwikkelteam, maar mensen die schematherapie waardevol vinden en iets wilden maken dat helpt om de theorie begrijpelijk en bruikbaar te maken.
+            </p>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.25rem 0' }}>
+              We hebben de suite gebouwd met behulp van AI. Onze kennis van het vak en onze ideeën zijn daarmee omgezet in werkende software. Daar zijn we open over: het is een zorgvuldig gemaakt hulpmiddel, maar het blijft een eigen uitwerking en er kunnen fouten in zitten.
+            </p>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2.5rem 0' }}>
+              Zie je een fout, mis je iets of heb je een idee? We horen het graag{CONTACT_EMAIL && (<>, via <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: accent, fontWeight: '600' }}>{CONTACT_EMAIL}</a></>)}.
+            </p>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Hoe is de suite samengesteld?</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
               De Schematherapie Suite is met veel zorg en aandacht ontwikkeld vanuit de wens om de waardevolle, maar soms complexe materie van schematherapie begrijpelijk, visueel en direct toepasbaar te maken. De vragenlijsten, de theoriekaarten en de tafelopstelling zijn zorgvuldig samengesteld op basis van vakliteratuur en de grondbeginselen van Jeffrey Young (het klassieke 18-schema's en 5-domeinen model), met de uitbreiding uit het position paper van Arntz et al. (2021) in de uitbreidingsset. De vragenlijsten zijn de YSQ-S3 en de SMI.
             </p>
