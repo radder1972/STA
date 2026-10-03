@@ -156,12 +156,28 @@ export default function Verantwoording({ onBack, embedded = false, showBack = tr
         </ul>
 
         <h3 style={h3Style}>AI-functies (Google Gemini)</h3>
-        <ul style={listStyle}>
-          <li><strong>Welke functies:</strong> de differentiële hypotheses, de respons vanuit de Gezonde Volwassene en de ketenanalyse in de Tafelopstelling, en de optionele AI-analyse in het gecombineerde rapport van de vragenlijsten.</li>
-          <li><strong>Welke gegevens:</strong> bij de Tafelopstelling de situatietekst, de gekozen kaarten en een eventueel ingelezen scoreprofiel. Bij het rapport het scoreprofiel (de namen en gemiddelde scores van schema&rsquo;s en modi).</li>
-          <li><strong>Waar naartoe:</strong> uw browser stuurt deze informatie rechtstreeks naar de AI-dienst Google Gemini om het antwoord te genereren. Dit kan betekenen dat gegevens buiten de Europese Economische Ruimte worden verwerkt. Google kan invoer tijdelijk bewaren, bijvoorbeeld om misbruik te voorkomen. Voor wat Google daarmee doet gelden de voorwaarden van Google.</li>
-          <li><strong>Keuze:</strong> niets wordt verstuurd tenzij u zelf op een AI-knop klikt.</li>
-        </ul>
+        <div style={{ overflowX: 'auto', margin: '0.5rem 0 1.5rem 0' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: embedded ? '1.05rem' : '0.95rem', color: embedded ? '#475569' : 'var(--text-main)', textAlign: 'left' }}>
+            <tbody>
+              <tr style={{ borderBottom: '1px solid #e2e8f0', borderTop: '1px solid #e2e8f0' }}>
+                <td style={{ padding: '1rem 0.75rem', fontWeight: '600', verticalAlign: 'top', width: '25%', color: embedded ? '#1e293b' : 'var(--text-main)' }}>Welke functies</td>
+                <td style={{ padding: '1rem 0.75rem', verticalAlign: 'top' }}>De differentiële hypotheses, de respons vanuit de Gezonde Volwassene en de ketenanalyse in de Tafelopstelling, en de optionele AI-analyse in het gecombineerde rapport van de vragenlijsten.</td>
+              </tr>
+              <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
+                <td style={{ padding: '1rem 0.75rem', fontWeight: '600', verticalAlign: 'top', color: embedded ? '#1e293b' : 'var(--text-main)' }}>Welke gegevens</td>
+                <td style={{ padding: '1rem 0.75rem', verticalAlign: 'top' }}>Bij de Tafelopstelling: de situatietekst, de gekozen kaarten en een eventueel ingelezen scoreprofiel.<br/>Bij het rapport: het scoreprofiel (de namen en gemiddelde scores van schema&rsquo;s en modi).</td>
+              </tr>
+              <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
+                <td style={{ padding: '1rem 0.75rem', fontWeight: '600', verticalAlign: 'top', color: embedded ? '#1e293b' : 'var(--text-main)' }}>Waar naartoe</td>
+                <td style={{ padding: '1rem 0.75rem', verticalAlign: 'top' }}>Uw browser stuurt deze informatie rechtstreeks naar de AI-dienst Google Gemini om het antwoord te genereren. Dit kan betekenen dat gegevens buiten de Europese Economische Ruimte worden verwerkt. Google kan invoer tijdelijk bewaren, bijvoorbeeld om misbruik te voorkomen. Voor wat Google daarmee doet gelden de voorwaarden van Google.</td>
+              </tr>
+              <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
+                <td style={{ padding: '1rem 0.75rem', fontWeight: '600', verticalAlign: 'top', color: embedded ? '#1e293b' : 'var(--text-main)' }}>Keuze</td>
+                <td style={{ padding: '1rem 0.75rem', verticalAlign: 'top' }}>Er wordt helemaal niets verstuurd tenzij u <strong>zelf</strong> op een AI-knop klikt.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h3 style={h3Style}>Gebruik met cliëntgegevens</h3>
         <ul style={listStyle}>
