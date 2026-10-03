@@ -8,7 +8,8 @@ import {
   CheckIcon, 
   ShieldIcon, 
   InfoIcon,
-  PlatformBadge
+  PlatformBadge,
+  SparklesIcon
 } from './Icons';
 import packageJson from '../../package.json';
 
@@ -156,7 +157,7 @@ export default function StartHub() {
             gap: '5px',
             zIndex: 10
           }}>
-            <Sparkles size={13} /> VSt 2021 Update
+            <SparklesIcon size={14} color="white" /> VSt 2021 Update
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
