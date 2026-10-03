@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SingleResult from './SingleResult'
 import CombinedAnalysis from './CombinedAnalysis'
-import { DownloadIcon, RefreshIcon, ArrowLeftIcon } from './Icons'
+import { DownloadIcon, RefreshIcon, ArrowLeftIcon, PlatformBadge } from './Icons'
 import ysqData from '../data/ysq-s3.json'
 import smiData from '../data/smi.json'
 
@@ -51,7 +51,8 @@ export default function Results({ completedTests, onRestart, onBack, onUpdateAns
 
   return (
     <div className="combined-results-container">
-      <div className="header" style={{ marginTop: '1rem' }}>
+      <div className="header no-print" style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <PlatformBadge marginBottom="1rem" />
         <h1 className="text-gradient">Schema Therapy Questionnaires</h1>
         <p style={{ color: '#0ea5e9', fontWeight: '600', fontSize: '1.25rem', marginTop: '0.5rem' }}>Rapportage & Analyse</p>
       </div>

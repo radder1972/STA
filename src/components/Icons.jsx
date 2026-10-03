@@ -251,6 +251,60 @@ export const SparklesIcon = (props) => (
   </IconBase>
 );
 
+export const PlatformBadge = ({ isCurrent = false, marginBottom = '1rem' }) => {
+  const content = (
+    <>
+      <SparklesIcon size={16} color="#3b82f6" />
+      <span>Digitaal Schematherapie Platform</span>
+    </>
+  );
+
+  const badgeStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '8px',
+    padding: '6px 16px',
+    borderRadius: '9999px',
+    background: 'rgba(59, 130, 246, 0.08)',
+    border: '1px solid rgba(59, 130, 246, 0.25)',
+    color: '#3b82f6',
+    fontSize: '0.88rem',
+    fontWeight: '600',
+    textDecoration: 'none',
+    transition: 'all 0.2s ease',
+    marginBottom: marginBottom,
+    boxShadow: '0 2px 8px rgba(59, 130, 246, 0.06)'
+  };
+
+  if (isCurrent) {
+    return (
+      <div style={badgeStyle}>
+        {content}
+      </div>
+    );
+  }
+
+  return (
+    <a
+      href="index.html"
+      style={badgeStyle}
+      onMouseOver={(e) => {
+        e.currentTarget.style.background = 'rgba(59, 130, 246, 0.16)';
+        e.currentTarget.style.transform = 'translateY(-1px)';
+        e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.15)';
+      }}
+      onMouseOut={(e) => {
+        e.currentTarget.style.background = 'rgba(59, 130, 246, 0.08)';
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = '0 2px 8px rgba(59, 130, 246, 0.06)';
+      }}
+      title="Terug naar het centrale Digitaal Schematherapie Platform"
+    >
+      {content}
+    </a>
+  );
+};
+
 export const ScrollTextIcon = (props) => (
   <IconBase {...props}>
     <path d="M15 12h-5" />

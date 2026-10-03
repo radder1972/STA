@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon, CardsIcon, ArrowLeftIcon, ArrowRightIcon, PlayingCardsIcon } from './Icons'
+import { ClipboardIcon, BrainIcon, CheckIcon, ChartIcon, ShieldIcon, InfoIcon, AlertTriangleIcon, CardsIcon, ArrowLeftIcon, ArrowRightIcon, PlayingCardsIcon, PlatformBadge } from './Icons'
 import { ScrollText, Printer } from 'lucide-react'
 
 export default function Home({ onStart, completedTests, onViewResults, onImport, onViewGamePortal }) {
@@ -143,7 +143,8 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
 
   return (
     <div className="home-container">
-      <div className="header">
+      <div className="header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <PlatformBadge marginBottom="1rem" />
         <h1>Schema Therapy Questionnaires</h1>
         <p style={{ fontSize: '1rem', lineHeight: '1.6' }}>
           Hieronder vindt u twee vragenlijsten die worden ingezet binnen de schematherapie. 

@@ -1,9 +1,9 @@
 import React from 'react';
-import { HomeIcon, CardsIcon, FileTextIcon, PrinterIcon, ShoppingCartIcon, InfoIcon } from './Icons';
+import { HomeIcon, CardsIcon, FileTextIcon, PrinterIcon, ShoppingCartIcon, InfoIcon, PlatformBadge } from './Icons';
 
 export default function GameNavbar({ currentView, setCurrentView }) {
   const navItems = [
-    { id: 'game-portal', label: 'Home', icon: HomeIcon },
+    { id: 'game-portal', label: 'Portaal', icon: HomeIcon },
     { id: 'kaartenoverzicht', label: 'Kaarten', icon: CardsIcon },
     { id: 'game-rules', label: 'Werkvormen', icon: FileTextIcon },
     { id: 'print-shop', label: 'Printen', icon: PrinterIcon },
@@ -17,18 +17,26 @@ export default function GameNavbar({ currentView, setCurrentView }) {
 
   return (
     <div className="no-print" style={{
-      background: 'var(--bg-color)',
-      border: '1px solid var(--border-color)',
-      padding: '0.5rem',
       display: 'flex',
-      justifyContent: 'center',
-      boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)',
-      borderRadius: '16px',
-      marginBottom: '1.5rem',
+      flexDirection: 'column',
+      alignItems: 'center',
       width: '100%',
       maxWidth: '1000px',
       margin: '0 auto 1.5rem auto'
     }}>
+      {/* Top Platform Return Badge */}
+      <PlatformBadge marginBottom="0.85rem" />
+
+      <div style={{
+        background: 'var(--bg-color)',
+        border: '1px solid var(--border-color)',
+        padding: '0.5rem',
+        display: 'flex',
+        justifyContent: 'center',
+        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)',
+        borderRadius: '16px',
+        width: '100%'
+      }}>
       <div 
         className="hide-scrollbar"
         style={{
@@ -81,6 +89,7 @@ export default function GameNavbar({ currentView, setCurrentView }) {
           );
         })}
       </div>
+    </div>
     </div>
   );
 }

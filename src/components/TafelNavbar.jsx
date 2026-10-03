@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { HomeIcon, CardsIcon, PlayingCardsIcon } from './Icons';
+import { HomeIcon, CardsIcon, PlayingCardsIcon, PlatformBadge } from './Icons';
 import { Printer, RotateCcw, SlidersHorizontal, ChevronDown } from 'lucide-react';
 
 export default function TafelNavbar({ onPrint, onClear }) {
@@ -18,19 +18,27 @@ export default function TafelNavbar({ onPrint, onClear }) {
 
   return (
     <div className="no-print" style={{
-      background: 'var(--bg-color)',
-      border: '1px solid var(--border-color)',
-      padding: '0.5rem',
       display: 'flex',
-      justifyContent: 'center',
-      boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)',
-      borderRadius: '16px',
-      marginBottom: '2rem',
+      flexDirection: 'column',
+      alignItems: 'center',
       width: '100%',
       maxWidth: '950px',
-      margin: '0 auto 2rem auto',
-      position: 'relative'
+      margin: '0 auto 2rem auto'
     }}>
+      {/* Top Platform Return Badge */}
+      <PlatformBadge marginBottom="0.85rem" />
+
+      <div style={{
+        background: 'var(--bg-color)',
+        border: '1px solid var(--border-color)',
+        padding: '0.5rem',
+        display: 'flex',
+        justifyContent: 'center',
+        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)',
+        borderRadius: '16px',
+        width: '100%',
+        position: 'relative'
+      }}>
       <div 
         className="hide-scrollbar"
         style={{
@@ -202,37 +210,8 @@ export default function TafelNavbar({ onPrint, onClear }) {
           <span>Kaarten</span>
         </a>
 
-        {/* Link naar StartHub */}
-        <a
-          href="index.html"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '9999px',
-            border: '1px solid var(--border-color)',
-            background: 'transparent',
-            color: 'var(--text-muted)',
-            fontWeight: '500',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            fontSize: '0.9rem'
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.background = 'var(--hover-bg)';
-            e.currentTarget.style.color = 'var(--text-main)';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.background = 'transparent';
-            e.currentTarget.style.color = 'var(--text-muted)';
-          }}
-          title="Naar de centrale Startpagina"
-        >
-          <HomeIcon size={18} />
-          <span>Startpagina</span>
-        </a>
       </div>
+    </div>
     </div>
   );
 }

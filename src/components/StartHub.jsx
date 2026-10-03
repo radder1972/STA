@@ -7,9 +7,9 @@ import {
   ArrowRightIcon, 
   CheckIcon, 
   ShieldIcon, 
-  InfoIcon
+  InfoIcon,
+  PlatformBadge
 } from './Icons';
-import { Sparkles } from 'lucide-react';
 import packageJson from '../../package.json';
 
 export default function StartHub() {
@@ -17,21 +17,7 @@ export default function StartHub() {
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '3rem 1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
       
       {/* Top Badge */}
-      <div style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '8px',
-        padding: '6px 16px',
-        borderRadius: '9999px',
-        background: 'rgba(59, 130, 246, 0.08)',
-        border: '1px solid rgba(59, 130, 246, 0.25)',
-        color: '#3b82f6',
-        fontSize: '0.9rem',
-        fontWeight: '600',
-        marginBottom: '1.5rem'
-      }}>
-        <Sparkles size={16} /> Digitaal Schematherapie Platform
-      </div>
+      <PlatformBadge isCurrent={true} marginBottom="1.5rem" />
 
       {/* Main Title & Subtitle */}
       <div style={{ textAlign: 'center', marginBottom: '3.5rem', maxWidth: '850px' }}>
