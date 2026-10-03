@@ -534,8 +534,7 @@ export default function OrderCards({ onBack }) {
                 height: '370px', 
                 display: 'flex', 
                 justifyContent: 'center', 
-                alignItems: 'center', 
-                perspective: '1200px' 
+                alignItems: 'center'
               }}>
                 {currentCard && (
                   <SchemaCard 

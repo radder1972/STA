@@ -652,77 +652,88 @@ const SchemaCard = ({
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(15, 23, 42, 0.8)',
+            backgroundColor: 'rgba(15, 23, 42, 0.85)',
             backdropFilter: 'blur(8px)',
             WebkitBackdropFilter: 'blur(8px)',
-            zIndex: 99999,
+            zIndex: 999999,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '1.5rem'
+            padding: '1rem',
+            overflowY: 'auto'
           }}
           onClick={(e) => {
             e.stopPropagation();
             setIsZoomed(false);
           }}
         >
-          <div 
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '1.25rem',
-              maxWidth: '90vw'
-            }}
-          >
-            <button
-              onClick={() => setIsZoomed(false)}
-              style={{
-                position: 'absolute',
-                top: '-20px',
-                right: '-20px',
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                backgroundColor: '#ef4444',
-                color: 'white',
-                border: '3px solid white',
-                fontSize: '1.4rem',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
-                zIndex: 100001,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                lineHeight: 1
-              }}
-              title="Sluiten"
-            >
-              &times;
-            </button>
+          {(() => {
+            const screenW = typeof window !== 'undefined' ? window.innerWidth : 1200;
+            const screenH = typeof window !== 'undefined' ? window.innerHeight : 900;
+            const modalW = Math.max(260, Math.min(440, Math.floor(screenW * 0.85), Math.floor((screenH * 0.65) / 1.42)));
+            const modalH = Math.round(modalW * 1.42);
 
-            <SchemaCard
-              id={id}
-              type={type}
-              title={title}
-              description={description}
-              src={src}
-              color={color}
-              width="440px"
-              height="625px"
-              imageStyle={imageStyle}
-              flipOnClick={true}
-              zoomOnClick={false}
-            />
+            return (
+              <div 
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '1rem',
+                  maxWidth: '100%',
+                  margin: 'auto'
+                }}
+              >
+                <button
+                  onClick={() => setIsZoomed(false)}
+                  style={{
+                    position: 'absolute',
+                    top: '-15px',
+                    right: '-15px',
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '50%',
+                    backgroundColor: '#ef4444',
+                    color: 'white',
+                    border: '3px solid white',
+                    fontSize: '1.4rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+                    zIndex: 1000000,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    lineHeight: 1
+                  }}
+                  title="Sluiten"
+                >
+                  &times;
+                </button>
 
-            <div style={{ color: 'white', fontSize: '0.95rem', fontWeight: '500', opacity: 0.95, textAlign: 'center', background: 'rgba(0,0,0,0.6)', padding: '8px 20px', borderRadius: '20px', boxShadow: '0 4px 10px rgba(0,0,0,0.2)' }}>
-              🔄 Tik op de kaart om hem om te draaien voor theorie
-            </div>
-          </div>
+                <SchemaCard
+                  id={id}
+                  type={type}
+                  title={title}
+                  description={description}
+                  src={src}
+                  color={color}
+                  width={`${modalW}px`}
+                  height={`${modalH}px`}
+                  imageStyle={imageStyle}
+                  flipOnClick={true}
+                  zoomOnClick={false}
+                />
+
+                <div style={{ color: 'white', fontSize: '0.88rem', fontWeight: '500', opacity: 0.95, textAlign: 'center', background: 'rgba(0,0,0,0.7)', padding: '6px 16px', borderRadius: '20px', boxShadow: '0 4px 10px rgba(0,0,0,0.3)', whiteSpace: 'nowrap' }}>
+                  🔄 Tik op de kaart om hem om te draaien voor theorie
+                </div>
+              </div>
+            );
+          })()}
         </div>
       )}
     </>
