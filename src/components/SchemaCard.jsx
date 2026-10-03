@@ -373,6 +373,7 @@ const SchemaCard = ({
   onClick = undefined
 }) => {
   const [internalFlipped, setInternalFlipped] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
 
   const flipped = isFlipped !== undefined ? isFlipped : internalFlipped;
@@ -387,6 +388,7 @@ const SchemaCard = ({
   }, [isZoomed]);
 
   const handleMouseEnter = () => {
+    setIsHovered(true);
     if (flipOnHover) {
       if (onToggleFlip) {
         onToggleFlip(true);
@@ -397,6 +399,7 @@ const SchemaCard = ({
   };
 
   const handleMouseLeave = () => {
+    setIsHovered(false);
     if (flipOnHover) {
       if (onToggleFlip) {
         onToggleFlip(false);
@@ -438,7 +441,19 @@ const SchemaCard = ({
         onClick={handleFlip}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        style={{ width, height, position: 'relative', transform: `rotate(${rotation}deg)`, pointerEvents: isInteractive ? 'auto' : 'none', ...style }} 
+        style={{ 
+          width, 
+          height, 
+          position: 'relative', 
+          transform: isHovered && flipOnHover 
+            ? `rotate(${rotation}deg) scale(1.22) translateY(-10px)` 
+            : `rotate(${rotation}deg) scale(1)`, 
+          zIndex: isHovered ? 50 : 1,
+          transition: 'transform 0.4s cubic-bezier(0.34, 1.25, 0.64, 1), z-index 0.1s ease',
+          pointerEvents: isInteractive ? 'auto' : 'none', 
+          filter: isHovered && flipOnHover ? 'drop-shadow(0 20px 30px rgba(0,0,0,0.35))' : 'none',
+          ...style 
+        }} 
         title={zoomOnClick ? "Klik om te vergroten en te lezen" : flipOnHover ? "Beweeg muis over kaart voor 3D theorie-kaartslag" : flipOnClick ? "Klik om te draaien voor theorie" : ""}
       >
         <div 
