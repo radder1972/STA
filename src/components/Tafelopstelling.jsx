@@ -193,22 +193,34 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false, labelPos
   );
 };
 
-const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed }) => {
-  const cards = needCards.slice(0, 5);
-  const angles = [-16, -8, 0, 8, 16];
+const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed, show2021 = false }) => {
+  const cards = show2021 ? needCards.slice(0, 7) : needCards.slice(0, 5);
+  const angles = show2021 ? [-24, -16, -8, 0, 8, 16, 24] : [-16, -8, 0, 8, 16];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '0.25rem' }}>
       <div style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
         <div style={{ 
-          fontSize: '0.78rem', 
-          fontWeight: '700', 
+          fontSize: '0.92rem', 
+          fontWeight: '800', 
           textTransform: 'uppercase', 
           letterSpacing: '0.06em', 
           color: '#059669', 
           marginBottom: '0.25rem' 
         }}>
-          Geraakte Basisbehoefte
+          GERAAKTE BASISBEHOEFTE
+        </div>
+        <div style={{ 
+          fontSize: '0.78rem', 
+          fontWeight: '600', 
+          color: '#059669', 
+          background: 'rgba(16, 185, 129, 0.12)', 
+          padding: '3px 12px', 
+          borderRadius: '9999px', 
+          display: 'inline-block',
+          marginBottom: '0.4rem'
+        }}>
+          Geadviseerd in te vullen
         </div>
         <div style={{ 
           fontSize: '0.85rem', 
@@ -243,7 +255,7 @@ const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed }) => {
                 position: 'relative',
                 width: '110px',
                 height: '155px',
-                margin: '0 -16px',
+                margin: show2021 ? '0 -22px' : '0 -16px',
                 transform: isSelected 
                   ? `rotate(0deg) translateY(-26px) scale(1.22)` 
                   : `rotate(${rotation}deg) translateY(0px)`,
@@ -385,6 +397,7 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
     meaning: false,
     injustice: false
   });
+  const [use2021Extension, setUse2021Extension] = useState(false);
   const fileInputRef = useRef(null);
 
   const handleCsvUpload = (e) => {
@@ -829,6 +842,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                     <WaaierNeedSelector 
                       selectedNeedTitle={selectedUnmetNeed} 
                       onSelectNeed={handleSelectUnmetNeed} 
+                      show2021={use2021Extension}
                     />
                   </div>
 
@@ -857,8 +871,20 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                     />
 
                     <div>
-                      <div style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '0.25rem' }}>
-                        Koppel Testresultaten (YSQ / SMI) <span style={{ fontWeight: '500', opacity: 0.75 }}>(Optioneel)</span>
+                      <div style={{ fontSize: '0.92rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '0.25rem' }}>
+                        KOPPEL TESTRESULTATEN (YSQ / SMI)
+                      </div>
+                      <div style={{ 
+                        fontSize: '0.78rem', 
+                        fontWeight: '600', 
+                        color: 'var(--text-muted)', 
+                        background: 'rgba(0, 0, 0, 0.05)', 
+                        padding: '3px 12px', 
+                        borderRadius: '9999px', 
+                        display: 'inline-block',
+                        marginBottom: '0.4rem'
+                      }}>
+                        Optioneel
                       </div>
                       <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)' }}>
                         Voor een nog nauwkeurigere differentiële hypothese op maat
@@ -939,85 +965,149 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                     textAlign: 'center'
                   }}>
                     <div>
-                      <div style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '0.25rem' }}>
-                        2021 Analyse Uitbreiding <span style={{ fontWeight: '500', opacity: 0.75 }}>(Optioneel)</span>
+                      <div style={{ fontSize: '0.92rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '0.25rem' }}>
+                        2021 ANALYSE UITBREIDING
+                      </div>
+                      <div style={{ 
+                        fontSize: '0.78rem', 
+                        fontWeight: '600', 
+                        color: 'var(--text-muted)', 
+                        background: 'rgba(0, 0, 0, 0.05)', 
+                        padding: '3px 12px', 
+                        borderRadius: '9999px', 
+                        display: 'inline-block',
+                        marginBottom: '0.4rem'
+                      }}>
+                        Optioneel
                       </div>
                       <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)' }}>
-                        Handmatig toevoegen op basis van klinische observatie
+                        Handmatig toevoegen op basis van klinische observatie (activeert alle 7 basisbehoeften).
                       </div>
                     </div>
 
-                    <div style={{ 
-                      display: 'flex', 
-                      flexDirection: 'column',
-                      gap: '8px', 
-                      background: 'rgba(0, 0, 0, 0.02)',
-                      border: '1px solid var(--border-color)',
-                      borderRadius: '12px',
-                      padding: '12px 18px',
-                      boxSizing: 'border-box',
-                      width: '100%',
-                      maxWidth: '480px',
-                      textAlign: 'left',
-                      marginTop: '0.75rem'
-                    }}>
-                      <label style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        gap: '10px', 
-                        fontSize: '0.88rem', 
-                        fontWeight: '400',
-                        color: 'var(--text-main)', 
-                        cursor: 'pointer',
-                        userSelect: 'none'
-                      }}>
-                        <input 
-                          type="checkbox" 
-                          checked={vstOverwrite.identity}
-                          onChange={e => setVstOverwrite(prev => ({ ...prev, identity: e.target.checked }))}
-                          style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
-                        />
-                        <span>Gebrek aan coherente identiteit</span>
-                      </label>
+                    {/* Toggle Switch Button: Nee / Ja */}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginTop: '0.85rem', marginBottom: use2021Extension ? '0.5rem' : '0' }}>
+                      <span style={{ fontSize: '0.88rem', fontWeight: use2021Extension ? '500' : '700', color: use2021Extension ? 'var(--text-muted)' : '#059669' }}>
+                        Nee (5 basisbehoeften)
+                      </span>
+                      
+                      <button 
+                        type="button"
+                        onClick={() => {
+                          const next = !use2021Extension;
+                          setUse2021Extension(next);
+                          if (!next) {
+                            setVstOverwrite({ identity: false, meaning: false, injustice: false });
+                          }
+                        }}
+                        style={{
+                          width: '52px',
+                          height: '28px',
+                          borderRadius: '9999px',
+                          background: use2021Extension ? 'linear-gradient(135deg, #059669 0%, #10b981 100%)' : '#cbd5e1',
+                          border: 'none',
+                          cursor: 'pointer',
+                          position: 'relative',
+                          transition: 'all 0.25s ease',
+                          boxShadow: use2021Extension ? '0 4px 12px rgba(16, 185, 129, 0.35)' : 'none',
+                          padding: 0
+                        }}
+                        title="Schakel 2021 analyse uitbreiding in/uit"
+                      >
+                        <div style={{
+                          width: '22px',
+                          height: '22px',
+                          borderRadius: '50%',
+                          background: 'white',
+                          position: 'absolute',
+                          top: '3px',
+                          left: use2021Extension ? '27px' : '3px',
+                          transition: 'all 0.25s cubic-bezier(0.34, 1.25, 0.64, 1)',
+                          boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
+                        }} />
+                      </button>
 
-                      <label style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        gap: '10px', 
-                        fontSize: '0.88rem', 
-                        fontWeight: '400',
-                        color: 'var(--text-main)', 
-                        cursor: 'pointer',
-                        userSelect: 'none'
-                      }}>
-                        <input 
-                          type="checkbox" 
-                          checked={vstOverwrite.meaning}
-                          onChange={e => setVstOverwrite(prev => ({ ...prev, meaning: e.target.checked }))}
-                          style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
-                        />
-                        <span>Gebrek aan betekenisvolle wereld</span>
-                      </label>
-
-                      <label style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        gap: '10px', 
-                        fontSize: '0.88rem', 
-                        fontWeight: '400',
-                        color: 'var(--text-main)', 
-                        cursor: 'pointer',
-                        userSelect: 'none'
-                      }}>
-                        <input 
-                          type="checkbox" 
-                          checked={vstOverwrite.injustice}
-                          onChange={e => setVstOverwrite(prev => ({ ...prev, injustice: e.target.checked }))}
-                          style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
-                        />
-                        <span>Onrechtvaardigheid</span>
-                      </label>
+                      <span style={{ fontSize: '0.88rem', fontWeight: use2021Extension ? '700' : '500', color: use2021Extension ? '#059669' : 'var(--text-muted)' }}>
+                        Ja (7 basisbehoeften)
+                      </span>
                     </div>
+
+                    {use2021Extension && (
+                      <div style={{ 
+                        display: 'flex', 
+                        flexDirection: 'column',
+                        gap: '8px', 
+                        background: 'rgba(16, 185, 129, 0.05)',
+                        border: '1px solid rgba(16, 185, 129, 0.25)',
+                        borderRadius: '12px',
+                        padding: '12px 18px',
+                        boxSizing: 'border-box',
+                        width: '100%',
+                        maxWidth: '480px',
+                        textAlign: 'left',
+                        marginTop: '0.75rem'
+                      }}>
+                        <div style={{ fontSize: '0.82rem', fontWeight: '700', color: '#059669', marginBottom: '2px' }}>
+                          Specifieke 2021 observaties toevoegen:
+                        </div>
+                        <label style={{ 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          gap: '10px', 
+                          fontSize: '0.88rem', 
+                          fontWeight: '400',
+                          color: 'var(--text-main)', 
+                          cursor: 'pointer',
+                          userSelect: 'none'
+                        }}>
+                          <input 
+                            type="checkbox" 
+                            checked={vstOverwrite.identity}
+                            onChange={e => setVstOverwrite(prev => ({ ...prev, identity: e.target.checked }))}
+                            style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
+                          />
+                          <span>Gebrek aan coherente identiteit</span>
+                        </label>
+
+                        <label style={{ 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          gap: '10px', 
+                          fontSize: '0.88rem', 
+                          fontWeight: '400',
+                          color: 'var(--text-main)', 
+                          cursor: 'pointer',
+                          userSelect: 'none'
+                        }}>
+                          <input 
+                            type="checkbox" 
+                            checked={vstOverwrite.meaning}
+                            onChange={e => setVstOverwrite(prev => ({ ...prev, meaning: e.target.checked }))}
+                            style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
+                          />
+                          <span>Gebrek aan betekenisvolle wereld</span>
+                        </label>
+
+                        <label style={{ 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          gap: '10px', 
+                          fontSize: '0.88rem', 
+                          fontWeight: '400',
+                          color: 'var(--text-main)', 
+                          cursor: 'pointer',
+                          userSelect: 'none'
+                        }}>
+                          <input 
+                            type="checkbox" 
+                            checked={vstOverwrite.injustice}
+                            onChange={e => setVstOverwrite(prev => ({ ...prev, injustice: e.target.checked }))}
+                            style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
+                          />
+                          <span>Onrechtvaardigheid</span>
+                        </label>
+                      </div>
+                    )}
                   </div>
 
                   {/* Primary Flagship CDS Hypotheses Button */}
