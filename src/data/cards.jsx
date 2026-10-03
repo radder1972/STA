@@ -134,9 +134,11 @@ export { vstBasisbehoeftenData, vstSchemaData, vstModiData, vstCopingData } from
 
 export const modicategorieenData = [
   { id: 'mc1', title: 'Kindmodi', src: imgM1, description: categorieText['Kindmodi'], color: '#3b82f6', type: 'modicategorie' },
-  { id: 'mc3', title: 'Disfunctionele copingmodi', src: imgM3b, description: categorieText['Disfunctionele copingmodi'], color: '#eab308', type: 'modicategorie' },
-  { id: 'mc2', title: 'Disfunctionele oudermodi', src: imgM2, description: categorieText['Disfunctionele oudermodi'], color: '#ef4444', type: 'modicategorie' },
-  { id: 'mc4', title: 'Functionele modi', src: imgM4, description: categorieText['Functionele modi'], color: '#10b981', type: 'modicategorie' },
+  { id: 'mc2', title: 'Oudermodi', src: imgM2, description: categorieText['Oudermodi'], color: '#ef4444', type: 'modicategorie' },
+  { id: 'mc3a', title: 'Coping: Overgave', src: imgM3a, description: categorieText['Coping: Overgave'], color: '#eab308', type: 'modicategorie' },
+  { id: 'mc3b', title: 'Coping: Vermijding', src: imgM3b, description: categorieText['Coping: Vermijding'], style: { width: '80%', height: '80%' }, color: '#eab308', type: 'modicategorie' },
+  { id: 'mc3c', title: 'Coping: Overcompensatie', src: imgM3c, description: categorieText['Coping: Overcompensatie'], color: '#eab308', type: 'modicategorie' },
+  { id: 'mc4', title: 'Gezonde volwassene', src: imgM4, description: categorieText['Gezonde volwassene'], color: '#10b981', type: 'modicategorie' },
 ];
 
 export const getCardTypeLetter = (type) => {
