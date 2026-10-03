@@ -586,35 +586,63 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               <div>
                 <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center', marginTop: '2.5rem', marginBottom: '1.5rem' }}><StepBadge number="2" size={28} /> Leg de kaarten op tafel</h3>
                 
-                <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-color)', padding: '2.2rem 2rem', borderRadius: '20px', border: '1px solid var(--border-color)', boxSizing: 'border-box', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                <div className="no-print" style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(14, 165, 233, 0.06) 50%, rgba(16, 185, 129, 0.08) 100%)',
+                  padding: '2.5rem 2rem',
+                  borderRadius: '24px',
+                  border: '1px solid rgba(16, 185, 129, 0.35)',
+                  boxSizing: 'border-box',
+                  boxShadow: '0 12px 35px rgba(16, 185, 129, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
+                  position: 'relative'
+                }}>
                   
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.75rem' }}>
-                    <WandIcon size={24} useTafelGradient={true} />
-                    <h4 className="text-gradient-tafel" style={{ margin: 0, fontSize: '1.25rem', fontWeight: '700' }}>Automatisch voorspellen</h4>
+                  {/* Premium Core Feature Badge */}
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '4px 14px',
+                    borderRadius: '9999px',
+                    background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+                    color: 'white',
+                    fontSize: '0.75rem',
+                    fontWeight: '800',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                    marginBottom: '1rem',
+                    boxShadow: '0 4px 14px rgba(16, 185, 129, 0.35)'
+                  }}>
+                    <SparklesIcon size={14} color="white" />
+                    <span>AI PRO MODULE</span>
                   </div>
 
-                  <p style={{ fontSize: '0.98rem', color: 'var(--text-main)', marginBottom: '1.5rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '680px' }}>
-                    Laat de kaarten automatisch op tafel leggen op basis van jouw beschreven situatie. De AI kiest de best passende combinatie van Modus, Geraakt Schema en Onvervulde Basisbehoefte.
+                  <h4 className="text-gradient-tafel" style={{ margin: '0 0 0.75rem 0', fontSize: '1.45rem', fontWeight: '800', letterSpacing: '-0.02em', textAlign: 'center' }}>
+                    Slimme Automatische Kaartvoorspeller
+                  </h4>
+
+                  <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '1.75rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '640px' }}>
+                    Laat de kunstmatige intelligentie je reactiepatroon opstellen. Op basis van je beschreven trigger én jouw unieke testprofiel analyseert de AI haarscherp welke <strong>Modus</strong>, <strong>Schema</strong> en <strong>Onvervulde Behoefte</strong> op tafel horen.
                   </p>
 
-                  {/* CSV Profile Import & Status */}
+                  {/* CSV Profile Import & Connection Widget */}
                   <div style={{
                     width: '100%',
-                    maxWidth: '680px',
-                    marginBottom: '1.75rem',
+                    maxWidth: '660px',
+                    marginBottom: '2rem',
                     padding: '1.25rem 1.5rem',
-                    borderRadius: '16px',
-                    background: (completedTests?.ysq || completedTests?.smi)
-                      ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.12) 100%)'
-                      : 'rgba(0,0,0,0.02)',
-                    border: (completedTests?.ysq || completedTests?.smi)
-                      ? '1px solid rgba(16, 185, 129, 0.3)'
-                      : '1px stroke var(--border-color)',
+                    borderRadius: '20px',
+                    background: 'var(--bg-color)',
+                    border: '1px solid rgba(16, 185, 129, 0.25)',
                     boxSizing: 'border-box',
+                    boxShadow: '0 6px 20px rgba(0,0,0,0.04)',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: '12px'
+                    gap: '14px'
                   }}>
                     <input 
                       type="file" 
@@ -625,50 +653,121 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                     />
 
                     {(completedTests?.ysq || completedTests?.smi) ? (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#059669', fontWeight: '600', fontSize: '0.94rem' }}>
-                        <CheckIcon size={20} color="#059669" strokeWidth={2.5} />
-                        <span>
-                          Persoonlijk testprofiel actief! {csvUploadedName ? `(${csvUploadedName})` : '(YSQ / SMI resultaten geladen)'}
-                        </span>
+                      <div style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '10px',
+                        padding: '8px 18px',
+                        borderRadius: '9999px',
+                        background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(5, 150, 105, 0.18) 100%)',
+                        border: '1px solid rgba(16, 185, 129, 0.35)',
+                        color: '#059669',
+                        fontWeight: '700',
+                        fontSize: '0.92rem'
+                      }}>
+                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#10b981', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                          <CheckIcon size={14} strokeWidth={3} />
+                        </div>
+                        <span>Persoonlijk testprofiel actief {csvUploadedName ? `(${csvUploadedName})` : '(YSQ / SMI resultaten gekoppeld)'}</span>
                       </div>
                     ) : (
-                      <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)', textAlign: 'center', lineHeight: '1.5' }}>
-                        💡 <strong>Tip voor nog nauwkeurigere voorspellingen:</strong> Lees je eerdere CSV-testresultaten in, zodat de AI kaarten voorspelt op basis van jouw persoonlijke profiel!
+                      <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text-main)', textAlign: 'center', lineHeight: '1.5' }}>
+                        💡 <strong>Optioneel:</strong> Koppel je testresultaten voor een nog nauwkeurigere voorspelling op maat!
                       </p>
                     )}
 
                     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px', width: '100%' }}>
                       <button
                         type="button"
-                        className="btn btn-outline"
                         onClick={() => fileInputRef.current?.click()}
-                        style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', padding: '8px 16px', borderRadius: '10px', background: 'var(--bg-color)' }}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          padding: '10px 20px',
+                          borderRadius: '9999px',
+                          border: '1px solid rgba(14, 165, 233, 0.35)',
+                          background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(59, 130, 246, 0.12) 100%)',
+                          color: '#0284c7',
+                          fontWeight: '600',
+                          fontSize: '0.9rem',
+                          cursor: 'pointer',
+                          transition: 'all 0.25s ease',
+                          boxShadow: '0 4px 14px rgba(14, 165, 233, 0.1)'
+                        }}
+                        onMouseOver={(e) => {
+                          e.currentTarget.style.transform = 'translateY(-2px)';
+                          e.currentTarget.style.boxShadow = '0 6px 20px rgba(14, 165, 233, 0.2)';
+                        }}
+                        onMouseOut={(e) => {
+                          e.currentTarget.style.transform = 'translateY(0)';
+                          e.currentTarget.style.boxShadow = '0 4px 14px rgba(14, 165, 233, 0.1)';
+                        }}
                       >
-                        <UploadIcon size={16} color="#0ea5e9" />
-                        {(completedTests?.ysq || completedTests?.smi) ? 'Ander CSV-bestand inlezen' : 'Lees je CSV-score binnen'}
+                        <div style={{ width: '26px', height: '26px', borderRadius: '50%', background: 'linear-gradient(135deg, #0ea5e9, #2563eb)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                          <UploadIcon size={14} color="white" strokeWidth={2.5} />
+                        </div>
+                        <span>{(completedTests?.ysq || completedTests?.smi) ? 'Ander CSV-bestand inlezen' : 'Lees je CSV-score binnen'}</span>
                       </button>
 
                       <a
                         href="index.html"
-                        className="btn btn-outline"
-                        style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', padding: '8px 16px', borderRadius: '10px', textDecoration: 'none', color: 'var(--text-main)', background: 'var(--bg-color)' }}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          padding: '10px 20px',
+                          borderRadius: '9999px',
+                          border: '1px solid rgba(16, 185, 129, 0.35)',
+                          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.12) 100%)',
+                          color: '#059669',
+                          fontWeight: '600',
+                          fontSize: '0.9rem',
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                          transition: 'all 0.25s ease',
+                          boxShadow: '0 4px 14px rgba(16, 185, 129, 0.1)'
+                        }}
+                        onMouseOver={(e) => {
+                          e.currentTarget.style.transform = 'translateY(-2px)';
+                          e.currentTarget.style.boxShadow = '0 6px 20px rgba(16, 185, 129, 0.2)';
+                        }}
+                        onMouseOut={(e) => {
+                          e.currentTarget.style.transform = 'translateY(0)';
+                          e.currentTarget.style.boxShadow = '0 4px 14px rgba(16, 185, 129, 0.1)';
+                        }}
                         title="Nog geen test gedaan? Vul de vragenlijst in & download je CSV"
                       >
-                        <FileTextIcon size={16} color="#10b981" />
+                        <div style={{ width: '26px', height: '26px', borderRadius: '50%', background: 'linear-gradient(135deg, #059669, #10b981)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                          <FileTextIcon size={14} color="white" strokeWidth={2.5} />
+                        </div>
                         <span>Vragenlijst invullen & CSV downloaden</span>
                       </a>
                     </div>
                   </div>
 
-                  {/* Primary Voorspel Kaarten Button */}
+                  {/* Primary Flagship Voorspel Kaarten Button */}
                   <button 
                     className="btn btn-gradient-tafel" 
                     onClick={predictCards} 
                     disabled={isPredicting || !situationText}
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.1rem', padding: '1rem 2.5rem', minWidth: '280px', justifyContent: 'center', borderRadius: '14px' }}
+                    style={{ 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: '12px', 
+                      fontSize: '1.15rem', 
+                      fontWeight: '700',
+                      padding: '1.1rem 3rem', 
+                      minWidth: '300px', 
+                      justifyContent: 'center', 
+                      borderRadius: '9999px',
+                      boxShadow: '0 8px 25px rgba(16, 185, 129, 0.35)',
+                      cursor: (isPredicting || !situationText) ? 'not-allowed' : 'pointer',
+                      transition: 'all 0.3s cubic-bezier(0.34, 1.25, 0.64, 1)'
+                    }}
                     title="Voorspel de kaarten op basis van de ingevoerde situatie en jouw profiel"
                   >
-                    {isPredicting ? 'Bezig met voorspellen...' : <><WandIcon size={24} color="currentColor" /> Voorspel kaarten</>}
+                    {isPredicting ? 'Bezig met voorspellen...' : <><WandIcon size={24} color="currentColor" /> Voorspel Kaarten met AI</>}
                   </button>
                 </div>
               </div>
