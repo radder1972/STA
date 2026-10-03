@@ -1,8 +1,21 @@
-import React from 'react';
-import { HomeIcon, CardsIcon, ClipboardIcon, PlayingCardsIcon } from './Icons';
-import { Printer, RotateCcw } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { HomeIcon, CardsIcon, PlayingCardsIcon } from './Icons';
+import { Printer, RotateCcw, SlidersHorizontal, ChevronDown } from 'lucide-react';
 
 export default function TafelNavbar({ onPrint, onClear }) {
+  const [showMenu, setShowMenu] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <div className="no-print" style={{
       background: 'var(--bg-color)',
@@ -15,14 +28,15 @@ export default function TafelNavbar({ onPrint, onClear }) {
       marginBottom: '2rem',
       width: '100%',
       maxWidth: '950px',
-      margin: '0 auto 2rem auto'
+      margin: '0 auto 2rem auto',
+      position: 'relative'
     }}>
       <div 
         className="hide-scrollbar"
         style={{
           display: 'flex',
           gap: '0.5rem',
-          overflowX: 'auto',
+          overflowX: 'visible',
           maxWidth: '100%',
           padding: '0.25rem',
           alignItems: 'center'
@@ -48,67 +62,109 @@ export default function TafelNavbar({ onPrint, onClear }) {
           <span>Tafelopstelling</span>
         </div>
 
-        {/* Actie: Print Tafel */}
-        <button
-          onClick={onPrint}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '9999px',
-            border: 'none',
-            background: 'transparent',
-            color: 'var(--text-main)',
-            fontWeight: '500',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-            whiteSpace: 'nowrap',
-            fontSize: '0.9rem'
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.background = 'var(--hover-bg)';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.background = 'transparent';
-          }}
-          title="Druk de tafelopstelling af of bewaar als PDF"
-        >
-          <Printer size={18} />
-          <span>Tafel Printen</span>
-        </button>
+        {/* Submenu Trigger: Tafelopties */}
+        <div ref={dropdownRef} style={{ position: 'relative' }}>
+          <button
+            onClick={() => setShowMenu(!showMenu)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              padding: '0.5rem 1rem',
+              borderRadius: '9999px',
+              border: '1px solid var(--border-color)',
+              background: showMenu ? 'var(--hover-bg)' : 'transparent',
+              color: 'var(--text-main)',
+              fontWeight: '500',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              whiteSpace: 'nowrap',
+              fontSize: '0.9rem'
+            }}
+            onMouseOver={(e) => {
+              if (!showMenu) e.currentTarget.style.background = 'var(--hover-bg)';
+            }}
+            onMouseOut={(e) => {
+              if (!showMenu) e.currentTarget.style.background = 'transparent';
+            }}
+            title="Tafelopties & acties (Printen, Leegmaken)"
+          >
+            <SlidersHorizontal size={16} />
+            <span>Tafelopties</span>
+            <ChevronDown size={14} style={{ transform: showMenu ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }} />
+          </button>
 
-        {/* Actie: Tafel Leegmaken */}
-        <button
-          onClick={onClear}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '9999px',
-            border: 'none',
-            background: 'transparent',
-            color: 'var(--text-muted)',
-            fontWeight: '500',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-            whiteSpace: 'nowrap',
-            fontSize: '0.9rem'
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.background = 'var(--hover-bg)';
-            e.currentTarget.style.color = 'var(--text-main)';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.background = 'transparent';
-            e.currentTarget.style.color = 'var(--text-muted)';
-          }}
-          title="Maak alle kaarten en teksten op tafel leeg"
-        >
-          <RotateCcw size={16} />
-          <span>Tafel Leegmaken</span>
-        </button>
+          {/* Floating Submenu Dropdown */}
+          {showMenu && (
+            <div 
+              style={{
+                position: 'absolute',
+                top: 'calc(100% + 8px)',
+                left: '0',
+                background: 'var(--bg-color)',
+                border: '1px solid var(--border-color)',
+                borderRadius: '16px',
+                boxShadow: '0 12px 30px rgba(0,0,0,0.18)',
+                padding: '6px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '4px',
+                minWidth: '180px',
+                zIndex: 9999
+              }}
+            >
+              <button
+                onClick={() => { setShowMenu(false); onPrint(); }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  padding: '10px 14px',
+                  borderRadius: '10px',
+                  border: 'none',
+                  background: 'transparent',
+                  color: 'var(--text-main)',
+                  fontSize: '0.88rem',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  textAlign: 'left',
+                  width: '100%',
+                  transition: 'background 0.15s ease'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.background = 'rgba(59, 130, 246, 0.08)'}
+                onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}
+              >
+                <Printer size={16} color="#3b82f6" />
+                <span>Tafel Printen</span>
+              </button>
+
+              <button
+                onClick={() => { setShowMenu(false); onClear(); }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  padding: '10px 14px',
+                  borderRadius: '10px',
+                  border: 'none',
+                  background: 'transparent',
+                  color: '#ef4444',
+                  fontSize: '0.88rem',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  textAlign: 'left',
+                  width: '100%',
+                  transition: 'background 0.15s ease'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.background = 'rgba(239, 68, 68, 0.08)'}
+                onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}
+              >
+                <RotateCcw size={16} color="#ef4444" />
+                <span>Tafel Leegmaken</span>
+              </button>
+            </div>
+          )}
+        </div>
 
         {/* Scheidingslijn */}
         <div style={{ width: '1px', background: 'var(--border-color)', margin: '0 4px', alignSelf: 'stretch' }} />
