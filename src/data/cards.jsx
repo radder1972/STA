@@ -149,6 +149,23 @@ export const getCardTypeLetter = (type) => {
   return '';
 };
 
+export const getCardTypeLabel = (type, title = '') => {
+  if (type === 'schema') return "Schema";
+  if (type === 'basisbehoefte' || type === 'need') return "Basisbehoefte";
+  if (type === 'modicategorie') return "Categorie";
+  if (type === 'mode') {
+    const t = (title || '').toLowerCase();
+    if (t.includes('kind')) {
+      if (t.includes('blije kind')) return "Functionele Modus";
+      return "Kindmodus";
+    }
+    if (t.includes('ouder')) return "Oudermodus";
+    if (t.includes('volwassene')) return "Functionele Modus";
+    return "Copingmodus";
+  }
+  return '';
+};
+
 export const formatCardTitle = (title) => {
   if (!title) return title;
   

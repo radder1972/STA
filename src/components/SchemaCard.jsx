@@ -251,11 +251,20 @@ export const getCardTypeLetter = (type) => {
   return '';
 };
 
-export const getCardTypeLabel = (type) => {
+export const getCardTypeLabel = (type, title = '') => {
   if (type === 'schema') return "Schema";
-  if (type === 'mode') return "Modus";
   if (type === 'basisbehoefte' || type === 'need') return "Basisbehoefte";
   if (type === 'modicategorie') return "Categorie";
+  if (type === 'mode') {
+    const t = (title || '').toLowerCase();
+    if (t.includes('kind')) {
+      if (t.includes('blije kind')) return "Functionele Modus";
+      return "Kindmodus";
+    }
+    if (t.includes('ouder')) return "Oudermodus";
+    if (t.includes('volwassene')) return "Functionele Modus";
+    return "Copingmodus";
+  }
   return '';
 };
 
@@ -380,7 +389,7 @@ const SchemaCard = ({
               {type && getCardTypeLetter(type) && (
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10, marginTop: src ? `${(7 / 58) * widthNum}px` : `${(11 / 58) * widthNum}px` }}>
                   <span style={{ fontSize: src ? `${14 * scaleRatio}px` : `${18 * scaleRatio}px`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: src ? `${(9 / 58) * widthNum}px` : `${(12 / 58) * widthNum}px`, height: src ? `${(9 / 58) * widthNum}px` : `${(12 / 58) * widthNum}px`, borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: `${(1.5 / 58) * widthNum}px`, boxSizing: 'border-box' }}>{getCardTypeLetter(type)}</span>
-                  <span style={{ fontSize: src ? `${11 * scaleRatio}px` : `${13 * scaleRatio}px`, marginTop: `${(1 / 58) * widthNum}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black', fontWeight: 'bold' }}>{getCardTypeLabel(type)}</span>
+                  <span style={{ fontSize: src ? `${11 * scaleRatio}px` : `${13 * scaleRatio}px`, marginTop: `${(1 / 58) * widthNum}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black', fontWeight: 'bold' }}>{getCardTypeLabel(type, title)}</span>
                 </div>
               )}
 
