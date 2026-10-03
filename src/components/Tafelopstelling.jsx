@@ -141,7 +141,7 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false, labelPos
             zoomOnClick={false}
           />
           {onRemove && (
-             <button onClick={onRemove} className="no-print btn-remove-card" title="Kaart verwijderen van tafel" style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 60, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, padding: 0, boxShadow: '0 4px 10px rgba(239,68,68,0.4)' }}>&times;</button>
+             <button onClick={onRemove} className="no-print btn-remove-card" title="Kaart verwijderen van tafel" style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, padding: 0, boxShadow: '0 4px 10px rgba(239,68,68,0.4)' }}>&times;</button>
           )}
         </div>
       ) : (
@@ -827,6 +827,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                       height="228px"
                       imageStyle={card.style}
                       flipOnClick={false}
+                      flipOnHover={true}
                       zoomOnClick={false}
                       onClick={() => handleSelectCard(card)}
                       className="picker-card"
@@ -862,6 +863,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                             height="228px"
                             imageStyle={card.style}
                             flipOnClick={false}
+                            flipOnHover={true}
                             zoomOnClick={false}
                             onClick={() => handleSelectCard(card)}
                             className="picker-card"
