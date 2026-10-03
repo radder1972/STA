@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { CardInnerBorder } from '../utils/colors';
+import { PlayingCardsIcon } from './Icons';
 
 export const formatCardTitle = (title) => {
   if (!title) return title;
@@ -728,8 +729,24 @@ const SchemaCard = ({
                   zoomOnClick={false}
                 />
 
-                <div style={{ color: 'white', fontSize: '0.88rem', fontWeight: '500', opacity: 0.95, textAlign: 'center', background: 'rgba(0,0,0,0.7)', padding: '6px 16px', borderRadius: '20px', boxShadow: '0 4px 10px rgba(0,0,0,0.3)', whiteSpace: 'nowrap' }}>
-                  🔄 Tik op de kaart om hem om te draaien voor theorie
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  color: 'white',
+                  fontSize: '0.82rem',
+                  fontWeight: '600',
+                  background: 'rgba(15, 23, 42, 0.75)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  padding: '5px 14px',
+                  borderRadius: '9999px',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+                  backdropFilter: 'blur(6px)',
+                  WebkitBackdropFilter: 'blur(6px)',
+                  whiteSpace: 'nowrap'
+                }}>
+                  <PlayingCardsIcon size={15} color="white" />
+                  <span>Tik op kaart om hem om te draaien</span>
                 </div>
               </div>
             );
