@@ -1144,7 +1144,9 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                       {/* Modi Hypotheses */}
                       {differentialHypotheses.modes && differentialHypotheses.modes.length > 0 && (
                         <div style={{ marginBottom: '1.25rem' }}>
-                          <strong style={{ display: 'block', color: 'var(--text-main)', fontSize: '0.95rem', marginBottom: '0.5rem' }}>🎭 Modi Hypotheses:</strong>
+                          <strong style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-main)', fontSize: '0.95rem', marginBottom: '0.5rem' }}>
+                            <CardsIcon size={18} color="#059669" /> Modi Hypotheses:
+                          </strong>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                             {differentialHypotheses.modes.map((h, i) => {
                               const found = modeCards.find(c => c.title === h.title);
@@ -1153,8 +1155,8 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                                   <div style={{ flex: 1, minWidth: '220px' }}>
                                     <span style={{ fontWeight: '700', color: 'var(--text-main)' }}>{i + 1}. {h.title}</span>
                                     <span style={{ marginLeft: '8px', padding: '2px 8px', borderRadius: '9999px', background: 'rgba(16, 185, 129, 0.15)', color: '#059669', fontWeight: '700', fontSize: '0.78rem' }}>{h.match}% Match</span>
-                                    <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: '1.4' }}>
-                                      💡 <em>Reden: {h.reason}</em>
+                                    <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: '1.4', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                      <LightbulbIcon size={14} color="#059669" /> <em>Reden: {h.reason}</em>
                                     </div>
                                   </div>
                                   {found && (
@@ -1177,7 +1179,9 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                       {/* Schema Hypotheses */}
                       {differentialHypotheses.schemas && differentialHypotheses.schemas.length > 0 && (
                         <div>
-                          <strong style={{ display: 'block', color: 'var(--text-main)', fontSize: '0.95rem', marginBottom: '0.5rem' }}>📐 Schema Hypotheses:</strong>
+                          <strong style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-main)', fontSize: '0.95rem', marginBottom: '0.5rem' }}>
+                            <PlayingCardsIcon size={18} color="#2563eb" /> Schema Hypotheses:
+                          </strong>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                             {differentialHypotheses.schemas.map((h, i) => {
                               const found = schemaCards.find(c => c.title === h.title);
@@ -1186,8 +1190,8 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                                   <div style={{ flex: 1, minWidth: '220px' }}>
                                     <span style={{ fontWeight: '700', color: 'var(--text-main)' }}>{i + 1}. {h.title}</span>
                                     <span style={{ marginLeft: '8px', padding: '2px 8px', borderRadius: '9999px', background: 'rgba(59, 130, 246, 0.15)', color: '#2563eb', fontWeight: '700', fontSize: '0.78rem' }}>{h.match}% Match</span>
-                                    <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: '1.4' }}>
-                                      💡 <em>Reden: {h.reason}</em>
+                                    <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: '1.4', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                      <LightbulbIcon size={14} color="#2563eb" /> <em>Reden: {h.reason}</em>
                                     </div>
                                   </div>
                                   {found && (
