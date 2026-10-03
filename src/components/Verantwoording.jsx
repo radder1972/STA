@@ -47,27 +47,18 @@ const listStyle = {
   color: 'var(--text-main)'
 };
 
-export default function Verantwoording({ onBack }) {
-  return (
-    <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
+// embedded: toont alleen de inhoud (voor gebruik binnen een tab van een andere pagina)
+// showBack: toont de Terug-knop (alleen standalone)
+export default function Verantwoording({ onBack, embedded = false, showBack = true }) {
+  const sectionProps = embedded
+    ? { style: { ...sectionStyle, maxWidth: 'none', margin: '0 0 2rem 0', padding: '0 0 2rem 0', borderRadius: 0, borderBottom: '1px solid #e2e8f0' }, className: 'verantwoording-section' }
+    : { className: 'glass-panel', style: sectionStyle };
 
-      <div className="no-print" style={{ width: '100%', maxWidth: '900px', margin: '0 auto 1.5rem auto' }}>
-        <button className="btn btn-outline" onClick={onBack} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          <ArrowLeftIcon size={18} /> Terug
-        </button>
-      </div>
-
-      <div style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 2.5rem auto' }}>
-        <h1 className="text-gradient-hub" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px' }}>
-          <InfoIcon size={40} /> Verantwoording
-        </h1>
-        <p style={{ color: 'var(--text-muted)', margin: 0, fontSize: '1.1rem', lineHeight: '1.5' }}>
-          Voorbehouden, werkwijze en privacyverklaring van de Schematherapie Suite
-        </p>
-      </div>
+  const body = (
+    <>
 
       {/* 1. Doel en reikwijdte */}
-      <div className="glass-panel" style={sectionStyle}>
+      <div {...sectionProps}>
         <h2 style={h2Style}>Doel en reikwijdte</h2>
         <p style={pStyle}>
           De Schematherapie Suite bestaat uit drie onderdelen: <strong>Vragenlijsten</strong> (YSQ-S3 en SMI), <strong>Kaarten</strong> (theoriekaarten en werkvormen) en de <strong>Tafelopstelling</strong> (met AI-ondersteuning). Ze zijn bedoeld als hulpmiddel voor psycho-educatie, reflectie, opleiding en ter ondersteuning van het gesprek tussen behandelaar en cliënt.
@@ -78,7 +69,7 @@ export default function Verantwoording({ onBack }) {
       </div>
 
       {/* 2. Voorbehouden */}
-      <div className="glass-panel" style={sectionStyle}>
+      <div {...sectionProps}>
         <h2 style={h2Style}>Voorbehouden</h2>
         <ul style={listStyle}>
           <li><strong>Geen diagnose of behandeling.</strong> Scores, rapportages, kaarten en AI-suggesties zijn ondersteunend en indicatief. Ze zijn geen vervanging voor formele diagnostiek of een gedegen professionele behandeling.</li>
@@ -91,7 +82,7 @@ export default function Verantwoording({ onBack }) {
       </div>
 
       {/* 3. Privacyverklaring */}
-      <div className="glass-panel" style={sectionStyle}>
+      <div {...sectionProps}>
         <h2 style={h2Style}><ShieldIcon size={26} /> Privacyverklaring</h2>
         <p style={pStyle}>
           Hieronder staat per onderdeel welke gegevens er worden verwerkt en waar ze naartoe gaan. In de suite zelf zijn er geen accounts, geen eigen database en geen tracking- of analysetools.
@@ -154,9 +145,35 @@ export default function Verantwoording({ onBack }) {
       </div>
 
       {/* 4. Versie */}
-      <div style={{ width: '100%', maxWidth: '900px', margin: '0 auto 3rem auto', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
+      <div style={{ width: '100%', maxWidth: embedded ? 'none' : '900px', margin: embedded ? 0 : '0 auto 3rem auto', textAlign: 'center', color: embedded ? '#64748b' : 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
         Schematherapie Suite v{packageJson.version} &bull; Laatst bijgewerkt: oktober 2026
       </div>
+    </>
+  );
+
+  if (embedded) return <div className="verantwoording-embedded" style={{ "--text-main": "#334155", "--text-muted": "#64748b", "--primary": "#0284c7" }}>{body}</div>;
+
+  return (
+    <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
+
+      {showBack && (
+        <div className="no-print" style={{ width: '100%', maxWidth: '900px', margin: '0 auto 1.5rem auto' }}>
+          <button className="btn btn-outline" onClick={onBack} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <ArrowLeftIcon size={18} /> Terug
+          </button>
+        </div>
+      )}
+
+      <div style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 2.5rem auto' }}>
+        <h1 className="text-gradient-hub" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px' }}>
+          <InfoIcon size={40} /> Verantwoording
+        </h1>
+        <p style={{ color: 'var(--text-muted)', margin: 0, fontSize: '1.1rem', lineHeight: '1.5' }}>
+          Voorbehouden, werkwijze en privacyverklaring van de Schematherapie Suite
+        </p>
+      </div>
+
+      {body}
     </div>
   );
 }

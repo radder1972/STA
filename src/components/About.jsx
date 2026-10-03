@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { InfoIcon, FileTextIcon } from './Icons';
+import { InfoIcon, FileTextIcon, ShieldIcon } from './Icons';
+import Verantwoording from './Verantwoording';
 
-export default function About({ onBack }) {
-  const [activeTab, setActiveTab] = useState('waarom');
+export default function About({ onBack, initialTab = 'waarom' }) {
+  const [activeTab, setActiveTab] = useState(initialTab);
 
   return (
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
@@ -10,10 +11,10 @@ export default function About({ onBack }) {
       {/* HEADER */}
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <InfoIcon size={40} useGameGradient={true} /> Over de kaartenset
+          <InfoIcon size={40} useGameGradient={true} /> Verantwoording
         </h1>
         <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4', minHeight: '34px' }}>
-          {activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : 'Wie zit er achter deze kaartenset?'}
+          {activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : activeTab === 'maker' ? 'Wie zit er achter deze kaartenset?' : 'Voorbehouden en privacyverklaring van de suite'}
         </h2>
       </div>
 
@@ -33,6 +34,13 @@ export default function About({ onBack }) {
             style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
             <InfoIcon size={18} color={activeTab === 'maker' ? 'white' : '#0ea5e9'} /> Over de maker
+          </button>
+          <button 
+            onClick={() => setActiveTab('verantwoording')}
+            className={activeTab === 'verantwoording' ? "btn btn-gradient-game" : "btn btn-outline"} 
+            style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <ShieldIcon size={18} color={activeTab === 'verantwoording' ? 'white' : '#0ea5e9'} /> Voorbehouden &amp; privacy
           </button>
         </div>
       </div>
@@ -173,9 +181,15 @@ export default function About({ onBack }) {
                 Om volledige transparantie te bieden, zijn de exacte teksten, begrippen en de indeling van alle kaarten openbaar in te zien op deze website. Therapeuten kunnen zo vooraf tot in detail controleren wat het deck bevat en zelf beoordelen of dit aansluit bij hun visie en werkwijze. De keuze om deze kaarten als hulpmiddel in te zetten binnen een sessie valt dan ook onder de eigen professionele verantwoordelijkheid van de behandelend professional. De kaartenset is nadrukkelijk bedoeld als aanvullende, laagdrempelige ondersteuning en is geen vervanging voor formele diagnostiek of een gedegen professionele behandeling.
               </p>
               <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
-                Alle voorbehouden en de privacyverklaring van de hele suite staan op de pagina <a href="#verantwoording" style={{ color: '#1e3a8a', fontWeight: '700' }}>Verantwoording &amp; privacy</a>.
+                Alle voorbehouden en de privacyverklaring van de hele suite staan op het tabblad <a href="#verantwoording" onClick={(e) => { e.preventDefault(); setActiveTab('verantwoording'); window.scrollTo(0, 0); }} style={{ color: '#1e3a8a', fontWeight: '700' }}>Voorbehouden &amp; privacy</a>.
               </p>
             </div>
+          </div>
+        )}
+
+        {activeTab === 'verantwoording' && (
+          <div className="inner-box fade-in" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '3rem' }}>
+            <Verantwoording embedded />
           </div>
         )}
 

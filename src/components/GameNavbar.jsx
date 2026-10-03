@@ -51,7 +51,7 @@ export default function GameNavbar({ currentView, setCurrentView }) {
         }}
       >
         {navItems.map(item => {
-          const isActive = currentView === item.id || (item.id === 'print-shop' && currentView === 'home-print-export');
+          const isActive = currentView === item.id || (item.id === 'print-shop' && currentView === 'home-print-export') || (item.id === 'about' && currentView === 'verantwoording');
           const Icon = item.icon;
           return (
             <button

@@ -1,8 +1,44 @@
 import React from 'react';
-import { PlayingCardsIcon, PlatformBadge, ThreeSparklesLogo } from './Icons';
+import { PlayingCardsIcon, PlatformBadge, ThreeSparklesLogo, InfoIcon } from './Icons';
 import { Printer, RotateCcw } from 'lucide-react';
 
-export default function TafelNavbar({ onPrint, onClear }) {
+const activePill = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.5rem',
+  padding: '0.5rem 1rem',
+  borderRadius: '9999px',
+  border: 'none',
+  background: 'linear-gradient(to right, #059669, #10b981)',
+  color: 'white',
+  fontWeight: '600',
+  fontSize: '0.9rem',
+  whiteSpace: 'nowrap',
+  boxShadow: '0 4px 12px rgba(16, 185, 129, 0.25)'
+};
+
+const idlePill = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.5rem',
+  padding: '0.5rem 1rem',
+  borderRadius: '9999px',
+  border: 'none',
+  background: 'transparent',
+  color: 'var(--text-muted)',
+  fontWeight: '500',
+  cursor: 'pointer',
+  transition: 'all 0.2s ease',
+  whiteSpace: 'nowrap',
+  fontSize: '0.9rem'
+};
+
+const hoverIn = (e) => { e.currentTarget.style.background = 'var(--hover-bg)'; e.currentTarget.style.color = 'var(--text-main)'; };
+const hoverOut = (e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-muted)'; };
+
+// activeView: 'tafel' (standaard) of 'over'
+export default function TafelNavbar({ onPrint, onClear, activeView = 'tafel', onOpenTafel, onOpenAbout }) {
+  const isTafel = activeView === 'tafel';
   return (
     <div className="no-print" style={{
       display: 'flex',
@@ -53,26 +89,20 @@ export default function TafelNavbar({ onPrint, onClear }) {
             alignItems: 'center'
           }}
         >
-          {/* Actief Hoofdmenu Item: Tafelopstelling */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.5rem 1rem',
-              borderRadius: '9999px',
-              background: 'linear-gradient(to right, #059669, #10b981)',
-              color: 'white',
-              fontWeight: '600',
-              fontSize: '0.9rem',
-              whiteSpace: 'nowrap',
-              boxShadow: '0 4px 12px rgba(16, 185, 129, 0.25)'
-            }}
-          >
-            <PlayingCardsIcon size={18} color="white" />
-            <span>Tafelopstelling</span>
-          </div>
+          {/* Hoofdmenu Item: Tafelopstelling */}
+          {isTafel ? (
+            <div style={activePill}>
+              <PlayingCardsIcon size={18} color="white" />
+              <span>Tafelopstelling</span>
+            </div>
+          ) : (
+            <button onClick={onOpenTafel} style={idlePill} onMouseOver={hoverIn} onMouseOut={hoverOut}>
+              <PlayingCardsIcon size={18} color="currentColor" />
+              <span>Tafelopstelling</span>
+            </button>
+          )}
 
+          {isTafel && (<>
           {/* Knop: Tafel Printen */}
           <button
             onClick={onPrint}
@@ -132,6 +162,20 @@ export default function TafelNavbar({ onPrint, onClear }) {
             <RotateCcw size={16} color="currentColor" />
             <span>Leegmaken</span>
           </button>
+          </>)}
+
+          {/* Menu Item: Over (Verantwoording & privacy) */}
+          {isTafel ? (
+            <button onClick={onOpenAbout} style={idlePill} onMouseOver={hoverIn} onMouseOut={hoverOut} title="Over, verantwoording en privacy">
+              <InfoIcon size={18} color="currentColor" />
+              <span>Over</span>
+            </button>
+          ) : (
+            <div style={activePill}>
+              <InfoIcon size={18} color="white" />
+              <span>Over</span>
+            </div>
+          )}
 
         </div>
       </div>

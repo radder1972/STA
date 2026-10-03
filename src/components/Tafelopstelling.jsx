@@ -365,7 +365,7 @@ const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed, show2021 = false 
   );
 };
 
-export default function Tafelopstelling({ onBack, completedTests: initialCompletedTests, embedded = false }) {
+export default function Tafelopstelling({ onBack, completedTests: initialCompletedTests, embedded = false, onOpenAbout }) {
   const [completedTests, setCompletedTests] = useState(initialCompletedTests || {});
   const [situationText, setSituationText] = useState('');
   const [selectedMode, setSelectedMode] = useState(null);
@@ -743,7 +743,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
     <div className={embedded ? "" : "view-container"} style={embedded ? {} : { minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem 2rem 1rem' }}>
       {!embedded && (
         <>
-          <TafelNavbar onPrint={handlePrintTafel} onClear={clearTable} />
+          <TafelNavbar onPrint={handlePrintTafel} onClear={clearTable} onOpenAbout={onOpenAbout} />
 
           <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '950px', margin: '0 auto 3rem auto' }}>
             <h1 className="text-gradient-tafel" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>

@@ -14,6 +14,7 @@ import GamePortal from './components/GamePortal'
 import OrderCards from './components/OrderCards'
 import About from './components/About'
 import Tafelopstelling from './components/Tafelopstelling'
+import TafelNavbar from './components/TafelNavbar'
 import Verantwoording from './components/Verantwoording'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
@@ -304,7 +305,7 @@ function App() {
       )}
 
       {/* Kaarten Navbar: uitsluitend voor de Kaarten pagina's */}
-      {isKaartenApp && ['game-portal', 'kaartenoverzicht', 'game-rules', 'print-shop', 'home-print-export', 'order-cards', 'about'].includes(currentView) && (
+      {isKaartenApp && ['game-portal', 'kaartenoverzicht', 'game-rules', 'print-shop', 'home-print-export', 'order-cards', 'about', 'verantwoording'].includes(currentView) && (
         <GameNavbar currentView={currentView} setCurrentView={setCurrentView} />
       )}
 
@@ -370,6 +371,7 @@ function App() {
           }} 
           completedTests={completedTests} 
           embedded={false} 
+          onOpenAbout={() => setCurrentView('verantwoording')}
         />
       )}
       {currentView === 'game-portal' && (
@@ -390,8 +392,17 @@ function App() {
       {currentView === 'about' && (
         <About onBack={() => setCurrentView('game-portal')} />
       )}
-      {currentView === 'verantwoording' && (
-        <Verantwoording onBack={() => setCurrentView(isHubApp ? 'hub' : isTafelApp ? 'tafelopstelling' : isKaartenApp ? 'game-portal' : 'home')} />
+      {currentView === 'verantwoording' && isKaartenApp && (
+        <About initialTab="verantwoording" onBack={() => setCurrentView('game-portal')} />
+      )}
+      {currentView === 'verantwoording' && isTafelApp && (
+        <div style={{ width: '100%', maxWidth: '950px', margin: '0 auto', padding: '2rem 1rem 0 1rem', boxSizing: 'border-box' }}>
+          <TafelNavbar activeView="over" onOpenTafel={() => setCurrentView('tafelopstelling')} onOpenAbout={() => {}} />
+          <Verantwoording showBack={false} />
+        </div>
+      )}
+      {currentView === 'verantwoording' && !isKaartenApp && !isTafelApp && (
+        <Verantwoording onBack={() => setCurrentView(isHubApp ? 'hub' : 'home')} />
       )}
       {currentView !== 'questionnaire' && currentView !== 'hub' && (
         <div className="no-print" style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
