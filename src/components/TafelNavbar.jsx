@@ -90,16 +90,14 @@ export default function TafelNavbar({ onPrint, onClear }) {
               fontSize: '0.9rem'
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.background = 'rgba(59, 130, 246, 0.08)';
-              e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+              e.currentTarget.style.background = 'var(--hover-bg)';
             }}
             onMouseOut={(e) => {
               e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.borderColor = 'var(--border-color)';
             }}
             title="Tafelopstelling afdrukken / als PDF opslaan"
           >
-            <Printer size={16} color="#3b82f6" />
+            <Printer size={16} color="currentColor" />
             <span>Printen</span>
           </button>
 
@@ -114,7 +112,7 @@ export default function TafelNavbar({ onPrint, onClear }) {
               borderRadius: '9999px',
               border: '1px solid var(--border-color)',
               background: 'transparent',
-              color: '#ef4444',
+              color: 'var(--text-main)',
               fontWeight: '500',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
@@ -122,16 +120,14 @@ export default function TafelNavbar({ onPrint, onClear }) {
               fontSize: '0.9rem'
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.background = 'rgba(239, 68, 68, 0.08)';
-              e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+              e.currentTarget.style.background = 'var(--hover-bg)';
             }}
             onMouseOut={(e) => {
               e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.borderColor = 'var(--border-color)';
             }}
             title="Alle kaarten en teksten op tafel wissen"
           >
-            <RotateCcw size={16} color="#ef4444" />
+            <RotateCcw size={16} color="currentColor" />
             <span>Leegmaken</span>
           </button>
 
