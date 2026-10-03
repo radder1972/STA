@@ -10,10 +10,26 @@ export default function TafelNavbar({ onPrint, onClear }) {
       alignItems: 'center',
       width: '100%',
       maxWidth: '950px',
-      margin: '0 auto 2rem auto'
+      margin: '0 auto 2rem auto',
+      position: 'relative'
     }}>
+      {/* Groot 3-sterren logo achter DSP badge & half onder de menubalk */}
+      <div style={{
+        position: 'absolute',
+        top: '-16px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 0,
+        pointerEvents: 'none',
+        opacity: 0.25
+      }}>
+        <ThreeSparklesLogo size={90} theme="tafel" />
+      </div>
+
       {/* Top Platform Return Badge */}
-      <PlatformBadge theme="tafel" marginBottom="0.85rem" />
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        <PlatformBadge theme="tafel" marginBottom="0.85rem" />
+      </div>
 
       <div style={{
         background: 'var(--bg-color)',
@@ -24,7 +40,8 @@ export default function TafelNavbar({ onPrint, onClear }) {
         boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)',
         borderRadius: '16px',
         width: '100%',
-        position: 'relative'
+        position: 'relative',
+        zIndex: 1
       }}>
         {/* Draped 3 Sparkles Logo on Right Side of Navbar */}
         <div style={{
