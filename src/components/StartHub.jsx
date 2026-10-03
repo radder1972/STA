@@ -536,9 +536,9 @@ export default function StartHub() {
             <BrainIcon size={24} />
           </div>
           <div>
-            <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.05rem' }}>Gevalideerde Theorie & VSt 2021</h4>
+            <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.05rem' }}>Theoretische basis & VSt 2021</h4>
             <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-              Gebaseerd op het klassieke schematherapie model van Jeffrey Young en de officiële VSt 2021 herziening (Arntz et al., 2021: 21 schema's, 20 modi, 7 basisbehoeften).
+              Gebaseerd op het klassieke schematherapiemodel van Jeffrey Young, met de uitbreiding uit het position paper van Arntz et al. (2021): 21 schema's, 20 modi en 7 basisbehoeften. Een eigen uitwerking, geen officiële uitgave.
             </p>
           </div>
         </div>

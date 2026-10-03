@@ -18,7 +18,7 @@ export default function AiAnalysis({ ysqData, smiData }) {
 Schema's (YSQ): ${allYsq}
 Modi (SMI): ${allSmi}
 
-Schrijf een korte, heldere analyse (maximaal 3 alinea's) over de waarschijnlijke wisselwerking tussen de hoogst scorende schema's en modi. Hoe triggeren deze kernschema's het specifieke coping/modus gedrag dat we bovenaan zien? Gebruik begrijpelijke, professionele taal in het Nederlands. Formatteer de tekst in simpele alinea's (gebruik eventueel dikgedrukt voor namen van schema's/modi). Geef GEEN disclaimers over dat je een AI bent, spreek direct als de expert.`;
+Schrijf een korte, heldere analyse (maximaal 3 alinea's) over de waarschijnlijke wisselwerking tussen de hoogst scorende schema's en modi. Hoe triggeren deze kernschema's het specifieke coping/modus gedrag dat we bovenaan zien? Gebruik begrijpelijke, professionele taal in het Nederlands. Formatteer de tekst in simpele alinea's (gebruik eventueel dikgedrukt voor namen van schema's/modi). Formuleer voorzichtig en als hypothese (bijvoorbeeld 'lijkt', 'kan wijzen op') en trek geen diagnostische conclusies.`;
   };
 
   const generateAnalysis = async () => {
@@ -113,10 +113,16 @@ Schrijf een korte, heldere analyse (maximaal 3 alinea's) over de waarschijnlijke
 
       {analysisResult && (
         <div className="ai-result-box" style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.02)', border: '1px solid var(--border-color)', borderRadius: '12px' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginBottom: '1rem', padding: '4px 12px', borderRadius: '9999px', background: 'rgba(14, 165, 233, 0.1)', color: '#0369a1', fontSize: '0.8rem', fontWeight: '700', letterSpacing: '0.02em' }}>
+            <CpuChipIcon size={14} color="#0369a1" /> Gegenereerd door AI (Google Gemini)
+          </div>
           <h3 style={{ marginBottom: '1.5rem', marginTop: 0, fontSize: '1.2rem' }}>Interpretatie</h3>
           <div className="ai-content">
             {renderFormattedText(analysisResult)}
           </div>
+          <p style={{ margin: '1.25rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5', fontStyle: 'italic' }}>
+            Deze tekst is door AI gegenereerd en indicatief. Het kan fouten bevatten en is geen diagnose. De behandelaar beoordeelt en beslist.
+          </p>
         </div>
       )}
 
