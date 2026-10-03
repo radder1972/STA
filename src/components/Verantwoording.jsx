@@ -3,7 +3,7 @@ import { ArrowLeftIcon, ShieldIcon, InfoIcon } from './Icons';
 import packageJson from '../../package.json';
 
 // Vul hier het contactadres in om het contactblok onderaan de pagina te tonen.
-const CONTACT_EMAIL = '';
+const CONTACT_EMAIL = 'matthias.radder@gmail.com';
 
 const sectionStyle = {
   width: '100%',
