@@ -167,10 +167,10 @@ export default function Verantwoording({ onBack, embedded = false, showBack = tr
 
         <h3 style={h3Style}>Gebruik met cliëntgegevens</h3>
         <ul style={listStyle}>
-          <li>Voer in de vrije tekst <strong>geen herleidbare gegevens</strong> in, zoals namen, geboortedatums, adressen of werkgevers. Anonimiseer de casus.</li>
-          <li>De suite is niet bedoeld voor het verwerken van identificeerbare gezondheidsgegevens. Voor het gebruik van de AI-functies is geen verwerkersovereenkomst met u of uw praktijk gesloten. De suite biedt dus geen juridische dekking voor het verwerken van herleidbare gegevens over iemands gezondheid.</li>
-          <li>Gegevens over psychische gezondheid zijn bijzondere persoonsgegevens (artikel 9 AVG) en vragen extra zorg. Een scoreprofiel zonder naam lijkt anoniem, maar kan in combinatie met andere gegevens toch herleidbaar zijn.</li>
-          <li>Als professional blijft u zelf verantwoordelijk voor een zorgvuldige omgang met cliëntgegevens, en voor het informeren van uw cliënt.</li>
+          <li>Voer in de vrije tekst <strong>geen herleidbare gegevens</strong> in, zoals namen, geboortedatums, adressen of werkgevers. Anonimiseer de casus altijd.</li>
+          <li>De suite is niet bedoeld voor het verwerken van identificeerbare gezondheidsgegevens. Voor het gebruik van de AI-functies is geen verwerkersovereenkomst met u of uw praktijk gesloten. De suite biedt dus geen juridische dekking voor het verwerken van herleidbare patiëntgegevens.</li>
+          <li><strong>Artikel 9 AVG (Bijzondere persoonsgegevens):</strong> Gegevens over psychische gezondheid vallen onder de strengste Europese privacyregels. Een testuitslag of scoreprofiel zonder naam lijkt anoniem, maar kan in combinatie met een unieke casusbeschrijving toch herleidbaar zijn naar een individu. <br/><br/><strong>Hoe wij dit ondervangen hebben:</strong> Wij hebben deze suite fundamenteel gebouwd op een <em>'local-first' en serverless</em> architectuur. Dit betekent dat er geen centrale database is, geen inlogsysteem en geen tracking cookies. Al uw invoer (situaties, testuitslagen) leeft uitsluitend in het tijdelijke werkgeheugen van uw eigen browser. Zodra u het venster sluit of de pagina herlaadt, is de data onherroepelijk verdwenen. De ontwerpregel is simpel: wat we niet verzamelen, kan ook niet lekken. De enige data die uw apparaat verlaat, is datgene wat u zélf via de optionele AI-knoppen ter analyse naar Google stuurt.</li>
+          <li>Als professional blijft u te allen tijde zelf verantwoordelijk voor de anonimisering van uw invoer en het informeren van uw cliënt.</li>
         </ul>
 
         <h3 style={h3Style}>Uw rechten</h3>
