@@ -399,6 +399,8 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
   });
   const [use2021Extension, setUse2021Extension] = useState(false);
   const fileInputRef = useRef(null);
+  const hypothesesRef = useRef(null);
+  const analysisRef = useRef(null);
 
   const handleCsvUpload = (e) => {
     const file = e.target.files[0];
@@ -601,6 +603,11 @@ Geef je antwoord ALLEEN als een geldig JSON object in dit exacte formaat, zonder
       generateGvAdvice(foundMode, foundSchema, foundNeed);
       generateDeepAnalysis(foundMode, foundSchema, foundNeed);
 
+      // Smooth scroll to generated hypotheses
+      setTimeout(() => {
+        hypothesesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+
     } catch (err) {
       console.error(err);
       alert("Fout bij het genereren van hypotheses: " + (err.message || 'Onbekende fout'));
@@ -674,6 +681,9 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
       const result = await model.generateContent(prompt);
       const text = await result.response.text();
       setAnalysisText(text.trim());
+      setTimeout(() => {
+        analysisRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
     } catch (err) {
       console.error(err);
       alert("Fout bij het genereren: " + (err.message || 'Onbekende fout'));
@@ -1162,7 +1172,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
 
                   {/* Pijlers 1 & 2: Differentiële Hypotheses & Explainable AI (XAI) Panel */}
                   {differentialHypotheses && (
-                    <div style={{ marginTop: '2rem', width: '100%', maxWidth: '780px', background: 'var(--card-bg)', padding: '1.5rem', borderRadius: '20px', border: '1px solid var(--border-color)', textAlign: 'left' }}>
+                    <div ref={hypothesesRef} style={{ marginTop: '2rem', width: '100%', maxWidth: '780px', background: 'var(--card-bg)', padding: '1.5rem', borderRadius: '20px', border: '1px solid var(--border-color)', textAlign: 'left' }}>
                       <h4 style={{ margin: '0 0 1rem 0', color: 'var(--text-main)', fontSize: '1.15rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <SparklesIcon size={20} useTafelGradient={true} /> Differentiële Hypotheses & Klinische Logica (XAI)
                       </h4>
@@ -1402,6 +1412,28 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                 <p style={{ fontSize: '1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '1rem', lineHeight: '1.6' }}>
                   De Gezonde Volwassene stelt grenzen aan disfunctionele modus-reacties en biedt zorg voor de onvervulde basisbehoefte van de cliënt. Formuleer hier de versterkende GV-respons of psycho-educatieve interventie.
                 </p>
+
+                {/* GV-Prompt Hulpvak */}
+                <div style={{
+                  background: 'rgba(16, 185, 129, 0.05)',
+                  border: '1px solid rgba(16, 185, 129, 0.25)',
+                  borderRadius: '14px',
+                  padding: '0.85rem 1.1rem',
+                  marginBottom: '1rem',
+                  width: '100%',
+                  textAlign: 'left',
+                  fontSize: '0.86rem',
+                  lineHeight: '1.5',
+                  color: 'var(--text-main)',
+                  boxSizing: 'border-box'
+                }}>
+                  <strong style={{ color: '#059669', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px', fontSize: '0.9rem' }}>
+                    💡 GV-Respons Hulpvak (Klinische Driedeling):
+                  </strong>
+                  <strong>1. Valideer:</strong> Erken de pijn/emotie van het Kind (<em>"Ik zie dat je gekwetst en alleen gelaten bent..."</em>).<br/>
+                  <strong>2. Begrens:</strong> Stel grenzen aan Coping/Ouder-modi (<em>"Maar we laten de Beschermer nu niet overnemen..."</em>).<br/>
+                  <strong>3. Bied Zorg:</strong> Richt de focus op gezonde behoeften (<em>"We gaan dit op een gezonde manier samen aan."</em>).
+                </div>
                 <textarea 
                   className="no-print"
                   placeholder="" 
@@ -1472,7 +1504,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
 
         {/* Diepgaande Analyse Weergave (Print/View) */}
         {(analysisText || isGeneratingAnalysis) && (
-          <div className="glass-panel" style={{ padding: '2.5rem 2.5rem', borderRadius: '24px', maxWidth: '950px', width: '100%', margin: '2rem auto 0 auto', boxSizing: 'border-box' }}>
+          <div ref={analysisRef} className="glass-panel" style={{ padding: '2.5rem 2.5rem', borderRadius: '24px', maxWidth: '950px', width: '100%', margin: '2rem auto 0 auto', boxSizing: 'border-box' }}>
             <div className="inner-box" style={{ margin: 0, width: '100%' }}>
               <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <WandIcon size={24} useTafelGradient={true} /> Klinische Casusconceptualisatie & Analyse
