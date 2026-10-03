@@ -251,10 +251,43 @@ export const SparklesIcon = (props) => (
   </IconBase>
 );
 
-export const PlatformBadge = ({ isCurrent = false, marginBottom = '1rem' }) => {
+export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom = '0.85rem' }) => {
+  const themeStyles = {
+    tafel: {
+      color: '#059669',
+      bg: 'rgba(5, 150, 105, 0.08)',
+      border: 'rgba(5, 150, 105, 0.25)',
+      hoverBg: 'rgba(5, 150, 105, 0.16)',
+      hoverShadow: 'rgba(5, 150, 105, 0.18)'
+    },
+    kaarten: {
+      color: '#2563eb',
+      bg: 'rgba(37, 99, 235, 0.08)',
+      border: 'rgba(37, 99, 235, 0.25)',
+      hoverBg: 'rgba(37, 99, 235, 0.16)',
+      hoverShadow: 'rgba(37, 99, 235, 0.18)'
+    },
+    test: {
+      color: '#475569',
+      bg: 'rgba(71, 85, 105, 0.08)',
+      border: 'rgba(71, 85, 105, 0.25)',
+      hoverBg: 'rgba(71, 85, 105, 0.16)',
+      hoverShadow: 'rgba(71, 85, 105, 0.18)'
+    },
+    hub: {
+      color: '#0284c7',
+      bg: 'rgba(2, 132, 199, 0.08)',
+      border: 'rgba(2, 132, 199, 0.25)',
+      hoverBg: 'rgba(2, 132, 199, 0.16)',
+      hoverShadow: 'rgba(2, 132, 199, 0.18)'
+    }
+  };
+
+  const currentTheme = themeStyles[theme] || themeStyles.hub;
+
   const content = (
     <>
-      <SparklesIcon size={16} color="#3b82f6" />
+      <SparklesIcon size={16} color={currentTheme.color} />
       <span>Digitaal Schematherapie Platform</span>
     </>
   );
@@ -262,18 +295,22 @@ export const PlatformBadge = ({ isCurrent = false, marginBottom = '1rem' }) => {
   const badgeStyle = {
     display: 'inline-flex',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: '8px',
-    padding: '6px 16px',
+    height: '34px',
+    padding: '0 16px',
     borderRadius: '9999px',
-    background: 'rgba(59, 130, 246, 0.08)',
-    border: '1px solid rgba(59, 130, 246, 0.25)',
-    color: '#3b82f6',
+    background: currentTheme.bg,
+    border: `1px solid ${currentTheme.border}`,
+    color: currentTheme.color,
     fontSize: '0.88rem',
     fontWeight: '600',
+    lineHeight: '1',
+    boxSizing: 'border-box',
     textDecoration: 'none',
     transition: 'all 0.2s ease',
     marginBottom: marginBottom,
-    boxShadow: '0 2px 8px rgba(59, 130, 246, 0.06)'
+    boxShadow: `0 2px 8px ${currentTheme.border}`
   };
 
   if (isCurrent) {
@@ -289,14 +326,14 @@ export const PlatformBadge = ({ isCurrent = false, marginBottom = '1rem' }) => {
       href="index.html"
       style={badgeStyle}
       onMouseOver={(e) => {
-        e.currentTarget.style.background = 'rgba(59, 130, 246, 0.16)';
+        e.currentTarget.style.background = currentTheme.hoverBg;
         e.currentTarget.style.transform = 'translateY(-1px)';
-        e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.15)';
+        e.currentTarget.style.boxShadow = `0 4px 12px ${currentTheme.hoverShadow}`;
       }}
       onMouseOut={(e) => {
-        e.currentTarget.style.background = 'rgba(59, 130, 246, 0.08)';
+        e.currentTarget.style.background = currentTheme.bg;
         e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 2px 8px rgba(59, 130, 246, 0.06)';
+        e.currentTarget.style.boxShadow = `0 2px 8px ${currentTheme.border}`;
       }}
       title="Terug naar het centrale Digitaal Schematherapie Platform"
     >

@@ -25,7 +25,7 @@ export default function GameNavbar({ currentView, setCurrentView }) {
       margin: '0 auto 1.5rem auto'
     }}>
       {/* Top Platform Return Badge */}
-      <PlatformBadge marginBottom="0.85rem" />
+      <PlatformBadge theme="kaarten" marginBottom="0.85rem" />
 
       <div style={{
         background: 'var(--bg-color)',

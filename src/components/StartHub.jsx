@@ -18,7 +18,7 @@ export default function StartHub() {
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '3rem 1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
       
       {/* Top Badge */}
-      <PlatformBadge isCurrent={true} marginBottom="1.5rem" />
+      <PlatformBadge isCurrent={true} theme="hub" marginBottom="0.85rem" />
 
       {/* Main Title & Subtitle */}
       <div style={{ textAlign: 'center', marginBottom: '3.5rem', maxWidth: '850px' }}>

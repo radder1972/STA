@@ -26,7 +26,7 @@ export default function TafelNavbar({ onPrint, onClear }) {
       margin: '0 auto 2rem auto'
     }}>
       {/* Top Platform Return Badge */}
-      <PlatformBadge marginBottom="0.85rem" />
+      <PlatformBadge theme="tafel" marginBottom="0.85rem" />
 
       <div style={{
         background: 'var(--bg-color)',

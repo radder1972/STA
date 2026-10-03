@@ -224,11 +224,12 @@ const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed }) => {
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'flex-end', 
-        padding: '3.25rem 1rem 1.75rem 1rem', 
-        minHeight: '230px', 
+        padding: '4.75rem 1rem 1.75rem 1rem', 
+        minHeight: '240px', 
         width: '100%',
         position: 'relative',
-        overflow: 'visible'
+        overflow: 'visible',
+        marginTop: '0.5rem'
       }}>
         {cards.map((card, index) => {
           const rotation = angles[index] || 0;
