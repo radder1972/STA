@@ -615,13 +615,13 @@ Geef je antwoord ALLEEN als een geldig JSON object in dit exacte formaat, zonder
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
       
-      const prompt = `Je bent een expert in schematherapie. Een cliënt heeft een tafelopstelling gemaakt:
-Situatie: "${situationText}"
-Zijn/haar reactie (Modus): ${m.title}
-Geraakte Schema: ${s.title}
+      const prompt = `Je bent een klinisch expert in schematherapie en ondersteunt een behandelaar. Op basis van de casus van de cliënt is de volgende opstelling gevormd:
+Situatie/trigger van cliënt: "${situationText}"
+Geactiveerde Modus van cliënt: ${m.title}
+Geraakt Schema: ${s.title}
 Onvervulde Basisbehoefte: ${n.title}
 
-Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde kant nu tegen het gekwetste kind of de strenge ouder zou moeten zeggen. Wees validerend voor de pijn (schema/behoefte), maar grensstellend voor destructief gedrag (modus). Schrijf in de ik-vorm of jij-vorm richting het kind/de modus. Maximaal 2 of 3 korte, krachtige zinnen. Geen uitleg eromheen, alleen de letterlijke tekst die de GV zegt.`;
+Formuleer een krachtige, validerende en grensstellende respons vanuit de Gezonde Volwassene ten behoeve van het behandelplan van de cliënt. De Gezonde Volwassene valideert de pijn van het gekwetste kind/de onvervulde basisbehoefte, maar stelt heldere grenzen aan de disfunctionele modus. Schrijf 2 of 3 krachtige zinnen die de behandelaar met de cliënt kan oefenen. Geen inleiding of extra toelichting, alleen de respons zelf.`;
 
       const result = await model.generateContent(prompt);
       const text = await result.response.text();
@@ -650,13 +650,14 @@ Schrijf vanuit de rol van de 'Gezonde Volwassene' precies op wat deze gezonde ka
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
       
-      const prompt = `Je bent een expert in schematherapie. Een cliënt heeft een tafelopstelling gemaakt:
-Situatie: "${situationText}"
-Zijn/haar reactie (Modus): ${m.title}
-Geraakte Schema: ${s.title}
+      const prompt = `Je bent een klinisch expert in schematherapie en fungeert als beslissingsondersteunende assistent voor de behandelaar.
+Casuïstiek cliënt:
+Trigger-situatie: "${situationText}"
+Geactiveerde Modus: ${m.title}
+Geraakt Schema: ${s.title}
 Onvervulde Basisbehoefte: ${n.title}
 
-Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten werkt. Leg uit waarom deze specifieke trigger, via deze onvervulde behoefte en dit geraakte schema, leidt tot deze specifieke modus. Geef 2 concrete tips voor de cliënt om hier in de toekomst bewuster mee om te gaan. Richt je direct tot de cliënt op een steunende toon (gebruik 'je'). Gebruik maximaal 3 alinea's en maak het concreet. BELANGRIJK: Gebruik uitsluitend platte tekst. Gebruik GEEN markdown (zoals ** of *) om woorden te accentueren.`;
+Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg objectief uit hoe de trigger via de onvervulde basisbehoefte en het geraakte schema de specifieke modus activeert. Formuleer 2 concrete behandelhandvatten/interventies voor de therapeut om de Gezonde Volwassene van de cliënt te versterken. Gebruik maximaal 3 alinea's. BELANGRIJK: Gebruik uitsluitend platte tekst. Gebruik GEEN markdown (zoals ** of *) om woorden te accentueren.`;
 
       const result = await model.generateContent(prompt);
       const text = await result.response.text();
@@ -716,7 +717,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               <PlayingCardsIcon size={40} useTafelGradient={true} /> Digitale Tafelopstelling
             </h1>
             <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>
-              Breng schema's, modi en behoeften interactief tot leven op tafel
+              Klinisch instrument voor beslissingsondersteuning, modus-casusconceptualisatie en behandelinterventies
             </h2>
           </div>
         </>
@@ -728,8 +729,8 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
       </div>
 
       <div className="no-print" style={{ marginBottom: '2rem', textAlign: 'center', width: '100%', maxWidth: '950px' }}>
-        <p style={{ color: 'var(--text-main)', maxWidth: '700px', margin: '0 auto 1.5rem auto', lineHeight: '1.6', fontSize: '1.05rem' }}>
-          De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen.
+        <p style={{ color: 'var(--text-main)', maxWidth: '750px', margin: '0 auto 1.5rem auto', lineHeight: '1.6', fontSize: '1.05rem' }}>
+          De digitale tafelopstelling ondersteunt de behandelaar bij het gestructureerd in kaart brengen van de modus-cyclus van de cliënt op een specifieke trigger.
         </p>
 
         <div className="glass-panel" style={{ textAlign: 'left', maxWidth: '950px', width: '100%', margin: '0 auto 2rem auto', background: 'rgba(16, 185, 129, 0.04)', padding: '2.5rem 2.5rem', borderRadius: '24px', border: '1px solid rgba(16, 185, 129, 0.25)', boxSizing: 'border-box' }}>
@@ -737,15 +738,15 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', color: 'var(--text-main)', lineHeight: '1.6' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="1" /></div>
-              <div><strong>Beschrijf de situatie:</strong> Wat was de trigger? Wat gebeurde er precies? Beschrijf dit altijd als eerste, want dit vormt het vertrekpunt van je opstelling.</div>
+              <div><strong>Beschrijf de situatie:</strong> Beschrijf de trigger-situatie van de cliënt objectief en concreet als klinisch vertrekpunt van de opstelling.</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="2" /></div>
-              <div><strong>Clinical Decision Support (CDS):</strong> Kies in <em>Stap 2A</em> de geraakte basisbehoefte via de waaier. Verrijk in <em>Stap 2B</em> optioneel met je testprofiel of VSt 2021 observaties en laat de AI gewogen differentiële hypotheses genereren.</div>
+              <div><strong>Clinical Decision Support (CDS) & Opstelling:</strong> Kies in <em>Stap 2A</em> de geraakte basisbehoefte. Gebruik in <em>Stap 2B</em> de AI-assistent om op basis van de casus een differentiële hypothese te genereren (suggesties voor schema's en modi). Als therapeut behoudt u de regie en bepaalt u welke kaarten daadwerkelijk op tafel komen.</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="3" /></div>
-              <div><strong>Analyseer:</strong> Bekijk een uitgebreide psychologische analyse van jouw specifieke keten. Hierin lees je precies hoe de kaarten met elkaar samenhangen, plus direct toepasbaar advies voor je Gezonde Volwassene.<br/><br/><em>Goed om te weten:</em> Als je in de vorige stap hebt gekozen voor de knop 'Voorspel kaarten', wordt deze complete analyse direct al voor je klaargezet en hoef je in stap 3 dus niets meer zelf te doen!</div>
+              <div><strong>Analyseer & Behandelinterventies:</strong> Krijg diepgaand inzicht in de geactiveerde modus-cyclus. Genereer een psycho-educatie rapport en verken behandelinterventies om de Gezonde Volwassene van de cliënt te versterken.</div>
             </div>
           </div>
         </div>
@@ -767,12 +768,12 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         <div className="inner-box" style={{ margin: 0, width: '100%' }}>
           <div style={{ width: '100%', margin: '0 auto' }}>
             <div style={{ marginBottom: '3rem' }}>
-              <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center' }}><StepBadge number="1" size={28} /> Beschrijf de situatie</h3>
+              <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center' }}><StepBadge number="1" size={28} /> Beschrijf de situatie van de cliënt</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                 <textarea 
                   className="no-print"
-                  placeholder="Beschrijf hier kort de situatie (bijv. 'Tijdens een overleg werd mijn idee genegeerd...')" 
+                  placeholder="Beschrijf hier objectief en concreet de trigger-situatie van de cliënt (bijv. 'Tijdens een werkoverleg werd de inbreng van cliënt genegeerd door leidinggevende...')" 
                   value={situationText}
                   onChange={e => setSituationText(e.target.value)}
                   style={{ 
@@ -1117,12 +1118,12 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
           {/* Dynamic Heading based on placed cards */}
           <h4 className="text-gradient-tafel no-print" style={{ marginTop: '3rem', marginBottom: '0.8rem', textAlign: 'center' }}>
-            {(selectedMode || selectedSchema || selectedNeed) ? 'Jouw Kaarten op Tafel' : 'Of: Leg zelf handmatig de kaarten op tafel'}
+            {(selectedMode || selectedSchema || selectedNeed) ? 'Opstelling voor de Cliënt' : 'Of: Selecteer handmatig de kaarten voor de opstelling'}
           </h4>
           <p className="no-print" style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '1.5rem', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto 1.5rem auto', fontSize: '0.95rem' }}>
             {(selectedMode || selectedSchema || selectedNeed)
-              ? 'Klik op een kaart om deze te wijzigen of te verwijderen, of kies een kaart voor een leeg vak.'
-              : 'Klik op een leeg vak om zelf een kaart te kiezen uit de overzichten.'
+              ? 'Klik op een kaart om deze aan te passen of te verwijderen, of vul de overige vakken op tafel in.'
+              : 'Klik op een leeg vak om op basis van klinische observatie een kaart te selecteren.'
             }
           </p>
 
@@ -1171,7 +1172,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               {/* NORMAL TRIANGLE VIEW */}
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem', width: '100%', maxWidth: '560px', position: 'relative', zIndex: 2 }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} labelPosition="top" />
+                  <CardSlot label="Reactie Cliënt (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} labelPosition="top" />
                 </div>
 
                 {/* Horizontale verbinding top */}
@@ -1272,7 +1273,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 
                 <p style={{ fontSize: '1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '1rem', lineHeight: '1.6' }}>
-                  De Gezonde Volwassene stelt grenzen aan disfunctionele reacties en biedt zorg voor onvervulde behoeften. Wat zou deze in deze situatie zeggen of doen?
+                  De Gezonde Volwassene stelt grenzen aan disfunctionele modus-reacties en biedt zorg voor de onvervulde basisbehoefte van de cliënt. Formuleer hier de versterkende GV-respons of psycho-educatieve interventie.
                 </p>
                 <textarea 
                   className="no-print"
@@ -1310,7 +1311,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                     maxWidth: '360px'
                   }}
                 >
-                  {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useTafelGradient={true} /> Genereer een gezonde reactie</>}
+                  {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useTafelGradient={true} /> Genereer GV-Respons (AI)</>}
                 </button>
               </div>
             </div>
@@ -1319,24 +1320,23 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         </div>
         </div>
 
-        {/* Stap 3: Analyse */}
+        {/* Stap 3: Behandelinterventies & Psycho-educatie */}
         <div className="inner-box no-print" style={{ marginTop: '2rem', margin: '2rem 0 0 0' }}>
           <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center' }}>
-            <StepBadge number="3" size={28} /> AI Analyse
+            <StepBadge number="3" size={28} /> Behandelinterventies & Psycho-educatie
           </h3>
-          <p style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '2rem', lineHeight: '1.6', maxWidth: '700px', margin: '0 auto 2rem auto' }}>
-            Laat de AI je opstelling analyseren op basis van je gekozen kaarten en situatie. 
-            Kies voor een concrete suggestie voor je <strong>Gezonde Volwassene</strong> (wat zou je kunnen zeggen of doen?), 
-            of genereer een uitgebreide <strong>beschrijvende analyse</strong> van het hele patroon.
+          <p style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '2rem', lineHeight: '1.6', maxWidth: '750px', margin: '0 auto 2rem auto' }}>
+            Gebruik de klinische assistent om inzicht te krijgen in de geactiveerde modus-cyclus van de cliënt. 
+            Genereer een concrete <strong>GV-interventie</strong> of stel een uitgebreide <strong>casusconceptualisatie & behandelanalyse</strong> op om de Gezonde Volwassene van de cliënt te versterken.
           </p>
           
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', width: '100%' }}>
             <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px 24px', fontSize: '1rem', background: 'var(--bg-color)', border: '1px solid rgba(16, 185, 129, 0.4)', minWidth: '280px', flex: '1 1 280px', maxWidth: '360px' }}>
-              {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useTafelGradient={true} /> Genereer een gezonde reactie</>}
+              {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useTafelGradient={true} /> Genereer GV-Respons (AI)</>}
             </button>
             
             <button className="btn btn-gradient-tafel" onClick={generateDeepAnalysis} disabled={isGeneratingAnalysis} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px 24px', fontSize: '1rem', minWidth: '280px', flex: '1 1 280px', maxWidth: '360px' }}>
-              {isGeneratingAnalysis ? 'Bezig...' : <><WandIcon size={20} color="currentColor" /> Een beschrijvende analyse</>}
+              {isGeneratingAnalysis ? 'Bezig...' : <><WandIcon size={20} color="currentColor" /> Klinische Ketenanalyse Genereren (AI)</>}
             </button>
           </div>
         </div>
@@ -1348,11 +1348,11 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <div className="glass-panel" style={{ padding: '2.5rem 2.5rem', borderRadius: '24px', maxWidth: '950px', width: '100%', margin: '2rem auto 0 auto', boxSizing: 'border-box' }}>
             <div className="inner-box" style={{ margin: 0, width: '100%' }}>
               <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <WandIcon size={24} useTafelGradient={true} /> Uitgebreide Psychologische Analyse
+                <WandIcon size={24} useTafelGradient={true} /> Klinische Casusconceptualisatie & Analyse
               </h3>
               {isGeneratingAnalysis ? (
               <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-main)' }}>
-                De AI analyseert momenteel jouw opstelling...
+                De klinische assistent analyseert momenteel de opstelling van de cliënt...
               </div>
             ) : (
               <>
