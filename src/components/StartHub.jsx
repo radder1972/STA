@@ -523,9 +523,10 @@ export default function StartHub() {
             <ShieldIcon size={24} />
           </div>
           <div>
-            <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.05rem' }}>100% Privacy & Lokaal</h4>
+            <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.05rem' }}>Privacy-bewust &amp; zonder accounts</h4>
             <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-              Alle antwoorden en situaties worden uitsluitend lokaal in je browser verwerkt. Geen tracking, geen accounts, geen centrale database.
+              Geen accounts, geen tracking en geen centrale database. Je antwoorden blijven in je browser; alleen als je zelf een AI-functie gebruikt, gaan gegevens naar Google. Lees de{' '}
+              <a href="#verantwoording" style={{ color: 'var(--primary)', fontWeight: '600' }}>verantwoording en privacyverklaring</a>.
             </p>
           </div>
         </div>
@@ -560,7 +561,8 @@ export default function StartHub() {
 
       {/* Version Footer */}
       <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-        Schematherapie Suite v{packageJson.version} &bull; Vrij te gebruiken voor psycho-educatie en opleiding
+        Schematherapie Suite v{packageJson.version} &bull; Vrij te gebruiken voor psycho-educatie en opleiding &bull;{' '}
+        <a href="#verantwoording" style={{ color: 'var(--text-muted)', textDecoration: 'underline' }}>Verantwoording &amp; privacy</a>
       </div>
 
     </div>

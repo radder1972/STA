@@ -14,6 +14,7 @@ import GamePortal from './components/GamePortal'
 import OrderCards from './components/OrderCards'
 import About from './components/About'
 import Tafelopstelling from './components/Tafelopstelling'
+import Verantwoording from './components/Verantwoording'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 import packageJson from '../package.json'
@@ -49,6 +50,7 @@ function App() {
 
   const [currentView, setCurrentView] = useState(() => {
     const hash = window.location.hash.replace('#', '')
+    if (hash === 'verantwoording') return 'verantwoording'
     if (isHubApp) {
       if (hash === 'test' || hash === 'zelftest') {
         window.location.href = 'test.html'
@@ -123,6 +125,10 @@ function App() {
     
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '')
+      if (hash === 'verantwoording') {
+        setCurrentView('verantwoording')
+        return
+      }
       if (isHubApp) {
         if (hash === 'test' || hash === 'zelftest') {
           window.location.href = 'test.html'
@@ -208,6 +214,7 @@ function App() {
     else if (currentView === 'print-shop') { hash = 'print-shop' }
     else if (currentView === 'order-cards') { hash = 'bestel-kaarten' }
     else if (currentView === 'about') { hash = 'over' }
+    else if (currentView === 'verantwoording') { hash = 'verantwoording'; window.scrollTo(0, 0) }
     
     // Dynamic document title
     if (isHubApp) {
@@ -383,9 +390,18 @@ function App() {
       {currentView === 'about' && (
         <About onBack={() => setCurrentView('game-portal')} />
       )}
+      {currentView === 'verantwoording' && (
+        <Verantwoording onBack={() => setCurrentView(isHubApp ? 'hub' : isTafelApp ? 'tafelopstelling' : isKaartenApp ? 'game-portal' : 'home')} />
+      )}
       {currentView !== 'questionnaire' && currentView !== 'hub' && (
         <div className="no-print" style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
           v{packageJson.version}
+          {currentView !== 'verantwoording' && (
+            <>
+              {' '}&bull;{' '}
+              <a href="#verantwoording" style={{ color: 'var(--text-muted)', textDecoration: 'underline' }}>Verantwoording &amp; privacy</a>
+            </>
+          )}
         </div>
       )}
     </div>

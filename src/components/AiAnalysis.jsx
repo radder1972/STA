@@ -82,7 +82,8 @@ Schrijf een korte, heldere analyse (maximaal 3 alinea's) over de waarschijnlijke
             <AlertTriangleIcon size={24} color="#0ea5e9" /> Privacywaarschuwing
           </h4>
           <p style={{ margin: 0, fontSize: '1rem', color: 'var(--text-main)', lineHeight: '1.6' }}>
-            Deze analyse wordt gegenereerd door Google Gemini AI. Hiervoor worden uitsluitend uw anonieme vragenlijstscores naar de servers van Google gestuurd. Er worden <strong>nooit</strong> namen of persoonsgegevens gedeeld en uw data wordt niet gebruikt om modellen te trainen.
+            Deze analyse wordt gegenereerd door Google Gemini AI. Hiervoor wordt uitsluitend uw scoreprofiel (de namen en gemiddelde scores van schema's en modi) naar Google gestuurd. De applicatie vraagt niet om namen of andere persoonsgegevens. Voor wat Google met de gegevens doet gelden de voorwaarden van Google. Lees de{' '}
+            <a href="#verantwoording" style={{ color: 'var(--primary)', fontWeight: '600' }}>verantwoording en privacyverklaring</a>.
           </p>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

@@ -349,8 +349,9 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
           <ShieldIcon size={24} useGradient={true} /> Privacy & Veiligheid
         </p>
         <p style={{ lineHeight: '1.6', fontSize: '1rem' }}>
-          Deze webapplicatie draait <strong>volledig lokaal</strong> in de browser op uw eigen apparaat. Uw gevoelige gegevens, testantwoorden en resultaten worden <strong>niet</strong> verzonden, <strong>niet</strong> opgeslagen op een server en <strong>nooit</strong> gedeeld met derden. Zodra u het venster sluit, zijn alle gegevens direct gewist. Sla uw rapport daarom op via de PDF/Print-functie, druk het direct af, of exporteer uitsluitend uw testresultaten als CSV-databestand voor in uw eigen archief. U kunt dit CSV-bestand hier later altijd weer inlezen om het rapport opnieuw te genereren.<br /><br />
-          <strong>Let op:</strong> De gecombineerde rapportage bevat een <em>optionele</em> AI-functionaliteit voor analyse. Indien u ervoor kiest deze te gebruiken, worden uw anonieme testresultaten (zonder herleidbare persoonsgegevens) ter analyse naar Google verzonden.
+          Deze webapplicatie verwerkt uw testantwoorden in de browser op uw eigen apparaat. Ze worden <strong>niet</strong> naar een eigen server gestuurd en <strong>niet</strong> centraal opgeslagen. Tijdens het invullen staat uw voortgang tijdelijk in de lokale opslag van uw browser, tot u de vragenlijst afrondt. Uw resultaten verdwijnen zodra u het venster sluit. Sla uw rapport daarom op via de PDF/Print-functie, druk het direct af, of exporteer uitsluitend uw testresultaten als CSV-databestand voor in uw eigen archief. U kunt dit CSV-bestand hier later altijd weer inlezen om het rapport opnieuw te genereren.<br /><br />
+          <strong>Let op:</strong> De gecombineerde rapportage bevat een <em>optionele</em> AI-functionaliteit voor analyse. Indien u ervoor kiest deze te gebruiken, worden uw anonieme testresultaten (zonder herleidbare persoonsgegevens) ter analyse naar Google verzonden. Lees de{' '}
+          <a href="#verantwoording" style={{ color: 'var(--primary)', fontWeight: '600' }}>verantwoording en privacyverklaring</a>.
         </p>
       </div>
     </div>

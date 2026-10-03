@@ -819,18 +819,8 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                 />
                 <div className="no-print" style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginTop: '0.6rem', fontSize: '0.82rem', lineHeight: '1.5', color: 'var(--text-muted)', textAlign: 'left' }}>
                   <AlertTriangleIcon size={16} color="#059669" style={{ flexShrink: 0, marginTop: '2px' }} />
-                  <span><strong>Privacy:</strong> Voer geen herleidbare gegevens in (zoals namen, geboortedata of werkgevers). De tekst wordt voor de analyse verwerkt door een externe AI-dienst (Google Gemini). Anonimiseer de casus.</span>
+                  <span><strong>Privacy:</strong> Voer geen herleidbare gegevens in (zoals namen, geboortedata of werkgevers). De tekst wordt voor de analyse verwerkt door een externe AI-dienst (Google Gemini). Anonimiseer de casus. <a href="#verantwoording" style={{ color: '#059669', fontWeight: '600' }}>Lees de volledige verantwoording en privacyverklaring</a>.</span>
                 </div>
-                <details className="no-print" style={{ marginTop: '0.5rem', fontSize: '0.82rem', lineHeight: '1.6', color: 'var(--text-muted)', textAlign: 'left' }}>
-                  <summary style={{ cursor: 'pointer', fontWeight: '600', color: '#059669', userSelect: 'none' }}>Privacyverklaring Tafelopstelling</summary>
-                  <div style={{ marginTop: '0.6rem', padding: '0.9rem 1.1rem', borderRadius: '12px', border: '1px solid rgba(16, 185, 129, 0.25)', background: 'rgba(16, 185, 129, 0.04)' }}>
-                    <p style={{ margin: '0 0 0.6rem 0' }}><strong>Welke gegevens worden verwerkt?</strong> Alleen de tekst die u zelf in het veld &ldquo;situatie&rdquo; typt, samen met uw gekozen basisbehoefte en eventuele geüploade testscores. Er is geen account of inlog.</p>
-                    <p style={{ margin: '0 0 0.6rem 0' }}><strong>Waar gaan ze naartoe?</strong> Wanneer u een AI-functie gebruikt (hypotheses, GV-respons of ketenanalyse), wordt deze informatie vanuit uw browser naar de AI-dienst Google Gemini gestuurd om het antwoord te genereren. Voor wat Google daarmee doet gelden de voorwaarden van Google.</p>
-                    <p style={{ margin: '0 0 0.6rem 0' }}><strong>Wordt er iets opgeslagen?</strong> De applicatie slaat uw casustekst niet op en stuurt die niet naar een eigen server. De invoer bestaat alleen in uw browser en verdwijnt zodra u de pagina herlaadt of sluit. De applicatie zelf gebruikt geen cookies voor tracking en geen analysetools.</p>
-                    <p style={{ margin: '0 0 0.6rem 0' }}><strong>Wat vragen wij van u?</strong> Voer geen herleidbare gegevens in, zoals namen, geboortedatums, adressen of werkgevers, en anonimiseer de casus. De tool is niet bedoeld voor het verwerken van identificeerbare gezondheidsgegevens en er is geen verwerkersovereenkomst met Google via deze tool afgesloten. U blijft als professional zelf verantwoordelijk voor de zorgvuldige omgang met cliëntgegevens.</p>
-                    <p style={{ margin: 0 }}><strong>Let op bij de uitkomst:</strong> AI-antwoorden kunnen onjuist of onvolledig zijn. Zij zijn een suggestie ter ondersteuning van uw eigen professionele oordeel en geen vervanging voor formele diagnostiek of een gedegen professionele behandeling.</p>
-                  </div>
-                </details>
                 <div className="tafel-print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)', width: '100%', textAlign: 'left', background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', boxSizing: 'border-box' }}>
                   {situationText || "Geen situatie beschreven."}
                 </div>
@@ -1439,10 +1429,10 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
               <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 
                 <p style={{ fontSize: '1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '1rem', lineHeight: '1.6' }}>
-                  De Gezonde Volwassene stelt grenzen aan disfunctionele modus-reacties en biedt zorg voor de onvervulde basisbehoefte van de cliënt. Formuleer hier de versterkende GV-respons of psycho-educatieve interventie.
+                  De Gezonde Volwassene stelt grenzen aan disfunctionele modus-reacties en biedt zorg voor de onvervulde basisbehoefte van de cliënt. Formuleer hier de versterkende respons vanuit de Gezonde Volwassene of een psycho-educatieve interventie.
                 </p>
 
-                {/* GV-Prompt Hulpvak */}
+                {/* Hulpvak Gezonde Volwassene */}
                 <div style={{
                   background: 'rgba(16, 185, 129, 0.05)',
                   border: '1px solid rgba(16, 185, 129, 0.25)',
@@ -1458,7 +1448,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                 }}>
                   <strong style={{ color: '#059669', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.92rem' }}>
                     <LightbulbIcon size={18} color="#059669" style={{ flexShrink: 0 }} />
-                    <span>GV-Respons Hulpvak (Praktijk-Driedeling):</span>
+                    <span>Hulpvak Gezonde Volwassene (Praktijk-Driedeling):</span>
                   </strong>
                   <strong>1. Valideer:</strong> Erken de pijn/emotie van het Kind (<em>"Ik zie dat je gekwetst en alleen gelaten bent..."</em>).<br/>
                   <strong>2. Begrens:</strong> Stel grenzen aan Coping/Ouder-modi (<em>"Maar we laten de Beschermer nu niet overnemen..."</em>).<br/>
@@ -1497,10 +1487,10 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                     border: '1px solid rgba(16, 185, 129, 0.4)', 
                     marginTop: '1.25rem',
                     width: '100%',
-                    maxWidth: '360px'
+                    maxWidth: '440px'
                   }}
                 >
-                  {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useTafelGradient={true} /> Genereer GV-Respons (AI)</>}
+                  {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useTafelGradient={true} /> Genereer respons Gezonde Volwassene (AI)</>}
                 </button>
               </div>
             </div>
@@ -1516,15 +1506,15 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
           </h3>
           <p style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '2rem', lineHeight: '1.6', maxWidth: '750px', margin: '0 auto 2rem auto' }}>
             Gebruik de slimme assistent om inzicht te krijgen in de geactiveerde modus-cyclus van de cliënt. 
-            Genereer een concrete <strong>GV-interventie</strong> of stel een uitgebreide <strong>casusconceptualisatie & behandelanalyse</strong> op om de Gezonde Volwassene van de cliënt te versterken.
+            Genereer een concrete <strong>respons vanuit de Gezonde Volwassene</strong> of stel een uitgebreide <strong>casusconceptualisatie & behandelanalyse</strong> op om de Gezonde Volwassene van de cliënt te versterken.
           </p>
           
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', width: '100%' }}>
-            <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px 24px', fontSize: '1rem', background: 'var(--bg-color)', border: '1px solid rgba(16, 185, 129, 0.4)', minWidth: '280px', flex: '1 1 280px', maxWidth: '360px' }}>
-              {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useTafelGradient={true} /> Genereer GV-Respons (AI)</>}
+            <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px 24px', fontSize: '1rem', background: 'var(--bg-color)', border: '1px solid rgba(16, 185, 129, 0.4)', minWidth: '280px', flex: '1 1 280px', maxWidth: '440px' }}>
+              {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useTafelGradient={true} /> Genereer respons Gezonde Volwassene (AI)</>}
             </button>
             
-            <button className="btn btn-gradient-tafel" onClick={generateDeepAnalysis} disabled={isGeneratingAnalysis} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px 24px', fontSize: '1rem', minWidth: '280px', flex: '1 1 280px', maxWidth: '360px' }}>
+            <button className="btn btn-gradient-tafel" onClick={generateDeepAnalysis} disabled={isGeneratingAnalysis} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px 24px', fontSize: '1rem', minWidth: '280px', flex: '1 1 280px', maxWidth: '440px' }}>
               {isGeneratingAnalysis ? 'Bezig...' : <><WandIcon size={20} color="currentColor" /> Ketenanalyse Genereren (AI)</>}
             </button>
           </div>

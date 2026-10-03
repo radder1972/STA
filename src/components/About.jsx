@@ -10,7 +10,7 @@ export default function About({ onBack }) {
       {/* HEADER */}
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
         <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <InfoIcon size={40} useGameGradient={true} /> Verantwoording
+          <InfoIcon size={40} useGameGradient={true} /> Over de kaartenset
         </h1>
         <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4', minHeight: '34px' }}>
           {activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : 'Wie zit er achter deze kaartenset?'}
@@ -169,8 +169,11 @@ export default function About({ onBack }) {
               <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: '0 0 1rem 0' }}>
                 Deze kaartenset is een onafhankelijk, creatief initiatief, ontworpen als praktisch hulpmiddel om de dialoog over patronen en behoeften op een visuele en tastbare manier te faciliteren. Het is een onafhankelijke uitgave en niet verbonden aan of geaccrediteerd door beroepsverenigingen.
               </p>
-              <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
+              <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: '0 0 1rem 0' }}>
                 Om volledige transparantie te bieden, zijn de exacte teksten, begrippen en de indeling van alle kaarten openbaar in te zien op deze website. Therapeuten kunnen zo vooraf tot in detail controleren wat het deck bevat en zelf beoordelen of dit aansluit bij hun visie en werkwijze. De keuze om deze kaarten als hulpmiddel in te zetten binnen een sessie valt dan ook onder de eigen professionele verantwoordelijkheid van de behandelend professional. De kaartenset is nadrukkelijk bedoeld als aanvullende, laagdrempelige ondersteuning en is geen vervanging voor formele diagnostiek of een gedegen professionele behandeling.
+              </p>
+              <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
+                Alle voorbehouden en de privacyverklaring van de hele suite staan op de pagina <a href="#verantwoording" style={{ color: '#1e3a8a', fontWeight: '700' }}>Verantwoording &amp; privacy</a>.
               </p>
             </div>
           </div>
