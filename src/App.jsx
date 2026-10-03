@@ -116,7 +116,7 @@ function App() {
     }
     return 'home'
   })
-  const [aboutTab, setAboutTab] = useState(() => window.location.hash.replace('#', '') === 'verantwoording' ? 'verantwoording' : 'waarom')
+  const [aboutTab, setAboutTab] = useState(() => window.location.hash.replace('#', '') === 'verantwoording' ? 'verantwoording' : 'suite')
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState(null)
   const [completedTests, setCompletedTests] = useState({ ysq: null, smi: null })
   const [theme, setTheme] = useState('light')
@@ -372,7 +372,7 @@ function App() {
           }} 
           completedTests={completedTests} 
           embedded={false} 
-          onOpenAbout={() => { setAboutTab('waarom'); setCurrentView('verantwoording') }}
+          onOpenAbout={() => { setAboutTab('suite'); setCurrentView('verantwoording') }}
         />
       )}
       {currentView === 'game-portal' && (
@@ -391,7 +391,7 @@ function App() {
         <OrderCards onBack={() => setCurrentView('game-portal')} />
       )}
       {currentView === 'about' && (
-        <About initialTab="waarom" onBack={() => setCurrentView('game-portal')} />
+        <About initialTab="suite" onBack={() => setCurrentView('game-portal')} />
       )}
       {/* 'Over' is voor de hele suite dezelfde pagina (About), met dezelfde tabs */}
       {currentView === 'verantwoording' && isKaartenApp && (

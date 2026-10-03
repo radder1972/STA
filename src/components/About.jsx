@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon } from './Icons';
+import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon } from './Icons';
 import Verantwoording from './Verantwoording';
 
 // Gedeelde 'Over'-pagina voor de hele suite (Kaarten, Tafelopstelling, Hub en Vragenlijsten).
 // theme: 'game' (blauw) of 'tafel' (groen); showBack: toon een Terug-knop (voor apps zonder menubalk)
-export default function About({ onBack, initialTab = 'waarom', theme = 'game', showBack = false }) {
+export default function About({ onBack, initialTab = 'suite', theme = 'game', showBack = false }) {
   const [activeTab, setActiveTab] = useState(initialTab);
   const accent = theme === 'tafel' ? '#10b981' : '#0ea5e9';
   const btnActive = theme === 'tafel' ? 'btn btn-gradient-tafel' : 'btn btn-gradient-game';
@@ -26,7 +26,7 @@ export default function About({ onBack, initialTab = 'waarom', theme = 'game', s
           <InfoIcon size={40} useGameGradient={theme !== 'tafel'} /> Over de suite
         </h1>
         <h2 style={{ color: accent, margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4', minHeight: '34px' }}>
-          {activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : activeTab === 'maker' ? 'Wie zit er achter deze kaartenset?' : 'Voorbehouden en privacyverklaring van de suite'}
+          {activeTab === 'suite' ? 'De gedachte achter de Schematherapie Suite' : activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : activeTab === 'maker' ? 'Wie zit er achter deze kaartenset?' : 'Voorbehouden en privacyverklaring van de suite'}
         </h2>
       </div>
 
@@ -34,11 +34,18 @@ export default function About({ onBack, initialTab = 'waarom', theme = 'game', s
       <div className="tabs-container" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
         <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
           <button 
+            onClick={() => setActiveTab('suite')}
+            className={activeTab === 'suite' ? btnActive : "btn btn-outline"} 
+            style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <BrainIcon size={18} color={activeTab === 'suite' ? 'white' : accent} /> Waarom de suite
+          </button>
+          <button 
             onClick={() => setActiveTab('waarom')}
             className={activeTab === 'waarom' ? btnActive : "btn btn-outline"} 
             style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
-            <FileTextIcon size={18} color={activeTab === 'waarom' ? 'white' : accent} /> Over de kaarten
+            <FileTextIcon size={18} color={activeTab === 'waarom' ? 'white' : accent} /> Waarom de kaarten
           </button>
           <button 
             onClick={() => setActiveTab('maker')}
@@ -59,6 +66,61 @@ export default function About({ onBack, initialTab = 'waarom', theme = 'game', s
 
       <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '900px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10, borderRadius: '24px' }}>
         
+        {activeTab === 'suite' && (
+          <div className="inner-box fade-in" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '3rem' }}>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Waarom deze suite?</h3>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.5rem 0' }}>
+              Schematherapie is rijk aan theorie, en juist dat maakt het in de praktijk lastig. Er zijn vragenlijsten om patronen in kaart te brengen, kaarten om ze bespreekbaar te maken, en een model om alles te verbinden. Maar die onderdelen staan vaak los van elkaar. Deze suite brengt ze samen, zodat een behandelaar of student van meting, naar begrip, naar gesprek kan werken, met dezelfde taal en dezelfde kleuren in elke stap.
+            </p>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Drie onderdelen, één lijn</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>1. Vragenlijsten: eerst in beeld brengen</strong>
+                <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
+                  De YSQ-S3 en de SMI geven een scoreprofiel van schema's en modi, inclusief een gecombineerd rapport. Dat levert een gestructureerd beginpunt voor het gesprek, geen oordeel.
+                </span>
+              </div>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>2. Kaarten: begrijpelijk en tastbaar maken</strong>
+                <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
+                  De theoriekaarten en werkvormen vertalen de abstracte begrippen naar iets wat je op tafel kunt leggen, bespreken en samen onderzoeken. Waarom de kaarten zijn zoals ze zijn, staat op het tabblad <em>Waarom de kaarten</em>.
+                </span>
+              </div>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>3. Tafelopstelling: een concrete situatie ontleden</strong>
+                <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
+                  Met een eigen situatie koppel je trigger, modus, schema en onvervulde basisbehoefte aan elkaar en werk je toe naar een reactie vanuit de Gezonde Volwassene. Optionele AI-ondersteuning denkt mee met hypotheses, maar de behandelaar beslist.
+                </span>
+              </div>
+            </div>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Voor wie?</h3>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.5rem 0' }}>
+              De suite is gemaakt voor behandelaars en professionals in opleiding. Voor de behandelaar is het een hulpmiddel in en rond de sessie. Voor de student is het een manier om de theorie te oefenen en te zien hoe de onderdelen samenhangen. Cliënten werken er in de spreekkamer mee, samen met hun behandelaar.
+            </p>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Uitgangspunten</h3>
+            <ul style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0', paddingLeft: '1.5rem' }}>
+              <li style={{ marginBottom: '0.5rem' }}><strong>Ondersteunend, niet beslissend.</strong> Scores, kaarten en AI-suggesties helpen het gesprek. De professional blijft verantwoordelijk voor interpretatie en keuzes.</li>
+              <li style={{ marginBottom: '0.5rem' }}><strong>Eén taal.</strong> Dezelfde begrippen en kleurcodering lopen door alle onderdelen heen.</li>
+              <li style={{ marginBottom: '0.5rem' }}><strong>Privacy-bewust.</strong> Geen accounts en geen eigen database. Wat er met gegevens gebeurt, staat per onderdeel op het tabblad <em>Voorbehouden &amp; privacy</em>.</li>
+              <li><strong>Transparant.</strong> De inhoud is openbaar in te zien, zodat je vooraf kunt beoordelen of het past bij jouw werkwijze.</li>
+            </ul>
+
+            <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #3b82f6' }}>
+              <h3 style={{ color: '#1e3a8a', fontSize: '1.3rem', marginTop: 0, marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <InfoIcon size={24} /> Het doel
+              </h3>
+              <p style={{ color: '#1e3a8a', fontSize: '1.1rem', lineHeight: '1.6', margin: 0 }}>
+                Schematherapie toegankelijker en samenhangender maken: voor de behandelaar in de praktijk, voor de student die de theorie leert, en voor de cliënt die taal zoekt voor zijn of haar patronen.
+              </p>
+            </div>
+
+          </div>
+        )}
+
         {activeTab === 'waarom' && (
           <div className="inner-box fade-in" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '3rem' }}>
             
