@@ -208,7 +208,7 @@ const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed }) => {
           color: '#059669', 
           marginBottom: '0.35rem' 
         }}>
-          Optioneel / Aanbevolen voor CDS
+          Stap 2A: Geraakte Basisbehoefte
         </div>
         <div style={{ 
           fontSize: '1rem', 
@@ -741,7 +741,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="2" /></div>
-              <div><strong>Leg de kaarten op tafel:</strong> Welke kaarten horen bij deze situatie? Wat deed je precies (Mijn Reactie / Modus)? Welke oude overtuiging werd geraakt (Geraakt Schema)? En welke fundamentele behoefte kwam in de knel (Onvervulde Behoefte)? Je kunt deze kaarten handmatig selecteren, óf – en dat is wel zo makkelijk – <strong>automatisch laten voorspellen</strong> door de app op basis van de ingevoerde situatie.</div>
+              <div><strong>Clinical Decision Support (CDS):</strong> Kies in <em>Stap 2A</em> de geraakte basisbehoefte via de waaier. Verrijk in <em>Stap 2B</em> optioneel met je testprofiel of VSt 2021 observaties en laat de AI gewogen differentiële hypotheses genereren.</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="3" /></div>
@@ -787,13 +787,6 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                   {situationText || "Geen situatie beschreven."}
                 </div>
 
-                {/* Pijler 3: Invoer van Onvervulde Basisbehoefte in Waaier-vorm */}
-                <div className="no-print" style={{ marginTop: '1.25rem', width: '100%' }}>
-                  <WaaierNeedSelector 
-                    selectedNeedTitle={selectedUnmetNeed} 
-                    onSelectNeed={handleSelectUnmetNeed} 
-                  />
-                </div>
               </div>
               
               <div>
@@ -821,6 +814,14 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                     Laat de AI gewogen differentiële hypotheses opstellen op basis van de casus, geraakte basisbehoefte en het testprofiel. Elke hypothese bevat transparante klinische onderbouwing (Explainable AI). U kiest als therapeut welke kaart definitief op tafel komt.
                   </p>
 
+                  {/* Stap 2A: Waaier-selectie voor Geraakte Basisbehoefte */}
+                  <div style={{ width: '100%', marginBottom: '2rem' }}>
+                    <WaaierNeedSelector 
+                      selectedNeedTitle={selectedUnmetNeed} 
+                      onSelectNeed={handleSelectUnmetNeed} 
+                    />
+                  </div>
+
                   {/* Options Box with Equal UI Hierarchy */}
                   <div style={{
                     width: '100%',
@@ -843,6 +844,12 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                       style={{ display: 'none' }} 
                       onChange={handleCsvUpload} 
                     />
+
+                    <div style={{ textAlign: 'center', marginBottom: '-0.5rem' }}>
+                      <div style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669' }}>
+                        Stap 2B: Optionele Invoer & Verrijking
+                      </div>
+                    </div>
 
                     {/* Optie 1: Koppel testresultaten */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', alignItems: 'center', textAlign: 'center' }}>
