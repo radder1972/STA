@@ -161,7 +161,7 @@ export const isForensicMode = (title = '', id = '') => {
 export const getCardTypeLabel = (type, title = '', id = '') => {
   if (type === 'schema') return "Schema";
   if (type === 'basisbehoefte' || type === 'need') return "Basisbehoefte";
-  if (type === 'modicategorie') return "Categorie";
+  if (type === 'modicategorie') return "Modus Categorie";
   if (type === 'mode') {
     const t = (title || '').toLowerCase();
     if (t.includes('kind')) {
