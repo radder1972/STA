@@ -629,7 +629,7 @@ const SchemaCard = ({
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent: 'flex-start',
                 zIndex: 1,
                 maxHeight: '100%',
                 overflowY: 'auto',
