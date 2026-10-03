@@ -434,6 +434,14 @@ const SchemaCard = ({
 
   const descText = description || (title ? 'Geen theorie beschikbaar.' : '');
 
+  const getDescFontSize = (text, ratio) => {
+    const len = (text || '').length;
+    if (len > 250) return `${0.65 * ratio}rem`;
+    if (len > 200) return `${0.69 * ratio}rem`;
+    if (len > 140) return `${0.74 * ratio}rem`;
+    return `${0.80 * ratio}rem`;
+  };
+
   return (
     <>
       <div 
@@ -609,18 +617,23 @@ const SchemaCard = ({
                 zIndex: 1 
               }} />
               <div className="card-desc" style={{ 
-                fontSize: `${0.80 * scaleRatio}rem`, 
+                fontSize: getDescFontSize(descText, scaleRatio), 
                 fontWeight: 'normal', 
-                lineHeight: '1.38', 
+                lineHeight: '1.35', 
                 color: '#111', 
                 margin: 0, 
-                padding: 0,
-                paddingBottom: `${(7 / 58) * widthNum}px`,
+                padding: `0 0 ${(8 / 58) * widthNum}px 0`,
                 textAlign: 'center', 
-                flexShrink: 0, 
+                flex: 1, 
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
                 zIndex: 1,
                 maxHeight: '100%',
-                overflowY: 'auto'
+                overflowY: 'auto',
+                boxSizing: 'border-box'
               }}>
                 {descText}
               </div>
