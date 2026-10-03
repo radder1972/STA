@@ -741,8 +741,8 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
       </div>
 
       <div className="no-print" style={{ marginBottom: '2rem', textAlign: 'center', width: '100%', maxWidth: '950px' }}>
-        <p style={{ color: 'var(--text-main)', maxWidth: '750px', margin: '0 auto 1.5rem auto', lineHeight: '1.6', fontSize: '1.05rem' }}>
-          De digitale tafelopstelling ondersteunt de behandelaar bij het gestructureerd in kaart brengen van de modus-cyclus van de cliënt op een specifieke trigger.
+        <p style={{ color: 'var(--text-main)', maxWidth: '800px', margin: '0 auto 1.5rem auto', lineHeight: '1.6', fontSize: '1.08rem', textAlign: 'center' }}>
+          De digitale tafelopstelling fungeert als <strong>Clinical Decision Support (CDS)</strong> voor de behandelaar. Op basis van de casus, geraakte basisbehoefte en optionele testdata genereert de AI gewogen <strong>differentiële hypotheses</strong> (schema's en modi), waarna u als behandelaar de regie behoudt over de opstelling op tafel.
         </p>
 
         <div className="glass-panel" style={{ textAlign: 'left', maxWidth: '950px', width: '100%', margin: '0 auto 2rem auto', background: 'rgba(16, 185, 129, 0.04)', padding: '2.5rem 2.5rem', borderRadius: '24px', border: '1px solid rgba(16, 185, 129, 0.25)', boxSizing: 'border-box' }}>
@@ -824,12 +824,34 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                 }}>
                   
                   <h4 className="text-gradient-tafel" style={{ margin: '0 0 0.75rem 0', fontSize: '1.45rem', fontWeight: '800', letterSpacing: '-0.02em', textAlign: 'center' }}>
-                    Differentiële Hypotheses Genereren
+                    Differentiële Hypotheses Genereren (CDS)
                   </h4>
 
-                  <p style={{ fontSize: '0.96rem', color: 'var(--text-main)', marginBottom: '1.75rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '640px', fontWeight: '400' }}>
+                  <p style={{ fontSize: '0.96rem', color: 'var(--text-main)', marginBottom: '1.25rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '640px', fontWeight: '400' }}>
                     Laat de AI gewogen differentiële hypotheses opstellen op basis van de casus, geraakte basisbehoefte en het testprofiel. Elke hypothese bevat transparante klinische onderbouwing (Explainable AI). U kiest als therapeut welke kaart definitief op tafel komt.
                   </p>
+
+                  {/* Methodiek Callout Box */}
+                  <div style={{
+                    background: 'rgba(255, 255, 255, 0.75)',
+                    border: '1px solid rgba(16, 185, 129, 0.35)',
+                    borderRadius: '16px',
+                    padding: '1rem 1.25rem',
+                    marginBottom: '1.75rem',
+                    maxWidth: '660px',
+                    width: '100%',
+                    fontSize: '0.88rem',
+                    lineHeight: '1.5',
+                    color: 'var(--text-main)',
+                    boxSizing: 'border-box',
+                    textAlign: 'left',
+                    boxShadow: '0 2px 10px rgba(16, 185, 129, 0.06)'
+                  }}>
+                    <strong style={{ color: '#059669', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px', fontSize: '0.92rem' }}>
+                      💡 Hoe werkt de differentiële analyse?
+                    </strong>
+                    In plaats van één vaststaand oordeel leidt de AI meerdere plausibele schema's en modi af, gerangschikt op klinische waarschijnlijkheid. Dit geeft u als behandelaar een transparante 'spiegel' van opties ter onderbouwing van uw eigen klinische oordeel.
+                  </div>
 
                   {/* Sub-card 1: Waaier-selectie voor Geraakte Basisbehoefte */}
                   <div style={{
