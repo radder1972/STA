@@ -881,33 +881,91 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                       </p>
                     )}
 
-                    {/* Pijler 4: Klinische Overwrite Widget (VSt 2021 Schema's) */}
-                    <div style={{ width: '100%', borderTop: '1px solid var(--border-color)', paddingTop: '12px', marginTop: '4px' }}>
-                      <div style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '8px', textAlign: 'center' }}>
-                        🩺 Klinische Overwrite & VSt 2021 Verrijking (Interview):
+                    {/* VSt 2021 Schema Uitbreiding Selector */}
+                    <div style={{ width: '100%', borderTop: '1px solid rgba(16, 185, 129, 0.2)', paddingTop: '16px', marginTop: '8px' }}>
+                      <div style={{ textAlign: 'center', marginBottom: '12px' }}>
+                        <div style={{ 
+                          fontSize: '0.75rem', 
+                          fontWeight: '700', 
+                          textTransform: 'uppercase', 
+                          letterSpacing: '0.06em', 
+                          color: '#059669',
+                          marginBottom: '4px'
+                        }}>
+                          VSt 2021 Uitbreiding
+                        </div>
+                        <div style={{ 
+                          fontSize: '0.92rem', 
+                          fontWeight: '700', 
+                          color: 'var(--text-main)' 
+                        }}>
+                          Handmatig toevoegen op basis van klinische observatie:
+                        </div>
                       </div>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px', fontSize: '0.84rem', color: 'var(--text-main)' }}>
-                        <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+                      
+                      <div style={{ 
+                        display: 'flex', 
+                        flexDirection: 'column',
+                        gap: '8px', 
+                        background: 'rgba(5, 150, 105, 0.04)',
+                        border: '1px solid rgba(5, 150, 105, 0.15)',
+                        borderRadius: '14px',
+                        padding: '12px 18px',
+                        boxSizing: 'border-box'
+                      }}>
+                        <label style={{ 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          gap: '10px', 
+                          fontSize: '0.88rem', 
+                          fontWeight: '600',
+                          color: 'var(--text-main)', 
+                          cursor: 'pointer',
+                          userSelect: 'none'
+                        }}>
                           <input 
                             type="checkbox" 
                             checked={vstOverwrite.identity}
                             onChange={e => setVstOverwrite(prev => ({ ...prev, identity: e.target.checked }))}
+                            style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
                           />
                           <span>Gebrek aan coherente identiteit</span>
                         </label>
-                        <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+                        
+                        <label style={{ 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          gap: '10px', 
+                          fontSize: '0.88rem', 
+                          fontWeight: '600',
+                          color: 'var(--text-main)', 
+                          cursor: 'pointer',
+                          userSelect: 'none'
+                        }}>
                           <input 
                             type="checkbox" 
                             checked={vstOverwrite.meaning}
                             onChange={e => setVstOverwrite(prev => ({ ...prev, meaning: e.target.checked }))}
+                            style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
                           />
                           <span>Gebrek aan betekenisvolle wereld</span>
                         </label>
-                        <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+                        
+                        <label style={{ 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          gap: '10px', 
+                          fontSize: '0.88rem', 
+                          fontWeight: '600',
+                          color: 'var(--text-main)', 
+                          cursor: 'pointer',
+                          userSelect: 'none'
+                        }}>
                           <input 
                             type="checkbox" 
                             checked={vstOverwrite.injustice}
                             onChange={e => setVstOverwrite(prev => ({ ...prev, injustice: e.target.checked }))}
+                            style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
                           />
                           <span>Onrechtvaardigheid</span>
                         </label>
