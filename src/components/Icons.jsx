@@ -172,9 +172,9 @@ export const AlertTriangleIcon = (props) => (
 
 export const LightbulbIcon = (props) => (
   <IconBase {...props}>
-    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.3 1.5 1.5 2.5" />
-    <path d="M9 18h6" />
-    <path d="M10 22h4" />
+    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.3 1.5 1.5 2.5" fill={props.color || "currentColor"} fillOpacity="0.2" strokeWidth="1.75" />
+    <path d="M9 17h6M10 20h4" strokeWidth="2" strokeLinecap="round" />
+    <path d="M12 2v2M4.9 4.9l1.4 1.4M19.1 4.9l-1.4 1.4" strokeWidth="1.5" strokeLinecap="round" opacity="0.8" />
   </IconBase>
 );
 

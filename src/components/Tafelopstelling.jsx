@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon, ClipboardIcon } from './Icons';
+import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon, ClipboardIcon, LightbulbIcon } from './Icons';
 import { Printer } from 'lucide-react';
 import TafelNavbar from './TafelNavbar';
 import { schemaImages, modeImages } from '../utils/images';
@@ -679,8 +679,9 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                         </div>
                       </div>
                     ) : (
-                      <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text-main)', textAlign: 'center', lineHeight: '1.5', fontWeight: '400' }}>
-                        💡 <strong>Optioneel:</strong> Koppel je testresultaten voor een nog nauwkeurigere voorspelling op maat!
+                      <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text-main)', textAlign: 'center', lineHeight: '1.5', fontWeight: '400', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                        <LightbulbIcon size={18} color="#f59e0b" />
+                        <span><strong>Optioneel:</strong> Koppel je testresultaten voor een nog nauwkeurigere voorspelling op maat!</span>
                       </p>
                     )}
 
