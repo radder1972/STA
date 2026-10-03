@@ -217,10 +217,11 @@ export default function StartHub() {
               Kaarten
             </h2>
 
-            {/* Ronde Sticker: 2021 Update */}
+            {/* Ronde Sticker: MET 2021 Update */}
             <div style={{
-              width: '74px',
-              height: '74px',
+              position: 'relative',
+              width: '76px',
+              height: '76px',
               borderRadius: '50%',
               background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
               color: '#ffffff',
@@ -229,20 +230,33 @@ export default function StartHub() {
               alignItems: 'center',
               justifyContent: 'center',
               textAlign: 'center',
-              boxShadow: '0 6px 18px rgba(234, 88, 12, 0.4), 0 2px 6px rgba(0, 0, 0, 0.12)',
+              boxShadow: '0 6px 20px rgba(234, 88, 12, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15)',
               transform: 'rotate(10deg)',
               userSelect: 'none',
-              padding: '4px',
+              padding: '6px 4px 4px 4px',
               flexShrink: 0,
-              marginTop: '-10px'
+              marginTop: '-10px',
+              overflow: 'visible'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.55rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
-                <SparklesIcon size={9} color="white" /> INCLUSIEF
+              {/* Groter Sterrenlogo dat over de top van de cirkel loopt */}
+              <div style={{
+                position: 'absolute',
+                top: '-13px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25))',
+                zIndex: 2
+              }}>
+                <SparklesIcon size={24} color="white" />
               </div>
-              <div style={{ fontSize: '0.92rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.05', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
+
+              <div style={{ fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.07em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1, marginTop: '4px' }}>
+                MET
+              </div>
+              <div style={{ fontSize: '0.98rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.05', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
                 2021
               </div>
-              <div style={{ fontSize: '0.58rem', fontWeight: '800', letterSpacing: '0.05em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1 }}>
+              <div style={{ fontSize: '0.6rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1 }}>
                 UPDATE
               </div>
             </div>
