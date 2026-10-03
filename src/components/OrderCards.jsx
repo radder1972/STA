@@ -14,6 +14,7 @@ import {
   vstModiData,
   vstCopingData 
 } from '../data/cards';
+import cardsStackImg from '../assets/images/cards-stack.jpg';
 import { schemaDescriptions } from '../data/descriptions';
 import { getCardColor } from '../utils/colors';
 import { schemaImages, modeImages } from '../utils/images';
@@ -469,7 +470,7 @@ export default function OrderCards({ onBack }) {
               }}
             >
               <img 
-                src="/images/cards-stack.jpg" 
+                src={cardsStackImg} 
                 alt="Fysieke stapel Schematherapie Theoriekaarten" 
                 style={{ width: '100%', height: 'auto', display: 'block' }} 
               />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon, PlayingCardsIcon } from './Icons';
+import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon, PlayingCardsIcon, ClipboardIcon } from './Icons';
 import Verantwoording from './Verantwoording';
 
 // Gedeelde 'Over'-pagina voor de hele suite (Kaarten, Tafelopstelling, Hub en Vragenlijsten).
@@ -26,7 +26,7 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
           <InfoIcon size={40} useGameGradient={theme !== 'tafel'} /> Over de suite
         </h1>
         <h2 style={{ color: accent, margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4', minHeight: '34px' }}>
-          {activeTab === 'suite' ? 'De gedachte achter de Schematherapie Suite' : activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : activeTab === 'tafel' ? 'De gedachte achter de Digitale Tafelopstelling' : activeTab === 'maker' ? 'Wie zit er achter deze kaartenset?' : 'Voorbehouden en privacyverklaring van de suite'}
+          {activeTab === 'suite' ? 'De gedachte achter de Schematherapie Suite' : activeTab === 'vragenlijsten' ? 'De gedachte achter de vragenlijsten' : activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : activeTab === 'tafel' ? 'De gedachte achter de Digitale Tafelopstelling' : activeTab === 'maker' ? 'Wie zit er achter de Schematherapie Suite?' : 'Voorbehouden en privacyverklaring van de suite'}
         </h2>
       </div>
 
@@ -39,6 +39,13 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
             style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
             <BrainIcon size={18} color={activeTab === 'suite' ? 'white' : accent} /> Waarom de suite
+          </button>
+          <button 
+            onClick={() => setActiveTab('vragenlijsten')}
+            className={activeTab === 'vragenlijsten' ? btnActive : "btn btn-outline"} 
+            style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <ClipboardIcon size={18} color={activeTab === 'vragenlijsten' ? 'white' : accent} /> Waarom de vragenlijsten
           </button>
           <button 
             onClick={() => setActiveTab('waarom')}
@@ -86,7 +93,7 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
               <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
                 <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>1. Vragenlijsten: eerst in beeld brengen</strong>
                 <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
-                  De YSQ-S3 en de SMI geven een scoreprofiel van schema's en modi, inclusief een gecombineerd rapport. Dat levert een gestructureerd beginpunt voor het gesprek, geen oordeel.
+                  De YSQ-S3 en de SMI geven een scoreprofiel van schema's en modi, inclusief een gecombineerd rapport. Dat levert een gestructureerd beginpunt voor het gesprek, geen oordeel. Zie het tabblad <em>Waarom de vragenlijsten</em>.
                 </span>
               </div>
               <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
@@ -122,6 +129,55 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
               </h3>
               <p style={{ color: '#1e3a8a', fontSize: '1.1rem', lineHeight: '1.6', margin: 0 }}>
                 Schematherapie toegankelijker en samenhangender maken: voor de behandelaar in de praktijk, voor de student die de theorie leert, en voor de cliënt die taal zoekt voor zijn of haar patronen.
+              </p>
+            </div>
+
+          </div>
+        )}
+
+        {activeTab === 'vragenlijsten' && (
+          <div className="inner-box fade-in" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '3rem' }}>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Waarom vragenlijsten?</h3>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.5rem 0' }}>
+              Een gesprek over patronen begint vaak met een vaag gevoel: &lsquo;ik herken dit wel, maar wat is het precies?&rsquo; Een vragenlijst geeft daar een gestructureerd beginpunt aan. Het scoreprofiel laat zien welke schema&rsquo;s en modi opvallen, zodat behandelaar en cliënt gerichter kunnen kiezen waar ze naar kijken. Het profiel opent het gesprek, het sluit het niet af.
+            </p>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Twee instrumenten, één beeld</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>YSQ-S3: de schema&rsquo;s</strong>
+                <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
+                  Geeft een score op de 18 klassieke schema&rsquo;s: de diepgewortelde patronen en overtuigingen die ontstaan als basisbehoeften onvervuld blijven.
+                </span>
+              </div>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>SMI: de modi</strong>
+                <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
+                  Laat zien welke gemoedstoestanden en overlevingsmechanismen op dit moment de boventoon voeren, verdeeld over 14 modi.
+                </span>
+              </div>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>Het gecombineerde rapport</strong>
+                <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
+                  Legt beide naast elkaar: welke schema&rsquo;s zijn hoog, welke modi horen daarbij. Daarmee zie je het verband tussen wat er onder ligt en wat er aan de oppervlakte gebeurt. Een AI-analyse is optioneel.
+                </span>
+              </div>
+            </div>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Wat een vragenlijst niet kan</h3>
+            <ul style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0', paddingLeft: '1.5rem' }}>
+              <li style={{ marginBottom: '0.5rem' }}>Een vragenlijst is zelfrapportage. Hoe iemand zichzelf op dat moment ziet, kleurt de uitkomst.</li>
+              <li style={{ marginBottom: '0.5rem' }}>De lijsten meten de 18 klassieke schema&rsquo;s en 14 modi. Wat daarbuiten valt, zoals de drie nieuw voorgestelde schema&rsquo;s uit VSt 2021, komt er niet in naar voren en vraagt om eigen praktijkobservatie.</li>
+              <li>Een score is geen diagnose. De interpretatie hoort bij de behandelend professional.</li>
+            </ul>
+
+            <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#f1f5f9', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #64748b' }}>
+              <h3 style={{ color: '#334155', fontSize: '1.15rem', marginTop: 0, marginBottom: '0.75rem' }}>
+                Uw antwoorden blijven bij u
+              </h3>
+              <p style={{ color: '#334155', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
+                De antwoorden worden in uw eigen browser verwerkt. Alleen als u zelf de optionele AI-analyse gebruikt, wordt het scoreprofiel naar Google Gemini gestuurd. Zie het tabblad <em>Voorbehouden &amp; privacy</em>.
               </p>
             </div>
 
@@ -298,9 +354,9 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
 
         {activeTab === 'maker' && (
           <div className="inner-box fade-in" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '3rem' }}>
-            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Over de maker & Verantwoording</h3>
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Over de maker</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
-              Deze theoriekaarten zijn met veel zorg en aandacht ontwikkeld vanuit de wens om de waardevolle, maar soms complexe materie van schematherapie visueel en direct toepasbaar te maken. De inhoud, de begrippen en de mechanismen in deze kaartenset zijn zorgvuldig samengesteld op basis van erkende vakliteratuur, de grondbeginselen van Jeffrey Young (het klassieke 18-schema's en 5-domeinen model) en de gangbare diagnostische indelingen (YSQ en SMI).
+              De Schematherapie Suite is met veel zorg en aandacht ontwikkeld vanuit de wens om de waardevolle, maar soms complexe materie van schematherapie begrijpelijk, visueel en direct toepasbaar te maken. De vragenlijsten, de theoriekaarten en de tafelopstelling zijn zorgvuldig samengesteld op basis van vakliteratuur en de grondbeginselen van Jeffrey Young (het klassieke 18-schema's en 5-domeinen model), met de uitbreiding uit het position paper van Arntz et al. (2021) in de uitbreidingsset. De vragenlijsten zijn de YSQ-S3 en de SMI.
             </p>
 
             <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#eff6ff', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #3b82f6' }}>
@@ -308,10 +364,10 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
                 Belangrijke disclaimer:
               </h3>
               <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: '0 0 1rem 0' }}>
-                Deze kaartenset is een onafhankelijk, creatief initiatief, ontworpen als praktisch hulpmiddel om de dialoog over patronen en behoeften op een visuele en tastbare manier te faciliteren. Het is een onafhankelijke uitgave en niet verbonden aan of geaccrediteerd door beroepsverenigingen.
+                De suite is een onafhankelijk, creatief initiatief, ontworpen als praktisch hulpmiddel om de dialoog over patronen en behoeften op een heldere en tastbare manier te faciliteren. Het is een onafhankelijke uitgave en niet verbonden aan of geaccrediteerd door beroepsverenigingen.
               </p>
               <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: '0 0 1rem 0' }}>
-                Om volledige transparantie te bieden, zijn de exacte teksten, begrippen en de indeling van alle kaarten openbaar in te zien op deze website. Therapeuten kunnen zo vooraf tot in detail controleren wat het deck bevat en zelf beoordelen of dit aansluit bij hun visie en werkwijze. De keuze om deze kaarten als hulpmiddel in te zetten binnen een sessie valt dan ook onder de eigen professionele verantwoordelijkheid van de behandelend professional. De kaartenset is nadrukkelijk bedoeld als aanvullende, laagdrempelige ondersteuning en is geen vervanging voor formele diagnostiek of een gedegen professionele behandeling.
+                Om transparantie te bieden, zijn de teksten, begrippen en de indeling van de kaarten openbaar in te zien op deze website. Therapeuten kunnen zo vooraf controleren wat de suite bevat en zelf beoordelen of dit aansluit bij hun visie en werkwijze. De keuze om deze hulpmiddelen in een sessie in te zetten valt onder de eigen professionele verantwoordelijkheid van de behandelend professional. De suite is nadrukkelijk bedoeld als aanvullende, laagdrempelige ondersteuning en is geen vervanging voor formele diagnostiek of een gedegen professionele behandeling.
               </p>
               <p style={{ color: '#1e3a8a', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
                 Alle voorbehouden en de privacyverklaring van de hele suite staan op het tabblad <a href="#verantwoording" onClick={(e) => { e.preventDefault(); setActiveTab('verantwoording'); window.scrollTo(0, 0); }} style={{ color: '#1e3a8a', fontWeight: '700' }}>Voorbehouden &amp; privacy</a>.
