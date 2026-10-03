@@ -149,11 +149,21 @@ export const getCardTypeLetter = (type) => {
   return '';
 };
 
-export const getCardTypeLabel = (type, title = '') => {
+export const isForensicMode = (title = '', id = '') => {
+  const t = (title || '').toLowerCase();
+  const i = (id || '').toLowerCase();
+  return (
+    i === 'vst_m_bm' || i === 'vst_m_rd' || i === 'vst_m_bb' || i === 'pa' ||
+    t.includes('bedrog') || t.includes('roofdier') || t.includes('pest') || t.includes('boze beschermer')
+  );
+};
+
+export const getCardTypeLabel = (type, title = '', id = '') => {
   if (type === 'schema') return "Schema";
   if (type === 'basisbehoefte' || type === 'need') return "Basisbehoefte";
   if (type === 'modicategorie') return "Categorie";
   if (type === 'mode') {
+    if (isForensicMode(title, id)) return "Forensische Modus";
     const t = (title || '').toLowerCase();
     if (t.includes('kind')) {
       if (t.includes('blije kind')) return "Functionele Modus";
