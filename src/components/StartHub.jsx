@@ -204,7 +204,7 @@ export default function StartHub() {
             gap: '5px',
             zIndex: 10
           }}>
-            <SparklesIcon size={14} color="white" /> VSt 2021 Update
+            <SparklesIcon size={14} color="white" /> 2021 Update
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>

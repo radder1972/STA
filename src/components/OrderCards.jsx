@@ -184,7 +184,7 @@ export default function OrderCards({ onBack }) {
     complete: {
       id: 'complete',
       title: 'Complete Kaartenset',
-      subtitle: '55 theoriekaarten • 100% VSt 2021 Afgestemd',
+      subtitle: '55 theoriekaarten • 100% 2021 Update Afgestemd',
       description: 'De complete praktijkset met 7 basisbehoeften, 21 schema\'s, 20 modi en 7 coping/categorieën (met B/S/M type-badges).',
       cardsCount: 55,
       price: 19.95,
