@@ -77,7 +77,7 @@ export default function Verantwoording({ onBack, embedded = false, showBack = tr
           <li><strong>AI kan fouten maken.</strong> Antwoorden van de AI-functies kunnen onjuist of onvolledig zijn. De aanduiding &ldquo;sterke&rdquo;, &ldquo;matige&rdquo; of &ldquo;zwakke&rdquo; match is een kwalitatieve indicatie van een taalmodel en geen gemeten waarde of kans. De behandelaar beslist welke hypothese of kaart er daadwerkelijk wordt gebruikt.</li>
           <li><strong>Inhoud en bronnen.</strong> De inhoud is zorgvuldig samengesteld op basis van vakliteratuur. De basisset volgt het klassieke schemamodel van Jeffrey Young (18 schema&rsquo;s, 5 domeinen); de uitbreidingsset sluit aan op het position paper van Arntz et al. (2021). Het blijft een eigen uitwerking. Raadpleeg bij twijfel de oorspronkelijke bronnen.</li>
           <li><strong>Taal.</strong> Op de kaarten is bewust gekozen voor toegankelijke taal. Dat kan afwijken van de gangbare vakterminologie.</li>
-          <li><strong>Beschikbaarheid.</strong> De suite wordt aangeboden zoals ze is. Er is geen garantie dat alle onderdelen altijd beschikbaar of foutloos zijn. De AI-functies kunnen tijdelijk niet beschikbaar zijn.</li>
+          <li><strong>Beschikbaarheid.</strong> De suite wordt aangeboden zoals ze is. Er is geen garantie dat alle onderdelen altijd beschikbaar of foutloos zijn. De AI-functies kunnen tijdelijk niet beschikbaar zijn. Voor zover de wet dat toestaat, is de maker niet aansprakelijk voor schade door het gebruik van de suite of door beslissingen die op de uitkomsten zijn gebaseerd.</li>
         </ul>
       </div>
 
@@ -85,18 +85,25 @@ export default function Verantwoording({ onBack, embedded = false, showBack = tr
       <div {...sectionProps}>
         <h2 style={h2Style}><ShieldIcon size={26} /> Privacyverklaring</h2>
         <p style={pStyle}>
-          Hieronder staat per onderdeel welke gegevens er worden verwerkt en waar ze naartoe gaan. In de suite zelf zijn er geen accounts, geen eigen database en geen tracking- of analysetools.
+          Hieronder staat per onderdeel welke gegevens er worden verwerkt en waar ze naartoe gaan. In de suite zelf zijn er geen accounts, geen eigen database, geen cookies en geen tracking- of analysetools. Ook het lettertype wordt vanuit de suite zelf geladen, niet bij een externe partij.
         </p>
+
+        <h3 style={h3Style}>Wie is verantwoordelijk?</h3>
+        <ul style={listStyle}>
+          <li>Voor de gegevens van een <strong>bestelling</strong> is de maker van de suite de verantwoordelijke in de zin van de AVG. Contact: {CONTACT_EMAIL || 'zie hieronder'}.</li>
+          <li>Voor de rest verwerkt de suite uw invoer alleen in uw eigen browser. De suite zelf slaat die invoer niet op. Alleen als u een AI-functie gebruikt, gaat invoer naar Google (zie hieronder).</li>
+          <li>Gebruikt u de suite met gegevens van een cliënt, dan bent u als zorgverlener zelf verantwoordelijk voor die gegevens.</li>
+        </ul>
 
         <h3 style={h3Style}>Algemeen</h3>
         <p style={pStyle}>
-          Zoals bij elke website kan de hostingpartij technische gegevens verwerken, zoals het IP-adres van uw verzoek. Daar heeft de applicatie zelf geen zicht op.
+          Zoals bij elke website kan de hostingpartij technische gegevens verwerken, zoals het IP-adres van uw verzoek, bijvoorbeeld in serverlogs. Daar heeft de applicatie zelf geen zicht op.
         </p>
 
         <h3 style={h3Style}>Vragenlijsten (YSQ-S3 en SMI)</h3>
         <ul style={listStyle}>
           <li>Uw antwoorden worden in uw eigen browser verwerkt en niet naar een eigen server gestuurd.</li>
-          <li>Tijdens het invullen wordt uw voortgang tijdelijk bewaard in de lokale opslag van uw browser, zodat u kunt hervatten. Bij het afronden van een vragenlijst wordt die tussentijdse opslag gewist. U kunt deze ook zelf wissen via de instellingen van uw browser.</li>
+          <li>Tijdens het invullen wordt uw voortgang tijdelijk bewaard in de lokale opslag van uw browser, zodat u kunt hervatten. Bij het afronden van een vragenlijst wordt die tussentijdse opslag gewist. Rondt u een vragenlijst niet af, dan blijft de opslag bestaan tot u hem wist via de instellingen van uw browser.</li>
           <li>De YSQ-S3 meet de 18 klassieke schema&rsquo;s en de SMI 14 modi. Schema&rsquo;s of modi daarbuiten, zoals de drie nieuw voorgestelde schema&rsquo;s uit VSt 2021, komen in de uitkomsten niet naar voren en vragen om uw eigen praktijkobservatie.</li>
           <li>Het CSV-bestand en de PDF die u zelf downloadt of print bevatten uw antwoorden en resultaten. Bewaar die zorgvuldig.</li>
           <li>Het gecombineerde rapport heeft een <strong>optionele</strong> AI-analyse. Zie het onderdeel AI-functies hieronder.</li>
@@ -109,10 +116,10 @@ export default function Verantwoording({ onBack, embedded = false, showBack = tr
 
         <h3 style={h3Style}>Kaarten bestellen</h3>
         <ul style={listStyle}>
-          <li>Als u kaarten bestelt, vult u naam, e-mailadres, afleveradres, aantal en eventueel een opmerking in. Deze gegevens worden gebruikt om uw bestelling af te handelen.</li>
-          <li>Het formulier wordt verstuurd via de formulierdienst <strong>Web3Forms</strong>, die de bestelling als e-mail doorstuurt.</li>
-          <li>Bestelgegevens worden bewaard tot de bestelling is afgehandeld, daarna maximaal 7 jaar voor de administratie.</li>
-          <li>Om uw adres aan te vullen worden uw postcode en huisnummer opgevraagd bij de <strong>PDOK Locatieserver</strong> (Nederlandse overheid).</li>
+          <li>Als u kaarten bestelt, vult u naam, e-mailadres, afleveradres, aantal en eventueel een opmerking in. Deze gegevens worden alleen gebruikt om uw bestelling af te handelen. Grondslag: het uitvoeren van uw bestelling.</li>
+          <li>Het formulier wordt verstuurd via de formulierdienst <strong>Web3Forms</strong>, die de bestelling als e-mail doorstuurt naar het postvak van de maker. Deze diensten kunnen gegevens buiten de Europese Economische Ruimte verwerken. Zie de privacyverklaring van Web3Forms.</li>
+          <li>Bestelgegevens worden bewaard tot de bestelling is afgehandeld, daarna maximaal 7 jaar voor de administratie. Grondslag voor die bewaartermijn: de wettelijke bewaarplicht.</li>
+          <li>Om uw adres aan te vullen worden uw postcode en huisnummer opgevraagd bij de <strong>PDOK Locatieserver</strong> (Nederlandse overheid). PDOK ontvangt daarbij uw IP-adres en de ingevulde postcode en huisnummer.</li>
         </ul>
 
         <h3 style={h3Style}>Tafelopstelling</h3>
@@ -126,23 +133,27 @@ export default function Verantwoording({ onBack, embedded = false, showBack = tr
         <ul style={listStyle}>
           <li><strong>Welke functies:</strong> de differentiële hypotheses, de respons vanuit de Gezonde Volwassene en de ketenanalyse in de Tafelopstelling, en de optionele AI-analyse in het gecombineerde rapport van de vragenlijsten.</li>
           <li><strong>Welke gegevens:</strong> bij de Tafelopstelling de situatietekst, de gekozen kaarten en een eventueel ingelezen scoreprofiel. Bij het rapport het scoreprofiel (de namen en gemiddelde scores van schema&rsquo;s en modi).</li>
-          <li><strong>Waar naartoe:</strong> uw browser stuurt deze informatie rechtstreeks naar de AI-dienst Google Gemini om het antwoord te genereren. Voor wat Google daarmee doet gelden de voorwaarden van Google.</li>
+          <li><strong>Waar naartoe:</strong> uw browser stuurt deze informatie rechtstreeks naar de AI-dienst Google Gemini om het antwoord te genereren. Dit kan betekenen dat gegevens buiten de Europese Economische Ruimte worden verwerkt. Google kan invoer tijdelijk bewaren, bijvoorbeeld om misbruik te voorkomen. Voor wat Google daarmee doet gelden de voorwaarden van Google.</li>
           <li><strong>Keuze:</strong> niets wordt verstuurd tenzij u zelf op een AI-knop klikt.</li>
         </ul>
 
-        <h3 style={h3Style}>Wat wij van u vragen</h3>
+        <h3 style={h3Style}>Gebruik met cliëntgegevens</h3>
         <ul style={listStyle}>
           <li>Voer in de vrije tekst <strong>geen herleidbare gegevens</strong> in, zoals namen, geboortedatums, adressen of werkgevers. Anonimiseer de casus.</li>
-          <li>De suite is niet bedoeld voor het verwerken van identificeerbare gezondheidsgegevens. Er is via deze tool geen verwerkersovereenkomst met Google afgesloten.</li>
+          <li>De suite is niet bedoeld voor het verwerken van identificeerbare gezondheidsgegevens. Voor het gebruik van de AI-functies is geen verwerkersovereenkomst met u of uw praktijk gesloten. De suite biedt dus geen juridische dekking voor het verwerken van herleidbare gegevens over iemands gezondheid.</li>
+          <li>Gegevens over psychische gezondheid zijn bijzondere persoonsgegevens (artikel 9 AVG) en vragen extra zorg. Een scoreprofiel zonder naam lijkt anoniem, maar kan in combinatie met andere gegevens toch herleidbaar zijn.</li>
           <li>Als professional blijft u zelf verantwoordelijk voor een zorgvuldige omgang met cliëntgegevens, en voor het informeren van uw cliënt.</li>
         </ul>
 
         <h3 style={h3Style}>Uw rechten</h3>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          Omdat de suite zelf vrijwel geen gegevens bewaart, valt er voor de meeste onderdelen niets in te zien of te verwijderen. Voor gegevens uit een bestelling kunt u om inzage, correctie of verwijdering vragen.
+        <p style={pStyle}>
+          Omdat de suite zelf vrijwel geen gegevens bewaart, valt er voor de meeste onderdelen niets in te zien of te verwijderen. Voor gegevens uit een bestelling heeft u recht op inzage, rectificatie, verwijdering, beperking van de verwerking, bezwaar en overdracht van uw gegevens.
           {CONTACT_EMAIL && (
-            <> Neem daarvoor contact op via <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: 'var(--primary)', fontWeight: '600' }}>{CONTACT_EMAIL}</a>.</>
+            <> Neem daarvoor contact op via <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: 'var(--primary)', fontWeight: '600' }}>{CONTACT_EMAIL}</a>. Uw verzoek wordt in principe binnen een maand beantwoord.</>
           )}
+        </p>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          Bent u het niet eens met de manier waarop uw gegevens worden verwerkt, dan kunt u een klacht indienen bij de Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl).
         </p>
       </div>
 
