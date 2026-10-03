@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   ClipboardIcon, 
   BrainIcon, 
@@ -9,11 +9,14 @@ import {
   ShieldIcon, 
   InfoIcon,
   PlatformBadge,
-  SparklesIcon
+  SparklesIcon,
+  ThreeSparklesLogo
 } from './Icons';
 import packageJson from '../../package.json';
 
 export default function StartHub() {
+  const [hoveredCard, setHoveredCard] = useState(null);
+
   return (
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem 1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
       
@@ -42,16 +45,38 @@ export default function StartHub() {
       }}>
 
         {/* Optie 1: Vragenlijsten & Zelftest */}
-        <div className="glass-panel" style={{
-          padding: '2.5rem',
-          borderRadius: '24px',
-          display: 'flex',
-          flexDirection: 'column',
-          transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-          border: '1px solid var(--border-color)',
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-          position: 'relative'
-        }}>
+        <div 
+          className="glass-panel" 
+          onMouseEnter={() => setHoveredCard('test')}
+          onMouseLeave={() => setHoveredCard(null)}
+          style={{
+            padding: '2.5rem',
+            borderRadius: '24px',
+            display: 'flex',
+            flexDirection: 'column',
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            border: hoveredCard === 'test' ? '1px solid rgba(71, 85, 105, 0.45)' : '1px solid var(--border-color)',
+            boxShadow: hoveredCard === 'test' ? '0 20px 40px rgba(71, 85, 105, 0.16), 0 0 20px rgba(71, 85, 105, 0.08)' : '0 10px 30px rgba(0, 0, 0, 0.05)',
+            transform: hoveredCard === 'test' ? 'translateY(-6px)' : 'translateY(0)',
+            position: 'relative',
+            overflow: 'visible'
+          }}
+        >
+          {/* Draped Sparkles on Top-Right Corner */}
+          <div style={{
+            position: 'absolute',
+            top: '-18px',
+            right: '-14px',
+            zIndex: 12,
+            pointerEvents: 'none',
+            opacity: hoveredCard === 'test' ? 0.95 : 0,
+            transform: hoveredCard === 'test' ? 'scale(1) translateY(0)' : 'scale(0.7) translateY(8px)',
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            filter: 'drop-shadow(0 4px 10px rgba(71, 85, 105, 0.3))'
+          }}>
+            <ThreeSparklesLogo size={52} theme="test" />
+          </div>
+
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
             <div style={{
               width: '56px',
@@ -128,21 +153,43 @@ export default function StartHub() {
         </div>
 
         {/* Optie 2: Kaarten */}
-        <div className="glass-panel" style={{
-          padding: '2.5rem',
-          borderRadius: '24px',
-          display: 'flex',
-          flexDirection: 'column',
-          transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-          border: '1px solid var(--border-color)',
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-          position: 'relative'
-        }}>
+        <div 
+          className="glass-panel" 
+          onMouseEnter={() => setHoveredCard('kaarten')}
+          onMouseLeave={() => setHoveredCard(null)}
+          style={{
+            padding: '2.5rem',
+            borderRadius: '24px',
+            display: 'flex',
+            flexDirection: 'column',
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            border: hoveredCard === 'kaarten' ? '1px solid rgba(2, 132, 199, 0.45)' : '1px solid var(--border-color)',
+            boxShadow: hoveredCard === 'kaarten' ? '0 20px 40px rgba(2, 132, 199, 0.18), 0 0 20px rgba(14, 165, 233, 0.12)' : '0 10px 30px rgba(0, 0, 0, 0.05)',
+            transform: hoveredCard === 'kaarten' ? 'translateY(-6px)' : 'translateY(0)',
+            position: 'relative',
+            overflow: 'visible'
+          }}
+        >
+          {/* Draped Sparkles on Top-Right Corner */}
+          <div style={{
+            position: 'absolute',
+            top: '-18px',
+            right: '-14px',
+            zIndex: 12,
+            pointerEvents: 'none',
+            opacity: hoveredCard === 'kaarten' ? 0.95 : 0,
+            transform: hoveredCard === 'kaarten' ? 'scale(1) translateY(0)' : 'scale(0.7) translateY(8px)',
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            filter: 'drop-shadow(0 4px 10px rgba(2, 132, 199, 0.3))'
+          }}>
+            <ThreeSparklesLogo size={52} theme="kaarten" />
+          </div>
+
           {/* Badge / Sticker: VSt 2021 Update */}
           <div style={{
             position: 'absolute',
             top: '-14px',
-            right: '18px',
+            right: '42px',
             background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
             color: 'white',
             fontSize: '0.72rem',
@@ -236,16 +283,37 @@ export default function StartHub() {
         </div>
 
         {/* Optie 3: Tafelopstelling */}
-        <div className="glass-panel" style={{
-          padding: '2.5rem',
-          borderRadius: '24px',
-          display: 'flex',
-          flexDirection: 'column',
-          transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-          border: '1px solid var(--border-color)',
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-          position: 'relative'
-        }}>
+        <div 
+          className="glass-panel" 
+          onMouseEnter={() => setHoveredCard('tafel')}
+          onMouseLeave={() => setHoveredCard(null)}
+          style={{
+            padding: '2.5rem',
+            borderRadius: '24px',
+            display: 'flex',
+            flexDirection: 'column',
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            border: hoveredCard === 'tafel' ? '1px solid rgba(5, 150, 105, 0.45)' : '1px solid var(--border-color)',
+            boxShadow: hoveredCard === 'tafel' ? '0 20px 40px rgba(5, 150, 105, 0.18), 0 0 20px rgba(16, 185, 129, 0.12)' : '0 10px 30px rgba(0, 0, 0, 0.05)',
+            transform: hoveredCard === 'tafel' ? 'translateY(-6px)' : 'translateY(0)',
+            position: 'relative',
+            overflow: 'visible'
+          }}
+        >
+          {/* Draped Sparkles on Top-Right Corner */}
+          <div style={{
+            position: 'absolute',
+            top: '-18px',
+            right: '-14px',
+            zIndex: 12,
+            pointerEvents: 'none',
+            opacity: hoveredCard === 'tafel' ? 0.95 : 0,
+            transform: hoveredCard === 'tafel' ? 'scale(1) translateY(0)' : 'scale(0.7) translateY(8px)',
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            filter: 'drop-shadow(0 4px 10px rgba(5, 150, 105, 0.3))'
+          }}>
+            <ThreeSparklesLogo size={52} theme="tafel" />
+          </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
             <div style={{
               width: '56px',
