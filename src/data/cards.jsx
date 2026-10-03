@@ -110,7 +110,8 @@ export const schemaGroups = [
   { group: 'Verzwakte Grenzen', titles: ['Zich rechten toe-eigenen', 'Gebrek aan zelfcontrole / Zelfdiscipline'] },
   { group: 'Gerichtheid op Anderen', titles: ['Onderwerping', 'Zelfopoffering', 'Goedkeuring en erkenning zoeken'] },
   { group: 'Overmatige Waakzaamheid', titles: ['Emotionele geremdheid', 'Meedogenloze normen / Overmatig kritisch', 'Negativiteit en pessimisme', 'Bestraffende houding'] },
-  { group: 'Zelfcoherentie & Rechtvaardigheid (VSt)', titles: ['Gebrek aan coherente identiteit', 'Gebrek aan een betekenisvolle wereld', 'Onrechtvaardigheid'] }
+  { group: 'Zelfcoherentie (VSt)', titles: ['Gebrek aan coherente identiteit', 'Gebrek aan een betekenisvolle wereld'] },
+  { group: 'Rechtvaardigheid (VSt)', titles: ['Onrechtvaardigheid'] }
 ];
 export const schemaSortOrder = schemaGroups.flatMap(g => g.titles);
 
