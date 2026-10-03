@@ -105,12 +105,11 @@ const modeCards = [
   return indexA - indexB;
 });
 
-const healthyAdultCard = { id: 'gv', src: imgM4, title: 'Gezonde volwassene', type: 'mode', description: schemaDescriptions['Gezonde volwassene'], style: { transform: 'scale(1.1)' } };
+const healthyAdultCard = { id: 'gv', src: imgM4, title: 'Gezonde volwassene', type: 'mode', description: schemaDescriptions['Gezonde volwassene'], style: { transform: 'scale(0.72)' } };
 
-
-
-const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false, labelPosition = 'top', slotColor = '#10b981' }) => {
+const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false, labelPosition = 'top', slotColor }) => {
   const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'rgba(0,0,0,0.15)';
+  const activeSlotColor = slotColor || '#9ca3af';
   
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -156,28 +155,28 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false, labelPos
             flexDirection: 'column', 
             alignItems: 'center', 
             justifyContent: 'center', 
-            border: `2px dashed ${slotColor}`, 
+            border: '2px dashed #9ca3af', 
             borderRadius: '16px', 
             cursor: 'pointer', 
-            background: `${slotColor}0d`, 
+            background: 'rgba(156, 163, 175, 0.04)', 
             transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-            boxShadow: `0 4px 15px ${slotColor}1a`
+            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)'
           }}
           onMouseEnter={e => {
             e.currentTarget.style.transform = 'translateY(-4px)';
-            e.currentTarget.style.borderColor = slotColor;
-            e.currentTarget.style.background = `${slotColor}1f`;
-            e.currentTarget.style.boxShadow = `0 8px 25px ${slotColor}35`;
+            e.currentTarget.style.borderColor = '#6b7280';
+            e.currentTarget.style.background = 'rgba(156, 163, 175, 0.12)';
+            e.currentTarget.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.08)';
           }}
           onMouseLeave={e => {
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.borderColor = slotColor;
-            e.currentTarget.style.background = `${slotColor}0d`;
-            e.currentTarget.style.boxShadow = `0 4px 15px ${slotColor}1a`;
+            e.currentTarget.style.borderColor = '#9ca3af';
+            e.currentTarget.style.background = 'rgba(156, 163, 175, 0.04)';
+            e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.04)';
           }}
         >
-          <span style={{ color: slotColor, fontSize: '2.5rem', marginBottom: '0.5rem', fontWeight: '300' }}>+</span>
-          <span style={{ color: slotColor, fontSize: '0.82rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Kies Kaart</span>
+          <span style={{ color: '#6b7280', fontSize: '2.5rem', marginBottom: '0.5rem', fontWeight: '300' }}>+</span>
+          <span style={{ color: '#4b5563', fontSize: '0.82rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Kies Kaart</span>
         </div>
       )}
       {label && labelPosition === 'bottom' && (
@@ -619,16 +618,16 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 /* NORMAL TRIANGLE VIEW */
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem', width: '100%', maxWidth: '560px', position: 'relative', zIndex: 2 }}>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} labelPosition="top" slotColor="#f59e0b" />
+                    <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} labelPosition="top" />
                   </div>
 
                   {/* Horizontale verbinding top */}
                   <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 1, minWidth: '30px', marginTop: '1.5rem' }}>
-                    <div style={{ height: '3px', width: '100%', minWidth: '30px', background: 'linear-gradient(to right, #f59e0b, #3b82f6)', borderRadius: '2px', opacity: 0.85 }}></div>
+                    <div style={{ height: '3px', width: '100%', minWidth: '30px', background: (selectedMode && selectedSchema) ? 'linear-gradient(to right, #f59e0b, #3b82f6)' : 'var(--border-color)', borderRadius: '2px', opacity: (selectedMode && selectedSchema) ? 0.85 : 0.4 }}></div>
                   </div>
 
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} labelPosition="top" slotColor="#3b82f6" />
+                    <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} labelPosition="top" />
                   </div>
                 </div>
               )}
@@ -638,27 +637,27 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 <div style={{
                   width: '40px',
                   height: '3px',
-                  background: 'linear-gradient(135deg, #f59e0b, #10b981)',
+                  background: (selectedMode && selectedNeed) ? 'linear-gradient(135deg, #f59e0b, #10b981)' : 'var(--border-color)',
                   transform: 'rotate(40deg)',
                   transformOrigin: 'top left',
-                  opacity: 0.75,
+                  opacity: (selectedMode && selectedNeed) ? 0.75 : 0.4,
                   borderRadius: '2px'
                 }} />
 
                 <div style={{
                   width: '40px',
                   height: '3px',
-                  background: 'linear-gradient(225deg, #3b82f6, #10b981)',
+                  background: (selectedSchema && selectedNeed) ? 'linear-gradient(225deg, #3b82f6, #10b981)' : 'var(--border-color)',
                   transform: 'rotate(-40deg)',
                   transformOrigin: 'top right',
-                  opacity: 0.75,
+                  opacity: (selectedSchema && selectedNeed) ? 0.75 : 0.4,
                   borderRadius: '2px'
                 }} />
               </div>
 
               {/* Onderste punt van de driehoek: Onvervulde Behoefte */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 2 }}>
-                <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} labelPosition="bottom" slotColor="#10b981" />
+                <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} labelPosition="bottom" />
               </div>
 
               {/* LIVE KAARTMATCHING FEEDBACK BANNER */}
