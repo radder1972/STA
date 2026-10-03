@@ -280,6 +280,21 @@ export const isForensicMode = (title = '', id = '') => {
   );
 };
 
+export const formatCardTypeLabel = (label) => {
+  if (!label || typeof label !== 'string') return label;
+  
+  if (label.includes(' ')) {
+    const parts = label.split(' ');
+    return (
+      <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', lineHeight: '1.1', textAlign: 'center' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>{parts[0]}</span>
+        <span style={{ whiteSpace: 'nowrap' }}>{parts.slice(1).join(' ')}</span>
+      </span>
+    );
+  }
+  return label;
+};
+
 export const getCardTypeLabel = (type, title = '', id = '') => {
   if (type === 'schema') return "Schema";
   if (type === 'basisbehoefte' || type === 'need') return "Basisbehoefte";
@@ -418,7 +433,7 @@ const SchemaCard = ({
               {type && getCardTypeLetter(type) && (
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color, lineHeight: 1.1, zIndex: 10, marginTop: src ? `${(7 / 58) * widthNum}px` : `${(11 / 58) * widthNum}px` }}>
                   <span style={{ fontSize: src ? `${14 * scaleRatio}px` : `${18 * scaleRatio}px`, display: 'flex', alignItems: 'center', justifyContent: 'center', width: src ? `${(9 / 58) * widthNum}px` : `${(12 / 58) * widthNum}px`, height: src ? `${(9 / 58) * widthNum}px` : `${(12 / 58) * widthNum}px`, borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: `${(1.5 / 58) * widthNum}px`, boxSizing: 'border-box' }}>{getCardTypeLetter(type)}</span>
-                  <span style={{ fontSize: src ? `${11 * scaleRatio}px` : `${13 * scaleRatio}px`, marginTop: `${(1 / 58) * widthNum}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black', fontWeight: 'bold' }}>{getCardTypeLabel(type, title, id)}</span>
+                  <span style={{ fontSize: src ? `${11 * scaleRatio}px` : `${13 * scaleRatio}px`, marginTop: `${(1 / 58) * widthNum}px`, textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black', fontWeight: 'bold' }}>{formatCardTypeLabel(getCardTypeLabel(type, title, id))}</span>
                   {isForensicMode(title, id) && (
                     <span style={{ fontSize: src ? `${9 * scaleRatio}px` : `${11 * scaleRatio}px`, textTransform: 'uppercase', letterSpacing: '0.8px', color: 'black', fontWeight: 'bold', marginTop: `${(2.5 / 58) * widthNum}px`, opacity: 0.85 }}>
                       FORENSISCH

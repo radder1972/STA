@@ -158,6 +158,21 @@ export const isForensicMode = (title = '', id = '') => {
   );
 };
 
+export const formatCardTypeLabel = (label) => {
+  if (!label || typeof label !== 'string') return label;
+  
+  if (label.includes(' ')) {
+    const parts = label.split(' ');
+    return (
+      <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', lineHeight: '1.1', textAlign: 'center' }}>
+        <span style={{ whiteSpace: 'nowrap' }}>{parts[0]}</span>
+        <span style={{ whiteSpace: 'nowrap' }}>{parts.slice(1).join(' ')}</span>
+      </span>
+    );
+  }
+  return label;
+};
+
 export const getCardTypeLabel = (type, title = '', id = '') => {
   if (type === 'schema') return "Schema";
   if (type === 'basisbehoefte' || type === 'need') return "Basisbehoefte";
