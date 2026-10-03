@@ -198,7 +198,7 @@ const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed }) => {
   const angles = [-16, -8, 0, 8, 16];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '1.25rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '0.25rem' }}>
       <div style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
         <div style={{ 
           fontSize: '0.78rem', 
@@ -206,15 +206,14 @@ const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed }) => {
           textTransform: 'uppercase', 
           letterSpacing: '0.06em', 
           color: '#059669', 
-          marginBottom: '0.35rem' 
+          marginBottom: '0.25rem' 
         }}>
-          Stap 2A: Geraakte Basisbehoefte
+          Geraakte Basisbehoefte
         </div>
         <div style={{ 
-          fontSize: '1rem', 
-          fontWeight: '700', 
-          color: 'var(--text-main)', 
-          lineHeight: '1.4'
+          fontSize: '0.85rem', 
+          fontWeight: '400', 
+          color: 'var(--text-muted)'
         }}>
           Welke basisbehoefte kwam in deze situatie het meest in het geding?
         </div>
@@ -815,19 +814,29 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                     Laat de AI gewogen differentiële hypotheses opstellen op basis van de casus, geraakte basisbehoefte en het testprofiel. Elke hypothese bevat transparante klinische onderbouwing (Explainable AI). U kiest als therapeut welke kaart definitief op tafel komt.
                   </p>
 
-                  {/* Stap 2A: Waaier-selectie voor Geraakte Basisbehoefte */}
-                  <div style={{ width: '100%', marginBottom: '2rem' }}>
+                  {/* Sub-card 1: Waaier-selectie voor Geraakte Basisbehoefte */}
+                  <div style={{
+                    width: '100%',
+                    maxWidth: '660px',
+                    marginBottom: '1.25rem',
+                    padding: '1.5rem 1rem 1rem 1rem',
+                    borderRadius: '20px',
+                    background: 'var(--bg-color)',
+                    border: '1px solid rgba(16, 185, 129, 0.25)',
+                    boxSizing: 'border-box',
+                    boxShadow: '0 6px 20px rgba(0,0,0,0.04)'
+                  }}>
                     <WaaierNeedSelector 
                       selectedNeedTitle={selectedUnmetNeed} 
                       onSelectNeed={handleSelectUnmetNeed} 
                     />
                   </div>
 
-                  {/* Options Box: Stap 2B and Stap 2C */}
+                  {/* Sub-card 2: Koppel Testresultaten */}
                   <div style={{
                     width: '100%',
                     maxWidth: '660px',
-                    marginBottom: '2rem',
+                    marginBottom: '1.25rem',
                     padding: '1.5rem',
                     borderRadius: '20px',
                     background: 'var(--bg-color)',
@@ -836,7 +845,8 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                     boxShadow: '0 6px 20px rgba(0,0,0,0.04)',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '1.5rem'
+                    alignItems: 'center',
+                    textAlign: 'center'
                   }}>
                     <input 
                       type="file" 
@@ -846,158 +856,167 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                       onChange={handleCsvUpload} 
                     />
 
-                    {/* Stap 2B: Koppel testresultaten */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', alignItems: 'center', textAlign: 'center' }}>
-                      <div>
-                        <div style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '0.25rem' }}>
-                          Stap 2B: Koppel Testresultaten (YSQ / SMI) <span style={{ fontWeight: '500', opacity: 0.75 }}>(Optioneel)</span>
-                        </div>
-                        <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)' }}>
-                          Voor een nog nauwkeurigere differentiële hypothese op maat
-                        </div>
+                    <div>
+                      <div style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '0.25rem' }}>
+                        Koppel Testresultaten (YSQ / SMI) <span style={{ fontWeight: '500', opacity: 0.75 }}>(Optioneel)</span>
                       </div>
+                      <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)' }}>
+                        Voor een nog nauwkeurigere differentiële hypothese op maat
+                      </div>
+                    </div>
 
-                      {(completedTests?.ysq || completedTests?.smi) && (
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', fontWeight: '500', color: '#059669', background: 'rgba(16, 185, 129, 0.1)', padding: '5px 14px', borderRadius: '9999px' }}>
-                          <CheckIcon size={14} strokeWidth={3} color="#059669" />
-                          <span>Persoonlijk testprofiel actief {csvUploadedName ? `(${csvUploadedName})` : ''}</span>
-                        </div>
-                      )}
+                    {(completedTests?.ysq || completedTests?.smi) && (
+                      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', fontWeight: '500', color: '#059669', background: 'rgba(16, 185, 129, 0.1)', padding: '5px 14px', borderRadius: '9999px', marginTop: '0.5rem' }}>
+                        <CheckIcon size={14} strokeWidth={3} color="#059669" />
+                        <span>Persoonlijk testprofiel actief {csvUploadedName ? `(${csvUploadedName})` : ''}</span>
+                      </div>
+                    )}
 
-                      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', width: '100%', marginTop: '2px' }}>
-                        <button
-                          type="button"
-                          onClick={() => fileInputRef.current?.click()}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', width: '100%', marginTop: '0.75rem' }}>
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          padding: '8px 18px',
+                          borderRadius: '9999px',
+                          border: '1px solid rgba(14, 165, 233, 0.35)',
+                          background: 'rgba(14, 165, 233, 0.08)',
+                          color: '#0284c7',
+                          fontWeight: '500',
+                          fontSize: '0.88rem',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        <UploadIcon size={15} color="#0284c7" />
+                        <span>{(completedTests?.ysq || completedTests?.smi) ? 'Ander CSV-bestand inlezen' : 'CSV-scorebestand inlezen'}</span>
+                      </button>
+
+                      {!completedTests?.ysq && (
+                        <a
+                          href="test.html"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           style={{
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '8px',
                             padding: '8px 18px',
                             borderRadius: '9999px',
-                            border: '1px solid rgba(14, 165, 233, 0.35)',
-                            background: 'rgba(14, 165, 233, 0.08)',
-                            color: '#0284c7',
+                            border: '1px solid rgba(16, 185, 129, 0.35)',
+                            background: 'rgba(16, 185, 129, 0.08)',
+                            color: '#059669',
                             fontWeight: '500',
                             fontSize: '0.88rem',
-                            cursor: 'pointer',
+                            textDecoration: 'none',
                             transition: 'all 0.2s ease'
                           }}
                         >
-                          <UploadIcon size={15} color="#0284c7" />
-                          <span>{(completedTests?.ysq || completedTests?.smi) ? 'Ander CSV-bestand inlezen' : 'CSV-scorebestand inlezen'}</span>
-                        </button>
+                          <FileTextIcon size={15} color="#059669" />
+                          <span>Vragenlijst invullen & CSV downloaden</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
 
-                        {!completedTests?.ysq && (
-                          <a
-                            href="test.html"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '8px',
-                              padding: '8px 18px',
-                              borderRadius: '9999px',
-                              border: '1px solid rgba(16, 185, 129, 0.35)',
-                              background: 'rgba(16, 185, 129, 0.08)',
-                              color: '#059669',
-                              fontWeight: '500',
-                              fontSize: '0.88rem',
-                              textDecoration: 'none',
-                              transition: 'all 0.2s ease'
-                            }}
-                          >
-                            <FileTextIcon size={15} color="#059669" />
-                            <span>Vragenlijst invullen & CSV downloaden</span>
-                          </a>
-                        )}
+                  {/* Sub-card 3: 2021 Analyse Uitbreiding */}
+                  <div style={{
+                    width: '100%',
+                    maxWidth: '660px',
+                    marginBottom: '1.75rem',
+                    padding: '1.5rem',
+                    borderRadius: '20px',
+                    background: 'var(--bg-color)',
+                    border: '1px solid rgba(16, 185, 129, 0.25)',
+                    boxSizing: 'border-box',
+                    boxShadow: '0 6px 20px rgba(0,0,0,0.04)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    textAlign: 'center'
+                  }}>
+                    <div>
+                      <div style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '0.25rem' }}>
+                        2021 Analyse Uitbreiding <span style={{ fontWeight: '500', opacity: 0.75 }}>(Optioneel)</span>
+                      </div>
+                      <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)' }}>
+                        Handmatig toevoegen op basis van klinische observatie
                       </div>
                     </div>
 
-                    {/* Scheidingslijn */}
-                    <div style={{ borderTop: '1px solid rgba(0,0,0,0.08)', width: '100%' }} />
-
-                    {/* Stap 2C: 2021 analyse uitbreiding */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', alignItems: 'center', textAlign: 'center' }}>
-                      <div>
-                        <div style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '0.25rem' }}>
-                          Stap 2C: 2021 Analyse Uitbreiding <span style={{ fontWeight: '500', opacity: 0.75 }}>(Optioneel)</span>
-                        </div>
-                        <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)' }}>
-                          Handmatig toevoegen op basis van klinische observatie
-                        </div>
-                      </div>
-
-                      <div style={{ 
+                    <div style={{ 
+                      display: 'flex', 
+                      flexDirection: 'column',
+                      gap: '8px', 
+                      background: 'rgba(0, 0, 0, 0.02)',
+                      border: '1px solid var(--border-color)',
+                      borderRadius: '12px',
+                      padding: '12px 18px',
+                      boxSizing: 'border-box',
+                      width: '100%',
+                      maxWidth: '480px',
+                      textAlign: 'left',
+                      marginTop: '0.75rem'
+                    }}>
+                      <label style={{ 
                         display: 'flex', 
-                        flexDirection: 'column',
-                        gap: '8px', 
-                        background: 'rgba(0, 0, 0, 0.02)',
-                        border: '1px solid var(--border-color)',
-                        borderRadius: '12px',
-                        padding: '12px 18px',
-                        boxSizing: 'border-box',
-                        width: '100%',
-                        maxWidth: '480px',
-                        textAlign: 'left'
+                        alignItems: 'center', 
+                        gap: '10px', 
+                        fontSize: '0.88rem', 
+                        fontWeight: '400',
+                        color: 'var(--text-main)', 
+                        cursor: 'pointer',
+                        userSelect: 'none'
                       }}>
-                        <label style={{ 
-                          display: 'flex', 
-                          alignItems: 'center', 
-                          gap: '10px', 
-                          fontSize: '0.88rem', 
-                          fontWeight: '400',
-                          color: 'var(--text-main)', 
-                          cursor: 'pointer',
-                          userSelect: 'none'
-                        }}>
-                          <input 
-                            type="checkbox" 
-                            checked={vstOverwrite.identity}
-                            onChange={e => setVstOverwrite(prev => ({ ...prev, identity: e.target.checked }))}
-                            style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
-                          />
-                          <span>Gebrek aan coherente identiteit</span>
-                        </label>
+                        <input 
+                          type="checkbox" 
+                          checked={vstOverwrite.identity}
+                          onChange={e => setVstOverwrite(prev => ({ ...prev, identity: e.target.checked }))}
+                          style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
+                        />
+                        <span>Gebrek aan coherente identiteit</span>
+                      </label>
 
-                        <label style={{ 
-                          display: 'flex', 
-                          alignItems: 'center', 
-                          gap: '10px', 
-                          fontSize: '0.88rem', 
-                          fontWeight: '400',
-                          color: 'var(--text-main)', 
-                          cursor: 'pointer',
-                          userSelect: 'none'
-                        }}>
-                          <input 
-                            type="checkbox" 
-                            checked={vstOverwrite.meaning}
-                            onChange={e => setVstOverwrite(prev => ({ ...prev, meaning: e.target.checked }))}
-                            style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
-                          />
-                          <span>Gebrek aan betekenisvolle wereld</span>
-                        </label>
+                      <label style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: '10px', 
+                        fontSize: '0.88rem', 
+                        fontWeight: '400',
+                        color: 'var(--text-main)', 
+                        cursor: 'pointer',
+                        userSelect: 'none'
+                      }}>
+                        <input 
+                          type="checkbox" 
+                          checked={vstOverwrite.meaning}
+                          onChange={e => setVstOverwrite(prev => ({ ...prev, meaning: e.target.checked }))}
+                          style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
+                        />
+                        <span>Gebrek aan betekenisvolle wereld</span>
+                      </label>
 
-                        <label style={{ 
-                          display: 'flex', 
-                          alignItems: 'center', 
-                          gap: '10px', 
-                          fontSize: '0.88rem', 
-                          fontWeight: '400',
-                          color: 'var(--text-main)', 
-                          cursor: 'pointer',
-                          userSelect: 'none'
-                        }}>
-                          <input 
-                            type="checkbox" 
-                            checked={vstOverwrite.injustice}
-                            onChange={e => setVstOverwrite(prev => ({ ...prev, injustice: e.target.checked }))}
-                            style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
-                          />
-                          <span>Onrechtvaardigheid</span>
-                        </label>
-                      </div>
+                      <label style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: '10px', 
+                        fontSize: '0.88rem', 
+                        fontWeight: '400',
+                        color: 'var(--text-main)', 
+                        cursor: 'pointer',
+                        userSelect: 'none'
+                      }}>
+                        <input 
+                          type="checkbox" 
+                          checked={vstOverwrite.injustice}
+                          onChange={e => setVstOverwrite(prev => ({ ...prev, injustice: e.target.checked }))}
+                          style={{ width: '16px', height: '16px', accentColor: '#059669', cursor: 'pointer' }}
+                        />
+                        <span>Onrechtvaardigheid</span>
+                      </label>
                     </div>
                   </div>
 
@@ -1009,20 +1028,20 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                     style={{ 
                       display: 'inline-flex', 
                       alignItems: 'center', 
-                      gap: '12px', 
-                      fontSize: '1.15rem', 
+                      gap: '10px', 
+                      fontSize: '1.02rem', 
                       fontWeight: '700',
-                      padding: '1.1rem 3rem', 
-                      minWidth: '320px', 
+                      padding: '0.75rem 2.25rem', 
+                      minWidth: '280px', 
                       justifyContent: 'center', 
                       borderRadius: '9999px',
-                      boxShadow: '0 8px 25px rgba(16, 185, 129, 0.35)',
+                      boxShadow: '0 6px 20px rgba(16, 185, 129, 0.3)',
                       cursor: (isPredicting || !situationText) ? 'not-allowed' : 'pointer',
                       transition: 'all 0.3s cubic-bezier(0.34, 1.25, 0.64, 1)'
                     }}
                     title="Genereer gewogen differentiële hypotheses op basis van situatie en profiel"
                   >
-                    {isPredicting ? 'Bezig met analyseren...' : <><WandIcon size={24} color="currentColor" /> Genereer Differentiële Hypotheses (AI)</>}
+                    {isPredicting ? 'Bezig met analyseren...' : <><WandIcon size={20} color="currentColor" /> Genereer Differentiële Hypotheses</>}
                   </button>
 
                   {/* Pijlers 1 & 2: Differentiële Hypotheses & Explainable AI (XAI) Panel */}
