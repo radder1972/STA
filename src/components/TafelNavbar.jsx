@@ -113,28 +113,7 @@ export default function TafelNavbar({ onPrint, onClear }) {
         {/* Scheidingslijn */}
         <div style={{ width: '1px', background: 'var(--border-color)', margin: '0 4px', alignSelf: 'stretch' }} />
 
-        {/* Link naar Vragenlijsten */}
-        <a
-          href="test.html"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '9999px',
-            border: '1px solid rgba(59, 130, 246, 0.3)',
-            background: 'rgba(59, 130, 246, 0.05)',
-            color: 'var(--text-main)',
-            fontWeight: '600',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            fontSize: '0.9rem'
-          }}
-          title="Naar Vragenlijsten & Zelftest (YSQ-S3 & SMI)"
-        >
-          <ClipboardIcon size={18} />
-          <span>Vragenlijsten</span>
-        </a>
+
 
         {/* Link naar Kaarten */}
         <a
