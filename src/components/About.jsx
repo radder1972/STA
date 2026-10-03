@@ -31,8 +31,8 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
       </div>
 
       {/* Submenu Tabs */}
-      <div className="tabs-container" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%', overflowX: 'auto' }}>
-        <div style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', minWidth: 'min-content' }}>
+      <div className="tabs-container" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', maxWidth: '100%' }}>
           <button 
             onClick={() => setActiveTab('suite')}
             className={activeTab === 'suite' ? btnActive : "btn btn-outline"} 
