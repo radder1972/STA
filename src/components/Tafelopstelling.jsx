@@ -205,8 +205,14 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
   const [isGenerating, setIsGenerating] = useState(false);
   const [isGeneratingAnalysis, setIsGeneratingAnalysis] = useState(false);
   const [isPredicting, setIsPredicting] = useState(false);
-  const [flippedCards, setFlippedCards] = useState({});
   const [csvUploadedName, setCsvUploadedName] = useState(null);
+  const [selectedUnmetNeed, setSelectedUnmetNeed] = useState('');
+  const [differentialHypotheses, setDifferentialHypotheses] = useState(null);
+  const [vstOverwrite, setVstOverwrite] = useState({
+    identity: false,
+    meaning: false,
+    injustice: false
+  });
   const fileInputRef = useRef(null);
 
   const handleCsvUpload = (e) => {
@@ -329,8 +335,21 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
     setIsPredicting(true);
     try {
       const hasProfile = !!(completedTests?.ysq || completedTests?.smi);
-      const topSchemas = completedTests?.ysq ? calculateTopScores(completedTests.ysq, ysqScoring, ysqSchemaNamesMap).join(', ') : '';
-      const topModes = completedTests?.smi ? calculateTopScores(completedTests.smi, smiScoring, smiModesMap).join(', ') : '';
+      let topSchemasArr = completedTests?.ysq ? calculateTopScores(completedTests.ysq, ysqScoring, ysqSchemaNamesMap) : [];
+      let topModesArr = completedTests?.smi ? calculateTopScores(completedTests.smi, smiScoring, smiModesMap) : [];
+
+      if (vstOverwrite.identity && !topSchemasArr.includes('Gebrek aan coherente identiteit')) {
+        topSchemasArr.unshift('Gebrek aan coherente identiteit (Klinische Observatie VSt 2021)');
+      }
+      if (vstOverwrite.meaning && !topSchemasArr.includes('Gebrek aan een betekenisvolle wereld')) {
+        topSchemasArr.unshift('Gebrek aan een betekenisvolle wereld (Klinische Observatie VSt 2021)');
+      }
+      if (vstOverwrite.injustice && !topSchemasArr.includes('Onrechtvaardigheid')) {
+        topSchemasArr.unshift('Onrechtvaardigheid (Klinische Observatie VSt 2021)');
+      }
+
+      const topSchemas = topSchemasArr.join(', ');
+      const topModes = topModesArr.join(', ');
 
       const apiKey = localStorage.getItem('gemini_api_key') || DEFAULT_KEY;
       const genAI = new GoogleGenerativeAI(apiKey);
@@ -340,15 +359,16 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
       const availableSchemas = schemaCards.map(c => c.title).join(', ');
       const availableNeeds = needCards.map(c => c.title).join(', ');
 
-      const prompt = `Je bent een expert in schematherapie. De cliënt heeft de volgende situatie/trigger meegemaakt:
+      const prompt = `Je bent een expert in schematherapie en fungeert als Clinical Decision Support (CDS) voor een therapeut. 
+De cliënt heeft de volgende situatie/trigger meegemaakt:
 "${situationText}"
-${hasProfile ? `
-Profiel van deze cliënt (hoogst scorende schema's en modi uit hun test):
+${selectedUnmetNeed ? `Geraakte Basisbehoefte volgens de therapeut: "${selectedUnmetNeed}"` : ''}
+${hasProfile || topSchemas ? `
+Profiel & Klinische observaties van deze cliënt:
 Top Schema's: ${topSchemas}
-Top Modi: ${topModes}
+Top Modi: ${topModes}` : ''}
 
-Kies de best passende Modus, Schema en Onvervulde Basisbehoefte voor deze situatie, bij voorkeur rekening houdend met hun profiel (kies de schema's/modi uit hun profiel als ze passen bij de situatie, maar wijk af als de situatie overduidelijk om een andere kaart vraagt).` : `
-Kies de best passende Modus, Schema en Onvervulde Basisbehoefte voor deze specifieke situatie.`}
+Stel 2 tot 3 differentiële hypotheses op voor de best passende Modus en het best passende Schema, plus de meest waarschijnlijke Onvervulde Basisbehoefte. Geef voor elke hypothese een geschat match-percentage (bijv. 85, 60) en een korte klinische onderbouwing (Explainable AI conform VSt 2021 criteria).
 
 Je MOET kiezen uit deze exacte lijsten:
 Beschikbare Modi: ${availableModes}
@@ -357,9 +377,15 @@ Beschikbare Behoeften: ${availableNeeds}
 
 Geef je antwoord ALLEEN als een geldig JSON object in dit exacte formaat, zonder extra tekst of markdown eromheen:
 {
-  "mode": "exacte titel uit de lijst",
-  "schema": "exacte titel uit de lijst",
-  "need": "exacte titel uit de lijst"
+  "modes": [
+    { "title": "exacte titel uit de lijst", "match": 85, "reason": "Korte klinische onderbouwing van 1 zin op basis van de casus en VSt-criteria." },
+    { "title": "exacte titel uit de lijst", "match": 60, "reason": "Korte klinische onderbouwing van 1 zin." }
+  ],
+  "schemas": [
+    { "title": "exacte titel uit de lijst", "match": 80, "reason": "Korte klinische onderbouwing van 1 zin." },
+    { "title": "exacte titel uit de lijst", "match": 55, "reason": "Korte klinische onderbouwing van 1 zin." }
+  ],
+  "need": { "title": "exacte titel uit de lijst", "match": 90, "reason": "Korte klinische onderbouwing van 1 zin." }
 }`;
 
       const result = await model.generateContent(prompt);
@@ -373,21 +399,26 @@ Geef je antwoord ALLEEN als een geldig JSON object in dit exacte formaat, zonder
       
       const parsed = JSON.parse(text);
       
-      const foundMode = modeCards.find(c => c.title === parsed.mode) || modeCards[0];
-      const foundSchema = schemaCards.find(c => c.title === parsed.schema) || schemaCards[0];
-      const foundNeed = needCards.find(c => c.title === parsed.need) || needCards[0];
+      const topModeTitle = parsed.modes?.[0]?.title || parsed.mode;
+      const topSchemaTitle = parsed.schemas?.[0]?.title || parsed.schema;
+      const topNeedTitle = parsed.need?.title || parsed.need;
+
+      const foundMode = modeCards.find(c => c.title === topModeTitle) || modeCards[0];
+      const foundSchema = schemaCards.find(c => c.title === topSchemaTitle) || schemaCards[0];
+      const foundNeed = needCards.find(c => c.title === topNeedTitle) || needCards[0];
 
       setSelectedMode(foundMode);
       setSelectedSchema(foundSchema);
       setSelectedNeed(foundNeed);
+      setDifferentialHypotheses(parsed);
 
-      // Auto-generate analyses using the newly found cards
+      // Auto-generate analyses using top hypotheses
       generateGvAdvice(foundMode, foundSchema, foundNeed);
       generateDeepAnalysis(foundMode, foundSchema, foundNeed);
 
     } catch (err) {
       console.error(err);
-      alert("Fout bij het voorspellen van de kaarten: " + (err.message || 'Onbekende fout'));
+      alert("Fout bij het genereren van hypotheses: " + (err.message || 'Onbekende fout'));
     } finally {
       setIsPredicting(false);
     }
@@ -581,10 +612,40 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 <div className="tafel-print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)', width: '100%', textAlign: 'left', background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', boxSizing: 'border-box' }}>
                   {situationText || "Geen situatie beschreven."}
                 </div>
+
+                {/* Pijler 3: Invoer van Onvervulde Basisbehoefte */}
+                <div className="no-print" style={{ marginTop: '1.25rem', width: '100%', textAlign: 'left' }}>
+                  <label style={{ display: 'block', fontWeight: '700', fontSize: '0.95rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>
+                    🎯 Welke basisbehoefte kwam in deze situatie het meest in het geding? <span style={{ fontWeight: '400', color: 'var(--text-muted)' }}>(Optioneel / Aanbevolen voor CDS)</span>
+                  </label>
+                  <select 
+                    value={selectedUnmetNeed}
+                    onChange={e => setSelectedUnmetNeed(e.target.value)}
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem 1rem',
+                      borderRadius: '12px',
+                      border: '1px solid var(--border-color)',
+                      background: 'var(--bg-color)',
+                      color: 'var(--text-main)',
+                      fontSize: '0.95rem',
+                      fontWeight: '500'
+                    }}
+                  >
+                    <option value="">-- Kies geraakte basisbehoefte (laat de AI inschatten indien onbekend) --</option>
+                    <option value="Veiligheid & Verbinding">Veiligheid & Verbinding (bijv. Verlating, Wantrouwen, Isolement)</option>
+                    <option value="Autonomie & Competentie">Autonomie & Competentie (bijv. Afhankelijkheid, Kwetsbaarheid, Mislukking)</option>
+                    <option value="Vrijheid van expressie">Vrijheid van expressie (bijv. Onderwerping, Zelfopoffering)</option>
+                    <option value="Spontaniteit & Spel">Spontaniteit & Spel (bijv. Emotionele geremdheid, Overmatige normen)</option>
+                    <option value="Realistische grenzen">Realistische grenzen (bijv. Rechten toe-eigenen, Gebrek aan zelfdiscipline)</option>
+                    <option value="Zelfcoherentie (VSt)">Zelfcoherentie (VSt) (bijv. Gebrek aan coherente identiteit/betekenis)</option>
+                    <option value="Rechtvaardigheid (VSt)">Rechtvaardigheid (VSt) (bijv. Onrechtvaardigheid)</option>
+                  </select>
+                </div>
               </div>
               
               <div>
-                <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center', marginTop: '2.5rem', marginBottom: '1.5rem' }}><StepBadge number="2" size={28} /> Leg de kaarten op tafel</h3>
+                <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center', marginTop: '2.5rem', marginBottom: '1.5rem' }}><StepBadge number="2" size={28} /> Clinical Decision Support</h3>
                 
                 <div className="no-print" style={{
                   display: 'flex',
@@ -617,15 +678,15 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                     boxShadow: '0 4px 14px rgba(16, 185, 129, 0.35)'
                   }}>
                     <SparklesIcon size={14} color="white" />
-                    <span>AI PRO MODULE</span>
+                    <span>CLINICAL DECISION SUPPORT (CDS)</span>
                   </div>
 
                   <h4 className="text-gradient-tafel" style={{ margin: '0 0 0.75rem 0', fontSize: '1.45rem', fontWeight: '800', letterSpacing: '-0.02em', textAlign: 'center' }}>
-                    Slimme Automatische Kaartvoorspeller
+                    Differentiële Hypotheses Genereren
                   </h4>
 
                   <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '1.75rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '640px' }}>
-                    Laat de kunstmatige intelligentie je reactiepatroon opstellen. Op basis van je beschreven trigger én jouw unieke testprofiel analyseert de AI haarscherp welke <strong>Modus</strong>, <strong>Schema</strong> en <strong>Onvervulde Behoefte</strong> op tafel horen.
+                    Laat de AI gewogen differentiële hypotheses opstellen op basis van de casus, geraakte basisbehoefte en het testprofiel. Elke hypothese bevat transparante klinische onderbouwing (Explainable AI). U kiest als therapeut welke kaart definitief op tafel komt.
                   </p>
 
                   {/* CSV Profile Import & Connection Widget */}
@@ -654,7 +715,6 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
                     {(completedTests?.ysq || completedTests?.smi) ? (
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', textAlign: 'center', margin: '4px 0 2px 0' }}>
-                        {/* Circular Gradient Icon Badge with Checkmark Overlay */}
                         <div style={{ position: 'relative', display: 'inline-block' }}>
                           <div style={{ background: 'linear-gradient(135deg, #34d399 0%, #10b981 100%)', width: '48px', height: '48px', borderRadius: '50%', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 18px rgba(16, 185, 129, 0.3)' }}>
                             <ClipboardIcon size={24} color="white" />
@@ -664,7 +724,6 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                           </div>
                         </div>
 
-                        {/* Unbolded text underneath */}
                         <div style={{ color: 'var(--text-main)', fontSize: '0.94rem', fontWeight: '400', lineHeight: '1.4' }}>
                           <div style={{ fontWeight: '500', color: 'var(--text-main)' }}>Persoonlijk testprofiel gekoppeld</div>
                           {csvUploadedName ? (
@@ -680,9 +739,42 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                       </div>
                     ) : (
                       <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text-main)', textAlign: 'center', lineHeight: '1.5', fontWeight: '400' }}>
-                        <strong>Optioneel:</strong> Koppel je testresultaten voor een nog nauwkeurigere voorspelling op maat!
+                        <strong>Optioneel:</strong> Koppel je testresultaten voor een nog nauwkeurigere differentiële hypothese op maat!
                       </p>
                     )}
+
+                    {/* Pijler 4: Klinische Overwrite Widget (VSt 2021 Schema's) */}
+                    <div style={{ width: '100%', borderTop: '1px solid var(--border-color)', paddingTop: '12px', marginTop: '4px' }}>
+                      <div style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '8px', textAlign: 'center' }}>
+                        🩺 Klinische Overwrite & VSt 2021 Verrijking (Interview):
+                      </div>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px', fontSize: '0.84rem', color: 'var(--text-main)' }}>
+                        <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+                          <input 
+                            type="checkbox" 
+                            checked={vstOverwrite.identity}
+                            onChange={e => setVstOverwrite(prev => ({ ...prev, identity: e.target.checked }))}
+                          />
+                          <span>Gebrek aan coherente identiteit</span>
+                        </label>
+                        <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+                          <input 
+                            type="checkbox" 
+                            checked={vstOverwrite.meaning}
+                            onChange={e => setVstOverwrite(prev => ({ ...prev, meaning: e.target.checked }))}
+                          />
+                          <span>Gebrek aan betekenisvolle wereld</span>
+                        </label>
+                        <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+                          <input 
+                            type="checkbox" 
+                            checked={vstOverwrite.injustice}
+                            onChange={e => setVstOverwrite(prev => ({ ...prev, injustice: e.target.checked }))}
+                          />
+                          <span>Onrechtvaardigheid</span>
+                        </label>
+                      </div>
+                    </div>
 
                     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px', width: '100%' }}>
                       <button
@@ -702,14 +794,6 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                           cursor: 'pointer',
                           transition: 'all 0.25s ease',
                           boxShadow: '0 4px 14px rgba(14, 165, 233, 0.1)'
-                        }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.transform = 'translateY(-2px)';
-                          e.currentTarget.style.boxShadow = '0 6px 20px rgba(14, 165, 233, 0.2)';
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.transform = 'translateY(0)';
-                          e.currentTarget.style.boxShadow = '0 4px 14px rgba(14, 165, 233, 0.1)';
                         }}
                       >
                         <div style={{ width: '26px', height: '26px', borderRadius: '50%', background: 'linear-gradient(135deg, #0ea5e9, #2563eb)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -736,14 +820,6 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                           transition: 'all 0.25s ease',
                           boxShadow: '0 4px 14px rgba(16, 185, 129, 0.1)'
                         }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.transform = 'translateY(-2px)';
-                          e.currentTarget.style.boxShadow = '0 6px 20px rgba(16, 185, 129, 0.2)';
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.transform = 'translateY(0)';
-                          e.currentTarget.style.boxShadow = '0 4px 14px rgba(16, 185, 129, 0.1)';
-                        }}
                         title="Nog geen test gedaan? Vul de vragenlijst in & download je CSV"
                       >
                         <div style={{ width: '26px', height: '26px', borderRadius: '50%', background: 'linear-gradient(135deg, #059669, #10b981)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -754,7 +830,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                     </div>
                   </div>
 
-                  {/* Primary Flagship Voorspel Kaarten Button */}
+                  {/* Primary Flagship CDS Hypotheses Button */}
                   <button 
                     className="btn btn-gradient-tafel" 
                     onClick={predictCards} 
@@ -766,17 +842,92 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                       fontSize: '1.15rem', 
                       fontWeight: '700',
                       padding: '1.1rem 3rem', 
-                      minWidth: '300px', 
+                      minWidth: '320px', 
                       justifyContent: 'center', 
                       borderRadius: '9999px',
                       boxShadow: '0 8px 25px rgba(16, 185, 129, 0.35)',
                       cursor: (isPredicting || !situationText) ? 'not-allowed' : 'pointer',
                       transition: 'all 0.3s cubic-bezier(0.34, 1.25, 0.64, 1)'
                     }}
-                    title="Voorspel de kaarten op basis van de ingevoerde situatie en jouw profiel"
+                    title="Genereer gewogen differentiële hypotheses op basis van situatie en profiel"
                   >
-                    {isPredicting ? 'Bezig met voorspellen...' : <><WandIcon size={24} color="currentColor" /> Voorspel Kaarten met AI</>}
+                    {isPredicting ? 'Bezig met analyseren...' : <><WandIcon size={24} color="currentColor" /> Genereer Differentiële Hypotheses (AI)</>}
                   </button>
+
+                  {/* Pijlers 1 & 2: Differentiële Hypotheses & Explainable AI (XAI) Panel */}
+                  {differentialHypotheses && (
+                    <div style={{ marginTop: '2rem', width: '100%', maxWidth: '780px', background: 'var(--card-bg)', padding: '1.5rem', borderRadius: '20px', border: '1px solid var(--border-color)', textAlign: 'left' }}>
+                      <h4 style={{ margin: '0 0 1rem 0', color: 'var(--text-main)', fontSize: '1.15rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <SparklesIcon size={20} useTafelGradient={true} /> Differentiële Hypotheses & Klinische Logica (XAI)
+                      </h4>
+
+                      {/* Modi Hypotheses */}
+                      {differentialHypotheses.modes && differentialHypotheses.modes.length > 0 && (
+                        <div style={{ marginBottom: '1.25rem' }}>
+                          <strong style={{ display: 'block', color: 'var(--text-main)', fontSize: '0.95rem', marginBottom: '0.5rem' }}>🎭 Modi Hypotheses:</strong>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            {differentialHypotheses.modes.map((h, i) => {
+                              const found = modeCards.find(c => c.title === h.title);
+                              return (
+                                <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '10px 14px', borderRadius: '12px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', flexWrap: 'wrap' }}>
+                                  <div style={{ flex: 1, minWidth: '220px' }}>
+                                    <span style={{ fontWeight: '700', color: 'var(--text-main)' }}>{i + 1}. {h.title}</span>
+                                    <span style={{ marginLeft: '8px', padding: '2px 8px', borderRadius: '9999px', background: 'rgba(16, 185, 129, 0.15)', color: '#059669', fontWeight: '700', fontSize: '0.78rem' }}>{h.match}% Match</span>
+                                    <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: '1.4' }}>
+                                      💡 <em>Reden: {h.reason}</em>
+                                    </div>
+                                  </div>
+                                  {found && (
+                                    <button 
+                                      type="button"
+                                      onClick={() => setSelectedMode(found)}
+                                      className="btn btn-outline"
+                                      style={{ padding: '6px 14px', fontSize: '0.82rem', whiteSpace: 'nowrap' }}
+                                    >
+                                      Plaats op tafel
+                                    </button>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Schema Hypotheses */}
+                      {differentialHypotheses.schemas && differentialHypotheses.schemas.length > 0 && (
+                        <div>
+                          <strong style={{ display: 'block', color: 'var(--text-main)', fontSize: '0.95rem', marginBottom: '0.5rem' }}>📐 Schema Hypotheses:</strong>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            {differentialHypotheses.schemas.map((h, i) => {
+                              const found = schemaCards.find(c => c.title === h.title);
+                              return (
+                                <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '10px 14px', borderRadius: '12px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', flexWrap: 'wrap' }}>
+                                  <div style={{ flex: 1, minWidth: '220px' }}>
+                                    <span style={{ fontWeight: '700', color: 'var(--text-main)' }}>{i + 1}. {h.title}</span>
+                                    <span style={{ marginLeft: '8px', padding: '2px 8px', borderRadius: '9999px', background: 'rgba(59, 130, 246, 0.15)', color: '#2563eb', fontWeight: '700', fontSize: '0.78rem' }}>{h.match}% Match</span>
+                                    <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: '1.4' }}>
+                                      💡 <em>Reden: {h.reason}</em>
+                                    </div>
+                                  </div>
+                                  {found && (
+                                    <button 
+                                      type="button"
+                                      onClick={() => setSelectedSchema(found)}
+                                      className="btn btn-outline"
+                                      style={{ padding: '6px 14px', fontSize: '0.82rem', whiteSpace: 'nowrap' }}
+                                    >
+                                      Plaats op tafel
+                                    </button>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
