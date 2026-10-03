@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { HomeIcon, CardsIcon, PlayingCardsIcon, PlatformBadge } from './Icons';
+import { HomeIcon, CardsIcon, PlayingCardsIcon, PlatformBadge, ThreeSparklesLogo } from './Icons';
 import { Printer, RotateCcw, SlidersHorizontal, ChevronDown } from 'lucide-react';
 
 export default function TafelNavbar({ onPrint, onClear }) {
@@ -39,6 +39,19 @@ export default function TafelNavbar({ onPrint, onClear }) {
         width: '100%',
         position: 'relative'
       }}>
+        {/* Draped 3 Sparkles Logo on Right Side of Navbar */}
+        <div style={{
+          position: 'absolute',
+          right: '16px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          display: 'flex',
+          alignItems: 'center',
+          pointerEvents: 'none',
+          opacity: 0.88
+        }}>
+          <ThreeSparklesLogo size={22} theme="tafel" />
+        </div>
       <div 
         className="hide-scrollbar"
         style={{

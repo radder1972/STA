@@ -287,7 +287,7 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
 
   const content = (
     <>
-      <SparklesIcon size={16} color={currentTheme.color} />
+      <ThreeSparklesLogo size={16} theme={theme} style={{ marginRight: '1px' }} />
       <span>Digitaal Schematherapie Platform</span>
     </>
   );
@@ -339,6 +339,48 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
     >
       {content}
     </a>
+  );
+};
+
+export const ThreeSparklesLogo = ({ size = 26, theme = 'tafel', style = {} }) => {
+  const themeColors = {
+    tafel: ['#059669', '#10b981'],
+    kaarten: ['#2563eb', '#3b82f6'],
+    spel: ['#0ea5e9', '#2563eb'],
+    test: ['#475569', '#64748b'],
+    hub: ['#0284c7', '#38bdf8']
+  };
+  const colors = themeColors[theme] || themeColors.tafel;
+  const gradientId = `threeSparklesGrad_${theme}`;
+
+  return (
+    <div 
+      style={{ 
+        display: 'inline-flex', 
+        alignItems: 'center', 
+        position: 'relative', 
+        width: `${size * 1.55}px`, 
+        height: `${size * 1.05}px`,
+        ...style 
+      }}
+      title="Digitaal Schematherapie Platform"
+    >
+      <svg width={size * 0.9} height={size * 0.9} viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', left: `${size * 0.3}px`, top: '0px', filter: `drop-shadow(0 2px 6px ${colors[0]}40)` }}>
+        <defs>
+          <linearGradient id={gradientId} x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor={colors[0]} />
+            <stop offset="100%" stopColor={colors[1]} />
+          </linearGradient>
+        </defs>
+        <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill={`url(#${gradientId})`} />
+      </svg>
+      <svg width={size * 0.45} height={size * 0.45} viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', left: '0px', top: '2px', opacity: 0.85, transform: 'rotate(-15deg)' }}>
+        <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill={colors[0]} />
+      </svg>
+      <svg width={size * 0.55} height={size * 0.55} viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', right: '0px', bottom: '1px', opacity: 0.9, transform: 'rotate(18deg)' }}>
+        <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill={colors[1]} />
+      </svg>
+    </div>
   );
 };
 
