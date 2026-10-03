@@ -799,40 +799,20 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                   position: 'relative'
                 }}>
                   
-                  {/* Premium Core Feature Badge */}
-                  <div style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    padding: '4px 14px',
-                    borderRadius: '9999px',
-                    background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
-                    color: 'white',
-                    fontSize: '0.75rem',
-                    fontWeight: '800',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                    marginBottom: '1rem',
-                    boxShadow: '0 4px 14px rgba(16, 185, 129, 0.35)'
-                  }}>
-                    <SparklesIcon size={14} color="white" />
-                    <span>CLINICAL DECISION SUPPORT (CDS)</span>
-                  </div>
-
                   <h4 className="text-gradient-tafel" style={{ margin: '0 0 0.75rem 0', fontSize: '1.45rem', fontWeight: '800', letterSpacing: '-0.02em', textAlign: 'center' }}>
                     Differentiële Hypotheses Genereren
                   </h4>
 
-                  <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '1.75rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '640px' }}>
+                  <p style={{ fontSize: '0.96rem', color: 'var(--text-main)', marginBottom: '1.75rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '640px', fontWeight: '400' }}>
                     Laat de AI gewogen differentiële hypotheses opstellen op basis van de casus, geraakte basisbehoefte en het testprofiel. Elke hypothese bevat transparante klinische onderbouwing (Explainable AI). U kiest als therapeut welke kaart definitief op tafel komt.
                   </p>
 
-                  {/* CSV Profile Import & Connection Widget */}
+                  {/* Options Box with Equal UI Hierarchy */}
                   <div style={{
                     width: '100%',
                     maxWidth: '660px',
                     marginBottom: '2rem',
-                    padding: '1.25rem 1.5rem',
+                    padding: '1.5rem',
                     borderRadius: '20px',
                     background: 'var(--bg-color)',
                     border: '1px solid rgba(16, 185, 129, 0.25)',
@@ -840,8 +820,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                     boxShadow: '0 6px 20px rgba(0,0,0,0.04)',
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '14px'
+                    gap: '1.5rem'
                   }}>
                     <input 
                       type="file" 
@@ -851,74 +830,113 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                       onChange={handleCsvUpload} 
                     />
 
-                    {(completedTests?.ysq || completedTests?.smi) ? (
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', textAlign: 'center', margin: '4px 0 2px 0' }}>
-                        <div style={{ position: 'relative', display: 'inline-block' }}>
-                          <div style={{ background: 'linear-gradient(135deg, #34d399 0%, #10b981 100%)', width: '48px', height: '48px', borderRadius: '50%', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 18px rgba(16, 185, 129, 0.3)' }}>
-                            <ClipboardIcon size={24} color="white" />
-                          </div>
-                          <div style={{ position: 'absolute', bottom: '-2px', right: '-2px', background: '#059669', color: 'white', borderRadius: '50%', width: '18px', height: '18px', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 6px rgba(0,0,0,0.15)' }}>
-                            <CheckIcon size={11} strokeWidth={3} />
-                          </div>
+                    {/* Optie 1: Koppel testresultaten */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', alignItems: 'center', textAlign: 'center' }}>
+                      <div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '3px' }}>
+                          Optioneel
                         </div>
-
-                        <div style={{ color: 'var(--text-main)', fontSize: '0.94rem', fontWeight: '400', lineHeight: '1.4' }}>
-                          <div style={{ fontWeight: '500', color: 'var(--text-main)' }}>Persoonlijk testprofiel gekoppeld</div>
-                          {csvUploadedName ? (
-                            <div style={{ fontSize: '0.84rem', color: '#059669', opacity: 0.9, marginTop: '2px', fontWeight: '400' }}>
-                              {csvUploadedName}
-                            </div>
-                          ) : (
-                            <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '2px', fontWeight: '400' }}>
-                              (YSQ / SMI resultaten actief)
-                            </div>
-                          )}
+                        <div style={{ fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-main)' }}>
+                          Koppel testresultaten (YSQ / SMI)
+                        </div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)', marginTop: '2px' }}>
+                          Voor een nog nauwkeurigere differentiële hypothese op maat
                         </div>
                       </div>
-                    ) : (
-                      <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text-main)', textAlign: 'center', lineHeight: '1.5', fontWeight: '400' }}>
-                        <strong>Optioneel:</strong> Koppel je testresultaten voor een nog nauwkeurigere differentiële hypothese op maat!
-                      </p>
-                    )}
 
-                    {/* VSt 2021 Schema Uitbreiding Selector */}
-                    <div style={{ width: '100%', borderTop: '1px solid rgba(16, 185, 129, 0.2)', paddingTop: '16px', marginTop: '8px' }}>
-                      <div style={{ textAlign: 'center', marginBottom: '12px' }}>
-                        <div style={{ 
-                          fontSize: '0.75rem', 
-                          fontWeight: '700', 
-                          textTransform: 'uppercase', 
-                          letterSpacing: '0.06em', 
-                          color: '#059669',
-                          marginBottom: '4px'
-                        }}>
-                          VSt 2021 Uitbreiding
+                      {(completedTests?.ysq || completedTests?.smi) && (
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', fontWeight: '500', color: '#059669', background: 'rgba(16, 185, 129, 0.1)', padding: '5px 14px', borderRadius: '9999px' }}>
+                          <CheckIcon size={14} strokeWidth={3} color="#059669" />
+                          <span>Persoonlijk testprofiel actief {csvUploadedName ? `(${csvUploadedName})` : ''}</span>
                         </div>
-                        <div style={{ 
-                          fontSize: '0.92rem', 
-                          fontWeight: '700', 
-                          color: 'var(--text-main)' 
-                        }}>
-                          Handmatig toevoegen op basis van klinische observatie:
+                      )}
+
+                      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', width: '100%', marginTop: '2px' }}>
+                        <button
+                          type="button"
+                          onClick={() => fileInputRef.current?.click()}
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            padding: '8px 18px',
+                            borderRadius: '9999px',
+                            border: '1px solid rgba(14, 165, 233, 0.35)',
+                            background: 'rgba(14, 165, 233, 0.08)',
+                            color: '#0284c7',
+                            fontWeight: '500',
+                            fontSize: '0.88rem',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s ease'
+                          }}
+                        >
+                          <UploadIcon size={15} color="#0284c7" />
+                          <span>{(completedTests?.ysq || completedTests?.smi) ? 'Ander CSV-bestand inlezen' : 'Lees je CSV-score binnen'}</span>
+                        </button>
+
+                        {!completedTests?.ysq && (
+                          <a
+                            href="test.html"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '8px',
+                              padding: '8px 18px',
+                              borderRadius: '9999px',
+                              border: '1px solid rgba(16, 185, 129, 0.35)',
+                              background: 'rgba(16, 185, 129, 0.08)',
+                              color: '#059669',
+                              fontWeight: '500',
+                              fontSize: '0.88rem',
+                              textDecoration: 'none',
+                              transition: 'all 0.2s ease'
+                            }}
+                          >
+                            <FileTextIcon size={15} color="#059669" />
+                            <span>Vragenlijst invullen & CSV downloaden</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Scheidingslijn */}
+                    <div style={{ borderTop: '1px solid rgba(0,0,0,0.08)', width: '100%' }} />
+
+                    {/* Optie 2: 2021 analyse uitbreiding */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', alignItems: 'center', textAlign: 'center' }}>
+                      <div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '3px' }}>
+                          Optioneel
+                        </div>
+                        <div style={{ fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-main)' }}>
+                          2021 analyse uitbreiding
+                        </div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)', marginTop: '2px' }}>
+                          Handmatig toevoegen op basis van klinische observatie
                         </div>
                       </div>
-                      
+
                       <div style={{ 
                         display: 'flex', 
                         flexDirection: 'column',
                         gap: '8px', 
-                        background: 'rgba(5, 150, 105, 0.04)',
-                        border: '1px solid rgba(5, 150, 105, 0.15)',
-                        borderRadius: '14px',
+                        background: 'rgba(0, 0, 0, 0.02)',
+                        border: '1px solid var(--border-color)',
+                        borderRadius: '12px',
                         padding: '12px 18px',
-                        boxSizing: 'border-box'
+                        boxSizing: 'border-box',
+                        width: '100%',
+                        maxWidth: '480px',
+                        textAlign: 'left'
                       }}>
                         <label style={{ 
                           display: 'flex', 
                           alignItems: 'center', 
                           gap: '10px', 
                           fontSize: '0.88rem', 
-                          fontWeight: '600',
+                          fontWeight: '400',
                           color: 'var(--text-main)', 
                           cursor: 'pointer',
                           userSelect: 'none'
@@ -931,13 +949,13 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                           />
                           <span>Gebrek aan coherente identiteit</span>
                         </label>
-                        
+
                         <label style={{ 
                           display: 'flex', 
                           alignItems: 'center', 
                           gap: '10px', 
                           fontSize: '0.88rem', 
-                          fontWeight: '600',
+                          fontWeight: '400',
                           color: 'var(--text-main)', 
                           cursor: 'pointer',
                           userSelect: 'none'
@@ -950,13 +968,13 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                           />
                           <span>Gebrek aan betekenisvolle wereld</span>
                         </label>
-                        
+
                         <label style={{ 
                           display: 'flex', 
                           alignItems: 'center', 
                           gap: '10px', 
                           fontSize: '0.88rem', 
-                          fontWeight: '600',
+                          fontWeight: '400',
                           color: 'var(--text-main)', 
                           cursor: 'pointer',
                           userSelect: 'none'
@@ -970,59 +988,6 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                           <span>Onrechtvaardigheid</span>
                         </label>
                       </div>
-                    </div>
-
-                    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px', width: '100%' }}>
-                      <button
-                        type="button"
-                        onClick={() => fileInputRef.current?.click()}
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '10px',
-                          padding: '10px 20px',
-                          borderRadius: '9999px',
-                          border: '1px solid rgba(14, 165, 233, 0.35)',
-                          background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(59, 130, 246, 0.12) 100%)',
-                          color: '#0284c7',
-                          fontWeight: '600',
-                          fontSize: '0.9rem',
-                          cursor: 'pointer',
-                          transition: 'all 0.25s ease',
-                          boxShadow: '0 4px 14px rgba(14, 165, 233, 0.1)'
-                        }}
-                      >
-                        <div style={{ width: '26px', height: '26px', borderRadius: '50%', background: 'linear-gradient(135deg, #0ea5e9, #2563eb)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                          <UploadIcon size={14} color="white" strokeWidth={2.5} />
-                        </div>
-                        <span>{(completedTests?.ysq || completedTests?.smi) ? 'Ander CSV-bestand inlezen' : 'Lees je CSV-score binnen'}</span>
-                      </button>
-
-                      <a
-                        href="index.html"
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '10px',
-                          padding: '10px 20px',
-                          borderRadius: '9999px',
-                          border: '1px solid rgba(16, 185, 129, 0.35)',
-                          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.12) 100%)',
-                          color: '#059669',
-                          fontWeight: '600',
-                          fontSize: '0.9rem',
-                          textDecoration: 'none',
-                          cursor: 'pointer',
-                          transition: 'all 0.25s ease',
-                          boxShadow: '0 4px 14px rgba(16, 185, 129, 0.1)'
-                        }}
-                        title="Nog geen test gedaan? Vul de vragenlijst in & download je CSV"
-                      >
-                        <div style={{ width: '26px', height: '26px', borderRadius: '50%', background: 'linear-gradient(135deg, #059669, #10b981)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                          <FileTextIcon size={14} color="white" strokeWidth={2.5} />
-                        </div>
-                        <span>Vragenlijst invullen & CSV downloaden</span>
-                      </a>
                     </div>
                   </div>
 
