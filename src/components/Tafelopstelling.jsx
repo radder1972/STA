@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon } from './Icons';
+import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon } from './Icons';
 import { Printer } from 'lucide-react';
 import TafelNavbar from './TafelNavbar';
 import { schemaImages, modeImages } from '../utils/images';
@@ -230,12 +230,17 @@ export default function Tafelopstelling({ onBack, completedTests, embedded = fal
     if (isDirectMatch) {
       return {
         isMatch: true,
-        text: `✨ Perfecte Inhoudskoppeling: Het schema '${schemaTitle}' ontstaat rechtstreeks als reactie op een tekort aan de basisbehoefte '${needTitle}'.`
+        title: "Perfecte Inhoudskoppeling",
+        schemaTitle,
+        needTitle
       };
     } else if (matchedNeedTitle) {
       return {
         isMatch: false,
-        text: `💡 Inhouds-Inzicht: Het schema '${schemaTitle}' hoort primair bij het behoeftedomein '${matchedNeedTitle}'. U onderzoekt nu de wisselwerking met '${needTitle}'.`
+        title: "Inhouds-Inzicht",
+        schemaTitle,
+        needTitle,
+        matchedNeedTitle
       };
     }
     return null;
@@ -549,39 +554,39 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             </div>
           </div>
 
-          <h4 className="text-gradient-tafel no-print" style={{ marginTop: '3rem', marginBottom: '1rem', textAlign: 'center' }}>Of: Leg zelf handmatig de kaarten op tafel</h4>
-          <p className="no-print" style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '2rem', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
-            Klik op een leeg vak om zelf een kaart te kiezen. 
-            <strong> Tip:</strong> beweeg of tik op een gekozen kaart om hem in 3D te laten flippen!
+          {/* Dynamic Heading based on placed cards */}
+          <h4 className="text-gradient-tafel no-print" style={{ marginTop: '3rem', marginBottom: '0.8rem', textAlign: 'center' }}>
+            {(selectedMode || selectedSchema || selectedNeed) ? 'Jouw Kaarten op Tafel' : 'Of: Leg zelf handmatig de kaarten op tafel'}
+          </h4>
+          <p className="no-print" style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '1.5rem', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto 1.5rem auto', fontSize: '0.95rem' }}>
+            {(selectedMode || selectedSchema || selectedNeed)
+              ? 'Klik op een kaart om deze te wijzigen of te verwijderen, of kies een kaart voor een leeg vak.'
+              : 'Klik op een leeg vak om zelf een kaart te kiezen uit de overzichten.'
+            }
           </p>
 
-          {/* Stacking Toggle (Modus op Schema) */}
-          {selectedMode && selectedSchema && (
-            <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
-              <button
-                type="button"
-                onClick={() => setIsStackedView(!isStackedView)}
-                className="btn btn-outline"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '8px 20px',
-                  fontSize: '0.9rem',
-                  fontWeight: '700',
-                  borderRadius: '9999px',
-                  background: isStackedView ? 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)' : 'var(--bg-color)',
-                  color: isStackedView ? 'white' : 'var(--text-main)',
-                  border: isStackedView ? 'none' : '1px solid rgba(245, 158, 11, 0.4)',
-                  boxShadow: isStackedView ? '0 4px 15px rgba(234, 88, 12, 0.35)' : 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.25s ease'
-                }}
-              >
-                {isStackedView ? '🎴 Toon Losse Kaarten op Tafel' : '🥞 Stapel Modus over Schema op Tafel'}
-              </button>
+          {/* Pill Container met 3D Flip Tip */}
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '10px 22px',
+                fontSize: '0.92rem',
+                fontWeight: '500',
+                borderRadius: '9999px',
+                background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(14, 165, 233, 0.08) 100%)',
+                color: 'var(--text-main)',
+                border: '1px solid rgba(16, 185, 129, 0.3)',
+                boxShadow: '0 4px 15px rgba(16, 185, 129, 0.08)',
+                textAlign: 'center'
+              }}
+            >
+              <SparklesIcon size={18} color="#10b981" />
+              <span><strong>Tip:</strong> beweeg of tik op een gekozen kaart om hem in 3D te laten flippen!</span>
             </div>
-          )}
+          </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', width: '100%' }}>
             
@@ -602,40 +607,21 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               overflow: 'visible' 
             }}>
 
-              {/* STACKED VIEW MODE */}
-              {isStackedView && selectedMode && selectedSchema ? (
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1rem 0 2rem 0', position: 'relative', zIndex: 2 }}>
-                  <div style={{ fontSize: '0.8rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#ea580c', background: 'rgba(234, 88, 12, 0.12)', border: '1px solid rgba(234, 88, 12, 0.3)', padding: '4px 14px', borderRadius: '9999px', marginBottom: '1.2rem' }}>
-                    🥞 Modus Overdekt Geraakt Schema op Tafel
-                  </div>
-                  <div style={{ position: 'relative', width: '180px', height: '235px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    {/* Schema Underneath */}
-                    <div style={{ position: 'absolute', top: '16px', left: '18px', zIndex: 1, opacity: 0.9, transform: 'rotate(6deg)' }}>
-                      <CardSlot label="" card={selectedSchema} onRemove={() => setSelectedSchema(null)} slotColor="#3b82f6" />
-                    </div>
-                    {/* Coping Modus On Top */}
-                    <div style={{ position: 'absolute', top: '0', left: '0', zIndex: 2, transform: 'rotate(-4deg)' }}>
-                      <CardSlot label="" card={selectedMode} onRemove={() => setSelectedMode(null)} slotColor="#f59e0b" />
-                    </div>
-                  </div>
+              {/* NORMAL TRIANGLE VIEW */}
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem', width: '100%', maxWidth: '560px', position: 'relative', zIndex: 2 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} labelPosition="top" />
                 </div>
-              ) : (
-                /* NORMAL TRIANGLE VIEW */
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem', width: '100%', maxWidth: '560px', position: 'relative', zIndex: 2 }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} labelPosition="top" />
-                  </div>
 
-                  {/* Horizontale verbinding top */}
-                  <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 1, minWidth: '30px', marginTop: '1.5rem' }}>
-                    <div style={{ height: '3px', width: '100%', minWidth: '30px', background: (selectedMode && selectedSchema) ? 'linear-gradient(to right, #f59e0b, #3b82f6)' : 'var(--border-color)', borderRadius: '2px', opacity: (selectedMode && selectedSchema) ? 0.85 : 0.4 }}></div>
-                  </div>
-
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} labelPosition="top" />
-                  </div>
+                {/* Horizontale verbinding top */}
+                <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 1, minWidth: '30px', marginTop: '1.5rem' }}>
+                  <div style={{ height: '3px', width: '100%', minWidth: '30px', background: (selectedMode && selectedSchema) ? 'linear-gradient(to right, #f59e0b, #3b82f6)' : 'var(--border-color)', borderRadius: '2px', opacity: (selectedMode && selectedSchema) ? 0.85 : 0.4 }}></div>
                 </div>
-              )}
+
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} labelPosition="top" />
+                </div>
+              </div>
 
               {/* Subtiele kleine diagonale verbindingslijnen */}
               <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', maxWidth: '280px', height: '20px', margin: '0.5rem 0', position: 'relative', zIndex: 1 }}>
@@ -669,27 +655,37 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
               {matchingFeedback && (
                 <div className="no-print" style={{
                   width: '100%',
-                  maxWidth: '580px',
+                  maxWidth: '620px',
                   marginTop: '1.75rem',
-                  padding: '12px 20px',
-                  borderRadius: '16px',
+                  padding: '16px 24px',
+                  borderRadius: '20px',
                   background: matchingFeedback.isMatch 
-                    ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(5, 150, 105, 0.18) 100%)' 
+                    ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.16) 100%)' 
                     : 'linear-gradient(135deg, rgba(234, 88, 12, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%)',
                   border: matchingFeedback.isMatch 
                     ? '1px solid rgba(16, 185, 129, 0.35)' 
                     : '1px solid rgba(234, 88, 12, 0.3)',
                   boxShadow: matchingFeedback.isMatch 
-                    ? '0 6px 20px rgba(16, 185, 129, 0.15)' 
-                    : '0 6px 20px rgba(234, 88, 12, 0.12)',
-                  color: 'var(--text-main)',
-                  fontSize: '0.92rem',
-                  fontWeight: '600',
-                  lineHeight: '1.5',
-                  textAlign: 'center',
-                  transition: 'all 0.3s ease'
+                    ? '0 8px 25px rgba(16, 185, 129, 0.12)' 
+                    : '0 8px 25px rgba(234, 88, 12, 0.1)',
+                  transition: 'all 0.3s ease',
+                  boxSizing: 'border-box'
                 }}>
-                  {matchingFeedback.text}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '8px', color: matchingFeedback.isMatch ? '#059669' : '#ea580c', fontWeight: '700', fontSize: '0.98rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                    <SparklesIcon size={20} color={matchingFeedback.isMatch ? '#059669' : '#ea580c'} />
+                    <span>{matchingFeedback.title}</span>
+                  </div>
+                  <p style={{ margin: 0, padding: 0, color: 'var(--text-main)', fontSize: '0.94rem', fontWeight: '400', lineHeight: '1.6', textAlign: 'center' }}>
+                    {matchingFeedback.isMatch ? (
+                      <>
+                        Het schema <strong>'{matchingFeedback.schemaTitle}'</strong> ontstaat rechtstreeks als reactie op een tekort aan de basisbehoefte <strong>'{matchingFeedback.needTitle}'</strong>.
+                      </>
+                    ) : (
+                      <>
+                        Het schema <strong>'{matchingFeedback.schemaTitle}'</strong> hoort primair bij het behoeftedomein <strong>'{matchingFeedback.matchedNeedTitle}'</strong>. U onderzoekt nu de wisselwerking met <strong>'{matchingFeedback.needTitle}'</strong>.
+                      </>
+                    )}
+                  </p>
                 </div>
               )}
 

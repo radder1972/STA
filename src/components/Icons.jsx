@@ -235,6 +235,14 @@ export const PlayingCardsIcon = (props) => (
   </IconBase>
 );
 
+export const SparklesIcon = (props) => (
+  <IconBase {...props}>
+    <path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z" fill="currentColor" fillOpacity="0.25" strokeWidth="1.6" strokeLinejoin="round" />
+    <path d="M19 14l1 2.2L22 17l-2.2 1L19 20l-1-2.2L16 17l2.2-1z" fill="currentColor" fillOpacity="0.3" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M5 16l.8 1.8L8 18.5l-2.2.8L5 21l-.8-1.7L2 18.5l2.2-.7z" fill="currentColor" fillOpacity="0.2" strokeWidth="1" strokeLinejoin="round" />
+  </IconBase>
+);
+
 export const ScrollTextIcon = (props) => (
   <IconBase {...props}>
     <path d="M15 12h-5" />
