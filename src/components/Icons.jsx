@@ -201,44 +201,37 @@ export const MatrixIcon = (props) => (
 
 export const CpuChipIcon = (props) => (
   <IconBase {...props}>
-    <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
-    <rect x="9" y="9" width="6" height="6" />
-    <line x1="9" y1="1" x2="9" y2="4" />
-    <line x1="15" y1="1" x2="15" y2="4" />
-    <line x1="9" y1="20" x2="9" y2="23" />
-    <line x1="15" y1="20" x2="15" y2="23" />
-    <line x1="20" y1="9" x2="23" y2="9" />
-    <line x1="20" y1="14" x2="23" y2="14" />
-    <line x1="1" y1="9" x2="4" y2="9" />
-    <line x1="1" y1="14" x2="4" y2="14" />
+    <rect x="5" y="5" width="14" height="14" rx="3" ry="3" fill="currentColor" fillOpacity="0.12" strokeWidth="1.75" />
+    <rect x="9" y="9" width="6" height="6" rx="1.5" fill="currentColor" fillOpacity="0.3" strokeWidth="1.5" />
+    <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" strokeWidth="2" strokeLinecap="round" />
+    <circle cx="12" cy="12" r="1.2" fill="currentColor" />
   </IconBase>
 );
 
 export const WandIcon = (props) => (
   <IconBase {...props}>
-    <path d="M15 4V2" />
-    <path d="M15 16v-2" />
-    <path d="M8 9h2" />
-    <path d="M20 9h2" />
-    <path d="M17.8 11.8l1.4 1.4" />
-    <path d="M15 9h0" />
-    <path d="M17.8 6.2l1.4-1.4" />
-    <path d="M3 21l9-9" />
-    <path d="M12.2 6.2l-1.4-1.4" />
+    <path d="M3 21l10-10" strokeWidth="2.2" strokeLinecap="round" />
+    <path d="M12 12l2.5-2.5" strokeWidth="2.8" strokeLinecap="round" />
+    <path d="M19 2v6M16 5h6" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M17.2 3.8l3.6 3.6M20.8 3.8l-3.6 3.6" strokeWidth="1.2" strokeLinecap="round" />
+    <circle cx="7" cy="8" r="1" fill="currentColor" />
+    <circle cx="15" cy="16" r="1" fill="currentColor" />
   </IconBase>
 );
 
 export const ArrowDownIcon = (props) => (
   <IconBase {...props}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+    <path d="M12 3v14" strokeWidth="2.2" strokeLinecap="round" />
+    <path d="M6 11.5l6 6 6-6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M8.5 17.5l3.5 3.5 3.5-3.5" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" opacity="0.75" />
   </IconBase>
 );
 
 export const PlayingCardsIcon = (props) => (
   <IconBase {...props}>
-    <path d="M14.832 8.445a1 1 0 00-1.589-.098l-2.075 3.098a1 1 0 000 1.11l2 3a1 1 0 001.664 0l2-3a1 1 0 000-1.11z" />
-    <path d="m7.18 20.827-5-11a2 2 0 01.993-2.647L7 5.44" />
-    <rect x="7" y="2" width="14" height="20" rx="2" />
+    <rect x="3" y="5" width="12" height="16" rx="2" transform="rotate(-12 9 13)" fill="currentColor" fillOpacity="0.15" strokeWidth="1.5" />
+    <rect x="9" y="3" width="12" height="16" rx="2" fill="currentColor" fillOpacity="0.25" strokeWidth="2" />
+    <path d="M15 7.5l2.2 3L15 13.5l-2.2-3z" fill="currentColor" fillOpacity="0.8" strokeWidth="1" strokeLinejoin="round" />
   </IconBase>
 );
 

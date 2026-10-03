@@ -141,7 +141,12 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false, labelPos
             zoomOnClick={false}
           />
           {onRemove && (
-             <button onClick={onRemove} className="no-print btn-remove-card" title="Kaart verwijderen van tafel" style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, padding: 0, boxShadow: '0 4px 10px rgba(239,68,68,0.4)' }}>&times;</button>
+             <button onClick={onRemove} className="no-print btn-remove-card" title="Kaart verwijderen van tafel" style={{ position: 'absolute', top: '-10px', right: '-10px', background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)', color: 'white', border: '2px solid white', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, boxShadow: '0 4px 12px rgba(239,68,68,0.45)' }}>
+               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
+                 <line x1="18" y1="6" x2="6" y2="18" />
+                 <line x1="6" y1="6" x2="18" y2="18" />
+               </svg>
+             </button>
           )}
         </div>
       ) : (
@@ -445,7 +450,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         <>
           <TafelNavbar onPrint={handlePrintTafel} onClear={clearTable} />
 
-          <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '950px', margin: '0 auto 3rem auto' }}>
             <h1 className="text-gradient-tafel" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
               <PlayingCardsIcon size={40} useTafelGradient={true} /> Digitale Tafelopstelling
             </h1>
@@ -461,7 +466,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
         <p style={{ color: '#555', fontSize: '1.2rem' }}>Psychologisch reactiepatroon</p>
       </div>
 
-      <div className="no-print" style={{ marginBottom: '2rem', textAlign: 'center' }}>
+      <div className="no-print" style={{ marginBottom: '2rem', textAlign: 'center', width: '100%', maxWidth: '950px' }}>
         <p style={{ color: 'var(--text-main)', maxWidth: '700px', margin: '0 auto 1.5rem auto', lineHeight: '1.6', fontSize: '1.05rem' }}>
           De digitale tafelopstelling helpt je om je psychologische reactiepatroon op een specifieke trigger visueel in kaart te brengen.
         </p>
@@ -748,12 +753,12 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             of genereer een uitgebreide <strong>beschrijvende analyse</strong> van het hele patroon.
           </p>
           
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
-            <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1rem', background: 'var(--bg-color)', border: '1px solid rgba(16, 185, 129, 0.4)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', width: '100%' }}>
+            <button onClick={generateGvAdvice} disabled={isGenerating} className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px 24px', fontSize: '1rem', background: 'var(--bg-color)', border: '1px solid rgba(16, 185, 129, 0.4)', minWidth: '280px', flex: '1 1 280px', maxWidth: '360px' }}>
               {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useTafelGradient={true} /> Genereer een gezonde reactie</>}
             </button>
             
-            <button className="btn btn-gradient-tafel" onClick={generateDeepAnalysis} disabled={isGeneratingAnalysis} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 24px', fontSize: '1rem' }}>
+            <button className="btn btn-gradient-tafel" onClick={generateDeepAnalysis} disabled={isGeneratingAnalysis} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px 24px', fontSize: '1rem', minWidth: '280px', flex: '1 1 280px', maxWidth: '360px' }}>
               {isGeneratingAnalysis ? 'Bezig...' : <><WandIcon size={20} color="currentColor" /> Een beschrijvende analyse</>}
             </button>
           </div>
@@ -763,50 +768,53 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
 
         {/* Diepgaande Analyse Weergave (Print/View) */}
         {(analysisText || isGeneratingAnalysis) && (
-          <div className="inner-box" style={{ marginTop: '2rem', margin: '2rem 0 0 0' }}>
-            <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center' }}>
-              Uitgebreide Psychologische Analyse
-            </h3>
-            {isGeneratingAnalysis ? (
-            <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-main)' }}>
-              De AI analyseert momenteel jouw opstelling...
-            </div>
-          ) : (
-            <>
-              <textarea 
-                className="no-print"
-                value={analysisText}
-                onChange={e => {
-                  e.target.style.height = 'auto';
-                  e.target.style.height = e.target.scrollHeight + 'px';
-                  setAnalysisText(e.target.value);
-                }}
-                ref={(el) => {
-                  if (el) {
-                    el.style.height = 'auto';
-                    el.style.height = el.scrollHeight + 'px';
-                  }
-                }}
-                style={{ 
-                  width: '100%', minHeight: '400px', padding: '1.5rem', 
-                  borderRadius: '12px', border: '1px solid var(--border-color)', 
-                  background: 'var(--bg-color)', color: 'var(--text-main)', 
-                  fontFamily: 'inherit', fontSize: '1rem', resize: 'none', overflow: 'hidden',
-                  lineHeight: '1.6',
-                  boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)'
-                }}
-              />
-              <div className="tafel-print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)' }}>
-                {analysisText}
+          <div className="glass-panel" style={{ padding: '2.5rem 2.5rem', borderRadius: '24px', maxWidth: '950px', width: '100%', margin: '2rem auto 0 auto', boxSizing: 'border-box' }}>
+            <div className="inner-box" style={{ margin: 0, width: '100%' }}>
+              <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <WandIcon size={24} useTafelGradient={true} /> Uitgebreide Psychologische Analyse
+              </h3>
+              {isGeneratingAnalysis ? (
+              <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-main)' }}>
+                De AI analyseert momenteel jouw opstelling...
               </div>
-            </>
-          )}
+            ) : (
+              <>
+                <textarea 
+                  className="no-print"
+                  value={analysisText}
+                  onChange={e => {
+                    e.target.style.height = 'auto';
+                    e.target.style.height = e.target.scrollHeight + 'px';
+                    setAnalysisText(e.target.value);
+                  }}
+                  ref={(el) => {
+                    if (el) {
+                      el.style.height = 'auto';
+                      el.style.height = el.scrollHeight + 'px';
+                    }
+                  }}
+                  style={{ 
+                    width: '100%', minHeight: '400px', padding: '1.5rem', 
+                    borderRadius: '12px', border: '1px solid var(--border-color)', 
+                    background: 'var(--bg-color)', color: 'var(--text-main)', 
+                    fontFamily: 'inherit', fontSize: '1rem', resize: 'none', overflow: 'hidden',
+                    lineHeight: '1.6',
+                    boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)',
+                    boxSizing: 'border-box'
+                  }}
+                />
+                <div className="tafel-print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)' }}>
+                  {analysisText}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       )}
 
       {showCardPicker && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 9999, padding: '4rem 1rem', overflowY: 'auto' }} onClick={() => setShowCardPicker(null)}>
-          <div className="glass-panel" style={{ background: 'var(--bg-color)', width: '100%', maxWidth: '900px', margin: '0 auto', padding: '3rem', borderRadius: '24px', position: 'relative', boxShadow: '0 10px 40px rgba(0,0,0,0.3)' }} onClick={e => e.stopPropagation()}>
+          <div className="glass-panel" style={{ background: 'var(--bg-color)', width: '100%', maxWidth: '950px', margin: '0 auto', padding: '3rem', borderRadius: '24px', position: 'relative', boxShadow: '0 10px 40px rgba(0,0,0,0.3)', boxSizing: 'border-box' }} onClick={e => e.stopPropagation()}>
             <button onClick={() => setShowCardPicker(null)} style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}>&times;</button>
             <h2 className="text-gradient-tafel" style={{ textAlign: 'center', marginBottom: '2rem' }}>
               {showCardPicker === 'mode' ? 'Kies een Modus' : showCardPicker === 'schema' ? 'Kies een Schema' : 'Kies een Basisbehoefte'}
