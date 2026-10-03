@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon, ClipboardIcon, LightbulbIcon } from './Icons';
+import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon, ClipboardIcon, LightbulbIcon, HandIcon } from './Icons';
 import { Printer } from 'lucide-react';
 import TafelNavbar from './TafelNavbar';
 import { schemaImages, modeImages } from '../utils/images';
@@ -199,8 +199,10 @@ const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '1.25rem' }}>
-      <label style={{ display: 'block', fontWeight: '700', fontSize: '0.95rem', color: 'var(--text-main)', marginBottom: '0.25rem', textAlign: 'center' }}>
-        🎯 Welke basisbehoefte kwam in deze situatie het meest in het geding? <span style={{ fontWeight: '400', color: 'var(--text-muted)' }}>(Optioneel / Aanbevolen voor CDS)</span>
+      <label style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontWeight: '700', fontSize: '0.95rem', color: 'var(--text-main)', marginBottom: '0.25rem', textAlign: 'center' }}>
+        <HandIcon size={20} useTafelGradient />
+        <span>Welke basisbehoefte kwam in deze situatie het meest in het geding?</span>
+        <span style={{ fontWeight: '400', color: 'var(--text-muted)' }}>(Optioneel / Aanbevolen voor CDS)</span>
       </label>
 
       <div style={{ 
