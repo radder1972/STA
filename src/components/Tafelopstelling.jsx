@@ -937,7 +937,7 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '600px', padding: '2rem', background: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
               <CardSlot card={healthyAdultCard} isStacked={true} />
               
-              <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 
                 <p style={{ fontSize: '1rem', color: 'var(--text-main)', textAlign: 'center', marginBottom: '1rem', lineHeight: '1.6' }}>
                   De Gezonde Volwassene stelt grenzen aan disfunctionele reacties en biedt zorg voor onvervulde behoeften. Wat zou deze in deze situatie zeggen of doen?
@@ -959,6 +959,27 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                 <div className="tafel-print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)', width: '100%', minHeight: '180px', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--bg-color)' }}>
                   {gvNotes}
                 </div>
+
+                <button 
+                  onClick={generateGvAdvice} 
+                  disabled={isGenerating} 
+                  className="btn btn-outline no-print" 
+                  style={{ 
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    gap: '10px', 
+                    padding: '12px 24px', 
+                    fontSize: '1rem', 
+                    background: 'var(--bg-color)', 
+                    border: '1px solid rgba(16, 185, 129, 0.4)', 
+                    marginTop: '1.25rem',
+                    width: '100%',
+                    maxWidth: '360px'
+                  }}
+                >
+                  {isGenerating ? 'Genereren...' : <><CpuChipIcon size={20} useTafelGradient={true} /> Genereer een gezonde reactie</>}
+                </button>
               </div>
             </div>
 
