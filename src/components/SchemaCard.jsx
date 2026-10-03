@@ -362,6 +362,7 @@ const SchemaCard = ({
   width = '150px', 
   height = '213px', 
   flipOnClick = true,
+  flipOnHover = false,
   zoomOnClick = true,
   isFlipped = undefined,
   onToggleFlip = undefined,
@@ -385,6 +386,26 @@ const SchemaCard = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isZoomed]);
 
+  const handleMouseEnter = () => {
+    if (flipOnHover) {
+      if (onToggleFlip) {
+        onToggleFlip(true);
+      } else {
+        setInternalFlipped(true);
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (flipOnHover) {
+      if (onToggleFlip) {
+        onToggleFlip(false);
+      } else {
+        setInternalFlipped(false);
+      }
+    }
+  };
+
   const handleFlip = (e) => {
     if (onClick) {
       onClick(e);
@@ -406,7 +427,7 @@ const SchemaCard = ({
   const s = widthNum / 150;
   const scaleRatio = widthNum / 219.2; // 219.2px corresponds to 58mm at standard 96 DPI
 
-  const isInteractive = flipOnClick || zoomOnClick || onClick;
+  const isInteractive = flipOnClick || zoomOnClick || flipOnHover || onClick;
 
   const descText = description || (title ? 'Geen theorie beschikbaar.' : '');
 
@@ -415,8 +436,10 @@ const SchemaCard = ({
       <div 
         className={`card-scene ${className}`} 
         onClick={handleFlip}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         style={{ width, height, position: 'relative', transform: `rotate(${rotation}deg)`, pointerEvents: isInteractive ? 'auto' : 'none', ...style }} 
-        title={zoomOnClick ? "Klik om te vergroten en te lezen" : flipOnClick ? "Klik om te draaien voor theorie" : ""}
+        title={zoomOnClick ? "Klik om te vergroten en te lezen" : flipOnHover ? "Beweeg muis over kaart voor 3D theorie-kaartslag" : flipOnClick ? "Klik om te draaien voor theorie" : ""}
       >
         <div 
           className={`card-flip-container ${flipped ? 'flipped' : ''}`} 

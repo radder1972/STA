@@ -90,6 +90,13 @@ export default function KaartenOverzicht({ onBack }) {
               height="304px"
               imageStyle={{ ...defaultImageStyle, ...card.style }}
               flipOnClick={true}
+              flipOnHover={true}
+              zoomOnClick={false}
+              onClick={
+                (card.type === 'modicategorie' || card.type === 'basisbehoefte') 
+                  ? () => setSelectedCategory(card) 
+                  : undefined
+              }
             />
             <button
               type="button"
