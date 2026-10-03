@@ -719,7 +719,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
   };
 
   return (
-    <div className={embedded ? "" : "view-container"} style={embedded ? {} : { minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
+    <div className={embedded ? "" : "view-container"} style={embedded ? {} : { minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem 2rem 1rem' }}>
       {!embedded && (
         <>
           <TafelNavbar onPrint={handlePrintTafel} onClear={clearTable} />
