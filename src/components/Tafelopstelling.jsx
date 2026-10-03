@@ -193,6 +193,122 @@ const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false, labelPos
   );
 };
 
+const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed }) => {
+  const cards = needCards.slice(0, 5);
+  const angles = [-16, -8, 0, 8, 16];
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '1.25rem' }}>
+      <label style={{ display: 'block', fontWeight: '700', fontSize: '0.95rem', color: 'var(--text-main)', marginBottom: '0.25rem', textAlign: 'center' }}>
+        🎯 Welke basisbehoefte kwam in deze situatie het meest in het geding? <span style={{ fontWeight: '400', color: 'var(--text-muted)' }}>(Optioneel / Aanbevolen voor CDS)</span>
+      </label>
+
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'flex-end', 
+        padding: '2.5rem 1rem 1.5rem 1rem', 
+        minHeight: '220px', 
+        width: '100%',
+        position: 'relative',
+        overflow: 'visible'
+      }}>
+        {cards.map((card, index) => {
+          const rotation = angles[index] || 0;
+          const isSelected = selectedNeedTitle === card.title;
+          const cardColor = card.color || '#3b82f6';
+
+          return (
+            <div
+              key={card.id || card.title}
+              onClick={() => onSelectNeed(isSelected ? '' : card.title)}
+              style={{
+                position: 'relative',
+                width: '110px',
+                height: '155px',
+                margin: '0 -16px',
+                transform: isSelected 
+                  ? `rotate(0deg) translateY(-26px) scale(1.22)` 
+                  : `rotate(${rotation}deg) translateY(0px)`,
+                zIndex: isSelected ? 40 : index + 1,
+                cursor: 'pointer',
+                transition: 'all 0.35s cubic-bezier(0.34, 1.25, 0.64, 1)',
+                filter: isSelected ? `drop-shadow(0 12px 25px ${cardColor}80)` : 'drop-shadow(0 6px 15px rgba(0,0,0,0.15))',
+                transformOrigin: 'bottom center'
+              }}
+              onMouseOver={(e) => {
+                if (!isSelected) {
+                  e.currentTarget.style.transform = `rotate(${rotation}deg) translateY(-16px) scale(1.16)`;
+                  e.currentTarget.style.zIndex = '35';
+                }
+              }}
+              onMouseOut={(e) => {
+                if (!isSelected) {
+                  e.currentTarget.style.transform = `rotate(${rotation}deg) translateY(0px) scale(1)`;
+                  e.currentTarget.style.zIndex = `${index + 1}`;
+                }
+              }}
+              title={`${card.title}${isSelected ? ' (Aangevinkt - klik om te wissen)' : ' (Klik om te selecteren)'}`}
+            >
+              <SchemaCard 
+                id={card.id}
+                type="need"
+                title={card.title}
+                src={card.src}
+                color={cardColor}
+                width="110px"
+                height="155px"
+                flipOnClick={false}
+                zoomOnClick={false}
+                isInteractive={false}
+              />
+              {isSelected && (
+                <div style={{
+                  position: 'absolute',
+                  top: '-10px',
+                  right: '-10px',
+                  background: '#059669',
+                  color: 'white',
+                  borderRadius: '50%',
+                  width: '26px',
+                  height: '26px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  border: '2px solid white',
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+                  zIndex: 60
+                }}>
+                  <CheckIcon size={14} strokeWidth={3} />
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {selectedNeedTitle ? (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '0.75rem' }}>
+          <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#059669' }}>
+            ✓ Geselecteerd: {selectedNeedTitle}
+          </span>
+          <button 
+            type="button"
+            onClick={() => onSelectNeed('')}
+            style={{ border: 'none', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', fontSize: '0.8rem', fontWeight: '600', padding: '4px 12px', borderRadius: '9999px', cursor: 'pointer' }}
+          >
+            Wissen / AI laten inschatten
+          </button>
+        </div>
+      ) : (
+        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.5rem', textAlign: 'center' }}>
+          💡 Klik op een kaart in de waaier om de geraakte basisbehoefte te selecteren.
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default function Tafelopstelling({ onBack, completedTests: initialCompletedTests, embedded = false }) {
   const [completedTests, setCompletedTests] = useState(initialCompletedTests || {});
   const [situationText, setSituationText] = useState('');
@@ -613,34 +729,12 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                   {situationText || "Geen situatie beschreven."}
                 </div>
 
-                {/* Pijler 3: Invoer van Onvervulde Basisbehoefte */}
-                <div className="no-print" style={{ marginTop: '1.25rem', width: '100%', textAlign: 'left' }}>
-                  <label style={{ display: 'block', fontWeight: '700', fontSize: '0.95rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>
-                    🎯 Welke basisbehoefte kwam in deze situatie het meest in het geding? <span style={{ fontWeight: '400', color: 'var(--text-muted)' }}>(Optioneel / Aanbevolen voor CDS)</span>
-                  </label>
-                  <select 
-                    value={selectedUnmetNeed}
-                    onChange={e => setSelectedUnmetNeed(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem 1rem',
-                      borderRadius: '12px',
-                      border: '1px solid var(--border-color)',
-                      background: 'var(--bg-color)',
-                      color: 'var(--text-main)',
-                      fontSize: '0.95rem',
-                      fontWeight: '500'
-                    }}
-                  >
-                    <option value="">-- Kies geraakte basisbehoefte (laat de AI inschatten indien onbekend) --</option>
-                    <option value="Veiligheid & Verbinding">Veiligheid & Verbinding (bijv. Verlating, Wantrouwen, Isolement)</option>
-                    <option value="Autonomie & Competentie">Autonomie & Competentie (bijv. Afhankelijkheid, Kwetsbaarheid, Mislukking)</option>
-                    <option value="Vrijheid van expressie">Vrijheid van expressie (bijv. Onderwerping, Zelfopoffering)</option>
-                    <option value="Spontaniteit & Spel">Spontaniteit & Spel (bijv. Emotionele geremdheid, Overmatige normen)</option>
-                    <option value="Realistische grenzen">Realistische grenzen (bijv. Rechten toe-eigenen, Gebrek aan zelfdiscipline)</option>
-                    <option value="Zelfcoherentie (VSt)">Zelfcoherentie (VSt) (bijv. Gebrek aan coherente identiteit/betekenis)</option>
-                    <option value="Rechtvaardigheid (VSt)">Rechtvaardigheid (VSt) (bijv. Onrechtvaardigheid)</option>
-                  </select>
+                {/* Pijler 3: Invoer van Onvervulde Basisbehoefte in Waaier-vorm */}
+                <div className="no-print" style={{ marginTop: '1.25rem', width: '100%' }}>
+                  <WaaierNeedSelector 
+                    selectedNeedTitle={selectedUnmetNeed} 
+                    onSelectNeed={setSelectedUnmetNeed} 
+                  />
                 </div>
               </div>
               
