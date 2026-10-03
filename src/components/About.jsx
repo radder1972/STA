@@ -378,7 +378,7 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
 
         {activeTab === 'verantwoording' && (
           <div className="inner-box fade-in" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '3rem' }}>
-            <Verantwoording embedded />
+            <Verantwoording embedded theme={theme} />
           </div>
         )}
 

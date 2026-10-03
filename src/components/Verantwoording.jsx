@@ -15,7 +15,7 @@ const sectionStyle = {
   textAlign: 'left'
 };
 
-const h2Style = {
+const h2StyleBase = {
   margin: '0 0 1rem 0',
   fontSize: '1.4rem',
   fontWeight: '700',
@@ -25,21 +25,21 @@ const h2Style = {
   gap: '10px'
 };
 
-const h3Style = {
+const h3StyleBase = {
   margin: '1.5rem 0 0.4rem 0',
   fontSize: '1.05rem',
   fontWeight: '700',
   color: 'var(--text-main)'
 };
 
-const pStyle = {
+const pStyleBase = {
   margin: '0 0 0.9rem 0',
   fontSize: '1rem',
   lineHeight: '1.7',
   color: 'var(--text-main)'
 };
 
-const listStyle = {
+const listStyleBase = {
   margin: '0 0 0.9rem 0',
   paddingLeft: '1.4rem',
   fontSize: '1rem',
@@ -49,13 +49,38 @@ const listStyle = {
 
 // embedded: toont alleen de inhoud (voor gebruik binnen een tab van een andere pagina)
 // showBack: toont de Terug-knop (alleen standalone)
-export default function Verantwoording({ onBack, embedded = false, showBack = true }) {
+export default function Verantwoording({ onBack, embedded = false, showBack = true, theme = 'game' }) {
+  // In de Over-pagina (embedded) dezelfde look als de andere tabs: donkere koppen, 1.1rem tekst
+  const h2Style = embedded ? { ...h2StyleBase, fontSize: '1.5rem', color: '#0f172a', margin: '0 0 1rem 0' } : h2StyleBase;
+  const h3Style = embedded ? { ...h3StyleBase, fontSize: '1.15rem', color: '#1e293b', margin: '1.75rem 0 0.5rem 0' } : h3StyleBase;
+  const pStyle = embedded ? { ...pStyleBase, fontSize: '1.1rem', color: '#475569' } : pStyleBase;
+  const listStyle = embedded ? { ...listStyleBase, fontSize: '1.1rem', color: '#475569' } : listStyleBase;
+  const callout = theme === 'tafel'
+    ? { bg: '#ecfdf5', border: '#10b981', text: '#065f46' }
+    : { bg: '#eff6ff', border: '#3b82f6', text: '#1e3a8a' };
+
   const sectionProps = embedded
     ? { style: { ...sectionStyle, maxWidth: 'none', margin: '0 0 2rem 0', padding: '0 0 2rem 0', borderRadius: 0, borderBottom: '1px solid #e2e8f0' }, className: 'verantwoording-section' }
     : { className: 'glass-panel', style: sectionStyle };
 
   const body = (
     <>
+
+      {embedded && (
+        <>
+          <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Voorbehouden &amp; privacy</h3>
+          <div style={{ margin: '0 0 2rem 0', padding: '1.5rem', background: callout.bg, borderRadius: '0 12px 12px 0', borderLeft: `4px solid ${callout.border}` }}>
+            <h4 style={{ color: callout.text, fontSize: '1.15rem', marginTop: 0, marginBottom: '0.75rem' }}>Kort samengevat</h4>
+            <ul style={{ color: callout.text, fontSize: '1.05rem', lineHeight: '1.6', margin: 0, paddingLeft: '1.25rem' }}>
+              <li>Geen accounts, geen eigen database, geen cookies en geen tracking.</li>
+              <li>Uw invoer blijft in uw eigen browser, behalve bij AI-functies en bij het bestellen van kaarten.</li>
+              <li>Er wordt pas iets naar de AI gestuurd als u zelf op een AI-knop klikt.</li>
+              <li>Voer geen herleidbare gegevens in en anonimiseer casuïstiek.</li>
+              <li>De suite is ondersteunend. De behandelaar beslist.</li>
+            </ul>
+          </div>
+        </>
+      )}
 
       {/* 1. Doel en reikwijdte */}
       <div {...sectionProps}>
