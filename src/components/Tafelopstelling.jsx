@@ -857,8 +857,9 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                     textAlign: 'left',
                     boxShadow: '0 2px 10px rgba(16, 185, 129, 0.06)'
                   }}>
-                    <strong style={{ color: '#059669', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px', fontSize: '0.92rem' }}>
-                      💡 Hoe werkt de differentiële analyse?
+                    <strong style={{ color: '#059669', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.94rem' }}>
+                      <LightbulbIcon size={18} color="#059669" style={{ flexShrink: 0 }} />
+                      <span>Hoe werkt de differentiële analyse?</span>
                     </strong>
                     In plaats van één vaststaand oordeel leidt de AI meerdere plausibele schema's en modi af, gerangschikt op klinische waarschijnlijkheid. Dit geeft u als behandelaar een transparante 'spiegel' van opties ter onderbouwing van uw eigen klinische oordeel.
                   </div>
@@ -1427,8 +1428,9 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                   color: 'var(--text-main)',
                   boxSizing: 'border-box'
                 }}>
-                  <strong style={{ color: '#059669', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px', fontSize: '0.9rem' }}>
-                    💡 GV-Respons Hulpvak (Klinische Driedeling):
+                  <strong style={{ color: '#059669', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.92rem' }}>
+                    <LightbulbIcon size={18} color="#059669" style={{ flexShrink: 0 }} />
+                    <span>GV-Respons Hulpvak (Klinische Driedeling):</span>
                   </strong>
                   <strong>1. Valideer:</strong> Erken de pijn/emotie van het Kind (<em>"Ik zie dat je gekwetst en alleen gelaten bent..."</em>).<br/>
                   <strong>2. Begrens:</strong> Stel grenzen aan Coping/Ouder-modi (<em>"Maar we laten de Beschermer nu niet overnemen..."</em>).<br/>
