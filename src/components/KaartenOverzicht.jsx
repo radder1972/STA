@@ -402,7 +402,7 @@ export default function KaartenOverzicht({ onBack }) {
 
         {filter === 'modicats' && (
           <div>
-            <h2 className="box-heading" style={{ justifyContent: 'center', marginBottom: '1rem' }}>Modi Categorieën (6)</h2>
+            <h2 className="box-heading" style={{ justifyContent: 'center', marginBottom: '1rem' }}>Modi Categorieën ({modicategorieenData.length})</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
               Waar schema's de dieperliggende, langdurige patronen of 'knoppen' zijn, is een <strong>modus</strong> de actuele gemoedstoestand waarin je op dít specifieke moment verkeert als een knop wordt ingedrukt. Modi worden ingedeeld in deze 4 hoofdcategorieën.
             </p>
