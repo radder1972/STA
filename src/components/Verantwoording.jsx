@@ -63,6 +63,21 @@ export default function Verantwoording({ onBack, embedded = false, showBack = tr
     ? { style: { ...sectionStyle, maxWidth: 'none', margin: '0 0 2rem 0', padding: '0 0 2rem 0', borderRadius: 0, borderBottom: '1px solid #e2e8f0' }, className: 'verantwoording-section' }
     : { className: 'glass-panel', style: sectionStyle };
 
+  const PrivacyTable = ({ rows }) => (
+    <div style={{ overflowX: 'auto', margin: '0.5rem 0 1.5rem 0' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: embedded ? '1.05rem' : '0.95rem', color: embedded ? '#475569' : 'var(--text-main)', textAlign: 'left' }}>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i} style={{ borderBottom: '1px solid #e2e8f0', borderTop: i === 0 ? '1px solid #e2e8f0' : 'none' }}>
+              <td style={{ padding: '1rem 0.75rem', fontWeight: '600', verticalAlign: 'top', width: '25%', color: embedded ? '#1e293b' : 'var(--text-main)' }}>{row.label}</td>
+              <td style={{ padding: '1rem 0.75rem', verticalAlign: 'top' }}>{row.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+
   const body = (
     <>
 
@@ -126,58 +141,29 @@ export default function Verantwoording({ onBack, embedded = false, showBack = tr
           Zoals bij elke website kan de hostingpartij technische gegevens verwerken, zoals het IP-adres van uw verzoek, bijvoorbeeld in serverlogs. Daar heeft de applicatie zelf geen zicht op.
         </p>
 
-        <h3 style={h3Style}>Vragenlijsten (YSQ-S3 en SMI)</h3>
-        <ul style={listStyle}>
-          <li>Uw antwoorden worden in uw eigen browser verwerkt en niet naar een eigen server gestuurd.</li>
-          <li>Tijdens het invullen wordt uw voortgang tijdelijk bewaard in de lokale opslag van uw browser, zodat u kunt hervatten. Bij het afronden van een vragenlijst wordt die tussentijdse opslag gewist. Rondt u een vragenlijst niet af, dan blijft de opslag bestaan tot u hem wist via de instellingen van uw browser.</li>
-          <li>De YSQ-S3 meet de 18 klassieke schema&rsquo;s en de SMI 14 modi. Schema&rsquo;s of modi daarbuiten, zoals de drie nieuw voorgestelde schema&rsquo;s uit VSt 2021, komen in de uitkomsten niet naar voren en vragen om uw eigen praktijkobservatie.</li>
-          <li>Het CSV-bestand en de PDF die u zelf downloadt of print bevatten uw antwoorden en resultaten. Bewaar die zorgvuldig.</li>
-          <li>Het gecombineerde rapport heeft een <strong>optionele</strong> AI-analyse. Zie het onderdeel AI-functies hieronder.</li>
-        </ul>
+        <h3 style={h3Style}>1. Vragenlijsten (YSQ-S3 en SMI)</h3>
+        <PrivacyTable rows={[
+          { label: 'Welke functies', value: 'Digitaal invullen, scoren, tussentijds opslaan, en genereren van PDF/CSV of gecombineerd rapport. Let op: nieuwe schema\'s/modi buiten de YSQ/SMI om worden niet gemeten.' },
+          { label: 'Welke gegevens', value: 'Uw antwoorden op de vragen. Bij het gecombineerde rapport: het scoreprofiel (namen en scores van schema\'s/modi).' },
+          { label: 'Waar naartoe', value: 'Gegevens worden uitsluitend in uw eigen browser verwerkt. Voortgang wordt tijdelijk lokaal bewaard en gewist na afronding. Alleen bij de optionele AI-analyse in het rapport gaat het scoreprofiel naar Google Gemini (buiten EER).' },
+          { label: 'Keuze', value: <span>Er wordt niets naar buiten gestuurd tenzij u zelf de <strong>AI-analyse</strong> activeert.</span> }
+        ]} />
 
-        <h3 style={h3Style}>Kaarten</h3>
-        <p style={pStyle}>
-          Het bekijken van de kaarten, spelregels en printbestanden verwerkt geen persoonsgegevens. Uitzondering is het bestelformulier, zie hieronder.
-        </p>
+        <h3 style={h3Style}>2. Kaarten & Bestellen</h3>
+        <PrivacyTable rows={[
+          { label: 'Welke functies', value: 'Bekijken/filteren van theoriekaarten, lezen van spelregels, en het optioneel plaatsen van een bestelling voor fysieke kaarten.' },
+          { label: 'Welke gegevens', value: 'Voor bekijken: geen persoonsgegevens. Voor bestellen: naam, e-mailadres, afleveradres, aantal en opmerking.' },
+          { label: 'Waar naartoe', value: 'Kaarten bekijken gebeurt volledig lokaal. Het bestelformulier gaat via Web3Forms (mogelijk buiten de EER) naar het mailadres van de maker. Voor de adrescheck gaat postcode/huisnummer (samen met uw IP) naar de PDOK Locatieserver (Rijksoverheid).' },
+          { label: 'Keuze / Bewaren', value: 'Bestellen is uiteraard optioneel. Bestelgegevens worden bewaard tot afhandeling, en daarna maximaal 7 jaar voor de fiscale bewaarplicht.' }
+        ]} />
 
-        <h3 style={h3Style}>Kaarten bestellen</h3>
-        <ul style={listStyle}>
-          <li>Als u kaarten bestelt, vult u naam, e-mailadres, afleveradres, aantal en eventueel een opmerking in. Deze gegevens worden alleen gebruikt om uw bestelling af te handelen. Grondslag: het uitvoeren van uw bestelling.</li>
-          <li>Het formulier wordt verstuurd via de formulierdienst <strong>Web3Forms</strong>, die de bestelling als e-mail doorstuurt naar het postvak van de maker. Deze diensten kunnen gegevens buiten de Europese Economische Ruimte verwerken. Zie de privacyverklaring van Web3Forms.</li>
-          <li>Bestelgegevens worden bewaard tot de bestelling is afgehandeld, daarna maximaal 7 jaar voor de administratie. Grondslag voor die bewaartermijn: de wettelijke bewaarplicht.</li>
-          <li>Om uw adres aan te vullen worden uw postcode en huisnummer opgevraagd bij de <strong>PDOK Locatieserver</strong> (Nederlandse overheid). PDOK ontvangt daarbij uw IP-adres en de ingevulde postcode en huisnummer.</li>
-        </ul>
-
-        <h3 style={h3Style}>Tafelopstelling</h3>
-        <ul style={listStyle}>
-          <li>Verwerkt wordt de tekst die u zelf in het veld &ldquo;situatie&rdquo; typt, de gekozen basisbehoefte en kaarten, en eventueel ingelezen testscores.</li>
-          <li>De applicatie slaat deze invoer niet op en stuurt die niet naar een eigen server. De invoer bestaat alleen in uw browser en verdwijnt zodra u de pagina herlaadt of sluit.</li>
-          <li>Gebruikt u een AI-functie, dan gaat deze invoer naar Google Gemini. Zie het onderdeel AI-functies.</li>
-        </ul>
-
-        <h3 style={h3Style}>AI-functies (Google Gemini)</h3>
-        <div style={{ overflowX: 'auto', margin: '0.5rem 0 1.5rem 0' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: embedded ? '1.05rem' : '0.95rem', color: embedded ? '#475569' : 'var(--text-main)', textAlign: 'left' }}>
-            <tbody>
-              <tr style={{ borderBottom: '1px solid #e2e8f0', borderTop: '1px solid #e2e8f0' }}>
-                <td style={{ padding: '1rem 0.75rem', fontWeight: '600', verticalAlign: 'top', width: '25%', color: embedded ? '#1e293b' : 'var(--text-main)' }}>Welke functies</td>
-                <td style={{ padding: '1rem 0.75rem', verticalAlign: 'top' }}>De differentiële hypotheses, de respons vanuit de Gezonde Volwassene en de ketenanalyse in de Tafelopstelling, en de optionele AI-analyse in het gecombineerde rapport van de vragenlijsten.</td>
-              </tr>
-              <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
-                <td style={{ padding: '1rem 0.75rem', fontWeight: '600', verticalAlign: 'top', color: embedded ? '#1e293b' : 'var(--text-main)' }}>Welke gegevens</td>
-                <td style={{ padding: '1rem 0.75rem', verticalAlign: 'top' }}>Bij de Tafelopstelling: de situatietekst, de gekozen kaarten en een eventueel ingelezen scoreprofiel.<br/>Bij het rapport: het scoreprofiel (de namen en gemiddelde scores van schema&rsquo;s en modi).</td>
-              </tr>
-              <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
-                <td style={{ padding: '1rem 0.75rem', fontWeight: '600', verticalAlign: 'top', color: embedded ? '#1e293b' : 'var(--text-main)' }}>Waar naartoe</td>
-                <td style={{ padding: '1rem 0.75rem', verticalAlign: 'top' }}>Uw browser stuurt deze informatie rechtstreeks naar de AI-dienst Google Gemini om het antwoord te genereren. Dit kan betekenen dat gegevens buiten de Europese Economische Ruimte worden verwerkt. Google kan invoer tijdelijk bewaren, bijvoorbeeld om misbruik te voorkomen. Voor wat Google daarmee doet gelden de voorwaarden van Google.</td>
-              </tr>
-              <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
-                <td style={{ padding: '1rem 0.75rem', fontWeight: '600', verticalAlign: 'top', color: embedded ? '#1e293b' : 'var(--text-main)' }}>Keuze</td>
-                <td style={{ padding: '1rem 0.75rem', verticalAlign: 'top' }}>Er wordt helemaal niets verstuurd tenzij u <strong>zelf</strong> op een AI-knop klikt.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <h3 style={h3Style}>3. Tafelopstelling (incl. AI)</h3>
+        <PrivacyTable rows={[
+          { label: 'Welke functies', value: 'Plaatsen van kaarten op tafel rondom een casus. Optionele AI-hulp: differentiële hypotheses, respons vanuit de Gezonde Volwassene, en ketenanalyse.' },
+          { label: 'Welke gegevens', value: 'De tekst die u in het veld "situatie" typt, de gekozen kaarten/basisbehoefte, en een eventueel ingelezen test-scoreprofiel.' },
+          { label: 'Waar naartoe', value: 'De basisapplicatie draait lokaal (invoer verdwijnt na sluiten/herladen). Kiest u voor AI-hulp, dan stuurt de browser uw invoer rechtstreeks naar Google Gemini om het antwoord te genereren. Google kan invoer tijdelijk bewaren.' },
+          { label: 'Keuze', value: <span>Er wordt helemaal niets naar AI-diensten verstuurd tenzij u <strong>zelf</strong> op een AI-knop klikt.</span> }
+        ]} />
 
         <h3 style={h3Style}>Gebruik met cliëntgegevens</h3>
         <ul style={listStyle}>
