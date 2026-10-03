@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon } from './Icons';
+import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon, ClipboardIcon } from './Icons';
 import { Printer } from 'lucide-react';
 import TafelNavbar from './TafelNavbar';
 import { schemaImages, modeImages } from '../utils/images';
@@ -653,25 +653,33 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
                     />
 
                     {(completedTests?.ysq || completedTests?.smi) ? (
-                      <div style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '10px',
-                        padding: '8px 18px',
-                        borderRadius: '9999px',
-                        background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(5, 150, 105, 0.18) 100%)',
-                        border: '1px solid rgba(16, 185, 129, 0.35)',
-                        color: '#059669',
-                        fontWeight: '700',
-                        fontSize: '0.92rem'
-                      }}>
-                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#10b981', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                          <CheckIcon size={14} strokeWidth={3} />
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', textAlign: 'center', margin: '4px 0 2px 0' }}>
+                        {/* Circular Gradient Icon Badge with Checkmark Overlay */}
+                        <div style={{ position: 'relative', display: 'inline-block' }}>
+                          <div style={{ background: 'linear-gradient(135deg, #34d399 0%, #10b981 100%)', width: '48px', height: '48px', borderRadius: '50%', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 18px rgba(16, 185, 129, 0.3)' }}>
+                            <ClipboardIcon size={24} color="white" />
+                          </div>
+                          <div style={{ position: 'absolute', bottom: '-2px', right: '-2px', background: '#059669', color: 'white', borderRadius: '50%', width: '18px', height: '18px', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 6px rgba(0,0,0,0.15)' }}>
+                            <CheckIcon size={11} strokeWidth={3} />
+                          </div>
                         </div>
-                        <span>Persoonlijk testprofiel actief {csvUploadedName ? `(${csvUploadedName})` : '(YSQ / SMI resultaten gekoppeld)'}</span>
+
+                        {/* Unbolded text underneath */}
+                        <div style={{ color: 'var(--text-main)', fontSize: '0.94rem', fontWeight: '400', lineHeight: '1.4' }}>
+                          <div style={{ fontWeight: '500', color: 'var(--text-main)' }}>Persoonlijk testprofiel gekoppeld</div>
+                          {csvUploadedName ? (
+                            <div style={{ fontSize: '0.84rem', color: '#059669', opacity: 0.9, marginTop: '2px', fontWeight: '400' }}>
+                              {csvUploadedName}
+                            </div>
+                          ) : (
+                            <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '2px', fontWeight: '400' }}>
+                              (YSQ / SMI resultaten actief)
+                            </div>
+                          )}
+                        </div>
                       </div>
                     ) : (
-                      <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text-main)', textAlign: 'center', lineHeight: '1.5' }}>
+                      <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text-main)', textAlign: 'center', lineHeight: '1.5', fontWeight: '400' }}>
                         💡 <strong>Optioneel:</strong> Koppel je testresultaten voor een nog nauwkeurigere voorspelling op maat!
                       </p>
                     )}
