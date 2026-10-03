@@ -29,7 +29,8 @@ import {
   vstBasisbehoeftenData,
   vstSchemaData,
   vstCopingData,
-  vstModiData
+  vstModiData,
+  basisbehoeftenToSchemas
 } from '../data/cards';
 
 const StepBadge = ({ number, size = 32 }) => (
@@ -108,50 +109,85 @@ const healthyAdultCard = { id: 'gv', src: imgM4, title: 'Gezonde volwassene', ty
 
 
 
-const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false, labelPosition = 'top' }) => {
-  const [flipped, setFlipped] = useState(false);
+const CardSlot = ({ label, card, onSelect, onRemove, isStacked = false, labelPosition = 'top', slotColor = '#10b981' }) => {
   const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'rgba(0,0,0,0.15)';
   
   return (
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    {label && labelPosition === 'top' && <div style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>}
-    {card ? (
-      <div style={{ position: 'relative', display: 'inline-block' }}>
-        {isStacked && (
-          <>
-            <div style={{ position: 'absolute', top: '2px', left: '-12px', width: '150px', height: '213px', background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '12px', zIndex: 0, transform: 'rotate(-6deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
-            <div style={{ position: 'absolute', top: '6px', left: '10px', width: '150px', height: '213px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '12px', zIndex: 0, transform: 'rotate(5deg)', boxShadow: '0 4px 8px rgba(0,0,0,0.08)' }}></div>
-          </>
-        )}
-        <SchemaCard 
-          id={card.id}
-          type={card.type}
-          title={card.title}
-          description={card.description}
-          src={card.src}
-          color={cardColor}
-          width="150px"
-          height="213px"
-          imageStyle={card.style}
-          flipOnClick={true}
-        />
-        {onRemove && (
-           <button onClick={onRemove} className="no-print btn-remove-card" style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, padding: 0, boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}>&times;</button>
-        )}
-      </div>
-    ) : (
-      <div 
-        onClick={onSelect} 
-        className="glass-panel no-print" 
-        style={{ width: '150px', height: '213px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '2px dashed #10b981', borderRadius: '12px', cursor: 'pointer', background: 'rgba(16, 185, 129, 0.05)', transition: 'all 0.2s' }}
-      >
-        <span style={{ color: '#10b981', fontSize: '2.5rem', marginBottom: '0.5rem' }}>+</span>
-        <span style={{ color: '#059669', fontSize: '0.8rem', fontWeight: 'bold' }}>Kies Kaart</span>
-      </div>
-    )}
-    {label && labelPosition === 'bottom' && <div style={{ fontWeight: 'bold', fontSize: '1rem', marginTop: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>{label}</div>}
-  </div>
-)};
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      {label && labelPosition === 'top' && (
+        <div style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>
+          {label}
+        </div>
+      )}
+      {card ? (
+        <div style={{ position: 'relative', display: 'inline-block', transition: 'transform 0.2s ease' }}>
+          {isStacked && (
+            <>
+              <div style={{ position: 'absolute', top: '2px', left: '-12px', width: '150px', height: '213px', background: 'var(--card-bg)', border: '2px solid rgba(59, 130, 246, 0.4)', borderRadius: '12px', zIndex: 0, transform: 'rotate(-6deg)', boxShadow: '0 6px 15px rgba(0,0,0,0.12)' }}></div>
+              <div style={{ position: 'absolute', top: '6px', left: '10px', width: '150px', height: '213px', background: 'var(--bg-color)', border: '2px solid rgba(245, 158, 11, 0.4)', borderRadius: '12px', zIndex: 0, transform: 'rotate(5deg)', boxShadow: '0 6px 15px rgba(0,0,0,0.12)' }}></div>
+            </>
+          )}
+          <SchemaCard 
+            id={card.id}
+            type={card.type}
+            title={card.title}
+            description={card.description}
+            src={card.src}
+            color={cardColor}
+            width="150px"
+            height="213px"
+            imageStyle={card.style}
+            flipOnClick={true}
+            flipOnHover={true}
+            zoomOnClick={false}
+          />
+          {onRemove && (
+             <button onClick={onRemove} className="no-print btn-remove-card" title="Kaart verwijderen van tafel" style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '50%', width: '28px', height: '28px', cursor: 'pointer', zIndex: 60, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', lineHeight: 1, padding: 0, boxShadow: '0 4px 10px rgba(239,68,68,0.4)' }}>&times;</button>
+          )}
+        </div>
+      ) : (
+        <div 
+          onClick={onSelect} 
+          className="glass-panel no-print" 
+          style={{ 
+            width: '150px', 
+            height: '213px', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            border: `2px dashed ${slotColor}`, 
+            borderRadius: '16px', 
+            cursor: 'pointer', 
+            background: `${slotColor}0d`, 
+            transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+            boxShadow: `0 4px 15px ${slotColor}1a`
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.transform = 'translateY(-4px)';
+            e.currentTarget.style.borderColor = slotColor;
+            e.currentTarget.style.background = `${slotColor}1f`;
+            e.currentTarget.style.boxShadow = `0 8px 25px ${slotColor}35`;
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.borderColor = slotColor;
+            e.currentTarget.style.background = `${slotColor}0d`;
+            e.currentTarget.style.boxShadow = `0 4px 15px ${slotColor}1a`;
+          }}
+        >
+          <span style={{ color: slotColor, fontSize: '2.5rem', marginBottom: '0.5rem', fontWeight: '300' }}>+</span>
+          <span style={{ color: slotColor, fontSize: '0.82rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Kies Kaart</span>
+        </div>
+      )}
+      {label && labelPosition === 'bottom' && (
+        <div style={{ fontWeight: 'bold', fontSize: '1rem', marginTop: '0.8rem', color: 'var(--text-main)', textAlign: 'center' }}>
+          {label}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default function Tafelopstelling({ onBack, completedTests, embedded = false }) {
   const [situationText, setSituationText] = useState('');
@@ -165,6 +201,43 @@ export default function Tafelopstelling({ onBack, completedTests, embedded = fal
   const [isGeneratingAnalysis, setIsGeneratingAnalysis] = useState(false);
   const [isPredicting, setIsPredicting] = useState(false);
   const [flippedCards, setFlippedCards] = useState({});
+  const [isStackedView, setIsStackedView] = useState(false);
+
+  const getMatchingFeedback = () => {
+    if (!selectedSchema || !selectedNeed) return null;
+
+    const schemaTitle = selectedSchema.title;
+    const needTitle = selectedNeed.title;
+
+    let matchedNeedTitle = null;
+    for (const [nTitle, schemas] of Object.entries(basisbehoeftenToSchemas)) {
+      if (schemas.some(s => s.toLowerCase() === schemaTitle.toLowerCase())) {
+        matchedNeedTitle = nTitle;
+        break;
+      }
+    }
+
+    const isDirectMatch = matchedNeedTitle && (
+      matchedNeedTitle.toLowerCase() === needTitle.toLowerCase() ||
+      needTitle.toLowerCase().includes(matchedNeedTitle.toLowerCase()) ||
+      matchedNeedTitle.toLowerCase().includes(needTitle.toLowerCase())
+    );
+
+    if (isDirectMatch) {
+      return {
+        isMatch: true,
+        text: `✨ Perfecte Inhoudskoppeling: Het schema '${schemaTitle}' ontstaat rechtstreeks als reactie op een tekort aan de basisbehoefte '${needTitle}'.`
+      };
+    } else if (matchedNeedTitle) {
+      return {
+        isMatch: false,
+        text: `💡 Inhouds-Inzicht: Het schema '${schemaTitle}' hoort primair bij het behoeftedomein '${matchedNeedTitle}'. U onderzoekt nu de wisselwerking met '${needTitle}'.`
+      };
+    }
+    return null;
+  };
+
+  const matchingFeedback = getMatchingFeedback();
 
   const handleFlip = (key, e) => {
     if (e) e.stopPropagation();
@@ -475,58 +548,146 @@ Geef een heldere, compassievolle en inzichtgevende analyse van hoe deze keten we
           <h4 className="text-gradient-tafel no-print" style={{ marginTop: '3rem', marginBottom: '1rem', textAlign: 'center' }}>Of: Leg zelf handmatig de kaarten op tafel</h4>
           <p className="no-print" style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '2rem', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
             Klik op een leeg vak om zelf een kaart te kiezen. 
-            <strong> Tip:</strong> je kunt altijd op een gekozen kaart klikken of tikken om hem om te draaien en de theorie te lezen!
+            <strong> Tip:</strong> beweeg of tik op een gekozen kaart om hem in 3D te laten flippen!
           </p>
+
+          {/* Stacking Toggle (Modus op Schema) */}
+          {selectedMode && selectedSchema && (
+            <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
+              <button
+                type="button"
+                onClick={() => setIsStackedView(!isStackedView)}
+                className="btn btn-outline"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '8px 20px',
+                  fontSize: '0.9rem',
+                  fontWeight: '700',
+                  borderRadius: '9999px',
+                  background: isStackedView ? 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)' : 'var(--bg-color)',
+                  color: isStackedView ? 'white' : 'var(--text-main)',
+                  border: isStackedView ? 'none' : '1px solid rgba(245, 158, 11, 0.4)',
+                  boxShadow: isStackedView ? '0 4px 15px rgba(234, 88, 12, 0.35)' : 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s ease'
+                }}
+              >
+                {isStackedView ? '🎴 Toon Losse Kaarten op Tafel' : '🥞 Stapel Modus over Schema op Tafel'}
+              </button>
+            </div>
+          )}
+
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', width: '100%' }}>
             
-            {/* Driehoeksopstelling: De 3 Kaarten */}
-            <div className="tafel-cards-container" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', margin: '0 auto', padding: '2.5rem 1.5rem 2.5rem 1.5rem', background: 'rgba(16, 185, 129, 0.04)', borderRadius: '24px', border: '1px solid rgba(16, 185, 129, 0.25)', boxSizing: 'border-box', overflow: 'visible' }}>
-              
-              {/* Bovenste rij: Mijn Reactie (Modus) <---> Geraakt Schema */}
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem', width: '100%', maxWidth: '560px', position: 'relative', zIndex: 2 }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} labelPosition="top" />
-                </div>
+            {/* Vilt-Tafelmat Speelveld */}
+            <div className="tafel-cards-container" style={{ 
+              position: 'relative', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center', 
+              width: '100%', 
+              margin: '0 auto', 
+              padding: '2.5rem 1.5rem 2.5rem 1.5rem', 
+              background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.04) 100%)', 
+              borderRadius: '28px', 
+              border: '1px solid rgba(16, 185, 129, 0.28)', 
+              boxShadow: 'inset 0 0 40px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0,0,0,0.03)',
+              boxSizing: 'border-box', 
+              overflow: 'visible' 
+            }}>
 
-                {/* Horizontale verbinding top */}
-                <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 1, minWidth: '30px', marginTop: '1.5rem' }}>
-                  <div style={{ height: '3px', width: '100%', minWidth: '30px', background: 'linear-gradient(to right, #059669, #10b981)', borderRadius: '2px', opacity: 0.8 }}></div>
+              {/* STACKED VIEW MODE */}
+              {isStackedView && selectedMode && selectedSchema ? (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1rem 0 2rem 0', position: 'relative', zIndex: 2 }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#ea580c', background: 'rgba(234, 88, 12, 0.12)', border: '1px solid rgba(234, 88, 12, 0.3)', padding: '4px 14px', borderRadius: '9999px', marginBottom: '1.2rem' }}>
+                    🥞 Modus Overdekt Geraakt Schema op Tafel
+                  </div>
+                  <div style={{ position: 'relative', width: '180px', height: '235px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    {/* Schema Underneath */}
+                    <div style={{ position: 'absolute', top: '16px', left: '18px', zIndex: 1, opacity: 0.9, transform: 'rotate(6deg)' }}>
+                      <CardSlot label="" card={selectedSchema} onRemove={() => setSelectedSchema(null)} slotColor="#3b82f6" />
+                    </div>
+                    {/* Coping Modus On Top */}
+                    <div style={{ position: 'absolute', top: '0', left: '0', zIndex: 2, transform: 'rotate(-4deg)' }}>
+                      <CardSlot label="" card={selectedMode} onRemove={() => setSelectedMode(null)} slotColor="#f59e0b" />
+                    </div>
+                  </div>
                 </div>
+              ) : (
+                /* NORMAL TRIANGLE VIEW */
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem', width: '100%', maxWidth: '560px', position: 'relative', zIndex: 2 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <CardSlot label="Mijn Reactie (Modus)" card={selectedMode} onSelect={() => setShowCardPicker('mode')} onRemove={() => setSelectedMode(null)} labelPosition="top" slotColor="#f59e0b" />
+                  </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} labelPosition="top" />
+                  {/* Horizontale verbinding top */}
+                  <div className="no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 1, minWidth: '30px', marginTop: '1.5rem' }}>
+                    <div style={{ height: '3px', width: '100%', minWidth: '30px', background: 'linear-gradient(to right, #f59e0b, #3b82f6)', borderRadius: '2px', opacity: 0.85 }}></div>
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <CardSlot label="Geraakt Schema" card={selectedSchema} onSelect={() => setShowCardPicker('schema')} onRemove={() => setSelectedSchema(null)} labelPosition="top" slotColor="#3b82f6" />
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Subtiele kleine diagonale verbindingslijnen */}
               <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', maxWidth: '280px', height: '20px', margin: '0.5rem 0', position: 'relative', zIndex: 1 }}>
-                {/* Diagonale lijn links (Mijn Reactie -> Onvervulde Behoefte) */}
                 <div style={{
                   width: '40px',
                   height: '3px',
-                  background: 'linear-gradient(135deg, #059669, #10b981)',
+                  background: 'linear-gradient(135deg, #f59e0b, #10b981)',
                   transform: 'rotate(40deg)',
                   transformOrigin: 'top left',
-                  opacity: 0.7,
+                  opacity: 0.75,
                   borderRadius: '2px'
                 }} />
 
-                {/* Diagonale lijn rechts (Geraakt Schema -> Onvervulde Behoefte) */}
                 <div style={{
                   width: '40px',
                   height: '3px',
-                  background: 'linear-gradient(225deg, #059669, #10b981)',
+                  background: 'linear-gradient(225deg, #3b82f6, #10b981)',
                   transform: 'rotate(-40deg)',
                   transformOrigin: 'top right',
-                  opacity: 0.7,
+                  opacity: 0.75,
                   borderRadius: '2px'
                 }} />
               </div>
 
-              {/* Onderste punt van de driehoek: Onvervulde Behoefte (Label ONDER de kaart) */}
+              {/* Onderste punt van de driehoek: Onvervulde Behoefte */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 2 }}>
-                <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} labelPosition="bottom" />
+                <CardSlot label="Onvervulde Behoefte" card={selectedNeed} onSelect={() => setShowCardPicker('need')} onRemove={() => setSelectedNeed(null)} labelPosition="bottom" slotColor="#10b981" />
               </div>
+
+              {/* LIVE KAARTMATCHING FEEDBACK BANNER */}
+              {matchingFeedback && (
+                <div className="no-print" style={{
+                  width: '100%',
+                  maxWidth: '580px',
+                  marginTop: '1.75rem',
+                  padding: '12px 20px',
+                  borderRadius: '16px',
+                  background: matchingFeedback.isMatch 
+                    ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(5, 150, 105, 0.18) 100%)' 
+                    : 'linear-gradient(135deg, rgba(234, 88, 12, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%)',
+                  border: matchingFeedback.isMatch 
+                    ? '1px solid rgba(16, 185, 129, 0.35)' 
+                    : '1px solid rgba(234, 88, 12, 0.3)',
+                  boxShadow: matchingFeedback.isMatch 
+                    ? '0 6px 20px rgba(16, 185, 129, 0.15)' 
+                    : '0 6px 20px rgba(234, 88, 12, 0.12)',
+                  color: 'var(--text-main)',
+                  fontSize: '0.92rem',
+                  fontWeight: '600',
+                  lineHeight: '1.5',
+                  textAlign: 'center',
+                  transition: 'all 0.3s ease'
+                }}>
+                  {matchingFeedback.text}
+                </div>
+              )}
 
             </div>
 
