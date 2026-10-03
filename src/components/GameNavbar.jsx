@@ -25,7 +25,7 @@ export default function GameNavbar({ currentView, setCurrentView }) {
       margin: '0 auto 1.5rem auto'
     }}>
       {/* Top Platform Return Badge */}
-      <PlatformBadge theme="kaarten" marginBottom="0.85rem" />
+      <PlatformBadge theme="kaarten" marginBottom="1.5rem" />
 
       <div style={{
         background: 'var(--bg-color)',
@@ -35,7 +35,9 @@ export default function GameNavbar({ currentView, setCurrentView }) {
         justifyContent: 'center',
         boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)',
         borderRadius: '16px',
-        width: '100%'
+        width: '100%',
+        position: 'relative',
+        zIndex: 1
       }}>
       <div 
         className="hide-scrollbar"

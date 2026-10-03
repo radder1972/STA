@@ -14,21 +14,7 @@ export default function TafelNavbar({ onPrint, onClear }) {
       position: 'relative'
     }}>
       {/* Top Platform Return Badge with right-aligned logo */}
-      <div style={{ position: 'relative', zIndex: 2, display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
-        <PlatformBadge theme="tafel" marginBottom="0.85rem" />
-
-        {/* Groot 3-sterren logo rechts uitgelijnd met DSP label & half onder menubalk */}
-        <div style={{
-          position: 'absolute',
-          top: '-12px',
-          right: '-24px',
-          zIndex: -1,
-          pointerEvents: 'none',
-          opacity: 0.28
-        }}>
-          <ThreeSparklesLogo size={85} theme="tafel" />
-        </div>
-      </div>
+      <PlatformBadge theme="tafel" marginBottom="1.5rem" />
 
       <div style={{
         background: 'var(--bg-color)',

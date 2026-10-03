@@ -144,7 +144,7 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
   return (
     <div className="home-container">
       <div className="header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <PlatformBadge theme="test" marginBottom="0.85rem" />
+        <PlatformBadge theme="test" marginBottom="1.5rem" />
         <h1>Schema Therapy Questionnaires</h1>
         <p style={{ fontSize: '1rem', lineHeight: '1.6' }}>
           Hieronder vindt u twee vragenlijsten die worden ingezet binnen de schematherapie. 

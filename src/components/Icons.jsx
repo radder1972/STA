@@ -251,7 +251,7 @@ export const SparklesIcon = (props) => (
   </IconBase>
 );
 
-export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom = '0.85rem' }) => {
+export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom = '1.75rem', showDrapedLogo = true }) => {
   const themeStyles = {
     tafel: {
       color: '#059669',
@@ -313,15 +313,11 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
     boxShadow: `0 2px 8px ${currentTheme.border}`
   };
 
-  if (isCurrent) {
-    return (
-      <div style={badgeStyle}>
-        {content}
-      </div>
-    );
-  }
-
-  return (
+  const badgeElement = isCurrent ? (
+    <div style={badgeStyle}>
+      {content}
+    </div>
+  ) : (
     <a
       href="index.html"
       style={badgeStyle}
@@ -339,6 +335,26 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
     >
       {content}
     </a>
+  );
+
+  if (!showDrapedLogo) {
+    return badgeElement;
+  }
+
+  return (
+    <div style={{ position: 'relative', zIndex: 2, display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
+      {badgeElement}
+      <div style={{
+        position: 'absolute',
+        top: '-12px',
+        right: '-24px',
+        zIndex: -1,
+        pointerEvents: 'none',
+        opacity: 0.28
+      }}>
+        <ThreeSparklesLogo size={85} theme={theme} />
+      </div>
+    </div>
   );
 };
 
