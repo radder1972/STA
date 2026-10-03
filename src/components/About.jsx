@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon } from './Icons';
+import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon, PlayingCardsIcon } from './Icons';
 import Verantwoording from './Verantwoording';
 
 // Gedeelde 'Over'-pagina voor de hele suite (Kaarten, Tafelopstelling, Hub en Vragenlijsten).
@@ -26,7 +26,7 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
           <InfoIcon size={40} useGameGradient={theme !== 'tafel'} /> Over de suite
         </h1>
         <h2 style={{ color: accent, margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4', minHeight: '34px' }}>
-          {activeTab === 'suite' ? 'De gedachte achter de Schematherapie Suite' : activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : activeTab === 'maker' ? 'Wie zit er achter deze kaartenset?' : 'Voorbehouden en privacyverklaring van de suite'}
+          {activeTab === 'suite' ? 'De gedachte achter de Schematherapie Suite' : activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : activeTab === 'tafel' ? 'De gedachte achter de Digitale Tafelopstelling' : activeTab === 'maker' ? 'Wie zit er achter deze kaartenset?' : 'Voorbehouden en privacyverklaring van de suite'}
         </h2>
       </div>
 
@@ -46,6 +46,13 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
             style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
           >
             <FileTextIcon size={18} color={activeTab === 'waarom' ? 'white' : accent} /> Waarom de kaarten
+          </button>
+          <button 
+            onClick={() => setActiveTab('tafel')}
+            className={activeTab === 'tafel' ? btnActive : "btn btn-outline"} 
+            style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <PlayingCardsIcon size={18} color={activeTab === 'tafel' ? 'white' : accent} /> Waarom de tafel
           </button>
           <button 
             onClick={() => setActiveTab('maker')}
@@ -91,7 +98,7 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
               <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
                 <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>3. Tafelopstelling: een concrete situatie ontleden</strong>
                 <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
-                  Met een eigen situatie koppel je trigger, modus, schema en onvervulde basisbehoefte aan elkaar en werk je toe naar een reactie vanuit de Gezonde Volwassene. Optionele AI-ondersteuning denkt mee met hypotheses, maar de behandelaar beslist.
+                  Met een eigen situatie koppel je trigger, modus, schema en onvervulde basisbehoefte aan elkaar en werk je toe naar een reactie vanuit de Gezonde Volwassene. Optionele AI-ondersteuning denkt mee met hypotheses, maar de behandelaar beslist. Zie het tabblad <em>Waarom de tafel</em>.
                 </span>
               </div>
             </div>
@@ -231,6 +238,58 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
               </h3>
               <p style={{ color: '#1e3a8a', fontSize: '1.1rem', lineHeight: '1.6', margin: 0 }}>
                 Uiteindelijk is deze toolset geen speelgoed of gezelschapsspel, maar een visueel therapeutisch hulpmiddel. De dynamiek van het matchen, het inzetten van categoriekaarten en het verplicht eindigen met een gezonde eindkaart (de Gezonde Volwassene of het Blije Kind) is een optionele werkvorm voor het therapeutische gesprek. Het helpt cliënten om taal te geven aan hun patronen, afstand te nemen van hun modi, en stap voor stap de regie terug te pakken.
+              </p>
+            </div>
+
+          </div>
+        )}
+
+        {activeTab === 'tafel' && (
+          <div className="inner-box fade-in" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '3rem' }}>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Waarom een tafelopstelling?</h3>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.5rem 0' }}>
+              Een cliënt reageert op een moment in zijn of haar leven op een manier die hem of haar zelf vaak ook verbaast: boosheid, terugtrekken, pleasen. In schematherapie is de verklaring een keten: een trigger raakt een onvervulde basisbehoefte, activeert een schema en roept een modus op. Die keten is lastig te volgen als je hem alleen in gedachten of in woorden houdt. Door de onderdelen als kaarten op tafel te leggen, wordt de keten zichtbaar en kan de cliënt er samen met de behandelaar naar kijken, in plaats van erin te zitten.
+            </p>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Waarom digitaal?</h3>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.5rem 0' }}>
+              De digitale versie helpt een behandelaar om de opstelling te structureren en voor te bereiden, en maakt het mogelijk om de uitkomst te printen of op te slaan als PDF. Daarnaast kan optionele AI-ondersteuning een tweede blik bieden: een voorstel voor schema's, modi en de geraakte basisbehoefte, om de eigen hypothese naast te leggen. De fysieke gedachte blijft staan: het gaat om het gesprek aan tafel.
+            </p>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Drie stappen</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>1. Beschrijf de situatie</strong>
+                <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
+                  Je begint bij een concrete, objectief beschreven trigger-situatie. Een goed begin voorkomt dat het gesprek meteen in interpretaties blijft hangen.
+                </span>
+              </div>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>2. Stel de opstelling samen</strong>
+                <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
+                  Je kiest de geraakte basisbehoefte en legt schema's en modi op tafel. Op verzoek geeft de AI differentiële hypotheses met een kwalitatieve indicatie (sterk, matig of zwak). De behandelaar bepaalt welke kaarten er daadwerkelijk komen te liggen.
+                </span>
+              </div>
+              <div style={{ padding: '1.25rem 1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                <strong style={{ color: '#1e293b', fontSize: '1.05rem', display: 'block', marginBottom: '0.35rem' }}>3. Analyseer en werk naar de Gezonde Volwassene</strong>
+                <span style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.98rem' }}>
+                  Met een ketenanalyse en psycho-educatie maak je de modus-cyclus begrijpelijk, en je kunt een voorstel laten maken voor een reactie vanuit de Gezonde Volwassene. Ook dit zijn suggesties om mee te werken, geen vastgestelde uitkomsten.
+                </span>
+              </div>
+            </div>
+
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Waarom altijd naar de Gezonde Volwassene toe?</h3>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.5rem 0' }}>
+              De opstelling is geen diagnosekaart maar een route. Begrijpen welke modus actief is, is nuttig als het uiteindelijk helpt om een andere keuze te maken. Daarom eindigt de opstelling bij de vraag wat de Gezonde Volwassene hier zou doen.
+            </p>
+
+            <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#ecfdf5', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #10b981' }}>
+              <h3 style={{ color: '#065f46', fontSize: '1.15rem', marginTop: 0, marginBottom: '0.75rem' }}>
+                Let op bij AI
+              </h3>
+              <p style={{ color: '#065f46', fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
+                AI-suggesties zijn indicatief en kunnen fouten bevatten. Ze vervangen geen professioneel oordeel. Voer in de situatiebeschrijving geen herleidbare gegevens in en anonimiseer de casus. Wat er precies met de invoer gebeurt, staat op het tabblad <em>Voorbehouden &amp; privacy</em>.
               </p>
             </div>
 
