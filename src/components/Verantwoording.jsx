@@ -3,7 +3,7 @@ import { ArrowLeftIcon, ShieldIcon, InfoIcon } from './Icons';
 import packageJson from '../../package.json';
 
 // Vul hier het contactadres in om het contactblok onderaan de pagina te tonen.
-export const CONTACT_EMAIL = 'matthias.radder@gmail.com';
+export const CONTACT_EMAIL = 'dsp@gmail.com';
 
 const sectionStyle = {
   width: '100%',
@@ -98,6 +98,7 @@ export default function Verantwoording({ onBack, embedded = false, showBack = tr
         <h2 style={h2Style}>Voorbehouden</h2>
         <ul style={listStyle}>
           <li><strong>Geen diagnose of behandeling.</strong> Scores, rapportages, kaarten en AI-suggesties zijn ondersteunend en indicatief. Ze zijn geen vervanging voor formele diagnostiek of een gedegen professionele behandeling.</li>
+          <li><strong>Auteursrecht vragenlijsten (YSQ-S3 & SMI).</strong> De inhoud van de YSQ-S3 en SMI vragenlijsten valt onder het auteursrecht van hun respectievelijke auteurs en het Schema Therapy Institute. Schematherapie Suite (DSP) is geen uitgever van deze lijsten en claimt geen enkel eigendomsrecht over de inhoud. Deze applicatie is uitsluitend ontworpen als een digitale verwerkingstool (invul- en scoringshulp) voor gelicentieerde zorgprofessionals die reeds rechtmatig over de betreffende vragenlijsten en scoringshandleidingen beschikken voor gebruik binnen hun eigen praktijk.</li>
           <li><strong>Professionele verantwoordelijkheid.</strong> De keuze om deze hulpmiddelen in een sessie in te zetten, en de interpretatie van wat ze laten zien, ligt bij de behandelend professional.</li>
           <li><strong>AI kan fouten maken.</strong> Antwoorden van de AI-functies kunnen onjuist of onvolledig zijn. De aanduiding &ldquo;sterke&rdquo;, &ldquo;matige&rdquo; of &ldquo;zwakke&rdquo; match is een kwalitatieve indicatie van een taalmodel en geen gemeten waarde of kans. De behandelaar beslist welke hypothese of kaart er daadwerkelijk wordt gebruikt.</li>
           <li><strong>Inhoud en bronnen.</strong> De inhoud is zorgvuldig samengesteld op basis van vakliteratuur. De basisset volgt het klassieke schemamodel van Jeffrey Young (18 schema&rsquo;s, 5 domeinen); de uitbreidingsset sluit aan op het position paper van Arntz et al. (2021). Het blijft een eigen uitwerking. Raadpleeg bij twijfel de oorspronkelijke bronnen.</li>

@@ -364,7 +364,7 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
           <div className="inner-box fade-in" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '3rem' }}>
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Wie zijn wij?</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.25rem 0' }}>
-              Wij zijn <strong>STS</strong>: een not-for-profitinitiatief, zonder winstoogmerk. Geen bedrijf met een verdienmodel en geen groot ontwikkelteam, maar mensen die schematherapie waardevol vinden en iets wilden maken dat helpt om de theorie begrijpelijk en bruikbaar te maken.
+              Wij zijn <strong>DSP</strong> (Digital Schema Platform): een not-for-profitinitiatief, zonder winstoogmerk. Geen bedrijf met een verdienmodel en geen groot ontwikkelteam, maar mensen die schematherapie waardevol vinden en iets wilden maken dat helpt om de theorie begrijpelijk en bruikbaar te maken.
             </p>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.25rem 0' }}>
               We hebben de suite gebouwd met behulp van AI. Onze kennis van het vak en onze ideeën zijn daarmee omgezet in werkende software. Daar zijn we open over: het is een zorgvuldig gemaakt hulpmiddel, maar het blijft een eigen uitwerking en er kunnen fouten in zitten.
