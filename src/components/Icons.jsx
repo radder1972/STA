@@ -275,11 +275,12 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
       hoverShadow: 'rgba(71, 85, 105, 0.18)'
     },
     hub: {
-      color: '#0284c7',
-      bg: 'rgba(2, 132, 199, 0.08)',
-      border: 'rgba(2, 132, 199, 0.25)',
-      hoverBg: 'rgba(2, 132, 199, 0.16)',
-      hoverShadow: 'rgba(2, 132, 199, 0.18)'
+      isGradient: true,
+      color: 'linear-gradient(to right, #475569 0%, #0284c7 50%, #059669 100%)',
+      bg: 'linear-gradient(to right, rgba(71, 85, 105, 0.08), rgba(2, 132, 199, 0.08), rgba(5, 150, 105, 0.08))',
+      border: 'rgba(2, 132, 199, 0.3)',
+      hoverBg: 'linear-gradient(to right, rgba(71, 85, 105, 0.16), rgba(2, 132, 199, 0.16), rgba(5, 150, 105, 0.16))',
+      hoverShadow: 'rgba(2, 132, 199, 0.22)'
     }
   };
 
@@ -288,7 +289,12 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
   const content = (
     <>
       <ThreeSparklesLogo size={16} theme={theme} style={{ marginRight: '1px' }} />
-      <span>Digitaal Schematherapie Platform</span>
+      <span style={currentTheme.isGradient ? {
+        background: currentTheme.color,
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        fontWeight: '700'
+      } : {}}>Digitaal Schematherapie Platform</span>
     </>
   );
 
@@ -302,7 +308,7 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
     borderRadius: '9999px',
     background: currentTheme.bg,
     border: `1px solid ${currentTheme.border}`,
-    color: currentTheme.color,
+    color: currentTheme.isGradient ? 'transparent' : currentTheme.color,
     fontSize: '0.88rem',
     fontWeight: '600',
     lineHeight: '1',
@@ -369,10 +375,11 @@ export const ThreeSparklesLogo = ({ size = 26, theme = 'tafel', style = {} }) =>
     kaarten: ['#0284c7', '#0ea5e9'],
     spel: ['#0ea5e9', '#2563eb'],
     test: ['#475569', '#64748b'],
-    hub: ['#0284c7', '#38bdf8']
+    hub: ['#475569', '#0284c7', '#059669']
   };
   const colors = themeColors[theme] || themeColors.tafel;
   const gradientId = `threeSparklesGrad_${theme}`;
+  const isHub = theme === 'hub';
 
   return (
     <div 
@@ -386,20 +393,30 @@ export const ThreeSparklesLogo = ({ size = 26, theme = 'tafel', style = {} }) =>
       }}
       title="Digitaal Schematherapie Platform"
     >
-      <svg width={size * 0.9} height={size * 0.9} viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', left: `${size * 0.3}px`, top: '0px', filter: `drop-shadow(0 2px 6px ${colors[0]}40)` }}>
+      <svg width={size * 0.9} height={size * 0.9} viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', left: `${size * 0.3}px`, top: '0px', filter: `drop-shadow(0 2px 6px ${isHub ? 'rgba(2, 132, 199, 0.35)' : colors[0] + '40'})` }}>
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor={colors[0]} />
-            <stop offset="100%" stopColor={colors[1]} />
+            {isHub ? (
+              <>
+                <stop offset="0%" stopColor="#475569" />
+                <stop offset="50%" stopColor="#0284c7" />
+                <stop offset="100%" stopColor="#059669" />
+              </>
+            ) : (
+              <>
+                <stop offset="0%" stopColor={colors[0]} />
+                <stop offset="100%" stopColor={colors[1]} />
+              </>
+            )}
           </linearGradient>
         </defs>
         <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill={`url(#${gradientId})`} />
       </svg>
-      <svg width={size * 0.45} height={size * 0.45} viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', left: '0px', top: '2px', opacity: 0.85, transform: 'rotate(-15deg)' }}>
-        <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill={colors[0]} />
+      <svg width={size * 0.45} height={size * 0.45} viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', left: '0px', top: '2px', opacity: 0.9, transform: 'rotate(-15deg)' }}>
+        <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill={isHub ? "#475569" : colors[0]} />
       </svg>
       <svg width={size * 0.55} height={size * 0.55} viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', right: '0px', bottom: '1px', opacity: 0.9, transform: 'rotate(18deg)' }}>
-        <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill={colors[1]} />
+        <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill={isHub ? "#059669" : colors[1]} />
       </svg>
     </div>
   );
