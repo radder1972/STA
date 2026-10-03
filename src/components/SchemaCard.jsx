@@ -446,7 +446,7 @@ const SchemaCard = ({
           height, 
           position: 'relative', 
           transform: isHovered && flipOnHover 
-            ? `rotate(${rotation}deg) scale(1.28) translateY(-10px)` 
+            ? `rotate(${rotation}deg) scale(1.35) translateY(-12px)` 
             : `rotate(${rotation}deg) scale(1)`, 
           zIndex: isHovered ? 50 : 1,
           transition: 'transform 0.4s cubic-bezier(0.34, 1.25, 0.64, 1), z-index 0.1s ease',
@@ -699,8 +699,8 @@ const SchemaCard = ({
               description={description}
               src={src}
               color={color}
-              width="360px"
-              height="511px"
+              width="440px"
+              height="625px"
               imageStyle={imageStyle}
               flipOnClick={true}
               zoomOnClick={false}
