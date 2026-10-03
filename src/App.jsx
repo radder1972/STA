@@ -15,7 +15,6 @@ import OrderCards from './components/OrderCards'
 import About from './components/About'
 import Tafelopstelling from './components/Tafelopstelling'
 import TafelNavbar from './components/TafelNavbar'
-import Verantwoording from './components/Verantwoording'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 import packageJson from '../package.json'
@@ -117,6 +116,7 @@ function App() {
     }
     return 'home'
   })
+  const [aboutTab, setAboutTab] = useState(() => window.location.hash.replace('#', '') === 'verantwoording' ? 'verantwoording' : 'waarom')
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState(null)
   const [completedTests, setCompletedTests] = useState({ ysq: null, smi: null })
   const [theme, setTheme] = useState('light')
@@ -127,6 +127,7 @@ function App() {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '')
       if (hash === 'verantwoording') {
+        setAboutTab('verantwoording')
         setCurrentView('verantwoording')
         return
       }
@@ -371,7 +372,7 @@ function App() {
           }} 
           completedTests={completedTests} 
           embedded={false} 
-          onOpenAbout={() => setCurrentView('verantwoording')}
+          onOpenAbout={() => { setAboutTab('waarom'); setCurrentView('verantwoording') }}
         />
       )}
       {currentView === 'game-portal' && (
@@ -390,19 +391,20 @@ function App() {
         <OrderCards onBack={() => setCurrentView('game-portal')} />
       )}
       {currentView === 'about' && (
-        <About onBack={() => setCurrentView('game-portal')} />
+        <About initialTab="waarom" onBack={() => setCurrentView('game-portal')} />
       )}
+      {/* 'Over' is voor de hele suite dezelfde pagina (About), met dezelfde tabs */}
       {currentView === 'verantwoording' && isKaartenApp && (
-        <About initialTab="verantwoording" onBack={() => setCurrentView('game-portal')} />
+        <About key={aboutTab} initialTab={aboutTab} onBack={() => setCurrentView('game-portal')} />
       )}
       {currentView === 'verantwoording' && isTafelApp && (
         <div style={{ width: '100%', maxWidth: '950px', margin: '0 auto', padding: '2rem 1rem 0 1rem', boxSizing: 'border-box' }}>
           <TafelNavbar activeView="over" onOpenTafel={() => setCurrentView('tafelopstelling')} onOpenAbout={() => {}} />
-          <Verantwoording showBack={false} />
+          <About key={aboutTab} initialTab={aboutTab} theme="tafel" />
         </div>
       )}
       {currentView === 'verantwoording' && !isKaartenApp && !isTafelApp && (
-        <Verantwoording onBack={() => setCurrentView(isHubApp ? 'hub' : 'home')} />
+        <About key={aboutTab} initialTab={aboutTab} showBack onBack={() => setCurrentView(isHubApp ? 'hub' : 'home')} />
       )}
       {currentView !== 'questionnaire' && currentView !== 'hub' && (
         <div className="no-print" style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
