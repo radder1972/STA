@@ -29,7 +29,7 @@ export default function StartHub() {
           Schematherapie Suite
         </h1>
         <p style={{ fontSize: '1.2rem', color: '#0ea5e9', fontWeight: '600', lineHeight: '1.6', margin: '0 auto' }}>
-          Drie complementaire digitale toepassingen voor cliënten, therapeuten en professionals in opleiding. 
+          Drie complementaire digitale toepassingen voor therapeuten, behandelaars en professionals in opleiding. 
           Kies hieronder de gewenste werkvorm om direct aan de slag te gaan.
         </p>
       </div>
@@ -472,7 +472,7 @@ export default function StartHub() {
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
-              <span>Automatisch voorspellen o.b.v. situatie</span>
+              <span>AI-gestuurde hypothesevorming o.b.v. situatie</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
