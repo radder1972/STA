@@ -806,6 +806,10 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                     lineHeight: '1.6', boxSizing: 'border-box'
                   }}
                 />
+                <div className="no-print" style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginTop: '0.6rem', fontSize: '0.82rem', lineHeight: '1.5', color: 'var(--text-muted)', textAlign: 'left' }}>
+                  <AlertTriangleIcon size={16} color="#059669" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <span><strong>Privacy:</strong> Voer geen herleidbare gegevens in (zoals namen, geboortedata of werkgevers). De tekst wordt voor de analyse verwerkt door een externe AI-dienst (Google Gemini). Anonimiseer de casus.</span>
+                </div>
                 <div className="tafel-print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)', width: '100%', textAlign: 'left', background: 'rgba(0,0,0,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-color)', boxSizing: 'border-box' }}>
                   {situationText || "Geen situatie beschreven."}
                 </div>
