@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon, ClipboardIcon, LightbulbIcon, HandIcon } from './Icons';
+import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon, ClipboardIcon, LightbulbIcon, HandIcon, ThreeSparklesLogo } from './Icons';
 import { Printer } from 'lucide-react';
 import TafelNavbar from './TafelNavbar';
 import { schemaImages, modeImages } from '../utils/images';
@@ -803,7 +803,11 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
               </div>
               
               <div>
-                <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center', marginTop: '2.5rem', marginBottom: '1.5rem' }}><StepBadge number="2" size={28} /> Clinical Decision Support</h3>
+                <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center', marginTop: '2.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <StepBadge number="2" size={28} />
+                  <span>Clinical Decision Support</span>
+                  <ThreeSparklesLogo size={24} theme="tafel" style={{ marginLeft: '2px' }} />
+                </h3>
                 
                 <div className="no-print" style={{
                   display: 'flex',
