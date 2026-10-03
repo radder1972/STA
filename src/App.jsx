@@ -404,7 +404,7 @@ function App() {
         </div>
       )}
       {currentView === 'verantwoording' && !isKaartenApp && !isTafelApp && (
-        <About key={aboutTab} initialTab={aboutTab} showBack onBack={() => setCurrentView(isHubApp ? 'hub' : 'home')} />
+        <About key={aboutTab} initialTab={aboutTab} theme={isHubApp ? 'hub' : 'test'} showBack onBack={() => setCurrentView(isHubApp ? 'hub' : 'home')} />
       )}
       {currentView !== 'questionnaire' && currentView !== 'hub' && (
         <div className="no-print" style={{ textAlign: 'center', marginTop: '3rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>

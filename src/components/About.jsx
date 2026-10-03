@@ -1,17 +1,33 @@
 import React, { useState } from 'react';
-import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon, PlayingCardsIcon, ClipboardIcon } from './Icons';
+import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon, PlayingCardsIcon, ClipboardIcon, PlatformBadge } from './Icons';
 import Verantwoording from './Verantwoording';
 
 // Gedeelde 'Over'-pagina voor de hele suite (Kaarten, Tafelopstelling, Hub en Vragenlijsten).
-// theme: 'game' (blauw) of 'tafel' (groen); showBack: toon een Terug-knop (voor apps zonder menubalk)
+// theme: 'game' (Kaarten, blauw), 'tafel' (groen), 'test' (Vragenlijsten, leisteen) of 'hub' (Suite, verloop)
+// showBack: toon bovenaan het platformlabel en een Terug-knop (voor apps zonder menubalk)
 export default function About({ onBack, initialTab = 'suite', theme = 'game', showBack = false }) {
   const [activeTab, setActiveTab] = useState(initialTab);
-  const accent = theme === 'tafel' ? '#10b981' : '#0ea5e9';
-  const btnActive = theme === 'tafel' ? 'btn btn-gradient-tafel' : 'btn btn-gradient-game';
+  const themes = {
+    game:  { accent: '#0ea5e9', btn: 'btn btn-gradient-game', h1: 'text-gradient-game', badge: 'kaarten' },
+    tafel: { accent: '#10b981', btn: 'btn btn-gradient-tafel', h1: 'text-gradient-tafel', badge: 'tafel' },
+    test:  { accent: '#475569', btn: 'btn btn-gradient', h1: 'text-gradient', badge: 'test' },
+    hub:   { accent: '#0284c7', btn: 'btn', h1: 'text-gradient-hub', badge: 'hub',
+             btnStyle: { background: 'linear-gradient(to right, #475569, #0284c7, #059669)', color: 'white', border: 'none' } }
+  };
+  const t = themes[theme] || themes.game;
+  const accent = t.accent;
+  const btnActive = t.btn;
+  const tabStyle = (id) => ({ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px', ...(activeTab === id ? (t.btnStyle || {}) : {}) });
 
   return (
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
       
+      {showBack && (
+        <div className="no-print" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <PlatformBadge theme={t.badge} isCurrent={theme === 'hub'} marginBottom="1.5rem" />
+        </div>
+      )}
+
       {showBack && (
         <div className="no-print" style={{ width: '100%', maxWidth: '900px', margin: '0 auto 1.5rem auto' }}>
           <button className="btn btn-outline" onClick={onBack} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
@@ -22,8 +38,8 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
 
       {/* HEADER */}
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
-        <h1 className={theme === 'tafel' ? "text-gradient-tafel" : "text-gradient-game"} style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <InfoIcon size={40} useGameGradient={theme !== 'tafel'} /> Over de suite
+        <h1 className={t.h1} style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+          <InfoIcon size={40} useGameGradient={theme === 'game'} /> Over de suite
         </h1>
         <h2 style={{ color: accent, margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4', minHeight: '34px' }}>
           {activeTab === 'suite' ? 'De gedachte achter de Schematherapie Suite' : activeTab === 'vragenlijsten' ? 'De gedachte achter de vragenlijsten' : activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : activeTab === 'tafel' ? 'De gedachte achter de Digitale Tafelopstelling' : activeTab === 'maker' ? 'Wie zit er achter de Schematherapie Suite?' : 'Voorbehouden en privacyverklaring van de suite'}
@@ -36,42 +52,42 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
           <button 
             onClick={() => setActiveTab('suite')}
             className={activeTab === 'suite' ? btnActive : "btn btn-outline"} 
-            style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={tabStyle('suite')}
           >
             <BrainIcon size={18} color={activeTab === 'suite' ? 'white' : accent} /> Waarom de suite
           </button>
           <button 
             onClick={() => setActiveTab('vragenlijsten')}
             className={activeTab === 'vragenlijsten' ? btnActive : "btn btn-outline"} 
-            style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={tabStyle('vragenlijsten')}
           >
             <ClipboardIcon size={18} color={activeTab === 'vragenlijsten' ? 'white' : accent} /> Waarom de vragenlijsten
           </button>
           <button 
             onClick={() => setActiveTab('waarom')}
             className={activeTab === 'waarom' ? btnActive : "btn btn-outline"} 
-            style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={tabStyle('waarom')}
           >
             <FileTextIcon size={18} color={activeTab === 'waarom' ? 'white' : accent} /> Waarom de kaarten
           </button>
           <button 
             onClick={() => setActiveTab('tafel')}
             className={activeTab === 'tafel' ? btnActive : "btn btn-outline"} 
-            style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={tabStyle('tafel')}
           >
             <PlayingCardsIcon size={18} color={activeTab === 'tafel' ? 'white' : accent} /> Waarom de tafel
           </button>
           <button 
             onClick={() => setActiveTab('maker')}
             className={activeTab === 'maker' ? btnActive : "btn btn-outline"} 
-            style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={tabStyle('maker')}
           >
             <InfoIcon size={18} color={activeTab === 'maker' ? 'white' : accent} /> Over de maker
           </button>
           <button 
             onClick={() => setActiveTab('verantwoording')}
             className={activeTab === 'verantwoording' ? btnActive : "btn btn-outline"} 
-            style={{ margin: 0, border: 'none', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={tabStyle('verantwoording')}
           >
             <ShieldIcon size={18} color={activeTab === 'verantwoording' ? 'white' : accent} /> Voorbehouden &amp; privacy
           </button>
