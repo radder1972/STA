@@ -526,13 +526,13 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
       let topModesArr = completedTests?.smi ? calculateTopScores(completedTests.smi, smiScoring, smiModesMap) : [];
 
       if (vstOverwrite.identity && !topSchemasArr.includes('Gebrek aan coherente identiteit')) {
-        topSchemasArr.unshift('Gebrek aan coherente identiteit (Klinische Observatie VSt 2021)');
+        topSchemasArr.unshift('Gebrek aan coherente identiteit (Praktijkobservatie VSt 2021)');
       }
       if (vstOverwrite.meaning && !topSchemasArr.includes('Gebrek aan een betekenisvolle wereld')) {
-        topSchemasArr.unshift('Gebrek aan een betekenisvolle wereld (Klinische Observatie VSt 2021)');
+        topSchemasArr.unshift('Gebrek aan een betekenisvolle wereld (Praktijkobservatie VSt 2021)');
       }
       if (vstOverwrite.injustice && !topSchemasArr.includes('Onrechtvaardigheid')) {
-        topSchemasArr.unshift('Onrechtvaardigheid (Klinische Observatie VSt 2021)');
+        topSchemasArr.unshift('Onrechtvaardigheid (Praktijkobservatie VSt 2021)');
       }
 
       const topSchemas = topSchemasArr.join(', ');
@@ -546,16 +546,16 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
       const availableSchemas = schemaCards.map(c => c.title).join(', ');
       const availableNeeds = needCards.map(c => c.title).join(', ');
 
-      const prompt = `Je bent een expert in schematherapie en fungeert als Clinical Decision Support (CDS) voor een therapeut. 
+      const prompt = `Je bent een expert in schematherapie en fungeert als Decision Support (CDS) voor een therapeut. 
 De cliënt heeft de volgende situatie/trigger meegemaakt:
 "${situationText}"
 ${selectedUnmetNeed ? `Geraakte Basisbehoefte volgens de therapeut: "${selectedUnmetNeed}"` : ''}
 ${hasProfile || topSchemas ? `
-Profiel & Klinische observaties van deze cliënt:
+Profiel & Praktijkobservaties van deze cliënt:
 Top Schema's: ${topSchemas}
 Top Modi: ${topModes}` : ''}
 
-Stel 2 tot 3 differentiële hypotheses op voor de best passende Modus en het best passende Schema, plus de meest waarschijnlijke Onvervulde Basisbehoefte. Geef voor elke hypothese een geschat match-percentage (bijv. 85, 60) en een korte klinische onderbouwing (Explainable AI conform VSt 2021 criteria).
+Stel 2 tot 3 differentiële hypotheses op voor de best passende Modus en het best passende Schema, plus de meest waarschijnlijke Onvervulde Basisbehoefte. Geef voor elke hypothese een geschat match-percentage (bijv. 85, 60) en een korte heldere onderbouwing (Explainable AI conform VSt 2021 criteria).
 
 Je MOET kiezen uit deze exacte lijsten:
 Beschikbare Modi: ${availableModes}
@@ -565,14 +565,14 @@ Beschikbare Behoeften: ${availableNeeds}
 Geef je antwoord ALLEEN als een geldig JSON object in dit exacte formaat, zonder extra tekst of markdown eromheen:
 {
   "modes": [
-    { "title": "exacte titel uit de lijst", "match": 85, "reason": "Korte klinische onderbouwing van 1 zin op basis van de casus en VSt-criteria." },
-    { "title": "exacte titel uit de lijst", "match": 60, "reason": "Korte klinische onderbouwing van 1 zin." }
+    { "title": "exacte titel uit de lijst", "match": 85, "reason": "Korte heldere onderbouwing van 1 zin op basis van de casus en VSt-criteria." },
+    { "title": "exacte titel uit de lijst", "match": 60, "reason": "Korte heldere onderbouwing van 1 zin." }
   ],
   "schemas": [
-    { "title": "exacte titel uit de lijst", "match": 80, "reason": "Korte klinische onderbouwing van 1 zin." },
-    { "title": "exacte titel uit de lijst", "match": 55, "reason": "Korte klinische onderbouwing van 1 zin." }
+    { "title": "exacte titel uit de lijst", "match": 80, "reason": "Korte heldere onderbouwing van 1 zin." },
+    { "title": "exacte titel uit de lijst", "match": 55, "reason": "Korte heldere onderbouwing van 1 zin." }
   ],
-  "need": { "title": "exacte titel uit de lijst", "match": 90, "reason": "Korte klinische onderbouwing van 1 zin." }
+  "need": { "title": "exacte titel uit de lijst", "match": 90, "reason": "Korte heldere onderbouwing van 1 zin." }
 }`;
 
       const result = await model.generateContent(prompt);
@@ -634,7 +634,7 @@ Geef je antwoord ALLEEN als een geldig JSON object in dit exacte formaat, zonder
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
       
-      const prompt = `Je bent een klinisch expert in schematherapie en ondersteunt een behandelaar. Op basis van de casus van de cliënt is de volgende opstelling gevormd:
+      const prompt = `Je bent een expert in schematherapie en ondersteunt een behandelaar. Op basis van de casus van de cliënt is de volgende opstelling gevormd:
 Situatie/trigger van cliënt: "${situationText}"
 Geactiveerde Modus van cliënt: ${m.title}
 Geraakt Schema: ${s.title}
@@ -669,14 +669,14 @@ Formuleer een krachtige, validerende en grensstellende respons vanuit de Gezonde
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
       
-      const prompt = `Je bent een klinisch expert in schematherapie en fungeert als beslissingsondersteunende assistent voor de behandelaar.
+      const prompt = `Je bent een expert in schematherapie en fungeert als beslissingsondersteunende assistent voor de behandelaar.
 Casuïstiek cliënt:
 Trigger-situatie: "${situationText}"
 Geactiveerde Modus: ${m.title}
 Geraakt Schema: ${s.title}
 Onvervulde Basisbehoefte: ${n.title}
 
-Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg objectief uit hoe de trigger via de onvervulde basisbehoefte en het geraakte schema de specifieke modus activeert. Formuleer 2 concrete behandelhandvatten/interventies voor de therapeut om de Gezonde Volwassene van de cliënt te versterken. Gebruik maximaal 3 alinea's. BELANGRIJK: Gebruik uitsluitend platte tekst. Gebruik GEEN markdown (zoals ** of *) om woorden te accentueren.`;
+Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit hoe de trigger via de onvervulde basisbehoefte en het geraakte schema de specifieke modus activeert. Formuleer 2 concrete behandelhandvatten/interventies voor de therapeut om de Gezonde Volwassene van de cliënt te versterken. Gebruik maximaal 3 alinea's. BELANGRIJK: Gebruik uitsluitend platte tekst. Gebruik GEEN markdown (zoals ** of *) om woorden te accentueren.`;
 
       const result = await model.generateContent(prompt);
       const text = await result.response.text();
@@ -739,7 +739,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
               <PlayingCardsIcon size={40} useTafelGradient={true} /> Digitale Tafelopstelling
             </h1>
             <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>
-              Klinisch instrument voor beslissingsondersteuning, modus-casusconceptualisatie en behandelinterventies
+              Instrument voor beslissingsondersteuning, modus-casusconceptualisatie en behandelinterventies
             </h2>
           </div>
         </>
@@ -760,7 +760,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', color: 'var(--text-main)', lineHeight: '1.6' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="1" /></div>
-              <div><strong>Beschrijf de situatie:</strong> Beschrijf de trigger-situatie van de cliënt objectief en concreet als klinisch vertrekpunt van de opstelling.</div>
+              <div><strong>Beschrijf de situatie:</strong> Beschrijf de trigger-situatie van de cliënt objectief en concreet als vertrekpunt van de opstelling.</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="2" /></div>
@@ -838,7 +838,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                   </h4>
 
                   <p style={{ fontSize: '0.96rem', color: 'var(--text-main)', marginBottom: '1.25rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '640px', fontWeight: '400' }}>
-                    Laat de AI gewogen differentiële hypotheses opstellen op basis van de casus, geraakte basisbehoefte en het testprofiel. Elke hypothese bevat transparante klinische onderbouwing (Explainable AI). U kiest als therapeut welke kaart definitief op tafel komt.
+                    Laat de AI gewogen differentiële hypotheses opstellen op basis van de casus, geraakte basisbehoefte en het testprofiel. Elke hypothese bevat heldere onderbouwing (Explainable AI). U kiest als therapeut welke kaart definitief op tafel komt.
                   </p>
 
                   {/* Methodiek Callout Box */}
@@ -861,7 +861,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                       <LightbulbIcon size={18} color="#059669" style={{ flexShrink: 0 }} />
                       <span>Hoe werkt de differentiële analyse?</span>
                     </strong>
-                    In plaats van één vaststaand oordeel leidt de AI meerdere plausibele schema's en modi af, gerangschikt op klinische waarschijnlijkheid. Dit geeft u als behandelaar een transparante 'spiegel' van opties ter onderbouwing van uw eigen klinische oordeel.
+                    In plaats van één vaststaand oordeel leidt de AI meerdere plausibele schema's en modi af, gerangschikt op waarschijnlijkheid. Dit geeft u als behandelaar een transparante 'spiegel' van opties ter ondersteuning van uw eigen professionele oordeel.
                   </div>
 
                   {/* Sub-card 1: Waaier-selectie voor Geraakte Basisbehoefte */}
@@ -1018,7 +1018,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                         Optioneel
                       </div>
                       <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)' }}>
-                        Handmatig toevoegen op basis van klinische observatie (activeert alle 7 basisbehoeften).
+                        Handmatig toevoegen op basis van praktijkobservatie (activeert alle 7 basisbehoeften).
                       </div>
                     </div>
 
@@ -1175,7 +1175,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                   {differentialHypotheses && (
                     <div ref={hypothesesRef} style={{ marginTop: '2rem', width: '100%', maxWidth: '780px', background: 'var(--card-bg)', padding: '1.5rem', borderRadius: '20px', border: '1px solid var(--border-color)', textAlign: 'left' }}>
                       <h4 style={{ margin: '0 0 1rem 0', color: 'var(--text-main)', fontSize: '1.15rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <SparklesIcon size={20} useTafelGradient={true} /> Differentiële Hypotheses & Klinische Logica (XAI)
+                        <SparklesIcon size={20} useTafelGradient={true} /> Differentiële Hypotheses & Logische Onderbouwing (XAI)
                       </h4>
 
                       {/* Modi Hypotheses */}
@@ -1261,7 +1261,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
           <p className="no-print" style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '1.5rem', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto 1.5rem auto', fontSize: '0.95rem' }}>
             {(selectedMode || selectedSchema || selectedNeed)
               ? 'Klik op een kaart om deze aan te passen of te verwijderen, of vul de overige vakken op tafel in.'
-              : 'Klik op een leeg vak om op basis van klinische observatie een kaart te selecteren.'
+              : 'Klik op een leeg vak om op basis van praktijkobservatie een kaart te selecteren.'
             }
           </p>
 
@@ -1430,7 +1430,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
                 }}>
                   <strong style={{ color: '#059669', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.92rem' }}>
                     <LightbulbIcon size={18} color="#059669" style={{ flexShrink: 0 }} />
-                    <span>GV-Respons Hulpvak (Klinische Driedeling):</span>
+                    <span>GV-Respons Hulpvak (Praktijk-Driedeling):</span>
                   </strong>
                   <strong>1. Valideer:</strong> Erken de pijn/emotie van het Kind (<em>"Ik zie dat je gekwetst en alleen gelaten bent..."</em>).<br/>
                   <strong>2. Begrens:</strong> Stel grenzen aan Coping/Ouder-modi (<em>"Maar we laten de Beschermer nu niet overnemen..."</em>).<br/>
@@ -1487,7 +1487,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
             <StepBadge number="3" size={28} /> Behandelinterventies & Psycho-educatie
           </h3>
           <p style={{ color: 'var(--text-main)', textAlign: 'center', marginBottom: '2rem', lineHeight: '1.6', maxWidth: '750px', margin: '0 auto 2rem auto' }}>
-            Gebruik de klinische assistent om inzicht te krijgen in de geactiveerde modus-cyclus van de cliënt. 
+            Gebruik de slimme assistent om inzicht te krijgen in de geactiveerde modus-cyclus van de cliënt. 
             Genereer een concrete <strong>GV-interventie</strong> of stel een uitgebreide <strong>casusconceptualisatie & behandelanalyse</strong> op om de Gezonde Volwassene van de cliënt te versterken.
           </p>
           
@@ -1497,7 +1497,7 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
             </button>
             
             <button className="btn btn-gradient-tafel" onClick={generateDeepAnalysis} disabled={isGeneratingAnalysis} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px 24px', fontSize: '1rem', minWidth: '280px', flex: '1 1 280px', maxWidth: '360px' }}>
-              {isGeneratingAnalysis ? 'Bezig...' : <><WandIcon size={20} color="currentColor" /> Klinische Ketenanalyse Genereren (AI)</>}
+              {isGeneratingAnalysis ? 'Bezig...' : <><WandIcon size={20} color="currentColor" /> Ketenanalyse Genereren (AI)</>}
             </button>
           </div>
         </div>
@@ -1509,11 +1509,11 @@ Geef een gestructureerde, klinische ketenanalyse van deze modus-cyclus. Leg obje
           <div ref={analysisRef} className="glass-panel" style={{ padding: '2.5rem 2.5rem', borderRadius: '24px', maxWidth: '950px', width: '100%', margin: '2rem auto 0 auto', boxSizing: 'border-box' }}>
             <div className="inner-box" style={{ margin: 0, width: '100%' }}>
               <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <WandIcon size={24} useTafelGradient={true} /> Klinische Casusconceptualisatie & Analyse
+                <WandIcon size={24} useTafelGradient={true} /> Casusconceptualisatie & Ketenanalyse
               </h3>
               {isGeneratingAnalysis ? (
               <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-main)' }}>
-                De klinische assistent analyseert momenteel de opstelling van de cliënt...
+                De assistent analyseert momenteel de opstelling van de cliënt...
               </div>
             ) : (
               <>
