@@ -546,7 +546,7 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
       const availableSchemas = schemaCards.map(c => c.title).join(', ');
       const availableNeeds = needCards.map(c => c.title).join(', ');
 
-      const prompt = `Je bent een expert in schematherapie en fungeert als Decision Support (CDS) voor een therapeut. 
+      const prompt = `Je bent een expert in schematherapie en fungeert als beslissingsondersteuning voor een therapeut. 
 De cliënt heeft de volgende situatie/trigger meegemaakt:
 "${situationText}"
 ${selectedUnmetNeed ? `Geraakte Basisbehoefte volgens de therapeut: "${selectedUnmetNeed}"` : ''}
@@ -752,7 +752,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
 
       <div className="no-print" style={{ marginBottom: '2rem', textAlign: 'center', width: '100%', maxWidth: '950px' }}>
         <p style={{ color: 'var(--text-main)', maxWidth: '800px', margin: '0 auto 1.5rem auto', lineHeight: '1.6', fontSize: '1.08rem', textAlign: 'center' }}>
-          De digitale tafelopstelling fungeert als <strong>Clinical Decision Support (CDS)</strong> voor de behandelaar. Op basis van de casus, geraakte basisbehoefte en optionele testdata genereert de AI gewogen <strong>differentiële hypotheses</strong> (schema's en modi), waarna u als behandelaar de regie behoudt over de opstelling op tafel.
+          De digitale tafelopstelling fungeert als <strong>beslissingsondersteuning</strong> voor de behandelaar. Op basis van de casus, geraakte basisbehoefte en optionele testdata genereert de AI gewogen <strong>differentiële hypotheses</strong> (schema's en modi), waarna u als behandelaar de regie behoudt over de opstelling op tafel.
         </p>
 
         <div className="glass-panel" style={{ textAlign: 'left', maxWidth: '950px', width: '100%', margin: '0 auto 2rem auto', background: 'rgba(16, 185, 129, 0.04)', padding: '2.5rem 2.5rem', borderRadius: '24px', border: '1px solid rgba(16, 185, 129, 0.25)', boxSizing: 'border-box' }}>
@@ -764,7 +764,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="2" /></div>
-              <div><strong>Clinical Decision Support (CDS) & Opstelling:</strong> Kies in <em>Stap 2A</em> de geraakte basisbehoefte. Gebruik in <em>Stap 2B</em> de AI-assistent om op basis van de casus een differentiële hypothese te genereren (suggesties voor schema's en modi). Als therapeut behoudt u de regie en bepaalt u welke kaarten daadwerkelijk op tafel komen.</div>
+              <div><strong>Beslissingsondersteuning & Opstelling:</strong> Kies in <em>Stap 2A</em> de geraakte basisbehoefte. Gebruik in <em>Stap 2B</em> de AI-assistent om op basis van de casus een differentiële hypothese te genereren (suggesties voor schema's en modi). Als therapeut behoudt u de regie en bepaalt u welke kaarten daadwerkelijk op tafel komen.</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="3" /></div>
@@ -815,7 +815,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
               <div>
                 <h3 className="box-heading text-gradient-tafel" style={{ justifyContent: 'center', marginTop: '2.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <StepBadge number="2" size={28} />
-                  <span>Clinical Decision Support</span>
+                  <span>Beslissingsondersteuning</span>
                   <ThreeSparklesLogo size={24} theme="tafel" style={{ marginLeft: '2px' }} />
                 </h3>
                 
@@ -834,7 +834,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                 }}>
                   
                   <h4 className="text-gradient-tafel" style={{ margin: '0 0 0.75rem 0', fontSize: '1.45rem', fontWeight: '800', letterSpacing: '-0.02em', textAlign: 'center' }}>
-                    Differentiële Hypotheses Genereren (CDS)
+                    Differentiële Hypotheses Genereren
                   </h4>
 
                   <p style={{ fontSize: '0.96rem', color: 'var(--text-main)', marginBottom: '1.25rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '640px', fontWeight: '400' }}>
@@ -1147,7 +1147,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                     )}
                   </div>
 
-                  {/* Primary Flagship CDS Hypotheses Button */}
+                  {/* Primary Flagship Hypotheses Button */}
                   <button 
                     className="btn btn-gradient-tafel" 
                     onClick={predictCards} 
@@ -1246,7 +1246,10 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                             })}
                           </div>
                         </div>
-                      )}
+                       )}
+                      <p style={{ margin: '1.25rem 0 0 0', fontSize: '0.8rem', lineHeight: '1.5', color: 'var(--text-muted)', textAlign: 'center' }}>
+                        AI-gegenereerde suggesties ter ondersteuning van uw eigen professionele oordeel. Geen vervanging voor formele diagnostiek of een gedegen professionele behandeling.
+                      </p>
                     </div>
                   )}
                 </div>
@@ -1544,6 +1547,9 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                 <div className="tafel-print-only" style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'var(--text-main)' }}>
                   {analysisText}
                 </div>
+                <p style={{ margin: '1rem 0 0 0', fontSize: '0.8rem', lineHeight: '1.5', color: 'var(--text-muted)', textAlign: 'center' }}>
+                  AI-gegenereerde suggestie ter ondersteuning van uw eigen professionele oordeel. Geen vervanging voor formele diagnostiek of een gedegen professionele behandeling.
+                </p>
               </>
             )}
           </div>
