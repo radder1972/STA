@@ -212,7 +212,8 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
                         height="185px"
                         rotation={(i * 7) % 8 - 4}
                         {...getOfficialCardProps(type === 'ysq' ? 'schema' : 'mode', score.id)}
-                        flipOnClick={true}
+                        flipOnClick={false}
+                        zoomOnClick={false}
                       />
                     </div>
                   )}
@@ -297,6 +298,8 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
                             color={cardColor}
                             width="180px"
                             height="256px"
+                            flipOnClick={false}
+                            zoomOnClick={false}
                             {...getOfficialCardProps(type === 'ysq' ? 'schema' : 'mode', score.id)}
                          />
                       </div>
