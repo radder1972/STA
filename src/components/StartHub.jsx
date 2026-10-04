@@ -24,7 +24,7 @@ export default function StartHub() {
       <PlatformBadge isCurrent={true} theme="hub" marginBottom="1.5rem" />
 
       {/* Main Title & Subtitle */}
-      <div style={{ textAlign: 'center', marginBottom: '3.5rem', maxWidth: '850px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '2rem', maxWidth: '850px' }}>
         <h1 className="text-gradient-hub" style={{ fontSize: '3rem', fontWeight: '800', marginBottom: '1rem', lineHeight: '1.2' }}>
           Schematherapie Suite
         </h1>
@@ -33,6 +33,11 @@ export default function StartHub() {
           Kies hieronder de gewenste werkvorm om direct aan de slag te gaan.
         </p>
       </div>
+
+      <a href="snelstart.html" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 24px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '9999px', color: 'var(--text-main)', fontSize: '0.95rem', fontWeight: '700', textDecoration: 'none', marginBottom: '3.5rem', boxShadow: '0 4px 15px rgba(16, 185, 129, 0.1)', transition: 'all 0.2s ease' }}>
+        <SparklesIcon size={18} color="#10b981" />
+        Nieuw hier? Bekijk de snelle AI-startgids voor therapeuten
+      </a>
 
       {/* 3 Main Choice Cards */}
       <div style={{

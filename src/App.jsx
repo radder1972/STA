@@ -15,6 +15,7 @@ import OrderCards from './components/OrderCards'
 import About from './components/About'
 import Tafelopstelling from './components/Tafelopstelling'
 import TafelNavbar from './components/TafelNavbar'
+import Snelstartgids from './components/Snelstartgids'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
 import packageJson from '../package.json'
@@ -46,11 +47,13 @@ function App() {
     window.location.pathname.includes('/spel')
   );
 
-  const isHubApp = !isTestApp && !isTafelApp && !isKaartenApp;
+  const isSnelstartApp = window.location.pathname.endsWith('snelstart.html');
+  const isHubApp = !isTestApp && !isTafelApp && !isKaartenApp && !isSnelstartApp;
 
   const [currentView, setCurrentView] = useState(() => {
     const hash = window.location.hash.replace('#', '')
     if (hash === 'verantwoording') return 'verantwoording'
+    if (isSnelstartApp) return 'snelstart'
     if (isHubApp) {
       if (hash === 'test' || hash === 'zelftest') {
         window.location.href = 'test.html'
@@ -303,6 +306,9 @@ function App() {
     <div className={isHubApp ? "hub-wrapper" : "app-container"} style={isHubApp ? { maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' } : { position: 'relative' }}>
       {currentView === 'hub' && (
         <StartHub />
+      )}
+      {currentView === 'snelstart' && (
+        <Snelstartgids onBack={() => { window.location.href = 'index.html' }} />
       )}
 
       {/* Kaarten Navbar: uitsluitend voor de Kaarten pagina's */}
