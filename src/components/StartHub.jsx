@@ -566,7 +566,7 @@ export default function StartHub() {
         borderTop: '1px solid #e2e8f0',
         paddingTop: '2rem'
       }}>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{
+        <a href="linkedin.html" target="_blank" rel="noopener noreferrer" style={{
           textDecoration: 'none',
           display: 'flex',
           alignItems: 'center',

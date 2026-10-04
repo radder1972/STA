@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Post Preview</title>
+  <style>
+    body {
+      background-color: #f3f2ef;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+      margin: 0;
+    }
+    .linkedin-post {
+      background-color: #ffffff;
+      border-radius: 8px;
+      border: 1px solid #e0dfdc;
+      width: 100%;
+      max-width: 552px;
+      overflow: hidden;
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+    }
+    .logo {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #0ea5e9, #10b981);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+    .author-info {
+      flex: 1;
+    }
+    .author-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(0,0,0,0.9);
+      margin: 0 0 2px 0;
+    }
+    .author-headline {
+      font-size: 12px;
+      color: rgba(0,0,0,0.6);
+      margin: 0 0 2px 0;
+    }
+    .post-time {
+      font-size: 12px;
+      color: rgba(0,0,0,0.6);
+      margin: 0;
+    }
+    .post-content {
+      padding: 0 16px 12px 16px;
+      font-size: 14px;
+      color: rgba(0,0,0,0.9);
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    .hashtag {
+      color: #0a66c2;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .media-container {
+      width: 100%;
+      background-color: #f1f5f9;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem 0;
+    }
+    .media-container img {
+      width: 75%;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      display: block;
+    }
+    .post-footer {
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e0dfdc;
+    }
+    .reaction-counts {
+      font-size: 12px;
+      color: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .reaction-icon {
+      width: 16px;
+      height: 16px;
+      background-color: #0a66c2;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .action-buttons {
+      display: flex;
+      padding: 4px 12px;
+      justify-content: space-between;
+    }
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 8px;
+      color: rgba(0,0,0,0.6);
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .action-btn:hover {
+      background-color: rgba(0,0,0,0.08);
+    }
+    .action-btn svg {
+      fill: rgba(0,0,0,0.6);
+      width: 24px;
+      height: 24px;
+    }
+    @keyframes sparkle-fall {
+      0% { transform: translateY(-20px) scale(0) rotate(0deg); opacity: 0; }
+      15% { opacity: 1; transform: translateY(15vh) scale(1) rotate(45deg); }
+      85% { opacity: 1; }
+      100% { transform: translateY(100vh) scale(0) rotate(180deg); opacity: 0; }
+    }
+    .sparkle {
+      position: fixed;
+      top: -20px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: sparkle-fall linear forwards;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="linkedin-post">
+    <!-- Header -->
+    <div class="post-header">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+          <path d="M20 3v4"/>
+          <path d="M22 5h-4"/>
+          <path d="M4 17v2"/>
+          <path d="M5 18H3"/>
+        </svg>
+      </div>
+      <div class="author-info">
+        <h2 class="author-name">Digitaal Schematherapie Platform</h2>
+        <p class="author-headline">De brug tussen technologie en schematherapie</p>
+        <p class="post-time">Zojuist • 🌐</p>
+      </div>
+      <svg viewBox="0 0 24 24" width="24" height="24" style="fill: rgba(0,0,0,0.6); margin-left: 8px;"><path d="M14 12a2 2 0 11-2-2 2 2 0 012 2zM4 10a2 2 0 102 2 2 2 0 00-2-2zm16 0a2 2 0 102 2 2 2 0 00-2-2z"></path></svg>
+    </div>
+
+    <!-- Content -->
+    <div class="post-content">Wat gebeurt er als je de vakkennis uit de schematherapie combineert met moderne AI én de behoefte van een cliënt?
+
+Vandaag lanceren we met trots het <b>Digitaal Schematherapie Platform (DSP)</b>. 🚀
+
+Het DSP is geen standaard Zuidas-startup, maar is onafhankelijk ontwikkeld door een IT-expert vanuit de eigen ervaring als cliënt in schematherapie. Het doel: abstracte theorie (modi, schema's en basisbehoeften) écht visueel, interactief en tastbaar maken voor in de behandelkamer.
+
+De gratis online suite is speciaal ontworpen voor therapeuten en bestaat uit 3 krachtige modules:
+<span style="display:inline-block; width:14px; height:14px; border-radius:50%; background:linear-gradient(135deg, #059669 0%, #10b981 100%); vertical-align:middle; margin-bottom:3px; margin-right:4px;"></span><b>De Tafelopstelling met AI Schemawizard:</b> Breng complexe casuïstiek visueel tot leven op een virtuele tafel. Koppel de theoriekaarten, voer een casus in en laat AI als je 'co-therapeut' in seconden sterke hypothesen genereren. (Uiteraard behoud jij als professional áltijd de regie).
+<span style="display:inline-block; width:14px; height:14px; border-radius:50%; background:linear-gradient(135deg, #475569 0%, #64748b 100%); vertical-align:middle; margin-bottom:3px; margin-right:4px;"></span><b>Test-module:</b> Digitaal en lokaal vragenlijsten (YSQ-S3 / SMI) invullen voor een helder startpunt met een gecombineerd diagnoserapport.
+<span style="display:inline-block; width:14px; height:14px; border-radius:50%; background:linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%); vertical-align:middle; margin-bottom:3px; margin-right:4px;"></span><b>Theoriekaarten:</b> Een interactieve, herziene set (gebaseerd op VSt 2021) om theorie visueel te maken in supervisie of behandeling. 
+
+En omdat privacy in de ggz absoluut heilig is: het platform is 100% <i>local-first</i>. Geen accounts, geen centrale database, geen tracking. Alle data verdwijnt zodra je de browser sluit. 
+
+💡 <b>Werk je liever offline in de behandelkamer?</b>
+De complete, herziene theorie (inclusief de felbegeerde <b>VSt 2021 update!</b>) is via de website ook direct te bestellen als een hoogwaardige, <b>fysieke kaartenset</b> voor in jouw praktijk. 🟠✨
+
+We nodigen therapeuten, klinisch psychologen en opleiders van harte uit om de online suite gratis te proberen, óf om direct de vernieuwde fysieke kaarten te bekijken.
+
+🔗 Neem een kijkje en probeer het zelf uit: <b><a href="https://sta-lime.vercel.app/" style="color: #0a66c2; text-decoration: none;">sta-lime.vercel.app/</a></b>
+
+Ken je schematherapeuten of GZ-psychologen voor wie dit een mooie toevoeging in de praktijk kan zijn? Tag ze gerust hieronder of deel dit bericht! 👇
+
+<a href="#" class="hashtag">#schematherapie</a> <a href="#" class="hashtag">#ggz</a> <a href="#" class="hashtag">#psychologie</a> <a href="#" class="hashtag">#healthtech</a> <a href="#" class="hashtag">#innovatie</a> <a href="#" class="hashtag">#AI</a> <a href="#" class="hashtag">#GZpsycholoog</a></div>
+
+    <!-- Media / Image -->
+    <div class="media-container" style="position: relative;">
+      <!-- Watermerk Logo op de foto -->
+      <div style="position: absolute; bottom: 2.5rem; right: 14%; background: rgba(255, 255, 255, 0.95); padding: 12px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.15); color: #0ea5e9; display: flex; align-items: center; justify-content: center; z-index: 10;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#logo-gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <linearGradient id="logo-gradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#0ea5e9" />
+              <stop offset="100%" stop-color="#10b981" />
+            </linearGradient>
+          </defs>
+          <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+          <path d="M20 3v4"/>
+          <path d="M22 5h-4"/>
+          <path d="M4 17v2"/>
+          <path d="M5 18H3"/>
+        </svg>
+      </div>
+      <!-- We use the image the user provided as the banner for the post -->
+      <img src="/preview.jpg" alt="DSP Suite Preview">
+    </div>
+
+    <!-- Reaction Summary -->
+    <div class="post-footer">
+      <div class="reaction-counts">
+        <svg viewBox="0 0 16 16" width="16" height="16" style="fill:#0a66c2"><circle cx="8" cy="8" r="8"></circle><path d="M11.64 6.78a.49.49 0 00-.59-.11l-2.9 1.34V4.5a.5.5 0 00-1 0v6l-1.35-.67a.5.5 0 00-.63.17l-.85 1.25a.49.49 0 00.12.67l3.86 2.5a.51.51 0 00.56-.05l4-3.5a.5.5 0 00-.22-.89z" fill="#fff"></path></svg>
+        <span>Jeroen van der Meer en 42 anderen</span>
+      </div>
+      <div class="reaction-counts">
+        <span>11 commentaren • 5 reposts</span>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <div class="action-btn">
+        <svg viewBox="0 0 24 24"><path d="M19.46 11l-3.91-3.91a7 7 0 01-1.69-2.74l-.49-1.47A2.76 2.76 0 0010.76 1 2.75 2.75 0 008 3.74v1.12a9.19 9.19 0 00.46 2.88L8.89 9H4.11A2.12 2.12 0 002 11.11V21a2 2 0 002 2h9.28a2 2 0 001.92-1.45l2.76-9.02a4.32 4.32 0 00.16-1.16A2.62 2.62 0 0019.46 11zM16 12.69l-2.76 9.02a.25.25 0 01-.24.18H4a.2.2 0 01-.2-.2v-9.89a.12.12 0 01.11-.11h6.05l-1.36-4.54a7.19 7.19 0 01-.36-2.28V3.74a.75.75 0 01.75-.74.76.76 0 01.72.52l.49 1.47a9 9 0 002.17 3.51L16.08 12a.61.61 0 01.18.38A2.32 2.32 0 0116 12.69z"></path></svg>
+        Like
+      </div>
+      <div class="action-btn">
+        <svg viewBox="0 0 24 24"><path d="M7 9h10v1H7zm0 4h7v-1H7zm14-1.5V20l-4.53-3.24A2 2 0 0015.3 16H4a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2zM4 7v7h11.3a4 4 0 012.33.76L20 16.4V7z"></path></svg>
+        Comment
+      </div>
+      <div class="action-btn">
+        <svg viewBox="0 0 24 24"><path d="M21 13h-8v8h-2v-8H3v-2h8V3h2v8h8z"></path></svg>
+        Share
+      </div>
+      <div class="action-btn">
+        <svg viewBox="0 0 24 24"><path d="M21 3L0 10l7.66 4.26L16 8l-6.26 8.34L14 24l7-21z"></path></svg>
+        Send
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = Math.random() * 100 + 'vw';
+      sparkle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      const colors = ['#0ea5e9', '#10b981', '#f59e0b', '#8b5cf6'];
+      sparkle.style.color = colors[Math.floor(Math.random() * colors.length)];
+      
+      const size = Math.random() * 24 + 20; // Veel grotere sterren
+      sparkle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="currentColor"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>`;
+      
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 6000);
+    }
+    
+    // Spawn a new sparkle every 75ms (veel meer sterren)
+    setInterval(createSparkle, 75);
+  </script>
+</body>
+</html>
