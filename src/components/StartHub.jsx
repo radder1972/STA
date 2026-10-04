@@ -547,7 +547,7 @@ export default function StartHub() {
       </div>
 
       {/* LinkedIn Nieuwssticker */}
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" style={{
+      <a href="linkedin.html" target="_blank" rel="noopener noreferrer" style={{
         textDecoration: 'none',
         display: 'block',
         width: '100%',
