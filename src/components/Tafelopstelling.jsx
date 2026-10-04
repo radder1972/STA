@@ -617,9 +617,17 @@ Geef je antwoord ALLEEN als een geldig JSON object in dit exacte formaat, zonder
       const foundSchema = schemaCards.find(c => c.title === topSchemaTitle) || schemaCards[0];
       const foundNeed = needCards.find(c => c.title === topNeedTitle) || needCards[0];
 
+      let finalNeed = foundNeed;
+      if (selectedUnmetNeed && foundNeed && foundNeed.title !== selectedUnmetNeed) {
+        const confirmChange = window.confirm(`Tip van de Schemawizard (AI):\n\nJe had vooraf de basisbehoefte '${selectedUnmetNeed}' gekozen. Op basis van de casus en het geïdentificeerde schema ('${foundSchema.title}') adviseert de AI echter de behoefte '${foundNeed.title}'.\n\nWil je jouw eerdere keuze wijzigen in '${foundNeed.title}'?`);
+        if (!confirmChange) {
+           finalNeed = needCards.find(c => c.title === selectedUnmetNeed) || foundNeed;
+        }
+      }
+
       setSelectedMode(foundMode);
       setSelectedSchema(foundSchema);
-      setSelectedNeed(foundNeed);
+      setSelectedNeed(finalNeed);
       setDifferentialHypotheses(parsed);
 
       // Auto-generate analyses using top hypotheses
