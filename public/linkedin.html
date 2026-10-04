@@ -132,6 +132,19 @@
       width: 24px;
       height: 24px;
     }
+    @keyframes sparkle-fall {
+      0% { transform: translateY(-20px) scale(0) rotate(0deg); opacity: 0; }
+      15% { opacity: 1; transform: translateY(15vh) scale(1) rotate(45deg); }
+      85% { opacity: 1; }
+      100% { transform: translateY(100vh) scale(0) rotate(180deg); opacity: 0; }
+    }
+    .sparkle {
+      position: fixed;
+      top: -20px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: sparkle-fall linear forwards;
+    }
   </style>
 </head>
 <body>
@@ -212,5 +225,24 @@ Ken je schematherapeuten of GZ-psychologen voor wie dit een mooie toevoeging in 
     </div>
   </div>
 
+  <script>
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = Math.random() * 100 + 'vw';
+      sparkle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      const colors = ['#0ea5e9', '#10b981', '#f59e0b', '#8b5cf6'];
+      sparkle.style.color = colors[Math.floor(Math.random() * colors.length)];
+      
+      const size = Math.random() * 12 + 12;
+      sparkle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="currentColor"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>`;
+      
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 6000);
+    }
+    
+    // Spawn a new sparkle every 200ms
+    setInterval(createSparkle, 200);
+  </script>
 </body>
 </html>
