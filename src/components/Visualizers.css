@@ -172,21 +172,44 @@
 
 /* Print Overrides for Test Reports */
 @media print {
+  .visualizer-container {
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
   .mode-node,
   .ysq-section,
-  .smi-section,
+  .smi-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 0.75rem !important;
+    padding: 0.75rem !important;
+  }
+
   .single-result-item {
     page-break-inside: avoid;
     break-inside: avoid;
-    margin-bottom: 1.5rem !important;
+    padding-bottom: 1rem !important;
+    margin-bottom: 0.5rem !important;
   }
   
+  /* Force a tighter gap on the inline flex container in SingleResult */
+  .single-result-item[style] {
+    gap: 1.5rem !important;
+  }
+
   .card-scene {
     transform: none !important; /* Disables rotation for a cleaner print grid */
   }
   
   .mode-node > div {
     flex-wrap: nowrap !important;
+    gap: 1rem !important;
+  }
+
+  /* Make typography slightly smaller and more compact */
+  p, h4 {
+    margin-bottom: 0.25rem !important;
   }
 }
 
