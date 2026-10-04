@@ -362,19 +362,19 @@ export default function StartHub() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
-              <span>43 basiskaarten & 12 VSt 2021 theoriekaarten</span>
+              <span><b>Bestel direct</b> de fysieke, hoogwaardige kaartenset</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
-              <span>Inclusief herziene set 2021 (Arntz et al.)</span>
+              <span>Of <b>print alle kaarten 100% gratis</b> zélf uit</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
-              <span>Werkvormen & spelvormen handleiding</span>
+              <span>Inclusief de felbegeerde <b>VSt 2021 update</b></span>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
-              <span>Drukwerk-export & fysieke kaartenset</span>
+              <span>Compleet met handleiding voor <b>werkvormen</b></span>
             </div>
           </div>
 
