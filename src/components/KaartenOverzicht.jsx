@@ -297,7 +297,7 @@ export default function KaartenOverzicht({ onBack }) {
             {renderCardList(basisbehoeftenData, 'schema-cat', { transform: 'scale(0.85)' })}
 
             {vstBasisbehoeftenData.length > 0 && (
-              <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
+              <div style={{ marginTop: '3.5rem', padding: '2.5rem 1rem', background: 'linear-gradient(to bottom, rgba(234, 88, 12, 0.02), rgba(234, 88, 12, 0.08))', border: '1px solid rgba(234, 88, 12, 0.3)', borderRadius: '24px', boxShadow: '0 10px 30px rgba(234, 88, 12, 0.08), inset 0 2px 10px rgba(255, 255, 255, 0.6)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
                   <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block', marginBottom: '1.1rem' }}>
                     Theorie-uitbreiding
@@ -390,7 +390,7 @@ export default function KaartenOverzicht({ onBack }) {
             {renderCardList(detailedSchemaCards, 'schema-ind')}
 
             {vstSchemaData.length > 0 && (
-              <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
+              <div style={{ marginTop: '3.5rem', padding: '2.5rem 1rem', background: 'linear-gradient(to bottom, rgba(234, 88, 12, 0.02), rgba(234, 88, 12, 0.08))', border: '1px solid rgba(234, 88, 12, 0.3)', borderRadius: '24px', boxShadow: '0 10px 30px rgba(234, 88, 12, 0.08), inset 0 2px 10px rgba(255, 255, 255, 0.6)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
                   <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block', marginBottom: '1.1rem' }}>
                     Theorie-uitbreiding
@@ -417,7 +417,7 @@ export default function KaartenOverzicht({ onBack }) {
             {renderCardList(modicategorieenData, 'modi-cat', { transform: 'scale(0.85)' })}
 
             {vstCopingData.length > 0 && (
-              <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
+              <div style={{ marginTop: '3.5rem', padding: '2.5rem 1rem', background: 'linear-gradient(to bottom, rgba(234, 88, 12, 0.02), rgba(234, 88, 12, 0.08))', border: '1px solid rgba(234, 88, 12, 0.3)', borderRadius: '24px', boxShadow: '0 10px 30px rgba(234, 88, 12, 0.08), inset 0 2px 10px rgba(255, 255, 255, 0.6)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
                   <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block', marginBottom: '1.1rem' }}>
                     Theorie-uitbreiding
@@ -444,7 +444,7 @@ export default function KaartenOverzicht({ onBack }) {
             {renderCardList(detailedModeCards, 'modi-ind')}
 
             {vstModiData.length > 0 && (
-              <div style={{ marginTop: '3rem', paddingTop: '2.5rem', borderTop: '1px dashed var(--border-color)' }}>
+              <div style={{ marginTop: '3.5rem', padding: '2.5rem 1rem', background: 'linear-gradient(to bottom, rgba(234, 88, 12, 0.02), rgba(234, 88, 12, 0.08))', border: '1px solid rgba(234, 88, 12, 0.3)', borderRadius: '24px', boxShadow: '0 10px 30px rgba(234, 88, 12, 0.08), inset 0 2px 10px rgba(255, 255, 255, 0.6)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
                   <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block', marginBottom: '1.1rem' }}>
                     Theorie-uitbreiding
