@@ -624,7 +624,7 @@ export default function StartHub() {
             <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.2rem' }}>Privacy-bewust &amp; zonder accounts</h4>
             <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
               Geen accounts, geen tracking en geen centrale database. Je antwoorden blijven in je browser; alleen als je zelf een AI-functie gebruikt, gaan gegevens naar Google. Lees de{' '}
-              <a href="#overons" onClick={(e) => { e.preventDefault(); document.getElementById('overons')?.scrollIntoView({ behavior: 'smooth' }); }} style={{ color: 'var(--primary)', fontWeight: '600' }}>verantwoording en privacyverklaring</a>.
+              <a href="#verantwoording" style={{ color: 'var(--primary)', fontWeight: '600' }}>verantwoording en privacyverklaring</a>.
             </p>
           </div>
         </div>
@@ -660,7 +660,7 @@ export default function StartHub() {
       {/* Version Footer */}
       <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
         Schematherapie Suite v{packageJson.version} &bull; Vrij te gebruiken voor psycho-educatie en opleiding &bull;{' '}
-        <a href="#overons" onClick={(e) => { e.preventDefault(); document.getElementById('overons')?.scrollIntoView({ behavior: 'smooth' }); }} style={{ color: 'var(--text-muted)', textDecoration: 'underline' }}>Verantwoording &amp; privacy</a>
+        <a href="#verantwoording" style={{ color: 'var(--text-muted)', textDecoration: 'underline' }}>Verantwoording &amp; privacy</a>
       </div>
 
     </div>
