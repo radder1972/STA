@@ -16,7 +16,7 @@ import {
 import packageJson from '../../package.json';
 
 export default function StartHub() {
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState('kaarten');
   const [isBannerHovered, setIsBannerHovered] = useState(false);
 
   return (
@@ -87,7 +87,7 @@ export default function StartHub() {
         <div 
           className="glass-panel" 
           onMouseEnter={() => setHoveredCard('test')}
-          onMouseLeave={() => setHoveredCard(null)}
+          onMouseLeave={() => setHoveredCard('kaarten')}
           style={{
             padding: '2.5rem',
             borderRadius: '24px',
@@ -241,7 +241,7 @@ export default function StartHub() {
         <div 
           className="glass-panel" 
           onMouseEnter={() => setHoveredCard('kaarten')}
-          onMouseLeave={() => setHoveredCard(null)}
+          onMouseLeave={() => setHoveredCard('kaarten')}
           style={{
             padding: '2.5rem',
             borderRadius: '24px',
@@ -395,7 +395,7 @@ export default function StartHub() {
         <div 
           className="glass-panel" 
           onMouseEnter={() => setHoveredCard('tafel')}
-          onMouseLeave={() => setHoveredCard(null)}
+          onMouseLeave={() => setHoveredCard('kaarten')}
           style={{
             padding: '2.5rem',
             borderRadius: '24px',
