@@ -3,6 +3,9 @@ import { ArrowLeftIcon, ShieldIcon, InfoIcon } from './Icons';
 import packageJson from '../../package.json';
 
 // Vul hier het contactadres in om het contactblok onderaan de pagina te tonen.
+// Maand en jaar van de laatste build, automatisch gezet via Vite (define __BUILD_DATE__)
+const LAST_UPDATED = (typeof __BUILD_DATE__ !== 'undefined' ? new Date(__BUILD_DATE__) : new Date()).toLocaleDateString('nl-NL', { month: 'long', year: 'numeric' });
+
 export const CONTACT_EMAIL = 'dsp@gmail.com';
 
 const sectionStyle = {
@@ -187,7 +190,7 @@ export default function Verantwoording({ onBack, embedded = false, showBack = tr
 
       {/* 4. Versie */}
       <div style={{ width: '100%', maxWidth: embedded ? 'none' : '900px', margin: embedded ? 0 : '0 auto 3rem auto', textAlign: 'center', color: embedded ? '#64748b' : 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6' }}>
-        Schematherapie Suite v{packageJson.version} &bull; Laatst bijgewerkt: oktober 2026
+        Schematherapie Suite v{packageJson.version} &bull; Laatst bijgewerkt: {LAST_UPDATED}
       </div>
     </>
   );
