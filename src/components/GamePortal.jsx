@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { FileTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon, InfoIcon } from './Icons';
-import { Sparkles } from 'lucide-react';
+import { Sparkles } from "lucide-react";
+import { ThreeSparklesLogo } from "./Icons";
 
 export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, onViewPrintShop, onViewOrderCards, onViewAbout }) {
   useEffect(() => {
@@ -11,7 +12,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
 
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
-        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', gap: '16px' }}>
           <CardsIcon size={40} useGameGradient={true} /> Schematherapie Kaarten
         </h1>
         <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>
@@ -32,13 +33,13 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
             right: '-22px',
             width: '112px',
             height: '112px',
-            clipPath: 'polygon(50% 0%, 61% 9%, 75% 7%, 80% 20%, 95% 25%, 89% 38%, 100% 50%, 89% 62%, 95% 75%, 80% 80%, 75% 93%, 61% 91%, 50% 100%, 39% 91%, 25% 93%, 20% 80%, 5% 75%, 11% 62%, 0% 50%, 11% 38%, 5% 25%, 20% 20%, 25% 7%, 39% 9%)',
+            borderRadius: '50%',
             background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
             color: '#ffffff',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'center', overflow: 'hidden',
             textAlign: 'center',
             filter: 'drop-shadow(0 8px 12px rgba(234, 88, 12, 0.45))',
             transform: 'rotate(12deg)',
@@ -58,8 +59,8 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
             e.currentTarget.style.filter = 'drop-shadow(0 8px 12px rgba(234, 88, 12, 0.45))';
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
-            <Sparkles size={11} /> Inclusief
+          <div style={{ position: 'absolute', opacity: 0.15, transform: 'scale(2.5) rotate(-15deg)' }}><ThreeSparklesLogo size={60} theme="white" /></div><div style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
+            <ThreeSparklesLogo size={11} /> Inclusief
           </div>
           <div style={{ fontSize: '1.15rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '2px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
             12 Extra
@@ -82,13 +83,13 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.25rem', fontSize: '0.92rem' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: 'var(--text-main)', lineHeight: '1.5' }}>
-                <span style={{ display: 'inline-block', width: '8px', height: '8px', clipPath: 'polygon(50% 0%, 61% 9%, 75% 7%, 80% 20%, 95% 25%, 89% 38%, 100% 50%, 89% 62%, 95% 75%, 80% 80%, 75% 93%, 61% 91%, 50% 100%, 39% 91%, 25% 93%, 20% 80%, 5% 75%, 11% 62%, 0% 50%, 11% 38%, 5% 25%, 20% 20%, 25% 7%, 39% 9%)', background: '#ea580c', marginTop: '6px', flexShrink: 0 }} />
+                <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#ea580c', marginTop: '6px', flexShrink: 0 }} />
                 <span>
                   <strong>Basisset (43 kaarten):</strong> De klassieke Young & Arntz indeling met alle 18 schema's, 14 modi, 6 modi-categorieën en 5 basisbehoeften.
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: 'var(--text-main)', lineHeight: '1.5' }}>
-                <span style={{ display: 'inline-block', width: '8px', height: '8px', clipPath: 'polygon(50% 0%, 61% 9%, 75% 7%, 80% 20%, 95% 25%, 89% 38%, 100% 50%, 89% 62%, 95% 75%, 80% 80%, 75% 93%, 61% 91%, 50% 100%, 39% 91%, 25% 93%, 20% 80%, 5% 75%, 11% 62%, 0% 50%, 11% 38%, 5% 25%, 20% 20%, 25% 7%, 39% 9%)', background: '#ea580c', marginTop: '6px', flexShrink: 0 }} />
+                <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#ea580c', marginTop: '6px', flexShrink: 0 }} />
                 <span>
                   <strong>Theorie-uitbreidingsset (12 kaarten):</strong> Theoretische actualisatie (Arntz et al., 2021) met 6 aanvullende modi (o.a. Blije Kind & Boze Beschermer), 3 schema's, Coping: Omkering en 2 behoeften.
                 </span>

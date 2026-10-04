@@ -124,7 +124,7 @@ export default function StartHub() {
               background: 'rgba(107, 114, 128, 0.1)',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center', overflow: 'hidden',
               color: 'var(--text-main)'
             }}>
               <ClipboardIcon size={32} useGradient={true} />
@@ -153,13 +153,13 @@ export default function StartHub() {
               position: 'relative',
               width: '76px',
               height: '76px',
-              clipPath: 'polygon(50% 0%, 61% 9%, 75% 7%, 80% 20%, 95% 25%, 89% 38%, 100% 50%, 89% 62%, 95% 75%, 80% 80%, 75% 93%, 61% 91%, 50% 100%, 39% 91%, 25% 93%, 20% 80%, 5% 75%, 11% 62%, 0% 50%, 11% 38%, 5% 25%, 20% 20%, 25% 7%, 39% 9%)',
+              borderRadius: '50%',
               background: 'linear-gradient(135deg, #475569 0%, #64748b 100%)',
               color: '#ffffff',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center', overflow: 'hidden',
               textAlign: 'center',
               boxShadow: '0 6px 20px rgba(71, 85, 105, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15)',
               transform: 'rotate(-6deg)',
@@ -227,7 +227,7 @@ export default function StartHub() {
               borderRadius: '12px',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center', overflow: 'hidden',
               gap: '10px',
               color: 'white',
               boxShadow: '0 4px 15px rgba(107, 114, 128, 0.25)'
@@ -286,7 +286,7 @@ export default function StartHub() {
               background: 'rgba(14, 165, 233, 0.1)',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center', overflow: 'hidden',
               color: '#0ea5e9'
             }}>
               <CardsIcon size={32} useGameGradient={true} />
@@ -315,13 +315,13 @@ export default function StartHub() {
               position: 'relative',
               width: '76px',
               height: '76px',
-              clipPath: 'polygon(50% 0%, 61% 9%, 75% 7%, 80% 20%, 95% 25%, 89% 38%, 100% 50%, 89% 62%, 95% 75%, 80% 80%, 75% 93%, 61% 91%, 50% 100%, 39% 91%, 25% 93%, 20% 80%, 5% 75%, 11% 62%, 0% 50%, 11% 38%, 5% 25%, 20% 20%, 25% 7%, 39% 9%)',
+              borderRadius: '50%',
               background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
               color: '#ffffff',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center', overflow: 'hidden',
               textAlign: 'center',
               boxShadow: '0 6px 20px rgba(234, 88, 12, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15)',
               transform: 'rotate(10deg)',
@@ -389,7 +389,7 @@ export default function StartHub() {
               borderRadius: '12px',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center', overflow: 'hidden',
               gap: '10px',
               color: 'white',
               boxShadow: '0 4px 15px rgba(59, 130, 246, 0.25)'
@@ -439,7 +439,7 @@ export default function StartHub() {
               background: 'rgba(16, 185, 129, 0.1)',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center', overflow: 'hidden',
               color: '#10b981'
             }}>
               <PlayingCardsIcon size={32} useTafelGradient={true} />
@@ -468,13 +468,13 @@ export default function StartHub() {
               position: 'relative',
               width: '76px',
               height: '76px',
-              clipPath: 'polygon(50% 0%, 61% 9%, 75% 7%, 80% 20%, 95% 25%, 89% 38%, 100% 50%, 89% 62%, 95% 75%, 80% 80%, 75% 93%, 61% 91%, 50% 100%, 39% 91%, 25% 93%, 20% 80%, 5% 75%, 11% 62%, 0% 50%, 11% 38%, 5% 25%, 20% 20%, 25% 7%, 39% 9%)',
+              borderRadius: '50%',
               background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
               color: '#ffffff',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center', overflow: 'hidden',
               textAlign: 'center',
               boxShadow: '0 6px 20px rgba(5, 150, 105, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15)',
               transform: 'rotate(-8deg)',
@@ -542,7 +542,7 @@ export default function StartHub() {
               borderRadius: '12px',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center', overflow: 'hidden',
               gap: '10px',
               color: 'white',
               boxShadow: '0 4px 15px rgba(16, 185, 129, 0.25)'
@@ -558,7 +558,7 @@ export default function StartHub() {
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center', overflow: 'hidden',
         flexWrap: 'wrap',
         gap: '2.5rem',
         width: '100%',

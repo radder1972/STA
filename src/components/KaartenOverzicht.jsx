@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { ArrowLeftIcon, CardsIcon } from './Icons'
 import { getCardColor } from '../utils/colors'
 import SchemaCard from './SchemaCard'
-import { Sparkles } from 'lucide-react'
+import { Sparkles } from "lucide-react";
+import { ThreeSparklesLogo } from "./Icons";
 
 import { schemaImages, modeImages } from '../utils/images'
 import { schemaDescriptions } from '../data/descriptions'
@@ -67,7 +68,7 @@ export default function KaartenOverzicht({ onBack }) {
   ];
 
   const renderCardList = (cards, listName, defaultImageStyle = {}) => (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyItems: 'center', justifyContent: 'center', padding: '1rem', marginBottom: '3rem' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '1rem', marginBottom: '3rem' }}>
       {cards.map((card, idx) => {
         const uniqueKey = `${listName}-${card.title}`;
         const cardColor = card.color || getCardColor(card.type, card.id);
@@ -113,7 +114,7 @@ export default function KaartenOverzicht({ onBack }) {
                 borderRadius: '10px'
               }}
             >
-              <Sparkles size={14} color={cardColor} /> {buttonLabel}
+              <ThreeSparklesLogo size={14} color={cardColor} /> {buttonLabel}
             </button>
           </div>
         );
@@ -139,7 +140,7 @@ export default function KaartenOverzicht({ onBack }) {
 
     return (
       <div className="view-container">
-        <div className="no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+        <div className="no-print" style={{ display: 'flex', justifyContent: 'center', overflow: 'hidden', marginBottom: '2rem' }}>
           <button onClick={() => setSelectedCategory(null)} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <ArrowLeftIcon size={18} /> Terug naar Overzicht
           </button>
@@ -159,7 +160,7 @@ export default function KaartenOverzicht({ onBack }) {
           <div style={{
             position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, 
             backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 9999,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem'
+            display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '1rem'
           }} onClick={() => setSelectedCard(null)}>
             <div className="glass-panel" style={{
               background: 'var(--bg-color)', maxWidth: '600px', width: '100%', 
@@ -211,7 +212,7 @@ export default function KaartenOverzicht({ onBack }) {
   return (
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' }}>
       <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
-        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+        <h1 className="text-gradient-game" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', gap: '16px' }}>
           <CardsIcon size={40} useGameGradient={true} /> Theoriekaarten
         </h1>
         <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>Bestudeer theorie, voorbeelden en tips</h2>
@@ -219,8 +220,8 @@ export default function KaartenOverzicht({ onBack }) {
       
 
 
-      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px' }}>
+      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', overflow: 'hidden', marginBottom: '3rem', width: '100%' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', overflow: 'hidden', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px' }}>
 
           <FilterButton id="domeinen" label="Basisbehoeften" />
           <FilterButton id="schemas" label="Schema's" />
@@ -242,13 +243,13 @@ export default function KaartenOverzicht({ onBack }) {
             right: '-22px',
             width: '112px',
             height: '112px',
-            clipPath: 'polygon(50% 0%, 61% 9%, 75% 7%, 80% 20%, 95% 25%, 89% 38%, 100% 50%, 89% 62%, 95% 75%, 80% 80%, 75% 93%, 61% 91%, 50% 100%, 39% 91%, 25% 93%, 20% 80%, 5% 75%, 11% 62%, 0% 50%, 11% 38%, 5% 25%, 20% 20%, 25% 7%, 39% 9%)',
+            borderRadius: '50%',
             background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
             color: '#ffffff',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'center', overflow: 'hidden',
             textAlign: 'center',
             boxShadow: filter === 'vst' 
               ? '0 0 0 3px #ffffff, 0 10px 30px rgba(234, 88, 12, 0.7)' 
@@ -274,8 +275,8 @@ export default function KaartenOverzicht({ onBack }) {
             }
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
-            <Sparkles size={11} /> {filter === 'vst' ? 'Actief' : 'Inclusief'}
+          <div style={{ position: 'absolute', opacity: 0.15, transform: 'scale(2.5) rotate(-15deg)' }}><ThreeSparklesLogo size={60} theme="white" /></div><div style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
+            <ThreeSparklesLogo size={11} /> {filter === 'vst' ? 'Actief' : 'Inclusief'}
           </div>
           <div style={{ fontSize: '1.15rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '2px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
             12 Extra
@@ -289,7 +290,7 @@ export default function KaartenOverzicht({ onBack }) {
         
         {filter === 'domeinen' && (
           <div>
-            <h2 className="box-heading" style={{ justifyContent: 'center', marginBottom: '1rem' }}>Schema Domeinen (Klassieke Basisbehoeften) (5)</h2>
+            <h2 className="box-heading" style={{ justifyContent: 'center', overflow: 'hidden', marginBottom: '1rem' }}>Schema Domeinen (Klassieke Basisbehoeften) (5)</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
               Ieder mens heeft fundamentele emotionele basisbehoeften, zoals de behoefte aan veiligheid, verbondenheid, autonomie en spontaniteit. Als er in de kindertijd structureel niet aan deze behoeften is voldaan, kunnen er hardnekkige, negatieve patronen (schema's) ontstaan. De schema's vallen onder de volgende 5 klassieke domeinen.
             </p>
@@ -320,7 +321,7 @@ export default function KaartenOverzicht({ onBack }) {
               <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', background: 'rgba(234, 88, 12, 0.12)', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.25)', padding: '4px 12px', borderRadius: '9999px', fontWeight: '700', display: 'inline-block', marginBottom: '1.1rem' }}>
                 Theorie-uitbreiding
               </span>
-              <h2 className="box-heading" style={{ justifyContent: 'center', margin: '0 0 0.5rem 0' }}>
+              <h2 className="box-heading" style={{ justifyContent: 'center', overflow: 'hidden', margin: '0 0 0.5rem 0' }}>
                 Theorie Uitbreidingsset ({vstBasisbehoeftenData.length + vstSchemaData.length + vstCopingData.length + vstModiData.length})
               </h2>
               <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '750px', margin: '0 auto', lineHeight: '1.6' }}>
@@ -382,7 +383,7 @@ export default function KaartenOverzicht({ onBack }) {
 
         {filter === 'schemas' && (
           <div>
-            <h2 className="box-heading" style={{ justifyContent: 'center', marginBottom: '1rem' }}>Individuele Schema's (18)</h2>
+            <h2 className="box-heading" style={{ justifyContent: 'center', overflow: 'hidden', marginBottom: '1rem' }}>Individuele Schema's (18)</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
               Een schema is een vastgeroest patroon van denken, voelen en doen dat vaak al in de vroege jeugd is ontstaan. Ze fungeren als een soort gekleurde bril waardoor je (soms onbewust) naar jezelf, anderen en de wereld kijkt. Hieronder zie je de 18 klassieke schema's die we onderscheiden.
             </p>
@@ -409,7 +410,7 @@ export default function KaartenOverzicht({ onBack }) {
 
         {filter === 'modicats' && (
           <div>
-            <h2 className="box-heading" style={{ justifyContent: 'center', marginBottom: '1rem' }}>Modi Categorieën ({modicategorieenData.length})</h2>
+            <h2 className="box-heading" style={{ justifyContent: 'center', overflow: 'hidden', marginBottom: '1rem' }}>Modi Categorieën ({modicategorieenData.length})</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
               Waar schema's de dieperliggende, langdurige patronen of 'knoppen' zijn, is een <strong>modus</strong> de actuele gemoedstoestand waarin je op dít specifieke moment verkeert als een knop wordt ingedrukt. Modi worden ingedeeld in deze 4 hoofdcategorieën.
             </p>
@@ -436,7 +437,7 @@ export default function KaartenOverzicht({ onBack }) {
 
         {filter === 'modi' && (
           <div>
-            <h2 className="box-heading" style={{ justifyContent: 'center', marginBottom: '1rem' }}>Individuele Modi (14)</h2>
+            <h2 className="box-heading" style={{ justifyContent: 'center', overflow: 'hidden', marginBottom: '1rem' }}>Individuele Modi (14)</h2>
             <p style={{ textAlign: 'center', color: 'var(--text-muted)', maxWidth: '800px', margin: '0 auto 2rem auto', lineHeight: '1.6' }}>
               Binnen de 4 hoofdcategorieën kunnen we specifieker inzoomen. Hier vind je de 14 meest voorkomende, specifieke gemoedstoestanden of kanten van jezelf (de modi) die geactiveerd kunnen worden wanneer je schema's worden geraakt.
             </p>
@@ -468,7 +469,7 @@ export default function KaartenOverzicht({ onBack }) {
         <div style={{
           position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, 
           backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 9999,
-          display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem'
+          display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '1rem'
         }} onClick={() => setSelectedCard(null)}>
           <div className="glass-panel" style={{
             background: 'var(--bg-color)', maxWidth: '600px', width: '100%', 

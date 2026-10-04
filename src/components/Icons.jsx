@@ -375,7 +375,7 @@ export const ThreeSparklesLogo = ({ size = 26, theme = 'tafel', style = {} }) =>
     kaarten: ['#0284c7', '#0ea5e9'],
     spel: ['#0ea5e9', '#2563eb'],
     test: ['#475569', '#64748b'],
-    hub: ['#475569', '#0284c7', '#059669']
+    hub: ['#475569', '#0284c7', '#059669'], orange: ['#ea580c', '#f59e0b'], white: ['#ffffff', '#ffffff']
   };
   const colors = themeColors[theme] || themeColors.tafel;
   const gradientId = `threeSparklesGrad_${theme}`;
