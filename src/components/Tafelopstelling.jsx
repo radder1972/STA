@@ -54,7 +54,7 @@ const StarConfetti = () => {
           '--ty': s.ty,
           '--rot': s.rotation,
           '--scale': s.scale,
-          animation: `explode-stars ${s.duration} cubic-bezier(0.25, 1, 0.5, 1) ${s.delay} forwards`
+          animation: `explode-stars ${s.duration} cubic-bezier(0.25, 1, 0.5, 1) ${s.delay} infinite`
         }}>
           <Star fill="currentColor" size={24} strokeWidth={1} />
         </div>
@@ -436,8 +436,6 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
   useEffect(() => {
     if (selectedMode?.title === 'Blije kind') {
       setShowJoker(true);
-      const timer = setTimeout(() => setShowJoker(false), 6000);
-      return () => clearTimeout(timer);
     } else {
       setShowJoker(false);
     }
@@ -841,7 +839,8 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
             background: 'white', padding: '2.5rem', borderRadius: '24px',
             boxShadow: '0 20px 50px rgba(0,0,0,0.3)', zIndex: 100000,
             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem',
-            animation: 'joker-toast 5.5s forwards'
+            animation: 'joker-toast 5.5s forwards',
+            pointerEvents: 'none'
           }}>
             <h2 style={{ fontSize: '3.5rem', margin: 0, background: 'linear-gradient(135deg, #f59e0b, #ef4444)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>JOKER!</h2>
             <p style={{ fontSize: '1.25rem', textAlign: 'center', margin: 0, fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.5' }}>Als het <em>Blije kind</em> aan het roer staat,<br/>hoeft de Gezonde Volwassene even he-le-maal niks te doen.<br/>Ga lekker spelen! 🎉</p>
