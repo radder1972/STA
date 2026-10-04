@@ -303,7 +303,7 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
     alignItems: 'center',
     justifyContent: 'center',
     gap: '8px',
-    height: 'auto',
+    height: '34px',
     padding: '0 16px',
     borderRadius: '9999px',
     background: currentTheme.bg,
