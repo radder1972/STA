@@ -307,7 +307,7 @@ export default function StartHub() {
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.8rem', minHeight: '3.6rem' }}>
             <h2 style={{ fontSize: '1.5rem', color: 'var(--text-main)', fontWeight: '700', margin: 0, paddingTop: '4px' }}>
-              Kaarten
+              Schematherapiekaarten
             </h2>
 
             {/* Ronde Sticker: MET 2021 Update */}
@@ -395,7 +395,7 @@ export default function StartHub() {
               boxShadow: '0 4px 15px rgba(59, 130, 246, 0.25)'
             }}
           >
-            Open Schematherapiekaarten <ArrowRightIcon size={18} />
+            Open Kaarten <ArrowRightIcon size={18} />
           </a>
         </div>
 
