@@ -4,7 +4,7 @@ import { HomeIcon, CardsIcon, FileTextIcon, PrinterIcon, ShoppingCartIcon, InfoI
 export default function GameNavbar({ currentView, setCurrentView }) {
   const navItems = [
     { id: 'game-portal', label: 'Portaal', icon: HomeIcon },
-    { id: 'kaartenoverzicht', label: 'Kaarten', icon: CardsIcon },
+    { id: 'kaartenoverzicht', label: 'Schematherapiekaarten', icon: CardsIcon },
     { id: 'game-rules', label: 'Werkvormen', icon: FileTextIcon },
     { id: 'order-cards', label: 'Bestellen', icon: ShoppingCartIcon },
     { id: 'print-shop', label: 'Printen', icon: PrinterIcon },

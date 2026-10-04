@@ -395,7 +395,7 @@ export default function StartHub() {
               boxShadow: '0 4px 15px rgba(59, 130, 246, 0.25)'
             }}
           >
-            Open Kaarten <ArrowRightIcon size={18} />
+            Open Schematherapiekaarten <ArrowRightIcon size={18} />
           </a>
         </div>
 
