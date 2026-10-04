@@ -583,7 +583,7 @@ export default function StartHub() {
           Volg de lancering op LinkedIn
         </a>
 
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" style={{
+        <a href="facebook.html" target="_blank" rel="noopener noreferrer" style={{
           textDecoration: 'none',
           display: 'flex',
           alignItems: 'center',
