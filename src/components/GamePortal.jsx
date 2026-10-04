@@ -102,7 +102,21 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
           </div>
         </div>
 
-        {/* Optie 2: Werkvormen & Spelvormen */}
+        {/* Optie 3: Werkvormen & Spelvormen */}
+        {/* Optie 2: Fysieke Kaarten Bestellen (Accentuated) */}
+        <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', background: 'linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 247, 237, 0.8))', border: '1px solid rgba(234, 88, 12, 0.3)', boxShadow: '0 8px 30px rgba(234, 88, 12, 0.1)' }}>
+          <div style={{ padding: '1rem', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(234, 88, 12, 0.15) 100%)', borderRadius: '16px', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.3)' }}>
+            <ShoppingCartIcon size={32} />
+          </div>
+          <div style={{ flex: 1 }}>
+            <h2 className="box-heading" style={{ marginBottom: '0.5rem', color: '#ea580c' }}>Fysieke Kaarten Bestellen</h2>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Wil je liever een professioneel, fysiek kaartendeck in handen? Bestel direct de Complete Set (55 kaarten), de Klassieke Basisset (43 kaarten) of de losse Theorie-uitbreiding (12 kaarten).</p>
+            <button onClick={onViewOrderCards} className="btn" style={{ background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)', color: 'white', border: 'none', boxShadow: '0 4px 15px rgba(234, 88, 12, 0.4)', fontWeight: 'bold' }}>
+              Fysieke kaarten bestellen
+            </button>
+          </div>
+        </div>
+
         <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
           <div style={{ padding: '1rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '16px', color: '#0ea5e9', border: '1px solid rgba(14, 165, 233, 0.2)' }}>
             <FileTextIcon size={32} useGameGradient={true} />
@@ -116,7 +130,7 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
           </div>
         </div>
 
-        {/* Optie 3: Kaarten Printen */}
+        {/* Optie 4: Kaarten Printen */}
         <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
           <div style={{ padding: '1rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '16px', color: '#0ea5e9', border: '1px solid rgba(14, 165, 233, 0.2)' }}>
             <PrinterIcon size={32} useGameGradient={true} />
@@ -126,20 +140,6 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
             <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Print de kaarten zelf of stuur een bestand naar de drukker om fysiek met de theoriekaarten aan de slag te gaan.</p>
             <button onClick={onViewPrintShop} className="btn btn-gradient-game">
               Bekijk print opties
-            </button>
-          </div>
-        </div>
-
-        {/* Optie 4: Fysieke Kaarten Bestellen */}
-        <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
-          <div style={{ padding: '1rem', background: 'rgba(14, 165, 233, 0.1)', borderRadius: '16px', color: '#0ea5e9', border: '1px solid rgba(14, 165, 233, 0.2)' }}>
-            <ShoppingCartIcon size={32} useGameGradient={true} />
-          </div>
-          <div style={{ flex: 1 }}>
-            <h2 className="box-heading" style={{ marginBottom: '0.5rem' }}>Fysieke Kaarten Bestellen</h2>
-            <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1rem' }}>Wil je liever een professioneel, fysiek kaartendeck in handen? Bestel direct de Complete Set (55 kaarten), de Klassieke Basisset (43 kaarten) of de losse Theorie-uitbreiding (12 kaarten).</p>
-            <button onClick={onViewOrderCards} className="btn btn-gradient-game">
-              Kaarten bestellen
             </button>
           </div>
         </div>
