@@ -5,14 +5,6 @@ import { PlatformBadge } from './Icons';
 export default function Snelstartgids({ onBack }) {
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem 1rem 4rem 1rem', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-      
-      {/* Header */}
-      <button 
-        onClick={onBack}
-        style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.95rem', padding: 0, marginBottom: '2rem' }}
-      >
-        <ArrowLeftIcon size={18} /> Terug naar Startpagina
-      </button>
 
       <div style={{ textAlign: 'center', marginBottom: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <PlatformBadge isCurrent={false} theme="hub" marginBottom="2rem" />
