@@ -795,7 +795,17 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="2" /></div>
-              <div><strong>Beslissingsondersteuning & Opstelling:</strong> Doorloop de <em>Schemawizard</em>: kies het kader, de geraakte basisbehoefte en eventueel het testprofiel, waarna de wizard differentiële hypotheses opstelt (suggesties voor schema's en modi). Als therapeut behoudt u de regie en bepaalt u welke kaarten daadwerkelijk op tafel komen.</div>
+              <div>
+                <strong style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                  Beslissingsondersteuning & Opstelling
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(14, 165, 233, 0.15) 100%)', padding: '2px 10px', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: '800', color: '#059669', textTransform: 'uppercase', letterSpacing: '0.05em', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
+                    <SparklesIcon size={12} color="#059669" />
+                    AI Schemawizard
+                  </span>
+                </strong>
+                <br />
+                Doorloop de wizard: kies het kader, de geraakte basisbehoefte en eventueel het testprofiel, waarna de AI differentiële hypotheses opstelt (suggesties voor schema's en modi). Als therapeut behoudt u de regie en bepaalt u welke kaarten daadwerkelijk op tafel komen.
+              </div>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="3" /></div>
