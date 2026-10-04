@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { CardInnerBorder } from '../utils/colors';
 import { PlayingCardsIcon } from './Icons';
+import { Star } from 'lucide-react';
 
 export const formatCardTitle = (title) => {
   if (!title) return title;
@@ -465,6 +466,32 @@ const SchemaCard = ({
         }} 
         title={zoomOnClick ? "Klik om te vergroten en te lezen" : flipOnHover ? "Beweeg muis over kaart voor 3D theorie-kaartslag" : flipOnClick ? "Klik om te draaien voor theorie" : ""}
       >
+        {isHovered && title === 'Blije kind' && (
+          <div style={{ position: 'absolute', top: '-20px', left: '-20px', right: '-20px', bottom: '-20px', pointerEvents: 'none', zIndex: 100 }}>
+            <style>{`
+              @keyframes float-star {
+                0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 0; }
+                20% { opacity: 1; transform: translateY(-15px) scale(1) rotate(45deg); }
+                80% { opacity: 1; transform: translateY(-40px) scale(1) rotate(135deg); }
+                100% { transform: translateY(-50px) scale(0) rotate(180deg); opacity: 0; }
+              }
+            `}</style>
+            {[...Array(8)].map((_, i) => {
+              const colors = ['#059669', '#3b82f6', '#8b5cf6', '#f59e0b'];
+              return (
+                <div key={i} style={{
+                  position: 'absolute',
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  color: colors[Math.floor(Math.random() * colors.length)],
+                  animation: `float-star ${Math.random() * 1 + 1}s ease-out ${Math.random() * 0.5}s infinite`
+                }}>
+                  <Star fill="currentColor" size={Math.random() * 12 + 12} strokeWidth={1} />
+                </div>
+              );
+            })}
+          </div>
+        )}
         <div 
           className={`card-flip-container ${flipped ? 'flipped' : ''}`} 
           style={{ 
