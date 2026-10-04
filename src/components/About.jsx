@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon, PlayingCardsIcon, ClipboardIcon, PlatformBadge } from './Icons';
+import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon, PlayingCardsIcon, ClipboardIcon, HandIcon, PlatformBadge } from './Icons';
 import Verantwoording, { CONTACT_EMAIL } from './Verantwoording';
 import imgSanne from '../assets/images/team/sanne.jpg';
 import imgJeroen from '../assets/images/team/jeroen.jpg';
@@ -35,55 +35,30 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
           <InfoIcon size={40} useGameGradient={theme === 'game'} /> Over de Schematherapie Suite
         </h1>
         <h2 style={{ color: accent, margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4', minHeight: '34px' }}>
-          {activeTab === 'suite' ? 'De gedachte achter de Schematherapie Suite' : activeTab === 'vragenlijsten' ? 'De gedachte achter de vragenlijsten' : activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : activeTab === 'tafel' ? 'De gedachte achter de Digitale Tafelopstelling' : activeTab === 'maker' ? 'Wie zit er achter de Schematherapie Suite?' : 'Voorbehouden en privacyverklaring van de suite'}
+          {activeTab === 'suite' ? 'De gedachte achter de Schematherapie Suite' : activeTab === 'vragenlijsten' ? 'De gedachte achter de vragenlijsten' : activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : activeTab === 'tafel' ? 'De gedachte achter de Digitale Tafelopstelling' : activeTab === 'maker' ? 'Wie zitten er achter de Schematherapie Suite?' : 'Voorbehouden en privacyverklaring van de suite'}
         </h2>
       </div>
 
-      {/* Submenu Tabs */}
-      <div className="tabs-container" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', width: '100%' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', maxWidth: '100%' }}>
-          <button 
-            onClick={() => setActiveTab('suite')}
-            className={activeTab === 'suite' ? btnActive : "btn btn-outline"} 
-            style={tabStyle('suite')}
-          >
-            <BrainIcon size={18} color={activeTab === 'suite' ? 'white' : accent} /> Waarom de suite
-          </button>
-          <button 
-            onClick={() => setActiveTab('vragenlijsten')}
-            className={activeTab === 'vragenlijsten' ? btnActive : "btn btn-outline"} 
-            style={tabStyle('vragenlijsten')}
-          >
-            <ClipboardIcon size={18} color={activeTab === 'vragenlijsten' ? 'white' : accent} /> Waarom de vragenlijsten
-          </button>
-          <button 
-            onClick={() => setActiveTab('waarom')}
-            className={activeTab === 'waarom' ? btnActive : "btn btn-outline"} 
-            style={tabStyle('waarom')}
-          >
-            <FileTextIcon size={18} color={activeTab === 'waarom' ? 'white' : accent} /> Waarom de kaarten
-          </button>
-          <button 
-            onClick={() => setActiveTab('tafel')}
-            className={activeTab === 'tafel' ? btnActive : "btn btn-outline"} 
-            style={tabStyle('tafel')}
-          >
-            <PlayingCardsIcon size={18} color={activeTab === 'tafel' ? 'white' : accent} /> Waarom de tafel
-          </button>
-          <button 
-            onClick={() => setActiveTab('maker')}
-            className={activeTab === 'maker' ? btnActive : "btn btn-outline"} 
-            style={tabStyle('maker')}
-          >
-            <InfoIcon size={18} color={activeTab === 'maker' ? 'white' : accent} /> Over de maker
-          </button>
-          <button 
-            onClick={() => setActiveTab('verantwoording')}
-            className={activeTab === 'verantwoording' ? btnActive : "btn btn-outline"} 
-            style={tabStyle('verantwoording')}
-          >
-            <ShieldIcon size={18} color={activeTab === 'verantwoording' ? 'white' : accent} /> Voorbehouden &amp; privacy
-          </button>
+      {/* Submenu Tabs: nette 3x2-raster met gelijke knoppen, uitgelijnd met het inhoudspaneel */}
+      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem', width: '100%' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', background: 'rgba(0,0,0,0.06)', padding: '6px', borderRadius: '14px', gap: '6px', width: '100%', maxWidth: '900px' }}>
+          {[
+            { id: 'suite', label: 'De suite', Icon: BrainIcon },
+            { id: 'vragenlijsten', label: 'De vragenlijsten', Icon: ClipboardIcon },
+            { id: 'waarom', label: 'De kaarten', Icon: PlayingCardsIcon },
+            { id: 'tafel', label: 'De tafelopstelling', Icon: HandIcon },
+            { id: 'maker', label: 'Wie zijn wij', Icon: InfoIcon },
+            { id: 'verantwoording', label: 'Voorbehouden & privacy', Icon: ShieldIcon }
+          ].map(({ id, label, Icon }) => (
+            <button
+              key={id}
+              onClick={() => setActiveTab(id)}
+              className={activeTab === id ? btnActive : "btn btn-outline"}
+              style={{ ...tabStyle(id), justifyContent: 'center', width: '100%', padding: '10px 14px', ...(activeTab === id ? {} : { background: 'transparent' }) }}
+            >
+              <Icon size={18} color={activeTab === id ? 'white' : accent} /> {label}
+            </button>
+          ))}
         </div>
       </div>
 
