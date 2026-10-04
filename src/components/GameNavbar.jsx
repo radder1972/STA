@@ -6,8 +6,8 @@ export default function GameNavbar({ currentView, setCurrentView }) {
     { id: 'game-portal', label: 'Portaal', icon: HomeIcon },
     { id: 'kaartenoverzicht', label: 'Kaarten', icon: CardsIcon },
     { id: 'game-rules', label: 'Werkvormen', icon: FileTextIcon },
-    { id: 'print-shop', label: 'Printen', icon: PrinterIcon },
     { id: 'order-cards', label: 'Bestellen', icon: ShoppingCartIcon },
+    { id: 'print-shop', label: 'Printen', icon: PrinterIcon },
     { id: 'about', label: 'Over', icon: InfoIcon }
   ];
 
