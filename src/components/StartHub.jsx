@@ -546,6 +546,46 @@ export default function StartHub() {
 
       </div>
 
+      {/* LinkedIn Nieuwssticker */}
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" style={{
+        textDecoration: 'none',
+        display: 'block',
+        width: '100%',
+        marginBottom: '2rem'
+      }}>
+        <div className="glass-panel" style={{
+          padding: '1.2rem 2rem',
+          borderRadius: '16px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '1rem',
+          background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.05), rgba(16, 185, 129, 0.05))',
+          border: '1px solid rgba(14, 165, 233, 0.2)',
+          transition: 'transform 0.2s, box-shadow 0.2s',
+          cursor: 'pointer'
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(14, 165, 233, 0.15)'; }}
+        onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+            <div style={{ 
+              width: '45px', height: '45px', background: '#0a66c2', borderRadius: '8px',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
+            }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            <div>
+              <h4 style={{ color: '#0f172a', margin: '0 0 0.25rem 0', fontSize: '1.1rem' }}>Volg de lancering op LinkedIn</h4>
+              <p style={{ color: '#475569', margin: 0, fontSize: '0.95rem' }}>Lees het oprichtingsbericht en praat mee over de toekomst van digitale schematherapie.</p>
+            </div>
+          </div>
+          <div style={{ color: '#0ea5e9', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '5px' }}>
+            Bekijk de post <ArrowRightIcon size={16} />
+          </div>
+        </div>
+      </a>
+
       {/* Trust & Info Strip */}
       <div className="glass-panel" style={{
         width: '100%',
