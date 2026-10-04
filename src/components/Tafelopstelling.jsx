@@ -392,6 +392,7 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
     }
   };
   const [differentialHypotheses, setDifferentialHypotheses] = useState(null);
+  const [wizardStep, setWizardStep] = useState(0); // wizard differentiële analyse: 0 kader, 1 basisbehoefte, 2 testprofiel, 3 controleren
   const [vstOverwrite, setVstOverwrite] = useState({
     identity: false,
     meaning: false,
@@ -879,7 +880,29 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                     In plaats van één vaststaand oordeel leidt de AI meerdere plausibele schema's en modi af, gerangschikt op waarschijnlijkheid. Dit geeft u als behandelaar een transparante 'spiegel' van opties ter ondersteuning van uw eigen professionele oordeel.
                   </div>
 
-                  {/* Sub-card 1: Waaier-selectie voor Geraakte Basisbehoefte */}
+                  {/* Wizard: stappenbalk */}
+                  <div style={{ order: 1, width: '100%', maxWidth: '660px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1.5rem', position: 'relative' }}>
+                    <div style={{ position: 'absolute', top: '15px', left: '12%', right: '12%', height: '2px', background: 'rgba(16, 185, 129, 0.2)', zIndex: 0 }} />
+                    {['Kader', 'Basisbehoefte', 'Testprofiel', 'Genereren'].map((label, i) => {
+                      const done = i < wizardStep;
+                      const current = i === wizardStep;
+                      return (
+                        <button key={label} type="button" onClick={() => setWizardStep(i)}
+                          style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', background: 'none', border: 'none', cursor: 'pointer', padding: 0, zIndex: 1 }}>
+                          <span style={{ width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '0.9rem',
+                            background: current ? 'linear-gradient(135deg, #059669 0%, #10b981 100%)' : done ? '#d1fae5' : 'var(--bg-color)',
+                            color: current ? 'white' : '#059669', border: current ? 'none' : '2px solid ' + (done ? '#10b981' : 'rgba(16, 185, 129, 0.3)'),
+                            boxShadow: current ? '0 4px 12px rgba(16, 185, 129, 0.35)' : 'none' }}>
+                            {done ? <CheckIcon size={14} strokeWidth={3} color="#059669" /> : i + 1}
+                          </span>
+                          <span style={{ fontSize: '0.8rem', fontWeight: current ? 800 : 600, color: current ? '#059669' : 'var(--text-muted)' }}>{label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Sub-card 1: Waaier-selectie voor Geraakte Basisbehoefte (wizardstap 2) */}
+                  <div style={{ order: 3, width: '100%', maxWidth: '660px', display: wizardStep === 1 ? 'block' : 'none' }}>
                   <div style={{
                     width: '100%',
                     maxWidth: '660px',
@@ -898,7 +921,10 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                     />
                   </div>
 
-                  {/* Sub-card 2: Koppel Testresultaten */}
+                  </div>
+
+                  {/* Sub-card 2: Koppel Testresultaten (wizardstap 3) */}
+                  <div style={{ order: 4, width: '100%', maxWidth: '660px', display: wizardStep === 2 ? 'block' : 'none' }}>
                   <div style={{
                     width: '100%',
                     maxWidth: '660px',
@@ -1000,7 +1026,10 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                     </div>
                   </div>
 
-                  {/* Sub-card 3: 2021 Analyse Uitbreiding */}
+                  </div>
+
+                  {/* Sub-card 3: 2021 Analyse Uitbreiding (wizardstap 1: kader) */}
+                  <div style={{ order: 2, width: '100%', maxWidth: '660px', display: wizardStep === 0 ? 'block' : 'none' }}>
                   <div style={{
                     width: '100%',
                     maxWidth: '660px',
@@ -1162,33 +1191,58 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                     )}
                   </div>
 
-                  {/* Primary Flagship Hypotheses Button */}
-                  <button 
-                    className="btn btn-gradient-tafel" 
-                    onClick={predictCards} 
-                    disabled={isPredicting || !situationText}
-                    style={{ 
-                      display: 'inline-flex', 
-                      alignItems: 'center', 
-                      gap: '10px', 
-                      fontSize: '1.02rem', 
-                      fontWeight: '700',
-                      padding: '0.75rem 2.25rem', 
-                      minWidth: '280px', 
-                      justifyContent: 'center', 
-                      borderRadius: '9999px',
-                      boxShadow: '0 6px 20px rgba(16, 185, 129, 0.3)',
-                      cursor: (isPredicting || !situationText) ? 'not-allowed' : 'pointer',
-                      transition: 'all 0.3s cubic-bezier(0.34, 1.25, 0.64, 1)'
-                    }}
-                    title="Genereer gewogen differentiële hypotheses op basis van situatie en profiel"
-                  >
-                    {isPredicting ? 'Bezig met analyseren...' : <><WandIcon size={20} color="currentColor" /> Genereer Differentiële Hypotheses</>}
-                  </button>
+                  </div>
+
+                  {/* Wizard stap 4: controleren en genereren */}
+                  {wizardStep === 3 && (
+                    <div style={{ order: 5, width: '100%', maxWidth: '660px', marginBottom: '1.25rem', padding: '1.5rem', borderRadius: '20px', background: 'var(--bg-color)', border: '1px solid rgba(16, 185, 129, 0.25)', boxSizing: 'border-box', boxShadow: '0 6px 20px rgba(0,0,0,0.04)', textAlign: 'left' }}>
+                      <div style={{ fontSize: '0.92rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#059669', marginBottom: '1rem', textAlign: 'center' }}>
+                        Controleer uw invoer
+                      </div>
+                      {[
+                        { label: 'Casus', value: situationText ? (situationText.length > 140 ? situationText.slice(0, 140) + '…' : situationText) : 'Nog geen situatie beschreven. Vul eerst stap 1 hierboven in.', warn: !situationText, go: null },
+                        { label: 'Kader', value: use2021Extension ? ('7 basisbehoeften (uitbreiding 2021)' + ([vstOverwrite.identity && 'coherente identiteit', vstOverwrite.meaning && 'betekenisvolle wereld', vstOverwrite.injustice && 'onrechtvaardigheid'].filter(Boolean).length ? ': ' + [vstOverwrite.identity && 'gebrek aan coherente identiteit', vstOverwrite.meaning && 'gebrek aan betekenisvolle wereld', vstOverwrite.injustice && 'onrechtvaardigheid'].filter(Boolean).join(', ') : '')) : '5 basisbehoeften (klassiek model)', go: 0 },
+                        { label: 'Basisbehoefte', value: selectedUnmetNeed || 'Niet gekozen, de AI leidt deze zelf af', go: 1 },
+                        { label: 'Testprofiel', value: (completedTests?.ysq || completedTests?.smi) ? ('Actief' + (csvUploadedName ? ' (' + csvUploadedName + ')' : '')) : 'Geen (optioneel)', go: 2 }
+                      ].map(row => (
+                        <div key={row.label} style={{ display: 'flex', gap: '12px', alignItems: 'baseline', padding: '0.6rem 0', borderBottom: '1px solid var(--border-color)' }}>
+                          <span style={{ width: '110px', flexShrink: 0, fontWeight: 700, fontSize: '0.88rem', color: 'var(--text-main)' }}>{row.label}</span>
+                          <span style={{ flex: 1, fontSize: '0.9rem', lineHeight: 1.5, color: row.warn ? '#b45309' : 'var(--text-muted)' }}>{row.value}</span>
+                          {row.go !== null && (
+                            <button type="button" onClick={() => setWizardStep(row.go)} style={{ background: 'none', border: 'none', color: '#059669', fontWeight: 700, fontSize: '0.82rem', cursor: 'pointer', padding: 0 }}>Wijzig</button>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Wizard navigatie */}
+                  <div style={{ order: 6, width: '100%', maxWidth: '660px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
+                    <button type="button" className="btn btn-outline" onClick={() => setWizardStep(st => Math.max(0, st - 1))}
+                      style={{ visibility: wizardStep === 0 ? 'hidden' : 'visible', borderRadius: '9999px', padding: '0.6rem 1.4rem', margin: 0 }}>
+                      ← Vorige
+                    </button>
+                    {wizardStep < 3 ? (
+                      <button type="button" className="btn btn-gradient-tafel" onClick={() => setWizardStep(st => Math.min(3, st + 1))}
+                        style={{ borderRadius: '9999px', padding: '0.6rem 1.6rem', margin: 0, fontWeight: 700 }}>
+                        {wizardStep === 1 && !selectedUnmetNeed ? 'Overslaan →' : wizardStep === 2 && !(completedTests?.ysq || completedTests?.smi) ? 'Overslaan →' : 'Volgende →'}
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-gradient-tafel"
+                        onClick={predictCards}
+                        disabled={isPredicting || !situationText}
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.02rem', fontWeight: '700', padding: '0.75rem 2rem', justifyContent: 'center', borderRadius: '9999px', margin: 0, boxShadow: '0 6px 20px rgba(16, 185, 129, 0.3)', cursor: (isPredicting || !situationText) ? 'not-allowed' : 'pointer' }}
+                        title="Genereer gewogen differentiële hypotheses op basis van situatie en profiel"
+                      >
+                        {isPredicting ? 'Bezig met analyseren...' : <><WandIcon size={20} color="currentColor" /> Genereer Differentiële Hypotheses</>}
+                      </button>
+                    )}
+                  </div>
 
                   {/* Pijlers 1 & 2: Differentiële Hypotheses & Explainable AI (XAI) Panel */}
                   {differentialHypotheses && (
-                    <div ref={hypothesesRef} style={{ marginTop: '2rem', width: '100%', maxWidth: '780px', background: 'var(--card-bg)', padding: '1.5rem', borderRadius: '20px', border: '1px solid var(--border-color)', textAlign: 'left' }}>
+                    <div ref={hypothesesRef} style={{ order: 7, marginTop: '2rem', width: '100%', maxWidth: '780px', background: 'var(--card-bg)', padding: '1.5rem', borderRadius: '20px', border: '1px solid var(--border-color)', textAlign: 'left' }}>
                       <h4 style={{ margin: '0 0 1rem 0', color: 'var(--text-main)', fontSize: '1.15rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <SparklesIcon size={20} useTafelGradient={true} /> Differentiële Hypotheses & Logische Onderbouwing (XAI)
                       </h4>
