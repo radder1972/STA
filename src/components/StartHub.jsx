@@ -151,8 +151,8 @@ export default function StartHub() {
             {/* Ronde Sticker: YSQ / SMI BASIS TESTEN */}
             <div style={{
               position: 'relative',
-              width: '76px',
-              height: '76px',
+              width: '86px',
+              height: '86px',
               borderRadius: '50%',
               background: 'linear-gradient(135deg, #475569 0%, #64748b 100%)',
               color: '#ffffff',
@@ -222,7 +222,7 @@ export default function StartHub() {
             style={{
               textDecoration: 'none',
               padding: '14px 20px',
-              fontSize: '1.05rem',
+              fontSize: '1.2rem',
               fontWeight: '600',
               borderRadius: '12px',
               display: 'flex',
@@ -313,8 +313,8 @@ export default function StartHub() {
             {/* Ronde Sticker: MET 2021 Update */}
             <div style={{
               position: 'relative',
-              width: '76px',
-              height: '76px',
+              width: '86px',
+              height: '86px',
               borderRadius: '50%',
               background: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)',
               color: '#ffffff',
@@ -349,7 +349,7 @@ export default function StartHub() {
               <div style={{ fontSize: '0.98rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.05', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
                 2021
               </div>
-              <div style={{ fontSize: '0.6rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1 }}>
+              <div style={{ fontSize: '0.65rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1 }}>
                 UPDATE
               </div>
             </div>
@@ -384,7 +384,7 @@ export default function StartHub() {
             style={{
               textDecoration: 'none',
               padding: '14px 20px',
-              fontSize: '1.05rem',
+              fontSize: '1.2rem',
               fontWeight: '600',
               borderRadius: '12px',
               display: 'flex',
@@ -466,8 +466,8 @@ export default function StartHub() {
             {/* Ronde Sticker: MET AI ANALYSE */}
             <div style={{
               position: 'relative',
-              width: '76px',
-              height: '76px',
+              width: '86px',
+              height: '86px',
               borderRadius: '50%',
               background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
               color: '#ffffff',
@@ -499,10 +499,10 @@ export default function StartHub() {
               <div style={{ fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.07em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1, marginTop: '4px' }}>
                 MET
               </div>
-              <div style={{ fontSize: '1.05rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.05', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
+              <div style={{ fontSize: '1.2rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.05', margin: '1px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
                 AI
               </div>
-              <div style={{ fontSize: '0.6rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1 }}>
+              <div style={{ fontSize: '0.65rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1 }}>
                 ANALYSE
               </div>
             </div>
@@ -537,7 +537,7 @@ export default function StartHub() {
             style={{
               textDecoration: 'none',
               padding: '14px 20px',
-              fontSize: '1.05rem',
+              fontSize: '1.2rem',
               fontWeight: '600',
               borderRadius: '12px',
               display: 'flex',
@@ -617,7 +617,7 @@ export default function StartHub() {
             <ShieldIcon size={24} />
           </div>
           <div>
-            <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.05rem' }}>Privacy-bewust &amp; zonder accounts</h4>
+            <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.2rem' }}>Privacy-bewust &amp; zonder accounts</h4>
             <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
               Geen accounts, geen tracking en geen centrale database. Je antwoorden blijven in je browser; alleen als je zelf een AI-functie gebruikt, gaan gegevens naar Google. Lees de{' '}
               <a href="#verantwoording" style={{ color: 'var(--primary)', fontWeight: '600' }}>verantwoording en privacyverklaring</a>.
@@ -630,7 +630,7 @@ export default function StartHub() {
             <BrainIcon size={24} />
           </div>
           <div>
-            <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.05rem' }}>Theoretische basis & VSt 2021</h4>
+            <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.2rem' }}>Theoretische basis & VSt 2021</h4>
             <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
               Gebaseerd op het klassieke schematherapiemodel van Jeffrey Young, met de uitbreiding uit het position paper van Arntz et al. (2021): 21 schema's, 20 modi en 7 basisbehoeften. Een eigen uitwerking, geen officiële uitgave.
             </p>
@@ -642,7 +642,7 @@ export default function StartHub() {
             <InfoIcon size={24} />
           </div>
           <div>
-            <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.05rem' }}>Meer Informatie</h4>
+            <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.2rem' }}>Meer Informatie</h4>
             <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
               Zoek je achtergrondinformatie of een geregistreerde therapeut? Bezoek de website van de{' '}
               <a href="https://www.schematherapie.nl/home" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', fontWeight: '600' }}>

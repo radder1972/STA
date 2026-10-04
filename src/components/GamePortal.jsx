@@ -59,13 +59,13 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
             e.currentTarget.style.filter = 'drop-shadow(0 8px 12px rgba(234, 88, 12, 0.45))';
           }}
         >
-          <div style={{ position: 'absolute', opacity: 0.15, transform: 'scale(2.5) rotate(-15deg)' }}><ThreeSparklesLogo size={60} theme="white" /></div><div style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
+          <div style={{ position: 'absolute', opacity: 0.15, transform: 'scale(2.5) rotate(-15deg)' }}><ThreeSparklesLogo size={60} theme="white" /></div><div style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '0.7rem', fontWeight: '800', letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.95 }}>
             <ThreeSparklesLogo size={13} theme="white" /> Inclusief
           </div>
-          <div style={{ fontSize: '1.15rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '2px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
+          <div style={{ fontSize: '1.3rem', fontWeight: '900', letterSpacing: '-0.02em', lineHeight: '1.1', margin: '2px 0', textShadow: '0 1px 2px rgba(0,0,0,0.25)' }}>
             12 Extra
           </div>
-          <div style={{ fontSize: '0.62rem', fontWeight: '800', letterSpacing: '0.05em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1.15 }}>
+          <div style={{ fontSize: '0.7rem', fontWeight: '800', letterSpacing: '0.05em', textTransform: 'uppercase', opacity: 0.95, lineHeight: 1.15 }}>
             Theorie-<br />kaarten
           </div>
         </button>
