@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://radder1972.github.io/STA/sitemap.xml
+Sitemap: https://sta-lime.vercel.app/sitemap.xml
