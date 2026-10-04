@@ -1063,15 +1063,15 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                       </div>
                       <div style={{ 
                         fontSize: '0.78rem', 
-                        fontWeight: '600', 
-                        color: 'var(--text-muted)', 
-                        background: 'rgba(0, 0, 0, 0.05)', 
+                        fontWeight: '700', 
+                        color: '#ea580c', 
+                        background: 'rgba(234, 88, 12, 0.1)', 
                         padding: '3px 12px', 
                         borderRadius: '9999px', 
                         display: 'inline-block',
                         marginBottom: '0.4rem'
                       }}>
-                        Optioneel
+                        Optionele uitbreiding
                       </div>
                       <div style={{ fontSize: '0.85rem', fontWeight: '400', color: 'var(--text-muted)' }}>
                         Handmatig toevoegen op basis van praktijkobservatie (activeert alle 7 basisbehoeften).
@@ -1269,23 +1269,28 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                             {differentialHypotheses.modes.map((h, i) => {
                               const found = modeCards.find(c => c.title === h.title);
                               return (
-                                <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '10px 14px', borderRadius: '12px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', flexWrap: 'wrap' }}>
-                                  <div style={{ flex: 1, minWidth: '220px' }}>
-                                    <span style={{ fontWeight: '700', color: 'var(--text-main)' }}>{i + 1}. {h.title}</span>
-                                    <span style={matchBadgeStyle(h.match).style}><span style={{ width: '7px', height: '7px', borderRadius: '50%', background: matchBadgeStyle(h.match).palette.dot }} />{matchLabel(h.match)}</span>
-                                    <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: '1.4', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                      <LightbulbIcon size={14} color="#059669" /> <em>Reden: {h.reason}</em>
+                                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '16px', padding: '1.25rem', borderRadius: '16px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', flexWrap: 'wrap' }}>
+                                  <div style={{ flex: 1, minWidth: '240px' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                                      <span style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-main)' }}>{i + 1}. {h.title}</span>
+                                      <span style={matchBadgeStyle(h.match).style}><span style={{ width: '7px', height: '7px', borderRadius: '50%', background: matchBadgeStyle(h.match).palette.dot }} />{matchLabel(h.match)}</span>
+                                    </div>
+                                    <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5', display: 'flex', alignItems: 'flex-start', gap: '6px', background: 'rgba(0,0,0,0.02)', padding: '10px 14px', borderRadius: '10px' }}>
+                                      <div style={{ marginTop: '2px' }}><LightbulbIcon size={16} color="#059669" /></div>
+                                      <span style={{ flex: 1 }}><em><strong>AI-Reden:</strong> {h.reason}</em></span>
                                     </div>
                                   </div>
                                   {found && (
-                                    <button 
-                                      type="button"
-                                      onClick={() => setSelectedMode(found)}
-                                      className="btn btn-outline"
-                                      style={{ padding: '6px 14px', fontSize: '0.82rem', whiteSpace: 'nowrap' }}
-                                    >
-                                      Plaats op tafel
-                                    </button>
+                                    <div style={{ display: 'flex', alignItems: 'center', alignSelf: 'center' }}>
+                                      <button 
+                                        type="button"
+                                        onClick={() => setSelectedMode(found)}
+                                        className="btn btn-outline"
+                                        style={{ padding: '8px 16px', fontSize: '0.85rem', fontWeight: '600', whiteSpace: 'nowrap' }}
+                                      >
+                                        Plaats op tafel
+                                      </button>
+                                    </div>
                                   )}
                                 </div>
                               );
@@ -1304,23 +1309,28 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                             {differentialHypotheses.schemas.map((h, i) => {
                               const found = schemaCards.find(c => c.title === h.title);
                               return (
-                                <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '10px 14px', borderRadius: '12px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', flexWrap: 'wrap' }}>
-                                  <div style={{ flex: 1, minWidth: '220px' }}>
-                                    <span style={{ fontWeight: '700', color: 'var(--text-main)' }}>{i + 1}. {h.title}</span>
-                                    <span style={matchBadgeStyle(h.match).style}><span style={{ width: '7px', height: '7px', borderRadius: '50%', background: matchBadgeStyle(h.match).palette.dot }} />{matchLabel(h.match)}</span>
-                                    <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: '1.4', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                      <LightbulbIcon size={14} color="#2563eb" /> <em>Reden: {h.reason}</em>
+                                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '16px', padding: '1.25rem', borderRadius: '16px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', flexWrap: 'wrap' }}>
+                                  <div style={{ flex: 1, minWidth: '240px' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                                      <span style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-main)' }}>{i + 1}. {h.title}</span>
+                                      <span style={matchBadgeStyle(h.match).style}><span style={{ width: '7px', height: '7px', borderRadius: '50%', background: matchBadgeStyle(h.match).palette.dot }} />{matchLabel(h.match)}</span>
+                                    </div>
+                                    <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5', display: 'flex', alignItems: 'flex-start', gap: '6px', background: 'rgba(0,0,0,0.02)', padding: '10px 14px', borderRadius: '10px' }}>
+                                      <div style={{ marginTop: '2px' }}><LightbulbIcon size={16} color="#2563eb" /></div>
+                                      <span style={{ flex: 1 }}><em><strong>AI-Reden:</strong> {h.reason}</em></span>
                                     </div>
                                   </div>
                                   {found && (
-                                    <button 
-                                      type="button"
-                                      onClick={() => setSelectedSchema(found)}
-                                      className="btn btn-outline"
-                                      style={{ padding: '6px 14px', fontSize: '0.82rem', whiteSpace: 'nowrap' }}
-                                    >
-                                      Plaats op tafel
-                                    </button>
+                                    <div style={{ display: 'flex', alignItems: 'center', alignSelf: 'center' }}>
+                                      <button 
+                                        type="button"
+                                        onClick={() => setSelectedSchema(found)}
+                                        className="btn btn-outline"
+                                        style={{ padding: '8px 16px', fontSize: '0.85rem', fontWeight: '600', whiteSpace: 'nowrap' }}
+                                      >
+                                        Plaats op tafel
+                                      </button>
+                                    </div>
                                   )}
                                 </div>
                               );
