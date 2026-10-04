@@ -48,6 +48,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
                 height="228px"
                 rotation={(index * 7) % 8 - 4}
                 flipOnClick={false}
+                zoomOnClick={false}
                 style={{ flexShrink: 0 }}
                 {...getOfficialCardProps('schema', schema.id)}
               />

@@ -38,6 +38,7 @@ export default function SmiVisualizer({ groupedScores, top3 = [], onUpdateAnswer
               height="228px"
               rotation={(index * 7) % 8 - 4}
               flipOnClick={false}
+              zoomOnClick={false}
               style={{ flexShrink: 0 }}
               {...getOfficialCardProps('mode', mode.id)}
             />
