@@ -367,12 +367,13 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
               Zie je een fout, mis je iets of heb je een idee? We horen het graag{CONTACT_EMAIL && (<>, via <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: accent, fontWeight: '600' }}>{CONTACT_EMAIL}</a></>)}.
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '1.5rem' }}>
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <img src={imgSanne} alt="Sanne de Boer" style={{ width: '90px', height: '90px', borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}` }} />
                 <div>
                   <strong style={{ display: 'block', fontSize: '1.2rem', color: '#0f172a' }}>Sanne de Boer</strong>
                   <span style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: '1.4', display: 'block', marginTop: '0.2rem' }}>Klinisch psycholoog &amp; senior schematherapeut</span>
+                  <span style={{ color: accent, fontSize: '0.85rem', fontStyle: 'italic', display: 'block', marginTop: '0.35rem' }}>Werkt 24/7 en heeft nog nooit last gehad van de Veeleisende ouder.</span>
                 </div>
               </div>
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
@@ -380,8 +381,16 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
                 <div>
                   <strong style={{ display: 'block', fontSize: '1.2rem', color: '#0f172a' }}>Jeroen van der Meer</strong>
                   <span style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: '1.4', display: 'block', marginTop: '0.2rem' }}>GZ-psycholoog &amp; systeemtherapeut</span>
+                  <span style={{ color: accent, fontSize: '0.85rem', fontStyle: 'italic', display: 'block', marginTop: '0.35rem' }}>Kent geen Onthechte beschermer, hooguit een stand-bymodus.</span>
                 </div>
               </div>
+            </div>
+
+            <div style={{ padding: '1.5rem', background: `${accent}0f`, border: `1px dashed ${accent}`, borderRadius: '12px', marginBottom: '3rem' }}>
+              <h4 style={{ color: '#0f172a', fontSize: '1.1rem', marginTop: 0, marginBottom: '0.6rem' }}>De D staat niet voor niets voor Digitaal</h4>
+              <p style={{ color: '#475569', fontSize: '1rem', lineHeight: '1.7', margin: 0 }}>
+                Even eerlijk: Sanne en Jeroen bestaan alleen in pixels. Net als een flink deel van deze suite zijn ze met AI gemaakt. Ze hebben nog nooit een sessie gemist, drinken geen koffie en hun eigen YSQ hebben ze wijselijk nooit ingevuld. Achter de schermen zitten wel degelijk echte mensen met echte vakkennis; Sanne en Jeroen zijn simpelweg ons virtuele gezicht. Mail je ons, dan antwoordt er gewoon een mens van vlees en bloed.
+              </p>
             </div>
 
 
