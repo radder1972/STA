@@ -1530,23 +1530,33 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                 <div style={{
                   background: 'rgba(16, 185, 129, 0.05)',
                   border: '1px solid rgba(16, 185, 129, 0.25)',
-                  borderRadius: '14px',
-                  padding: '0.85rem 1.1rem',
-                  marginBottom: '1rem',
+                  borderRadius: '16px',
+                  padding: '1.25rem',
+                  marginBottom: '1.5rem',
                   width: '100%',
                   textAlign: 'left',
-                  fontSize: '0.86rem',
-                  lineHeight: '1.5',
                   color: 'var(--text-main)',
-                  boxSizing: 'border-box'
+                  boxSizing: 'border-box',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
                 }}>
-                  <strong style={{ color: '#059669', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.92rem' }}>
-                    <LightbulbIcon size={18} color="#059669" style={{ flexShrink: 0 }} />
-                    <span>Hulpvak Gezonde Volwassene (Praktijk-Driedeling):</span>
+                  <strong style={{ color: '#059669', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px', fontSize: '1.05rem', fontWeight: '800' }}>
+                    <LightbulbIcon size={20} color="#059669" style={{ flexShrink: 0 }} />
+                    <span>Praktijk-Driedeling Gezonde Volwassene</span>
                   </strong>
-                  <strong>1. Valideer:</strong> Erken de pijn/emotie van het Kind (<em>"Ik zie dat je gekwetst en alleen gelaten bent..."</em>).<br/>
-                  <strong>2. Begrens:</strong> Stel grenzen aan Coping/Ouder-modi (<em>"Maar we laten de Beschermer nu niet overnemen..."</em>).<br/>
-                  <strong>3. Bied Zorg:</strong> Richt de focus op gezonde behoeften (<em>"We gaan dit op een gezonde manier samen aan."</em>).
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(16, 185, 129, 0.15)', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', fontWeight: '800', flexShrink: 0, marginTop: '1px' }}>1</div>
+                    <div><strong>Valideer:</strong> Erken de pijn of emotie van het Kind (<em>"Ik zie dat je gekwetst bent..."</em>).</div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(16, 185, 129, 0.15)', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', fontWeight: '800', flexShrink: 0, marginTop: '1px' }}>2</div>
+                    <div><strong>Begrens:</strong> Stel grenzen aan Coping- of Ouder-modi (<em>"Maar we laten de Beschermer het nu niet overnemen..."</em>).</div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(16, 185, 129, 0.15)', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', fontWeight: '800', flexShrink: 0, marginTop: '1px' }}>3</div>
+                    <div><strong>Bied Zorg:</strong> Richt de focus op gezonde behoeften (<em>"We gaan dit op een gezonde manier samen aan."</em>).</div>
+                  </div>
                 </div>
                 <textarea 
                   className="no-print"
