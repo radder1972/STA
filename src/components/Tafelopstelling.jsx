@@ -1,7 +1,67 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon, ClipboardIcon, LightbulbIcon, HandIcon, ThreeSparklesLogo } from './Icons';
-import { Printer } from 'lucide-react';
+import { Printer, Star } from 'lucide-react';
+
+const DSP_COLORS = ['#059669', '#10b981', '#3b82f6', '#0ea5e9', '#8b5cf6', '#f59e0b'];
+
+const StarConfetti = () => {
+  const [stars, setStars] = useState([]);
+
+  useEffect(() => {
+    const newStars = Array.from({ length: 50 }).map((_, i) => ({
+      id: i,
+      left: 50 + (Math.random() * 10 - 5) + '%',
+      top: 50 + (Math.random() * 10 - 5) + '%',
+      tx: (Math.random() * 800 - 400) + 'px',
+      ty: (Math.random() * 800 - 400) + 'px',
+      rotation: Math.random() * 720 + 'deg',
+      scale: Math.random() * 1.5 + 0.5,
+      color: DSP_COLORS[Math.floor(Math.random() * DSP_COLORS.length)],
+      delay: Math.random() * 0.2 + 's',
+      duration: Math.random() * 1.5 + 2 + 's'
+    }));
+    setStars(newStars);
+  }, []);
+
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0, left: 0, width: '100vw', height: '100vh',
+      pointerEvents: 'none', zIndex: 99999, overflow: 'hidden'
+    }}>
+      <style>{`
+        @keyframes explode-stars {
+          0% { transform: translate(0, 0) rotate(0deg) scale(0); opacity: 0; }
+          10% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(var(--scale)); }
+          100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(var(--scale)); opacity: 0; }
+        }
+        @keyframes joker-toast {
+          0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+          10% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+          15% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+          85% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+          100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+        }
+      `}</style>
+      {stars.map(s => (
+        <div key={s.id} style={{
+          position: 'absolute',
+          left: s.left,
+          top: s.top,
+          color: s.color,
+          '--tx': s.tx,
+          '--ty': s.ty,
+          '--rot': s.rotation,
+          '--scale': s.scale,
+          animation: `explode-stars ${s.duration} cubic-bezier(0.25, 1, 0.5, 1) ${s.delay} forwards`
+        }}>
+          <Star fill="currentColor" size={24} strokeWidth={1} />
+        </div>
+      ))}
+    </div>
+  );
+};
 import TafelNavbar from './TafelNavbar';
 import { schemaImages, modeImages } from '../utils/images';
 import ysqScoring from '../data/ysq-scoring.json';
@@ -369,7 +429,19 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
   const [completedTests, setCompletedTests] = useState(initialCompletedTests || {});
   const [situationText, setSituationText] = useState('');
   const [selectedMode, setSelectedMode] = useState(null);
+  const [showJoker, setShowJoker] = useState(false);
   const [selectedSchema, setSelectedSchema] = useState(null);
+
+  // Joker Easter Egg Logic
+  useEffect(() => {
+    if (selectedMode?.title === 'Blije kind') {
+      setShowJoker(true);
+      const timer = setTimeout(() => setShowJoker(false), 6000);
+      return () => clearTimeout(timer);
+    } else {
+      setShowJoker(false);
+    }
+  }, [selectedMode]);
   const [selectedNeed, setSelectedNeed] = useState(null);
   const [gvNotes, setGvNotes] = useState('');
   const [analysisText, setAnalysisText] = useState('');
@@ -761,6 +833,22 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
 
   return (
     <div className={embedded ? "" : "view-container"} style={embedded ? {} : { minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem 2rem 1rem' }}>
+      {showJoker && (
+        <>
+          <StarConfetti />
+          <div style={{
+            position: 'fixed', top: '50%', left: '50%',
+            background: 'white', padding: '2.5rem', borderRadius: '24px',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.3)', zIndex: 100000,
+            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem',
+            animation: 'joker-toast 5.5s forwards'
+          }}>
+            <h2 style={{ fontSize: '3.5rem', margin: 0, background: 'linear-gradient(135deg, #f59e0b, #ef4444)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}>JOKER!</h2>
+            <p style={{ fontSize: '1.25rem', textAlign: 'center', margin: 0, fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.5' }}>Als het <em>Blije kind</em> aan het roer staat,<br/>hoeft de Gezonde Volwassene even he-le-maal niks te doen.<br/>Ga lekker spelen! 🎉</p>
+          </div>
+        </>
+      )}
+
       {!embedded && (
         <>
           <TafelNavbar onPrint={handlePrintTafel} onClear={clearTable} onOpenAbout={onOpenAbout} />
