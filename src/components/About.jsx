@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon, PlayingCardsIcon, ClipboardIcon, PlatformBadge } from './Icons';
 import Verantwoording, { CONTACT_EMAIL } from './Verantwoording';
-
+import imgSanne from '../assets/images/team/sanne.jpg';
+import imgJeroen from '../assets/images/team/jeroen.jpg';
 // Gedeelde 'Over'-pagina voor de hele suite (Kaarten, Tafelopstelling, Hub en Vragenlijsten).
 // theme: 'game' (Kaarten, blauw), 'tafel' (groen), 'test' (Vragenlijsten, leisteen) of 'hub' (Suite, verloop)
 // showBadge: toon bovenaan het platformlabel (DSP-banner) dat terugleidt naar het platform; voor apps zonder menubalk
@@ -372,6 +373,24 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2.5rem 0' }}>
               Zie je een fout, mis je iets of heb je een idee? We horen het graag{CONTACT_EMAIL && (<>, via <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: accent, fontWeight: '600' }}>{CONTACT_EMAIL}</a></>)}.
             </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                <img src={imgSanne} alt="Sanne de Boer" style={{ width: '90px', height: '90px', borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}` }} />
+                <div>
+                  <strong style={{ display: 'block', fontSize: '1.2rem', color: '#0f172a' }}>Sanne de Boer</strong>
+                  <span style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: '1.4', display: 'block', marginTop: '0.2rem' }}>Klinisch psycholoog &amp; senior schematherapeut</span>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                <img src={imgJeroen} alt="Jeroen van der Meer" style={{ width: '90px', height: '90px', borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}` }} />
+                <div>
+                  <strong style={{ display: 'block', fontSize: '1.2rem', color: '#0f172a' }}>Jeroen van der Meer</strong>
+                  <span style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: '1.4', display: 'block', marginTop: '0.2rem' }}>GZ-psycholoog &amp; systeemtherapeut</span>
+                </div>
+              </div>
+            </div>
+
 
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Hoe is de suite samengesteld?</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
