@@ -373,7 +373,7 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
                 <img src={imgMatthias} alt="Matthias Radder" style={{ width: '90px', height: '90px', borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}` }} />
                 <div>
                   <strong style={{ display: 'block', fontSize: '1.2rem', color: '#0f172a' }}>Matthias Radder</strong>
-                  <span style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: '1.4', display: 'block', marginTop: '0.2rem' }}>Oprichter, ontwikkelaar &amp; schematherapeut</span>
+                  <span style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: '1.4', display: 'block', marginTop: '0.2rem' }}>Oprichter, ontwikkelaar &amp; schematherapie-cliënt</span>
                   <span style={{ color: accent, fontSize: '0.85rem', fontStyle: 'italic', display: 'block', marginTop: '0.35rem' }}>De enige van vlees en bloed. Drinkt wél koffie.</span>
                 </div>
               </div>
