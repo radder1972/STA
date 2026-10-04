@@ -12,6 +12,7 @@ import { getVerdieping } from '../data/verdieping'
 import { getSchemaImage, getModeImage } from '../utils/images'
 import { getCardColor } from '../utils/colors'
 import SchemaCard from './SchemaCard'
+import { getOfficialCardProps } from '../utils/officialCard';
 import './Visualizers.css'
 
 const basisbehoeftenMap = {
@@ -210,7 +211,7 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
                         width="130px"
                         height="185px"
                         rotation={(i * 7) % 8 - 4}
-                        imageStyle={{ transform: score.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }}
+                        {...getOfficialCardProps(type === 'ysq' ? 'schema' : 'mode', score.id)}
                         flipOnClick={true}
                       />
                     </div>
@@ -296,7 +297,7 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
                             color={cardColor}
                             width="180px"
                             height="256px"
-                            imageStyle={{ transform: score.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }}
+                            {...getOfficialCardProps(type === 'ysq' ? 'schema' : 'mode', score.id)}
                          />
                       </div>
                     )}

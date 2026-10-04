@@ -3,6 +3,7 @@ import { schemaDescriptions } from '../data/descriptions';
 import { getSchemaImage } from '../utils/images';
 import { getCardColor } from '../utils/colors';
 import SchemaCard from './SchemaCard';
+import { getOfficialCardProps } from '../utils/officialCard';
 
 export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer }) {
   const [expandedNodes, setExpandedNodes] = useState({});
@@ -48,7 +49,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
                 rotation={(index * 7) % 8 - 4}
                 flipOnClick={false}
                 style={{ flexShrink: 0 }}
-                imageStyle={{ transform: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }}
+                {...getOfficialCardProps('schema', schema.id)}
               />
             </div>
           )}

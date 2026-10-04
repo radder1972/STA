@@ -6,6 +6,7 @@ import { ArrowRightIcon, LightbulbIcon, HypothesisIcon, ConnectionIcon, MatrixIc
 import AiAnalysis from './AiAnalysis';
 import { getCardColor } from '../utils/colors';
 import SchemaCard from './SchemaCard';
+import { getOfficialCardProps } from '../utils/officialCard';
 import { getSchemaImage } from '../utils/images';
 import { schemaDescriptions } from '../data/descriptions';
 
@@ -249,7 +250,7 @@ export default function CombinedAnalysis({ ysqAnswers, smiAnswers }) {
                     height="185px"
                     style={{ position: 'absolute', top: '-20px', right: '10px', zIndex: 10 }}
                     rotation={rotation}
-                    imageStyle={{ transform: schema.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }}
+                    {...getOfficialCardProps('schema', schema.id)}
                     flipOnClick={true}
                     isFlipped={flippedCards[schema.id]}
                     onToggleFlip={() => toggleFlip(schema.id)}
