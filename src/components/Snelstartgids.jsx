@@ -1,5 +1,6 @@
 import React from 'react';
 import { SparklesIcon, FileTextIcon, LayoutDashboardIcon, ArrowLeftIcon, ShieldIcon } from 'lucide-react';
+import { PlatformBadge } from './Icons';
 
 export default function Snelstartgids({ onBack }) {
   return (
@@ -13,7 +14,8 @@ export default function Snelstartgids({ onBack }) {
         <ArrowLeftIcon size={18} /> Terug naar Startpagina
       </button>
 
-      <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+      <div style={{ textAlign: 'center', marginBottom: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <PlatformBadge isCurrent={false} theme="hub" marginBottom="2rem" />
         <h1 style={{ fontSize: '2.2rem', fontWeight: '800', color: 'var(--text-main)', margin: '0 0 0.5rem 0', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
           <SparklesIcon size={32} color="#10b981" /> Snelstartgids
         </h1>
