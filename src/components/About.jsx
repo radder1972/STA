@@ -403,6 +403,22 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
             </div>
 
 
+            <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1.5rem' }}>Achter de schermen: Vraag &amp; Antwoord met de maker</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem', padding: '2rem', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+              <div>
+                <strong style={{ color: accent, display: 'block', marginBottom: '0.25rem' }}>Waarom heb je dit platform gebouwd?</strong>
+                <p style={{ margin: 0, color: '#475569', lineHeight: '1.6' }}>"Als cliënt in schematherapie merkte ik hoe krachtig, maar ook hoe abstract de materie soms is. Modi, schema's, basisbehoeften... het is veel om te bevatten. Als techneut zag ik tegelijkertijd een enorme kans: wat als we deze theorie écht visueel, interactief en tastbaar maken voor in de behandelkamer? Zo is het platform ontstaan. Niet als typische Zuidas-startup, maar onafhankelijk gebouwd vanuit de praktijk en de behoefte van een cliënt, gecombineerd met de nieuwste technologie."</p>
+              </div>
+              <div>
+                <strong style={{ color: accent, display: 'block', marginBottom: '0.25rem' }}>Wat is de toegevoegde waarde van AI in therapie?</strong>
+                <p style={{ margin: 0, color: '#475569', lineHeight: '1.6' }}>"De AI (de Schemawizard in de Tafelopstelling) fungeert als een scherpe, onvermoeibare 'co-therapeut'. Je legt een casus op tafel met de kaarten, en de AI genereert in seconden hypothesen over hoe bepaalde patronen op elkaar inwerken. Dat versnelt het inzicht enorm en haalt de theorie uit de boeken. Maar het belangrijkste uitgangspunt is altijd: jij als professional behoudt de regie. De AI geeft opties, de therapeut en cliënt bepalen samen of het raakt."</p>
+              </div>
+              <div>
+                <strong style={{ color: accent, display: 'block', marginBottom: '0.25rem' }}>Is dat wel veilig in de ggz?</strong>
+                <p style={{ margin: 0, color: '#475569', lineHeight: '1.6' }}>"Privacy is terecht heilig. Daarom is het platform 100% <i>local-first</i> gebouwd. Er zijn geen accounts, er is geen centrale database, en we slaan niets op. Je draait alles in je eigen browser op je eigen apparaat. Zodra je het tabblad sluit, is de data weg. Wanneer je expliciet kiest om de AI aan te roepen, sturen we uitsluitend een kortstondige, strikt anonieme instructie door zonder enige herleidbare patiëntinformatie."</p>
+              </div>
+            </div>
+
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Hoe is de suite samengesteld?</h3>
             <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 2rem 0' }}>
               De Schematherapie Suite is met veel zorg en aandacht ontwikkeld vanuit de wens om de waardevolle, maar soms complexe materie van schematherapie begrijpelijk, visueel en direct toepasbaar te maken. De vragenlijsten, de theoriekaarten en de tafelopstelling zijn zorgvuldig samengesteld op basis van vakliteratuur en de grondbeginselen van Jeffrey Young (het klassieke 18-schema's en 5-domeinen model), met de uitbreiding uit het position paper van Arntz et al. (2021) in de uitbreidingsset. De vragenlijsten zijn de YSQ-S3 en de SMI.
