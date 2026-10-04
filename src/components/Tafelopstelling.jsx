@@ -525,6 +525,17 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
     return 'Matige match';
   };
 
+  // Stoplichtkleur per matchsterkte: sterk = groen, matig = oranje, zwak = rood
+  const matchBadgeStyle = (value) => {
+    const label = matchLabel(value);
+    const palette = label === 'Sterke match'
+      ? { bg: 'rgba(22, 163, 74, 0.14)', fg: '#15803d', dot: '#16a34a' }
+      : label === 'Zwakke match'
+        ? { bg: 'rgba(220, 38, 38, 0.12)', fg: '#b91c1c', dot: '#dc2626' }
+        : { bg: 'rgba(245, 158, 11, 0.16)', fg: '#b45309', dot: '#f59e0b' };
+    return { palette, style: { display: 'inline-flex', alignItems: 'center', gap: '5px', marginLeft: '8px', padding: '2px 9px', borderRadius: '9999px', background: palette.bg, color: palette.fg, fontWeight: '700', fontSize: '0.78rem', whiteSpace: 'nowrap', verticalAlign: 'middle' } };
+  };
+
   const predictCards = async () => {
     if (!situationText) {
       alert("Beschrijf eerst kort de situatie/trigger in het tekstvak.");
@@ -1261,7 +1272,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                                 <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '10px 14px', borderRadius: '12px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', flexWrap: 'wrap' }}>
                                   <div style={{ flex: 1, minWidth: '220px' }}>
                                     <span style={{ fontWeight: '700', color: 'var(--text-main)' }}>{i + 1}. {h.title}</span>
-                                    <span style={{ marginLeft: '8px', padding: '2px 8px', borderRadius: '9999px', background: 'rgba(16, 185, 129, 0.15)', color: '#059669', fontWeight: '700', fontSize: '0.78rem' }}>{matchLabel(h.match)}</span>
+                                    <span style={matchBadgeStyle(h.match).style}><span style={{ width: '7px', height: '7px', borderRadius: '50%', background: matchBadgeStyle(h.match).palette.dot }} />{matchLabel(h.match)}</span>
                                     <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: '1.4', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                       <LightbulbIcon size={14} color="#059669" /> <em>Reden: {h.reason}</em>
                                     </div>
@@ -1296,7 +1307,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                                 <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '10px 14px', borderRadius: '12px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', flexWrap: 'wrap' }}>
                                   <div style={{ flex: 1, minWidth: '220px' }}>
                                     <span style={{ fontWeight: '700', color: 'var(--text-main)' }}>{i + 1}. {h.title}</span>
-                                    <span style={{ marginLeft: '8px', padding: '2px 8px', borderRadius: '9999px', background: 'rgba(59, 130, 246, 0.15)', color: '#2563eb', fontWeight: '700', fontSize: '0.78rem' }}>{matchLabel(h.match)}</span>
+                                    <span style={matchBadgeStyle(h.match).style}><span style={{ width: '7px', height: '7px', borderRadius: '50%', background: matchBadgeStyle(h.match).palette.dot }} />{matchLabel(h.match)}</span>
                                     <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: '1.4', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                       <LightbulbIcon size={14} color="#2563eb" /> <em>Reden: {h.reason}</em>
                                     </div>
