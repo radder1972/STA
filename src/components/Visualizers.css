@@ -170,3 +170,23 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
+/* Print Overrides for Test Reports */
+@media print {
+  .mode-node,
+  .ysq-section,
+  .smi-section,
+  .single-result-item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .card-scene {
+    transform: none !important; /* Disables rotation for a cleaner print grid */
+  }
+  
+  .mode-node > div {
+    flex-wrap: nowrap !important;
+  }
+}
+

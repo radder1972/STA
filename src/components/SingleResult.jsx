@@ -287,7 +287,7 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
                 const verdieping = getVerdieping(score.name);
                 
                 return (
-                  <div key={score.id} style={{ display: 'flex', gap: '2rem', paddingBottom: '2.5rem', borderBottom: '1px solid var(--border-color)', flexWrap: 'wrap' }}>
+                  <div key={score.id} className="single-result-item" style={{ display: 'flex', gap: '2rem', paddingBottom: '2.5rem', borderBottom: '1px solid var(--border-color)', flexWrap: 'wrap' }}>
                     {hasImage && (
                       <div style={{ flexShrink: 0 }}>
                          <SchemaCard
