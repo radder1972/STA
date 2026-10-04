@@ -776,7 +776,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="2" /></div>
-              <div><strong>Beslissingsondersteuning & Opstelling:</strong> Kies in <em>Stap 2A</em> de geraakte basisbehoefte. Gebruik in <em>Stap 2B</em> de AI-assistent om op basis van de casus een differentiële hypothese te genereren (suggesties voor schema's en modi). Als therapeut behoudt u de regie en bepaalt u welke kaarten daadwerkelijk op tafel komen.</div>
+              <div><strong>Beslissingsondersteuning & Opstelling:</strong> Doorloop de <em>Schemawizard</em>: kies het kader, de geraakte basisbehoefte en eventueel het testprofiel, waarna de wizard differentiële hypotheses opstelt (suggesties voor schema's en modi). Als therapeut behoudt u de regie en bepaalt u welke kaarten daadwerkelijk op tafel komen.</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
               <div style={{ marginTop: '2px', marginRight: '0.8rem' }}><StepBadge number="3" /></div>
@@ -849,40 +849,26 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                   position: 'relative'
                 }}>
                   
-                  <h4 className="text-gradient-tafel" style={{ margin: '0 0 0.75rem 0', fontSize: '1.45rem', fontWeight: '800', letterSpacing: '-0.02em', textAlign: 'center' }}>
-                    Differentiële Hypotheses Genereren
-                  </h4>
-
-                  <p style={{ fontSize: '0.96rem', color: 'var(--text-main)', marginBottom: '1.25rem', textAlign: 'center', lineHeight: '1.6', maxWidth: '640px', fontWeight: '400' }}>
-                    Laat de AI gewogen differentiële hypotheses opstellen op basis van de casus, geraakte basisbehoefte en het testprofiel. Elke hypothese bevat heldere onderbouwing (Explainable AI). U kiest als therapeut welke kaart definitief op tafel komt.
-                  </p>
-
-                  {/* Methodiek Callout Box */}
-                  <div style={{
-                    background: 'rgba(255, 255, 255, 0.75)',
-                    border: '1px solid rgba(16, 185, 129, 0.35)',
-                    borderRadius: '16px',
-                    padding: '1rem 1.25rem',
-                    marginBottom: '1.75rem',
-                    maxWidth: '660px',
-                    width: '100%',
-                    fontSize: '0.88rem',
-                    lineHeight: '1.5',
-                    color: 'var(--text-main)',
-                    boxSizing: 'border-box',
-                    textAlign: 'left',
-                    boxShadow: '0 2px 10px rgba(16, 185, 129, 0.06)'
-                  }}>
-                    <strong style={{ color: '#059669', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.94rem' }}>
-                      <LightbulbIcon size={18} color="#059669" style={{ flexShrink: 0 }} />
-                      <span>Hoe werkt de differentiële analyse?</span>
-                    </strong>
-                    In plaats van één vaststaand oordeel leidt de AI meerdere plausibele schema's en modi af, gerangschikt op waarschijnlijkheid. Dit geeft u als behandelaar een transparante 'spiegel' van opties ter ondersteuning van uw eigen professionele oordeel.
+                  {/* Schemawizard: kop */}
+                  <div style={{ order: 0, width: '100%', maxWidth: '660px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: '1.75rem' }}>
+                    <div style={{ width: '64px', height: '64px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, #059669 0%, #10b981 55%, #0ea5e9 100%)', boxShadow: '0 8px 24px rgba(16, 185, 129, 0.35)', marginBottom: '0.9rem' }}>
+                      <WandIcon size={32} color="white" />
+                    </div>
+                    <h4 className="text-gradient-tafel" style={{ margin: 0, fontSize: '1.9rem', fontWeight: '800', letterSpacing: '-0.02em' }}>
+                      Schemawizard
+                    </h4>
+                    <div style={{ fontSize: '0.98rem', color: 'var(--text-muted)', marginTop: '0.3rem' }}>
+                      Differentiële hypotheses in vier stappen
+                    </div>
+                    <div style={{ marginTop: '0.8rem', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#059669', background: 'rgba(16, 185, 129, 0.12)', padding: '4px 12px', borderRadius: '9999px' }}>
+                      Stap {wizardStep + 1} van 4
+                    </div>
                   </div>
 
                   {/* Wizard: stappenbalk */}
                   <div style={{ order: 1, width: '100%', maxWidth: '660px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1.5rem', position: 'relative' }}>
-                    <div style={{ position: 'absolute', top: '15px', left: '12%', right: '12%', height: '2px', background: 'rgba(16, 185, 129, 0.2)', zIndex: 0 }} />
+                    <div style={{ position: 'absolute', top: '15px', left: '12.5%', right: '12.5%', height: '3px', borderRadius: '3px', background: 'rgba(16, 185, 129, 0.18)', zIndex: 0 }} />
+                    <div style={{ position: 'absolute', top: '15px', left: '12.5%', width: `calc(75% * ${wizardStep} / 3)`, height: '3px', borderRadius: '3px', background: 'linear-gradient(90deg, #059669, #10b981)', zIndex: 0, transition: 'width 0.4s ease' }} />
                     {['Kader', 'Basisbehoefte', 'Testprofiel', 'Genereren'].map((label, i) => {
                       const done = i < wizardStep;
                       const current = i === wizardStep;
@@ -899,6 +885,21 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                         </button>
                       );
                     })}
+                  </div>
+
+                  {/* Schemawizard: titel en uitleg van de huidige stap */}
+                  <div style={{ order: 1, width: '100%', maxWidth: '660px', textAlign: 'center', marginBottom: '1.25rem' }}>
+                    <div style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '0.35rem' }}>
+                      {['Kies het theoretisch kader', 'Welke basisbehoefte is geraakt?', 'Koppel het testprofiel', 'Controleer en laat de wizard zijn werk doen'][wizardStep]}
+                    </div>
+                    <div style={{ fontSize: '0.92rem', lineHeight: 1.6, color: 'var(--text-muted)', maxWidth: '560px', margin: '0 auto' }}>
+                      {[
+                        'Werk met het klassieke model van Young (5 basisbehoeften), of voeg de uitbreiding van Arntz et al. (2021) toe als u die in de praktijk observeert.',
+                        'Kies de behoefte die in deze situatie onvervuld bleef. Twijfelt u? Sla deze stap over, dan leidt de wizard hem zelf af.',
+                        'Optioneel: lees de YSQ- en SMI-scores in, dan worden de hypotheses afgestemd op het profiel van deze cliënt.',
+                        'De wizard zet meerdere plausibele schema\'s en modi op een rij, gerangschikt en onderbouwd. U beslist welke kaart op tafel komt.'
+                      ][wizardStep]}
+                    </div>
                   </div>
 
                   {/* Sub-card 1: Waaier-selectie voor Geraakte Basisbehoefte (wizardstap 2) */}
@@ -1235,7 +1236,7 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
                         style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '1.02rem', fontWeight: '700', padding: '0.75rem 2rem', justifyContent: 'center', borderRadius: '9999px', margin: 0, boxShadow: '0 6px 20px rgba(16, 185, 129, 0.3)', cursor: (isPredicting || !situationText) ? 'not-allowed' : 'pointer' }}
                         title="Genereer gewogen differentiële hypotheses op basis van situatie en profiel"
                       >
-                        {isPredicting ? 'Bezig met analyseren...' : <><WandIcon size={20} color="currentColor" /> Genereer Differentiële Hypotheses</>}
+                        {isPredicting ? <><SparklesIcon size={20} color="currentColor" /> De wizard is aan het werk…</> : <><WandIcon size={20} color="currentColor" /> Start de Schemawizard</>}
                       </button>
                     )}
                   </div>
