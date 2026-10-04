@@ -23,7 +23,12 @@ export default function StartHub() {
     <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem 1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
       
       {/* Top Badge */}
-      <PlatformBadge isCurrent={true} theme="hub" marginBottom="1.5rem" />
+      <PlatformBadge isCurrent={true} theme="hub" marginBottom="0.5rem" />
+      <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "6px 16px", background: "linear-gradient(135deg, rgba(241, 245, 249, 0.8) 0%, rgba(226, 232, 240, 0.5) 100%)", border: "1px solid rgba(203, 213, 225, 0.8)", borderRadius: "20px", fontSize: "0.85rem", color: "#475569", fontWeight: "500", marginBottom: "2rem", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 8px rgba(15, 23, 42, 0.04)" }}>
+        <ShieldIcon size={14} color="#0ea5e9" />
+        <span>Onafhankelijk non-profit project</span> &bull; <a href="#verantwoording" style={{ color: "#0f172a", textDecoration: "underline", fontWeight: "600", transition: "color 0.2s" }} onMouseEnter={(e) => e.target.style.color = "#0ea5e9"} onMouseLeave={(e) => e.target.style.color = "#0f172a"}>Disclaimer & Verantwoording</a>
+      </div>
+
 
       {/* Main Title & Subtitle */}
       <div style={{ textAlign: 'center', marginBottom: '2rem', maxWidth: '850px' }}>
@@ -33,15 +38,6 @@ export default function StartHub() {
         <p style={{ fontSize: '1.2rem', color: '#0ea5e9', fontWeight: '600', lineHeight: '1.6', margin: '0 auto' }}>
           Drie complementaire digitale toepassingen voor therapeuten, behandelaars en professionals in opleiding. 
           Kies hieronder de gewenste werkvorm om direct aan de slag te gaan.
-
-        <div style={{ marginTop: "2rem", display: "inline-block", background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "16px 24px", maxWidth: "700px", textAlign: "left", boxShadow: "0 1px 3px rgba(0,0,0,0.05)" }}>
-          <h2 style={{ color: "#475569", margin: 0, fontSize: "1rem", fontWeight: "700", display: "flex", alignItems: "center", gap: "8px", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-             <InfoIcon size={16} /> Onafhankelijkheidsverklaring & Disclaimer
-          </h2>
-          <p style={{ margin: "8px 0 0 0", color: "#64748b", fontWeight: "400", fontSize: "0.95rem", lineHeight: "1.5" }}>
-            Het Digitaal Schematherapie Platform is een onafhankelijk hobbyproject, ontwikkeld uit persoonlijk enthousiasme zonder commercieel winstoogmerk of formele banden met officiële instanties. Door gebruik te maken van de suite ga je akkoord met de <a href="#verantwoording" style={{ color: "#0ea5e9", textDecoration: "underline", fontWeight: "500" }}>gebruiksvoorwaarden & verantwoording</a>.
-          </p>
-        </div>
 
         </p>
       </div>
