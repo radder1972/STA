@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon, PlayingCardsIcon, ClipboardIcon, HandIcon, PlatformBadge } from './Icons';
+import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon, PlayingCardsIcon, ClipboardIcon, CardsIcon, SparklesIcon, PlatformBadge } from './Icons';
 import Verantwoording, { CONTACT_EMAIL } from './Verantwoording';
 import imgSanne from '../assets/images/team/sanne.jpg';
 import imgJeroen from '../assets/images/team/jeroen.jpg';
@@ -43,10 +43,10 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
       <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem', width: '100%' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', background: 'rgba(0,0,0,0.06)', padding: '6px', borderRadius: '14px', gap: '6px', width: '100%', maxWidth: '900px' }}>
           {[
-            { id: 'suite', label: 'De suite', Icon: BrainIcon },
+            { id: 'suite', label: 'De suite', Icon: SparklesIcon },
             { id: 'vragenlijsten', label: 'De vragenlijsten', Icon: ClipboardIcon },
-            { id: 'waarom', label: 'De kaarten', Icon: PlayingCardsIcon },
-            { id: 'tafel', label: 'De tafelopstelling', Icon: HandIcon },
+            { id: 'waarom', label: 'De kaarten', Icon: CardsIcon },
+            { id: 'tafel', label: 'De tafelopstelling', Icon: PlayingCardsIcon },
             { id: 'maker', label: 'Wie zijn wij', Icon: InfoIcon },
             { id: 'verantwoording', label: 'Voorbehouden & privacy', Icon: ShieldIcon }
           ].map(({ id, label, Icon }) => (
