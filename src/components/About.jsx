@@ -389,7 +389,7 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
             <div style={{ padding: '1.5rem', background: `${accent}0f`, border: `1px dashed ${accent}`, borderRadius: '12px', marginBottom: '3rem' }}>
               <h4 style={{ color: '#0f172a', fontSize: '1.1rem', marginTop: 0, marginBottom: '0.6rem' }}>De D staat niet voor niets voor Digitaal</h4>
               <p style={{ color: '#475569', fontSize: '1rem', lineHeight: '1.7', margin: 0 }}>
-                Even eerlijk: Sanne en Jeroen bestaan alleen in pixels. Net als een flink deel van deze suite zijn ze met AI gemaakt. Ze hebben nog nooit een sessie gemist, drinken geen koffie en hun eigen YSQ hebben ze wijselijk nooit ingevuld. Achter de schermen zitten wel degelijk echte mensen met echte vakkennis; Sanne en Jeroen zijn simpelweg ons virtuele gezicht. Mail je ons, dan antwoordt er gewoon een mens van vlees en bloed.
+                Even eerlijk: Sanne en Jeroen bestaan alleen in pixels. Net als een flink deel van deze suite zijn ze met AI gemaakt. Ze hebben nog nooit een sessie gemist, drinken geen koffie en hun eigen YSQ hebben ze wijselijk nooit ingevuld. Achter de schermen zitten wel degelijk echte mensen (techneuten en een schematherapeut); Sanne en Jeroen zijn simpelweg ons virtuele gezicht. Mail je ons, dan antwoordt er gewoon een mens van vlees en bloed.
               </p>
             </div>
 
