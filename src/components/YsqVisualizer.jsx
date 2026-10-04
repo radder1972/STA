@@ -36,7 +36,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
         className="mode-node glass-panel" 
         style={{ display: 'flex', flexDirection: 'column', height: '100%', ...(isTop3 ? { borderLeft: `4px solid ${cardColor}`, background: highlightBg } : {}) }}
       >
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', width: '100%' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '1.5rem', width: '100%' }}>
           {hasImage && (
             <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
               <SchemaCard
@@ -44,8 +44,8 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
                 title={""}
                 src={imgUrl}
                 color={cardColor}
-                width="100px"
-                height="145px"
+                width="160px"
+                height="228px"
                 rotation={(index * 7) % 8 - 4}
                 flipOnClick={false}
                 style={{ flexShrink: 0 }}
@@ -54,7 +54,7 @@ export default function YsqVisualizer({ groupedScores, top3 = [], onUpdateAnswer
             </div>
           )}
           
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div style={{ flex: '1 1 220px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div className="mode-name" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.25rem', minHeight: 'auto' }}>
               <span style={{ paddingRight: '10px', fontWeight: 'bold' }}>{schema.name}</span>
               {isTop3 && <span style={{ backgroundColor: '#94a3b8', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>#{top3Index + 1}</span>}
