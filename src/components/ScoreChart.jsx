@@ -198,10 +198,10 @@ export default function ScoreChart({ scores, type, onViewBasisbehoeften, onViewM
           color: '#f8fafc',
           boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
         }}>
-          <p style={{ margin: 0, fontWeight: 'bold', fontSize: '1rem' }}>{label}</p>
-          <p style={{ margin: '5px 0 0 0', color: 'var(--primary)', fontWeight: 'bold' }}>
+          <div style={{ margin: 0, fontWeight: 'bold', fontSize: '1rem', color: '#f8fafc' }}>{label}</div>
+          <div style={{ margin: '5px 0 0 0', color: 'var(--primary)', fontWeight: 'bold' }}>
             Score: {payload[0].value}
-          </p>
+          </div>
         </div>
       );
     }
