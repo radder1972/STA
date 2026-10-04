@@ -8,6 +8,7 @@ import YsqVisualizer from './YsqVisualizer'
 import SmiVisualizer from './SmiVisualizer'
 import ScoreChart from './ScoreChart'
 import { schemaDescriptions } from '../data/descriptions'
+import { getVerdieping } from '../data/verdieping'
 import { getSchemaImage, getModeImage } from '../utils/images'
 import { getCardColor } from '../utils/colors'
 import SchemaCard from './SchemaCard'
@@ -252,6 +253,80 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
             <SmiVisualizer groupedScores={groupedScores} top3={top3} onUpdateAnswer={(qId, val) => onUpdateAnswer && onUpdateAnswer(type, qId, val)} />
           )}
         </div>
+
+        {/* Appendix: Theoriekaarten (Scores >= 4) */}
+        {sortedOverall.some(s => s.mean >= 4.0) && (
+          <div className="appendix-section glass-panel print-break-before" style={{ marginTop: '2rem', padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '16px', background: 'var(--card-bg)' }}>
+            <h3 style={{ color: 'var(--text-main)', marginTop: 0, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px', fontSize: '1.5rem' }}>
+               Bijlage: Relevante Theoriekaarten (score ≥ 4.0)
+            </h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '2rem' }}>
+              Hieronder vindt u de theoriekaarten en verdiepende uitleg voor de {type === 'ysq' ? 'schema\'s' : 'modi'} waarop u bovengemiddeld hoog heeft gescoord. Deze kunnen gebruikt worden als gespreksstof tijdens uw therapie.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+              {sortedOverall.filter(s => s.mean >= 4.0).map((score) => {
+                const group = type === 'ysq' ? basisbehoeftenMap[score.id] : smiModesMap[score.id]?.group;
+                
+                // Determine images and colors exactly as top 3 does
+                const schemasWithImages = [
+                  'Abandonment', 'Mistrust', 'Emotional deprivation', 'Social isolation/Alienation', 'Defectiveness/unlovability',
+                  'Practical incompetence/Dependence', 'Vulnerability to harm/illness', 'Enmeshment', 'Failure to achieve', 'Self-sacrifice',
+                  'Admiration/Recognition-seeking', 'Pessimism/Worry', 'Emotional inhibition', 'Unrelenting Standards', 'Self-punitiveness',
+                  'Entitlement/Superiority', 'Insufficient self-control/self-discipline', 'Subjugation'
+                ];
+                const modesWithImages = ['kk', 'rk', 'ik', 'wi', 'oz', 'ob', 'vo', 'so', 'wk', 'pa', 'zh', 'gv', 'bk', 'ok'];
+                
+                const isSchemaImg = type === 'ysq' && schemasWithImages.includes(score.id);
+                const isModeImg = type === 'smi' && modesWithImages.includes(score.id);
+                const hasImage = isSchemaImg || isModeImg;
+                const imgUrl = isSchemaImg ? getSchemaImage(score.id) : (isModeImg ? getModeImage(score.id) : null);
+                const cardColor = getCardColor(type === 'ysq' ? 'schema' : 'mode', score.id);
+                
+                const verdieping = getVerdieping(score.name);
+                
+                return (
+                  <div key={score.id} style={{ display: 'flex', gap: '2rem', paddingBottom: '2.5rem', borderBottom: '1px solid var(--border-color)', flexWrap: 'wrap' }}>
+                    {hasImage && (
+                      <div style={{ flexShrink: 0 }}>
+                         <SchemaCard
+                            id={score.id}
+                            title={score.name}
+                            description={schemaDescriptions[score.name] || score.name}
+                            src={imgUrl}
+                            color={cardColor}
+                            width="180px"
+                            height="256px"
+                            imageStyle={{ transform: score.name === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)' }}
+                         />
+                      </div>
+                    )}
+                    <div style={{ flex: 1, minWidth: '300px' }}>
+                      <h4 style={{ color: cardColor, fontSize: '1.3rem', marginTop: 0, marginBottom: '0.5rem' }}>{score.name}</h4>
+                      <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem', fontWeight: 'bold' }}>{group}</p>
+                      
+                      <p style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: '1.6', fontStyle: 'italic', marginBottom: '1.5rem', padding: '1rem', background: 'rgba(0,0,0,0.02)', borderRadius: '8px' }}>
+                        "{schemaDescriptions[score.name] || ''}"
+                      </p>
+
+                      <h5 style={{ color: 'var(--text-main)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>Herkenbaar Praktijkvoorbeeld</h5>
+                      <p style={{ color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.5rem', padding: '1rem', borderLeft: `4px solid ${cardColor}`, background: `${cardColor}15`, borderRadius: '0 8px 8px 0' }}>
+                        {verdieping.casus}
+                      </p>
+                      
+                      <h5 style={{ color: 'var(--text-main)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>Concrete Tips & Handvatten</h5>
+                      <ul style={{ color: 'var(--text-main)', paddingLeft: '1.5rem', lineHeight: '1.6', fontSize: '1rem', margin: 0 }}>
+                        {verdieping.tips.map((tip, idx) => (
+                          <li key={idx} style={{ marginBottom: '0.5rem' }}>{tip}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
   )
