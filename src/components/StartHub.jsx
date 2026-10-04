@@ -26,7 +26,7 @@ export default function StartHub() {
       <PlatformBadge isCurrent={true} theme="hub" marginBottom="0.5rem" />
       <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "6px 16px", background: "linear-gradient(135deg, rgba(241, 245, 249, 0.8) 0%, rgba(226, 232, 240, 0.5) 100%)", border: "1px solid rgba(203, 213, 225, 0.8)", borderRadius: "20px", fontSize: "0.85rem", color: "#475569", fontWeight: "500", marginBottom: "2rem", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 8px rgba(15, 23, 42, 0.04)" }}>
         <ShieldIcon size={14} color="#0ea5e9" />
-        <a href="#overons" style={{ color: "#0f172a", textDecoration: "none", fontWeight: "600", transition: "color 0.2s" }} onMouseEnter={(e) => e.target.style.color = "#0ea5e9"} onMouseLeave={(e) => e.target.style.color = "#0f172a"}>Onafhankelijk non-profit project</a> &bull; <a href="#verantwoording" style={{ color: "#0f172a", textDecoration: "none", fontWeight: "600", transition: "color 0.2s" }} onMouseEnter={(e) => e.target.style.color = "#0ea5e9"} onMouseLeave={(e) => e.target.style.color = "#0f172a"}>Disclaimer & Verantwoording</a>
+        <a href="#overons" style={{ color: "#0f172a", textDecoration: "none", fontWeight: "600", transition: "color 0.2s" }} onMouseEnter={(e) => e.target.style.color = "#0ea5e9"} onMouseLeave={(e) => e.target.style.color = "#0f172a"}>Onafhankelijk non-profit project</a> &bull; <a href="#overons" style={{ color: "#0f172a", textDecoration: "none", fontWeight: "600", transition: "color 0.2s" }} onMouseEnter={(e) => e.target.style.color = "#0ea5e9"} onMouseLeave={(e) => e.target.style.color = "#0f172a"}>Disclaimer & Verantwoording</a>
       </div>
 
 
@@ -81,6 +81,7 @@ export default function StartHub() {
 
       {/* 3 Main Choice Cards */}
       <div style={{
+        id: "overons",
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
         gap: '2rem',
@@ -612,6 +613,7 @@ export default function StartHub() {
         width: '100%',
         padding: '2rem 2.5rem',
         borderRadius: '20px',
+        id: "overons",
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
         gap: '2rem',
@@ -626,7 +628,7 @@ export default function StartHub() {
             <h4 style={{ margin: '0 0 0.3rem 0', color: 'var(--text-main)', fontSize: '1.2rem' }}>Privacy-bewust &amp; zonder accounts</h4>
             <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
               Geen accounts, geen tracking en geen centrale database. Je antwoorden blijven in je browser; alleen als je zelf een AI-functie gebruikt, gaan gegevens naar Google. Lees de{' '}
-              <a href="#verantwoording" style={{ color: 'var(--primary)', fontWeight: '600' }}>verantwoording en privacyverklaring</a>.
+              <a href="#overons" style={{ color: 'var(--primary)', fontWeight: '600' }}>verantwoording en privacyverklaring</a>.
             </p>
           </div>
         </div>
@@ -662,7 +664,7 @@ export default function StartHub() {
       {/* Version Footer */}
       <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
         Schematherapie Suite v{packageJson.version} &bull; Vrij te gebruiken voor psycho-educatie en opleiding &bull;{' '}
-        <a href="#verantwoording" style={{ color: 'var(--text-muted)', textDecoration: 'underline' }}>Verantwoording &amp; privacy</a>
+        <a href="#overons" style={{ color: 'var(--text-muted)', textDecoration: 'underline' }}>Verantwoording &amp; privacy</a>
       </div>
 
     </div>
