@@ -30,35 +30,53 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
       )}
 
       {/* HEADER */}
-      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '800px', margin: '0 auto 3rem auto', position: 'relative', zIndex: 10 }}>
-        <h1 className={t.h1} style={{ marginBottom: '0.5rem', fontSize: '2.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-          <InfoIcon size={40} useGameGradient={theme === 'game'} /> Over de Schematherapie Suite
+      <div style={{ textAlign: 'center', width: '100%', maxWidth: '900px', margin: '0 auto 2rem auto', position: 'relative', zIndex: 10 }}>
+        <h1 className={t.h1} style={{ margin: '0 0 0.5rem 0', fontSize: '2.4rem', lineHeight: 1.15, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
+          <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '52px', height: '52px', borderRadius: '50%', background: `${accent}1a`, color: accent, flexShrink: 0 }}>
+            <InfoIcon size={30} color={accent} />
+          </span>
+          Over de Schematherapie Suite
         </h1>
-        <h2 style={{ color: accent, margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4', minHeight: '34px' }}>
-          {activeTab === 'suite' ? 'De gedachte achter de Schematherapie Suite' : activeTab === 'vragenlijsten' ? 'De gedachte achter de vragenlijsten' : activeTab === 'waarom' ? 'De gedachte achter deze theoriekaarten' : activeTab === 'tafel' ? 'De gedachte achter de Digitale Tafelopstelling' : activeTab === 'maker' ? 'Wie zitten er achter de Schematherapie Suite?' : 'Voorbehouden en privacyverklaring van de suite'}
-        </h2>
+        <p style={{ color: '#64748b', margin: 0, fontWeight: '500', fontSize: '1.1rem', lineHeight: '1.4' }}>
+          {activeTab === 'suite' ? 'De gedachte achter de Schematherapie Suite' : activeTab === 'vragenlijsten' ? 'De gedachte achter de vragenlijsten' : activeTab === 'waarom' ? 'De gedachte achter de theoriekaarten' : activeTab === 'tafel' ? 'De gedachte achter de Digitale Tafelopstelling' : activeTab === 'maker' ? 'Wie zitten er achter de Schematherapie Suite?' : 'Voorbehouden en privacyverklaring van de suite'}
+        </p>
       </div>
 
-      {/* Submenu Tabs: nette 3x2-raster met gelijke knoppen, uitgelijnd met het inhoudspaneel */}
-      <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem', width: '100%' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', background: 'rgba(0,0,0,0.06)', padding: '6px', borderRadius: '14px', gap: '6px', width: '100%', maxWidth: '900px' }}>
+      {/* Submenu: bovenaan de drie onderdelen, daaronder (apart en rustiger) de algemene informatie */}
+      <div className="tabs-container no-print" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.9rem', marginBottom: '2.5rem', width: '100%' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', background: 'rgba(0,0,0,0.06)', padding: '6px', borderRadius: '14px', gap: '6px', width: '100%', maxWidth: '900px' }}>
           {[
-            { id: 'suite', label: 'De suite', Icon: SparklesIcon },
             { id: 'vragenlijsten', label: 'De vragenlijsten', Icon: ClipboardIcon },
             { id: 'waarom', label: 'De kaarten', Icon: CardsIcon },
-            { id: 'tafel', label: 'De tafelopstelling', Icon: PlayingCardsIcon },
-            { id: 'maker', label: 'Wie zijn wij', Icon: InfoIcon },
-            { id: 'verantwoording', label: 'Voorbehouden & privacy', Icon: ShieldIcon }
+            { id: 'tafel', label: 'De tafelopstelling', Icon: PlayingCardsIcon }
           ].map(({ id, label, Icon }) => (
             <button
               key={id}
               onClick={() => setActiveTab(id)}
               className={activeTab === id ? btnActive : "btn btn-outline"}
-              style={{ ...tabStyle(id), justifyContent: 'center', width: '100%', padding: '10px 14px', ...(activeTab === id ? {} : { background: 'transparent' }) }}
+              style={{ ...tabStyle(id), justifyContent: 'center', width: '100%', padding: '12px 14px', fontSize: '1rem', ...(activeTab === id ? {} : { background: 'transparent' }) }}
             >
-              <Icon size={18} color={activeTab === id ? 'white' : accent} /> {label}
+              <span style={{ display: 'inline-flex', flexShrink: 0 }}><Icon size={20} color={activeTab === id ? 'white' : accent} /></span> {label}
             </button>
           ))}
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '6px' }}>
+          {[
+            { id: 'suite', label: 'De suite', Icon: SparklesIcon },
+            { id: 'maker', label: 'Wie zijn wij', Icon: InfoIcon },
+            { id: 'verantwoording', label: 'Voorbehouden & privacy', Icon: ShieldIcon }
+          ].map(({ id, label, Icon }) => {
+            const active = activeTab === id;
+            return (
+              <button
+                key={id}
+                onClick={() => setActiveTab(id)}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', padding: '7px 14px', borderRadius: '9999px', cursor: 'pointer', fontSize: '0.9rem', fontWeight: 600, whiteSpace: 'nowrap', margin: 0, border: `1px solid ${active ? accent : 'rgba(0,0,0,0.12)'}`, background: active ? `${accent}14` : 'transparent', color: active ? accent : '#475569', transition: 'all 0.2s' }}
+              >
+                <span style={{ display: 'inline-flex', flexShrink: 0 }}><Icon size={16} color={accent} /></span> {label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
