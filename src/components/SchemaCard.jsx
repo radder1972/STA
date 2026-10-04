@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { CardInnerBorder } from '../utils/colors';
 import { PlayingCardsIcon } from './Icons';
-import { Star } from 'lucide-react';
+import { Sparkle } from 'lucide-react';
 
 export const formatCardTitle = (title) => {
   if (!title) return title;
@@ -486,7 +486,7 @@ const SchemaCard = ({
                   color: colors[Math.floor(Math.random() * colors.length)],
                   animation: `float-star ${Math.random() * 1 + 1}s ease-out ${Math.random() * 0.5}s infinite`
                 }}>
-                  <Star fill="currentColor" size={Math.random() * 12 + 12} strokeWidth={1} />
+                  <Sparkle fill="currentColor" size={Math.random() * 12 + 12} strokeWidth={1} />
                 </div>
               );
             })}

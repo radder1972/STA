@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon, ClipboardIcon, LightbulbIcon, HandIcon, ThreeSparklesLogo } from './Icons';
-import { Printer, Star } from 'lucide-react';
+import { Printer, Sparkle } from 'lucide-react';
 
 const DSP_COLORS = ['#059669', '#10b981', '#3b82f6', '#0ea5e9', '#8b5cf6', '#f59e0b'];
 
@@ -56,7 +56,7 @@ const StarConfetti = () => {
           '--scale': s.scale,
           animation: `explode-stars ${s.duration} cubic-bezier(0.25, 1, 0.5, 1) ${s.delay} infinite`
         }}>
-          <Star fill="currentColor" size={24} strokeWidth={1} />
+          <Sparkle fill="currentColor" size={24} strokeWidth={1} />
         </div>
       ))}
     </div>
