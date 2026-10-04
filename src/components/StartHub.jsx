@@ -256,6 +256,13 @@ export default function StartHub() {
           }}
         >
           {/* Draped Sparkles on Top-Right Corner */}
+          <style>{`
+            @keyframes twinkle {
+              0%, 100% { opacity: 0.95; transform: scale(1) translateY(0) rotate(0deg); filter: brightness(1) drop-shadow(0 4px 10px rgba(2, 132, 199, 0.3)); }
+              25% { opacity: 0.7; transform: scale(1.05) translateY(-2px) rotate(-3deg); filter: brightness(1.2) drop-shadow(0 4px 15px rgba(14, 165, 233, 0.6)); }
+              75% { opacity: 0.7; transform: scale(0.95) translateY(1px) rotate(3deg); filter: brightness(1.1) drop-shadow(0 4px 8px rgba(2, 132, 199, 0.4)); }
+            }
+          `}</style>
           <div style={{
             position: 'absolute',
             top: '-18px',
@@ -265,7 +272,8 @@ export default function StartHub() {
             opacity: hoveredCard === 'kaarten' ? 0.95 : 0,
             transform: hoveredCard === 'kaarten' ? 'scale(1) translateY(0)' : 'scale(0.7) translateY(8px)',
             transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-            filter: 'drop-shadow(0 4px 10px rgba(2, 132, 199, 0.3))'
+            filter: 'drop-shadow(0 4px 10px rgba(2, 132, 199, 0.3))',
+            animation: hoveredCard === 'kaarten' ? 'twinkle 3s infinite ease-in-out' : 'none'
           }}>
             <ThreeSparklesLogo size={52} theme="kaarten" />
           </div>
