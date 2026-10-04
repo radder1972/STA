@@ -3,6 +3,7 @@ import { InfoIcon, FileTextIcon, ShieldIcon, ArrowLeftIcon, BrainIcon, PlayingCa
 import Verantwoording, { CONTACT_EMAIL } from './Verantwoording';
 import imgSanne from '../assets/images/team/sanne.jpg';
 import imgJeroen from '../assets/images/team/jeroen.jpg';
+import imgMatthias from '../assets/images/team/matthias.jpg';
 // Gedeelde 'Over'-pagina voor de hele suite (Kaarten, Tafelopstelling, Hub en Vragenlijsten).
 // theme: 'game' (Kaarten, blauw), 'tafel' (groen), 'test' (Vragenlijsten, leisteen) of 'hub' (Suite, verloop)
 // showBadge: toon bovenaan het platformlabel (DSP-banner) dat terugleidt naar het platform; voor apps zonder menubalk
@@ -368,6 +369,14 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                <img src={imgMatthias} alt="Matthias Radder" style={{ width: '90px', height: '90px', borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}` }} />
+                <div>
+                  <strong style={{ display: 'block', fontSize: '1.2rem', color: '#0f172a' }}>Matthias Radder</strong>
+                  <span style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: '1.4', display: 'block', marginTop: '0.2rem' }}>Oprichter, ontwikkelaar &amp; schematherapeut</span>
+                  <span style={{ color: accent, fontSize: '0.85rem', fontStyle: 'italic', display: 'block', marginTop: '0.35rem' }}>De enige van vlees en bloed. Drinkt wél koffie.</span>
+                </div>
+              </div>
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <img src={imgSanne} alt="Sanne de Boer" style={{ width: '90px', height: '90px', borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}` }} />
                 <div>
