@@ -53,6 +53,7 @@ function App() {
   const [currentView, setCurrentView] = useState(() => {
     const hash = window.location.hash.replace('#', '')
     if (hash === 'verantwoording') return 'verantwoording'
+    if (hash === 'drukproef') return 'drukproef'
     if (isSnelstartApp) return 'snelstart'
     if (isHubApp) {
       if (hash === 'test' || hash === 'zelftest') {
@@ -129,6 +130,10 @@ function App() {
     
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '')
+      if (hash === 'drukproef') {
+        setCurrentView('drukproef')
+        return
+      }
       if (hash === 'verantwoording') {
         setAboutTab('verantwoording')
         setCurrentView('verantwoording')
