@@ -2,6 +2,29 @@ import React from 'react'
 import blijeKindImg from '../assets/images/vst/blije_kind.png';
 
 export default function PrintProof() {
+
+  const downloadSVG = () => {
+    const svgElement = document.getElementById('box-svg-layout');
+    if (!svgElement) return;
+    
+    const serializer = new XMLSerializer();
+    let source = serializer.serializeToString(svgElement);
+    
+    if(!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)){
+        source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+    }
+    
+    const svgBlob = new Blob([source], {type: 'image/svg+xml;charset=utf-8'});
+    const svgUrl = URL.createObjectURL(svgBlob);
+    
+    const downloadLink = document.createElement('a');
+    downloadLink.href = svgUrl;
+    downloadLink.download = 'schematherapie-doosje-plano-v4.2.1.svg';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  };
+
   return (
     <div style={{ backgroundColor: '#52525b', fontFamily: 'system-ui, sans-serif', minHeight: '100vh', margin: 0, padding: 0 }}>
       {/* Top Toolbar */}
@@ -12,6 +35,7 @@ export default function PrintProof() {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span style={{ fontSize: '14px', backgroundColor: 'rgba(34, 197, 94, 0.2)', color: '#86efac', padding: '4px 12px', borderRadius: '999px', border: '1px solid rgba(34, 197, 94, 0.5)' }}>✓ Preflight OK</span>
+          <button onClick={downloadSVG} style={{ backgroundColor: '#3b82f6', color: 'white', padding: '6px 16px', borderRadius: '4px', fontSize: '14px', fontWeight: 'bold', border: 'none', cursor: 'pointer' }}>Download Vector (SVG)</button>
           <button onClick={() => window.print()} style={{ backgroundColor: '#e4e4e7', color: '#27272a', padding: '6px 16px', borderRadius: '4px', fontSize: '14px', fontWeight: 'bold', border: 'none', cursor: 'pointer' }}>Afdrukken / Opslaan</button>
         </div>
       </div>
@@ -42,7 +66,7 @@ export default function PrintProof() {
 
           <div style={{ padding: '40px' }} dangerouslySetInnerHTML={{ __html: `
             <!-- SVG Layout with dimension markers -->
-            <svg width="100%" height="auto" viewBox="-100 -100 2050 1700" xmlns="http://www.w3.org/2000/svg">
+            <svg id="box-svg-layout" width="100%" height="auto" viewBox="-100 -100 2050 1700" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                   <path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981" />
