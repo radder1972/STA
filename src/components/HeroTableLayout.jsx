@@ -1,5 +1,6 @@
 import React from 'react';
 import SchemaCard from './SchemaCard';
+import { Sparkle } from 'lucide-react';
 import imgStraffendeOuder from '../assets/images/modes/so.png';
 import imgOvergave from '../assets/images/modicategorieen/coping_overgave.png';
 import imgBlijeKind from '../assets/images/vst/blije_kind.png';
@@ -20,9 +21,24 @@ export default function HeroTableLayout({ isHovered }) {
       <div style={{
         position: 'absolute', width: '170px', height: '170px', borderRadius: '50%',
         background: 'rgba(16, 185, 129, 0.05)', border: '1px dashed rgba(16, 185, 129, 0.25)',
-        transform: isHovered ? 'scale(1)' : 'scale(0.6)', opacity: isHovered ? 1 : 0,
+        transform: isHovered ? 'scale(1)' : 'scale(0.9)', opacity: isHovered ? 1 : 0.8,
         transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
       }} />
+
+      <div style={{ position: 'absolute', left: 'calc(50% - 100px)', top: '30px', zIndex: 10 }}>
+         <Sparkle size={20} color="#10b981" style={{ 
+           opacity: isHovered ? 0.9 : 0.5, 
+           transform: isHovered ? 'scale(1.1) rotate(15deg)' : 'scale(0.8) rotate(0deg)',
+           transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)' 
+         }} fill="rgba(16, 185, 129, 0.2)" />
+      </div>
+      <div style={{ position: 'absolute', left: 'calc(50% - 85px)', bottom: '30px', zIndex: 10 }}>
+         <Sparkle size={14} color="#059669" style={{ 
+           opacity: isHovered ? 0.8 : 0.4,
+           transform: isHovered ? 'scale(1.2) rotate(-15deg)' : 'scale(0.8) rotate(0deg)',
+           transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s' 
+         }} fill="rgba(5, 150, 105, 0.2)" />
+      </div>
 
       {cards.map((card, idx) => (
         <div key={idx} style={{
