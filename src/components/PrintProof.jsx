@@ -137,18 +137,29 @@ export default function PrintProof() {
                 <line x1="1160" y1="840" x2="1810" y2="840" class="cut" />
                 
                 <g transform="translate(1160, 0)">
-                  <text x="70" y="120" class="text-sub" style={{textAnchor: "start"}}>Inclusief:</text>
-                  <circle cx="90" cy="180" r="8" fill="#f59e0b" />
-                  <text x="120" y="190" class="text-body">18 Schema's (Young)</text>
-                  <circle cx="90" cy="240" r="8" fill="#10b981" />
-                  <text x="120" y="250" class="text-body">3 Nieuwe schema's (Arntz et al. 2021)</text>
-                  <circle cx="90" cy="300" r="8" fill="#0ea5e9" />
-                  <text x="120" y="310" class="text-body">14 Modi (SMI)</text>
-                  <circle cx="90" cy="360" r="8" fill="#8b5cf6" />
-                  <text x="120" y="370" class="text-body">6 Nieuwe modi</text>
-                  <circle cx="90" cy="420" r="8" fill="#f43f5e" />
-                  <text x="120" y="430" class="text-body">Basisbehoeften &amp; Coping categorieën</text>
+                  <text x="325" y="150" class="text-sub" style={{textAnchor: "middle", fontSize: "28px"}}>55 Theoriekaarten</text>
                   
+                  <text x="325" y="240" class="text-body" style={{textAnchor: "middle", fontSize: "24px", fill: "#475569"}}>
+                    Een actuele en complete referentieset
+                  </text>
+                  <text x="325" y="280" class="text-body" style={{textAnchor: "middle", fontSize: "24px", fill: "#475569"}}>
+                    voor gebruik in de klinische praktijk.
+                  </text>
+                  <text x="325" y="340" class="text-body" style={{textAnchor: "middle", fontSize: "24px", fill: "#475569"}}>
+                    Volledig afgestemd op de herziene
+                  </text>
+                  <text x="325" y="380" class="text-body" style={{textAnchor: "middle", fontSize: "24px", fill: "#475569"}}>
+                    behandelrichtlijnen (VSt, Arntz et al. 2021).
+                  </text>
+
+                  <g transform="translate(265, 480)">
+                    <circle cx="0" cy="0" r="8" fill="#f59e0b" />
+                    <circle cx="30" cy="0" r="8" fill="#10b981" />
+                    <circle cx="60" cy="0" r="8" fill="#0ea5e9" />
+                    <circle cx="90" cy="0" r="8" fill="#8b5cf6" />
+                    <circle cx="120" cy="0" r="8" fill="#f43f5e" />
+                  </g>
+
                   <g transform="translate(115, 660)">
                     <rect x="0" y="0" width="420" height="60" rx="30" fill="white" stroke="#cbd5e1" strokeWidth="2" />
                     <g transform="translate(20, 18) scale(1)">
