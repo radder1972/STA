@@ -31,8 +31,8 @@ const allPoolCards = [
   { type: 'schema', title: 'Verlating / Instabiliteit', color: '#0ea5e9', id: 's1', src: imgVerlating, imageStyle: { transform: 'scale(1)' } },
   { type: 'schema', title: 'Wantrouwen / Misbruik', color: '#0ea5e9', id: 's2', src: imgWantrouwen, imageStyle: { transform: 'scale(1)' } },
   { type: 'schema', title: 'Meedogenloze normen', color: '#0ea5e9', id: 's17', src: imgMeedogenlozeNormen, imageStyle: { transform: 'scale(1)' } },
-  { type: 'coping', title: 'Vermijding', color: '#8b5cf6', id: 'c2', src: imgVermijding, imageStyle: { transform: 'scale(0.85)' } },
-  { type: 'coping', title: 'Overgave', color: '#8b5cf6', id: 'c1', src: imgOvergave, imageStyle: { transform: 'scale(0.85)' } }
+  { type: 'modicategorie', title: 'Coping: Vermijding', color: '#8b5cf6', id: 'c2', src: imgVermijding, imageStyle: { transform: 'scale(0.85)' } },
+  { type: 'modicategorie', title: 'Coping: Overgave', color: '#8b5cf6', id: 'c1', src: imgOvergave, imageStyle: { transform: 'scale(0.85)' } }
 ];
 
 export default function HeroCardFan({ isHovered }) {

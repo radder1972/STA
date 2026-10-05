@@ -8,7 +8,7 @@ import imgGezondeVolwassene from '../assets/images/modes/gv.png';
 export default function HeroTableLayout({ isHovered }) {
   const cards = [
     { type: 'mode', title: 'Straffende Ouder', color: '#ef4444', id: 'm12', src: imgStraffendeOuder, imageStyle: { transform: 'scale(1.1)' }, base: {x: 0, y: 15}, hover: {x: -55, y: -45} }, 
-    { type: 'coping', title: 'Overgave', color: '#8b5cf6', id: 'c1', src: imgOvergave, imageStyle: { transform: 'scale(0.85)' }, base: {x: 0, y: 20}, hover: {x: 55, y: -45} }, 
+    { type: 'modicategorie', title: 'Coping: Overgave', color: '#8b5cf6', id: 'c1', src: imgOvergave, imageStyle: { transform: 'scale(0.85)' }, base: {x: 0, y: 20}, hover: {x: 55, y: -45} }, 
     { type: 'mode', title: 'Kwetsbare kind', color: '#f59e0b', id: 'm1', src: imgKwetsbareKind, imageStyle: { transform: 'scale(1.1)' }, base: {x: 0, y: 25}, hover: {x: 0, y: -10} },    
     { type: 'mode', title: 'Gezonde Volwassene', color: '#10b981', id: 'm14', src: imgGezondeVolwassene, imageStyle: { transform: 'scale(1.1)' }, base: {x: 0, y: 30}, hover: {x: 0, y: 50} }       
   ];
