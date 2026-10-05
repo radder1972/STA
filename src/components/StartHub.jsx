@@ -336,6 +336,7 @@ export default function StartHub() {
             </div>
           </div>
 
+<HeroCardFan isHovered={hoveredCard === 'kaarten'} />
           <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', minHeight: '5.5rem' }}>
             Verken de 43 klassieke basiskaarten en de herziene 55-delige theoriekaartenset (VSt 2021). Ideaal om schema's en modi tastbaar en visueel te bestuderen in de praktijk of supervisie.
           </p>
