@@ -16,7 +16,6 @@ import {
   vstCopingData 
 } from '../data/cards';
 import cardsStackImg from '../assets/images/cards-stack.jpg';
-import AnimatedBox3D from './AnimatedBox3D';
 import { schemaDescriptions } from '../data/descriptions';
 import { getCardColor } from '../utils/colors';
 import { schemaImages, modeImages } from '../utils/images';
@@ -479,11 +478,6 @@ export default function OrderCards({ onBack }) {
                 alt="Fysieke stapel Schematherapie Theoriekaarten" 
                 style={{ width: '100%', height: 'auto', display: 'block' }} 
               />
-            </div>
-
-            <div style={{ maxWidth: '600px', width: '100%', marginTop: '3rem', background: '#f8fafc', borderRadius: '15px', padding: '2rem 1rem', border: '1px solid #e2e8f0', boxShadow: 'inset 0 2px 10px rgba(0,0,0,0.02)' }}>
-               <h4 style={{ textAlign: 'center', margin: '0 0 1rem 0', color: '#475569', fontSize: '1rem', fontWeight: 600 }}>De vernieuwde verpakking</h4>
-               <AnimatedBox3D />
             </div>
           </div>
 
