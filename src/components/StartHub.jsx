@@ -176,6 +176,7 @@ export default function StartHub() {
             </div>
           </div>
 
+          <HeroRadarChart isHovered={hoveredCard === 'test'} />
           <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', minHeight: '5.5rem' }}>
             Breng je onderliggende kwetsbaarheden en huidige patronen in kaart met de gevalideerde <strong>YSQ-S3</strong> en <strong>SMI</strong> vragenlijsten. Inclusief uitgebreid gecombineerd analyserapport.
           </p>
@@ -494,6 +495,7 @@ export default function StartHub() {
             </div>
           </div>
 
+          <HeroTableLayout isHovered={hoveredCard === 'tafel'} />
           <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1.8rem', minHeight: '5.5rem' }}>
             Breng een concrete conflictsituatie of emotionele trigger interactief in kaart. Koppel de reactie (modus) aan het geraakte schema en ontvang direct advies voor je Gezonde Volwassene.
           </p>
