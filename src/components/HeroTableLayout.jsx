@@ -2,7 +2,7 @@ import React from 'react';
 import SchemaCard from './SchemaCard';
 import imgStraffendeOuder from '../assets/images/modes/so.png';
 import imgOvergave from '../assets/images/modicategorieen/coping_overgave.png';
-import imgBlijeKind from '../assets/images/modes/bk.png';
+import imgBlijeKind from '../assets/images/vst/blije_kind.png';
 
 export default function HeroTableLayout({ isHovered }) {
   const cards = [
