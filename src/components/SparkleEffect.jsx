@@ -17,10 +17,10 @@ export default function SparkleEffect({ count = 12 }) {
         return (
           <div key={i} style={{
             position: 'absolute',
-            left: `\${Math.random() * 100}%`,
-            top: `\${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
             color: colors[Math.floor(Math.random() * colors.length)],
-            animation: `card-sparkle-float \${Math.random() * 1 + 1}s ease-out \${Math.random() * 0.5}s infinite`
+            animation: `card-sparkle-float ${Math.random() * 1 + 1}s ease-out ${Math.random() * 0.5}s infinite`
           }}>
             <Sparkle fill="currentColor" size={Math.random() * 12 + 8} strokeWidth={1} />
           </div>
