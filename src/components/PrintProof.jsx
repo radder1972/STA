@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import blijeKindImg from '../assets/images/vst/blije_kind.png';
 
 export default function PrintProof() {
   return (
