@@ -44,14 +44,14 @@ export default function HeroTableLayout({ isHovered }) {
         <div key={idx} style={{
           position: 'absolute', width: '110px', height: '155px',
           transform: isHovered 
-            ? `translate(\${card.hover.x}px, \${card.hover.y}px) rotate(\${card.hover.r}deg) scale(0.85)`
-            : `translate(\${card.base.x}px, \${card.base.y}px) rotate(\${card.base.r}deg) scale(0.75)`,
-          transition: `all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) \${idx * 0.05}s`, zIndex: idx
+            ? `translate(${card.hover.x}px, ${card.hover.y}px) rotate(${card.hover.r}deg) scale(0.85)`
+            : `translate(${card.base.x}px, ${card.base.y}px) rotate(${card.base.r}deg) scale(0.75)`,
+          transition: `all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${idx * 0.05}s`, zIndex: idx
         }}>
           <div style={{
              position: 'relative',
              pointerEvents: 'none', width: '100%', height: '100%', 
-             boxShadow: isHovered ? `0 15px 35px \${card.color}50` : '0 3px 10px rgba(0,0,0,0.25), 0 0 1px rgba(0,0,0,0.3)',
+             boxShadow: isHovered ? `0 15px 35px ${card.color}50` : '0 3px 10px rgba(0,0,0,0.25), 0 0 1px rgba(0,0,0,0.3)',
              borderRadius: '8px',
              filter: isHovered ? 'none' : 'grayscale(1) sepia(0.2) hue-rotate(100deg) saturate(1.2) brightness(0.98)',
              transition: 'filter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
