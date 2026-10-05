@@ -61,9 +61,9 @@ export default function PrintProof() {
                   .cut { stroke: #ef4444; stroke-width: 3; fill: none; }
                   .fold { stroke: #3b82f6; stroke-width: 3; stroke-dasharray: 15,10; fill: none; }
                   .bleed-bg { fill: #f0f9ff; }
-                  .text-title { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 800; font-size: 72px; fill: #0f172a; text-anchor: middle; }
-                  .text-sub { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 32px; fill: #0ea5e9; text-anchor: middle; letter-spacing: 2px; }
-                  .text-body { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 28px; fill: #334155; }
+                  .text-title { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 800; font-size: 60px; fill: #0f172a; text-anchor: middle; }
+                  .text-sub { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 24px; fill: #0ea5e9; text-anchor: middle; letter-spacing: 2px; }
+                  .text-body { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 24px; fill: #334155; }
                   .dimension-line { stroke: #10b981; stroke-width: 2; marker-end: url(#arrow); marker-start: url(#arrow); }
                   .dimension-text { fill: #10b981; font-size: 24px; font-weight: bold; font-family: monospace; text-anchor: middle; }
                 </style>
@@ -95,7 +95,7 @@ export default function PrintProof() {
                 <line x1="150" y1="0" x2="330" y2="0" class="fold" />
                 <path d="M 150,840 L 150,940 L 290,940 L 330,840 Z" class="cut" />
                 <line x1="150" y1="840" x2="330" y2="840" class="fold" />
-                <text x="240" y="420" class="text-sub" style="font-size:24px;" transform="rotate(-90 240,420)">Schematherapiekaarten</text>
+                <text x="240" y="420" class="text-sub" style="font-size:20px;" transform="rotate(-90 240,420)">Schematherapiekaarten</text>
 
                 <rect x="330" y="0" width="650" height="840" class="fold" />
                 <rect x="330" y="-180" width="650" height="180" class="fold" />
@@ -116,12 +116,12 @@ export default function PrintProof() {
                     <path d="M5 16L5.8 18.2L8 19L5.8 19.8L5 22L4.2 19.8L2 19L4.2 18.2L5 16Z" fill="#10b981" />
                   </g>
                   <text x="325" y="660" class="text-sub">VSt 2021 Update</text>
-                  <text x="325" y="780" class="text-body" style="font-size: 20px; opacity: 0.6; text-anchor: middle;">55 THEORIEKAARTEN</text>
+                  <text x="325" y="780" class="text-body" style="font-size: 18px; opacity: 0.6; text-anchor: middle;">55 THEORIEKAARTEN</text>
                 </g>
                 
                 <g transform="translate(330, -180)">
                    <path d="M310 75 L315 88 L330 90 L315 92 L310 105 L305 92 L290 90 L305 88 Z" fill="#0ea5e9" opacity="0.8" />
-                   <text x="325" y="60" class="text-sub" style="font-size:24px;">DSP</text>
+                   <text x="325" y="60" class="text-sub" style="font-size:20px;">DSP</text>
                 </g>
 
                 <rect x="980" y="0" width="180" height="840" class="fold" />
@@ -129,7 +129,7 @@ export default function PrintProof() {
                 <line x1="980" y1="0" x2="1160" y2="0" class="fold" />
                 <path d="M 980,840 L 1020,940 L 1160,940 L 1160,840 Z" class="cut" />
                 <line x1="980" y1="840" x2="1160" y2="840" class="fold" />
-                <text x="1070" y="420" class="text-sub" style="font-size:24px;" transform="rotate(-90 1070,420)">VSt 2021 Update</text>
+                <text x="1070" y="420" class="text-sub" style="font-size:20px;" transform="rotate(-90 1070,420)">VSt 2021 Update</text>
 
                 <rect x="1160" y="0" width="650" height="840" class="fold" />
                 <line x1="1160" y1="0" x2="1810" y2="0" class="cut" />
@@ -150,7 +150,7 @@ export default function PrintProof() {
                   <text x="120" y="430" class="text-body">Basisbehoeften &amp; Coping categorieën</text>
                   <rect x="70" y="600" width="510" height="150" fill="white" stroke="#cbd5e1" stroke-width="4" rx="20" />
                   <text x="325" y="660" class="text-body" style="text-anchor: middle; font-weight: 600;">Ontwikkeld door het</text>
-                  <text x="325" y="700" class="text-sub" style="font-size: 28px;">Digitaal Schematherapie Platform</text>
+                  <text x="325" y="700" class="text-sub" style="font-size: 24px;">Digitaal Schematherapie Platform</text>
                 </g>
               </g>
             </svg>
