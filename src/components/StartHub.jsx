@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import HeroCardFan from './HeroCardFan';
+import HeroRadarChart from './HeroRadarChart';
+import HeroTableLayout from './HeroTableLayout';
 import { Sparkle } from 'lucide-react';
 import { 
   ClipboardIcon, 
