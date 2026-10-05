@@ -7,9 +7,9 @@ export default function SparkleEffect({ count = 12 }) {
       <style>{`
         @keyframes card-sparkle-float {
           0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 0; }
-          20% { opacity: 1; transform: translateY(-15px) scale(1) rotate(45deg); }
-          80% { opacity: 1; transform: translateY(-40px) scale(1) rotate(135deg); }
-          100% { transform: translateY(-50px) scale(0) rotate(180deg); opacity: 0; }
+          20% { opacity: 1; transform: translateY(15px) scale(1) rotate(45deg); }
+          80% { opacity: 1; transform: translateY(40px) scale(1) rotate(135deg); }
+          100% { transform: translateY(60px) scale(0) rotate(180deg); opacity: 0; }
         }
       `}</style>
       {[...Array(count)].map((_, i) => {
