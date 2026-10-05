@@ -123,11 +123,7 @@ export default function PrintProof() {
                 <g transform="translate(330, 0)">
                   <rect x="50" y="200" width="550" height="500" fill="url(#star-pattern)" />
                   <text x="325" y="160" class="text-title">Schematherapie<tspan x="325" dy="80">kaarten</tspan></text>
-                  <g transform="translate(229, 320) scale(8)">
-                    <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" fill="#0ea5e9" />
-                    <path d="M19 3L19.8 5.2L22 6L19.8 6.8L19 9L18.2 6.8L16 6L18.2 5.2L19 3Z" fill="#f59e0b" />
-                    <path d="M5 16L5.8 18.2L8 19L5.8 19.8L5 22L4.2 19.8L2 19L4.2 18.2L5 16Z" fill="#10b981" />
-                  </g>
+                  <image href="${blijeKindImg}" x="225" y="320" width="200" height="200" />
                   <text x="325" y="660" class="text-sub">VSt 2021 Update</text>
                   <text x="325" y="780" class="text-body" style="font-size: 18px; opacity: 0.6; text-anchor: middle;">55 THEORIEKAARTEN</text>
                 </g>
