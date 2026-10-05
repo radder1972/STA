@@ -326,7 +326,7 @@ export default function OrderCards({ onBack }) {
 
       {/* WEBSHOP HERO SECTION */}
       <div className="glass-panel" style={{ padding: '2.5rem', width: '100%', maxWidth: '850px', margin: '0 auto 4rem auto', position: 'relative', zIndex: 10, borderRadius: '24px' }}>
-        <div className="inner-box" style={{ background: 'transparent', display: 'flex', flexDirection: 'column', padding: '2.5rem', borderRadius: '20px' }}>
+        <div className="inner-box" style={{ background: 'white', display: 'flex', flexDirection: 'column', padding: '2.5rem', borderRadius: '20px' }}>
           
           <h2 style={{ fontSize: '2rem', margin: '0 0 0.4rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>
             De Schematherapie Kaartenset
@@ -366,7 +366,7 @@ export default function OrderCards({ onBack }) {
                       height: '20px',
                       borderRadius: '50%',
                       border: isSelected ? '6px solid #0ea5e9' : '2px solid #cbd5e1',
-                      background: 'transparent',
+                      background: 'white',
                       boxSizing: 'border-box',
                       flexShrink: 0
                     }} />
@@ -448,29 +448,39 @@ export default function OrderCards({ onBack }) {
             </div>
             
             {/* Grote Productfoto buiten de box */}
+            
+            {/* 3D Box naast de foto */}
+            <div style={{ flex: '0 0 150px', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 5, transform: 'translateX(20px)' }}>
+              <Box3D scale={0.9} spinning={true} />
+            </div>
+            
             <div 
               style={{ 
                 flex: '0 0 250px', 
                 borderRadius: '18px', 
-                overflow: 'visible', 
+                overflow: 'hidden', 
                 boxShadow: '0 25px 50px rgba(0,0,0,0.25), 0 10px 22px rgba(0,0,0,0.12)', 
-                 
-                transform: 'translate(36px, -24px)',
-                background: 'transparent',
+                border: '5px solid white', 
+                transform: 'translate(36px, -24px) rotate(4deg)',
+                background: 'white',
                 position: 'relative',
                 zIndex: 4,
                 transition: 'transform 0.25s ease, box-shadow 0.25s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translate(36px, -28px) scale(1.04)';
+                e.currentTarget.style.transform = 'translate(36px, -28px) rotate(4deg) scale(1.04)';
                 e.currentTarget.style.boxShadow = '0 32px 64px rgba(0,0,0,0.32), 0 12px 26px rgba(0,0,0,0.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translate(36px, -24px)';
+                e.currentTarget.style.transform = 'translate(36px, -24px) rotate(4deg)';
                 e.currentTarget.style.boxShadow = '0 25px 50px rgba(0,0,0,0.25), 0 10px 22px rgba(0,0,0,0.12)';
               }}
             >
-              <Box3D scale={1.2} spinning={true} />
+              <img 
+                src={cardsStackImg} 
+                alt="Fysieke stapel Schematherapie Theoriekaarten" 
+                style={{ width: '100%', height: 'auto', display: 'block' }} 
+              />
             </div>
           </div>
 
@@ -617,7 +627,7 @@ export default function OrderCards({ onBack }) {
                       <span style={{ fontSize: '0.82rem', color: '#64748b', display: 'block', marginBottom: '6px', fontWeight: '500' }}>
                         Aantal sets
                       </span>
-                      <div style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', borderRadius: '10px', border: '1px solid #cbd5e1', overflow: 'visible', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
+                      <div style={{ display: 'inline-flex', alignItems: 'center', background: 'white', borderRadius: '10px', border: '1px solid #cbd5e1', overflow: 'hidden', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
                         <button type="button" onClick={decreaseQuantity} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: '#0ea5e9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <Minus size={16} />
                         </button>
@@ -652,7 +662,7 @@ export default function OrderCards({ onBack }) {
                       required
                       value={orderName}
                       onChange={(e) => setOrderName(e.target.value)}
-                      style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '1rem', width: '100%', outline: 'none', background: 'transparent', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
+                      style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '1rem', width: '100%', outline: 'none', background: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
                     />
                   </div>
                   
@@ -664,7 +674,7 @@ export default function OrderCards({ onBack }) {
                       required
                       value={orderEmail}
                       onChange={(e) => setOrderEmail(e.target.value)}
-                      style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '1rem', width: '100%', outline: 'none', background: 'transparent', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
+                      style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '1rem', width: '100%', outline: 'none', background: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
                     />
                   </div>
 
@@ -677,7 +687,7 @@ export default function OrderCards({ onBack }) {
                         required
                         value={orderPostcode}
                         onChange={(e) => setOrderPostcode(e.target.value)}
-                        style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: `1px solid ${addressError ? '#ef4444' : '#cbd5e1'}`, fontSize: '1rem', width: '100%', outline: 'none', background: 'transparent', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
+                        style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: `1px solid ${addressError ? '#ef4444' : '#cbd5e1'}`, fontSize: '1rem', width: '100%', outline: 'none', background: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
                       />
                     </div>
                     <div style={{ flex: 1 }}>
@@ -689,14 +699,14 @@ export default function OrderCards({ onBack }) {
                           required
                           value={orderHuisnummer}
                           onChange={(e) => setOrderHuisnummer(e.target.value)}
-                          style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: `1px solid ${addressError ? '#ef4444' : '#cbd5e1'}`, fontSize: '1rem', width: '60%', outline: 'none', background: 'transparent', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
+                          style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: `1px solid ${addressError ? '#ef4444' : '#cbd5e1'}`, fontSize: '1rem', width: '60%', outline: 'none', background: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
                         />
                         <input 
                           type="text" 
                           placeholder="Toev" 
                           value={orderToevoeging}
                           onChange={(e) => setOrderToevoeging(e.target.value)}
-                          style={{ padding: '0.8rem 0.5rem', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '1rem', width: '40%', outline: 'none', background: 'transparent', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155', textAlign: 'center' }}
+                          style={{ padding: '0.8rem 0.5rem', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '1rem', width: '40%', outline: 'none', background: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155', textAlign: 'center' }}
                         />
                       </div>
                     </div>
@@ -718,7 +728,7 @@ export default function OrderCards({ onBack }) {
                       rows={3}
                       value={orderAddress}
                       onChange={(e) => setOrderAddress(e.target.value)}
-                      style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '1rem', width: '100%', resize: 'vertical', outline: 'none', fontFamily: 'inherit', background: 'transparent', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
+                      style={{ padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '1rem', width: '100%', resize: 'vertical', outline: 'none', fontFamily: 'inherit', background: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)', color: '#334155' }}
                     />
                   </div>
                 </div>
