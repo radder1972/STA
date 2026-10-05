@@ -39,21 +39,21 @@ export default function HeroCardFan({ isHovered }) {
               height: '115px',
               backgroundColor: 'white',
               borderRadius: '8px',
-              border: \`2px solid \${card.color}\`,
+              border: `2px solid ${card.color}`,
               boxShadow: isHovered 
                 ? '0 10px 25px rgba(0,0,0,0.1)' 
                 : '0 4px 10px rgba(0,0,0,0.05)',
               transformOrigin: 'bottom center',
               transform: isHovered 
-                ? \`translateX(\${hoverOffset}px) translateY(\${Math.abs(idx-2) * 5}px) rotate(\${hoverAngle}deg) scale(1.05)\`
-                : \`translateX(\${baseOffset}px) translateY(\${Math.abs(idx-2) * 2}px) rotate(\${baseAngle}deg) scale(1)\`,
+                ? `translateX(${hoverOffset}px) translateY(${Math.abs(idx-2) * 5}px) rotate(${hoverAngle}deg) scale(1.05)`
+                : `translateX(${baseOffset}px) translateY(${Math.abs(idx-2) * 2}px) rotate(${baseAngle}deg) scale(1)`,
               transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
               zIndex: idx,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               padding: '6px',
-              background: \`linear-gradient(135deg, white 0%, rgba(255,255,255,0.9) 100%)\`
+              background: `linear-gradient(135deg, white 0%, rgba(255,255,255,0.9) 100%)`
             }}
           >
             <div style={{ width: '100%', height: '40%', backgroundColor: card.color, borderRadius: '4px', opacity: 0.2 }} />

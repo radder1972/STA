@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import HeroCardFan from './HeroCardFan';
 import { Sparkle } from 'lucide-react';
 import { 
   ClipboardIcon, 
