@@ -1,15 +1,18 @@
 import React from 'react';
 import SchemaCard from './SchemaCard';
-import { basisbehoeftenData } from '../data/cards';
-import { getSchemaImage, getModeImage } from '../utils/images';
+import imgVeiligheid from '../assets/images/basisbehoeften/1.png';
+import imgGezondeVolwassene from '../assets/images/modes/gv.png';
+import imgMinderwaardigheid from '../assets/images/schemas/Defectiveness_unlovability.png';
+import imgVermijding from '../assets/images/modicategorieen/coping_vermijding.png';
+import imgKwetsbareKind from '../assets/images/modes/kk.png';
 
 export default function HeroCardFan({ isHovered }) {
   const cards = [
-    { type: 'need', title: 'Veiligheid & Verbinding', color: '#f59e0b', id: 'bb1', src: basisbehoeftenData[0]?.src },
-    { type: 'mode', title: 'Gezonde Volwassene', color: '#10b981', id: 'm14', src: getModeImage('14') },
-    { type: 'schema', title: 'Minderwaardigheid / Schaamte', color: '#0ea5e9', id: 's4', src: getSchemaImage('Minderwaardigheid _ Schaamte') || getSchemaImage('Minderwaardigheid') },
-    { type: 'coping', title: 'Vermijding', color: '#8b5cf6', id: 'c2', src: getModeImage('coping_vermijding') || getModeImage('3b') },
-    { type: 'mode', title: 'Kwetsbare kind', color: '#ef4444', id: 'm1', src: getModeImage('1') }
+    { type: 'need', title: 'Veiligheid & Verbinding', color: '#f59e0b', id: 'bb1', src: imgVeiligheid },
+    { type: 'mode', title: 'Gezonde Volwassene', color: '#10b981', id: 'm14', src: imgGezondeVolwassene },
+    { type: 'schema', title: 'Minderwaardigheid / Schaamte', color: '#0ea5e9', id: 's4', src: imgMinderwaardigheid },
+    { type: 'coping', title: 'Vermijding', color: '#8b5cf6', id: 'c2', src: imgVermijding },
+    { type: 'mode', title: 'Kwetsbare kind', color: '#ef4444', id: 'm1', src: imgKwetsbareKind }
   ];
 
   return (

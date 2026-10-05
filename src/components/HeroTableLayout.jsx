@@ -1,13 +1,16 @@
 import React from 'react';
 import SchemaCard from './SchemaCard';
-import { getModeImage } from '../utils/images';
+import imgStraffendeOuder from '../assets/images/modes/so.png';
+import imgOvergave from '../assets/images/modicategorieen/coping_overgave.png';
+import imgKwetsbareKind from '../assets/images/modes/kk.png';
+import imgGezondeVolwassene from '../assets/images/modes/gv.png';
 
 export default function HeroTableLayout({ isHovered }) {
   const cards = [
-    { type: 'mode', title: 'Straffende Ouder', color: '#ef4444', id: 'm12', src: getModeImage('12'), base: {x: 0, y: 15}, hover: {x: -55, y: -45} }, 
-    { type: 'coping', title: 'Overgave', color: '#8b5cf6', id: 'c1', src: getModeImage('coping_overgave') || getModeImage('3a'), base: {x: 0, y: 20}, hover: {x: 55, y: -45} }, 
-    { type: 'mode', title: 'Kwetsbare kind', color: '#f59e0b', id: 'm1', src: getModeImage('1'), base: {x: 0, y: 25}, hover: {x: 0, y: -10} },    
-    { type: 'mode', title: 'Gezonde Volwassene', color: '#10b981', id: 'm14', src: getModeImage('14'), base: {x: 0, y: 30}, hover: {x: 0, y: 50} }       
+    { type: 'mode', title: 'Straffende Ouder', color: '#ef4444', id: 'm12', src: imgStraffendeOuder, base: {x: 0, y: 15}, hover: {x: -55, y: -45} }, 
+    { type: 'coping', title: 'Overgave', color: '#8b5cf6', id: 'c1', src: imgOvergave, base: {x: 0, y: 20}, hover: {x: 55, y: -45} }, 
+    { type: 'mode', title: 'Kwetsbare kind', color: '#f59e0b', id: 'm1', src: imgKwetsbareKind, base: {x: 0, y: 25}, hover: {x: 0, y: -10} },    
+    { type: 'mode', title: 'Gezonde Volwassene', color: '#10b981', id: 'm14', src: imgGezondeVolwassene, base: {x: 0, y: 30}, hover: {x: 0, y: 50} }       
   ];
 
   return (
