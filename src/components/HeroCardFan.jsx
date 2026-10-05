@@ -1,17 +1,16 @@
 import React from 'react';
 import SchemaCard from './SchemaCard';
-import { 
-  vstBasisbehoeftenData,
-  vstSchemaData,
-  vstModiData,
-  vstCopingData 
-} from '../data/cards';
-
-const allData = [...vstBasisbehoeftenData, ...vstSchemaData, ...vstModiData, ...vstCopingData];
+import { basisbehoeftenData } from '../data/cards';
+import { getSchemaImage, getModeImage } from '../utils/images';
 
 export default function HeroCardFan({ isHovered }) {
-  const cardIds = ['n1', 'm14', 's4', 'c2', 'm1'];
-  const cards = cardIds.map(id => allData.find(c => c.id === id)).filter(Boolean);
+  const cards = [
+    { type: 'need', title: 'Veiligheid & Verbinding', color: '#f59e0b', id: 'bb1', src: basisbehoeftenData[0]?.src },
+    { type: 'mode', title: 'Gezonde Volwassene', color: '#10b981', id: 'm14', src: getModeImage('14') },
+    { type: 'schema', title: 'Minderwaardigheid / Schaamte', color: '#0ea5e9', id: 's4', src: getSchemaImage('Minderwaardigheid _ Schaamte') || getSchemaImage('Minderwaardigheid') },
+    { type: 'coping', title: 'Vermijding', color: '#8b5cf6', id: 'c2', src: getModeImage('coping_vermijding') || getModeImage('3b') },
+    { type: 'mode', title: 'Kwetsbare kind', color: '#ef4444', id: 'm1', src: getModeImage('1') }
+  ];
 
   return (
     <div style={{ 
@@ -39,8 +38,7 @@ export default function HeroCardFan({ isHovered }) {
                 borderRadius: '8px'
              }}>
                <SchemaCard 
-                  id={card.id} type={card.type || (card.id.startsWith('n') ? 'need' : card.id.startsWith('m') ? 'mode' : card.id.startsWith('c') ? 'coping' : 'schema')} 
-                  title={card.title} color={card.color} src={card.src}
+                  id={card.id} type={card.type} title={card.title} color={card.color} src={card.src}
                   width="110px" height="155px" flipOnClick={false} zoomOnClick={false} isInteractive={false}
                />
              </div>
