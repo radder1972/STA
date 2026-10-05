@@ -7,9 +7,9 @@ import imgBlijeKind from '../assets/images/vst/blije_kind.png';
 
 export default function HeroTableLayout({ isHovered }) {
   const cards = [
-    { type: 'mode', title: 'Straffende Ouder', color: '#ef4444', id: 'm12', src: imgStraffendeOuder, imageStyle: { transform: 'scale(1.1)' }, base: {x: -6, y: 22, r: -15}, hover: {x: -60, y: -35, r: -12} }, 
-    { type: 'modicategorie', title: 'Coping: Overgave', color: '#8b5cf6', id: 'c1', src: imgOvergave, imageStyle: { transform: 'scale(0.85)' }, base: {x: 8, y: 19, r: 10}, hover: {x: 60, y: -35, r: 12} }, 
-    { type: 'mode', title: 'Blije Kind', color: '#10b981', id: 'm4', src: imgBlijeKind, imageStyle: { transform: 'scale(1.1)' }, base: {x: -2, y: 16, r: -4}, hover: {x: 0, y: 45, r: 0} }    
+    { type: 'mode', title: 'Straffende Ouder', color: '#ef4444', id: 'm12', src: imgStraffendeOuder, imageStyle: { transform: 'scale(1.1)' }, base: {x: -16, y: 26, r: -20}, hover: {x: -60, y: -35, r: -12} }, 
+    { type: 'modicategorie', title: 'Coping: Overgave', color: '#8b5cf6', id: 'c1', src: imgOvergave, imageStyle: { transform: 'scale(0.85)' }, base: {x: 16, y: 20, r: 20}, hover: {x: 60, y: -35, r: 12} }, 
+    { type: 'mode', title: 'Blije Kind', color: '#10b981', id: 'm4', src: imgBlijeKind, imageStyle: { transform: 'scale(1.1)' }, base: {x: 0, y: 12, r: 0}, hover: {x: 0, y: 45, r: 0} }    
   ];
 
   return (
@@ -51,7 +51,7 @@ export default function HeroTableLayout({ isHovered }) {
           <div style={{
              position: 'relative',
              pointerEvents: 'none', width: '100%', height: '100%', 
-             boxShadow: isHovered ? `0 15px 35px \${card.color}50` : '0 6px 15px rgba(0,0,0,0.15)',
+             boxShadow: isHovered ? `0 15px 35px \${card.color}50` : '0 3px 10px rgba(0,0,0,0.25), 0 0 1px rgba(0,0,0,0.3)',
              borderRadius: '8px',
              filter: isHovered ? 'none' : 'grayscale(1) sepia(0.2) hue-rotate(100deg) saturate(1.2) brightness(0.98)',
              transition: 'filter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
