@@ -1,13 +1,14 @@
 import React from 'react';
+import SchemaCard from './SchemaCard';
 
 export default function HeroCardFan({ isHovered }) {
-  // Realistic schema therapy cards representations
+  // We use real SchemaCard props
   const cards = [
-    { color: '#f59e0b', cat: 'BEHOEFTE', title: 'Verbinding' },
-    { color: '#10b981', cat: 'MODUS', title: 'Gezonde\nVolwassene' },
-    { color: '#0ea5e9', cat: 'SCHEMA', title: 'Minder-\nwaardigheid' },
-    { color: '#8b5cf6', cat: 'COPING', title: 'Vermijding' },
-    { color: '#f43f5e', cat: 'MODUS', title: 'Kwetsbare\nKind' }
+    { type: 'need', title: 'Veiligheid & Verbinding', color: '#f59e0b', id: 'n1' },
+    { type: 'mode', title: 'Gezonde Volwassene', color: '#10b981', id: 'm14' },
+    { type: 'schema', title: 'Minderwaardigheid / Schaamte', color: '#0ea5e9', id: 's4' },
+    { type: 'coping', title: 'Vermijding', color: '#8b5cf6', id: 'c2' },
+    { type: 'mode', title: 'Kwetsbare kind', color: '#ef4444', id: 'm1' }
   ];
 
   return (
@@ -23,26 +24,23 @@ export default function HeroCardFan({ isHovered }) {
         
         return (
           <div key={idx} style={{
-            position: 'absolute', width: '80px', height: '115px', backgroundColor: 'white',
-            borderRadius: '6px', border: `2px solid ${card.color}`, overflow: 'hidden',
-            boxShadow: isHovered ? '0 10px 25px rgba(0,0,0,0.12)' : '0 4px 10px rgba(0,0,0,0.05)',
+            position: 'absolute', width: '110px', height: '155px',
             transformOrigin: 'bottom center',
             transform: isHovered 
-              ? `translateX(${hoverOffset}px) translateY(${Math.abs(idx-2) * 5}px) rotate(${hoverAngle}deg) scale(1.05)`
-              : `translateX(${baseOffset}px) translateY(${Math.abs(idx-2) * 2}px) rotate(${baseAngle}deg) scale(1)`,
-            transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)', zIndex: idx, display: 'flex', flexDirection: 'column'
+              ? `translateX(${hoverOffset}px) translateY(${Math.abs(idx-2) * 10 - 20}px) rotate(${hoverAngle}deg) scale(0.85)`
+              : `translateX(${baseOffset}px) translateY(${Math.abs(idx-2) * 5}px) rotate(${baseAngle}deg) scale(0.75)`,
+            transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)', zIndex: idx
           }}>
-            <div style={{ background: card.color, width: '100%', height: '40%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-               <span style={{ color: 'white', fontSize: '7px', fontWeight: 'bold', letterSpacing: '0.5px' }}>{card.cat}</span>
-            </div>
-            <div style={{ flex: 1, background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4px' }}>
-               <span style={{ color: 'var(--text-main)', fontSize: '9px', fontWeight: 'bold', textAlign: 'center', lineHeight: '1.2' }}>
-                 {card.title.split('\n').map((line, i) => <React.Fragment key={i}>{line}<br/></React.Fragment>)}
-               </span>
-            </div>
-            <div style={{ width: '100%', display: 'flex', justifyContent: 'center', paddingBottom: '4px' }}>
-               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--text-muted)', opacity: 0.2 }}></div>
-            </div>
+             <div style={{
+                pointerEvents: 'none', width: '100%', height: '100%', 
+                boxShadow: isHovered ? `0 15px 35px ${card.color}40` : '0 6px 15px rgba(0,0,0,0.15)',
+                borderRadius: '8px'
+             }}>
+               <SchemaCard 
+                  id={card.id} type={card.type} title={card.title} color={card.color}
+                  width="110px" height="155px" flipOnClick={false} zoomOnClick={false} isInteractive={false}
+               />
+             </div>
           </div>
         );
       })}
