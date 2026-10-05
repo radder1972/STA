@@ -89,6 +89,7 @@ export default function PrintProof() {
                 <line x1="0" y1="840" x2="150" y2="820" class="cut" />
                 <line x1="0" y1="0" x2="0" y2="840" class="cut" />
                 <text x="75" y="420" class="text-body" style="font-size:20px; opacity:0.5; text-anchor:middle;" transform="rotate(-90 75,420)">Plakrand</text>
+                <text x="75" y="750" class="text-body" textAnchor="middle" style={{ fontSize: "14px", opacity: 0.5}} transform="rotate(-90 75,750)">Versie 4.2.1</text>
                 
                 <rect x="150" y="0" width="180" height="840" class="fold" />
                 <path d="M 150,0 L 150,-100 L 290,-100 L 330,0 Z" class="cut" />
