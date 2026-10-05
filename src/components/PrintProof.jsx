@@ -60,7 +60,7 @@ export default function PrintProof() {
                 <style>
                   .cut { stroke: #ef4444; stroke-width: 3; fill: none; }
                   .fold { stroke: #3b82f6; stroke-width: 3; stroke-dasharray: 15,10; fill: none; }
-                  .bleed-bg { fill: #f0f9ff; }
+                  .bleed-bg { fill: #ffffff; }
                   .text-title { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 800; font-size: 60px; fill: #0f172a; text-anchor: middle; }
                   .text-sub { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 24px; fill: #0ea5e9; text-anchor: middle; letter-spacing: 2px; }
                   .text-body { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 24px; fill: #334155; }
