@@ -20,19 +20,19 @@ export default function HeroRadarChart({ isHovered }) {
          
          <polygon 
            points={isHovered ? "50,20 80,45 70,80 50,90 25,60 35,30" : "50,50 50,50 50,50 50,50 50,50 50,50"} 
-           fill="rgba(107, 114, 128, 0.15)" 
-           stroke="#6b7280" 
+           fill="rgba(14, 165, 233, 0.1)" 
+           stroke="#94a3b8" 
            strokeWidth="2"
            style={{ transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
          />
          
-         <g fill="#475569" style={{ transition: 'opacity 0.6s', opacity: isHovered ? 1 : 0 }}>
-           <circle cx="50" cy="20" r="3" />
-           <circle cx="80" cy="45" r="3" />
-           <circle cx="70" cy="80" r="3" />
-           <circle cx="50" cy="90" r="3" />
-           <circle cx="25" cy="60" r="3" />
-           <circle cx="35" cy="30" r="3" />
+         <g style={{ transition: 'opacity 0.6s', opacity: isHovered ? 1 : 0 }}>
+           <circle cx="50" cy="20" r="3.5" fill="#f59e0b" />
+           <circle cx="80" cy="45" r="3.5" fill="#10b981" />
+           <circle cx="70" cy="80" r="3.5" fill="#0ea5e9" />
+           <circle cx="50" cy="90" r="3.5" fill="#8b5cf6" />
+           <circle cx="25" cy="60" r="3.5" fill="#ef4444" />
+           <circle cx="35" cy="30" r="3.5" fill="#f43f5e" />
          </g>
        </svg>
     </div>
