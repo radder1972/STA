@@ -396,6 +396,9 @@ function App() {
       {currentView === 'order-cards' && (
         <OrderCards onBack={() => setCurrentView('game-portal')} />
       )}
+      {currentView === 'drukproef' && (
+        <PrintProof />
+      )}
       {currentView === 'about' && (
         <About initialTab="suite" onBack={() => setCurrentView('game-portal')} />
       )}
