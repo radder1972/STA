@@ -9,7 +9,7 @@ export default function AnimatedBox3D() {
         animation: 'spin 14s infinite linear'
       }}>
         <style>
-          {\`
+          {`
             @keyframes spin {
               0% { transform: rotateY(0deg) rotateX(-5deg); }
               100% { transform: rotateY(-360deg) rotateX(-5deg); }
@@ -30,7 +30,7 @@ export default function AnimatedBox3D() {
             .box-front { padding: 10px; background: #fff radial-gradient(circle at center, #f0f9ff 0%, #fff 100%); }
             .box-back { padding: 10px; }
             .spine-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 9px; color: #0ea5e9; font-weight: bold; letter-spacing: 0.5px; }
-          \`}
+          `}
         </style>
 
         {/* Front */}
