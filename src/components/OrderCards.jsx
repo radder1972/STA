@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon, ShoppingCartIcon } from './Icons';
 import { Plus, Minus, Check } from 'lucide-react';
 import SchemaCard from './SchemaCard';
-import Box3D from './Box3D';
+
 import { 
   ysqSchemaNamesMap, 
   smiModesMap, 
@@ -449,10 +449,7 @@ export default function OrderCards({ onBack }) {
             
             {/* Grote Productfoto buiten de box */}
             
-            {/* 3D Box naast de foto */}
-            <div style={{ flex: '0 0 150px', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 5, transform: 'translateX(20px)' }}>
-              <Box3D scale={0.9} spinning={true} />
-            </div>
+            
             
             <div 
               style={{ 
