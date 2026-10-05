@@ -226,6 +226,7 @@ function App() {
     else if (currentView === 'order-cards') { hash = 'bestel-kaarten' }
     else if (currentView === 'about') { hash = 'over' }
     else if (currentView === 'verantwoording') { hash = 'verantwoording'; window.scrollTo(0, 0) }
+    else if (currentView === 'drukproef') { hash = 'drukproef' }
     
     // Dynamic document title
     if (isHubApp) {
