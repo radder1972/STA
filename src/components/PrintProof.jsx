@@ -158,18 +158,10 @@ export default function PrintProof() {
                 <g transform="translate(1160, 0)">
                   <text x="325" y="150" class="text-sub" textAnchor="middle" style={{ fontSize: "28px"}}>55 Theoriekaarten</text>
                   
-                  <text x="325" y="240" class="text-body" textAnchor="middle" style={{ fontSize: "24px", fill: "#475569"}}>
-                    Een actuele en complete referentieset
-                  </text>
-                  <text x="325" y="280" class="text-body" textAnchor="middle" style={{ fontSize: "24px", fill: "#475569"}}>
-                    voor gebruik in de klinische praktijk.
-                  </text>
-                  <text x="325" y="340" class="text-body" textAnchor="middle" style={{ fontSize: "24px", fill: "#475569"}}>
-                    Volledig afgestemd op de herziene
-                  </text>
-                  <text x="325" y="380" class="text-body" textAnchor="middle" style={{ fontSize: "24px", fill: "#475569"}}>
-                    behandelrichtlijnen (VSt, Arntz et al. 2021).
-                  </text>
+                  <text x="325" y="240" class="text-body" textAnchor="middle" style={{ fontSize: "24px", fill: "#475569"}}>Een actuele en complete referentieset</text>
+                  <text x="325" y="280" class="text-body" textAnchor="middle" style={{ fontSize: "24px", fill: "#475569"}}>voor gebruik in de klinische praktijk.</text>
+                  <text x="325" y="340" class="text-body" textAnchor="middle" style={{ fontSize: "24px", fill: "#475569"}}>Volledig afgestemd op de herziene</text>
+                  <text x="325" y="380" class="text-body" textAnchor="middle" style={{ fontSize: "24px", fill: "#475569"}}>behandelrichtlijnen (VSt, Arntz et al. 2021).</text>
 
                   <g transform="translate(265, 480)">
                     <circle cx="0" cy="0" r="8" fill="#f59e0b" />
