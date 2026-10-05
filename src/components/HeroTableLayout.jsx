@@ -7,9 +7,9 @@ import imgBlijeKind from '../assets/images/vst/blije_kind.png';
 
 export default function HeroTableLayout({ isHovered }) {
   const cards = [
-    { type: 'mode', title: 'Straffende Ouder', color: '#ef4444', id: 'm12', src: imgStraffendeOuder, imageStyle: { transform: 'scale(1.1)' }, base: {x: -6, y: 8, r: -8}, hover: {x: -60, y: -35, r: -12} }, 
-    { type: 'modicategorie', title: 'Coping: Overgave', color: '#8b5cf6', id: 'c1', src: imgOvergave, imageStyle: { transform: 'scale(0.85)' }, base: {x: 8, y: 14, r: 6}, hover: {x: 60, y: -35, r: 12} }, 
-    { type: 'mode', title: 'Blije Kind', color: '#10b981', id: 'm4', src: imgBlijeKind, imageStyle: { transform: 'scale(1.1)' }, base: {x: -2, y: 20, r: -2}, hover: {x: 0, y: 45, r: 0} }    
+    { type: 'mode', title: 'Straffende Ouder', color: '#ef4444', id: 'm12', src: imgStraffendeOuder, imageStyle: { transform: 'scale(1.1)' }, base: {x: -6, y: 22, r: -15}, hover: {x: -60, y: -35, r: -12} }, 
+    { type: 'modicategorie', title: 'Coping: Overgave', color: '#8b5cf6', id: 'c1', src: imgOvergave, imageStyle: { transform: 'scale(0.85)' }, base: {x: 8, y: 19, r: 10}, hover: {x: 60, y: -35, r: 12} }, 
+    { type: 'mode', title: 'Blije Kind', color: '#10b981', id: 'm4', src: imgBlijeKind, imageStyle: { transform: 'scale(1.1)' }, base: {x: -2, y: 16, r: -4}, hover: {x: 0, y: 45, r: 0} }    
   ];
 
   return (
