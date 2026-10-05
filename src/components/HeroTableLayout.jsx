@@ -16,7 +16,8 @@ export default function HeroTableLayout({ isHovered }) {
   return (
     <div style={{ 
       position: 'relative', width: '100%', height: '140px', display: 'flex', 
-      justifyContent: 'center', alignItems: 'center', marginTop: '1rem', marginBottom: '1.5rem'
+      justifyContent: 'center', alignItems: 'center', marginTop: '1rem', marginBottom: '1.5rem',
+      transform: 'translateY(-10px)'
     }}>
       <div style={{
         position: 'absolute', width: '180px', height: '180px', borderRadius: '50%',
@@ -36,26 +37,15 @@ export default function HeroTableLayout({ isHovered }) {
           <div style={{
              position: 'relative',
              pointerEvents: 'none', width: '100%', height: '100%', 
-             boxShadow: isHovered ? `0 15px 35px ${card.color}60` : '0 10px 20px rgba(16, 185, 129, 0.25)',
-             borderRadius: '8px'
+             boxShadow: isHovered ? `0 15px 35px ${card.color}60` : '0 10px 20px rgba(16, 185, 129, 0.15)',
+             borderRadius: '8px',
+             filter: isHovered ? 'none' : 'grayscale(1) sepia(0.8) hue-rotate(100deg) saturate(2) brightness(0.95)',
+             transition: 'filter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
           }}>
             <SchemaCard 
                 id={card.id} type={card.type} title={card.title} color={card.color} src={card.src}
                 width="110px" height="155px" flipOnClick={false} zoomOnClick={false} isInteractive={false} imageStyle={card.imageStyle}
             />
-            {/* Green overlay for resting state */}
-            <div style={{
-              position: 'absolute', inset: 0, borderRadius: '8px',
-              backgroundColor: '#10b981', mixBlendMode: 'color',
-              opacity: isHovered ? 0 : 1, transition: 'opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
-              zIndex: 20
-            }} />
-            <div style={{
-              position: 'absolute', inset: 0, borderRadius: '8px',
-              backgroundColor: '#10b981',
-              opacity: isHovered ? 0 : 0.15, transition: 'opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
-              zIndex: 21
-            }} />
           </div>
         </div>
       ))}

@@ -50,7 +50,7 @@ export default function HeroRadarChart({ isHovered }) {
          }}>
              <polygon 
                points="50,20 80,45 70,80 50,90 25,60 35,30" 
-               fill={isHovered ? "rgba(14, 165, 233, 0.35)" : "rgba(148, 163, 184, 0.4)"} 
+               fill={isHovered ? "rgba(14, 165, 233, 0.35)" : "rgba(148, 163, 184, 0.25)"} 
                stroke={isHovered ? "#0284c7" : "#64748b"} 
                strokeWidth="2.5"
                style={{ transition: 'all 0.6s' }}
