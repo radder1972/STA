@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PrinterIcon } from './Icons';
+import { PrinterIcon, ThreeSparklesLogo } from './Icons';
 import { FileText, Maximize, Image as ImageIcon, Info, Files, Sparkles, Layers, Package } from 'lucide-react';
 import { getCardColor, CardInnerBorder } from '../utils/colors';
 import { schemaImages, modeImages } from '../utils/images';
