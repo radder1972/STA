@@ -17,7 +17,7 @@ export default function CornerCardFan({ isHovered }) {
     <div style={{
       position: 'absolute',
       right: '30px', 
-      top: '20px',
+      top: '45px',
       width: '0',
       height: '0',
       zIndex: 50,
