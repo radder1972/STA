@@ -353,7 +353,7 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
       height: 'auto'
     }}>
       {badgeElement}
-      <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "6px 16px", background: currentTheme.bg, border: `1px solid ${currentTheme.border}`, borderRadius: "20px", fontSize: "0.85rem", color: "var(--text-muted)", marginTop: "10px" }}>
+      <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "6px 16px", background: "#ffffff", border: `1px solid ${currentTheme.border}`, borderRadius: "20px", fontSize: "0.85rem", color: "var(--text-muted)", marginTop: "10px" }}>
         <ShieldIcon size={14} color={currentTheme.isGradient ? '#0284c7' : currentTheme.color} />
         <a href="index.html#verantwoording" style={{ color: "var(--text-muted)", textDecoration: "none", fontWeight: "400", transition: "color 0.2s" }} onMouseEnter={(e) => e.target.style.color = currentTheme.isGradient ? '#0284c7' : currentTheme.color} onMouseLeave={(e) => e.target.style.color = "var(--text-muted)"}>Onafhankelijk non-profit project</a> &bull; <a href="index.html#verantwoording" style={{ color: "var(--text-muted)", textDecoration: "none", fontWeight: "400", transition: "color 0.2s" }} onMouseEnter={(e) => e.target.style.color = currentTheme.isGradient ? '#0284c7' : currentTheme.color} onMouseLeave={(e) => e.target.style.color = "var(--text-muted)"}>Disclaimer & Verantwoording</a>
       </div>
