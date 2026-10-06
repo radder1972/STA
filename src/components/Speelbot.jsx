@@ -226,7 +226,7 @@ Houd je antwoorden kort, gespreksmatig en in het Nederlands. Gebruik GEEN sterre
         <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {activeCard && activeCard.src ? <img src={activeCard.src} style={{ width: '28px', height: '28px', objectFit: 'contain', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))' }} /> : <Bot size={26} />}
           <div style={{ position: 'absolute', top: '-6px', right: '-10px' }}>
-            <Sparkles size={14} fill="white" />
+            <ThreeSparklesLogo size={16} theme="white" />
           </div>
         </div>
         <span style={{ fontWeight: '600', fontSize: '1.05rem', letterSpacing: '0.5px' }}>Oefen met AI</span>
