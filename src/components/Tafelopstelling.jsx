@@ -1837,6 +1837,15 @@ Geef een gestructureerde ketenanalyse van deze modus-cyclus. Leg objectief uit h
           </div>
         </div>
       )}
+    
+      {/* Speelbot Widget */}
+      <Speelbot 
+        situationText={situationText}
+        selectedMode={selectedMode}
+        selectedSchema={selectedSchema}
+        selectedNeed={selectedNeed}
+        selectedUnmetNeed={selectedUnmetNeed}
+      />
     </div>
   );
 }
