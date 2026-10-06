@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowLeftIcon, PrinterIcon } from './Icons';
+import { ArrowLeftIcon, PrinterIcon, ThreeSparklesLogo } from './Icons';
 import { FileText, Maximize, Image as ImageIcon, Info, Sparkles, Layers, Package } from 'lucide-react';
 import { getCardColor, CardInnerBorder } from '../utils/colors';
 import { schemaImages, modeImages } from '../utils/images';
@@ -436,13 +436,49 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                         fontWeight: 'normal', 
                         lineHeight: descLineHeight, 
                         color: '#111', 
-                        margin: '0', 
+                        margin: '0',
+                        paddingBottom: '6mm', 
                         textAlign: 'center', 
                         flexShrink: 0, 
                         zIndex: 1 
                       }}>
                         {card.description}
                       </div>
+
+                      <div style={{
+                        position: 'absolute',
+                        bottom: '3mm',
+                        left: 0,
+                        right: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 1
+                      }}>
+                        <div style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '3px',
+                          background: '#f4f4f5',
+                          border: '1px solid #e4e4e7',
+                          borderRadius: '999px',
+                          padding: '2px 5px',
+                          WebkitPrintColorAdjust: 'exact',
+                          printColorAdjust: 'exact'
+                        }}>
+                          <ThreeSparklesLogo size={8} theme="test" />
+                          <span style={{ 
+                            fontSize: '0.4rem', 
+                            fontWeight: 700, 
+                            color: '#52525b',
+                            lineHeight: 1,
+                            letterSpacing: '-0.2px',
+                            WebkitPrintColorAdjust: 'exact',
+                            printColorAdjust: 'exact'
+                          }}>Digitaal Schematherapie Platform</span>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
