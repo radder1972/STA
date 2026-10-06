@@ -9,15 +9,15 @@ import imgVeiligheid from '../assets/images/basisbehoeften/1.png';
 export default function CornerCardFan({ isHovered }) {
   const cards = [
     { type: 'schema', title: 'Wantrouwen / Misbruik', color: '#0ea5e9', id: 's2', src: imgWantrouwen, imageStyle: { transform: 'scale(1)' } },
-    { type: 'need', title: 'Veiligheid & Verbinding', color: '#f59e0b', id: 'bb1', src: imgVeiligheid, imageStyle: { transform: 'scale(0.85)' } },
+    { type: 'need', title: 'Veiligheid & Verbinding', color: '#f59e0b', id: 'bb1', src: imgVeiligheid, imageStyle: { transform: 'scale(1)' } },
     { type: 'mode', title: 'Blije Kind', color: '#10b981', id: 'm4', src: imgBlijeKind, imageStyle: { transform: 'scale(1.1)' } }
   ];
 
   return (
     <div style={{
       position: 'absolute',
-      right: '120px', 
-      top: '-40px',
+      right: '30px', 
+      top: '100px',
       width: '0',
       height: '0',
       zIndex: 50,
@@ -39,7 +39,7 @@ export default function CornerCardFan({ isHovered }) {
             position: 'absolute', width: '110px', height: '155px',
             transformOrigin: 'bottom right',
             transform: isHovered 
-              ? `translateX(${hoverOffset - 110}px) translateY(${hoverY - 155}px) rotate(${hoverAngle}deg) scale(0.95)`
+              ? `translateX(${hoverOffset - 110}px) translateY(${hoverY - 155}px) rotate(${hoverAngle}deg) scale(1.15)`
               : `translateX(${baseOffset - 110}px) translateY(${-155}px) rotate(${baseAngle}deg) scale(0.85)`,
             transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)', zIndex: idx
           }}>
