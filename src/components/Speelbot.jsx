@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Bot, X, Send, User, Sparkles, MessageSquare } from 'lucide-react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { ThreeSparklesLogo } from './Icons';
 
 const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, selectedUnmetNeed }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -106,7 +107,7 @@ Houd je antwoorden kort, krachtig en in het Nederlands. Speel echt in op de kaar
           width: '60px',
           height: '60px',
           borderRadius: '30px',
-          background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
+          background: 'linear-gradient(135deg, #475569 0%, #0284c7 50%, #059669 100%)',
           color: 'white',
           border: 'none',
           boxShadow: '0 8px 25px rgba(59, 130, 246, 0.4)',
@@ -121,7 +122,14 @@ Houd je antwoorden kort, krachtig en in het Nederlands. Speel echt in op de kaar
         onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
         title="Speelbot Openen"
       >
-        <Bot size={30} />
+        
+        <div style={{ position: 'relative' }}>
+          <Bot size={30} />
+          <div style={{ position: 'absolute', top: '-6px', right: '-10px' }}>
+            <ThreeSparklesLogo size={12} theme="white" />
+          </div>
+        </div>
+
       </button>
     );
   }
@@ -144,7 +152,7 @@ Houd je antwoorden kort, krachtig en in het Nederlands. Speel echt in op de kaar
     }}>
       {/* Header */}
       <div style={{
-        background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
+        background: 'linear-gradient(135deg, #475569 0%, #0284c7 50%, #059669 100%)',
         padding: '16px',
         display: 'flex',
         alignItems: 'center',
@@ -152,8 +160,11 @@ Houd je antwoorden kort, krachtig en in het Nederlands. Speel echt in op de kaar
         color: 'white'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ background: 'rgba(255,255,255,0.2)', padding: '6px', borderRadius: '50%' }}>
+          <div style={{ position: 'relative', background: 'rgba(255,255,255,0.2)', padding: '6px', borderRadius: '50%' }}>
             <Bot size={22} />
+            <div style={{ position: 'absolute', top: '-4px', right: '-8px' }}>
+              <ThreeSparklesLogo size={10} theme="white" />
+            </div>
           </div>
           <div>
             <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700 }}>Speelbot</h3>
@@ -199,7 +210,7 @@ Houd je antwoorden kort, krachtig en in het Nederlands. Speel echt in op de kaar
               {msg.role === 'user' ? 'Jij' : 'Speelbot'}
             </div>
             <div style={{
-              background: msg.role === 'user' ? '#3b82f6' : 'var(--card-bg)',
+              background: msg.role === 'user' ? '#0284c7' : 'var(--card-bg)',
               color: msg.role === 'user' ? 'white' : 'var(--text-main)',
               padding: '10px 14px',
               borderRadius: '14px',
@@ -256,7 +267,7 @@ Houd je antwoorden kort, krachtig en in het Nederlands. Speel echt in op de kaar
             width: '44px',
             height: '44px',
             borderRadius: '22px',
-            background: (isLoading || !inputText.trim()) ? 'var(--border-color)' : '#3b82f6',
+            background: (isLoading || !inputText.trim()) ? 'var(--border-color)' : '#0284c7',
             color: 'white',
             border: 'none',
             display: 'flex',
