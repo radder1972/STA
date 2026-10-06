@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FileTextIcon, PrinterIcon, CardsIcon, ShoppingCartIcon, InfoIcon } from './Icons';
 import { Sparkles } from "lucide-react";
 import { ThreeSparklesLogo } from "./Icons";
+import OrderBoxAnimation from "./OrderBoxAnimation";
+
 
 export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, onViewPrintShop, onViewOrderCards, onViewAbout }) {
+  const [isHoveredOrder, setIsHoveredOrder] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -104,9 +108,9 @@ export default function GamePortal({ onViewKaartenOverzicht, onViewGameRules, on
 
         {/* Optie 3: Werkvormen & Spelvormen */}
         {/* Optie 2: Fysieke Kaarten Bestellen (Accentuated) */}
-        <div className="inner-box" style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', background: 'linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 247, 237, 0.8))', border: '1px solid rgba(234, 88, 12, 0.3)', boxShadow: '0 8px 30px rgba(234, 88, 12, 0.1)' }}>
+        <div className="inner-box" onMouseEnter={() => setIsHoveredOrder(true)} onMouseLeave={() => setIsHoveredOrder(false)} style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', background: 'linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 247, 237, 0.8))', border: '1px solid rgba(234, 88, 12, 0.3)', boxShadow: '0 8px 30px rgba(234, 88, 12, 0.1)' }}>
           <div style={{ padding: '1rem', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(234, 88, 12, 0.15) 100%)', borderRadius: '16px', color: '#ea580c', border: '1px solid rgba(234, 88, 12, 0.3)' }}>
-            <ShoppingCartIcon size={32} />
+            <OrderBoxAnimation isHovered={isHoveredOrder} />
           </div>
           <div style={{ flex: 1 }}>
             <h2 className="box-heading" style={{ marginBottom: '0.5rem', color: '#ea580c' }}>Fysieke Kaarten Bestellen</h2>
