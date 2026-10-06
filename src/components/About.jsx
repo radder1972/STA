@@ -363,6 +363,7 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
                   height="255px"
                   flipOnClick={true}
                   flipOnHover={false}
+                  imageStyle={{ transform: 'scale(1.0)' }}
                 />
               </div>
             </div>
