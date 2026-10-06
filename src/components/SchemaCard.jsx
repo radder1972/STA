@@ -681,19 +681,22 @@ const SchemaCard = ({
                   display: 'flex',
                   alignItems: 'center',
                   gap: `${3 * scaleRatio}px`,
-                  background: 'rgba(0, 0, 0, 0.03)',
-                  border: '1px solid rgba(0, 0, 0, 0.08)',
+                  background: '#f4f4f5',
+                  border: '1px solid #e4e4e7',
                   borderRadius: '999px',
                   padding: `${1.5 * scaleRatio}px ${5 * scaleRatio}px`,
-                  opacity: 0.85
+                  WebkitPrintColorAdjust: 'exact',
+                  printColorAdjust: 'exact'
                 }}>
-                  <ThreeSparklesLogo size={7 * scaleRatio} color="black" />
+                  <ThreeSparklesLogo size={7 * scaleRatio} theme="test" />
                   <span style={{ 
                     fontSize: `${0.34 * scaleRatio}rem`, 
                     fontWeight: 700, 
-                    color: 'rgba(0,0,0,0.65)',
+                    color: '#52525b',
                     lineHeight: 1,
-                    letterSpacing: '-0.2px'
+                    letterSpacing: '-0.2px',
+                    WebkitPrintColorAdjust: 'exact',
+                    printColorAdjust: 'exact'
                   }}>Digitaal Schematherapie Platform</span>
                 </div>
               </div>
