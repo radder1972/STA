@@ -69,6 +69,7 @@ import smiScoring from '../data/smi-scoring.json';
 import { schemaDescriptions } from '../data/descriptions';
 import { getCardColor, CardInnerBorder } from '../utils/colors';
 import SchemaCard from './SchemaCard';
+import Speelbot from './Speelbot';
 
 import imgB1 from '../assets/images/basisbehoeften/1.png';
 import imgB2 from '../assets/images/basisbehoeften/2.png';
