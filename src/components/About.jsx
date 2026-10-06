@@ -5,6 +5,9 @@ import imgSanne from '../assets/images/team/sanne.jpg';
 import imgJeroen from '../assets/images/team/jeroen.jpg';
 import imgMatthias from '../assets/images/team/matthias.jpg';
 import { Bot } from 'lucide-react';
+import SchemaCard from './SchemaCard';
+import imgBlijeKind from '../assets/images/vst/blije_kind.png';
+import { schemaDescriptions } from '../data/descriptions';
 // Gedeelde 'Over'-pagina voor de hele suite (Kaarten, Tafelopstelling, Hub en Vragenlijsten).
 // theme: 'game' (Kaarten, blauw), 'tafel' (groen), 'test' (Vragenlijsten, leisteen) of 'hub' (Suite, verloop)
 // showBadge: toon bovenaan het platformlabel (DSP-banner) dat terugleidt naar het platform; voor apps zonder menubalk
@@ -340,9 +343,29 @@ export default function About({ onBack, initialTab = 'suite', theme = 'game', sh
             </div>
 
             <h3 style={{ color: '#0f172a', fontSize: '1.5rem', marginTop: 0, marginBottom: '1rem' }}>Waarom altijd naar de Gezonde Volwassene toe?</h3>
-            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.5rem 0' }}>
-              De opstelling is geen diagnosekaart maar een route. Begrijpen welke modus actief is, is nuttig als het uiteindelijk helpt om een andere keuze te maken. Daarom eindigt de opstelling bij de vraag wat de Gezonde Volwassene hier zou doen.
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1rem 0' }}>
+              De opstelling is geen diagnosekaart maar een route. Begrijpen welke modus actief is, is nuttig als het uiteindelijk helpt om een andere keuze te maken. Vaak betekent dit de regie terugpakken met de Gezonde Volwassene.
             </p>
+            <p style={{ color: '#475569', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 0 1.5rem 0' }}>
+              Maar let op: je mag natuurlijk ook naar het <strong>Blije Kind</strong> toe! Als de basisbehoeften zijn vervuld en het Blije Kind aan het roer staat, hoeft de Gezonde Volwassene even helemaal niks te doen. Ga lekker spelen!
+            </p>
+            
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem', marginTop: '1rem' }}>
+              <div style={{ transform: 'rotate(-2deg)', transition: 'transform 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(1deg) scale(1.05)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(-2deg)'}>
+                <SchemaCard 
+                  id="blije_kind"
+                  type="mode"
+                  title="Blije kind"
+                  description={schemaDescriptions['Blije kind'] || 'Zorgeloos, speels en in het hier en nu. De basisbehoeften zijn vervuld.'}
+                  src={imgBlijeKind}
+                  color="#10b981"
+                  width="180px"
+                  height="255px"
+                  flipOnClick={true}
+                  flipOnHover={false}
+                />
+              </div>
+            </div>
 
             <div style={{ marginTop: '1rem', padding: '1.5rem', background: '#ecfdf5', borderRadius: '0 12px 12px 0', borderLeft: '4px solid #10b981' }}>
               <h3 style={{ color: '#065f46', fontSize: '1.15rem', marginTop: 0, marginBottom: '0.75rem' }}>
