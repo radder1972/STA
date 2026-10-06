@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Bot, X, Send, User, Sparkles, MessageSquare } from 'lucide-react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ThreeSparklesLogo } from './Icons';
+import SparkleEffect from './SparkleEffect';
 
 const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, selectedUnmetNeed }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +10,7 @@ const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, s
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [apiKey, setApiKey] = useState('');
+  const [isHovered, setIsHovered] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -118,16 +120,24 @@ Houd je antwoorden kort, krachtig en in het Nederlands. Speel echt in op de kaar
           zIndex: 9999,
           transition: 'transform 0.2s',
         }}
-        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.08)'}
-        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+        onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.08)'; setIsHovered(true); }}
+        onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; setIsHovered(false); }}
         title="Speelbot Openen"
       >
         
-        <div style={{ position: 'relative' }}>
-          <Bot size={30} />
-          <div style={{ position: 'absolute', top: '-6px', right: '-10px' }}>
-            <ThreeSparklesLogo size={12} theme="white" />
-          </div>
+        <Bot size={30} />
+        {isHovered && <SparkleEffect count={8} />}
+        
+        {/* Grotere sterren die voor de helft buiten de knop vallen */}
+        <div style={{ 
+          position: 'absolute', 
+          top: '-8px', 
+          right: '-12px',
+          filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
+          transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
+          transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+        }}>
+          <ThreeSparklesLogo size={22} theme="white" />
         </div>
 
       </button>
@@ -162,8 +172,8 @@ Houd je antwoorden kort, krachtig en in het Nederlands. Speel echt in op de kaar
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{ position: 'relative', background: 'rgba(255,255,255,0.2)', padding: '6px', borderRadius: '50%' }}>
             <Bot size={22} />
-            <div style={{ position: 'absolute', top: '-4px', right: '-8px' }}>
-              <ThreeSparklesLogo size={10} theme="white" />
+            <div style={{ position: 'absolute', top: '-6px', right: '-10px', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.2))' }}>
+              <ThreeSparklesLogo size={16} theme="white" />
             </div>
           </div>
           <div>
