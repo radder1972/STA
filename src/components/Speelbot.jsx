@@ -63,7 +63,7 @@ Je kunt twee dingen doen:
 1. Rollenspel: Speel de cliënt vanuit de actieve modus (bijv. als het 'Boze Kind' op tafel ligt, reageer dan boos/gefrustreerd op de therapeut).
 2. Meedenken: Geef advies over de tafelopstelling als de therapeut daar om vraagt.
 
-Houd je antwoorden kort, krachtig en in het Nederlands. Speel echt in op de kaarten die op tafel liggen!
+Houd je antwoorden kort, gespreksmatig en in het Nederlands. Speel echt in op de kaarten die op tafel liggen! BELANGRIJK: Gebruik GEEN sterretjes (*) of markdown-opmaak in je tekst. Als je in een rollenspel een handeling beschrijft, gebruik dan blokhaken, bijvoorbeeld: [zucht diep].
 `;
 
       const history = newMessages.map(msg => ({
@@ -80,7 +80,8 @@ Houd je antwoorden kort, krachtig en in het Nederlands. Speel echt in op de kaar
       });
 
       const result = await chat.sendMessage(newMessages[newMessages.length - 1].text);
-      const responseText = await result.response.text();
+      let responseText = await result.response.text();
+      responseText = responseText.replace(/\*/g, ''); // Strip asterisks if the AI ignores the prompt
 
       setMessages([...newMessages, { role: 'model', text: responseText }]);
     } catch (err) {
