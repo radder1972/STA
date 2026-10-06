@@ -69,7 +69,7 @@ export default function StartHub() {
         {/* Optie 1: Vragenlijsten & Zelftest */}
         <div 
           className="glass-panel" 
-          onClick={() => window.location.href = '/test'}
+          onClick={() => window.location.href = 'test.html'}
           onMouseEnter={() => setHoveredCard('test')}
           onMouseLeave={() => setHoveredCard('kaarten')}
           style={{
@@ -229,7 +229,7 @@ export default function StartHub() {
         {/* Optie 2: Kaarten */}
         <div 
           className="glass-panel" 
-          onClick={() => window.location.href = '/kaarten'}
+          onClick={() => window.location.href = 'kaarten.html'}
           onMouseEnter={() => setHoveredCard('kaarten')}
           onMouseLeave={() => setHoveredCard('kaarten')}
           style={{
@@ -397,7 +397,7 @@ export default function StartHub() {
         {/* Optie 3: Tafelopstelling */}
         <div 
           className="glass-panel" 
-          onClick={() => window.location.href = '/tafel'}
+          onClick={() => window.location.href = 'tafel.html'}
           onMouseEnter={() => setHoveredCard('tafel')}
           onMouseLeave={() => setHoveredCard('kaarten')}
           style={{
