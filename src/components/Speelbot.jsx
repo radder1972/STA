@@ -3,6 +3,8 @@ import { Bot, X, Send, User, Sparkles, MessageSquare, Plus } from 'lucide-react'
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ThreeSparklesLogo } from './Icons';
 import SparkleEffect from './SparkleEffect';
+import SchemaCard from './SchemaCard';
+import { getCardColor } from '../utils/colors';
 
 const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, selectedUnmetNeed }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -277,21 +279,32 @@ Houd je antwoorden kort, gespreksmatig en in het Nederlands. Gebruik GEEN sterre
               {msg.role === 'user' ? 'Jij' : 'Speelbot'}
             </div>
             <div style={{
-              background: msg.role === 'user' ? '#0284c7' : 'var(--card-bg)',
+              background: msg.type === 'card' ? 'transparent' : (msg.role === 'user' ? '#0284c7' : 'var(--card-bg)'),
               color: msg.role === 'user' ? 'white' : 'var(--text-main)',
-              padding: '10px 14px',
+              padding: msg.type === 'card' ? '0' : '10px 14px',
               borderRadius: '14px',
               borderBottomRightRadius: msg.role === 'user' ? '4px' : '14px',
               borderBottomLeftRadius: msg.role === 'model' ? '4px' : '14px',
-              boxShadow: '0 2px 5px rgba(0,0,0,0.05)',
+              boxShadow: msg.type === 'card' ? 'none' : '0 2px 5px rgba(0,0,0,0.05)',
               fontSize: '0.9rem',
               lineHeight: 1.4,
-              border: msg.role === 'model' ? '1px solid var(--border-color)' : 'none'
+              border: (msg.role === 'model' && msg.type !== 'card') ? '1px solid var(--border-color)' : 'none'
             }}>
               {msg.type === 'card' ? (
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                  <img src={msg.card.src} alt={msg.card.title} style={{ width: '80px', borderRadius: '4px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }} />
-                  <span style={{ fontSize: '0.8rem', fontWeight: 600 }}>{msg.card.title}</span>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '4px 0' }}>
+                  <div style={{ pointerEvents: 'auto' }}>
+                    <SchemaCard 
+                      id={msg.card.id}
+                      type={msg.card.type}
+                      title={msg.card.title}
+                      description={msg.card.description}
+                      src={msg.card.src}
+                      color={getCardColor(msg.card.type, msg.card.id, msg.card.title)}
+                      width="100px"
+                      height="142px"
+                      flipOnClick={true}
+                    />
+                  </div>
                 </div>
               ) : (
                 msg.text
