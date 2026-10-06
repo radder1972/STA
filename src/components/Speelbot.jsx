@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Bot, X, Send, User, Sparkles, MessageSquare, Plus } from 'lucide-react';
+import { Bot, X, Send, User, Sparkles, MessageSquare, Plus, Mic } from 'lucide-react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ThreeSparklesLogo } from './Icons';
 import SparkleEffect from './SparkleEffect';
@@ -15,6 +15,7 @@ const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, s
   const activeCard = selectedMode || selectedSchema || selectedNeed;
   const [isHovered, setIsHovered] = useState(false);
   const [showAttachMenu, setShowAttachMenu] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -37,6 +38,43 @@ const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, s
       }]);
     }
   }, [isOpen, messages.length]);
+
+  
+  const startListening = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Spraakherkenning wordt helaas niet ondersteund in deze browser. Gebruik Google Chrome.");
+      return;
+    }
+    
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'nl-NL';
+    recognition.interimResults = true;
+    recognition.continuous = false;
+    
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+    
+    recognition.onresult = (event) => {
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        if (event.results[i].isFinal) {
+          setInputText(prev => prev + (prev.length > 0 ? ' ' : '') + event.results[i][0].transcript);
+        }
+      }
+    };
+    
+    recognition.onerror = (event) => {
+      console.error("Speech error", event);
+      setIsListening(false);
+    };
+    
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+    
+    recognition.start();
+  };
 
   const handleSend = async () => {
     if (!inputText.trim()) return;
@@ -387,11 +425,32 @@ Houd je antwoorden kort, gespreksmatig en in het Nederlands. Gebruik GEEN sterre
           <Plus size={20} />
         </button>
 
+        <button
+          onClick={isListening ? undefined : startListening}
+          title="Spraakgestuurd typen"
+          style={{
+            width: '44px',
+            height: '44px',
+            borderRadius: '22px',
+            background: isListening ? 'rgba(239, 68, 68, 0.1)' : 'transparent',
+            color: isListening ? '#ef4444' : 'var(--text-muted)',
+            border: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            flexShrink: 0,
+            transition: 'all 0.2s',
+            animation: 'none'
+          }}
+        >
+          <Mic size={20} />
+        </button>
         <textarea
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Zeg iets tegen de cliënt..."
+          placeholder={isListening ? "Aan het luisteren..." : "Zeg iets tegen de cliënt..."}
           style={{
             flex: 1,
             padding: '10px 14px',
