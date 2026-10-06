@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { CardInnerBorder } from '../utils/colors';
-import { PlayingCardsIcon } from './Icons';
+import { PlayingCardsIcon, ThreeSparklesLogo } from './Icons';
 import { Sparkle } from 'lucide-react';
 
 export const formatCardTitle = (title) => {
@@ -650,7 +650,7 @@ const SchemaCard = ({
                 lineHeight: '1.35', 
                 color: '#111', 
                 margin: 0, 
-                padding: `0 0 ${(8 / 58) * widthNum}px 0`,
+                padding: `0 0 ${(12 / 58) * widthNum}px 0`,
                 textAlign: 'center', 
                 flex: 1, 
                 width: '100%',
@@ -665,6 +665,30 @@ const SchemaCard = ({
               }}>
                 {descText}
               </div>
+
+              {/* DSP Branding Footer */}
+              <div style={{
+                position: 'absolute',
+                bottom: `${(3 / 58) * widthNum}px`,
+                left: 0,
+                right: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: `${2 * scaleRatio}px`,
+                opacity: 0.35,
+                zIndex: 1
+              }}>
+                <ThreeSparklesLogo size={10 * scaleRatio} color="black" />
+                <span style={{ 
+                  fontSize: `${0.45 * scaleRatio}rem`, 
+                  fontWeight: 900, 
+                  letterSpacing: '0.8px', 
+                  color: 'black',
+                  lineHeight: 1
+                }}>DSP</span>
+              </div>
+
             </div>
           </div>
           
