@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Bot, X, Send, User, Sparkles, MessageSquare } from 'lucide-react';
+import { Bot, X, Send, User, Sparkles, MessageSquare, Plus } from 'lucide-react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ThreeSparklesLogo } from './Icons';
 import SparkleEffect from './SparkleEffect';
@@ -12,6 +12,7 @@ const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, s
   const [apiKey, setApiKey] = useState('');
   const activeCard = selectedMode || selectedSchema || selectedNeed;
   const [isHovered, setIsHovered] = useState(false);
+  const [showAttachMenu, setShowAttachMenu] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -67,10 +68,12 @@ Je kunt twee dingen doen:
 Houd je antwoorden kort, gespreksmatig en in het Nederlands. Speel echt in op de kaarten die op tafel liggen! BELANGRIJK: Gebruik GEEN sterretjes (*) of markdown-opmaak in je tekst. Als je in een rollenspel een handeling beschrijft, gebruik dan blokhaken, bijvoorbeeld: [zucht diep].
 `;
 
-      const history = newMessages.map(msg => ({
-        role: msg.role,
-        parts: [{ text: msg.text }]
-      }));
+      const history = newMessages.map(msg => {
+        if (msg.type === 'card') {
+          return { role: msg.role, parts: [{ text: `[De therapeut laat de ${msg.card.type || 'kaart'} '${msg.card.title}' zien]` }] };
+        }
+        return { role: msg.role, parts: [{ text: msg.text }] };
+      });
 
       const chat = model.startChat({
         history: [
@@ -88,6 +91,58 @@ Houd je antwoorden kort, gespreksmatig en in het Nederlands. Speel echt in op de
     } catch (err) {
       console.error(err);
       setMessages([...newMessages, { role: 'model', text: 'Oeps, er ging iets mis met de verbinding (check je API sleutel).' }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  
+  const handleSendCard = async (card) => {
+    if (!apiKey) {
+      alert("Let op: je hebt nog geen Gemini API sleutel ingesteld.");
+      return;
+    }
+    setShowAttachMenu(false);
+    const newMessages = [...messages, { role: 'user', type: 'card', card: card }];
+    setMessages(newMessages);
+    setIsLoading(true);
+
+    try {
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
+
+      const contextText = `
+Je bent 'Speelbot', een AI-assistent in een web-app voor schematherapie.
+De behandelaar is bezig met een 'Tafelopstelling'.
+Huidige context van de tafel:
+- Casus: ${situationText || 'Niet ingevuld'}
+
+Houd je antwoorden kort, gespreksmatig en in het Nederlands. Gebruik GEEN sterretjes (*) of markdown-opmaak. Gebruik blokhaken voor handelingen, bijv: [zucht diep].
+`;
+
+      const history = newMessages.map(msg => {
+        if (msg.type === 'card') {
+          return { role: msg.role, parts: [{ text: `[De therapeut laat de ${msg.card.type || 'kaart'} '${msg.card.title}' zien]` }] };
+        }
+        return { role: msg.role, parts: [{ text: msg.text }] };
+      });
+
+      const chat = model.startChat({
+        history: [
+          { role: 'user', parts: [{ text: contextText }] },
+          { role: 'model', parts: [{ text: "Begrepen! Ik sta klaar als Speelbot." }] },
+          ...history.slice(0, -1)
+        ]
+      });
+
+      const result = await chat.sendMessage(`[De therapeut laat de kaart '${card.title}' zien]`);
+      let responseText = await result.response.text();
+      responseText = responseText.replace(/\*/g, '');
+
+      setMessages([...newMessages, { role: 'model', text: responseText }]);
+    } catch (err) {
+      console.error(err);
+      setMessages([...newMessages, { role: 'model', text: 'Oeps, verbinding mislukt.' }]);
     } finally {
       setIsLoading(false);
     }
@@ -172,8 +227,8 @@ Houd je antwoorden kort, gespreksmatig en in het Nederlands. Speel echt in op de
         color: 'white'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ position: 'relative', background: 'rgba(255,255,255,0.2)', padding: '6px', borderRadius: '50%', width: '34px', height: '34px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {activeCard && activeCard.src ? <img src={activeCard.src} alt="Mode" style={{ width: '28px', height: '28px', objectFit: 'contain' }} /> : <Bot size={22} />}
+          <div style={{ position: 'relative', background: 'rgba(255,255,255,0.2)', padding: '6px', borderRadius: '50%' }}>
+            <Bot size={22} />
             <div style={{ position: 'absolute', top: '-6px', right: '-10px', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.2))' }}>
               <ThreeSparklesLogo size={16} theme="white" />
             </div>
@@ -218,8 +273,8 @@ Houd je antwoorden kort, gespreksmatig en in het Nederlands. Speel echt in op de
               gap: '4px',
               alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start'
             }}>
-              {msg.role === 'user' ? <User size={12} /> : (activeCard && activeCard.src ? <img src={activeCard.src} alt={activeCard.title} style={{ width: '16px', height: '16px', objectFit: 'contain' }} /> : <Sparkles size={12} />)}
-              {msg.role === 'user' ? 'Jij' : (activeCard ? activeCard.title : 'Speelbot')}
+              {msg.role === 'user' ? <User size={12} /> : <Sparkles size={12} />}
+              {msg.role === 'user' ? 'Jij' : 'Speelbot'}
             </div>
             <div style={{
               background: msg.role === 'user' ? '#0284c7' : 'var(--card-bg)',
@@ -233,7 +288,14 @@ Houd je antwoorden kort, gespreksmatig en in het Nederlands. Speel echt in op de
               lineHeight: 1.4,
               border: msg.role === 'model' ? '1px solid var(--border-color)' : 'none'
             }}>
-              {msg.text}
+              {msg.type === 'card' ? (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                  <img src={msg.card.src} alt={msg.card.title} style={{ width: '80px', borderRadius: '4px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }} />
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600 }}>{msg.card.title}</span>
+                </div>
+              ) : (
+                msg.text
+              )}
             </div>
           </div>
         ))}
@@ -251,8 +313,67 @@ Houd je antwoorden kort, gespreksmatig en in het Nederlands. Speel echt in op de
         borderTop: '1px solid var(--border-color)',
         background: 'var(--card-bg)',
         display: 'flex',
-        gap: '8px'
+        gap: '8px',
+        position: 'relative'
       }}>
+        {/* Attachment Menu */}
+        {showAttachMenu && (
+          <div style={{
+            position: 'absolute',
+            bottom: '65px',
+            left: '12px',
+            background: 'var(--bg-color)',
+            border: '1px solid var(--border-color)',
+            borderRadius: '12px',
+            padding: '8px',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '8px',
+            zIndex: 10
+          }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', padding: '0 4px' }}>Stuur een kaart van tafel:</div>
+            {selectedMode && (
+               <button onClick={() => handleSendCard(selectedMode)} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'transparent', border: 'none', cursor: 'pointer', borderRadius: '6px', textAlign: 'left' }} onMouseEnter={e => e.currentTarget.style.background = 'var(--card-bg)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                 <img src={selectedMode.src} style={{ width: '20px', height: '20px', objectFit: 'contain' }} /> {selectedMode.title}
+               </button>
+            )}
+            {selectedSchema && (
+               <button onClick={() => handleSendCard(selectedSchema)} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'transparent', border: 'none', cursor: 'pointer', borderRadius: '6px', textAlign: 'left' }} onMouseEnter={e => e.currentTarget.style.background = 'var(--card-bg)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                 <img src={selectedSchema.src} style={{ width: '20px', height: '20px', objectFit: 'contain' }} /> {selectedSchema.title}
+               </button>
+            )}
+            {selectedNeed && (
+               <button onClick={() => handleSendCard(selectedNeed)} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'transparent', border: 'none', cursor: 'pointer', borderRadius: '6px', textAlign: 'left' }} onMouseEnter={e => e.currentTarget.style.background = 'var(--card-bg)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                 <img src={selectedNeed.src} style={{ width: '20px', height: '20px', objectFit: 'contain' }} /> {selectedNeed.title}
+               </button>
+            )}
+            {!selectedMode && !selectedSchema && !selectedNeed && (
+              <div style={{ fontSize: '0.8rem', padding: '4px', color: 'var(--text-muted)' }}>Geen kaarten op tafel</div>
+            )}
+          </div>
+        )}
+        
+        <button
+          onClick={() => setShowAttachMenu(!showAttachMenu)}
+          style={{
+            width: '44px',
+            height: '44px',
+            borderRadius: '22px',
+            background: showAttachMenu ? 'var(--border-color)' : 'transparent',
+            color: 'var(--text-main)',
+            border: '1px solid var(--border-color)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            flexShrink: 0,
+            transition: 'all 0.2s'
+          }}
+        >
+          <Plus size={20} />
+        </button>
+
         <textarea
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
