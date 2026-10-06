@@ -24,7 +24,8 @@ export default function StartHub() {
   const [isBannerHovered, setIsBannerHovered] = useState(false);
 
   return (
-    <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem 1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
+    <div className="view-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column',
+            cursor: 'pointer', alignItems: 'center', padding: '2rem 1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
       
       {/* Top Badge */}
       <PlatformBadge isCurrent={true} theme="hub" marginBottom="1.5rem" />
@@ -68,6 +69,7 @@ export default function StartHub() {
         {/* Optie 1: Vragenlijsten & Zelftest */}
         <div 
           className="glass-panel" 
+          onClick={() => window.location.href = '/test'}
           onMouseEnter={() => setHoveredCard('test')}
           onMouseLeave={() => setHoveredCard('kaarten')}
           style={{
@@ -75,6 +77,7 @@ export default function StartHub() {
             borderRadius: '24px',
             display: 'flex',
             flexDirection: 'column',
+            cursor: 'pointer',
             transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
             border: hoveredCard === 'test' ? '1px solid rgba(71, 85, 105, 0.45)' : '1px solid var(--border-color)',
             boxShadow: hoveredCard === 'test' ? '0 20px 40px rgba(71, 85, 105, 0.16), 0 0 20px rgba(71, 85, 105, 0.08)' : '0 10px 30px rgba(0, 0, 0, 0.05)',
@@ -141,6 +144,7 @@ export default function StartHub() {
               color: '#ffffff',
               display: 'flex',
               flexDirection: 'column',
+            cursor: 'pointer',
               alignItems: 'center',
               justifyContent: 'center', overflow: 'hidden',
               textAlign: 'center',
@@ -181,7 +185,8 @@ export default function StartHub() {
             Breng de onderliggende kwetsbaarheden en patronen van de cliënt in kaart met de gevalideerde <strong>YSQ-S3</strong> en <strong>SMI</strong> vragenlijsten. Inclusief uitgebreid gecombineerd analyserapport.
           </p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column',
+            cursor: 'pointer', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
               <span>18 Schema's & 14 Modi in kaart</span>
@@ -224,6 +229,7 @@ export default function StartHub() {
         {/* Optie 2: Kaarten */}
         <div 
           className="glass-panel" 
+          onClick={() => window.location.href = '/kaarten'}
           onMouseEnter={() => setHoveredCard('kaarten')}
           onMouseLeave={() => setHoveredCard('kaarten')}
           style={{
@@ -231,6 +237,7 @@ export default function StartHub() {
             borderRadius: '24px',
             display: 'flex',
             flexDirection: 'column',
+            cursor: 'pointer',
             transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
             border: hoveredCard === 'kaarten' ? '1px solid rgba(2, 132, 199, 0.45)' : '1px solid var(--border-color)',
             boxShadow: hoveredCard === 'kaarten' ? '0 20px 40px rgba(2, 132, 199, 0.18), 0 0 20px rgba(14, 165, 233, 0.12)' : '0 10px 30px rgba(0, 0, 0, 0.05)',
@@ -305,6 +312,7 @@ export default function StartHub() {
               color: '#ffffff',
               display: 'flex',
               flexDirection: 'column',
+            cursor: 'pointer',
               alignItems: 'center',
               justifyContent: 'center', overflow: 'hidden',
               textAlign: 'center',
@@ -345,7 +353,8 @@ export default function StartHub() {
             Verken de 43 klassieke basiskaarten en de herziene 55-delige theoriekaartenset (VSt 2021). Ideaal om schema's en modi tastbaar en visueel te bestuderen in de praktijk of supervisie.
           </p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column',
+            cursor: 'pointer', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <span><b>Bestel direct</b> de fysieke, hoogwaardige kaartenset</span>
@@ -388,6 +397,7 @@ export default function StartHub() {
         {/* Optie 3: Tafelopstelling */}
         <div 
           className="glass-panel" 
+          onClick={() => window.location.href = '/tafel'}
           onMouseEnter={() => setHoveredCard('tafel')}
           onMouseLeave={() => setHoveredCard('kaarten')}
           style={{
@@ -395,6 +405,7 @@ export default function StartHub() {
             borderRadius: '24px',
             display: 'flex',
             flexDirection: 'column',
+            cursor: 'pointer',
             transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
             border: hoveredCard === 'tafel' ? '1px solid rgba(5, 150, 105, 0.45)' : '1px solid var(--border-color)',
             boxShadow: hoveredCard === 'tafel' ? '0 20px 40px rgba(5, 150, 105, 0.18), 0 0 20px rgba(16, 185, 129, 0.12)' : '0 10px 30px rgba(0, 0, 0, 0.05)',
@@ -460,6 +471,7 @@ export default function StartHub() {
               color: '#ffffff',
               display: 'flex',
               flexDirection: 'column',
+            cursor: 'pointer',
               alignItems: 'center',
               justifyContent: 'center', overflow: 'hidden',
               textAlign: 'center',
@@ -500,7 +512,8 @@ export default function StartHub() {
             Breng een concrete conflictsituatie of emotionele trigger interactief in kaart. Koppel de reactie (modus) aan het geraakte schema en ontvang direct handelingsadvies om de Gezonde Volwassene van de cliënt te versterken.
           </p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column',
+            cursor: 'pointer', gap: '0.8rem', marginTop: 'auto', marginBottom: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: '1.4' }}>
               <CheckIcon size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
               <span>Interactieve opstelling op tafel</span>
