@@ -10,6 +10,7 @@ const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, s
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [apiKey, setApiKey] = useState('');
+  const activeCard = selectedMode || selectedSchema || selectedNeed;
   const [isHovered, setIsHovered] = useState(false);
   const messagesEndRef = useRef(null);
 
@@ -171,8 +172,8 @@ Houd je antwoorden kort, gespreksmatig en in het Nederlands. Speel echt in op de
         color: 'white'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ position: 'relative', background: 'rgba(255,255,255,0.2)', padding: '6px', borderRadius: '50%' }}>
-            <Bot size={22} />
+          <div style={{ position: 'relative', background: 'rgba(255,255,255,0.2)', padding: '6px', borderRadius: '50%', width: '34px', height: '34px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {activeCard && activeCard.src ? <img src={activeCard.src} alt="Mode" style={{ width: '28px', height: '28px', objectFit: 'contain' }} /> : <Bot size={22} />}
             <div style={{ position: 'absolute', top: '-6px', right: '-10px', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.2))' }}>
               <ThreeSparklesLogo size={16} theme="white" />
             </div>
@@ -217,8 +218,8 @@ Houd je antwoorden kort, gespreksmatig en in het Nederlands. Speel echt in op de
               gap: '4px',
               alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start'
             }}>
-              {msg.role === 'user' ? <User size={12} /> : <Sparkles size={12} />}
-              {msg.role === 'user' ? 'Jij' : 'Speelbot'}
+              {msg.role === 'user' ? <User size={12} /> : (activeCard && activeCard.src ? <img src={activeCard.src} alt={activeCard.title} style={{ width: '16px', height: '16px', objectFit: 'contain' }} /> : <Sparkles size={12} />)}
+              {msg.role === 'user' ? 'Jij' : (activeCard ? activeCard.title : 'Speelbot')}
             </div>
             <div style={{
               background: msg.role === 'user' ? '#0284c7' : 'var(--card-bg)',
