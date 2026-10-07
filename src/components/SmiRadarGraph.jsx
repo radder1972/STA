@@ -638,8 +638,7 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
                   <circle
                     r={m.ballRadius}
                     fill={m.bg}
-                    stroke="rgba(255,255,255,0.7)"
-                    strokeWidth="2"
+                    stroke="none"
                     filter="url(#radar3dBallShadow)"
                   />
 
@@ -747,8 +746,7 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
                   <circle
                     r={m.ballRadius}
                     fill={m.bg}
-                    stroke="rgba(255,255,255,0.6)"
-                    strokeWidth="2"
+                    stroke="none"
                     filter="url(#radar3dBallShadow)"
                   />
                   <text
