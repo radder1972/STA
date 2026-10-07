@@ -128,6 +128,16 @@ const CLINICAL_DYNAMICS = [
     schemaAbbrs: ['ML (3.00)'],
     modeAbbrs: ['KK (4.10)'],
     summary: 'De overtuiging minder bekwaam te zijn of te falen ten opzichte van leeftijdsgenoten (ML: 3.00) raakt direct de kwetsbaarheid en onzekerheid in het Kwetsbare Kind (KK: 4.10). Dit vormt vaak de onderliggende trigger voor vermijding (OK: 5.00) of emotionele terugtrekking (OB: 3.75).'
+  },
+  {
+    id: 'dyn-gv',
+    title: 'De Regierol van de Gezonde Volwassene (Therapeutische Hefboom)',
+    schemaIds: [],
+    modeIds: ['gv', 'kk', 'ok', 'vo'],
+    schemaAbbrs: [],
+    modeAbbrs: ['GV (3.20)', 'KK (4.10)', 'OK (5.00)', 'VO (4.00)'],
+    isTherapeutic: true,
+    summary: 'Met een score van 3.20 bezit de cliënt al een gezond fundament. In de schematherapie fungeert de Gezonde Volwassene (GV) als regisseur om: 1) Het Kwetsbare Kind (KK: 4.10) te koesteren en veiligheid te bieden, 2) Het Ongedisciplineerde Kind (OK: 5.00) empathisch doch resoluut te begrenzen, en 3) De Veeleisende Ouder (VO: 4.00) het zwijgen op te leggen en te vervangen door milde, realistische maatstaven.'
   }
 ];
 
@@ -427,6 +437,58 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
   const containerRef = useRef(null);
   const hoverTimeoutRef = useRef(null);
   const flipTimeoutRef = useRef(null);
+  const animFrameRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+    };
+  }, []);
+
+  // Smoothly rotate the 3D orbit camera so that the selected dynamic faces forward
+  const rotateToDynamic = useCallback((dyn) => {
+    if (!dyn) return;
+    setAutoRotate(false);
+    if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+
+    let angle = 0;
+    if (dyn.schemaIds && dyn.schemaIds.length > 0) {
+      const idx = SCHEMAS_INFO.findIndex(s => s.id === dyn.schemaIds[0]);
+      if (idx !== -1) angle = -Math.PI / 2 + idx * ((2 * Math.PI) / SCHEMAS_INFO.length);
+    } else if (dyn.modeIds && dyn.modeIds.length > 0) {
+      const idx = MODES_INFO.findIndex(m => m.id === dyn.modeIds[0]);
+      if (idx !== -1) angle = -Math.PI / 2 + idx * ((2 * Math.PI) / MODES_INFO.length);
+    }
+
+    let targetYaw = ((angle + Math.PI / 2) * 180 / Math.PI) % 360;
+    if (targetYaw < 0) targetYaw += 360;
+
+    let currentYaw = yaw % 360;
+    if (currentYaw < 0) currentYaw += 360;
+
+    let diff = targetYaw - currentYaw;
+    if (diff > 180) diff -= 360;
+    if (diff < -180) diff += 360;
+
+    const startYaw = yaw;
+    const targetPitch = 48;
+    const startPitch = pitch;
+    const startTime = performance.now();
+    const duration = 650;
+
+    const step = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      setYaw(startYaw + diff * ease);
+      setPitch(startPitch + (targetPitch - startPitch) * ease);
+
+      if (progress < 1) {
+        animFrameRef.current = requestAnimationFrame(step);
+      }
+    };
+    animFrameRef.current = requestAnimationFrame(step);
+  }, [yaw, pitch]);
 
   // Check if there is space on the right side of the graph to display the card popup without overlapping
   const [canFitRight, setCanFitRight] = useState(() => typeof window !== 'undefined' ? window.innerWidth >= 1180 : true);
@@ -1205,6 +1267,38 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     });
   }, [activeSide, schemaItems3D, modiItems3D, hoveredNode, activeDynamic, minLinkScore]);
 
+  // 5b. 3D Therapeutic Intervention Vectors from Gezonde Volwassene (GV)
+  const therapeuticLinks3D = useMemo(() => {
+    if (activeSide !== 'both' && activeSide !== 'modi') return [];
+    const gv = modiItems3D.find(m => m.id === 'gv');
+    if (!gv) return [];
+
+    const targets = [
+      { id: 'kk', label: 'Koesteren & Geruststellen', color: '#10b981' },
+      { id: 'ok', label: 'Begrenzen & Structureren', color: '#10b981' },
+      { id: 'vo', label: 'Kritiek begrenzen & Relativeren', color: '#10b981' }
+    ];
+
+    return targets.map(t => {
+      const targetMode = modiItems3D.find(m => m.id === t.id);
+      if (!targetMode) return null;
+      const isHighlighted = (activeDynamic && activeDynamic.id === 'dyn-gv') || 
+                            (hoveredNode && (hoveredNode.id === 'gv' || hoveredNode.id === t.id));
+      return {
+        key: `gv-${t.id}`,
+        targetId: t.id,
+        x1: gv.projBall.screenX,
+        y1: gv.projBall.screenY,
+        x2: targetMode.projBall.screenX,
+        y2: targetMode.projBall.screenY,
+        label: t.label,
+        color: t.color,
+        isHighlighted,
+        depth: (gv.projBall.depth + targetMode.projBall.depth) / 2
+      };
+    }).filter(Boolean);
+  }, [activeSide, modiItems3D, activeDynamic, hoveredNode]);
+
   // 6. Depth-Sorted Balls (Painter's algorithm for complete 3D scene)
   const depthSortedBalls = useMemo(() => {
     return [...items3D].sort((a, b) => b.projBall.depth - a.projBall.depth);
@@ -1323,6 +1417,37 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
 
     return links.sort((a, b) => (a.isHighlighted ? 1 : 0) - (b.isHighlighted ? 1 : 0));
   }, [activeSide, schemaItems2D, modiItems2D, hoveredNode, activeDynamic, minLinkScore]);
+
+  // 7b. 2D Therapeutic Intervention Vectors from Gezonde Volwassene (GV)
+  const therapeuticLinks2D = useMemo(() => {
+    if (activeSide !== 'both' && activeSide !== 'modi') return [];
+    const gv = modiItems2D.find(m => m.id === 'gv');
+    if (!gv) return [];
+
+    const targets = [
+      { id: 'kk', label: 'Koesteren & Geruststellen', color: '#10b981' },
+      { id: 'ok', label: 'Begrenzen & Structureren', color: '#10b981' },
+      { id: 'vo', label: 'Kritiek begrenzen & Relativeren', color: '#10b981' }
+    ];
+
+    return targets.map(t => {
+      const targetMode = modiItems2D.find(m => m.id === t.id);
+      if (!targetMode) return null;
+      const isHighlighted = (activeDynamic && activeDynamic.id === 'dyn-gv') || 
+                            (hoveredNode && (hoveredNode.id === 'gv' || hoveredNode.id === t.id));
+      return {
+        key: `2d-gv-${t.id}`,
+        targetId: t.id,
+        x1: gv.ballX,
+        y1: gv.ballY,
+        x2: targetMode.ballX,
+        y2: targetMode.ballY,
+        label: t.label,
+        color: t.color,
+        isHighlighted
+      };
+    }).filter(Boolean);
+  }, [activeSide, modiItems2D, activeDynamic, hoveredNode]);
 
   const schemaPolygonPoints2D = useMemo(() => schemaItems2D.map(m => `${m.ptX.toFixed(1)},${m.ptY.toFixed(1)}`).join(' '), [schemaItems2D]);
   const modiPolygonPoints2D = useMemo(() => modiItems2D.map(m => `${m.ptX.toFixed(1)},${m.ptY.toFixed(1)}`).join(' '), [modiItems2D]);
@@ -1639,6 +1764,16 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
               <stop offset="70%" stopColor="#ffffff" stopOpacity="0" />
               <stop offset="100%" stopColor="#000000" stopOpacity="0.2" />
             </radialGradient>
+            <style>{`
+              @keyframes schemaEnergyFlow {
+                from { stroke-dashoffset: 24; }
+                to { stroke-dashoffset: 0; }
+              }
+              @keyframes gvEnergyFlow {
+                from { stroke-dashoffset: 20; }
+                to { stroke-dashoffset: 0; }
+              }
+            `}</style>
           </defs>
 
           {/* ===================== 3D VIEW RENDERING ===================== */}
@@ -1794,7 +1929,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                 </g>
               ))}
 
-              {/* 3D Correlation Links between Schemas and Modi */}
+              {/* 3D Correlation Links between Schemas and Modi (Flowing Energy from Schema Trigger to Mode Reaction) */}
               {activeSide === 'both' && correlationLinks3D.map(link => (
                 <line
                   key={`link-3d-${link.key}`}
@@ -1803,13 +1938,37 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                   x2={link.x2}
                   y2={link.y2}
                   stroke={link.isHighlighted ? "#f59e0b" : "#94a3b8"}
-                  strokeWidth={link.isHighlighted ? 3 : 1.1}
-                  strokeDasharray={link.isHighlighted ? "none" : "3 3"}
-                  opacity={link.isHighlighted ? 0.95 : (link.isDimmed ? 0.04 : 0.16)}
+                  strokeWidth={link.isHighlighted ? 3.2 : 1.2}
+                  strokeDasharray={link.isHighlighted ? "7 5" : "3 3"}
+                  opacity={link.isHighlighted ? 0.96 : (link.isDimmed ? 0.04 : 0.18)}
                   strokeLinecap="round"
                   style={{
                     transition: 'stroke 0.2s, stroke-width 0.2s, opacity 0.2s',
-                    filter: link.isHighlighted ? 'drop-shadow(0 0 6px rgba(245, 158, 11, 0.8))' : 'none'
+                    filter: link.isHighlighted ? 'drop-shadow(0 0 6px rgba(245, 158, 11, 0.8))' : 'none',
+                    animation: link.isHighlighted
+                      ? 'schemaEnergyFlow 0.85s linear infinite'
+                      : 'schemaEnergyFlow 2.8s linear infinite'
+                  }}
+                />
+              ))}
+
+              {/* 3D Therapeutic Intervention Vectors from Gezonde Volwassene (GV) */}
+              {(activeSide === 'both' || activeSide === 'modi') && therapeuticLinks3D.map(link => (
+                <line
+                  key={`gv-3d-${link.key}`}
+                  x1={link.x1}
+                  y1={link.y1}
+                  x2={link.x2}
+                  y2={link.y2}
+                  stroke="#10b981"
+                  strokeWidth={link.isHighlighted ? 3.4 : 1.5}
+                  strokeDasharray={link.isHighlighted ? "8 4" : "4 3"}
+                  opacity={link.isHighlighted ? 0.96 : (activeDynamic || hoveredNode ? 0.04 : 0.20)}
+                  strokeLinecap="round"
+                  style={{
+                    transition: 'stroke 0.2s, stroke-width 0.2s, opacity 0.2s',
+                    filter: link.isHighlighted ? 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.85))' : 'none',
+                    animation: 'gvEnergyFlow 1.05s linear infinite'
                   }}
                 />
               ))}
@@ -1827,6 +1986,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                     (m.id === 'wk' && activeDynamic.modeIds.includes('boos_k'))
                   ))
                 );
+                const ringStroke = (activeDynamic && activeDynamic.id === 'dyn-gv') ? '#10b981' : '#f59e0b';
 
                 return (
                   <g
@@ -1841,15 +2001,15 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                       setPopupFlipped(prev => !prev);
                     }}
                   >
-                    {/* Linked Partner or Active Dynamic Golden Pulse Ring */}
+                    {/* Linked Partner or Active Dynamic Golden/Emerald Pulse Ring */}
                     {(isLinked || isInActiveDynamic) && (
                       <circle
                         r={m.ballRadius + 4.5}
                         fill="none"
-                        stroke="#f59e0b"
-                        strokeWidth="2.3"
+                        stroke={ringStroke}
+                        strokeWidth="2.4"
                         strokeDasharray={isInActiveDynamic ? "none" : "4 2"}
-                        opacity="0.95"
+                        opacity="0.96"
                       />
                     )}
 
@@ -1950,7 +2110,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                 />
               ))}
 
-              {/* 2D Correlation Links */}
+              {/* 2D Correlation Links (Flowing Energy from Schema Trigger to Mode Reaction) */}
               {activeSide === 'both' && correlationLinks2D.map(link => (
                 <line
                   key={`link-2d-${link.key}`}
@@ -1959,13 +2119,37 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                   x2={link.x2}
                   y2={link.y2}
                   stroke={link.isHighlighted ? "#f59e0b" : "#94a3b8"}
-                  strokeWidth={link.isHighlighted ? 3 : 1.1}
-                  strokeDasharray={link.isHighlighted ? "none" : "3 3"}
-                  opacity={link.isHighlighted ? 0.95 : (link.isDimmed ? 0.04 : 0.16)}
+                  strokeWidth={link.isHighlighted ? 3.2 : 1.2}
+                  strokeDasharray={link.isHighlighted ? "7 5" : "3 3"}
+                  opacity={link.isHighlighted ? 0.96 : (link.isDimmed ? 0.04 : 0.18)}
                   strokeLinecap="round"
                   style={{
                     transition: 'stroke 0.2s, stroke-width 0.2s, opacity 0.2s',
-                    filter: link.isHighlighted ? 'drop-shadow(0 0 6px rgba(245, 158, 11, 0.8))' : 'none'
+                    filter: link.isHighlighted ? 'drop-shadow(0 0 6px rgba(245, 158, 11, 0.8))' : 'none',
+                    animation: link.isHighlighted
+                      ? 'schemaEnergyFlow 0.85s linear infinite'
+                      : 'schemaEnergyFlow 2.8s linear infinite'
+                  }}
+                />
+              ))}
+
+              {/* 2D Therapeutic Intervention Vectors from Gezonde Volwassene (GV) */}
+              {(activeSide === 'both' || activeSide === 'modi') && therapeuticLinks2D.map(link => (
+                <line
+                  key={`gv-2d-${link.key}`}
+                  x1={link.x1}
+                  y1={link.y1}
+                  x2={link.x2}
+                  y2={link.y2}
+                  stroke="#10b981"
+                  strokeWidth={link.isHighlighted ? 3.4 : 1.5}
+                  strokeDasharray={link.isHighlighted ? "8 4" : "4 3"}
+                  opacity={link.isHighlighted ? 0.96 : (activeDynamic || hoveredNode ? 0.04 : 0.20)}
+                  strokeLinecap="round"
+                  style={{
+                    transition: 'stroke 0.2s, stroke-width 0.2s, opacity 0.2s',
+                    filter: link.isHighlighted ? 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.85))' : 'none',
+                    animation: 'gvEnergyFlow 1.05s linear infinite'
                   }}
                 />
               ))}
@@ -2028,6 +2212,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                     (m.id === 'wk' && activeDynamic.modeIds.includes('boos_k'))
                   ))
                 );
+                const ringStroke = (activeDynamic && activeDynamic.id === 'dyn-gv') ? '#10b981' : '#f59e0b';
 
                 return (
                   <g
@@ -2042,15 +2227,15 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                       setPopupFlipped(prev => !prev);
                     }}
                   >
-                    {/* Linked Partner or Active Dynamic Golden Pulse Ring */}
+                    {/* Linked Partner or Active Dynamic Golden/Emerald Pulse Ring */}
                     {(isLinked || isInActiveDynamic) && (
                       <circle
                         r={m.ballRadius + 4.5}
                         fill="none"
-                        stroke="#f59e0b"
-                        strokeWidth="2.3"
+                        stroke={ringStroke}
+                        strokeWidth="2.4"
                         strokeDasharray={isInActiveDynamic ? "none" : "4 2"}
-                        opacity="0.95"
+                        opacity="0.96"
                       />
                     )}
 
@@ -2347,7 +2532,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                 border: '1px solid #e2e8f0',
                 lineHeight: 1.45
               }}>
-                In de schematherapie zijn schema's en modi met een score <strong>≥ 3.0</strong> klinisch verheven en bepalend voor de actuele lijdensdruk en copingdynamiek. Beweeg met de muis over een patroon om de bijbehorende bollen en verbindingslijnen in de grafiek te markeren:
+                In de schematherapie zijn schema's en modi met een score <strong>≥ 3.0</strong> klinisch verheven en bepalend voor de actuele lijdensdruk en copingdynamiek. <strong>Klik op een patroon</strong> om de 3D-camera er direct naartoe te draaien en de energiestromen en hefbomen te focussen:
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -2359,17 +2544,30 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                   return (
                     <div
                       key={dyn.id}
+                      onClick={() => {
+                        if (viewDimension === '3d') {
+                          rotateToDynamic(dyn);
+                        }
+                        setHoveredDynamicId(prev => prev === dyn.id ? null : dyn.id);
+                      }}
                       onMouseEnter={() => setHoveredDynamicId(dyn.id)}
                       onMouseLeave={() => setHoveredDynamicId(null)}
                       style={{
                         padding: '12px 14px',
                         borderRadius: '10px',
-                        border: isActive ? '1.5px solid #3b82f6' : '1px solid #e2e8f0',
-                        background: isActive ? '#f0f7ff' : '#ffffff',
-                        boxShadow: isActive ? '0 4px 12px rgba(59, 130, 246, 0.12)' : 'none',
-                        transition: 'all 0.15s ease',
-                        cursor: 'default'
+                        border: isActive 
+                          ? (dyn.isTherapeutic ? '1.5px solid #10b981' : '1.5px solid #3b82f6')
+                          : '1px solid #e2e8f0',
+                        background: isActive 
+                          ? (dyn.isTherapeutic ? '#ecfdf5' : '#f0f7ff')
+                          : '#ffffff',
+                        boxShadow: isActive 
+                          ? (dyn.isTherapeutic ? '0 4px 14px rgba(16, 185, 129, 0.16)' : '0 4px 14px rgba(59, 130, 246, 0.14)')
+                          : 'none',
+                        transition: 'all 0.18s ease',
+                        cursor: 'pointer'
                       }}
+                      title="Klik om de 3D-camera naar dit patroon te draaien"
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '6px', marginBottom: '6px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -2380,7 +2578,9 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                             width: '20px',
                             height: '20px',
                             borderRadius: '50%',
-                            background: isActive ? '#2563eb' : '#e2e8f0',
+                            background: isActive 
+                              ? (dyn.isTherapeutic ? '#10b981' : '#2563eb')
+                              : '#e2e8f0',
                             color: isActive ? '#ffffff' : '#475569',
                             fontSize: '0.72rem',
                             fontWeight: 700
@@ -2393,6 +2593,19 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                         </div>
 
                         <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                          {dyn.isTherapeutic && (
+                            <span style={{
+                              fontSize: '0.72rem',
+                              fontWeight: 700,
+                              padding: '2px 7px',
+                              borderRadius: '6px',
+                              background: '#d1fae5',
+                              color: '#065f46',
+                              border: '1px solid #a7f3d0'
+                            }}>
+                              Therapeutische Hefboom
+                            </span>
+                          )}
                           {/* Schema Badges */}
                           {dyn.schemaAbbrs.map(sch => (
                             <span key={sch} style={{
@@ -2414,9 +2627,9 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                               fontWeight: 700,
                               padding: '2px 7px',
                               borderRadius: '6px',
-                              background: '#fef3c7',
-                              color: '#b45309',
-                              border: '1px solid #fde68a'
+                              background: dyn.isTherapeutic ? '#d1fae5' : '#fef3c7',
+                              color: dyn.isTherapeutic ? '#065f46' : '#b45309',
+                              border: dyn.isTherapeutic ? '1px solid #a7f3d0' : '1px solid #fde68a'
                             }}>
                               Modus: {md}
                             </span>
