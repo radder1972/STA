@@ -20,8 +20,8 @@ const basisbehoeftenMap = {
 };
 
 const smiModesMap = {
-  'kk': { name: 'Kwetsbare kind', group: 'Kindmodi' }, 'rk': { name: 'Razende kind', group: 'Kindmodi' }, 'ik': { name: 'Impulsieve kind', group: 'Kindmodi' }, 'ok': { name: 'Ongedisciplineerde kind', group: 'Kindmodi' }, 'bk': { name: 'Boze kind', group: 'Kindmodi' },
-  'wi': { name: 'Willoze inschikkelijke', group: 'Beschermmodi - Overgave' }, 'ob': { name: 'Onthechte beschermer', group: 'Beschermmodi - Vermijden' }, 'oz': { name: 'Onthechte zelfsusser', group: 'Beschermmodi - Vermijden' }, 'wk': { name: 'Wantrouwende overcontroleerder', group: 'Beschermmodi - Omkering' }, 'zh': { name: 'Zelfverheerlijker', group: 'Beschermmodi - Omkering' }, 'pa': { name: 'Pest en aanval', group: 'Beschermmodi - Omkering' },
+  'kk': { name: 'Kwetsbare kind', group: 'Kindmodi' }, 'rk': { name: 'Razende kind', group: 'Kindmodi' }, 'ik': { name: 'Impulsieve kind', group: 'Kindmodi' }, 'ok': { name: 'Ongedisciplineerde kind', group: 'Kindmodi' }, 'bk': { name: 'Blije kind', group: 'Functionele modi' },
+  'wi': { name: 'Willoze inschikkelijke', group: 'Beschermmodi - Overgave' }, 'ob': { name: 'Onthechte beschermer', group: 'Beschermmodi - Vermijden' }, 'oz': { name: 'Onthechte zelfsusser', group: 'Beschermmodi - Vermijden' }, 'wk': { name: 'Boze kind', group: 'Kindmodi' }, 'zh': { name: 'Zelfverheerlijker', group: 'Beschermmodi - Omkering' }, 'pa': { name: 'Pest en aanval', group: 'Beschermmodi - Omkering' },
   'so': { name: 'Straffende ouder', group: 'Disfunctionele oudermodi' }, 'vo': { name: 'Veeleisende ouder', group: 'Disfunctionele oudermodi' }, 'gv': { name: 'Gezonde volwassene', group: 'Functionele modi' }
 };
 
