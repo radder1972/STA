@@ -660,6 +660,12 @@ export default function StartHub() {
         </div>
       </div>
 
+      <div style={{ marginTop: "2rem", marginBottom: "3rem", textAlign: "center", padding: "1.5rem", background: "white", borderRadius: "16px", border: "1px dashed #cbd5e1", width: "100%", maxWidth: "1200px" }}>
+        <h3 style={{ margin: "0 0 0.5rem 0", color: "#334155" }}>✨ Nieuw: Modus Web (Casusconceptualisatie)</h3>
+        <p style={{ margin: "0 0 1rem 0", color: "#64748b", fontSize: "0.95rem" }}>Teken de moduscyclus van je cliënt en importeer een SMI CSV voor een interactief Spinnenweb.</p>
+        <a href="modusweb.html" style={{ display: "inline-block", background: "#3b82f6", color: "white", padding: "10px 20px", borderRadius: "8px", textDecoration: "none", fontWeight: "bold" }}>Open Modus Web</a>
+      </div>
+
       {/* Version Footer */}
       <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
         Schematherapie Suite v{packageJson.version} &bull; Vrij te gebruiken voor psycho-educatie en opleiding &bull;{' '}

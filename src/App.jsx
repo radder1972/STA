@@ -51,7 +51,9 @@ function App() {
   );
 
   const isSnelstartApp = window.location.pathname.endsWith('snelstart.html');
-  const isHubApp = !isTestApp && !isTafelApp && !isKaartenApp && !isSnelstartApp;
+  const isModusWebApp = window.location.pathname.endsWith('modusweb.html');
+
+  const isHubApp = !isTestApp && !isTafelApp && !isKaartenApp && !isSnelstartApp && !isModusWebApp;
 
   const [currentView, setCurrentView] = useState(() => {
     const hash = window.location.hash.replace('#', '')
@@ -59,6 +61,8 @@ function App() {
     if (hash === 'drukproef') return 'drukproef';
     if (hash === 'modusweb') return 'modusweb';
     if (isSnelstartApp) return 'snelstart'
+    if (isModusWebApp) return 'modusweb'
+
     if (isHubApp) {
       if (hash === 'test' || hash === 'zelftest') {
         window.location.href = 'test.html'

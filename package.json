@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vite build -c vite.test.config.js && vite build -c vite.kaarten.config.js && vite build -c vite.spel.config.js && vite build -c vite.tafel.config.js && vite build -c vite.snelstart.config.js",
+    "build": "vite build && vite build -c vite.test.config.js && vite build -c vite.kaarten.config.js && vite build -c vite.spel.config.js && vite build -c vite.tafel.config.js && vite build -c vite.snelstart.config.js && vite build -c vite.modusweb.config.js",
     "lint": "oxlint",
     "preview": "vite preview"
   },
