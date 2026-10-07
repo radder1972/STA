@@ -1,8 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Share2, MousePointer2, Trash2, Upload, Activity, RotateCcw, Rotate3d, Eye } from 'lucide-react';
 import smiScoring from '../data/smi-scoring.json';
 import SchemaCard from './SchemaCard';
 import SmiRadarGraph from './SmiRadarGraph';
+import { getModeImage } from '../utils/images';
+import { schemaDescriptions } from '../data/descriptions';
+import { getCardColor } from '../utils/colors';
 
 const MODES = [
   { id: 'gv', title: 'Gezonde volwassene', category: 'gezond', x: 50, y: 12 },
@@ -80,6 +83,89 @@ export default function ModusWeb() {
   const containerRef = useRef(null);
   const fileInputRef = useRef(null);
   const [nodePositions, setNodePositions] = useState({});
+  const hoverTimeoutRef = useRef(null);
+  const flipTimeoutRef = useRef(null);
+
+  const getCardDetails = (item) => {
+    if (!item) return null;
+    let resolved = item;
+    if (typeof item === 'string') {
+      resolved = MODES.find(x => x.id === item || x.title === item);
+    }
+    const id = resolved ? resolved.id : item;
+    const canonicalId = id === 'boos_k' ? 'wk' : id;
+    const title = resolved ? resolved.title : item;
+    const src = getModeImage(canonicalId);
+    const description = schemaDescriptions[title] || '';
+    const color = getCardColor('mode', canonicalId, title);
+
+    return {
+      id: canonicalId,
+      type: 'mode',
+      title,
+      description,
+      src,
+      color,
+      imageStyle: { transform: 'scale(1.1)' }
+    };
+  };
+
+  const activeCardDetails = useMemo(() => {
+    if (!hoveredNode) return null;
+    return getCardDetails(hoveredNode);
+  }, [hoveredNode]);
+
+  const handleNodeHover = (nodeItem) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    if (flipTimeoutRef.current) {
+      clearTimeout(flipTimeoutRef.current);
+      flipTimeoutRef.current = null;
+    }
+    setHoveredNode(nodeItem);
+    setPopupFlipped(false);
+    flipTimeoutRef.current = setTimeout(() => {
+      setPopupFlipped(true);
+    }, 2200);
+  };
+
+  const handleNodeLeave = () => {
+    if (flipTimeoutRef.current) {
+      clearTimeout(flipTimeoutRef.current);
+      flipTimeoutRef.current = null;
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredNode(null);
+      setPopupFlipped(false);
+    }, 250);
+  };
+
+  const handleCardMouseEnter = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+  };
+
+  const handleCardMouseLeave = () => {
+    if (flipTimeoutRef.current) {
+      clearTimeout(flipTimeoutRef.current);
+      flipTimeoutRef.current = null;
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredNode(null);
+      setPopupFlipped(false);
+    }, 200);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+      if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+    };
+  }, []);
 
   const showRadar = viewMode === '2d';
 
@@ -699,12 +785,8 @@ export default function ModusWeb() {
               <div
                 key={mode.id}
                 id={`node-${mode.id}`}
-                onMouseEnter={() => {
-                  setHoveredNode(mode.title);
-                  setPopupFlipped(false);
-                  setTimeout(() => setPopupFlipped(true), 150);
-                }}
-                onMouseLeave={() => setHoveredNode(null)}
+                onMouseEnter={() => handleNodeHover(mode)}
+                onMouseLeave={handleNodeLeave}
                 onClick={() => handleNodeClick(mode.id)}
                 style={{
                   position: 'absolute',
@@ -767,9 +849,120 @@ export default function ModusWeb() {
         </div>
       )}
 
-      {hoveredNode && (
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 9999, pointerEvents: 'none', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))' }}>
-          <SchemaCard title={hoveredNode} isFlipped={popupFlipped} />
+      {/* Hover Card Preview with Full Front & Back Content */}
+      {activeCardDetails && (
+        <div
+          onMouseEnter={handleCardMouseEnter}
+          onMouseLeave={handleCardMouseLeave}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 9999,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.45))',
+            pointerEvents: 'auto'
+          }}
+        >
+          {/* Flip Toggle Pills */}
+          <div style={{
+            display: 'flex',
+            gap: '6px',
+            marginBottom: '8px',
+            background: 'rgba(15, 23, 42, 0.88)',
+            backdropFilter: 'blur(8px)',
+            padding: '4px 8px',
+            borderRadius: '20px',
+            border: '1px solid rgba(255,255,255,0.2)',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.25)'
+          }}>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+                setPopupFlipped(false);
+              }}
+              style={{
+                border: 'none',
+                background: !popupFlipped ? 'var(--primary, #3b82f6)' : 'transparent',
+                color: !popupFlipped ? '#ffffff' : '#cbd5e1',
+                padding: '4px 12px',
+                borderRadius: '12px',
+                fontSize: '0.78rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              Voorkant (Afbeelding)
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+                setPopupFlipped(true);
+              }}
+              style={{
+                border: 'none',
+                background: popupFlipped ? 'var(--primary, #3b82f6)' : 'transparent',
+                color: popupFlipped ? '#ffffff' : '#cbd5e1',
+                padding: '4px 12px',
+                borderRadius: '12px',
+                fontSize: '0.78rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              Achterkant (Theorie)
+            </button>
+          </div>
+
+          {/* Interactive 3D Card */}
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+              setPopupFlipped(prev => !prev);
+            }}
+            style={{ cursor: 'pointer' }}
+            title="Klik om te draaien (voor/achter)"
+          >
+            <SchemaCard
+              id={activeCardDetails.id}
+              type={activeCardDetails.type}
+              title={activeCardDetails.title}
+              description={activeCardDetails.description}
+              src={activeCardDetails.src}
+              color={activeCardDetails.color}
+              width="210px"
+              height="298px"
+              imageStyle={activeCardDetails.imageStyle}
+              isFlipped={popupFlipped}
+              flipOnClick={false}
+              zoomOnClick={false}
+            />
+          </div>
+
+          <div style={{
+            marginTop: '8px',
+            fontSize: '0.72rem',
+            color: 'rgba(255,255,255,0.9)',
+            background: 'rgba(0,0,0,0.65)',
+            backdropFilter: 'blur(4px)',
+            padding: '3px 10px',
+            borderRadius: '6px',
+            pointerEvents: 'none',
+            letterSpacing: '0.3px',
+            fontWeight: 500
+          }}>
+            Klik op kaart of tab om om te draaien
+          </div>
         </div>
       )}
     </div>

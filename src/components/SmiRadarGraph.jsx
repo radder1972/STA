@@ -3,6 +3,9 @@ import { Share2, Rotate3d, Eye, Play, Pause, RotateCcw, ZoomIn, ZoomOut, Coins }
 import SchemaCard from './SchemaCard';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
+import { getSchemaImage, getModeImage } from '../utils/images';
+import { schemaDescriptions } from '../data/descriptions';
+import { getCardColor } from '../utils/colors';
 
 const MODES_INFO = [
   { id: 'gv', title: 'Gezonde volwassene', category: 'gezond', abbr: 'GV' },
@@ -178,6 +181,124 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
 
   const lastMousePos = useRef({ x: 0, y: 0 });
   const containerRef = useRef(null);
+  const hoverTimeoutRef = useRef(null);
+  const flipTimeoutRef = useRef(null);
+
+  const getCardDetails = useCallback((item, side) => {
+    if (!item) return null;
+
+    let resolved = item;
+    if (typeof item === 'string') {
+      resolved = MODES_INFO.find(x => x.id === item || x.title === item || x.abbr === item)
+              || SCHEMAS_INFO.find(x => x.id === item || x.title === item || x.abbr === item);
+    }
+    if (!resolved) {
+      return {
+        id: item,
+        type: side === 'schemas' ? 'schema' : 'mode',
+        title: item,
+        description: schemaDescriptions[item] || '',
+        src: side === 'schemas' ? getSchemaImage(item) : getModeImage(item),
+        color: getCardColor(side === 'schemas' ? 'schema' : 'mode', item, item)
+      };
+    }
+
+    const isMode = side === 'modi' || resolved.category !== undefined;
+    if (isMode) {
+      const canonicalId = resolved.id === 'boos_k' ? 'wk' : resolved.id;
+      const title = resolved.title;
+      const src = getModeImage(canonicalId);
+      const description = schemaDescriptions[title] || '';
+      const color = getCardColor('mode', canonicalId, title);
+
+      return {
+        id: canonicalId,
+        type: 'mode',
+        title,
+        description,
+        src,
+        color,
+        imageStyle: { transform: 'scale(1.1)' }
+      };
+    } else {
+      const id = resolved.id;
+      const title = resolved.title;
+      const src = getSchemaImage(id);
+      const description = schemaDescriptions[title] || schemaDescriptions[id] || '';
+      const color = getCardColor('schema', id, title);
+
+      return {
+        id,
+        type: 'schema',
+        title,
+        description,
+        src,
+        color,
+        imageStyle: {
+          transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)'
+        }
+      };
+    }
+  }, []);
+
+  const activeCardDetails = useMemo(() => {
+    if (!hoveredNode) return null;
+    return getCardDetails(hoveredNode, activeSide);
+  }, [hoveredNode, activeSide, getCardDetails]);
+
+  const handleNodeHover = useCallback((nodeItem) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    if (flipTimeoutRef.current) {
+      clearTimeout(flipTimeoutRef.current);
+      flipTimeoutRef.current = null;
+    }
+    setHoveredNode(nodeItem);
+    setPopupFlipped(false);
+
+    // Auto-flip to theorie after 2.2 seconds of hovering
+    flipTimeoutRef.current = setTimeout(() => {
+      setPopupFlipped(true);
+    }, 2200);
+  }, []);
+
+  const handleNodeLeave = useCallback(() => {
+    if (flipTimeoutRef.current) {
+      clearTimeout(flipTimeoutRef.current);
+      flipTimeoutRef.current = null;
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredNode(null);
+      setPopupFlipped(false);
+    }, 250);
+  }, []);
+
+  const handleCardMouseEnter = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+  }, []);
+
+  const handleCardMouseLeave = useCallback(() => {
+    if (flipTimeoutRef.current) {
+      clearTimeout(flipTimeoutRef.current);
+      flipTimeoutRef.current = null;
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredNode(null);
+      setPopupFlipped(false);
+    }, 200);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+      if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+    };
+  }, []);
 
   // Normalize Modi Scores
   const normalizedModiScores = useMemo(() => {
@@ -863,12 +984,13 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                   key={`ball-3d-${m.id}`}
                   transform={`translate(${m.projBall.screenX}, ${m.projBall.screenY})`}
                   style={{ cursor: 'pointer' }}
-                  onMouseEnter={() => {
-                    setHoveredNode(m.title);
-                    setPopupFlipped(false);
-                    setTimeout(() => setPopupFlipped(true), 150);
+                  onMouseEnter={() => handleNodeHover(m)}
+                  onMouseLeave={handleNodeLeave}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+                    setPopupFlipped(prev => !prev);
                   }}
-                  onMouseLeave={() => setHoveredNode(null)}
                 >
                   {/* Clean Solid Ball without white stroke */}
                   <circle
@@ -972,12 +1094,13 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                   key={`ball-2d-${m.id}`}
                   transform={`translate(${m.ballX}, ${m.ballY})`}
                   style={{ cursor: 'pointer' }}
-                  onMouseEnter={() => {
-                    setHoveredNode(m.title);
-                    setPopupFlipped(false);
-                    setTimeout(() => setPopupFlipped(true), 150);
+                  onMouseEnter={() => handleNodeHover(m)}
+                  onMouseLeave={handleNodeLeave}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+                    setPopupFlipped(prev => !prev);
                   }}
-                  onMouseLeave={() => setHoveredNode(null)}
                 >
                   <circle
                     r={m.ballRadius}
@@ -1015,20 +1138,120 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
         </svg>
       </div>
 
-      {/* Hover Card Preview */}
-      {hoveredNode && (
+      {/* Hover Card Preview with Full Front & Back Content */}
+      {activeCardDetails && (
         <div
+          onMouseEnter={handleCardMouseEnter}
+          onMouseLeave={handleCardMouseLeave}
           style={{
             position: 'absolute',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
             zIndex: 9999,
-            pointerEvents: 'none',
-            filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))'
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.45))',
+            pointerEvents: 'auto'
           }}
         >
-          <SchemaCard title={hoveredNode} isFlipped={popupFlipped} />
+          {/* Flip Toggle Pills */}
+          <div style={{
+            display: 'flex',
+            gap: '6px',
+            marginBottom: '8px',
+            background: 'rgba(15, 23, 42, 0.88)',
+            backdropFilter: 'blur(8px)',
+            padding: '4px 8px',
+            borderRadius: '20px',
+            border: '1px solid rgba(255,255,255,0.2)',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.25)'
+          }}>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+                setPopupFlipped(false);
+              }}
+              style={{
+                border: 'none',
+                background: !popupFlipped ? 'var(--primary, #3b82f6)' : 'transparent',
+                color: !popupFlipped ? '#ffffff' : '#cbd5e1',
+                padding: '4px 12px',
+                borderRadius: '12px',
+                fontSize: '0.78rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              Voorkant (Afbeelding)
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+                setPopupFlipped(true);
+              }}
+              style={{
+                border: 'none',
+                background: popupFlipped ? 'var(--primary, #3b82f6)' : 'transparent',
+                color: popupFlipped ? '#ffffff' : '#cbd5e1',
+                padding: '4px 12px',
+                borderRadius: '12px',
+                fontSize: '0.78rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              Achterkant (Theorie)
+            </button>
+          </div>
+
+          {/* Interactive 3D Card */}
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+              setPopupFlipped(prev => !prev);
+            }}
+            style={{ cursor: 'pointer' }}
+            title="Klik om te draaien (voor/achter)"
+          >
+            <SchemaCard
+              id={activeCardDetails.id}
+              type={activeCardDetails.type}
+              title={activeCardDetails.title}
+              description={activeCardDetails.description}
+              src={activeCardDetails.src}
+              color={activeCardDetails.color}
+              width="210px"
+              height="298px"
+              imageStyle={activeCardDetails.imageStyle}
+              isFlipped={popupFlipped}
+              flipOnClick={false}
+              zoomOnClick={false}
+            />
+          </div>
+
+          <div style={{
+            marginTop: '8px',
+            fontSize: '0.72rem',
+            color: 'rgba(255,255,255,0.9)',
+            background: 'rgba(0,0,0,0.65)',
+            backdropFilter: 'blur(4px)',
+            padding: '3px 10px',
+            borderRadius: '6px',
+            pointerEvents: 'none',
+            letterSpacing: '0.3px',
+            fontWeight: 500
+          }}>
+            Klik op kaart of tab om om te draaien
+          </div>
         </div>
       )}
 
