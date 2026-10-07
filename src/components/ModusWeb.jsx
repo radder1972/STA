@@ -172,9 +172,9 @@ export default function ModusWeb() {
 
   const getNodeScale = (sizeIndex) => {
     switch(sizeIndex) {
-      case 2: return 1.3;
-      case 3: return 1.6;
-      case 4: return 2.0;
+      case 2: return 1.15;
+      case 3: return 1.35;
+      case 4: return 1.55;
       default: return 1.0;
     }
   };
@@ -190,17 +190,23 @@ export default function ModusWeb() {
   };
 
   // --- Custom Radar SVG Logic ---
-  const cx = containerRef.current ? containerRef.current.clientWidth / 2 : 400;
-  const cy = containerRef.current ? containerRef.current.clientHeight / 2 : 325;
+  const w = containerRef.current ? containerRef.current.clientWidth : 800;
+  const h = containerRef.current ? containerRef.current.clientHeight : 650;
+  const cx = w / 2;
+  const cy = h / 2;
   
   const getRadarPoint = (modeId, scoreVal) => {
-    const p = nodePositions[modeId];
-    if (!p) return `${cx},${cy}`;
+    const m = MODES.find(mode => mode.id === modeId);
+    if (!m) return `${cx},${cy}`;
+    
+    // Convert percentage x/y to pixels
+    const pxBase = (m.x * w) / 100;
+    const pyBase = (m.y * h) / 100;
     
     // Scale distance based on score (0 to 6)
     const ratio = Math.min(Math.max(scoreVal / 6, 0), 1);
-    const px = cx + (p.x - cx) * ratio;
-    const py = cy + (p.y - cy) * ratio;
+    const px = cx + (pxBase - cx) * ratio;
+    const py = cy + (pyBase - cy) * ratio;
     return `${px},${py}`;
   };
 
@@ -326,9 +332,9 @@ export default function ModusWeb() {
               
               {/* Axes lines from center to nodes */}
               {MODES.map(m => {
-                const p = nodePositions[m.id];
-                if (!p) return null;
-                return <line key={`axis-${m.id}`} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="#f1f5f9" strokeWidth="2" />;
+                const px = (m.x * w) / 100;
+                const py = (m.y * h) / 100;
+                return <line key={`axis-${m.id}`} x1={cx} y1={cy} x2={px} y2={py} stroke="#f1f5f9" strokeWidth="2" />;
               })}
 
               {/* The Actual Data Polygon */}
@@ -343,13 +349,13 @@ export default function ModusWeb() {
               
               {/* Data Points */}
               {MODES.map(m => {
-                const p = nodePositions[m.id];
-                if (!p) return null;
+                const pxBase = (m.x * w) / 100;
+                const pyBase = (m.y * h) / 100;
                 const score = radarScores[m.id] || 0;
                 const ratio = Math.min(Math.max(score / 6, 0), 1);
-                const px = cx + (p.x - cx) * ratio;
-                const py = cy + (p.y - cy) * ratio;
-                return <circle key={`pt-${m.id}`} cx={px} cy={py} r="4" fill="#2563eb" />;
+                const px = cx + (pxBase - cx) * ratio;
+                const py = cy + (pyBase - cy) * ratio;
+                return <circle key={`pt-${m.id}`} cx={px} cy={py} r="7" fill={CATEGORY_COLORS[m.category]} stroke="white" strokeWidth="2.5" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.25))' }} />;
               })}
             </g>
           )}
@@ -361,9 +367,12 @@ export default function ModusWeb() {
 
           {/* Connection Lines (User drawn) */}
           {connections.map((conn, idx) => {
-            const p1 = nodePositions[conn.from];
-            const p2 = nodePositions[conn.to];
-            if (!p1 || !p2) return null;
+            const m1 = MODES.find(m => m.id === conn.from);
+            const m2 = MODES.find(m => m.id === conn.to);
+            if (!m1 || !m2) return null;
+            
+            const p1 = { x: (m1.x * w) / 100, y: (m1.y * h) / 100 };
+            const p2 = { x: (m2.x * w) / 100, y: (m2.y * h) / 100 };
             
             const dx = p2.x - p1.x;
             const dy = p2.y - p1.y;
