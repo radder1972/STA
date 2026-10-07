@@ -394,6 +394,41 @@ function calculateSmiFromAnswers(answers) {
   return total > 0 ? map : null;
 }
 
+// Complete card brand color palette across all categories (Modi, Schemas, VST, Basisbehoeften)
+const CARD_BRAND_COLORS = [
+  '#60a5fa', // Kindmodi / Domein I Verbondenheid (Blauw)
+  '#34d399', // Gezonde Volwassene & Blije Kind / Autonomie (Groen)
+  '#facc15', // Copingmodi / Zelfexpressie (Geel)
+  '#f87171', // Oudermodi / Spontaniteit & Spel (Rood)
+  '#fb923c', // Domein III Realistische Grenzen (Oranje)
+  '#a855f7', // Zelfcoherentie / VST Coherente Identiteit & Betekenisvolle Wereld (Paars)
+  '#b45309', // VST Rechtvaardigheid (Warm Terracotta / Bruin)
+  '#0284c7', // Kaartenset Platform (Oceaanblauw)
+  '#059669', // Tafelopstelling (Smaragdgroen)
+  '#ffffff'  // Witgouden Glans
+];
+
+// Huisstijl Schematherapie Suite Sparkle (exacte 4-puntige diamantster uit het ThreeSparklesLogo)
+const SuiteSparkle = ({ size = 20, color = 'currentColor', isTriple = false }) => {
+  if (isTriple) {
+    return (
+      <svg width={size * 1.45} height={size} viewBox="0 0 36 24" fill="none">
+        {/* Centrale hoofdster */}
+        <path d="M18 0L20.59 9.41L30 12L20.59 14.59L18 24L15.41 14.59L6 12L15.41 9.41L18 0Z" fill={color} />
+        {/* Linker flankster */}
+        <path d="M6 3L7.3 7.7L12 9L7.3 10.3L6 15L4.7 10.3L0 9L4.7 7.7L6 3Z" fill={color} opacity="0.85" />
+        {/* Rechter flankster */}
+        <path d="M30 6L31.3 10.7L36 12L31.3 13.3L30 18L28.7 13.3L24 12L28.7 10.7L30 6Z" fill={color} opacity="0.85" />
+      </svg>
+    );
+  }
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill={color} />
+    </svg>
+  );
+};
+
 export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenModusWeb, showAction = true, initialDimension = '3d', initialSide = 'modi' }) {
   const [activeSide, setActiveSide] = useState(initialSide); // 'modi' or 'schemas'
   const [viewDimension, setViewDimension] = useState(initialDimension); // '2d' or '3d'
@@ -476,15 +511,15 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       // Audio autoplay policy fallback
     }
 
-    const colors = ['#f59e0b', '#fbbf24', '#34d399', '#38bdf8', '#f472b6', '#a78bfa', '#ffffff'];
-    const newSparkles = Array.from({ length: 48 }).map((_, i) => ({
+    const newSparkles = Array.from({ length: 56 }).map((_, i) => ({
       id: `sparkle-${Date.now()}-${i}-${Math.random()}`,
       left: Math.random() * 96 + 2,
       delay: Math.random() * 0.55,
-      duration: 1.6 + Math.random() * 1.2,
-      size: 13 + Math.random() * 16,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      sway: (Math.random() - 0.5) * 130,
+      duration: 1.6 + Math.random() * 1.3,
+      size: 14 + Math.random() * 18,
+      color: CARD_BRAND_COLORS[i % CARD_BRAND_COLORS.length],
+      isTriple: i % 4 === 0,
+      sway: (Math.random() - 0.5) * 140,
       spin: (Math.random() - 0.5) * 720
     }));
 
@@ -2806,7 +2841,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                 ['--spin']: `${s.spin}deg`
               }}
             >
-              <Sparkles size={s.size} />
+              <SuiteSparkle size={s.size} color={s.color} isTriple={s.isTriple} />
             </div>
           ))}
 
@@ -2817,25 +2852,32 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
               top: '24px',
               left: '50%',
               transform: 'translateX(-50%)',
-              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(59, 130, 246, 0.95) 100%)',
-              backdropFilter: 'blur(10px)',
+              background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(30, 41, 59, 0.96) 100%)',
+              backdropFilter: 'blur(12px)',
               color: '#ffffff',
-              padding: '10px 24px',
+              padding: '12px 28px',
               borderRadius: '30px',
-              boxShadow: '0 10px 30px rgba(16, 185, 129, 0.4), 0 0 20px rgba(251, 191, 36, 0.5)',
-              border: '2px solid rgba(255, 255, 255, 0.45)',
+              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(52, 211, 153, 0.45)',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
               display: 'flex',
               alignItems: 'center',
-              gap: '10px',
+              gap: '14px',
               fontWeight: 700,
               fontSize: '0.92rem',
               letterSpacing: '0.3px',
-              animation: 'easterEggToastPop 3.2s ease-in-out forwards',
+              animation: 'easterEggToastPop 3.4s ease-in-out forwards',
               zIndex: 1000000
             }}>
-              <Sparkles size={20} color="#fef08a" />
-              <span>Blije Kind Ontwaakt! Tijd voor speelsheid, vreugde en onbezorgd genieten.</span>
-              <Sparkles size={20} color="#fef08a" />
+              <SuiteSparkle size={22} color="#34d399" isTriple={true} />
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', textAlign: 'center' }}>
+                <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '0.5px' }}>
+                  Blije Kind Ontwaakt!
+                </span>
+                <span style={{ fontSize: '0.78rem', fontWeight: 500, color: '#cbd5e1' }}>
+                  Huisstijl-sparkles in alle kaartkleuren: tijd voor speelsheid, verwondering en verbinding.
+                </span>
+              </div>
+              <SuiteSparkle size={22} color="#facc15" isTriple={true} />
             </div>
           )}
         </div>
