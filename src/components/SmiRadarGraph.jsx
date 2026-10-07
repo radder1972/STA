@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { Share2, Rotate3d, Eye, Play, Pause, RotateCcw, ZoomIn, ZoomOut, Coins, X, BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
+import { Share2, Rotate3d, Eye, Play, Pause, RotateCcw, ZoomIn, ZoomOut, Coins, X, BookOpen, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
 import SchemaCard from './SchemaCard';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
@@ -438,11 +438,64 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
   const hoverTimeoutRef = useRef(null);
   const flipTimeoutRef = useRef(null);
   const animFrameRef = useRef(null);
+  const sparkleTimeoutRef = useRef(null);
+
+  // Easter Egg: Blije Kind Sparkle Regen State
+  const [sparkles, setSparkles] = useState([]);
+  const [showEasterEggToast, setShowEasterEggToast] = useState(false);
 
   useEffect(() => {
     return () => {
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      if (sparkleTimeoutRef.current) clearTimeout(sparkleTimeoutRef.current);
     };
+  }, []);
+
+  // Easter egg: trigger golden sparkle rain & gentle chime when clicking Blije Kind (BK)
+  const triggerSparkleRain = useCallback(() => {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        const ctx = new AudioCtx();
+        const notes = [523.25, 659.25, 783.99, 987.77, 1046.50, 1318.51]; // C5, E5, G5, B5, C6, E6
+        notes.forEach((freq, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.07);
+          gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.07);
+          gain.gain.linearRampToValueAtTime(0.18, ctx.currentTime + i * 0.07 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + i * 0.07 + 0.85);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + i * 0.07);
+          osc.stop(ctx.currentTime + i * 0.07 + 0.9);
+        });
+      }
+    } catch (e) {
+      // Audio autoplay policy fallback
+    }
+
+    const colors = ['#f59e0b', '#fbbf24', '#34d399', '#38bdf8', '#f472b6', '#a78bfa', '#ffffff'];
+    const newSparkles = Array.from({ length: 48 }).map((_, i) => ({
+      id: `sparkle-${Date.now()}-${i}-${Math.random()}`,
+      left: Math.random() * 96 + 2,
+      delay: Math.random() * 0.55,
+      duration: 1.6 + Math.random() * 1.2,
+      size: 13 + Math.random() * 16,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      sway: (Math.random() - 0.5) * 130,
+      spin: (Math.random() - 0.5) * 720
+    }));
+
+    setSparkles(newSparkles);
+    setShowEasterEggToast(true);
+
+    if (sparkleTimeoutRef.current) clearTimeout(sparkleTimeoutRef.current);
+    sparkleTimeoutRef.current = setTimeout(() => {
+      setSparkles([]);
+      setShowEasterEggToast(false);
+    }, 3200);
   }, []);
 
   // Smoothly rotate the 3D orbit camera so that the selected dynamic faces forward
@@ -1773,6 +1826,45 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                 from { stroke-dashoffset: 20; }
                 to { stroke-dashoffset: 0; }
               }
+              @keyframes sparkleFall {
+                0% {
+                  transform: translate3d(0, -60px, 0) rotate(0deg) scale(0);
+                  opacity: 0;
+                }
+                15% {
+                  opacity: 1;
+                  transform: translate3d(var(--sway-half, 15px), 12vh, 0) rotate(90deg) scale(1.25);
+                }
+                80% {
+                  opacity: 0.95;
+                }
+                100% {
+                  transform: translate3d(var(--sway, 30px), 105vh, 0) rotate(var(--spin, 360deg)) scale(0.35);
+                  opacity: 0;
+                }
+              }
+              @keyframes easterEggToastPop {
+                0% {
+                  transform: translate(-50%, -20px) scale(0.85);
+                  opacity: 0;
+                }
+                12% {
+                  transform: translate(-50%, 0) scale(1.05);
+                  opacity: 1;
+                }
+                22% {
+                  transform: translate(-50%, 0) scale(1);
+                  opacity: 1;
+                }
+                85% {
+                  transform: translate(-50%, 0) scale(1);
+                  opacity: 1;
+                }
+                100% {
+                  transform: translate(-50%, -25px) scale(0.9);
+                  opacity: 0;
+                }
+              }
             `}</style>
           </defs>
 
@@ -1997,6 +2089,9 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                     onMouseLeave={handleNodeLeave}
                     onClick={(e) => {
                       e.stopPropagation();
+                      if (m.id === 'bk') {
+                        triggerSparkleRain();
+                      }
                       if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
                       setPopupFlipped(prev => !prev);
                     }}
@@ -2223,6 +2318,9 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                     onMouseLeave={handleNodeLeave}
                     onClick={(e) => {
                       e.stopPropagation();
+                      if (m.id === 'bk') {
+                        triggerSparkleRain();
+                      }
                       if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
                       setPopupFlipped(prev => !prev);
                     }}
@@ -2411,6 +2509,9 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
           <div
             onClick={(e) => {
               e.stopPropagation();
+              if (activeCardDetails.id === 'bk') {
+                triggerSparkleRain();
+              }
               if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
               setPopupFlipped(prev => !prev);
             }}
@@ -2675,6 +2776,68 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
           <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textAlign: 'center' }}>
             Draag deze scores over naar het netwerkmodel om interactief verbanden en moduscycli te tekenen.
           </span>
+        </div>
+      )}
+
+      {/* Easter Egg: Sparkle Regen voor het Blije Kind */}
+      {sparkles.length > 0 && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          pointerEvents: 'none',
+          zIndex: 999999,
+          overflow: 'hidden'
+        }}>
+          {sparkles.map(s => (
+            <div
+              key={s.id}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: `${s.left}vw`,
+                color: s.color,
+                animation: `sparkleFall ${s.duration}s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${s.delay}s forwards`,
+                filter: `drop-shadow(0 0 8px ${s.color})`,
+                ['--sway']: `${s.sway}px`,
+                ['--sway-half']: `${s.sway * 0.5}px`,
+                ['--spin']: `${s.spin}deg`
+              }}
+            >
+              <Sparkles size={s.size} />
+            </div>
+          ))}
+
+          {/* Toast Notification */}
+          {showEasterEggToast && (
+            <div style={{
+              position: 'fixed',
+              top: '24px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(59, 130, 246, 0.95) 100%)',
+              backdropFilter: 'blur(10px)',
+              color: '#ffffff',
+              padding: '10px 24px',
+              borderRadius: '30px',
+              boxShadow: '0 10px 30px rgba(16, 185, 129, 0.4), 0 0 20px rgba(251, 191, 36, 0.5)',
+              border: '2px solid rgba(255, 255, 255, 0.45)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontWeight: 700,
+              fontSize: '0.92rem',
+              letterSpacing: '0.3px',
+              animation: 'easterEggToastPop 3.2s ease-in-out forwards',
+              zIndex: 1000000
+            }}>
+              <Sparkles size={20} color="#fef08a" />
+              <span>Blije Kind Ontwaakt! Tijd voor speelsheid, vreugde en onbezorgd genieten.</span>
+              <Sparkles size={20} color="#fef08a" />
+            </div>
+          )}
         </div>
       )}
     </div>
