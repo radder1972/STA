@@ -1,11 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Share2, MousePointer2, Trash2, Upload, Activity } from 'lucide-react';
 import smiScoring from '../data/smi-scoring.json';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 
 const MODES = [
   { id: 'gv', title: 'Gezonde volwassene', category: 'gezond', x: 50, y: 15 },
-  { id: 'bk', title: 'Blije kind', category: 'gezond', x: 50, y: 85 },
   
   { id: 'so', title: 'Straffende ouder', category: 'ouder', x: 80, y: 25 },
   { id: 'vo', title: 'Veeleisende ouder', category: 'ouder', x: 80, y: 40 },
@@ -14,14 +12,16 @@ const MODES = [
   { id: 'ik', title: 'Impulsieve kind', category: 'kind', x: 80, y: 75 },
   { id: 'kk', title: 'Kwetsbare kind', category: 'kind', x: 80, y: 85 },
   
-  { id: 'zv', title: 'Zelfverheerlijker', category: 'coping', x: 20, y: 25 },
-  { id: 'ob', title: 'Onthechte beschermer', category: 'coping', x: 25, y: 35 },
-  { id: 'bob', title: 'Boze beschermer', category: 'coping', x: 25, y: 45 },
-  { id: 'pa', title: 'Pest en aanval', category: 'coping', x: 20, y: 55 },
-  { id: 'poc', title: 'Perfectionistische overcontroleerder', category: 'coping', x: 20, y: 65 },
-  { id: 'woc', title: 'Wantrouwende overcontroleerder', category: 'coping', x: 20, y: 72 },
-  { id: 'oz', title: 'Onthechte zelfsusser', category: 'coping', x: 25, y: 80 },
+  { id: 'bk', title: 'Blije kind', category: 'gezond', x: 50, y: 92 },
+  
   { id: 'wi', title: 'Willoze inschikkelijke', category: 'coping', x: 20, y: 88 },
+  { id: 'oz', title: 'Onthechte zelfsusser', category: 'coping', x: 25, y: 80 },
+  { id: 'woc', title: 'Wantrouwende overcontroleerder', category: 'coping', x: 20, y: 72 },
+  { id: 'poc', title: 'Perfectionistische overcontroleerder', category: 'coping', x: 20, y: 65 },
+  { id: 'pa', title: 'Pest en aanval', category: 'coping', x: 20, y: 55 },
+  { id: 'bob', title: 'Boze beschermer', category: 'coping', x: 25, y: 45 },
+  { id: 'ob', title: 'Onthechte beschermer', category: 'coping', x: 25, y: 35 },
+  { id: 'zv', title: 'Zelfverheerlijker', category: 'coping', x: 20, y: 25 },
 ];
 
 const SMI_MAPPING = {
@@ -42,7 +42,7 @@ export default function ModusWeb() {
   const [connections, setConnections] = useState([]);
   const [connectingFrom, setConnectingFrom] = useState(null);
   
-  const [radarData, setRadarData] = useState([]);
+  const [radarScores, setRadarScores] = useState({});
   const [showRadar, setShowRadar] = useState(false);
   
   const containerRef = useRef(null);
@@ -106,12 +106,10 @@ export default function ModusWeb() {
 
   const calculateScores = (smiData) => {
     const newSizes = { ...sizes };
-    const rData = [];
+    const rScores = {};
 
-    const order = ['gv', 'so', 'vo', 'boos_k', 'ik', 'kk', 'wi', 'oz', 'woc', 'poc', 'pa', 'bob', 'ob', 'zv', 'bk'];
-
-    order.forEach(modeId => {
-      const mDef = MODES.find(m => m.id === modeId);
+    MODES.forEach(mDef => {
+      const modeId = mDef.id;
       const smiKey = SMI_MAPPING[modeId] || modeId;
       const items = smiScoring[smiKey];
       
@@ -130,11 +128,7 @@ export default function ModusWeb() {
         mean = (Math.random() * 2) + 2.5; 
       }
       
-      rData.push({
-        subject: mDef.title,
-        score: parseFloat(mean.toFixed(1)),
-        fullMark: 6
-      });
+      rScores[modeId] = parseFloat(mean.toFixed(1));
 
       if (mean >= 4.5) newSizes[modeId] = 4;
       else if (mean >= 3.5) newSizes[modeId] = 3;
@@ -143,7 +137,7 @@ export default function ModusWeb() {
     });
 
     setSizes(newSizes);
-    setRadarData(rData);
+    setRadarScores(rScores);
     setShowRadar(true);
     setInteractionMode('size');
   };
@@ -185,10 +179,33 @@ export default function ModusWeb() {
       setSizes({});
       setConnections([]);
       setConnectingFrom(null);
-      setRadarData([]);
+      setRadarScores({});
       setShowRadar(false);
     }
   };
+
+  // --- Custom Radar SVG Logic ---
+  const cx = containerRef.current ? containerRef.current.clientWidth / 2 : 400;
+  const cy = containerRef.current ? containerRef.current.clientHeight / 2 : 325;
+  
+  const getRadarPoint = (modeId, scoreVal) => {
+    const p = nodePositions[modeId];
+    if (!p) return `${cx},${cy}`;
+    
+    // Scale distance based on score (0 to 6)
+    const ratio = Math.min(Math.max(scoreVal / 6, 0), 1);
+    const px = cx + (p.x - cx) * ratio;
+    const py = cy + (p.y - cy) * ratio;
+    return `${px},${py}`;
+  };
+
+  // Generate polygon points for the actual data
+  const dataPolygonPoints = MODES.map(m => getRadarPoint(m.id, radarScores[m.id] || 0)).join(' ');
+
+  // Generate background grid polygons (levels 2, 4, 6)
+  const gridPoints6 = MODES.map(m => getRadarPoint(m.id, 6)).join(' ');
+  const gridPoints4 = MODES.map(m => getRadarPoint(m.id, 4)).join(' ');
+  const gridPoints2 = MODES.map(m => getRadarPoint(m.id, 2)).join(' ');
 
   return (
     <div className="modus-web-container" style={{ display: 'flex', flexDirection: 'column', minHeight: '80vh', background: '#f8fafc', padding: '1rem', fontFamily: 'inherit' }}>
@@ -218,7 +235,7 @@ export default function ModusWeb() {
             style={{ display: 'none' }} 
           />
 
-          {radarData.length > 0 && (
+          {Object.keys(radarScores).length > 0 && (
             <button 
               onClick={() => setShowRadar(!showRadar)}
               style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0.5rem 1rem', borderRadius: '8px', border: 'none', background: showRadar ? '#8b5cf6' : '#ede9fe', color: showRadar ? 'white' : '#6d28d9', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.9rem' }}
@@ -255,21 +272,7 @@ export default function ModusWeb() {
       {/* Canvas */}
       <div ref={containerRef} style={{ flex: 1, position: 'relative', background: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', overflow: 'hidden', minHeight: '650px', display: 'flex' }}>
         
-        {/* Radar Chart Background */}
-        {showRadar && radarData.length > 0 && (
-          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', maxWidth: '800px', height: '100%', maxHeight: '800px', opacity: 0.25, pointerEvents: 'none', zIndex: 0 }}>
-            <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
-                <PolarGrid stroke="#94a3b8" />
-                <PolarAngleAxis dataKey="subject" tick={{ fill: '#64748b', fontSize: 10, fontWeight: 'bold' }} />
-                <PolarRadiusAxis angle={90} domain={[0, 6]} tick={false} axisLine={false} />
-                <Radar name="SMI Score" dataKey="score" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} />
-              </RadarChart>
-            </ResponsiveContainer>
-          </div>
-        )}
-
-        {/* SVG Layer for Lines */}
+        {/* SVG Layer for EVERYTHING (Radar + Custom Lines) */}
         <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }}>
           <defs>
             <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9.5" refY="3.5" orient="auto">
@@ -277,8 +280,50 @@ export default function ModusWeb() {
             </marker>
           </defs>
           
-          <path d="M 50% 15% Q 45% 30% 50% 50% T 50% 85%" fill="transparent" stroke="#e2e8f0" strokeWidth="2" strokeDasharray="6,6" />
+          {/* Custom Spider Web (Radar) */}
+          {showRadar && Object.keys(radarScores).length > 0 && Object.keys(nodePositions).length > 0 && (
+            <g className="custom-radar">
+              {/* Grid Background Polygons */}
+              <polygon points={gridPoints6} fill="none" stroke="#e2e8f0" strokeWidth="1" />
+              <polygon points={gridPoints4} fill="none" stroke="#e2e8f0" strokeWidth="1" />
+              <polygon points={gridPoints2} fill="none" stroke="#e2e8f0" strokeWidth="1" />
+              
+              {/* Axes lines from center to nodes */}
+              {MODES.map(m => {
+                const p = nodePositions[m.id];
+                if (!p) return null;
+                return <line key={`axis-${m.id}`} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="#f1f5f9" strokeWidth="2" />;
+              })}
 
+              {/* The Actual Data Polygon */}
+              <polygon 
+                points={dataPolygonPoints} 
+                fill="#3b82f6" 
+                fillOpacity="0.25" 
+                stroke="#3b82f6" 
+                strokeWidth="3" 
+                strokeLinejoin="round" 
+              />
+              
+              {/* Data Points */}
+              {MODES.map(m => {
+                const p = nodePositions[m.id];
+                if (!p) return null;
+                const score = radarScores[m.id] || 0;
+                const ratio = Math.min(Math.max(score / 6, 0), 1);
+                const px = cx + (p.x - cx) * ratio;
+                const py = cy + (p.y - cy) * ratio;
+                return <circle key={`pt-${m.id}`} cx={px} cy={py} r="4" fill="#2563eb" />;
+              })}
+            </g>
+          )}
+
+          {/* Wavy center line (decorative) - Only show if not drawing spider web */}
+          {!showRadar && (
+             <path d="M 50% 15% Q 45% 30% 50% 50% T 50% 85%" fill="transparent" stroke="#e2e8f0" strokeWidth="2" strokeDasharray="6,6" />
+          )}
+
+          {/* Connection Lines (User drawn) */}
           {connections.map((conn, idx) => {
             const p1 = nodePositions[conn.from];
             const p2 = nodePositions[conn.to];
@@ -348,6 +393,11 @@ export default function ModusWeb() {
               }}
             >
               {mode.title}
+              {showRadar && radarScores[mode.id] !== undefined && (
+                <div style={{ fontSize: '0.65rem', opacity: 0.8, marginTop: '2px', fontWeight: 'normal' }}>
+                  Score: {radarScores[mode.id]}
+                </div>
+              )}
             </div>
           );
         })}
