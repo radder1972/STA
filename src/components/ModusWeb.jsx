@@ -54,6 +54,7 @@ export default function ModusWeb() {
   const [connectingFrom, setConnectingFrom] = useState(null);
   
   const [radarScores, setRadarScores] = useState({});
+  const [showBlijeKind, setShowBlijeKind] = useState(false);
   const [showRadar, setShowRadar] = useState(false);
   
   const containerRef = useRef(null);
@@ -206,6 +207,7 @@ const clearAll = () => {
       setConnectingFrom(null);
       setRadarScores({});
       setShowRadar(false);
+      setShowBlijeKind(false);
     }
   };
 
@@ -217,7 +219,10 @@ const clearAll = () => {
     
     // Calculate angle based ONLY on modes that actually have a score!
     const validModesForRadar = MODES
-      .filter(m => radarScores[m.id] > 0)
+      .filter(m => {
+        if (showRadar && m.id === 'bk' && !showBlijeKind) return false;
+        return radarScores[m.id] > 0;
+      })
       .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
       
     const index = validModesForRadar.findIndex(m => m.id === modeId);
@@ -253,9 +258,13 @@ const clearAll = () => {
   };
 
   // Generate polygon points for the actual data (excluding modes with no score)
-  const validModesForRadar = MODES
-    .filter(m => radarScores[m.id] > 0)
-    .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
+  // Calculate angle based ONLY on modes that actually have a score!
+    const validModesForRadar = MODES
+      .filter(m => {
+        if (showRadar && m.id === 'bk' && !showBlijeKind) return false;
+        return radarScores[m.id] > 0;
+      })
+      .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
   const dataPolygonPoints = validModesForRadar.map(m => getRadarPoint(m.id, radarScores[m.id])).join(' ');
 
   // Generate background grid polygons (levels 2, 4, 6)
@@ -463,12 +472,19 @@ const clearAll = () => {
           const pos = getModePosition(mode.id);
           const hasScore = radarScores[mode.id] > 0;
           if (showRadar && !hasScore) return null; // Hide unmeasured modes in radar view
+          if (showRadar && mode.id === 'bk' && !showBlijeKind) return null; // Easter egg hidden
           
           return (
             <div
               key={mode.id}
               id={`node-${mode.id}`}
               onClick={() => handleNodeClick(mode.id)}
+              onDoubleClick={(e) => {
+                if (mode.id === 'gv' && showRadar) {
+                  e.stopPropagation();
+                  setShowBlijeKind(prev => !prev);
+                }
+              }}
               style={{
                 position: 'absolute',
                 left: `${pos.x}%`,
