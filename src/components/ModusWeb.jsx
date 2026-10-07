@@ -221,7 +221,7 @@ const clearAll = () => {
     })
     .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
     
-  const modesForData = modesForGrid.filter(m => radarScores[m.id] > 0 || (m.id === 'bk' && showBlijeKind));
+  const modesForData = modesForGrid; // Make sure EVERY label has a point on the blue polygon
 
   const getModePosition = (modeId) => {
     if (!showRadar) {
