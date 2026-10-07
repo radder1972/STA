@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sta-lime.vercel.app/</loc>
+    <loc>https://schematherapiesuite.vercel.app/</loc>
     <lastmod>2023-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://sta-lime.vercel.app/kaarten</loc>
+    <loc>https://schematherapiesuite.vercel.app/kaarten</loc>
     <lastmod>2023-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://sta-lime.vercel.app/tafel</loc>
+    <loc>https://schematherapiesuite.vercel.app/tafel</loc>
     <lastmod>2023-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://sta-lime.vercel.app/test</loc>
+    <loc>https://schematherapiesuite.vercel.app/test</loc>
     <lastmod>2023-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sta-lime.vercel.app/snelstart</loc>
+    <loc>https://schematherapiesuite.vercel.app/snelstart</loc>
     <lastmod>2023-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

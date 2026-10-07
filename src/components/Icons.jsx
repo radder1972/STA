@@ -294,7 +294,7 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
         fontWeight: '700'
-      } : {}}>Digitaal Schematherapie Platform</span>
+      } : {}}>Schematherapie Suite</span>
     </>
   );
 
@@ -336,7 +336,7 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
         e.currentTarget.style.transform = 'translateY(0)';
         e.currentTarget.style.boxShadow = `0 2px 8px ${currentTheme.border}`;
       }}
-      title="Terug naar het centrale Digitaal Schematherapie Platform"
+      title="Terug naar het centrale Schematherapie Suite"
     >
       {content}
     </a>
@@ -396,7 +396,7 @@ export const ThreeSparklesLogo = ({ size = 26, theme = 'tafel', style = {} }) =>
         height: `${size * 1.05}px`,
         ...style 
       }}
-      title="Digitaal Schematherapie Platform"
+      title="Schematherapie Suite"
     >
       <svg width={size * 0.9} height={size * 0.9} viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', left: `${size * 0.3}px`, top: '0px', filter: `drop-shadow(0 2px 6px ${isHub ? 'rgba(2, 132, 199, 0.35)' : colors[0] + '40'})` }}>
         <defs>

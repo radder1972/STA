@@ -50,7 +50,7 @@ export default function PrintProof() {
           <div style={{ borderBottom: '2px solid #e4e4e7', padding: '30px', display: 'flex', justifyContent: 'space-between' }}>
             <div>
               <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '1px', margin: 0 }}>Productie Drukproef</h1>
-              <p style={{ color: '#64748b', fontSize: '14px', marginTop: '4px', margin: 0 }}>Digitaal Schematherapie Platform</p>
+              <p style={{ color: '#64748b', fontSize: '14px', marginTop: '4px', margin: 0 }}>Schematherapie Suite</p>
             </div>
             <div style={{ textAlign: 'right', fontSize: '14px', color: '#475569' }}>
               <table style={{ textAlign: 'left', marginLeft: 'auto' }}>

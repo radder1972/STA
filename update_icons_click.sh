@@ -1,0 +1,1 @@
+sed -i '' 's/<a href="index.html#overons" style=/<a href="index.html#overons" onClick={(e) => { const target = document.getElementById('"'"'overons'"'"'); if (target) { e.preventDefault(); target.scrollIntoView({ behavior: '"'"'smooth'"'"' }); } }} style=/g' src/components/Icons.jsx

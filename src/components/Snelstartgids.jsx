@@ -18,7 +18,7 @@ export default function Snelstartgids({ onBack }) {
 
       {/* Intro text */}
       <div style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '16px', padding: '1.5rem', marginBottom: '3rem', fontSize: '0.95rem', lineHeight: '1.6', color: 'var(--text-main)', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-        Welkom bij het <strong>Digitaal Schematherapie Platform (DSP)</strong>! Deze suite helpt je om theorie, testdata en praktijkobservaties moeiteloos samen te brengen. Of je nu theoriekaarten zoekt of een complexe casus wilt ontrafelen met AI, het platform fungeert als een scherpe, evidence-based co-therapeut.
+        Welkom bij het <strong>Schematherapie Suite</strong>! Deze suite helpt je om theorie, testdata en praktijkobservaties moeiteloos samen te brengen. Of je nu theoriekaarten zoekt of een complexe casus wilt ontrafelen met AI, het platform fungeert als een scherpe, evidence-based co-therapeut.
       </div>
 
       {/* Step 1 */}

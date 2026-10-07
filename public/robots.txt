@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sta-lime.vercel.app/sitemap.xml
+Sitemap: https://schematherapiesuite.vercel.app/sitemap.xml

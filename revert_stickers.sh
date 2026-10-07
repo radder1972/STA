@@ -1,0 +1,1 @@
+sed -i '' "s/clipPath: 'polygon(50% 0%, 61% 9%, 75% 7%, 80% 20%, 95% 25%, 89% 38%, 100% 50%, 89% 62%, 95% 75%, 80% 80%, 75% 93%, 61% 91%, 50% 100%, 39% 91%, 25% 93%, 20% 80%, 5% 75%, 11% 62%, 0% 50%, 11% 38%, 5% 25%, 20% 20%, 25% 7%, 39% 9%)',/borderRadius: '50%',/g" src/components/GamePortal.jsx src/components/KaartenOverzicht.jsx src/components/StartHub.jsx

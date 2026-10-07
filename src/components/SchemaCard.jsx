@@ -697,7 +697,7 @@ const SchemaCard = ({
                     letterSpacing: '-0.2px',
                     WebkitPrintColorAdjust: 'exact',
                     printColorAdjust: 'exact'
-                  }}>Digitaal Schematherapie Platform</span>
+                  }}>Schematherapie Suite</span>
                 </div>
               </div>
 

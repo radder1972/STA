@@ -481,7 +481,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                             letterSpacing: '-0.2px',
                             WebkitPrintColorAdjust: 'exact',
                             printColorAdjust: 'exact'
-                          }}>Digitaal Schematherapie Platform</span>
+                          }}>Schematherapie Suite</span>
                         </div>
                       </div>
 
