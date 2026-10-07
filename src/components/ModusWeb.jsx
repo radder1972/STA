@@ -53,7 +53,7 @@ const LIGHT_CATEGORY_COLORS = {
   coping: '#fef08a'
 };
 
-const RADAR_ORDER = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
+const RADAR_ORDER = ['gv', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'woc', 'zh', 'pa', 'so', 'vo'];
 
 
 
@@ -242,7 +242,7 @@ const clearAll = () => {
     // Calculate angle based on the official 14 modes for the background grid
   const modesForGrid = MODES
     .filter(m => {
-      const trueBase14 = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
+      const trueBase14 = ['gv', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'woc', 'zh', 'pa', 'so', 'vo'];
       return trueBase14.includes(m.id);
     })
     .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
@@ -468,7 +468,7 @@ const clearAll = () => {
           const hasScore = radarScores[mode.id] > 0;
           
           if (showRadar) {
-            const trueBase14 = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
+            const trueBase14 = ['gv', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'woc', 'zh', 'pa', 'so', 'vo'];
             if (!trueBase14.includes(mode.id)) return null;
           }
           
