@@ -15,14 +15,14 @@ export const getCardColor = (type, id, title) => {
     if (safeId === 'vst_m_bk' || safeTitle.includes('blije kind')) return '#34d399'; // Groen (Blije Kind)
     if (safeId === 'gv' || safeTitle.includes('gezonde volwassene')) return '#34d399'; // Groen (Gezonde Volwassene)
 
-    const childModes = ['kk', 'rk', 'ik', 'ok', 'bk'];
+    const childModes = ['kk', 'rk', 'ik', 'ok', 'bk', 'wk'];
     if (childModes.includes(safeId) || safeTitle.includes('kwetsbare') || safeTitle.includes('razende') || safeTitle.includes('impulsieve') || safeTitle.includes('ongedisciplineerde') || safeTitle.includes('boze kind')) return '#60a5fa'; // Blauw (Kindmodi)
 
     const parentModes = ['so', 'vo'];
     if (parentModes.includes(safeId) || safeTitle.includes('straffende') || safeTitle.includes('veeleisende')) return '#f87171'; // Rood
 
     // Coping modes: all yellow (#facc15 / #eab308)
-    const copingModes = ['wi', 'ob', 'oz', 'wk', 'zh', 'pa', 'vst_m_bb', 'vst_m_po', 'vst_m_bm', 'vst_m_ae', 'vst_m_rd', 'mc3d'];
+    const copingModes = ['wi', 'ob', 'oz', 'zh', 'pa', 'vst_m_bb', 'vst_m_po', 'vst_m_bm', 'vst_m_ae', 'vst_m_rd', 'mc3d'];
     if (copingModes.includes(safeId) || safeTitle.includes('inschikkelijke') || safeTitle.includes('beschermer') || safeTitle.includes('zelfsusser') || safeTitle.includes('overcontroleerder') || safeTitle.includes('zelfverheerlijker') || safeTitle.includes('pest') || safeTitle.includes('bedrog') || safeTitle.includes('erkenningzoeker') || safeTitle.includes('roofdier') || safeTitle.includes('coping')) return '#facc15'; // Geel
   } else if (safeType === 'schema') {
     const cleanId = safeId.replace('/', '_');
