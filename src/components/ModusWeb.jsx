@@ -454,7 +454,7 @@ const clearAll = () => {
         {/* Nodes */}
         {MODES.map(mode => {
           const sizeIndex = sizes[mode.id] || 1;
-          const scale = getNodeScale(sizeIndex);
+          const scale = getNodeScale(sizeIndex, mode.id);
           const isSelected = connectingFrom === mode.id;
           
           const pos = getModePosition(mode.id);
