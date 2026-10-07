@@ -55,6 +55,8 @@ export default function ModusWeb() {
   
   const [radarScores, setRadarScores] = useState({});
   const [showBlijeKind, setShowBlijeKind] = useState(false);
+  const [hoveredNode, setHoveredNode] = useState(null);
+  const [popupFlipped, setPopupFlipped] = useState(false);
   const [showRadar, setShowRadar] = useState(false);
   
   const containerRef = useRef(null);
@@ -234,7 +236,7 @@ const clearAll = () => {
     
     const angleDeg = -90 + (index * (360 / modesForGrid.length));
     const angleRad = (angleDeg * Math.PI) / 180;
-    const CIRCLE_RADIUS = 35; // 35% radius
+    const CIRCLE_RADIUS = 42; // 42% radius for pills (outside web)
     return {
       x: 50 + CIRCLE_RADIUS * Math.cos(angleRad),
       y: 50 + CIRCLE_RADIUS * Math.sin(angleRad)
@@ -408,14 +410,9 @@ const clearAll = () => {
               
               {/* Data Points */}
               {modesForData.map(m => {
-                const pos = getModePosition(m.id);
-                const pxBase = (pos.x * w) / 100;
-                const pyBase = (pos.y * h) / 100;
                 const score = radarScores[m.id] || 0;
-                const ratio = Math.min(Math.max(score / 6, 0), 1);
-                const px = cx + (pxBase - cx) * ratio;
-                const py = cy + (pyBase - cy) * ratio;
-                return <circle key={`pt-${m.id}`} cx={px} cy={py} r="7" fill={CATEGORY_COLORS[m.category]} stroke="white" strokeWidth="2.5" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.25))' }} />;
+                const pt = getRadarPoint(m.id, score).split(',');
+                return <circle key={`pt-${m.id}`} cx={pt[0]} cy={pt[1]} r="7" fill={CATEGORY_COLORS[m.category]} stroke="white" strokeWidth="2.5" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.25))' }} />;
               })}
             </g>
           )}
@@ -486,6 +483,12 @@ const clearAll = () => {
             <div
               key={mode.id}
               id={`node-${mode.id}`}
+              onMouseEnter={() => {
+                setHoveredNode(mode.title);
+                setPopupFlipped(false);
+                setTimeout(() => setPopupFlipped(true), 150);
+              }}
+              onMouseLeave={() => setHoveredNode(null)}
               onClick={() => handleNodeClick(mode.id)}
               onDoubleClick={(e) => {
                 if (mode.id === 'gv' && showRadar) {
