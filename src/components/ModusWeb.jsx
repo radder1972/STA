@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Share2, MousePointer2, Trash2, Upload, Activity } from 'lucide-react';
 import smiScoring from '../data/smi-scoring.json';
+import SchemaCard from './SchemaCard';
 
 const MODES = [
   { id: 'gv', title: 'Gezonde volwassene', category: 'gezond', x: 50, y: 12 },
