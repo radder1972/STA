@@ -21,6 +21,8 @@ import TafelNavbar from './components/TafelNavbar'
 import Snelstartgids from './components/Snelstartgids'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
+import defaultYsqAnswers from './data/default-ysq-answers.json'
+import defaultSmiAnswers from './data/default-smi-answers.json'
 import packageJson from '../package.json'
 import GameNavbar from './components/GameNavbar'
 
@@ -139,9 +141,23 @@ function App() {
       const savedSmi = localStorage.getItem('schemaApp_completed_smi');
       if (savedSmi) smi = JSON.parse(savedSmi);
     } catch (e) {}
-    return { ysq, smi };
+    return {
+      ysq: ysq || defaultYsqAnswers,
+      smi: smi || defaultSmiAnswers
+    };
   })
   const [theme, setTheme] = useState('light')
+
+  useEffect(() => {
+    try {
+      if (!localStorage.getItem('schemaApp_completed_ysq')) {
+        localStorage.setItem('schemaApp_completed_ysq', JSON.stringify(defaultYsqAnswers));
+      }
+      if (!localStorage.getItem('schemaApp_completed_smi')) {
+        localStorage.setItem('schemaApp_completed_smi', JSON.stringify(defaultSmiAnswers));
+      }
+    } catch (e) {}
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'light')

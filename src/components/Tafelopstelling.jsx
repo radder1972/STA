@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon, ClipboardIcon, LightbulbIcon, HandIcon, ThreeSparklesLogo } from './Icons';
 import { Printer, Sparkle } from 'lucide-react';
+import defaultYsqAnswers from '../data/default-ysq-answers.json';
+import defaultSmiAnswers from '../data/default-smi-answers.json';
 
 const DSP_COLORS = ['#059669', '#10b981', '#3b82f6', '#0ea5e9', '#8b5cf6', '#f59e0b'];
 
@@ -427,7 +429,23 @@ const WaaierNeedSelector = ({ selectedNeedTitle, onSelectNeed, show2021 = false 
 };
 
 export default function Tafelopstelling({ onBack, completedTests: initialCompletedTests, embedded = false, onOpenAbout }) {
-  const [completedTests, setCompletedTests] = useState(initialCompletedTests || {});
+  const [completedTests, setCompletedTests] = useState(() => {
+    if (initialCompletedTests && (initialCompletedTests.ysq || initialCompletedTests.smi)) {
+      return initialCompletedTests;
+    }
+    let ysq = null;
+    let smi = null;
+    try {
+      const savedYsq = localStorage.getItem('schemaApp_completed_ysq');
+      if (savedYsq) ysq = JSON.parse(savedYsq);
+      const savedSmi = localStorage.getItem('schemaApp_completed_smi');
+      if (savedSmi) smi = JSON.parse(savedSmi);
+    } catch (e) {}
+    return {
+      ysq: ysq || defaultYsqAnswers,
+      smi: smi || defaultSmiAnswers
+    };
+  });
   const [situationText, setSituationText] = useState('');
   const [selectedMode, setSelectedMode] = useState(null);
   const [showJoker, setShowJoker] = useState(false);

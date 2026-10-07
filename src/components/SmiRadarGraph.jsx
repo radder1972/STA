@@ -112,20 +112,20 @@ const DEFAULT_YSQ_SCORES = {
 };
 
 const DEFAULT_SMI_SCORES = {
-  gv: 4.5,
-  bk: 4.2,
-  kk: 3.8,
-  rk: 2.1,
-  boos_k: 2.4,
-  ik: 2.0,
-  ok: 2.5,
-  wi: 3.2,
-  ob: 3.6,
-  oz: 2.8,
-  zh: 1.8,
-  pa: 1.5,
-  so: 3.9,
-  vo: 4.1
+  ok: 5.0,
+  oz: 4.5,
+  kk: 4.1,
+  vo: 4.0,
+  ob: 3.75,
+  gv: 3.2,
+  boos_k: 2.9,
+  pa: 2.67,
+  wi: 2.67,
+  zh: 2.56,
+  so: 2.5,
+  ik: 2.25,
+  bk: 1.56,
+  rk: 1.22
 };
 
 // 3D vector math helpers
