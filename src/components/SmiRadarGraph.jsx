@@ -340,6 +340,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
   const [viewDimension, setViewDimension] = useState(initialDimension); // '2d' or '3d'
   const [hoveredNode, setHoveredNode] = useState(null);
   const [popupFlipped, setPopupFlipped] = useState(false);
+  const [minLinkScore, setMinLinkScore] = useState(3.0); // Cutoff threshold: limit correlation links to scores >= 3.0
 
   // Keep activeSide in sync when initialSide prop updates
   useEffect(() => {
@@ -471,6 +472,9 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
   // Helper to test if an item is a theoretical link partner of the currently hovered node
   const isLinkedPartner = useCallback((item, hovered) => {
     if (!hovered || !item || hovered.id === item.id) return false;
+    // When minLinkScore threshold is active, only elevate connections between items with score >= minLinkScore
+    if (minLinkScore > 0 && (item.scoreVal < minLinkScore || hovered.scoreVal < minLinkScore)) return false;
+
     const hoveredIsSchema = hovered.itemType === 'schema' || hovered.domain !== undefined;
     const itemIsMode = item.itemType === 'mode' || item.category !== undefined;
 
@@ -488,7 +492,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       return targets.some(t => t === hovered.id || t === hoveredCanonical || (hovered.id === 'boos_k' && t === 'wk') || (hovered.id === 'wk' && t === 'boos_k'));
     }
     return false;
-  }, []);
+  }, [minLinkScore]);
 
   // Card details helper with exact score included
   const getCardDetails = useCallback((item, side) => {
@@ -1087,10 +1091,16 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     const links = [];
 
     schemaItems3D.forEach(schema => {
+      // Threshold check on schema
+      if (minLinkScore > 0 && schema.scoreVal < minLinkScore) return;
+
       const targets = SCHEMA_TO_MODI_MAP[schema.id] || [];
       targets.forEach(targetId => {
         const mode = modiItems3D.find(m => m.id === targetId || SMI_KEY_TO_ID[m.id] === targetId || (m.id === 'boos_k' && targetId === 'wk') || (m.id === 'wk' && targetId === 'boos_k'));
         if (mode) {
+          // Threshold check on mode
+          if (minLinkScore > 0 && mode.scoreVal < minLinkScore) return;
+
           const isSchemaHovered = hoveredNode && (hoveredNode.id === schema.id || hoveredNode.abbr === schema.abbr);
           const isModeHovered = hoveredNode && (hoveredNode.id === mode.id || hoveredNode.abbr === mode.abbr || SMI_KEY_TO_ID[hoveredNode.id] === mode.id);
           const isHighlighted = isSchemaHovered || isModeHovered;
@@ -1116,7 +1126,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       if (!a.isHighlighted && b.isHighlighted) return -1;
       return b.depth - a.depth;
     });
-  }, [activeSide, schemaItems3D, modiItems3D, hoveredNode]);
+  }, [activeSide, schemaItems3D, modiItems3D, hoveredNode, minLinkScore]);
 
   // 6. Depth-Sorted Balls (Painter's algorithm for complete 3D scene)
   const depthSortedBalls = useMemo(() => {
@@ -1198,10 +1208,14 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     if (activeSide !== 'both') return [];
     const links = [];
     schemaItems2D.forEach(schema => {
+      if (minLinkScore > 0 && schema.scoreVal < minLinkScore) return;
+
       const targets = SCHEMA_TO_MODI_MAP[schema.id] || [];
       targets.forEach(targetId => {
         const mode = modiItems2D.find(m => m.id === targetId || SMI_KEY_TO_ID[m.id] === targetId || (m.id === 'boos_k' && targetId === 'wk') || (m.id === 'wk' && targetId === 'boos_k'));
         if (mode) {
+          if (minLinkScore > 0 && mode.scoreVal < minLinkScore) return;
+
           const isSchemaHovered = hoveredNode && (hoveredNode.id === schema.id || hoveredNode.abbr === schema.abbr);
           const isModeHovered = hoveredNode && (hoveredNode.id === mode.id || hoveredNode.abbr === mode.abbr || SMI_KEY_TO_ID[hoveredNode.id] === mode.id);
           const isHighlighted = isSchemaHovered || isModeHovered;
@@ -1222,7 +1236,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     });
 
     return links.sort((a, b) => (a.isHighlighted ? 1 : 0) - (b.isHighlighted ? 1 : 0));
-  }, [activeSide, schemaItems2D, modiItems2D, hoveredNode]);
+  }, [activeSide, schemaItems2D, modiItems2D, hoveredNode, minLinkScore]);
 
   const schemaPolygonPoints2D = useMemo(() => schemaItems2D.map(m => `${m.ptX.toFixed(1)},${m.ptY.toFixed(1)}`).join(' '), [schemaItems2D]);
   const modiPolygonPoints2D = useMemo(() => modiItems2D.map(m => `${m.ptX.toFixed(1)},${m.ptY.toFixed(1)}`).join(' '), [modiItems2D]);
@@ -1406,20 +1420,64 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       {/* Side Explanation Subtitle */}
       <div style={{ textAlign: 'center', marginBottom: '0.75rem' }}>
         {activeSide === 'both' ? (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
-            <span style={{
-              fontSize: '0.84rem', fontWeight: 'bold', color: '#0f172a', background: '#f8fafc',
-              padding: '4px 14px', borderRadius: '20px', border: '1px solid #cbd5e1',
-              display: 'inline-flex', alignItems: 'center', gap: '8px'
-            }}>
-              <span style={{ display: 'inline-block', width: '9px', height: '9px', borderRadius: '50%', background: '#10b981' }}></span>
-              Binnenring: 18 Schema's (Diepe wortels)
-              <span style={{ color: '#94a3b8' }}>•</span>
-              <span style={{ display: 'inline-block', width: '9px', height: '9px', borderRadius: '50%', background: '#3b82f6' }}></span>
-              Buitenring: 14 Modi (Actuele expressie)
-            </span>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <span style={{
+                fontSize: '0.84rem', fontWeight: 'bold', color: '#0f172a', background: '#f8fafc',
+                padding: '4px 14px', borderRadius: '20px', border: '1px solid #cbd5e1',
+                display: 'inline-flex', alignItems: 'center', gap: '8px'
+              }}>
+                <span style={{ display: 'inline-block', width: '9px', height: '9px', borderRadius: '50%', background: '#10b981' }}></span>
+                Binnenring: 18 Schema's (Diepe wortels)
+                <span style={{ color: '#94a3b8' }}>•</span>
+                <span style={{ display: 'inline-block', width: '9px', height: '9px', borderRadius: '50%', background: '#3b82f6' }}></span>
+                Buitenring: 14 Modi (Actuele expressie)
+              </span>
+
+              {/* Threshold Filter Toggle */}
+              <div style={{ display: 'inline-flex', background: '#e2e8f0', padding: '2px', borderRadius: '16px', gap: '2px', fontSize: '0.74rem' }}>
+                <button
+                  type="button"
+                  onClick={() => setMinLinkScore(3.0)}
+                  style={{
+                    border: 'none',
+                    background: minLinkScore === 3.0 ? '#0f172a' : 'transparent',
+                    color: minLinkScore === 3.0 ? '#ffffff' : '#475569',
+                    padding: '2px 9px',
+                    borderRadius: '14px',
+                    fontWeight: minLinkScore === 3.0 ? 'bold' : 'normal',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease'
+                  }}
+                  title="Toon alleen verbanden tussen klinisch verheven schema's en modi (score ≥ 3.0)"
+                >
+                  Score ≥ 3.0 ({correlationLinks3D.length} verbanden)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMinLinkScore(0)}
+                  style={{
+                    border: 'none',
+                    background: minLinkScore === 0 ? '#0f172a' : 'transparent',
+                    color: minLinkScore === 0 ? '#ffffff' : '#475569',
+                    padding: '2px 9px',
+                    borderRadius: '14px',
+                    fontWeight: minLinkScore === 0 ? 'bold' : 'normal',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease'
+                  }}
+                  title="Toon alle theoretische verbanden ongeacht de score"
+                >
+                  Alle
+                </button>
+              </div>
+            </div>
+
             <span style={{ fontSize: '0.76rem', color: '#64748b' }}>
-              Beweeg over een bol om de theoretische koppeling tussen schema en modus in goud op te lichten
+              {minLinkScore === 3.0
+                ? "Beperkt tot actieve patronen: alleen koppelingen waar zowel het schema als de modus score ≥ 3.0 hebben"
+                : "Beweeg over een bol om de theoretische koppeling tussen schema en modus in goud op te lichten"
+              }
             </span>
           </div>
         ) : (
