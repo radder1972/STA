@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { Share2, Rotate3d, Eye, Play, Pause, RotateCcw, ZoomIn, ZoomOut, Coins, X, BookOpen, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
+import { Share2, Rotate3d, Eye, Play, Pause, RotateCcw, ZoomIn, ZoomOut, Coins, X, BookOpen, ChevronDown, ChevronUp, Sparkles, Search, HelpCircle } from 'lucide-react';
 import SchemaCard from './SchemaCard';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
@@ -423,6 +423,9 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
   const [minLinkScore, setMinLinkScore] = useState(3.0); // Cutoff threshold: limit correlation links to scores >= 3.0
   const [showClinicalNotes, setShowClinicalNotes] = useState(true);
   const [hoveredDynamicId, setHoveredDynamicId] = useState(null);
+  const [showLegend, setShowLegend] = useState(false);
+  const [legendFilter, setLegendFilter] = useState('all'); // 'all', 'modi', 'schemas', 'elevated'
+  const [legendSearch, setLegendSearch] = useState('');
 
   // Active dynamic cluster hovered in the clinical notes panel
   const activeDynamic = useMemo(() => {
@@ -1561,6 +1564,84 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     });
   }, [activeSide, schemaItems2D, modiItems2D, cx, cy]);
 
+  // Active hovered ball with real-time coordinates and metadata for instant floating tooltip & HUD
+  const activeBall = useMemo(() => {
+    if (!hoveredNode) return null;
+    const is3d = viewDimension === '3d';
+    const list = is3d ? items3D : items2D;
+    const match = list.find(m => m.id === hoveredNode.id && m.itemType === hoveredNode.itemType) ||
+                  list.find(m => m.abbr === hoveredNode.abbr);
+    if (!match) return null;
+    const x = is3d ? match.projBall.screenX : match.ballX;
+    const y = is3d ? match.projBall.screenY : match.ballY;
+    const r = match.ballRadius;
+    const catLabel = match.itemType === 'mode'
+      ? (match.category === 'kind' ? 'Kindmodus' : match.category === 'coping' ? 'Copingmodus' : match.category === 'ouder' ? 'Oudermodus' : 'Gezonde modus')
+      : `Domein: ${match.domain}`;
+    return { ...match, x, y, r, catLabel };
+  }, [hoveredNode, viewDimension, items3D, items2D]);
+
+  // Rotate 3D orbit camera smoothly to focus on an item from the legend
+  const rotateToItem = useCallback((item) => {
+    if (!item) return;
+    setAutoRotate(false);
+    if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+
+    let angle = 0;
+    if (item.itemType === 'schema') {
+      const idx = SCHEMAS_INFO.findIndex(s => s.id === item.id);
+      if (idx !== -1) angle = -Math.PI / 2 + idx * ((2 * Math.PI) / SCHEMAS_INFO.length);
+    } else {
+      const idx = MODES_INFO.findIndex(m => m.id === item.id);
+      if (idx !== -1) angle = -Math.PI / 2 + idx * ((2 * Math.PI) / MODES_INFO.length);
+    }
+
+    const targetYaw = ((angle * 180 / Math.PI) % 360 + 360) % 360;
+    setYaw(targetYaw);
+    setPitch(45);
+    setHoveredNode(item);
+  }, []);
+
+  // Formatted items for the interactive abbreviation legend (all 14 Modi and 18 Schemas)
+  const allLegendModi = useMemo(() => {
+    return modiItems3D.map(m => ({
+      ...m,
+      itemType: 'mode',
+      catLabel: m.category === 'kind' ? 'Kindmodus' : m.category === 'coping' ? 'Copingmodus' : m.category === 'ouder' ? 'Oudermodus' : 'Gezonde modus'
+    }));
+  }, [modiItems3D]);
+
+  const allLegendSchemas = useMemo(() => {
+    return schemaItems3D.map(s => ({
+      ...s,
+      itemType: 'schema',
+      catLabel: `Domein: ${s.domain}`
+    }));
+  }, [schemaItems3D]);
+
+  const filteredLegendItems = useMemo(() => {
+    let list = [];
+    if (legendFilter === 'modi') {
+      list = allLegendModi;
+    } else if (legendFilter === 'schemas') {
+      list = allLegendSchemas;
+    } else if (legendFilter === 'elevated') {
+      list = [...allLegendModi, ...allLegendSchemas].filter(item => item.scoreVal >= 3.0);
+    } else {
+      list = [...allLegendModi, ...allLegendSchemas];
+    }
+
+    if (legendSearch.trim()) {
+      const q = legendSearch.toLowerCase().trim();
+      list = list.filter(item =>
+        item.abbr.toLowerCase().includes(q) ||
+        item.title.toLowerCase().includes(q) ||
+        (item.catLabel && item.catLabel.toLowerCase().includes(q))
+      );
+    }
+    return list;
+  }, [legendFilter, legendSearch, allLegendModi, allLegendSchemas]);
+
   return (
     <div style={{ position: 'relative', width: '100%', maxWidth: '720px', margin: '0 auto', userSelect: 'none' }}>
       
@@ -1791,6 +1872,267 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
           </span>
         )}
       </div>
+
+      {/* Realtime Abbreviation Inspector HUD & Legend Toggle */}
+      <div style={{
+        width: '100%',
+        margin: '0 auto 10px auto',
+        padding: '8px 14px',
+        background: activeBall ? '#ffffff' : '#f8fafc',
+        borderRadius: '12px',
+        border: activeBall ? `1.5px solid ${activeBall.bg}` : '1px solid #e2e8f0',
+        boxShadow: activeBall ? '0 4px 14px rgba(0,0,0,0.06)' : '0 1px 3px rgba(0,0,0,0.02)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '8px',
+        transition: 'all 0.15s ease'
+      }}>
+        {/* Left: Active ball info or idle helper prompt */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flex: 1, minWidth: '240px' }}>
+          {activeBall ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              <span style={{
+                background: activeBall.bg,
+                color: activeBall.textColor,
+                fontWeight: 900,
+                fontSize: '0.85rem',
+                padding: '2px 8px',
+                borderRadius: '6px',
+                letterSpacing: '0.5px'
+              }}>
+                {activeBall.abbr}
+              </span>
+              <strong style={{ fontSize: '0.92rem', color: '#0f172a' }}>
+                {activeBall.title}
+              </strong>
+              <span style={{ fontSize: '0.78rem', color: '#64748b' }}>
+                • {activeBall.catLabel}
+              </span>
+              <span style={{
+                fontSize: '0.76rem',
+                fontWeight: 800,
+                padding: '2px 8px',
+                borderRadius: '10px',
+                background: activeBall.scoreVal >= 3.0 ? '#fee2e2' : '#ecfdf5',
+                color: activeBall.scoreVal >= 3.0 ? '#b91c1c' : '#047857',
+                border: activeBall.scoreVal >= 3.0 ? '1px solid #fca5a5' : '1px solid #a7f3d0'
+              }}>
+                Score: {formatScore(activeBall.scoreVal)} {activeBall.scoreVal >= 3.0 ? '• Verhoogd (≥ 3.0)' : ''}
+              </span>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#64748b', fontSize: '0.80rem' }}>
+              <HelpCircle size={15} color="#3b82f6" />
+              <span>
+                Beweeg over een bol voor directe uitschrijving, of bekijk alle 32 afkortingen in de legenda:
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Right: Legend Toggle Button */}
+        <button
+          type="button"
+          onClick={() => setShowLegend(prev => !prev)}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            padding: '5px 12px',
+            borderRadius: '20px',
+            border: showLegend ? '1.5px solid #2563eb' : '1px solid #cbd5e1',
+            background: showLegend ? '#eff6ff' : '#ffffff',
+            color: showLegend ? '#1d4ed8' : '#334155',
+            fontWeight: 700,
+            fontSize: '0.80rem',
+            cursor: 'pointer',
+            transition: 'all 0.15s ease',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.04)'
+          }}
+          title={showLegend ? "Sluit afkortingenlegenda" : "Bekijk alle afkortingen en schalen uitgeschreven"}
+        >
+          <BookOpen size={14} color={showLegend ? '#2563eb' : '#64748b'} />
+          Legenda Afkortingen ({showLegend ? 'Inklappen' : '32 Schalen'})
+          {showLegend ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+        </button>
+      </div>
+
+      {/* Collapsible Legenda Panel */}
+      {showLegend && (
+        <div style={{
+          width: '100%',
+          margin: '0 auto 16px auto',
+          background: '#ffffff',
+          borderRadius: '14px',
+          border: '1.5px solid #cbd5e1',
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
+          padding: '16px 20px',
+          transition: 'all 0.2s ease'
+        }}>
+          {/* Header with Search and Filter Tabs */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '14px', borderBottom: '1px solid #e2e8f0', paddingBottom: '12px' }}>
+            <div>
+              <h4 style={{ margin: 0, fontSize: '0.96rem', fontWeight: 800, color: '#0f172a' }}>
+                Legenda: Alle 32 Schalen & Afkortingen
+              </h4>
+              <p style={{ margin: '2px 0 0', fontSize: '0.78rem', color: '#64748b' }}>
+                Beweeg over een schaal om de bol in de grafiek op te lichten, of klik om de 3D-camera te richten.
+              </p>
+            </div>
+
+            {/* Search Input */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: '#f1f5f9', padding: '4px 10px', borderRadius: '8px', border: '1px solid #cbd5e1' }}>
+              <Search size={14} color="#64748b" />
+              <input
+                type="text"
+                placeholder="Zoek afkorting of naam..."
+                value={legendSearch}
+                onChange={(e) => setLegendSearch(e.target.value)}
+                style={{
+                  border: 'none',
+                  background: 'transparent',
+                  outline: 'none',
+                  fontSize: '0.80rem',
+                  color: '#1e293b',
+                  width: '180px'
+                }}
+              />
+              {legendSearch && (
+                <button
+                  type="button"
+                  onClick={() => setLegendSearch('')}
+                  style={{ border: 'none', background: 'transparent', cursor: 'pointer', padding: 0, color: '#64748b' }}
+                >
+                  <X size={12} />
+                </button>
+              )}
+            </div>
+
+            {/* Filter Pills */}
+            <div style={{ display: 'flex', gap: '4px', background: '#e2e8f0', padding: '2px', borderRadius: '14px' }}>
+              {[
+                { id: 'all', label: 'Alles (32)' },
+                { id: 'modi', label: 'Modi (14)' },
+                { id: 'schemas', label: "Schema's (18)" },
+                { id: 'elevated', label: 'Verhoogd (≥ 3.0)' }
+              ].map(tab => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setLegendFilter(tab.id)}
+                  style={{
+                    border: 'none',
+                    background: legendFilter === tab.id ? '#0f172a' : 'transparent',
+                    color: legendFilter === tab.id ? '#ffffff' : '#475569',
+                    padding: '3px 10px',
+                    borderRadius: '12px',
+                    fontSize: '0.75rem',
+                    fontWeight: legendFilter === tab.id ? 700 : 500,
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Cards Grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(215px, 1fr))',
+            gap: '8px',
+            maxHeight: '340px',
+            overflowY: 'auto',
+            paddingRight: '4px'
+          }}>
+            {filteredLegendItems.map(item => {
+              const isSelected = hoveredNode && (hoveredNode.id === item.id || hoveredNode.abbr === item.abbr);
+              const isElevated = item.scoreVal >= 3.0;
+
+              return (
+                <div
+                  key={`legend-${item.itemType}-${item.id}`}
+                  onMouseEnter={() => handleNodeHover(item)}
+                  onMouseLeave={handleNodeLeave}
+                  onClick={() => {
+                    if (viewDimension === '3d') {
+                      rotateToItem(item);
+                    }
+                    if (item.id === 'bk') {
+                      triggerSparkleRain();
+                    }
+                    setHoveredNode(item);
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '7px 10px',
+                    borderRadius: '8px',
+                    border: isSelected ? `1.5px solid ${item.bg}` : (isElevated ? '1px solid #fed7aa' : '1px solid #e2e8f0'),
+                    background: isSelected ? '#f0f9ff' : (isElevated ? '#fffaf5' : '#ffffff'),
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease',
+                    boxShadow: isSelected ? '0 2px 8px rgba(0,0,0,0.06)' : 'none'
+                  }}
+                  title={`Klik om te focussen: ${item.title}`}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
+                    <span style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      minWidth: '28px',
+                      height: '24px',
+                      borderRadius: '6px',
+                      background: item.bg,
+                      color: item.textColor,
+                      fontWeight: 900,
+                      fontSize: '0.78rem',
+                      letterSpacing: '0.4px',
+                      flexShrink: 0
+                    }}>
+                      {item.abbr}
+                    </span>
+                    <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+                      <span style={{
+                        fontSize: '0.82rem',
+                        fontWeight: 700,
+                        color: '#1e293b',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                      }}>
+                        {item.title}
+                      </span>
+                      <span style={{ fontSize: '0.70rem', color: '#64748b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {item.catLabel}
+                      </span>
+                    </div>
+                  </div>
+
+                  <span style={{
+                    fontSize: '0.78rem',
+                    fontWeight: 800,
+                    padding: '2px 6px',
+                    borderRadius: '8px',
+                    background: isElevated ? '#fee2e2' : '#f1f5f9',
+                    color: isElevated ? '#dc2626' : '#475569',
+                    flexShrink: 0,
+                    marginLeft: '4px'
+                  }}>
+                    {formatScore(item.scoreVal)}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Interactive 3D Canvas / SVG Container */}
       <div
@@ -2422,6 +2764,95 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                   </g>
                 );
               })}
+            </g>
+          )}
+
+          {/* Direct On-Hover Instant Tooltip attached above/below the active ball */}
+          {activeBall && (
+            <g
+              style={{ pointerEvents: 'none', transition: 'all 0.08s ease-out' }}
+              transform={`translate(${activeBall.x}, ${activeBall.y})`}
+            >
+              {(() => {
+                const titleLen = activeBall.title.length;
+                const boxWidth = Math.max(165, Math.min(270, titleLen * 7.0 + 44));
+                const boxHeight = 44;
+                const isTopEdge = activeBall.y < 85;
+                const offsetY = isTopEdge ? (activeBall.r + 8) : (-activeBall.r - boxHeight - 8);
+
+                return (
+                  <g transform={`translate(0, ${offsetY})`}>
+                    {/* Pointer arrow */}
+                    <polygon
+                      points={isTopEdge ? `-6,0 6,0 0,-6` : `-6,${boxHeight} 6,${boxHeight} 0,${boxHeight + 6}`}
+                      fill="#0f172a"
+                    />
+                    {/* Tooltip Background Card */}
+                    <rect
+                      x={-boxWidth / 2}
+                      y={0}
+                      width={boxWidth}
+                      height={boxHeight}
+                      rx="8"
+                      ry="8"
+                      fill="#0f172a"
+                      stroke={activeBall.bg}
+                      strokeWidth="1.8"
+                      filter="url(#radar3dBallShadow)"
+                    />
+                    {/* Abbreviation badge */}
+                    <rect
+                      x={-boxWidth / 2 + 8}
+                      y={7}
+                      width={28}
+                      height={18}
+                      rx="4"
+                      fill={activeBall.bg}
+                    />
+                    <text
+                      x={-boxWidth / 2 + 22}
+                      y={20}
+                      textAnchor="middle"
+                      fill={activeBall.textColor}
+                      fontWeight="900"
+                      fontSize="10"
+                      letterSpacing="0.4px"
+                    >
+                      {activeBall.abbr}
+                    </text>
+                    {/* Full title text */}
+                    <text
+                      x={-boxWidth / 2 + 42}
+                      y={20}
+                      fill="#ffffff"
+                      fontWeight="bold"
+                      fontSize="11.5"
+                    >
+                      {activeBall.title.length > 29 ? `${activeBall.title.slice(0, 28)}…` : activeBall.title}
+                    </text>
+                    {/* Category & Score subline */}
+                    <text
+                      x={-boxWidth / 2 + 8}
+                      y={35}
+                      fill="#94a3b8"
+                      fontSize="9.5"
+                      fontWeight="500"
+                    >
+                      {activeBall.catLabel}
+                    </text>
+                    <text
+                      x={boxWidth / 2 - 8}
+                      y={35}
+                      textAnchor="end"
+                      fill={activeBall.scoreVal >= 3.0 ? "#f87171" : "#34d399"}
+                      fontWeight="bold"
+                      fontSize="9.5"
+                    >
+                      Score: {formatScore(activeBall.scoreVal)} {activeBall.scoreVal >= 3.0 ? '(≥ 3.0)' : ''}
+                    </text>
+                  </g>
+                );
+              })()}
             </g>
           )}
         </svg>
