@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { Share2, Rotate3d, Eye, Play, Pause, RotateCcw, ZoomIn, ZoomOut, Coins, X } from 'lucide-react';
+import { Share2, Rotate3d, Eye, Play, Pause, RotateCcw, ZoomIn, ZoomOut, Coins, X, BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
 import SchemaCard from './SchemaCard';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
@@ -81,6 +81,55 @@ const SCHEMA_TO_MODI_MAP = {
   'Unrelenting Standards': ['vo'],
   'Self-punitiveness': ['so']
 };
+
+// Clinical case conceptualization dynamics for elevated patterns (score >= 3.0)
+const CLINICAL_DYNAMICS = [
+  {
+    id: 'dyn-1',
+    title: 'Emotionele verwaarlozing & Verdovende Onthechting',
+    schemaIds: ['Emotional deprivation'],
+    modeIds: ['kk', 'oz', 'ob'],
+    schemaAbbrs: ['EV (5.25)'],
+    modeAbbrs: ['KK (4.10)', 'OZ (4.50)', 'OB (3.75)'],
+    summary: 'Het diepe gevoel van emotionele leegte en niet gehoord of gekoesterd worden (EV: 5.25) activeert het Kwetsbare Kind (KK: 4.10). Om deze intense pijn niet te voelen treedt onmiddellijk sterke onthechting op: verdoven via afleiding of comfort-gedrag (OZ: 4.50) en een beschermende emotionele muur optrekken (OB: 3.75).'
+  },
+  {
+    id: 'dyn-2',
+    title: 'Gebrek aan Zelfcontrole & Het Ongedisciplineerde Kind',
+    schemaIds: ['Insufficient self-control/self-discipline'],
+    modeIds: ['ok'],
+    schemaAbbrs: ['ZC (4.80)'],
+    modeAbbrs: ['OK (5.00)'],
+    summary: 'De hoogste modus van de cliënt is het Ongedisciplineerde Kind (OK: 5.00). Dit is een rechtstreekse expressie van het schema Gebrek aan zelfdiscipline (ZC: 4.80): moeite met grenzen stellen, lage frustratietolerantie en het ontwijken van verplichtingen of moeilijke taken door uitstelgedrag.'
+  },
+  {
+    id: 'dyn-3',
+    title: 'Prestatiedruk & De Veeleisende Interne Criticus',
+    schemaIds: ['Unrelenting Standards', 'Admiration/Recognition-seeking'],
+    modeIds: ['vo'],
+    schemaAbbrs: ['MN (4.20)', 'EZ (4.00)'],
+    modeAbbrs: ['VO (4.00)'],
+    summary: 'De strenge Veeleisende Ouder (VO: 4.00) voedt en handhaaft de meedogenloze normen (MN: 4.20) en de drang naar erkenning en bevestiging (EZ: 4.00). De cliënt voelt voortdurende druk om te presteren en vreest afwijzing wanneer er niet aan deze torenhoge standaarden wordt voldaan.'
+  },
+  {
+    id: 'dyn-4',
+    title: 'Sociaal Isolement & Emotionele Geremdheid',
+    schemaIds: ['Social isolation/Alienation', 'Emotional inhibition'],
+    modeIds: ['ob', 'kk'],
+    schemaAbbrs: ['SI (3.50)', 'EG (3.00)'],
+    modeAbbrs: ['OB (3.75)', 'KK (4.10)'],
+    summary: 'Het gevoel er fundamenteel niet bij te horen (SI: 3.50) en de angst om emoties te tonen (EG: 3.00) zorgen ervoor dat de Onthechte Beschermer (OB: 3.75) het contact met anderen op veilige afstand houdt. Dit voorkomt kwetsbaarheid, maar houdt het Kwetsbare Kind (KK: 4.10) geïsoleerd.'
+  },
+  {
+    id: 'dyn-5',
+    title: 'Faalangst & Kwetsbare Gevoeligheid',
+    schemaIds: ['Failure to achieve'],
+    modeIds: ['kk'],
+    schemaAbbrs: ['ML (3.00)'],
+    modeAbbrs: ['KK (4.10)'],
+    summary: 'De overtuiging minder bekwaam te zijn of te falen ten opzichte van leeftijdsgenoten (ML: 3.00) raakt direct de kwetsbaarheid en onzekerheid in het Kwetsbare Kind (KK: 4.10). Dit vormt vaak de onderliggende trigger voor vermijding (OK: 5.00) of emotionele terugtrekking (OB: 3.75).'
+  }
+];
 
 const CATEGORY_COLORS = {
   // Modi
@@ -341,6 +390,25 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
   const [hoveredNode, setHoveredNode] = useState(null);
   const [popupFlipped, setPopupFlipped] = useState(false);
   const [minLinkScore, setMinLinkScore] = useState(3.0); // Cutoff threshold: limit correlation links to scores >= 3.0
+  const [showClinicalNotes, setShowClinicalNotes] = useState(true);
+  const [hoveredDynamicId, setHoveredDynamicId] = useState(null);
+
+  // Active dynamic cluster hovered in the clinical notes panel
+  const activeDynamic = useMemo(() => {
+    return CLINICAL_DYNAMICS.find(d => d.id === hoveredDynamicId) || null;
+  }, [hoveredDynamicId]);
+
+  // Dynamic IDs that match the currently hovered node in the graph
+  const matchingDynamicIds = useMemo(() => {
+    if (!hoveredNode) return [];
+    return CLINICAL_DYNAMICS.filter(d =>
+      d.schemaIds.includes(hoveredNode.id) ||
+      d.modeIds.includes(hoveredNode.id) ||
+      d.modeIds.includes(SMI_KEY_TO_ID[hoveredNode.id]) ||
+      (hoveredNode.id === 'boos_k' && d.modeIds.includes('wk')) ||
+      (hoveredNode.id === 'wk' && d.modeIds.includes('boos_k'))
+    ).map(d => d.id);
+  }, [hoveredNode]);
 
   // Keep activeSide in sync when initialSide prop updates
   useEffect(() => {
@@ -1103,14 +1171,23 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
 
           const isSchemaHovered = hoveredNode && (hoveredNode.id === schema.id || hoveredNode.abbr === schema.abbr);
           const isModeHovered = hoveredNode && (hoveredNode.id === mode.id || hoveredNode.abbr === mode.abbr || SMI_KEY_TO_ID[hoveredNode.id] === mode.id);
-          const isHighlighted = isSchemaHovered || isModeHovered;
+          
+          const isDynamicHighlighted = activeDynamic && activeDynamic.schemaIds.includes(schema.id) && (
+            activeDynamic.modeIds.includes(mode.id) ||
+            activeDynamic.modeIds.includes(SMI_KEY_TO_ID[mode.id]) ||
+            (mode.id === 'boos_k' && activeDynamic.modeIds.includes('wk')) ||
+            (mode.id === 'wk' && activeDynamic.modeIds.includes('boos_k'))
+          );
+
+          const isHighlighted = isSchemaHovered || isModeHovered || isDynamicHighlighted;
+          const isDimmed = (hoveredNode || activeDynamic) && !isHighlighted;
 
           links.push({
             key: `${schema.id}-${mode.id}`,
             schema,
             mode,
             isHighlighted,
-            isDimmed: hoveredNode && !isHighlighted,
+            isDimmed,
             x1: schema.projBall.screenX,
             y1: schema.projBall.screenY,
             x2: mode.projBall.screenX,
@@ -1126,7 +1203,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       if (!a.isHighlighted && b.isHighlighted) return -1;
       return b.depth - a.depth;
     });
-  }, [activeSide, schemaItems3D, modiItems3D, hoveredNode, minLinkScore]);
+  }, [activeSide, schemaItems3D, modiItems3D, hoveredNode, activeDynamic, minLinkScore]);
 
   // 6. Depth-Sorted Balls (Painter's algorithm for complete 3D scene)
   const depthSortedBalls = useMemo(() => {
@@ -1218,14 +1295,23 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
 
           const isSchemaHovered = hoveredNode && (hoveredNode.id === schema.id || hoveredNode.abbr === schema.abbr);
           const isModeHovered = hoveredNode && (hoveredNode.id === mode.id || hoveredNode.abbr === mode.abbr || SMI_KEY_TO_ID[hoveredNode.id] === mode.id);
-          const isHighlighted = isSchemaHovered || isModeHovered;
+          
+          const isDynamicHighlighted = activeDynamic && activeDynamic.schemaIds.includes(schema.id) && (
+            activeDynamic.modeIds.includes(mode.id) ||
+            activeDynamic.modeIds.includes(SMI_KEY_TO_ID[mode.id]) ||
+            (mode.id === 'boos_k' && activeDynamic.modeIds.includes('wk')) ||
+            (mode.id === 'wk' && activeDynamic.modeIds.includes('boos_k'))
+          );
+
+          const isHighlighted = isSchemaHovered || isModeHovered || isDynamicHighlighted;
+          const isDimmed = (hoveredNode || activeDynamic) && !isHighlighted;
 
           links.push({
             key: `2d-${schema.id}-${mode.id}`,
             schema,
             mode,
             isHighlighted,
-            isDimmed: hoveredNode && !isHighlighted,
+            isDimmed,
             x1: schema.ballX,
             y1: schema.ballY,
             x2: mode.ballX,
@@ -1236,7 +1322,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     });
 
     return links.sort((a, b) => (a.isHighlighted ? 1 : 0) - (b.isHighlighted ? 1 : 0));
-  }, [activeSide, schemaItems2D, modiItems2D, hoveredNode, minLinkScore]);
+  }, [activeSide, schemaItems2D, modiItems2D, hoveredNode, activeDynamic, minLinkScore]);
 
   const schemaPolygonPoints2D = useMemo(() => schemaItems2D.map(m => `${m.ptX.toFixed(1)},${m.ptY.toFixed(1)}`).join(' '), [schemaItems2D]);
   const modiPolygonPoints2D = useMemo(() => modiItems2D.map(m => `${m.ptX.toFixed(1)},${m.ptY.toFixed(1)}`).join(' '), [modiItems2D]);
@@ -1732,6 +1818,15 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
               {depthSortedBalls.map(m => {
                 const isLinked = isLinkedPartner(m, hoveredNode);
                 const isHovered = hoveredNode && (hoveredNode.id === m.id || hoveredNode.abbr === m.abbr);
+                const isInActiveDynamic = activeDynamic && (
+                  (m.itemType === 'schema' && activeDynamic.schemaIds.includes(m.id)) ||
+                  (m.itemType === 'mode' && (
+                    activeDynamic.modeIds.includes(m.id) ||
+                    activeDynamic.modeIds.includes(SMI_KEY_TO_ID[m.id]) ||
+                    (m.id === 'boos_k' && activeDynamic.modeIds.includes('wk')) ||
+                    (m.id === 'wk' && activeDynamic.modeIds.includes('boos_k'))
+                  ))
+                );
 
                 return (
                   <g
@@ -1746,14 +1841,14 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                       setPopupFlipped(prev => !prev);
                     }}
                   >
-                    {/* Linked Partner Golden Pulse Ring */}
-                    {isLinked && (
+                    {/* Linked Partner or Active Dynamic Golden Pulse Ring */}
+                    {(isLinked || isInActiveDynamic) && (
                       <circle
                         r={m.ballRadius + 4.5}
                         fill="none"
                         stroke="#f59e0b"
-                        strokeWidth="2.2"
-                        strokeDasharray="4 2"
+                        strokeWidth="2.3"
+                        strokeDasharray={isInActiveDynamic ? "none" : "4 2"}
                         opacity="0.95"
                       />
                     )}
@@ -1924,6 +2019,15 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
               {items2D.map(m => {
                 const isLinked = isLinkedPartner(m, hoveredNode);
                 const isHovered = hoveredNode && (hoveredNode.id === m.id || hoveredNode.abbr === m.abbr);
+                const isInActiveDynamic = activeDynamic && (
+                  (m.itemType === 'schema' && activeDynamic.schemaIds.includes(m.id)) ||
+                  (m.itemType === 'mode' && (
+                    activeDynamic.modeIds.includes(m.id) ||
+                    activeDynamic.modeIds.includes(SMI_KEY_TO_ID[m.id]) ||
+                    (m.id === 'boos_k' && activeDynamic.modeIds.includes('wk')) ||
+                    (m.id === 'wk' && activeDynamic.modeIds.includes('boos_k'))
+                  ))
+                );
 
                 return (
                   <g
@@ -1938,14 +2042,14 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                       setPopupFlipped(prev => !prev);
                     }}
                   >
-                    {/* Linked Partner Golden Pulse Ring */}
-                    {isLinked && (
+                    {/* Linked Partner or Active Dynamic Golden Pulse Ring */}
+                    {(isLinked || isInActiveDynamic) && (
                       <circle
                         r={m.ballRadius + 4.5}
                         fill="none"
                         stroke="#f59e0b"
-                        strokeWidth="2.2"
-                        strokeDasharray="4 2"
+                        strokeWidth="2.3"
+                        strokeDasharray={isInActiveDynamic ? "none" : "4 2"}
                         opacity="0.95"
                       />
                     )}
@@ -2158,6 +2262,177 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
           }}>
             Klik op kaart of tab om om te draaien
           </div>
+        </div>
+      )}
+
+      {/* Klinische Casusconceptualisatie Panel (Score >= 3.0) */}
+      {activeSide === 'both' && (
+        <div className="no-print" style={{
+          marginTop: '1.25rem',
+          background: '#ffffff',
+          borderRadius: '14px',
+          border: '1px solid #e2e8f0',
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)',
+          overflow: 'hidden',
+          transition: 'all 0.2s ease'
+        }}>
+          {/* Header with toggle */}
+          <div
+            onClick={() => setShowClinicalNotes(prev => !prev)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '12px 18px',
+              background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
+              borderBottom: showClinicalNotes ? '1px solid #e2e8f0' : 'none',
+              cursor: 'pointer'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{
+                background: '#eff6ff',
+                color: '#2563eb',
+                padding: '6px',
+                borderRadius: '8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <BookOpen size={18} />
+              </div>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                  <h4 style={{ margin: 0, fontSize: '0.95rem', fontWeight: 700, color: '#1e293b' }}>
+                    Klinische Casusconceptualisatie (Verbanden Score ≥ 3.0)
+                  </h4>
+                  <span style={{
+                    fontSize: '0.72rem',
+                    fontWeight: 600,
+                    color: '#2563eb',
+                    background: '#dbeafe',
+                    padding: '2px 8px',
+                    borderRadius: '10px'
+                  }}>
+                    {CLINICAL_DYNAMICS.length} actieve kernpatronen
+                  </span>
+                </div>
+                <p style={{ margin: '2px 0 0', fontSize: '0.78rem', color: '#64748b' }}>
+                  Wisselwerking tussen actieve schema's en geactiveerde modi van de cliënt
+                </p>
+              </div>
+            </div>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              color: '#64748b',
+              fontSize: '0.8rem',
+              fontWeight: 500
+            }}>
+              <span>{showClinicalNotes ? 'Inklappen' : 'Uitklappen'}</span>
+              {showClinicalNotes ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            </div>
+          </div>
+
+          {/* Collapsible Content */}
+          {showClinicalNotes && (
+            <div style={{ padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{
+                fontSize: '0.82rem',
+                color: '#475569',
+                background: '#f8fafc',
+                padding: '10px 14px',
+                borderRadius: '8px',
+                border: '1px solid #e2e8f0',
+                lineHeight: 1.45
+              }}>
+                In de schematherapie zijn schema's en modi met een score <strong>≥ 3.0</strong> klinisch verheven en bepalend voor de actuele lijdensdruk en copingdynamiek. Beweeg met de muis over een patroon om de bijbehorende bollen en verbindingslijnen in de grafiek te markeren:
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {CLINICAL_DYNAMICS.map((dyn, idx) => {
+                  const isHovered = hoveredDynamicId === dyn.id;
+                  const isMatchingHoveredNode = matchingDynamicIds.includes(dyn.id);
+                  const isActive = isHovered || isMatchingHoveredNode;
+
+                  return (
+                    <div
+                      key={dyn.id}
+                      onMouseEnter={() => setHoveredDynamicId(dyn.id)}
+                      onMouseLeave={() => setHoveredDynamicId(null)}
+                      style={{
+                        padding: '12px 14px',
+                        borderRadius: '10px',
+                        border: isActive ? '1.5px solid #3b82f6' : '1px solid #e2e8f0',
+                        background: isActive ? '#f0f7ff' : '#ffffff',
+                        boxShadow: isActive ? '0 4px 12px rgba(59, 130, 246, 0.12)' : 'none',
+                        transition: 'all 0.15s ease',
+                        cursor: 'default'
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '6px', marginBottom: '6px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: '20px',
+                            height: '20px',
+                            borderRadius: '50%',
+                            background: isActive ? '#2563eb' : '#e2e8f0',
+                            color: isActive ? '#ffffff' : '#475569',
+                            fontSize: '0.72rem',
+                            fontWeight: 700
+                          }}>
+                            {idx + 1}
+                          </span>
+                          <h5 style={{ margin: 0, fontSize: '0.88rem', fontWeight: 700, color: '#1e293b' }}>
+                            {dyn.title}
+                          </h5>
+                        </div>
+
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                          {/* Schema Badges */}
+                          {dyn.schemaAbbrs.map(sch => (
+                            <span key={sch} style={{
+                              fontSize: '0.72rem',
+                              fontWeight: 700,
+                              padding: '2px 7px',
+                              borderRadius: '6px',
+                              background: '#dbeafe',
+                              color: '#1d4ed8',
+                              border: '1px solid #bfdbfe'
+                            }}>
+                              Schema: {sch}
+                            </span>
+                          ))}
+                          {/* Mode Badges */}
+                          {dyn.modeAbbrs.map(md => (
+                            <span key={md} style={{
+                              fontSize: '0.72rem',
+                              fontWeight: 700,
+                              padding: '2px 7px',
+                              borderRadius: '6px',
+                              background: '#fef3c7',
+                              color: '#b45309',
+                              border: '1px solid #fde68a'
+                            }}>
+                              Modus: {md}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <p style={{ margin: 0, fontSize: '0.82rem', color: '#334155', lineHeight: 1.5 }}>
+                        {dyn.summary}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
