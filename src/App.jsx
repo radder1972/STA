@@ -14,6 +14,8 @@ import GamePortal from './components/GamePortal'
 import OrderCards from './components/OrderCards'
 import PrintProof from './components/PrintProof'
 import About from './components/About'
+import ModusWeb from './components/ModusWeb'
+
 import Tafelopstelling from './components/Tafelopstelling'
 import TafelNavbar from './components/TafelNavbar'
 import Snelstartgids from './components/Snelstartgids'
@@ -54,7 +56,8 @@ function App() {
   const [currentView, setCurrentView] = useState(() => {
     const hash = window.location.hash.replace('#', '')
     if (hash === 'verantwoording') return 'verantwoording'
-    if (hash === 'drukproef') return 'drukproef'
+    if (hash === 'drukproef') return 'drukproef';
+    if (hash === 'modusweb') return 'modusweb';
     if (isSnelstartApp) return 'snelstart'
     if (isHubApp) {
       if (hash === 'test' || hash === 'zelftest') {
@@ -403,6 +406,10 @@ function App() {
       {currentView === 'order-cards' && (
         <OrderCards onBack={() => setCurrentView('game-portal')} />
       )}
+      {currentView === 'modusweb' && (
+        <ModusWeb />
+      )}
+
       {currentView === 'drukproef' && (
         <PrintProof />
       )}
