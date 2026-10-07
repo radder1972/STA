@@ -456,11 +456,11 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
               {/* PAGE: FRONTS */}
               <div className="a4-page" style={{ width: '210mm', height: '297mm', background: 'white', padding: '10mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
-                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 58mm)', gridTemplateRows: 'repeat(3, 88mm)', gap: '5mm', justifyContent: 'center', alignContent: 'start', height: '100%' }}>
+                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 56mm)', gridTemplateRows: 'repeat(3, 87mm)', gap: '5mm', justifyContent: 'center', alignContent: 'start', height: '100%' }}>
                   {frontChunk.map((card, i) => {
                     const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'white';
                     return (
-                    <div key={`front-${i}`} style={{ width: '58mm', height: '88mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', position: 'relative', background: card ? `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)` : 'transparent', borderRadius: '6px', overflow: 'hidden', visibility: card ? 'visible' : 'hidden' }}>
+                    <div key={`front-${i}`} style={{ width: '56mm', height: '87mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', position: 'relative', background: card ? `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)` : 'transparent', borderRadius: '6px', overflow: 'hidden', visibility: card ? 'visible' : 'hidden' }}>
                       {card && (
                         <>
                           <CardInnerBorder color={cardColor} outerColor="white" />
@@ -512,14 +512,14 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
               {/* PAGE: BACKS */}
               <div className="a4-page" style={{ width: '210mm', height: '297mm', background: 'white', padding: '10mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
-                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 58mm)', gridTemplateRows: 'repeat(3, 88mm)', gap: '5mm', justifyContent: 'center', alignContent: 'start', height: '100%' }}>
+                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 56mm)', gridTemplateRows: 'repeat(3, 87mm)', gap: '5mm', justifyContent: 'center', alignContent: 'start', height: '100%' }}>
                   {backChunk.map((card, i) => {
                     const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'white';
                     const descFontSize = '0.80rem';
                     const descLineHeight = '1.35';
 
                     return (
-                    <div key={`back-${i}`} style={{ width: '58mm', height: '88mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative', background: 'white', borderRadius: '6px', overflow: 'hidden' }}>
+                    <div key={`back-${i}`} style={{ width: '56mm', height: '87mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative', background: 'white', borderRadius: '6px', overflow: 'hidden' }}>
                       {card && (
                         <>
                           <CardInnerBorder color={cardColor} />

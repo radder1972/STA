@@ -1000,8 +1000,8 @@ body.print-shop-export-mode {
   
   /* Fallback: try to enforce page break behavior on exact mm sizes */
   body.print-shop-export-mode .print-shop-page {
-    width: 64mm !important;
-    height: 94mm !important;
+    width: 62mm !important;
+    height: 93mm !important;
     page-break-after: always !important;
     page-break-inside: avoid !important;
     break-after: page !important;
@@ -1011,15 +1011,15 @@ body.print-shop-export-mode {
     border: none !important;
     box-shadow: none !important;
     /* Force size */
-    min-width: 64mm !important;
-    min-height: 94mm !important;
+    min-width: 62mm !important;
+    min-height: 93mm !important;
   }
 }
 
 /* Screen styles for previewing */
 .print-shop-page {
-  width: 64mm;
-  height: 94mm;
+  width: 62mm;
+  height: 93mm;
   margin: 1rem;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   border: 1px solid #ccc;
