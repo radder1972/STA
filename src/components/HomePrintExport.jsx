@@ -460,7 +460,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                   {frontChunk.map((card, i) => {
                     const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'white';
                     return (
-                    <div key={`front-${i}`} style={{ width: '56mm', height: '87mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', position: 'relative', background: card ? `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)` : 'transparent', borderRadius: '6px', overflow: 'hidden', visibility: card ? 'visible' : 'hidden' }}>
+                    <div key={`front-${i}`} style={{ width: '56mm', height: '87mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', position: 'relative', background: card ? `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)` : 'transparent', borderRadius: 0, overflow: 'hidden', visibility: card ? 'visible' : 'hidden' }}>
                       {card && (
                         <>
                           <CardInnerBorder color={cardColor} outerColor="white" />
@@ -505,7 +505,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
               {/* PAGE INDICATOR (PREVIEW ONLY) */}
               <div className="no-print" style={{ width: '210mm', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '1rem 0 -1.25rem 0', padding: '0 4px', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
                 <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>Vel {chunkIdx + 1} van {chunks.length} • Achterkanten</span>
-                <span style={{ fontSize: '0.82rem', background: 'rgba(0,0,0,0.06)', padding: '2px 8px', borderRadius: '6px' }}>
+                <span style={{ fontSize: '0.82rem', background: 'rgba(0,0,0,0.06)', padding: '2px 8px', borderRadius: 0 }}>
                   {layoutMode === 'same' ? 'Zelfde positie als voorkant' : 'Horizontaal gespiegeld (duplex)'}
                 </span>
               </div>
@@ -519,10 +519,10 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                     const descLineHeight = '1.35';
 
                     return (
-                    <div key={`back-${i}`} style={{ width: '56mm', height: '87mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative', background: 'white', borderRadius: '6px', overflow: 'hidden' }}>
+                    <div key={`back-${i}`} style={{ width: '56mm', height: '87mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative', background: 'white', borderRadius: 0, overflow: 'hidden' }}>
                       {card && (
                         <>
-                          <CardInnerBorder color={cardColor} />
+                          <CardInnerBorder color={cardColor} radius="0" />
                           <div style={{ 
                             position: 'absolute', 
                             top: 0, 
