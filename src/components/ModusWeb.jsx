@@ -47,6 +47,22 @@ const CATEGORY_COLORS = {
 
 const RADAR_ORDER = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
 
+
+const formatTitle = (title) => {
+  if (title === 'Pest en aanval') return <><span style={{display: 'block'}}>Pest en</span><span style={{display: 'block'}}>aanval</span></>;
+  if (title === 'Zelfverheerlijker') return <span style={{display: 'block'}}>Zelfverheerlijker</span>;
+  if (title.includes(' ')) {
+    const parts = title.split(' ');
+    return (
+      <>
+        <span style={{display: 'block'}}>{parts[0]}</span>
+        <span style={{display: 'block'}}>{parts.slice(1).join(' ')}</span>
+      </>
+    );
+  }
+  return <span style={{display: 'block'}}>{title}</span>;
+};
+
 export default function ModusWeb() {
   const [interactionMode, setInteractionMode] = useState('size');
   const [sizes, setSizes] = useState({});
@@ -340,27 +356,27 @@ const clearAll = () => {
         {!showRadar && (
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}>
             {/* Overcompensatie */}
-            <div style={{ position: 'absolute', left: '4%', top: '38%', transform: 'translateY(-50%) rotate(-90deg)', transformOrigin: 'left center', fontSize: '1.4rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+            <div style={{ position: 'absolute', left: '4%', top: '38%', transform: 'translateY(-50%) rotate(-90deg)', transformOrigin: 'left center', fontSize: '1.4rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
               Overcompensatie
             </div>
             
             {/* Vermijding */}
-            <div style={{ position: 'absolute', left: '4%', top: '77%', transform: 'translateY(-50%) rotate(-90deg)', transformOrigin: 'left center', fontSize: '1.4rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+            <div style={{ position: 'absolute', left: '4%', top: '77%', transform: 'translateY(-50%) rotate(-90deg)', transformOrigin: 'left center', fontSize: '1.4rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
               Vermijding
             </div>
             
             {/* Overgave */}
-            <div style={{ position: 'absolute', left: '7%', top: '96%', transform: 'translateY(-50%)', transformOrigin: 'left center', fontSize: '1.1rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+            <div style={{ position: 'absolute', left: '7%', top: '96%', transform: 'translateY(-50%)', transformOrigin: 'left center', fontSize: '1.1rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
               Overgave
             </div>
             
             {/* Oudermodi */}
-            <div style={{ position: 'absolute', right: '3%', top: '32%', transform: 'translateY(-50%) rotate(90deg)', transformOrigin: 'right center', fontSize: '1.4rem', fontWeight: '800', color: '#fecaca', opacity: 0.6, letterSpacing: '0.2em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+            <div style={{ position: 'absolute', right: '3%', top: '32%', transform: 'translateY(-50%) rotate(90deg)', transformOrigin: 'right center', fontSize: '1.4rem', fontWeight: '800', color: '#fecaca', opacity: 0.6, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
               Oudermodi
             </div>
             
             {/* Kindmodi */}
-            <div style={{ position: 'absolute', right: '3%', top: '75%', transform: 'translateY(-50%) rotate(90deg)', transformOrigin: 'right center', fontSize: '1.4rem', fontWeight: '800', color: '#bfdbfe', opacity: 0.6, letterSpacing: '0.2em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+            <div style={{ position: 'absolute', right: '3%', top: '75%', transform: 'translateY(-50%) rotate(90deg)', transformOrigin: 'right center', fontSize: '1.4rem', fontWeight: '800', color: '#bfdbfe', opacity: 0.6, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
               Kindmodi
             </div>
           </div>
