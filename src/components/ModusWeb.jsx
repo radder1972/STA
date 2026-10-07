@@ -520,11 +520,18 @@ const clearAll = () => {
                 transform: `translate(-50%, -50%) scale(${scale})`,
                 background: CATEGORY_COLORS[mode.category],
                 color: mode.category === 'coping' ? '#451a03' : 'white',
-                padding: '0.6rem 1rem',
-                borderRadius: '50px',
-                fontSize: '0.75rem',
-                fontWeight: '700',
+                width: '42px',
+                height: '42px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '50%',
+                fontWeight: '900',
+                fontSize: '1.1rem',
                 textAlign: 'center',
+                boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
+                border: '2px solid rgba(255,255,255,0.4)',
                 boxShadow: isSelected ? `0 0 0 3px white, 0 0 0 6px #3b82f6` : '0 4px 10px rgba(0,0,0,0.12)',
                 cursor: 'pointer',
                 transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
@@ -535,10 +542,10 @@ const clearAll = () => {
                 userSelect: 'none'
               }}
             >
-              {mode.title}
+              {getAbbreviation(mode.id)}
               {showRadar && radarScores[mode.id] !== undefined && (
                 <div style={{ fontSize: '0.65rem', opacity: 0.8, marginTop: '2px', fontWeight: 'normal' }}>
-                  Score: {radarScores[mode.id]}
+                  {radarScores[mode.id]}
                 </div>
               )}
             </div>
