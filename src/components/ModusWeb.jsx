@@ -46,6 +46,13 @@ const CATEGORY_COLORS = {
   coping: '#facc15'
 };
 
+const LIGHT_CATEGORY_COLORS = {
+  gezond: '#a7f3d0',
+  ouder: '#fecaca',
+  kind: '#bfdbfe',
+  coping: '#fef08a'
+};
+
 const RADAR_ORDER = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
 
 
@@ -399,7 +406,7 @@ const clearAll = () => {
               {modesForData.map(m => {
                 const score = radarScores[m.id] || 0;
                 const pt = getRadarPoint(m.id, score).split(',');
-                return <circle key={`pt-${m.id}`} cx={pt[0]} cy={pt[1]} r="7" fill={CATEGORY_COLORS[m.category]} stroke="white" strokeWidth="2.5" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.25))' }} />;
+                return <circle key={`pt-${m.id}`} cx={pt[0]} cy={pt[1]} r="7" fill={score < 3 ? LIGHT_CATEGORY_COLORS[m.category] : CATEGORY_COLORS[m.category]} stroke="white" strokeWidth="2.5" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.25))' }} />;
               })}
             </g>
           )}
@@ -487,8 +494,8 @@ const clearAll = () => {
                 left: `${pos.x}%`,
                 top: `${pos.y}%`,
                 transform: `translate(-50%, -50%) scale(${scale})`,
-                background: CATEGORY_COLORS[mode.category],
-                color: mode.category === 'coping' ? '#451a03' : 'white',
+                background: (showRadar && radarScores[mode.id] !== undefined && radarScores[mode.id] < 3) ? LIGHT_CATEGORY_COLORS[mode.category] : CATEGORY_COLORS[mode.category],
+                color: ((showRadar && radarScores[mode.id] !== undefined && radarScores[mode.id] < 3) || mode.category === 'coping') ? '#451a03' : 'white',
                 width: '42px',
                 height: '42px',
                 display: 'flex',
