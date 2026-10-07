@@ -22,7 +22,7 @@ export const getCardColor = (type, id, title) => {
     if (parentModes.includes(safeId) || safeTitle.includes('straffende') || safeTitle.includes('veeleisende')) return '#f87171'; // Rood
 
     // Coping modes: all yellow (#facc15 / #eab308)
-    const copingModes = ['wi', 'ob', 'oz', 'zh', 'pa', 'vst_m_bb', 'vst_m_po', 'vst_m_bm', 'vst_m_ae', 'vst_m_rd', 'mc3d'];
+    const copingModes = ['wi', 'ob', 'oz', 'zh', 'pa', 'woc', 'vst_m_bb', 'vst_m_po', 'vst_m_bm', 'vst_m_ae', 'vst_m_rd', 'mc3d'];
     if (copingModes.includes(safeId) || safeTitle.includes('inschikkelijke') || safeTitle.includes('beschermer') || safeTitle.includes('zelfsusser') || safeTitle.includes('overcontroleerder') || safeTitle.includes('zelfverheerlijker') || safeTitle.includes('pest') || safeTitle.includes('bedrog') || safeTitle.includes('erkenningzoeker') || safeTitle.includes('roofdier') || safeTitle.includes('coping')) return '#facc15'; // Geel
   } else if (safeType === 'schema') {
     const cleanId = safeId.replace('/', '_');

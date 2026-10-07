@@ -94,6 +94,7 @@ export const smiModesMap = {
   'ok': 'Ongedisciplineerde kind',
   'bk': 'Blije kind',
   'wi': 'Willoze inschikkelijke',
+  'woc': 'Wantrouwende overcontroleerder',
   'ob': 'Onthechte beschermer',
   'oz': 'Onthechte zelfsusser',
   'wk': 'Boze kind',
