@@ -310,21 +310,11 @@ export default function ScoreChart({ scores, type, rawAnswers, onViewBasisbehoef
             : "Deze grafiek toont de verdeling van al uw scores op de 14 modi. Punten en bollen die ver naar buiten uitschieten, zijn uw meest prominente patronen."
           }
         </p>
-        {type === 'smi' ? (
-          <SmiRadarGraph scores={scores} rawAnswers={rawAnswers} />
-        ) : (
-          <div className="chart-wrapper print-block" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <div className="radar-container" style={{ width: '100%', height: data.length > 10 ? '450px' : '400px' }}>
-              <RadarChart width={chartWidth} height={data.length > 10 ? 450 : 400} cx="50%" cy="50%" outerRadius="65%" data={radarData}>
-                <PolarGrid stroke="var(--border-color)" />
-                <PolarAngleAxis dataKey="name" tick={<CustomTick />} />
-                <PolarRadiusAxis angle={90} domain={[1, 6]} ticks={[1, 2, 3, 4, 5, 6]} tick={{ fill: 'black', fontSize: 9, fontWeight: 'bold' }} />
-                <Radar name="Score" dataKey="mean" stroke="var(--primary)" fill="var(--primary)" fillOpacity={0.4} dot={<CustomRadarDot />} isAnimationActive={false} />
-                <Tooltip content={<CustomTooltip />} />
-              </RadarChart>
-            </div>
-          </div>
-        )}
+        <SmiRadarGraph 
+          scores={scores} 
+          rawAnswers={rawAnswers} 
+          initialSide={type === 'ysq' ? 'schemas' : 'modi'} 
+        />
       </div>
 
       {/* Domain Averages Chart */}

@@ -1,6 +1,8 @@
 import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { Share2, Rotate3d, Eye, Play, Pause, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
+import { Share2, Rotate3d, Eye, Play, Pause, RotateCcw, ZoomIn, ZoomOut, Coins } from 'lucide-react';
 import SchemaCard from './SchemaCard';
+import ysqScoring from '../data/ysq-scoring.json';
+import smiScoring from '../data/smi-scoring.json';
 
 const MODES_INFO = [
   { id: 'gv', title: 'Gezonde volwassene', category: 'gezond', abbr: 'GV' },
@@ -19,6 +21,36 @@ const MODES_INFO = [
   { id: 'vo', title: 'Veeleisende ouder', category: 'ouder', abbr: 'VO' }
 ];
 
+const SCHEMAS_INFO = [
+  // Domein I: Verbondenheid & Veiligheid (#60a5fa)
+  { id: 'Abandonment', title: 'Verlating / Instabiliteit', domain: 'Verbondenheid & Veiligheid', abbr: 'VE' },
+  { id: 'Mistrust', title: 'Wantrouwen / Misbruik', domain: 'Verbondenheid & Veiligheid', abbr: 'WA' },
+  { id: 'Emotional deprivation', title: 'Emotionele verwaarlozing', domain: 'Verbondenheid & Veiligheid', abbr: 'EV' },
+  { id: 'Defectiveness/unlovability', title: 'Minderwaardigheid / Schaamte', domain: 'Verbondenheid & Veiligheid', abbr: 'MI' },
+  { id: 'Social isolation/Alienation', title: 'Sociaal isolement / Vervreemding', domain: 'Verbondenheid & Veiligheid', abbr: 'SI' },
+
+  // Domein II: Autonomie & Prestatie (#34d399)
+  { id: 'Practical incompetence/Dependence', title: 'Afhankelijkheid / Onbekwaamheid', domain: 'Autonomie', abbr: 'AF' },
+  { id: 'Vulnerability to harm/illness', title: 'Kwetsbaarheid voor ziekte en gevaar', domain: 'Autonomie', abbr: 'KW' },
+  { id: 'Enmeshment', title: 'Verstrengeling / Kluwen', domain: 'Autonomie', abbr: 'VS' },
+  { id: 'Failure to achieve', title: 'Mislukking', domain: 'Autonomie', abbr: 'ML' },
+
+  // Domein III: Realistische Grenzen (#fb923c)
+  { id: 'Entitlement/Superiority', title: 'Zich rechten toe-eigenen', domain: 'Realistische Grenzen', abbr: 'ZR' },
+  { id: 'Insufficient self-control/self-discipline', title: 'Gebrek aan zelfcontrole / Zelfdiscipline', domain: 'Realistische Grenzen', abbr: 'ZC' },
+
+  // Domein IV: Zelfexpressie (#facc15)
+  { id: 'Subjugation', title: 'Onderwerping', domain: 'Zelfexpressie', abbr: 'OW' },
+  { id: 'Self-sacrifice', title: 'Zelfopoffering', domain: 'Zelfexpressie', abbr: 'ZO' },
+  { id: 'Admiration/Recognition-seeking', title: 'Goedkeuring en erkenning zoeken', domain: 'Zelfexpressie', abbr: 'EZ' },
+
+  // Domein V: Spontaniteit & Spel (#f87171)
+  { id: 'Pessimism/Worry', title: 'Negativiteit en pessimisme', domain: 'Spontaniteit & Spel', abbr: 'PE' },
+  { id: 'Emotional inhibition', title: 'Emotionele geremdheid', domain: 'Spontaniteit & Spel', abbr: 'EG' },
+  { id: 'Unrelenting Standards', title: 'Meedogenloze normen / Overmatig kritisch', domain: 'Spontaniteit & Spel', abbr: 'MN' },
+  { id: 'Self-punitiveness', title: 'Bestraffende houding', domain: 'Spontaniteit & Spel', abbr: 'BH' }
+];
+
 const SMI_KEY_TO_ID = {
   'gv': 'gv', 'bk': 'bk', 'so': 'so', 'vo': 'vo', 'rk': 'rk',
   'wk': 'boos_k', 'boos_k': 'boos_k', 'ik': 'ik', 'ok': 'ok', 'kk': 'kk',
@@ -26,17 +58,71 @@ const SMI_KEY_TO_ID = {
 };
 
 const CATEGORY_COLORS = {
+  // Modi
   gezond: '#34d399',
   ouder: '#f87171',
   kind: '#60a5fa',
-  coping: '#facc15'
+  coping: '#facc15',
+
+  // Schema Domeinen
+  'Verbondenheid & Veiligheid': '#60a5fa',
+  'Autonomie': '#34d399',
+  'Realistische Grenzen': '#fb923c',
+  'Zelfexpressie': '#facc15',
+  'Spontaniteit & Spel': '#f87171'
 };
 
 const LIGHT_CATEGORY_COLORS = {
+  // Modi
   gezond: '#a7f3d0',
   ouder: '#fecaca',
   kind: '#bfdbfe',
-  coping: '#fef08a'
+  coping: '#fef08a',
+
+  // Schema Domeinen
+  'Verbondenheid & Veiligheid': '#bfdbfe',
+  'Autonomie': '#a7f3d0',
+  'Realistische Grenzen': '#fed7aa',
+  'Zelfexpressie': '#fef08a',
+  'Spontaniteit & Spel': '#fecaca'
+};
+
+const DEFAULT_YSQ_SCORES = {
+  'Abandonment': 3.8,
+  'Mistrust': 4.2,
+  'Emotional deprivation': 2.6,
+  'Defectiveness/unlovability': 4.0,
+  'Social isolation/Alienation': 2.8,
+  'Practical incompetence/Dependence': 2.4,
+  'Vulnerability to harm/illness': 3.2,
+  'Enmeshment': 2.2,
+  'Failure to achieve': 4.6,
+  'Entitlement/Superiority': 2.0,
+  'Insufficient self-control/self-discipline': 4.8,
+  'Subjugation': 3.0,
+  'Self-sacrifice': 3.6,
+  'Admiration/Recognition-seeking': 2.4,
+  'Pessimism/Worry': 3.4,
+  'Emotional inhibition': 3.0,
+  'Unrelenting Standards': 4.4,
+  'Self-punitiveness': 3.8
+};
+
+const DEFAULT_SMI_SCORES = {
+  gv: 4.5,
+  bk: 4.2,
+  kk: 3.8,
+  rk: 2.1,
+  boos_k: 2.4,
+  ik: 2.0,
+  ok: 2.5,
+  wi: 3.2,
+  ob: 3.6,
+  oz: 2.8,
+  zh: 1.8,
+  pa: 1.5,
+  so: 3.9,
+  vo: 4.1
 };
 
 // 3D vector math helpers
@@ -57,14 +143,12 @@ function normalize(v) {
   return [v[0] / len, v[1] / len, v[2] / len];
 }
 
-// 3D Projection math (XZ ground plane, Y elevation axis)
+// 3D Projection math
 function project3D(x, y, z, pitchRad, yawRad, zoom, cx, cy, d = 850) {
-  // Yaw rotation around vertical Y axis
   const x1 = x * Math.cos(yawRad) + z * Math.sin(yawRad);
   const y1 = y;
   const z1 = -x * Math.sin(yawRad) + z * Math.cos(yawRad);
 
-  // Pitch rotation around horizontal X axis
   const x2 = x1;
   const y2 = y1 * Math.cos(pitchRad) - z1 * Math.sin(pitchRad);
   const z2 = y1 * Math.sin(pitchRad) + z1 * Math.cos(pitchRad);
@@ -78,43 +162,125 @@ function project3D(x, y, z, pitchRad, yawRad, zoom, cx, cy, d = 850) {
   };
 }
 
-export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, showAction = true, initialDimension = '3d' }) {
+export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenModusWeb, showAction = true, initialDimension = '3d', initialSide = 'modi' }) {
+  const [activeSide, setActiveSide] = useState(initialSide); // 'modi' or 'schemas'
   const [viewDimension, setViewDimension] = useState(initialDimension); // '2d' or '3d'
   const [hoveredNode, setHoveredNode] = useState(null);
   const [popupFlipped, setPopupFlipped] = useState(false);
 
   // 3D Orbit Camera State
-  const [pitch, setPitch] = useState(48); // vertical tilt in degrees (10 to 88)
-  const [yaw, setYaw] = useState(28); // horizontal rotation in degrees
+  const [pitch, setPitch] = useState(48);
+  const [yaw, setYaw] = useState(28);
   const [zoom, setZoom] = useState(1.0);
   const [isDragging, setIsDragging] = useState(false);
   const [autoRotate, setAutoRotate] = useState(true);
+  const [isFlipping, setIsFlipping] = useState(false);
 
   const lastMousePos = useRef({ x: 0, y: 0 });
   const containerRef = useRef(null);
 
-  // Normalize scores dictionary
-  const normalizedScores = useMemo(() => {
+  // Normalize Modi Scores
+  const normalizedModiScores = useMemo(() => {
     const map = {};
-    if (Array.isArray(scores)) {
-      scores.forEach(s => {
+    const input = initialSide === 'schemas' ? null : scores;
+    if (Array.isArray(input)) {
+      input.forEach(s => {
         const canonical = SMI_KEY_TO_ID[s.id] || s.id;
         const val = parseFloat(s.mean);
         if (!isNaN(val)) map[canonical] = val;
       });
-    } else if (scores && typeof scores === 'object') {
-      Object.entries(scores).forEach(([k, v]) => {
+    } else if (input && typeof input === 'object') {
+      Object.entries(input).forEach(([k, v]) => {
         const canonical = SMI_KEY_TO_ID[k] || k;
         const val = parseFloat(v);
         if (!isNaN(val)) map[canonical] = val;
       });
     }
+
+    if (Object.keys(map).length === 0) {
+      try {
+        const savedSmi = localStorage.getItem('schemaApp_progress_smi');
+        if (savedSmi) {
+          const answers = JSON.parse(savedSmi);
+          Object.entries(smiScoring).forEach(([sKey, qList]) => {
+            let sum = 0;
+            let count = 0;
+            qList.forEach(qId => {
+              if (answers[qId] !== undefined) {
+                sum += answers[qId];
+                count++;
+              }
+            });
+            if (count > 0) {
+              const canonical = SMI_KEY_TO_ID[sKey] || sKey;
+              map[canonical] = parseFloat((sum / count).toFixed(1));
+            }
+          });
+        }
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    if (Object.keys(map).length === 0) {
+      return DEFAULT_SMI_SCORES;
+    }
     return map;
-  }, [scores]);
+  }, [scores, initialSide]);
+
+  // Normalize YSQ Schema Scores
+  const normalizedSchemaScores = useMemo(() => {
+    const map = {};
+    const input = initialSide === 'schemas' ? scores : ysqScores;
+    
+    if (Array.isArray(input)) {
+      input.forEach(s => {
+        const val = parseFloat(s.mean);
+        if (!isNaN(val)) map[s.id] = val;
+      });
+    } else if (input && typeof input === 'object') {
+      Object.entries(input).forEach(([k, v]) => {
+        const val = parseFloat(v);
+        if (!isNaN(val)) map[k] = val;
+      });
+    } else {
+      // Check localStorage for completed YSQ questionnaire
+      try {
+        const savedYsq = localStorage.getItem('schemaApp_progress_ysq');
+        if (savedYsq) {
+          const answers = JSON.parse(savedYsq);
+          Object.entries(ysqScoring).forEach(([sKey, qList]) => {
+            let sum = 0;
+            let count = 0;
+            qList.forEach(qId => {
+              if (answers[qId] !== undefined) {
+                sum += answers[qId];
+                count++;
+              }
+            });
+            if (count > 0) map[sKey] = parseFloat((sum / count).toFixed(1));
+          });
+        }
+      } catch (e) {
+        // fallback
+      }
+    }
+
+    // Default demo fallback if empty
+    if (Object.keys(map).length === 0) {
+      return DEFAULT_YSQ_SCORES;
+    }
+    return map;
+  }, [scores, ysqScores, initialSide]);
+
+  // Active items based on current side
+  const currentItems = activeSide === 'modi' ? MODES_INFO : SCHEMAS_INFO;
+  const currentScores = activeSide === 'modi' ? normalizedModiScores : normalizedSchemaScores;
+  const isCopingOrDomain = (item) => activeSide === 'modi' ? item.category === 'coping' : (item.domain === 'Zelfexpressie' || item.domain === 'Realistische Grenzen');
 
   // Auto-rotation loop
   useEffect(() => {
-    if (!autoRotate || viewDimension !== '3d' || isDragging) return;
+    if (!autoRotate || viewDimension !== '3d' || isDragging || isFlipping) return;
     let animId;
     const step = () => {
       setYaw(prev => (prev + 0.35) % 360);
@@ -122,7 +288,46 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
     };
     animId = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animId);
-  }, [autoRotate, viewDimension, isDragging]);
+  }, [autoRotate, viewDimension, isDragging, isFlipping]);
+
+  // Smooth Coin Flip Animation (180 degree rotation)
+  const flipCoin = useCallback(() => {
+    if (isFlipping) return;
+    setIsFlipping(true);
+    setAutoRotate(false);
+
+    const startYaw = yaw;
+    const startTime = performance.now();
+    const duration = 650;
+    const nextSide = activeSide === 'modi' ? 'schemas' : 'modi';
+
+    let switched = false;
+
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease in-out cubic
+      const ease = progress < 0.5 
+        ? 4 * progress * progress * progress 
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+      setYaw((startYaw + 180 * ease) % 360);
+
+      // Switch data at the 90 degree edge point
+      if (progress >= 0.5 && !switched) {
+        setActiveSide(nextSide);
+        switched = true;
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setIsFlipping(false);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isFlipping, yaw, activeSide]);
 
   // Mouse drag handlers for 3D orbit
   const handleMouseDown = useCallback((e) => {
@@ -145,7 +350,7 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
     setIsDragging(false);
   }, []);
 
-  // Touch handlers for mobile
+  // Touch handlers
   const handleTouchStart = useCallback((e) => {
     if (viewDimension !== '3d' || e.touches.length !== 1) return;
     setIsDragging(true);
@@ -170,10 +375,10 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
     if (rawAnswers && Object.keys(rawAnswers).length > 0) {
       localStorage.setItem('schemaApp_modusweb_smi', JSON.stringify(rawAnswers));
     }
-    if (normalizedScores && Object.keys(normalizedScores).length > 0) {
-      localStorage.setItem('schemaApp_modusweb_scores', JSON.stringify(normalizedScores));
+    if (normalizedModiScores && Object.keys(normalizedModiScores).length > 0) {
+      localStorage.setItem('schemaApp_modusweb_scores', JSON.stringify(normalizedModiScores));
     }
-    localStorage.setItem('schemaApp_modusweb_initial_view', 'graph');
+    localStorage.setItem('schemaApp_modusweb_initial_view', 'network');
 
     if (onOpenModusWeb) {
       onOpenModusWeb();
@@ -185,54 +390,50 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
   // Dimensions & Projection constants
   const size = 640;
   const cx = size / 2;
-  const cy = size / 2 + 15; // slightly offset downwards for 3D elevation clearance
-  const R_MAX = 175; // outer radius of level 6
-  const R_BALL = 242; // orbit radius of outer balls
-  const n = MODES_INFO.length;
+  const cy = size / 2 + 15;
+  const R_MAX = 175;
+  const R_BALL = 242;
+  const n = currentItems.length;
 
   const pitchRad = (pitch * Math.PI) / 180;
   const yawRad = (yaw * Math.PI) / 180;
 
-  // 1. Calculate 3D positions for the 14 modes
-  const modes3D = useMemo(() => {
-    const lightDir = normalize([0.5, -0.85, 0.4]);
-
-    return MODES_INFO.map((m, idx) => {
+  // 1. Calculate 3D points for current active side
+  const items3D = useMemo(() => {
+    return currentItems.map((item, idx) => {
       const angle = -Math.PI / 2 + idx * ((2 * Math.PI) / n);
       const cosA = Math.cos(angle);
       const sinA = Math.sin(angle);
 
-      const scoreVal = normalizedScores[m.id] !== undefined ? normalizedScores[m.id] : 0;
+      const scoreVal = currentScores[item.id] !== undefined ? currentScores[item.id] : 0;
       const ratio = Math.min(Math.max(scoreVal / 6, 0.08), 1);
 
-      // Height elevation in 3D: higher score = towers higher into the air!
       const elevation = scoreVal * 25; // 0 to 150px height
       const peakX = R_MAX * ratio * cosA;
       const peakZ = R_MAX * ratio * sinA;
-      const peakY = -elevation; // negative is upwards
+      const peakY = -elevation;
 
-      // Ground position on floor (y = 0)
       const groundX = R_MAX * ratio * cosA;
       const groundZ = R_MAX * ratio * sinA;
 
-      // Outer ball orbit position
       const ballX = R_BALL * cosA;
       const ballZ = R_BALL * sinA;
-      const ballY = -(scoreVal * 10); // balls float slightly off the ground
+      const ballY = -(scoreVal * 10);
 
-      // Project all to screen coordinates
       const projPeak = project3D(peakX, peakY, peakZ, pitchRad, yawRad, zoom, cx, cy);
       const projGround = project3D(groundX, 0, groundZ, pitchRad, yawRad, zoom, cx, cy);
       const projBall = project3D(ballX, ballY, ballZ, pitchRad, yawRad, zoom, cx, cy);
 
+      const baseRadius = activeSide === 'modi' ? 21 : 18; // slightly smaller base for 18 schemas
       const scale = scoreVal === 0 ? 0.7 : 0.6 + scoreVal * 0.25;
-      const ballRadius = Math.max(15, 21 * scale * (viewDimension === '3d' ? projBall.scale : 1));
+      const ballRadius = Math.max(13, baseRadius * scale * (viewDimension === '3d' ? projBall.scale : 1));
 
-      const bg = scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[m.category] : CATEGORY_COLORS[m.category];
-      const textColor = (scoreVal < 3.0 || m.category === 'coping') ? '#451a03' : '#ffffff';
+      const categoryKey = activeSide === 'modi' ? item.category : item.domain;
+      const bg = scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey];
+      const textColor = (scoreVal < 3.0 || isCopingOrDomain(item)) ? '#451a03' : '#ffffff';
 
       return {
-        ...m,
+        ...item,
         scoreVal,
         angle,
         cosA,
@@ -249,49 +450,46 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
         elevation
       };
     });
-  }, [normalizedScores, pitchRad, yawRad, zoom, cx, cy, viewDimension, n]);
+  }, [currentItems, currentScores, pitchRad, yawRad, zoom, cx, cy, viewDimension, activeSide, n]);
 
-  // 2. 3D Mountain Apex and Facets
+  // 2. 3D Facets
   const { facets, projApex } = useMemo(() => {
-    // Apex at central vertical axis
-    const avgElevation = modes3D.reduce((sum, m) => sum + m.elevation, 0) / n;
+    const avgElevation = items3D.reduce((sum, m) => sum + m.elevation, 0) / n;
     const apexHeight = -(avgElevation * 1.15 + 15);
     const pApex = project3D(0, apexHeight, 0, pitchRad, yawRad, zoom, cx, cy);
 
     const lightDir = normalize([0.4, -0.9, 0.45]);
     const facetList = [];
 
+    const facetColor = activeSide === 'modi' ? '59, 130, 246' : '16, 185, 129'; // blue for modi, emerald for schemas
+
     for (let i = 0; i < n; i++) {
       const nextIdx = (i + 1) % n;
-      const m1 = modes3D[i];
-      const m2 = modes3D[nextIdx];
+      const m1 = items3D[i];
+      const m2 = items3D[nextIdx];
 
-      // 3D triangle vertices: Apex, Peak1, Peak2
       const v1 = [m1.peakX, m1.peakY - apexHeight, m1.peakZ];
       const v2 = [m2.peakX, m2.peakY - apexHeight, m2.peakZ];
       const norm = normalize(crossProduct(v1, v2));
 
-      // Directional lighting
       const lightDot = Math.abs(dot(norm, lightDir));
       const intensity = Math.max(0.18, Math.min(0.85, lightDot * 0.6 + 0.25));
-
       const avgDepth = (pApex.depth + m1.projPeak.depth + m2.projPeak.depth) / 3;
 
       facetList.push({
         pts: `${pApex.screenX.toFixed(1)},${pApex.screenY.toFixed(1)} ${m1.projPeak.screenX.toFixed(1)},${m1.projPeak.screenY.toFixed(1)} ${m2.projPeak.screenX.toFixed(1)},${m2.projPeak.screenY.toFixed(1)}`,
         intensity,
         avgDepth,
-        idx: i
+        idx: i,
+        color: facetColor
       });
     }
 
-    // Sort facets from back to front for proper 3D alpha blending
     facetList.sort((a, b) => b.avgDepth - a.avgDepth);
-
     return { facets: facetList, projApex: pApex };
-  }, [modes3D, pitchRad, yawRad, zoom, cx, cy, n]);
+  }, [items3D, pitchRad, yawRad, zoom, cx, cy, activeSide, n]);
 
-  // 3. 3D Concentric floor rings (levels 2, 4, 6)
+  // 3. 3D Concentric floor rings
   const floorGridRings = useMemo(() => {
     return [2, 4, 6].map(lvl => {
       const r = R_MAX * (lvl / 6);
@@ -307,155 +505,194 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
     });
   }, [pitchRad, yawRad, zoom, cx, cy, n]);
 
-  // 4. Projected Ground Center
-  const projCenter = useMemo(() => {
-    return project3D(0, 0, 0, pitchRad, yawRad, zoom, cx, cy);
-  }, [pitchRad, yawRad, zoom, cx, cy]);
+  const projCenter = useMemo(() => project3D(0, 0, 0, pitchRad, yawRad, zoom, cx, cy), [pitchRad, yawRad, zoom, cx, cy]);
+  const floorShadowPoints = useMemo(() => items3D.map(m => `${m.projGround.screenX.toFixed(1)},${m.projGround.screenY.toFixed(1)}`).join(' '), [items3D]);
+  const peakPolygonPoints = useMemo(() => items3D.map(m => `${m.projPeak.screenX.toFixed(1)},${m.projPeak.screenY.toFixed(1)}`).join(' '), [items3D]);
 
-  // 5. Floor Shadow Polygon (ground level projection of the score polygon)
-  const floorShadowPoints = useMemo(() => {
-    return modes3D.map(m => `${m.projGround.screenX.toFixed(1)},${m.projGround.screenY.toFixed(1)}`).join(' ');
-  }, [modes3D]);
-
-  // 6. 3D Polygon perimeter line
-  const peakPolygonPoints = useMemo(() => {
-    return modes3D.map(m => `${m.projPeak.screenX.toFixed(1)},${m.projPeak.screenY.toFixed(1)}`).join(' ');
-  }, [modes3D]);
-
-  // 7. Depth-sorted balls for clean occlusion in 3D
+  // 4. Depth-Sorted Balls (Painter's algorithm)
   const depthSortedBalls = useMemo(() => {
-    return [...modes3D].sort((a, b) => b.projBall.depth - a.projBall.depth);
-  }, [modes3D]);
+    return [...items3D].sort((a, b) => b.projBall.depth - a.projBall.depth);
+  }, [items3D]);
 
   // 2D Classic Static Data
-  const modeData2D = useMemo(() => {
-    return MODES_INFO.map((m, idx) => {
+  const items2D = useMemo(() => {
+    return currentItems.map((item, idx) => {
       const angle = -Math.PI / 2 + idx * ((2 * Math.PI) / n);
       const cosA = Math.cos(angle);
       const sinA = Math.sin(angle);
       const ballX = cx + R_BALL * cosA;
       const ballY = cy + R_BALL * sinA;
 
-      const scoreVal = normalizedScores[m.id] !== undefined ? normalizedScores[m.id] : 0;
+      const scoreVal = currentScores[item.id] !== undefined ? currentScores[item.id] : 0;
       const ratio = Math.min(Math.max(scoreVal / 6, 0), 1);
       const ptX = cx + (R_MAX * ratio) * cosA;
       const ptY = cy + (R_MAX * ratio) * sinA;
 
+      const baseRadius = activeSide === 'modi' ? 21 : 18;
       const scale = scoreVal === 0 ? 0.7 : 0.6 + scoreVal * 0.25;
-      const ballRadius = Math.max(16, 21 * scale);
-      const bg = scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[m.category] : CATEGORY_COLORS[m.category];
-      const textColor = (scoreVal < 3.0 || m.category === 'coping') ? '#451a03' : '#ffffff';
+      const ballRadius = Math.max(13, baseRadius * scale);
 
-      return { ...m, scoreVal, ballX, ballY, ptX, ptY, ballRadius, bg, textColor, cosA, sinA };
+      const categoryKey = activeSide === 'modi' ? item.category : item.domain;
+      const bg = scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey];
+      const textColor = (scoreVal < 3.0 || isCopingOrDomain(item)) ? '#451a03' : '#ffffff';
+
+      return { ...item, scoreVal, ballX, ballY, ptX, ptY, ballRadius, bg, textColor, cosA, sinA };
     });
-  }, [normalizedScores, cx, cy, n]);
+  }, [currentItems, currentScores, activeSide, cx, cy, n]);
 
-  const polygonPoints2D = modeData2D.map(m => `${m.ptX.toFixed(1)},${m.ptY.toFixed(1)}`).join(' ');
+  const polygonPoints2D = items2D.map(m => `${m.ptX.toFixed(1)},${m.ptY.toFixed(1)}`).join(' ');
   const gridLevels2D = [2, 4, 6].map(lvl => {
     const ratio = lvl / 6;
-    const pts = modeData2D.map(m => `${(cx + R_MAX * ratio * m.cosA).toFixed(1)},${(cy + R_MAX * ratio * m.sinA).toFixed(1)}`).join(' ');
+    const pts = items2D.map(m => `${(cx + R_MAX * ratio * m.cosA).toFixed(1)},${(cy + R_MAX * ratio * m.sinA).toFixed(1)}`).join(' ');
     return { lvl, pts };
   });
 
   return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: '700px', margin: '0 auto', userSelect: 'none' }}>
+    <div style={{ position: 'relative', width: '100%', maxWidth: '720px', margin: '0 auto', userSelect: 'none' }}>
       
-      {/* 2D / 3D Mode Bar & Camera Toolbar */}
-      <div className="no-print" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', gap: '0.5rem', background: '#f8fafc', padding: '6px 12px', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+      {/* Top Banner: Double-Sided Coin Selector & 2D/3D Controls */}
+      <div className="no-print" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', gap: '0.6rem', background: '#f8fafc', padding: '8px 14px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
         
-        {/* Toggle 2D vs 3D */}
-        <div style={{ display: 'flex', background: '#e2e8f0', padding: '3px', borderRadius: '8px', gap: '3px' }}>
+        {/* Double-Sided Coin Tabs: Modi (Side A) vs Schema's (Side B) */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ display: 'flex', background: '#e2e8f0', padding: '3px', borderRadius: '8px', gap: '3px' }}>
+            <button
+              onClick={() => { setActiveSide('modi'); }}
+              style={{
+                display: 'flex', alignItems: 'center', gap: '6px',
+                padding: '5px 12px', borderRadius: '6px', border: 'none',
+                background: activeSide === 'modi' ? '#3b82f6' : 'transparent',
+                color: activeSide === 'modi' ? 'white' : '#475569',
+                cursor: 'pointer', fontWeight: 'bold', fontSize: '0.85rem',
+                boxShadow: activeSide === 'modi' ? '0 2px 4px rgba(59, 130, 246, 0.25)' : 'none',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              Modi (SMI • 14)
+            </button>
+            <button
+              onClick={() => { setActiveSide('schemas'); }}
+              style={{
+                display: 'flex', alignItems: 'center', gap: '6px',
+                padding: '5px 12px', borderRadius: '6px', border: 'none',
+                background: activeSide === 'schemas' ? '#10b981' : 'transparent',
+                color: activeSide === 'schemas' ? 'white' : '#475569',
+                cursor: 'pointer', fontWeight: 'bold', fontSize: '0.85rem',
+                boxShadow: activeSide === 'schemas' ? '0 2px 4px rgba(16, 185, 129, 0.25)' : 'none',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              Schema's (YSQ • 18)
+            </button>
+          </div>
+
+          {/* 3D Coin Flip Button */}
           <button
-            onClick={() => setViewDimension('2d')}
+            onClick={flipCoin}
+            disabled={isFlipping}
             style={{
               display: 'flex', alignItems: 'center', gap: '6px',
-              padding: '5px 12px', borderRadius: '6px', border: 'none',
-              background: viewDimension === '2d' ? '#3b82f6' : 'transparent',
-              color: viewDimension === '2d' ? 'white' : '#475569',
-              cursor: 'pointer', fontWeight: 'bold', fontSize: '0.85rem',
-              boxShadow: viewDimension === '2d' ? '0 2px 5px rgba(59, 130, 246, 0.25)' : 'none',
-              transition: 'all 0.15s ease'
+              padding: '5px 12px', borderRadius: '8px',
+              border: '1px solid #cbd5e1', background: 'white',
+              color: '#1e293b', cursor: isFlipping ? 'wait' : 'pointer',
+              fontWeight: 'bold', fontSize: '0.82rem',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+              transition: 'all 0.2s'
             }}
+            title="Draai de munt 180° om naar de andere zijde"
           >
-            <Eye size={15} /> 2D Plat
-          </button>
-          <button
-            onClick={() => setViewDimension('3d')}
-            style={{
-              display: 'flex', alignItems: 'center', gap: '6px',
-              padding: '5px 12px', borderRadius: '6px', border: 'none',
-              background: viewDimension === '3d' ? '#3b82f6' : 'transparent',
-              color: viewDimension === '3d' ? 'white' : '#475569',
-              cursor: 'pointer', fontWeight: 'bold', fontSize: '0.85rem',
-              boxShadow: viewDimension === '3d' ? '0 2px 5px rgba(59, 130, 246, 0.25)' : 'none',
-              transition: 'all 0.15s ease'
-            }}
-          >
-            <Rotate3d size={16} /> 3D Graph (Ruimtelijk)
+            <Coins size={15} color="#eab308" />
+            Keer munt om ({activeSide === 'modi' ? "Schema's" : "Modi"})
           </button>
         </div>
 
-        {/* 3D Controls (presets & auto-rotation) */}
-        {viewDimension === '3d' && (
-          <div style={{ display: 'flex', gap: '5px', alignItems: 'center', flexWrap: 'wrap' }}>
+        {/* 2D vs 3D Dimension Switcher & Orbit Tools */}
+        <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
+          
+          <div style={{ display: 'flex', background: '#e2e8f0', padding: '3px', borderRadius: '8px', gap: '3px' }}>
             <button
-              onClick={() => { setPitch(48); setYaw(28); setZoom(1.0); }}
-              style={{ padding: '4px 8px', borderRadius: '6px', border: '1px solid #cbd5e1', background: 'white', fontSize: '0.75rem', fontWeight: '600', color: '#475569', cursor: 'pointer' }}
-              title="Herstel naar 3D perspectief"
-            >
-              Perspectief
-            </button>
-            <button
-              onClick={() => { setPitch(85); setYaw(0); setZoom(0.95); }}
-              style={{ padding: '4px 8px', borderRadius: '6px', border: '1px solid #cbd5e1', background: 'white', fontSize: '0.75rem', fontWeight: '600', color: '#475569', cursor: 'pointer' }}
-              title="Kijk recht van bovenaf"
-            >
-              Bovenaanzicht
-            </button>
-            <button
-              onClick={() => { setPitch(18); setYaw(45); setZoom(1.05); }}
-              style={{ padding: '4px 8px', borderRadius: '6px', border: '1px solid #cbd5e1', background: 'white', fontSize: '0.75rem', fontWeight: '600', color: '#475569', cursor: 'pointer' }}
-              title="Kijk van de zijkant naar de piekhoogtes"
-            >
-              Profiel
-            </button>
-
-            <div style={{ width: '1px', height: '18px', background: '#cbd5e1', margin: '0 2px' }} />
-
-            {/* Auto-rotate toggle */}
-            <button
-              onClick={() => setAutoRotate(!autoRotate)}
+              onClick={() => setViewDimension('2d')}
               style={{
-                display: 'flex', alignItems: 'center', gap: '4px',
-                padding: '4px 8px', borderRadius: '6px',
-                border: '1px solid ' + (autoRotate ? '#93c5fd' : '#cbd5e1'),
-                background: autoRotate ? '#eff6ff' : 'white',
-                color: autoRotate ? '#1d4ed8' : '#475569',
-                fontSize: '0.75rem', fontWeight: '600', cursor: 'pointer'
+                display: 'flex', alignItems: 'center', gap: '5px',
+                padding: '4px 10px', borderRadius: '6px', border: 'none',
+                background: viewDimension === '2d' ? '#3b82f6' : 'transparent',
+                color: viewDimension === '2d' ? 'white' : '#475569',
+                cursor: 'pointer', fontWeight: 'bold', fontSize: '0.82rem'
               }}
-              title={autoRotate ? "Pauzeer draaien" : "Start automatisch ronddraaien"}
             >
-              {autoRotate ? <Pause size={12} /> : <Play size={12} />}
-              {autoRotate ? 'Pauze' : 'Draaien'}
-            </button>
-
-            {/* Zoom */}
-            <button
-              onClick={() => setZoom(z => Math.max(0.7, z - 0.1))}
-              style={{ padding: '4px 6px', borderRadius: '6px', border: '1px solid #cbd5e1', background: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
-              title="Zoom uit"
-            >
-              <ZoomOut size={13} color="#475569" />
+              <Eye size={14} /> 2D
             </button>
             <button
-              onClick={() => setZoom(z => Math.min(1.4, z + 0.1))}
-              style={{ padding: '4px 6px', borderRadius: '6px', border: '1px solid #cbd5e1', background: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
-              title="Zoom in"
+              onClick={() => setViewDimension('3d')}
+              style={{
+                display: 'flex', alignItems: 'center', gap: '5px',
+                padding: '4px 10px', borderRadius: '6px', border: 'none',
+                background: viewDimension === '3d' ? '#3b82f6' : 'transparent',
+                color: viewDimension === '3d' ? 'white' : '#475569',
+                cursor: 'pointer', fontWeight: 'bold', fontSize: '0.82rem'
+              }}
             >
-              <ZoomIn size={13} color="#475569" />
+              <Rotate3d size={14} /> 3D
             </button>
           </div>
-        )}
+
+          {viewDimension === '3d' && (
+            <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+              <button
+                onClick={() => { setPitch(48); setYaw(28); setZoom(1.0); }}
+                style={{ padding: '4px 7px', borderRadius: '6px', border: '1px solid #cbd5e1', background: 'white', fontSize: '0.75rem', fontWeight: '600', color: '#475569', cursor: 'pointer' }}
+                title="Herstel naar perspectief"
+              >
+                Perspectief
+              </button>
+              <button
+                onClick={() => { setPitch(85); setYaw(0); setZoom(0.95); }}
+                style={{ padding: '4px 7px', borderRadius: '6px', border: '1px solid #cbd5e1', background: 'white', fontSize: '0.75rem', fontWeight: '600', color: '#475569', cursor: 'pointer' }}
+                title="Bovenaanzicht"
+              >
+                Boven
+              </button>
+              <button
+                onClick={() => setAutoRotate(!autoRotate)}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '3px',
+                  padding: '4px 7px', borderRadius: '6px',
+                  border: '1px solid ' + (autoRotate ? '#93c5fd' : '#cbd5e1'),
+                  background: autoRotate ? '#eff6ff' : 'white',
+                  color: autoRotate ? '#1d4ed8' : '#475569',
+                  fontSize: '0.75rem', fontWeight: '600', cursor: 'pointer'
+                }}
+                title={autoRotate ? "Pauzeer draaien" : "Start continu ronddraaien"}
+              >
+                {autoRotate ? <Pause size={12} /> : <Play size={12} />}
+              </button>
+              <button
+                onClick={() => setZoom(z => Math.max(0.7, z - 0.1))}
+                style={{ padding: '4px 5px', borderRadius: '6px', border: '1px solid #cbd5e1', background: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                title="Zoom uit"
+              >
+                <ZoomOut size={12} color="#475569" />
+              </button>
+              <button
+                onClick={() => setZoom(z => Math.min(1.4, z + 0.1))}
+                style={{ padding: '4px 5px', borderRadius: '6px', border: '1px solid #cbd5e1', background: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                title="Zoom in"
+              >
+                <ZoomIn size={12} color="#475569" />
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Side Explanation Subtitle */}
+      <div style={{ textAlign: 'center', marginBottom: '0.75rem' }}>
+        <span style={{ fontSize: '0.85rem', fontWeight: 'bold', color: activeSide === 'modi' ? '#2563eb' : '#059669', background: activeSide === 'modi' ? '#eff6ff' : '#ecfdf5', padding: '3px 12px', borderRadius: '20px', border: `1px solid ${activeSide === 'modi' ? '#bfdbfe' : '#a7f3d0'}` }}>
+          {activeSide === 'modi' 
+            ? "Muntzijde 1: Modi (SMI) — Actuele gemoedstoestanden en overlevingsreacties" 
+            : "Muntzijde 2: Schema's (YSQ) — Vroege disfunctionele schema's en overtuigingen"
+          }
+        </span>
       </div>
 
       {/* Interactive 3D Canvas / SVG Container */}
@@ -483,7 +720,7 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
               top: '8px',
               left: '50%',
               transform: 'translateX(-50%)',
-              background: 'rgba(255, 255, 255, 0.88)',
+              background: 'rgba(255, 255, 255, 0.9)',
               backdropFilter: 'blur(4px)',
               border: '1px solid #e2e8f0',
               padding: '3px 12px',
@@ -495,7 +732,7 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
               boxShadow: '0 2px 6px rgba(0,0,0,0.04)'
             }}
           >
-            Sleep met de muis om de 3D-grafiek rondom te draaien en te kantelen
+            Sleep met de muis om de dubbelzijdige 3D-munt rondom te draaien
           </div>
         )}
 
@@ -521,14 +758,14 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
           {viewDimension === '3d' && (
             <g className="radar-3d-scene">
               
-              {/* 1. Floor Shadow of the score polygon */}
+              {/* Floor Shadow of the score polygon */}
               <polygon
                 points={floorShadowPoints}
                 fill="rgba(30, 41, 59, 0.08)"
                 stroke="none"
               />
 
-              {/* 2. Concentric 3D Floor Grid Polygons */}
+              {/* Concentric 3D Floor Grid Polygons */}
               {floorGridRings.map(({ lvl, pts }) => (
                 <polygon
                   key={`floor-grid-${lvl}`}
@@ -539,8 +776,8 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
                 />
               ))}
 
-              {/* 3. Radial axes from center to each outer point on the floor */}
-              {modes3D.map(m => (
+              {/* Radial axes from center to each outer point on the floor */}
+              {items3D.map(m => (
                 <line
                   key={`axis-${m.id}`}
                   x1={projCenter.screenX}
@@ -552,8 +789,8 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
                 />
               ))}
 
-              {/* 4. Vertical 3D Pillars rising from floor up to the score peaks */}
-              {modes3D.map(m => (
+              {/* Vertical 3D Pillars rising from floor up to the score peaks */}
+              {items3D.map(m => (
                 <line
                   key={`pillar-${m.id}`}
                   x1={m.projGround.screenX}
@@ -567,61 +804,60 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
                 />
               ))}
 
-              {/* 5. Shaded 3D Facets (Crystal mountain canopy) */}
-              {facets.map(({ pts, intensity, idx }) => (
+              {/* Shaded 3D Facets (Crystal mountain canopy) */}
+              {facets.map(({ pts, intensity, idx, color }) => (
                 <polygon
                   key={`facet-${idx}`}
                   points={pts}
-                  fill={`rgba(59, 130, 246, ${(0.16 + intensity * 0.28).toFixed(2)})`}
-                  stroke="rgba(37, 99, 235, 0.45)"
+                  fill={`rgba(${color}, ${(0.16 + intensity * 0.28).toFixed(2)})`}
+                  stroke={`rgba(${color}, 0.5)`}
                   strokeWidth="1"
                   strokeLinejoin="round"
                 />
               ))}
 
-              {/* 6. The prominent 3D boundary line connecting the peaks */}
+              {/* The prominent 3D boundary line connecting the peaks */}
               <polygon
                 points={peakPolygonPoints}
                 fill="none"
-                stroke="#2563eb"
+                stroke={activeSide === 'modi' ? "#2563eb" : "#059669"}
                 strokeWidth="3.2"
                 strokeLinejoin="round"
               />
 
-              {/* 7. Central Apex Point */}
+              {/* Central Apex Point */}
               <circle
                 cx={projApex.screenX}
                 cy={projApex.screenY}
                 r={4.5 * projApex.scale}
-                fill="#3b82f6"
+                fill={activeSide === 'modi' ? "#3b82f6" : "#10b981"}
                 stroke="#ffffff"
                 strokeWidth="1.5"
                 filter="url(#radar3dDotShadow)"
               />
 
-              {/* 8. Glowing 3D Score Vertex Dots */}
-              {modes3D.map(m => (
+              {/* Glowing 3D Score Vertex Dots */}
+              {items3D.map(m => (
                 <g key={`dot-${m.id}`}>
                   <circle
                     cx={m.projPeak.screenX}
                     cy={m.projPeak.screenY}
-                    r={6.5 * m.projPeak.scale}
+                    r={6 * m.projPeak.scale}
                     fill={m.bg}
                     stroke="#ffffff"
                     strokeWidth="2.5"
                     filter="url(#radar3dDotShadow)"
                   />
-                  {/* Sphere lighting highlight */}
                   <circle
                     cx={m.projPeak.screenX}
                     cy={m.projPeak.screenY}
-                    r={6.5 * m.projPeak.scale}
+                    r={6 * m.projPeak.scale}
                     fill="url(#sphereLight)"
                   />
                 </g>
               ))}
 
-              {/* 9. Depth-Sorted Outer 3D Mode Balls */}
+              {/* Depth-Sorted Outer 3D Mode/Schema Balls (NO WHITE BORDER) */}
               {depthSortedBalls.map(m => (
                 <g
                   key={`ball-3d-${m.id}`}
@@ -634,7 +870,7 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
                   }}
                   onMouseLeave={() => setHoveredNode(null)}
                 >
-                  {/* Shadow */}
+                  {/* Clean Solid Ball without white stroke */}
                   <circle
                     r={m.ballRadius}
                     fill={m.bg}
@@ -648,14 +884,14 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
                     fill="url(#sphereLight)"
                   />
 
-                  {/* Abbreviation (e.g. GV, OK, KK) */}
+                  {/* Abbreviation (e.g. GV, OK, VE, WA) */}
                   <text
                     textAnchor="middle"
                     y={m.scoreVal > 0 ? -1 : 5}
                     fill={m.textColor}
                     fontWeight="900"
-                    fontSize={Math.max(10.5, m.ballRadius * 0.58)}
-                    style={{ userSelect: 'none', letterSpacing: '0.4px' }}
+                    fontSize={Math.max(activeSide === 'modi' ? 10.5 : 9.5, m.ballRadius * 0.58)}
+                    style={{ userSelect: 'none', letterSpacing: '0.3px' }}
                   >
                     {m.abbr}
                   </text>
@@ -667,7 +903,7 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
                       y={m.ballRadius * 0.52}
                       fill={m.textColor}
                       fontWeight="bold"
-                      fontSize={Math.max(8, m.ballRadius * 0.38)}
+                      fontSize={Math.max(activeSide === 'modi' ? 8 : 7.5, m.ballRadius * 0.38)}
                       opacity={0.92}
                       style={{ userSelect: 'none' }}
                     >
@@ -694,7 +930,7 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
               ))}
 
               {/* Radial axes */}
-              {modeData2D.map(m => (
+              {items2D.map(m => (
                 <line
                   key={`axis-2d-${m.id}`}
                   x1={cx}
@@ -706,18 +942,18 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
                 />
               ))}
 
-              {/* Blue filled polygon */}
+              {/* Data Polygon */}
               <polygon
                 points={polygonPoints2D}
-                fill="#3b82f6"
+                fill={activeSide === 'modi' ? "#3b82f6" : "#10b981"}
                 fillOpacity="0.25"
-                stroke="#3b82f6"
+                stroke={activeSide === 'modi' ? "#3b82f6" : "#10b981"}
                 strokeWidth="3"
                 strokeLinejoin="round"
               />
 
               {/* Vertex dots */}
-              {modeData2D.map(m => (
+              {items2D.map(m => (
                 <circle
                   key={`pt-2d-${m.id}`}
                   cx={m.ptX}
@@ -730,8 +966,8 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
                 />
               ))}
 
-              {/* Mode Balls */}
-              {modeData2D.map(m => (
+              {/* Outer Balls (NO WHITE BORDER) */}
+              {items2D.map(m => (
                 <g
                   key={`ball-2d-${m.id}`}
                   transform={`translate(${m.ballX}, ${m.ballY})`}
@@ -754,8 +990,8 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
                     y={m.scoreVal > 0 ? -1 : 5}
                     fill={m.textColor}
                     fontWeight="900"
-                    fontSize={Math.max(11, m.ballRadius * 0.58)}
-                    style={{ userSelect: 'none', letterSpacing: '0.5px' }}
+                    fontSize={Math.max(activeSide === 'modi' ? 11 : 10, m.ballRadius * 0.58)}
+                    style={{ userSelect: 'none', letterSpacing: '0.4px' }}
                   >
                     {m.abbr}
                   </text>
@@ -765,7 +1001,7 @@ export default function SmiRadarGraph({ scores, rawAnswers, onOpenModusWeb, show
                       y={m.ballRadius * 0.52}
                       fill={m.textColor}
                       fontWeight="bold"
-                      fontSize={Math.max(8.5, m.ballRadius * 0.38)}
+                      fontSize={Math.max(activeSide === 'modi' ? 8.5 : 8, m.ballRadius * 0.38)}
                       opacity={0.92}
                       style={{ userSelect: 'none' }}
                     >
