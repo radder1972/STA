@@ -209,7 +209,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
             <Info size={26} color="#0ea5e9" /> Printhulp voor Drukkerijen
           </h3>
           <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
-            Deze weergave is geoptimaliseerd voor professionele drukkerijen. Het papierformaat voor de PDF is ingesteld op <strong>Kaartformaat (64x93mm inclusief 3mm afloop rondom)</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 56x87mm worden zonder witte randjes. Klik op de knop hieronder en kies "Opslaan als PDF" in Chrome.
+            Deze weergave is geoptimaliseerd voor professionele drukkerijen. Het papierformaat voor de PDF is ingesteld op <strong>Kaartformaat (64x94mm inclusief 3mm afloop rondom)</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 58x88mm worden zonder witte randjes. Klik op de knop hieronder en kies "Opslaan als PDF" in Chrome.
           </p>
 
           {/* Kaartenset Keuze */}
@@ -315,7 +315,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
               <FileText size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
-                <strong>Papierformaat:</strong> Aangepast (wordt automatisch door de browser ingesteld op 64x93mm)
+                <strong>Papierformaat:</strong> Aangepast (wordt automatisch door de browser ingesteld op 64x94mm)
               </p>
             </div>
             
@@ -392,7 +392,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                   {/* Bleeding border for the back: covers the 3mm bleed area AND the 6px inner border */}
                   <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, border: `calc(3mm + 6px) solid ${cardColor.startsWith('#') ? cardColor + '25' : 'rgba(0,0,0,0.03)'}`, boxSizing: 'border-box' }}></div>
                   
-                  {/* Inner container (56x87mm) for content positioning, without the CardInnerBorder since we drew it above */}
+                  {/* Inner container (58x88mm) for content positioning, without the CardInnerBorder since we drew it above */}
                   <div style={{ position: 'absolute', top: '3mm', left: '3mm', right: '3mm', bottom: '3mm', background: 'transparent', borderRadius: 0 }}>
                     {/* Binnenlijn (2px): this was originally part of CardInnerBorder, placed 6px inwards */}
                     <div style={{ position: 'absolute', top: '6px', left: '6px', right: '6px', bottom: '6px', border: `2px solid ${cardColor}`, borderRadius: '6px', boxSizing: 'border-box', pointerEvents: 'none' }}></div>
