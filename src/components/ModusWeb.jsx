@@ -41,6 +41,8 @@ const CATEGORY_COLORS = {
   coping: '#facc15'
 };
 
+const RADAR_ORDER = ['gv', 'so', 'vo', 'boos_k', 'ik', 'kk', 'bk', 'wi', 'oz', 'bob', 'ob', 'pa', 'poc', 'woc', 'zv'];
+
 export default function ModusWeb() {
   const [interactionMode, setInteractionMode] = useState('size');
   const [sizes, setSizes] = useState({});
@@ -179,7 +181,7 @@ export default function ModusWeb() {
     }
   };
 
-  const clearAll = () => {
+const clearAll = () => {
     if (window.confirm("Wil je alle pijlen, bolgroottes en import-data wissen?")) {
       setSizes({});
       setConnections([]);
@@ -189,6 +191,21 @@ export default function ModusWeb() {
     }
   };
 
+  const getModePosition = (modeId) => {
+    if (!showRadar) {
+      const m = MODES.find(m => m.id === modeId);
+      return { x: m.x, y: m.y };
+    }
+    const index = RADAR_ORDER.indexOf(modeId);
+    const angleDeg = -90 + (index * (360 / MODES.length));
+    const angleRad = (angleDeg * Math.PI) / 180;
+    const CIRCLE_RADIUS = 38; // 38% radius
+    return {
+      x: 50 + CIRCLE_RADIUS * Math.cos(angleRad),
+      y: 50 + CIRCLE_RADIUS * Math.sin(angleRad)
+    };
+  };
+
   // --- Custom Radar SVG Logic ---
   const w = containerRef.current ? containerRef.current.clientWidth : 800;
   const h = containerRef.current ? containerRef.current.clientHeight : 650;
@@ -196,12 +213,11 @@ export default function ModusWeb() {
   const cy = h / 2;
   
   const getRadarPoint = (modeId, scoreVal) => {
-    const m = MODES.find(mode => mode.id === modeId);
-    if (!m) return `${cx},${cy}`;
+    const pos = getModePosition(modeId);
     
     // Convert percentage x/y to pixels
-    const pxBase = (m.x * w) / 100;
-    const pyBase = (m.y * h) / 100;
+    const pxBase = (pos.x * w) / 100;
+    const pyBase = (pos.y * h) / 100;
     
     // Scale distance based on score (0 to 6)
     const ratio = Math.min(Math.max(scoreVal / 6, 0), 1);
@@ -332,8 +348,9 @@ export default function ModusWeb() {
               
               {/* Axes lines from center to nodes */}
               {MODES.map(m => {
-                const px = (m.x * w) / 100;
-                const py = (m.y * h) / 100;
+                const pos = getModePosition(m.id);
+                const px = (pos.x * w) / 100;
+                const py = (pos.y * h) / 100;
                 return <line key={`axis-${m.id}`} x1={cx} y1={cy} x2={px} y2={py} stroke="#f1f5f9" strokeWidth="2" />;
               })}
 
@@ -349,8 +366,9 @@ export default function ModusWeb() {
               
               {/* Data Points */}
               {MODES.map(m => {
-                const pxBase = (m.x * w) / 100;
-                const pyBase = (m.y * h) / 100;
+                const pos = getModePosition(m.id);
+                const pxBase = (pos.x * w) / 100;
+                const pyBase = (pos.y * h) / 100;
                 const score = radarScores[m.id] || 0;
                 const ratio = Math.min(Math.max(score / 6, 0), 1);
                 const px = cx + (pxBase - cx) * ratio;
@@ -371,8 +389,10 @@ export default function ModusWeb() {
             const m2 = MODES.find(m => m.id === conn.to);
             if (!m1 || !m2) return null;
             
-            const p1 = { x: (m1.x * w) / 100, y: (m1.y * h) / 100 };
-            const p2 = { x: (m2.x * w) / 100, y: (m2.y * h) / 100 };
+            const pos1 = getModePosition(m1.id);
+            const pos2 = getModePosition(m2.id);
+            const p1 = { x: (pos1.x * w) / 100, y: (pos1.y * h) / 100 };
+            const p2 = { x: (pos2.x * w) / 100, y: (pos2.y * h) / 100 };
             
             const dx = p2.x - p1.x;
             const dy = p2.y - p1.y;
@@ -410,6 +430,7 @@ export default function ModusWeb() {
           const scale = getNodeScale(sizeIndex);
           const isSelected = connectingFrom === mode.id;
           
+          const pos = getModePosition(mode.id);
           return (
             <div
               key={mode.id}
@@ -417,8 +438,8 @@ export default function ModusWeb() {
               onClick={() => handleNodeClick(mode.id)}
               style={{
                 position: 'absolute',
-                left: `${mode.x}%`,
-                top: `${mode.y}%`,
+                left: `${pos.x}%`,
+                top: `${pos.y}%`,
                 transform: `translate(-50%, -50%) scale(${scale})`,
                 background: CATEGORY_COLORS[mode.category],
                 color: mode.category === 'coping' ? '#451a03' : 'white',
