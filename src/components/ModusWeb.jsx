@@ -316,34 +316,10 @@ const clearAll = () => {
             style={{ display: 'none' }} 
           />
 
-          {Object.keys(radarScores).length > 0 && (
-            <button 
-              onClick={() => setShowRadar(!showRadar)}
-              style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0.5rem 1rem', borderRadius: '8px', border: 'none', background: showRadar ? '#8b5cf6' : '#ede9fe', color: showRadar ? 'white' : '#6d28d9', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.9rem' }}
-            >
-              <Activity size={16} /> {showRadar ? 'Verberg Spinnenweb' : 'Toon Spinnenweb'}
-            </button>
-          )}
-
-          <div style={{ width: '1px', background: '#e2e8f0', margin: '0 4px' }}></div>
-          
-          <button 
-            onClick={() => { setInteractionMode('size'); setConnectingFrom(null); }}
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0.5rem 1rem', borderRadius: '8px', border: 'none', background: interactionMode === 'size' ? '#3b82f6' : '#e2e8f0', color: interactionMode === 'size' ? 'white' : '#475569', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.9rem' }}
-          >
-            <MousePointer2 size={16} /> Grootte
-          </button>
-          
-          <button 
-            onClick={() => setInteractionMode('connect')}
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0.5rem 1rem', borderRadius: '8px', border: 'none', background: interactionMode === 'connect' ? '#3b82f6' : '#e2e8f0', color: interactionMode === 'connect' ? 'white' : '#475569', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.9rem' }}
-          >
-            <Share2 size={16} /> Pijlen
-          </button>
-          
           <button 
             onClick={clearAll}
             style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: 'white', color: '#ef4444', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.9rem', marginLeft: '0.5rem' }}
+            title="Wis alles"
           >
             <Trash2 size={16} />
           </button>
@@ -544,6 +520,12 @@ const clearAll = () => {
           );
         })}
       </div>
+
+      {hoveredNode && (
+        <div style={{ position: 'fixed', right: '30px', bottom: '30px', zIndex: 9999, pointerEvents: 'none', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.3))' }}>
+          <SchemaCard title={hoveredNode} isFlipped={popupFlipped} />
+        </div>
+      )}
     </div>
   );
 }
