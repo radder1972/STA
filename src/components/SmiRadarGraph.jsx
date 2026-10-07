@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { Share2, Rotate3d, Eye, Play, Pause, RotateCcw, ZoomIn, ZoomOut, Coins } from 'lucide-react';
+import { Share2, Rotate3d, Eye, Play, Pause, RotateCcw, ZoomIn, ZoomOut, Coins, X } from 'lucide-react';
 import SchemaCard from './SchemaCard';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
@@ -358,6 +358,32 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
   const containerRef = useRef(null);
   const hoverTimeoutRef = useRef(null);
   const flipTimeoutRef = useRef(null);
+
+  // Check if there is space on the right side of the graph to display the card popup without overlapping
+  const [canFitRight, setCanFitRight] = useState(() => typeof window !== 'undefined' ? window.innerWidth >= 1180 : true);
+
+  useEffect(() => {
+    const updatePlacement = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const space = window.innerWidth - rect.right;
+        setCanFitRight(space >= 225);
+      } else {
+        setCanFitRight(window.innerWidth >= 1180);
+      }
+    };
+    updatePlacement();
+    window.addEventListener('resize', updatePlacement);
+    return () => window.removeEventListener('resize', updatePlacement);
+  }, []);
+
+  useEffect(() => {
+    if (hoveredNode && containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const space = window.innerWidth - rect.right;
+      setCanFitRight(space >= 225);
+    }
+  }, [hoveredNode]);
 
   // Normalize YSQ Schema Scores (exact scores matching report)
   const normalizedSchemaScores = useMemo(() => {
@@ -1914,25 +1940,28 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
         </svg>
       </div>
 
-      {/* Hover Card Preview with Full Front & Back Content */}
+      {/* Hover Card Preview with Full Front & Back Content (Positioned Top-Right without overlapping graph) */}
       {activeCardDetails && (
         <div
           onMouseEnter={handleCardMouseEnter}
           onMouseLeave={handleCardMouseLeave}
           style={{
             position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
+            top: '70px',
+            ...(canFitRight
+              ? { left: 'calc(100% + 24px)', transform: 'none' }
+              : { right: '8px', transform: 'scale(0.88)', transformOrigin: 'top right' }
+            ),
             zIndex: 9999,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.45))',
-            pointerEvents: 'auto'
+            filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.35))',
+            pointerEvents: 'auto',
+            transition: 'opacity 0.15s ease'
           }}
         >
-          {/* Flip Toggle Pills & Score Indicator */}
+          {/* Flip Toggle Pills, Score Indicator & Close Button */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -2004,6 +2033,31 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                 Score: {formatScore(activeCardDetails.scoreVal)}
               </span>
             )}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+                if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+                setHoveredNode(null);
+                setPopupFlipped(false);
+              }}
+              style={{
+                border: 'none',
+                background: 'rgba(255, 255, 255, 0.18)',
+                color: '#cbd5e1',
+                padding: '3px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                marginLeft: '2px'
+              }}
+              title="Sluit pop-up"
+            >
+              <X size={13} />
+            </button>
           </div>
 
           {/* Interactive 3D Card */}
