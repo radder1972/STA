@@ -262,13 +262,7 @@ const clearAll = () => {
   };
 
   // Generate polygon points for the actual data (excluding modes with no score)
-  // Calculate angle based ONLY on modes that actually have a score!
-    const validModesForRadar = MODES
-      .filter(m => {
-        if (showRadar && m.id === 'bk' && !showBlijeKind) return false;
-        return radarScores[m.id] > 0;
-      })
-      .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
+
   const dataPolygonPoints = modesForData.map(m => getRadarPoint(m.id, radarScores[m.id] || 0)).join(' ');
 
   // Generate background grid polygons (levels 2, 4, 6)
