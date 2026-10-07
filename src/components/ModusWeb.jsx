@@ -409,6 +409,7 @@ const clearAll = () => {
             const m1 = MODES.find(m => m.id === conn.from);
             const m2 = MODES.find(m => m.id === conn.to);
             if (!m1 || !m2) return null;
+            if (showRadar && (!(radarScores[m1.id] > 0) || !(radarScores[m2.id] > 0))) return null;
             
             const pos1 = getModePosition(m1.id);
             const pos2 = getModePosition(m2.id);
@@ -452,6 +453,9 @@ const clearAll = () => {
           const isSelected = connectingFrom === mode.id;
           
           const pos = getModePosition(mode.id);
+          const hasScore = radarScores[mode.id] > 0;
+          if (showRadar && !hasScore) return null; // Hide unmeasured modes in radar view
+          
           return (
             <div
               key={mode.id}
