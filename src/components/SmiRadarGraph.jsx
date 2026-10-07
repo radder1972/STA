@@ -984,7 +984,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     facetList.sort((a, b) => b.avgDepth - a.avgDepth);
     const avgElevSchema = schemaItems3D.reduce((sum, m) => sum + m.elevation, 0) / schemaItems3D.length;
     const pApexSchema = project3D(0, -(avgElevSchema * 1.15 + 14), 0, pitchRad, yawRad, zoom, cx, cy);
-    return { facets: facetList, projApexSchema, projApexModi: null };
+    return { facets: facetList, projApexSchema: pApexSchema, projApexModi: null };
   }, [activeSide, schemaItems3D, modiItems3D, pitchRad, yawRad, zoom, cx, cy]);
 
   // 4. Concentric 3D Floor Grid Polygons
