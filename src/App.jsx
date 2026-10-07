@@ -130,7 +130,17 @@ function App() {
   })
   const [aboutTab, setAboutTab] = useState(() => window.location.hash.replace('#', '') === 'verantwoording' ? 'verantwoording' : 'suite')
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState(null)
-  const [completedTests, setCompletedTests] = useState({ ysq: null, smi: null })
+  const [completedTests, setCompletedTests] = useState(() => {
+    let ysq = null;
+    let smi = null;
+    try {
+      const savedYsq = localStorage.getItem('schemaApp_completed_ysq');
+      if (savedYsq) ysq = JSON.parse(savedYsq);
+      const savedSmi = localStorage.getItem('schemaApp_completed_smi');
+      if (savedSmi) smi = JSON.parse(savedSmi);
+    } catch (e) {}
+    return { ysq, smi };
+  })
   const [theme, setTheme] = useState('light')
 
   useEffect(() => {

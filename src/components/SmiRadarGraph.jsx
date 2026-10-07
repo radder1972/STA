@@ -91,24 +91,24 @@ const LIGHT_CATEGORY_COLORS = {
 };
 
 const DEFAULT_YSQ_SCORES = {
-  'Abandonment': 3.8,
-  'Mistrust': 4.2,
-  'Emotional deprivation': 2.6,
-  'Defectiveness/unlovability': 4.0,
-  'Social isolation/Alienation': 2.8,
-  'Practical incompetence/Dependence': 2.4,
-  'Vulnerability to harm/illness': 3.2,
-  'Enmeshment': 2.2,
-  'Failure to achieve': 4.6,
-  'Entitlement/Superiority': 2.0,
+  'Emotional deprivation': 5.25,
   'Insufficient self-control/self-discipline': 4.8,
-  'Subjugation': 3.0,
-  'Self-sacrifice': 3.6,
-  'Admiration/Recognition-seeking': 2.4,
-  'Pessimism/Worry': 3.4,
+  'Unrelenting Standards': 4.2,
+  'Admiration/Recognition-seeking': 4.0,
+  'Social isolation/Alienation': 3.5,
   'Emotional inhibition': 3.0,
-  'Unrelenting Standards': 4.4,
-  'Self-punitiveness': 3.8
+  'Failure to achieve': 3.0,
+  'Self-punitiveness': 3.0,
+  'Abandonment': 2.6,
+  'Practical incompetence/Dependence': 2.6,
+  'Pessimism/Worry': 2.6,
+  'Vulnerability to harm/illness': 2.4,
+  'Self-sacrifice': 2.4,
+  'Subjugation': 2.2,
+  'Mistrust': 2.0,
+  'Defectiveness/unlovability': 1.6,
+  'Entitlement/Superiority': 1.5,
+  'Enmeshment': 1.0
 };
 
 const DEFAULT_SMI_SCORES = {
