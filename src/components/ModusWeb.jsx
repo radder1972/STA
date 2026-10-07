@@ -3,19 +3,21 @@ import { Share2, MousePointer2, Trash2, Upload, Activity } from 'lucide-react';
 import smiScoring from '../data/smi-scoring.json';
 
 const MODES = [
-  { id: 'gv', title: 'Gezonde volwassene', category: 'gezond', x: 50, y: 15 },
+  { id: 'gv', title: 'Gezonde volwassene', category: 'gezond', x: 50, y: 12 },
   
   { id: 'so', title: 'Straffende ouder', category: 'ouder', x: 80, y: 25 },
   { id: 'vo', title: 'Veeleisende ouder', category: 'ouder', x: 80, y: 40 },
   
-  { id: 'boos_k', title: 'Boze kind', category: 'kind', x: 80, y: 65 },
-  { id: 'ik', title: 'Impulsieve kind', category: 'kind', x: 80, y: 75 },
-  { id: 'kk', title: 'Kwetsbare kind', category: 'kind', x: 80, y: 85 },
+  { id: 'rk', title: 'Razende kind', category: 'kind', x: 74, y: 58 },
+  { id: 'boos_k', title: 'Boze kind', category: 'kind', x: 86, y: 65 },
+  { id: 'ik', title: 'Impulsieve kind', category: 'kind', x: 74, y: 72 },
+  { id: 'ok', title: 'Ongedisciplineerde kind', category: 'kind', x: 86, y: 79 },
+  { id: 'kk', title: 'Kwetsbare kind', category: 'kind', x: 74, y: 86 },
   
-  { id: 'bk', title: 'Blije kind', category: 'gezond', x: 50, y: 92 },
+  { id: 'bk', title: 'Blije kind', category: 'gezond', x: 50, y: 94 },
   
   // Overcompensatie
-  { id: 'zv', title: 'Zelfverheerlijker', category: 'coping', x: 20, y: 23 },
+  { id: 'zh', title: 'Zelfverheerlijker', category: 'coping', x: 20, y: 23 },
   { id: 'pa', title: 'Pest en aanval', category: 'coping', x: 24, y: 33 },
   { id: 'poc', title: 'Perfectionistische overcontroleerder', category: 'coping', x: 20, y: 43 },
   { id: 'woc', title: 'Wantrouwende overcontroleerder', category: 'coping', x: 24, y: 53 },
@@ -30,8 +32,8 @@ const MODES = [
 ];
 
 const SMI_MAPPING = {
-  'gv': 'gv', 'bk': 'vst_m_bk', 'so': 'so', 'vo': 'vo', 'boos_k': 'wk', 'ik': 'ik', 'kk': 'kk',
-  'zv': 'zv', 'ob': 'ob', 'bob': 'vst_m_bob', 'pa': 'pa', 'poc': 'vst_m_po', 'woc': 'woc', 'oz': 'oz', 'wi': 'wi'
+  'gv': 'gv', 'bk': 'bk', 'so': 'so', 'vo': 'vo', 'rk': 'rk', 'boos_k': 'wk', 'ik': 'ik', 'ok': 'ok', 'kk': 'kk',
+  'zh': 'zh', 'ob': 'ob', 'bob': 'vst_m_bob', 'pa': 'pa', 'poc': 'vst_m_po', 'woc': 'woc', 'oz': 'oz', 'wi': 'wi'
 };
 
 const DEFAULT_SMI_DATA = {"1":4,"2":2,"3":3,"4":5,"5":1,"6":4,"7":3,"8":4,"9":4,"10":2,"11":3,"12":2,"13":5,"14":1,"15":3,"16":2,"17":1,"19":2,"20":5,"21":5,"22":3,"23":4,"24":1,"25":3,"26":3,"27":4,"28":2,"29":3,"30":3,"31":4,"32":4,"33":2,"34":4,"35":3,"36":2,"37":4,"38":3,"39":5,"40":2,"42":1,"43":2,"44":1,"45":2,"46":2,"47":2,"48":5,"49":5,"50":3,"51":1,"52":3,"53":1,"54":3,"55":5,"56":3,"57":1,"58":3,"59":4,"60":3,"61":5,"62":2,"63":3,"65":2,"66":4,"67":2,"68":1,"69":3,"70":1,"71":3,"72":3,"73":2,"74":2,"75":4,"76":3,"77":5,"78":5,"79":4,"80":2,"81":2,"82":5,"83":4,"84":5,"85":4,"86":4,"88":1,"89":1,"90":1,"91":2,"92":1,"93":2,"94":1,"95":1,"96":3,"97":1,"98":3,"99":4,"100":6,"101":5,"102":4,"103":6,"104":1,"105":4,"106":4,"107":3,"108":2,"109":1,"111":3,"112":2,"113":5,"114":6,"115":3,"116":1,"117":1,"118":2};
@@ -43,7 +45,7 @@ const CATEGORY_COLORS = {
   coping: '#facc15'
 };
 
-const RADAR_ORDER = ['gv', 'so', 'vo', 'boos_k', 'ik', 'kk', 'bk', 'wi', 'oz', 'bob', 'ob', 'pa', 'poc', 'woc', 'zv'];
+const RADAR_ORDER = ['woc', 'poc', 'zh', 'pa', 'wi', 'ob', 'bob', 'oz', 'so', 'vo', 'gv', 'bk', 'kk', 'rk', 'ik', 'ok', 'boos_k'];
 
 export default function ModusWeb() {
   const [interactionMode, setInteractionMode] = useState('size');
@@ -138,10 +140,12 @@ export default function ModusWeb() {
         });
         mean = count > 0 ? (sum / count) : 0;
       } else {
-        mean = (Math.random() * 2) + 2.5; 
+        mean = 0; // Not a standard SMI mode
       }
       
-      rScores[modeId] = parseFloat(mean.toFixed(1));
+      if (mean > 0) {
+        rScores[modeId] = parseFloat(mean.toFixed(1));
+      }
 
       if (mean >= 4.5) newSizes[modeId] = 4;
       else if (mean >= 3.5) newSizes[modeId] = 3;
@@ -202,8 +206,16 @@ const clearAll = () => {
       const m = MODES.find(m => m.id === modeId);
       return { x: m.x, y: m.y };
     }
-    const index = RADAR_ORDER.indexOf(modeId);
-    const angleDeg = -90 + (index * (360 / MODES.length));
+    
+    // Calculate angle based ONLY on modes that actually have a score!
+    const validModesForRadar = MODES
+      .filter(m => radarScores[m.id] > 0)
+      .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
+      
+    const index = validModesForRadar.findIndex(m => m.id === modeId);
+    if (index === -1) return { x: 50, y: 50 };
+    
+    const angleDeg = -90 + (index * (360 / validModesForRadar.length));
     const angleRad = (angleDeg * Math.PI) / 180;
     const CIRCLE_RADIUS = 38; // 38% radius
     return {
@@ -232,13 +244,16 @@ const clearAll = () => {
     return `${px},${py}`;
   };
 
-  // Generate polygon points for the actual data
-  const dataPolygonPoints = MODES.map(m => getRadarPoint(m.id, radarScores[m.id] || 0)).join(' ');
+  // Generate polygon points for the actual data (excluding modes with no score)
+  const validModesForRadar = MODES
+    .filter(m => radarScores[m.id] > 0)
+    .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
+  const dataPolygonPoints = validModesForRadar.map(m => getRadarPoint(m.id, radarScores[m.id])).join(' ');
 
   // Generate background grid polygons (levels 2, 4, 6)
-  const gridPoints6 = MODES.map(m => getRadarPoint(m.id, 6)).join(' ');
-  const gridPoints4 = MODES.map(m => getRadarPoint(m.id, 4)).join(' ');
-  const gridPoints2 = MODES.map(m => getRadarPoint(m.id, 2)).join(' ');
+  const gridPoints6 = validModesForRadar.map(m => getRadarPoint(m.id, 6)).join(' ');
+  const gridPoints4 = validModesForRadar.map(m => getRadarPoint(m.id, 4)).join(' ');
+  const gridPoints2 = validModesForRadar.map(m => getRadarPoint(m.id, 2)).join(' ');
 
   return (
     <div className="modus-web-container" style={{ display: 'flex', flexDirection: 'column', minHeight: '80vh', background: '#f8fafc', padding: '1rem', fontFamily: 'inherit' }}>
@@ -353,7 +368,7 @@ const clearAll = () => {
               <polygon points={gridPoints2} fill="none" stroke="#e2e8f0" strokeWidth="1" />
               
               {/* Axes lines from center to nodes */}
-              {MODES.map(m => {
+              {validModesForRadar.map(m => {
                 const pos = getModePosition(m.id);
                 const px = (pos.x * w) / 100;
                 const py = (pos.y * h) / 100;
@@ -371,11 +386,11 @@ const clearAll = () => {
               />
               
               {/* Data Points */}
-              {MODES.map(m => {
+              {validModesForRadar.map(m => {
                 const pos = getModePosition(m.id);
                 const pxBase = (pos.x * w) / 100;
                 const pyBase = (pos.y * h) / 100;
-                const score = radarScores[m.id] || 0;
+                const score = radarScores[m.id];
                 const ratio = Math.min(Math.max(score / 6, 0), 1);
                 const px = cx + (pxBase - cx) * ratio;
                 const py = cy + (pyBase - cy) * ratio;
