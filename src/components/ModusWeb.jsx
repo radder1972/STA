@@ -48,6 +48,16 @@ const CATEGORY_COLORS = {
 const RADAR_ORDER = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
 
 
+
+const getAbbreviation = (id) => {
+  const map = {
+    'gv': 'GV', 'bk': 'BK', 'kk': 'KK', 'rk': 'RK', 'boos_k': 'WK', 'ik': 'IK', 'ok': 'OK',
+    'wi': 'WI', 'ob': 'OB', 'oz': 'OZ', 'zh': 'ZH', 'pa': 'PA', 'so': 'SO', 'vo': 'VO',
+    'woc': 'WOC', 'poc': 'POC', 'bob': 'BOB'
+  };
+  return map[id] || id.toUpperCase();
+};
+
 const formatTitle = (title) => {
   if (title === 'Pest en aanval') return <><span style={{display: 'block'}}>Pest en</span><span style={{display: 'block'}}>aanval</span></>;
   if (title === 'Zelfverheerlijker') return <span style={{display: 'block'}}>Zelfverheerlijker</span>;
@@ -250,7 +260,7 @@ const clearAll = () => {
     
     const angleDeg = -90 + (index * (360 / modesForGrid.length));
     const angleRad = (angleDeg * Math.PI) / 180;
-    const CIRCLE_RADIUS = 35; // 35% radius for pills
+    const CIRCLE_RADIUS = 30; // 30% radius for small balls
     return {
       x: 50 + CIRCLE_RADIUS * Math.cos(angleRad),
       y: 50 + CIRCLE_RADIUS * Math.sin(angleRad)
