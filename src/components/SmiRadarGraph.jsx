@@ -408,26 +408,12 @@ const CARD_BRAND_COLORS = [
   '#ffffff'  // Witgouden Glans
 ];
 
-// Huisstijl Schematherapie Suite Sparkle (exacte 4-puntige diamantster uit het ThreeSparklesLogo)
-const SuiteSparkle = ({ size = 20, color = 'currentColor', isTriple = false }) => {
-  if (isTriple) {
-    return (
-      <svg width={size * 1.45} height={size} viewBox="0 0 36 24" fill="none">
-        {/* Centrale hoofdster */}
-        <path d="M18 0L20.59 9.41L30 12L20.59 14.59L18 24L15.41 14.59L6 12L15.41 9.41L18 0Z" fill={color} />
-        {/* Linker flankster */}
-        <path d="M6 3L7.3 7.7L12 9L7.3 10.3L6 15L4.7 10.3L0 9L4.7 7.7L6 3Z" fill={color} opacity="0.85" />
-        {/* Rechter flankster */}
-        <path d="M30 6L31.3 10.7L36 12L31.3 13.3L30 18L28.7 13.3L24 12L28.7 10.7L30 6Z" fill={color} opacity="0.85" />
-      </svg>
-    );
-  }
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill={color} />
-    </svg>
-  );
-};
+// Huisstijl Schematherapie Suite Sparkle (losse 4-puntige diamantster uit het ThreeSparklesLogo)
+const SuiteSparkle = ({ size = 24, color = 'currentColor' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill={color} />
+  </svg>
+);
 
 export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenModusWeb, showAction = true, initialDimension = '3d', initialSide = 'modi' }) {
   const [activeSide, setActiveSide] = useState(initialSide); // 'modi' or 'schemas'
@@ -511,17 +497,28 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       // Audio autoplay policy fallback
     }
 
-    const newSparkles = Array.from({ length: 56 }).map((_, i) => ({
-      id: `sparkle-${Date.now()}-${i}-${Math.random()}`,
-      left: Math.random() * 96 + 2,
-      delay: Math.random() * 0.55,
-      duration: 1.6 + Math.random() * 1.3,
-      size: 14 + Math.random() * 18,
-      color: CARD_BRAND_COLORS[i % CARD_BRAND_COLORS.length],
-      isTriple: i % 4 === 0,
-      sway: (Math.random() - 0.5) * 140,
-      spin: (Math.random() - 0.5) * 720
-    }));
+    const newSparkles = Array.from({ length: 65 }).map((_, i) => {
+      // Mix van formaten: klein (12-22px), medium (24-38px), groot (42-60px)
+      const sizeTier = Math.random();
+      let size;
+      if (sizeTier < 0.45) {
+        size = 12 + Math.random() * 10;
+      } else if (sizeTier < 0.8) {
+        size = 24 + Math.random() * 14;
+      } else {
+        size = 42 + Math.random() * 18;
+      }
+
+      return {
+        id: `sparkle-${Date.now()}-${i}-${Math.random()}`,
+        left: 4 + Math.random() * 92,
+        top: 6 + Math.random() * 86,
+        delay: Math.random() * 1.5,
+        duration: 1.2 + Math.random() * 1.1,
+        size,
+        color: CARD_BRAND_COLORS[i % CARD_BRAND_COLORS.length]
+      };
+    });
 
     setSparkles(newSparkles);
     setShowEasterEggToast(true);
@@ -530,7 +527,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     sparkleTimeoutRef.current = setTimeout(() => {
       setSparkles([]);
       setShowEasterEggToast(false);
-    }, 3200);
+    }, 3800);
   }, []);
 
   // Smoothly rotate the 3D orbit camera so that the selected dynamic faces forward
@@ -1861,21 +1858,31 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                 from { stroke-dashoffset: 20; }
                 to { stroke-dashoffset: 0; }
               }
-              @keyframes sparkleFall {
+              @keyframes sparkleTwinkle {
                 0% {
-                  transform: translate3d(0, -60px, 0) rotate(0deg) scale(0);
+                  transform: scale(0) rotate(0deg);
                   opacity: 0;
+                  filter: brightness(1) drop-shadow(0 0 0px transparent);
                 }
-                15% {
+                25% {
+                  transform: scale(1.2) rotate(20deg);
                   opacity: 1;
-                  transform: translate3d(var(--sway-half, 15px), 12vh, 0) rotate(90deg) scale(1.25);
+                  filter: brightness(1.5) drop-shadow(0 0 16px currentColor);
+                }
+                55% {
+                  transform: scale(1) rotate(45deg);
+                  opacity: 0.95;
+                  filter: brightness(1.2) drop-shadow(0 0 10px currentColor);
                 }
                 80% {
-                  opacity: 0.95;
+                  transform: scale(0.7) rotate(70deg);
+                  opacity: 0.6;
+                  filter: brightness(1) drop-shadow(0 0 4px currentColor);
                 }
                 100% {
-                  transform: translate3d(var(--sway, 30px), 105vh, 0) rotate(var(--spin, 360deg)) scale(0.35);
+                  transform: scale(0) rotate(90deg);
                   opacity: 0;
+                  filter: brightness(0.8) drop-shadow(0 0 0px transparent);
                 }
               }
               @keyframes easterEggToastPop {
@@ -2814,7 +2821,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
         </div>
       )}
 
-      {/* Easter Egg: Sparkle Regen voor het Blije Kind */}
+      {/* Easter Egg: Oplichtende Huisstijl-sterren voor het Blije Kind */}
       {sparkles.length > 0 && (
         <div style={{
           position: 'fixed',
@@ -2831,17 +2838,17 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
               key={s.id}
               style={{
                 position: 'absolute',
-                top: 0,
+                top: `${s.top}vh`,
                 left: `${s.left}vw`,
                 color: s.color,
-                animation: `sparkleFall ${s.duration}s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${s.delay}s forwards`,
-                filter: `drop-shadow(0 0 8px ${s.color})`,
-                ['--sway']: `${s.sway}px`,
-                ['--sway-half']: `${s.sway * 0.5}px`,
-                ['--spin']: `${s.spin}deg`
+                opacity: 0,
+                transform: 'scale(0)',
+                transformOrigin: 'center center',
+                animation: `sparkleTwinkle ${s.duration}s cubic-bezier(0.25, 1, 0.5, 1) ${s.delay}s both`,
+                filter: `drop-shadow(0 0 10px ${s.color})`
               }}
             >
-              <SuiteSparkle size={s.size} color={s.color} isTriple={s.isTriple} />
+              <SuiteSparkle size={s.size} color={s.color} />
             </div>
           ))}
 
@@ -2865,19 +2872,19 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
               fontWeight: 700,
               fontSize: '0.92rem',
               letterSpacing: '0.3px',
-              animation: 'easterEggToastPop 3.4s ease-in-out forwards',
+              animation: 'easterEggToastPop 3.8s ease-in-out forwards',
               zIndex: 1000000
             }}>
-              <SuiteSparkle size={22} color="#34d399" isTriple={true} />
+              <SuiteSparkle size={22} color="#34d399" />
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', textAlign: 'center' }}>
                 <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '0.5px' }}>
                   Blije Kind Ontwaakt!
                 </span>
                 <span style={{ fontSize: '0.78rem', fontWeight: 500, color: '#cbd5e1' }}>
-                  Huisstijl-sparkles in alle kaartkleuren: tijd voor speelsheid, verwondering en verbinding.
+                  Huisstijl-sterren lichten op: tijd voor speelsheid, verwondering en verbinding.
                 </span>
               </div>
-              <SuiteSparkle size={22} color="#facc15" isTriple={true} />
+              <SuiteSparkle size={22} color="#facc15" />
             </div>
           )}
         </div>
