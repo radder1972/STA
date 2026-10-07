@@ -212,20 +212,12 @@ export default function ModusWeb() {
   };
 
   const getNodeScale = (sizeIndex, modeId) => {
-    // If we have an exact score from the radar, calculate a continuous, precise scale!
-    if (showRadar && radarScores[modeId] > 0) {
-      const score = radarScores[modeId];
-      // Keep pills relatively small in radar view to prevent heavy overlap
-      // Score 1 -> scale 0.85, Score 6 -> scale 1.15
-      return 0.85 + (score - 1) * 0.06;
+    if (showRadar) {
+      const score = radarScores[modeId] || 0;
+      if (score === 0) return 0.65;
+      return 0.6 + (score * 0.25);
     }
-    // Manual fallback for click sizes
-    switch(sizeIndex) {
-      case 2: return 1.15;
-      case 3: return 1.35;
-      case 4: return 1.55;
-      default: return 1.0;
-    }
+    return 0.9 + (sizeIndex * 0.25);
   };
 
 const clearAll = () => {
