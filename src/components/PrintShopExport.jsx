@@ -348,8 +348,8 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
             <React.Fragment key={idx}>
               {/* VOORKANT */}
               <div className="print-shop-page card-front">
-                <div className="print-shop-bleed" style={{ background: `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)`, position: 'relative', width: '100%', height: '100%' }}>
-                  <div style={{ position: 'absolute', top: '3mm', left: '3mm', right: '3mm', bottom: '3mm', borderRadius: 0 }}>
+                <div className="print-shop-bleed" style={{ background: 'white', position: 'relative', width: '100%', height: '100%' }}>
+                  <div style={{ position: 'absolute', top: '3mm', left: '3mm', right: '3mm', bottom: '3mm', background: `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)`, borderRadius: 0 }}>
                     <CardInnerBorder color={cardColor} outerColor="white" radius="0" />
                     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '1mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                       {/* Header (Badge) */}
