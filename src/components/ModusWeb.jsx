@@ -211,30 +211,30 @@ const clearAll = () => {
     }
   };
 
+    // Calculate angle based on the official 14 modes for the background grid
+  const modesForGrid = MODES
+    .filter(m => {
+      const standard14 = ['woc', 'zh', 'pa', 'wi', 'ob', 'oz', 'so', 'vo', 'gv', 'kk', 'rk', 'ik', 'ok', 'boos_k'];
+      if (standard14.includes(m.id)) return true;
+      if (m.id === 'bk' && showBlijeKind) return true;
+      return false;
+    })
+    .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
+    
+  const modesForData = modesForGrid.filter(m => radarScores[m.id] > 0 || (m.id === 'bk' && showBlijeKind));
+
   const getModePosition = (modeId) => {
     if (!showRadar) {
       const m = MODES.find(m => m.id === modeId);
       return { x: m.x, y: m.y };
     }
     
-    // Calculate angle based on the official 14 modes for the background grid
-    const modesForGrid = MODES
-      .filter(m => {
-        const standard14 = ['woc', 'zh', 'pa', 'wi', 'ob', 'oz', 'so', 'vo', 'gv', 'kk', 'rk', 'ik', 'ok', 'boos_k'];
-        if (standard14.includes(m.id)) return true;
-        if (m.id === 'bk' && showBlijeKind) return true;
-        return false;
-      })
-      .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
-      
-    const modesForData = modesForGrid.filter(m => radarScores[m.id] > 0 || (m.id === 'bk' && showBlijeKind));
-      
-    const index = validModesForRadar.findIndex(m => m.id === modeId);
+    const index = modesForGrid.findIndex(m => m.id === modeId);
     if (index === -1) return { x: 50, y: 50 };
     
-    const angleDeg = -90 + (index * (360 / validModesForRadar.length));
+    const angleDeg = -90 + (index * (360 / modesForGrid.length));
     const angleRad = (angleDeg * Math.PI) / 180;
-    const CIRCLE_RADIUS = 35; // 38% radius
+    const CIRCLE_RADIUS = 35; // 35% radius
     return {
       x: 50 + CIRCLE_RADIUS * Math.cos(angleRad),
       y: 50 + CIRCLE_RADIUS * Math.sin(angleRad)
