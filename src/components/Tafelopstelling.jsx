@@ -143,18 +143,20 @@ const schemaCards = [
   return indexA - indexB;
 });
 
-const detailedModeCards = Object.keys(modeImages).map(path => {
-  const filename = path.split('/').pop().replace('.png', '');
-  const title = smiModesMap[filename] || filename;
-  return {
-    id: filename,
-    src: modeImages[path],
-    title,
-    type: 'mode',
-    description: schemaDescriptions[title],
-    style: { transform: 'scale(1.1)' }
-  };
-});
+const detailedModeCards = Object.keys(modeImages)
+  .filter(path => !path.endsWith('/bk.png')) // Blije kind is onderdeel van vstModiData
+  .map(path => {
+    const filename = path.split('/').pop().replace('.png', '');
+    const title = smiModesMap[filename] || filename;
+    return {
+      id: filename,
+      src: modeImages[path],
+      title,
+      type: 'mode',
+      description: schemaDescriptions[title],
+      style: { transform: 'scale(1.1)' }
+    };
+  });
 
 const modeCards = [
   ...detailedModeCards,

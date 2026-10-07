@@ -43,18 +43,20 @@ export default function KaartenOverzicht({ onBack }) {
     return indexA - indexB;
   });
 
-  const detailedModeCards = Object.keys(modeImages).map(path => {
-    const filename = path.split('/').pop().replace('.png', '');
-    const title = smiModesMap[filename] || filename;
-    return { id: filename, type: 'mode', src: modeImages[path], title, description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
-  }).sort((a, b) => {
-    const indexA = modeSortOrder.indexOf(a.title);
-    const indexB = modeSortOrder.indexOf(b.title);
-    if (indexA === -1 && indexB === -1) return a.title.localeCompare(b.title);
-    if (indexA === -1) return 1;
-    if (indexB === -1) return -1;
-    return indexA - indexB;
-  });
+  const detailedModeCards = Object.keys(modeImages)
+    .filter(path => !path.endsWith('/bk.png')) // Blije kind is opgenomen in vstModiData (Theorie-uitbreiding)
+    .map(path => {
+      const filename = path.split('/').pop().replace('.png', '');
+      const title = smiModesMap[filename] || filename;
+      return { id: filename, type: 'mode', src: modeImages[path], title, description: schemaDescriptions[title], style: { transform: 'scale(1.1)' } };
+    }).sort((a, b) => {
+      const indexA = modeSortOrder.indexOf(a.title);
+      const indexB = modeSortOrder.indexOf(b.title);
+      if (indexA === -1 && indexB === -1) return a.title.localeCompare(b.title);
+      if (indexA === -1) return 1;
+      if (indexB === -1) return -1;
+      return indexA - indexB;
+    });
 
   const allCards = [
     ...detailedSchemaCards,
