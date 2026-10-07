@@ -186,8 +186,9 @@ export default function ModusWeb() {
     // If we have an exact score from the radar, calculate a continuous, precise scale!
     if (showRadar && radarScores[modeId] > 0) {
       const score = radarScores[modeId];
-      // Score 1 -> scale 0.9, Score 3 -> scale 1.1, Score 5 -> scale 1.3, Score 6 -> scale 1.4
-      return 0.9 + (score - 1) * 0.1;
+      // Keep pills relatively small in radar view to prevent heavy overlap
+      // Score 1 -> scale 0.85, Score 6 -> scale 1.15
+      return 0.85 + (score - 1) * 0.06;
     }
     // Manual fallback for click sizes
     switch(sizeIndex) {
@@ -224,7 +225,7 @@ const clearAll = () => {
     
     const angleDeg = -90 + (index * (360 / validModesForRadar.length));
     const angleRad = (angleDeg * Math.PI) / 180;
-    const CIRCLE_RADIUS = 28; // 38% radius
+    const CIRCLE_RADIUS = 35; // 38% radius
     return {
       x: 50 + CIRCLE_RADIUS * Math.cos(angleRad),
       y: 50 + CIRCLE_RADIUS * Math.sin(angleRad)
