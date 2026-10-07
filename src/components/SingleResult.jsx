@@ -71,7 +71,10 @@ const smiModesMap = {
   'pa': { name: 'Pest en aanval', group: 'Beschermmodi - Omkering' },
   'so': { name: 'Straffende ouder', group: 'Disfunctionele oudermodi' },
   'vo': { name: 'Veeleisende ouder', group: 'Disfunctionele oudermodi' },
-  'gv': { name: 'Gezonde volwassene', group: 'Functionele modi' }
+  'gv': { name: 'Gezonde volwassene', group: 'Functionele modi' },
+  'woc': { name: 'Wantrouwende overcontroleerder', group: 'Beschermmodi - Omkering' },
+  'poc': { name: 'Perfectionistische overcontroleerder', group: 'Beschermmodi - Omkering' },
+  'bob': { name: 'Boze beschermer', group: 'Beschermmodi - Vermijden' }
 };
 
 export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasisbehoeften, onViewModiCategorieen }) {

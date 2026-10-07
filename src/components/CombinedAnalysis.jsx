@@ -22,7 +22,10 @@ const basisbehoeftenMap = {
 const smiModesMap = {
   'kk': { name: 'Kwetsbare kind', group: 'Kindmodi' }, 'rk': { name: 'Razende kind', group: 'Kindmodi' }, 'ik': { name: 'Impulsieve kind', group: 'Kindmodi' }, 'ok': { name: 'Ongedisciplineerde kind', group: 'Kindmodi' }, 'bk': { name: 'Blije kind', group: 'Functionele modi' },
   'wi': { name: 'Willoze inschikkelijke', group: 'Beschermmodi - Overgave' }, 'ob': { name: 'Onthechte beschermer', group: 'Beschermmodi - Vermijden' }, 'oz': { name: 'Onthechte zelfsusser', group: 'Beschermmodi - Vermijden' }, 'wk': { name: 'Boze kind', group: 'Kindmodi' }, 'zh': { name: 'Zelfverheerlijker', group: 'Beschermmodi - Omkering' }, 'pa': { name: 'Pest en aanval', group: 'Beschermmodi - Omkering' },
-  'so': { name: 'Straffende ouder', group: 'Disfunctionele oudermodi' }, 'vo': { name: 'Veeleisende ouder', group: 'Disfunctionele oudermodi' }, 'gv': { name: 'Gezonde volwassene', group: 'Functionele modi' }
+  'so': { name: 'Straffende ouder', group: 'Disfunctionele oudermodi' }, 'vo': { name: 'Veeleisende ouder', group: 'Disfunctionele oudermodi' }, 'gv': { name: 'Gezonde volwassene', group: 'Functionele modi' },
+  'woc': { name: 'Wantrouwende overcontroleerder', group: 'Beschermmodi - Omkering' },
+  'poc': { name: 'Perfectionistische overcontroleerder', group: 'Beschermmodi - Omkering' },
+  'bob': { name: 'Boze beschermer', group: 'Beschermmodi - Vermijden' }
 };
 
 const ysqNamesMap = {
@@ -35,13 +38,13 @@ const ysqNamesMap = {
 
 const schemaToModesHypothesis = {
   'Abandonment': { modes: ['wi', 'ob', 'bk'], desc: 'Mensen met sterke verlatingsangst klampen zich soms wanhopig vast (Willoze Inschikkelijke) of stoten anderen juist uit voorzorg af (Onthechte Beschermer / Boze Kind).' },
-  'Mistrust': { modes: ['wk', 'ob'], desc: 'Bij wantrouwen staat men vaak chronisch op scherp (Wantrouwende Overcontroleerder) of trekt men een muur op (Onthechte Beschermer).' },
+  'Mistrust': { modes: ['wk', 'ob', 'woc'], desc: 'Bij wantrouwen trekt men vaak een muur op (Onthechte Beschermer), staat men chronisch op scherp (Wantrouwende Overcontroleerder) of reageert men agressief (Boze kind).' },
   'Defectiveness/unlovability': { modes: ['ob', 'wk', 'zh'], desc: 'Gevoelens van minderwaardigheid worden vaak weggedrukt (Onthechte Beschermer) of overgecompenseerd door perfectionisme of arrogantie (Zelfverheerlijker / Overcontroleerder).' },
   'Emotional deprivation': { modes: ['ob', 'oz', 'bk'], desc: 'Emotionele verwaarlozing leidt vaak tot vermijding en zelfsus-gedrag (Onthechte Beschermer / Zelfsusser), of juist tot woede (Boze kind).' },
   'Subjugation': { modes: ['wi', 'bk'], desc: 'Onderwerping vertaalt zich logischerwijs vaak in de Willoze Inschikkelijke modus, maar kan uiteindelijk omslaan in opgekropte woede (Boze Kind).' },
   'Entitlement/Superiority': { modes: ['zh', 'pa', 'ok'], desc: 'Zich rechten toe-eigenen is verbonden met de Zelfverheerlijker of Pest- en Aanval-modus, en hangt soms samen met Ongedisciplineerd gedrag.' },
   'Insufficient self-control/self-discipline': { modes: ['ik', 'ok'], desc: 'Gebrek aan zelfcontrole is het fundament onder het Impulsieve en Ongedisciplineerde Kind.' },
-  'Unrelenting Standards': { modes: ['vo', 'wk'], desc: 'Meedogenloze normen worden meestal aangestuurd door de Veeleisende Ouder en in stand gehouden door de Wantrouwende Overcontroleerder.' },
+  'Unrelenting Standards': { modes: ['vo', 'woc', 'poc'], desc: 'Meedogenloze normen worden meestal aangestuurd door de Veeleisende Ouder en in stand gehouden door de Wantrouwende of Perfectionistische Overcontroleerder.' },
   'Self-punitiveness': { modes: ['so'], desc: 'Een bestraffende houding correspondeert vrijwel 1-op-1 met de aanwezigheid van de Straffende Oudermodus.' },
   'Failure to achieve': { modes: ['ob', 'vo'], desc: 'De angst om te mislukken activeert vaak de Veeleisende Ouder (die falen afstraft) en leidt dan tot de Onthechte Beschermer (opgeven uit zelfbescherming).' },
   'Vulnerability to harm/illness': { modes: ['wk', 'wi'], desc: 'Kwetsbaarheid leidt vaak tot obsessieve waakzaamheid (Overcontroleerder) of vastklampen aan anderen (Willoze Inschikkelijke).' },
@@ -50,7 +53,7 @@ const schemaToModesHypothesis = {
   'Enmeshment': { modes: ['wi', 'oz'], desc: 'Een verstrengeling-schema leidt vaak tot grenzeloze aanpassing aan de ander (Willoze Inschikkelijke) of dissociatie via zelfsus-gedrag (Zelfsusser).' },
   'Self-sacrifice': { modes: ['wi', 'bk'], desc: 'Zelfopoffering is de brandstof van de Willoze Inschikkelijke modus. Vaak leidt het op de lange termijn tot wrok in de vorm van het Boze Kind.' },
   'Admiration/Recognition-seeking': { modes: ['zh', 'wi'], desc: 'Erkenning zoeken activeert vaak de Zelfverheerlijker (om indruk te maken) of de Willoze Inschikkelijke (door alles te doen om aardig gevonden te worden).' },
-  'Pessimism/Worry': { modes: ['wk', 'ob'], desc: 'Pessimisme en zorgen worden vaak in toom gehouden door de Wantrouwende Overcontroleerder (alles dichttimmeren) of de Onthechte Beschermer.' },
+  'Pessimism/Worry': { modes: ['woc', 'ob'], desc: 'Pessimisme en zorgen worden vaak in toom gehouden door de Wantrouwende Overcontroleerder (alles dichttimmeren) of de Onthechte Beschermer.' },
   'Emotional inhibition': { modes: ['ob', 'vo'], desc: 'Emotionele geremdheid is een actieve vorm van de Onthechte Beschermer, vaak aangestuurd door een Veeleisende Ouder die emoties afkeurt.' }
 };
 
