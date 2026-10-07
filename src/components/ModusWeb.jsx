@@ -14,14 +14,19 @@ const MODES = [
   
   { id: 'bk', title: 'Blije kind', category: 'gezond', x: 50, y: 92 },
   
-  { id: 'wi', title: 'Willoze inschikkelijke', category: 'coping', x: 20, y: 88 },
-  { id: 'oz', title: 'Onthechte zelfsusser', category: 'coping', x: 25, y: 80 },
-  { id: 'woc', title: 'Wantrouwende overcontroleerder', category: 'coping', x: 20, y: 72 },
-  { id: 'poc', title: 'Perfectionistische overcontroleerder', category: 'coping', x: 20, y: 65 },
-  { id: 'pa', title: 'Pest en aanval', category: 'coping', x: 20, y: 55 },
-  { id: 'bob', title: 'Boze beschermer', category: 'coping', x: 25, y: 45 },
-  { id: 'ob', title: 'Onthechte beschermer', category: 'coping', x: 25, y: 35 },
-  { id: 'zv', title: 'Zelfverheerlijker', category: 'coping', x: 20, y: 25 },
+  // Overcompensatie
+  { id: 'zv', title: 'Zelfverheerlijker', category: 'coping', x: 20, y: 23 },
+  { id: 'pa', title: 'Pest en aanval', category: 'coping', x: 24, y: 33 },
+  { id: 'poc', title: 'Perfectionistische overcontroleerder', category: 'coping', x: 20, y: 43 },
+  { id: 'woc', title: 'Wantrouwende overcontroleerder', category: 'coping', x: 24, y: 53 },
+  
+  // Vermijding
+  { id: 'ob', title: 'Onthechte beschermer', category: 'coping', x: 20, y: 68 },
+  { id: 'bob', title: 'Boze beschermer', category: 'coping', x: 24, y: 77 },
+  { id: 'oz', title: 'Onthechte zelfsusser', category: 'coping', x: 20, y: 86 },
+  
+  // Overgave
+  { id: 'wi', title: 'Willoze inschikkelijke', category: 'coping', x: 25, y: 95 },
 ];
 
 const SMI_MAPPING = {
@@ -272,6 +277,37 @@ export default function ModusWeb() {
       {/* Canvas */}
       <div ref={containerRef} style={{ flex: 1, position: 'relative', background: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', overflow: 'hidden', minHeight: '650px', display: 'flex' }}>
         
+        
+        {/* Subcategory Background Labels */}
+        {!showRadar && (
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}>
+            {/* Overcompensatie */}
+            <div style={{ position: 'absolute', left: '4%', top: '38%', transform: 'translateY(-50%) rotate(-90deg)', transformOrigin: 'left center', fontSize: '1.4rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+              Overcompensatie
+            </div>
+            
+            {/* Vermijding */}
+            <div style={{ position: 'absolute', left: '4%', top: '77%', transform: 'translateY(-50%) rotate(-90deg)', transformOrigin: 'left center', fontSize: '1.4rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+              Vermijding
+            </div>
+            
+            {/* Overgave */}
+            <div style={{ position: 'absolute', left: '7%', top: '96%', transform: 'translateY(-50%)', transformOrigin: 'left center', fontSize: '1.1rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+              Overgave
+            </div>
+            
+            {/* Oudermodi */}
+            <div style={{ position: 'absolute', right: '3%', top: '32%', transform: 'translateY(-50%) rotate(90deg)', transformOrigin: 'right center', fontSize: '1.4rem', fontWeight: '800', color: '#fecaca', opacity: 0.6, letterSpacing: '0.2em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+              Oudermodi
+            </div>
+            
+            {/* Kindmodi */}
+            <div style={{ position: 'absolute', right: '3%', top: '75%', transform: 'translateY(-50%) rotate(90deg)', transformOrigin: 'right center', fontSize: '1.4rem', fontWeight: '800', color: '#bfdbfe', opacity: 0.6, letterSpacing: '0.2em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+              Kindmodi
+            </div>
+          </div>
+        )}
+
         {/* SVG Layer for EVERYTHING (Radar + Custom Lines) */}
         <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }}>
           <defs>
