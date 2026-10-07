@@ -275,6 +275,9 @@ function App() {
 
   const handleFinish = (finalAnswers, goToResults = false) => {
     setCompletedTests(prev => ({ ...prev, [currentQuestionnaire]: finalAnswers }))
+    try {
+      localStorage.setItem(`schemaApp_completed_${currentQuestionnaire}`, JSON.stringify(finalAnswers))
+    } catch (e) {}
     if (goToResults) {
       setCurrentView('results')
     } else {
@@ -288,13 +291,19 @@ function App() {
   }
 
   const handleUpdateAnswer = (type, questionId, newScore) => {
-    setCompletedTests(prev => ({
-      ...prev,
-      [type]: {
-        ...prev[type],
-        [questionId]: parseInt(newScore, 10)
+    setCompletedTests(prev => {
+      const updated = {
+        ...prev,
+        [type]: {
+          ...prev[type],
+          [questionId]: parseInt(newScore, 10)
+        }
       }
-    }))
+      try {
+        localStorage.setItem(`schemaApp_completed_${type}`, JSON.stringify(updated[type]))
+      } catch (e) {}
+      return updated
+    })
   }
 
   const handleRestart = () => {
@@ -304,10 +313,17 @@ function App() {
   }
 
   const handleImport = (importedTests) => {
-    setCompletedTests(prev => ({
-      ysq: importedTests.ysq || prev.ysq,
-      smi: importedTests.smi || prev.smi
-    }))
+    setCompletedTests(prev => {
+      const merged = {
+        ysq: importedTests.ysq || prev.ysq,
+        smi: importedTests.smi || prev.smi
+      }
+      try {
+        if (merged.ysq) localStorage.setItem('schemaApp_completed_ysq', JSON.stringify(merged.ysq));
+        if (merged.smi) localStorage.setItem('schemaApp_completed_smi', JSON.stringify(merged.smi));
+      } catch (e) {}
+      return merged
+    })
   }
 
   const getQuestionData = () => {

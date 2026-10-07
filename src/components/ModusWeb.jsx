@@ -198,7 +198,9 @@ export default function ModusWeb() {
 
   // Load scores from localStorage or default SMI demo data
   useEffect(() => {
-    const savedSmiData = localStorage.getItem('schemaApp_modusweb_smi');
+    const savedSmiData = localStorage.getItem('schemaApp_modusweb_smi')
+      || localStorage.getItem('schemaApp_completed_smi')
+      || localStorage.getItem('schemaApp_progress_smi');
     const savedScores = localStorage.getItem('schemaApp_modusweb_scores');
     const initialView = localStorage.getItem('schemaApp_modusweb_initial_view');
 

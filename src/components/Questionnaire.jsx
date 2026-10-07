@@ -94,6 +94,9 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
 
   const handleFinish = (goToResults = false) => {
     localStorage.removeItem(`schemaApp_progress_${type}`);
+    try {
+      localStorage.setItem(`schemaApp_completed_${type}`, JSON.stringify(answers));
+    } catch (e) {}
     onFinish(answers, goToResults);
   };
   

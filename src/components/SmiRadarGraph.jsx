@@ -165,11 +165,164 @@ function project3D(x, y, z, pitchRad, yawRad, zoom, cx, cy, d = 850) {
   };
 }
 
+// Format score to match the report bar chart (e.g. 5.25, 4.8, 3, 1)
+function formatScore(val) {
+  if (val === undefined || val === null || isNaN(val)) return '';
+  const num = typeof val === 'number' ? val : parseFloat(val);
+  if (isNaN(num)) return '';
+  return Math.round(num * 100) / 100 + '';
+}
+
+function getScoreForItem(scoresMap, item) {
+  if (!scoresMap || !item) return 0;
+  if (typeof item === 'string') {
+    if (scoresMap[item] !== undefined) return scoresMap[item];
+    const clean = item.toLowerCase().replace(/[^a-z0-9]/g, '');
+    for (const [k, v] of Object.entries(scoresMap)) {
+      if (k.toLowerCase().replace(/[^a-z0-9]/g, '') === clean) return v;
+    }
+    return 0;
+  }
+  if (scoresMap[item.id] !== undefined) return scoresMap[item.id];
+  if (item.title && scoresMap[item.title] !== undefined) return scoresMap[item.title];
+  if (item.abbr && scoresMap[item.abbr] !== undefined) return scoresMap[item.abbr];
+  const cleanId = (item.id || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const cleanTitle = (item.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  for (const [k, v] of Object.entries(scoresMap)) {
+    const cleanK = k.toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (cleanK === cleanId || (cleanTitle && cleanK === cleanTitle)) return v;
+  }
+  return 0;
+}
+
+// Check if an array or object contains YSQ schema items
+function containsSchemaData(data) {
+  if (!data) return false;
+  if (Array.isArray(data)) {
+    return data.some(s => s && (
+      SCHEMAS_INFO.some(si => si.id === s.id || si.title === s.name || si.title === s.id || si.title === s.title)
+    ));
+  }
+  if (typeof data === 'object') {
+    const keys = Object.keys(data);
+    return keys.some(k => SCHEMAS_INFO.some(si => si.id === k || si.title === k));
+  }
+  return false;
+}
+
+// Check if an array or object contains SMI mode items
+function containsModeData(data) {
+  if (!data) return false;
+  if (Array.isArray(data)) {
+    return data.some(s => s && (
+      MODES_INFO.some(mi => mi.id === s.id || mi.title === s.name || mi.title === s.id || mi.title === s.title || SMI_KEY_TO_ID[s.id] || SMI_KEY_TO_ID[s.name])
+    ));
+  }
+  if (typeof data === 'object') {
+    const keys = Object.keys(data);
+    return keys.some(k => MODES_INFO.some(mi => mi.id === k || mi.title === k || SMI_KEY_TO_ID[k]));
+  }
+  return false;
+}
+
+// Extract scores into a standardized lookup map
+function extractScoreMap(input, isMode) {
+  const map = {};
+  if (!input) return map;
+
+  if (Array.isArray(input)) {
+    input.forEach(s => {
+      if (!s) return;
+      const rawVal = s.mean !== undefined ? s.mean : (s.score !== undefined ? s.score : s.value);
+      const val = parseFloat(rawVal);
+      if (isNaN(val)) return;
+
+      const rawId = s.id || s.name || s.title;
+      if (!rawId) return;
+
+      if (isMode) {
+        const canonical = SMI_KEY_TO_ID[rawId] || rawId;
+        map[canonical] = val;
+        if (s.name) map[s.name] = val;
+        if (s.title) map[s.title] = val;
+      } else {
+        map[rawId] = val;
+        if (s.name) map[s.name] = val;
+        if (s.title) map[s.title] = val;
+        map[rawId.replace(/\//g, '_')] = val;
+      }
+    });
+  } else if (typeof input === 'object') {
+    Object.entries(input).forEach(([k, v]) => {
+      const rawVal = typeof v === 'object' && v !== null ? (v.mean !== undefined ? v.mean : v.score) : v;
+      const val = parseFloat(rawVal);
+      if (isNaN(val)) return;
+
+      if (isMode) {
+        const canonical = SMI_KEY_TO_ID[k] || k;
+        map[canonical] = val;
+      } else {
+        map[k] = val;
+        map[k.replace(/\//g, '_')] = val;
+      }
+    });
+  }
+  return map;
+}
+
+function calculateYsqFromAnswers(answers) {
+  if (!answers || typeof answers !== 'object' || Object.keys(answers).length === 0) return null;
+  const map = {};
+  let total = 0;
+  Object.entries(ysqScoring).forEach(([sKey, qList]) => {
+    let sum = 0;
+    let count = 0;
+    qList.forEach(qId => {
+      if (answers[qId] !== undefined) {
+        sum += Number(answers[qId]);
+        count++;
+      }
+    });
+    if (count > 0) {
+      map[sKey] = Math.round((sum / count) * 100) / 100;
+      total++;
+    }
+  });
+  return total > 0 ? map : null;
+}
+
+function calculateSmiFromAnswers(answers) {
+  if (!answers || typeof answers !== 'object' || Object.keys(answers).length === 0) return null;
+  const map = {};
+  let total = 0;
+  Object.entries(smiScoring).forEach(([sKey, qList]) => {
+    let sum = 0;
+    let count = 0;
+    qList.forEach(qId => {
+      if (answers[qId] !== undefined) {
+        sum += Number(answers[qId]);
+        count++;
+      }
+    });
+    if (count > 0) {
+      const canonical = SMI_KEY_TO_ID[sKey] || sKey;
+      map[canonical] = Math.round((sum / count) * 100) / 100;
+      total++;
+    }
+  });
+  return total > 0 ? map : null;
+}
+
 export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenModusWeb, showAction = true, initialDimension = '3d', initialSide = 'modi' }) {
   const [activeSide, setActiveSide] = useState(initialSide); // 'modi' or 'schemas'
   const [viewDimension, setViewDimension] = useState(initialDimension); // '2d' or '3d'
   const [hoveredNode, setHoveredNode] = useState(null);
   const [popupFlipped, setPopupFlipped] = useState(false);
+
+  // Keep activeSide in sync when initialSide prop updates
+  useEffect(() => {
+    setActiveSide(initialSide);
+  }, [initialSide]);
 
   // 3D Orbit Camera State
   const [pitch, setPitch] = useState(48);
@@ -184,6 +337,90 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
   const hoverTimeoutRef = useRef(null);
   const flipTimeoutRef = useRef(null);
 
+  // Normalize YSQ Schema Scores (exact scores matching report)
+  const normalizedSchemaScores = useMemo(() => {
+    // 1. Direct scores prop if containing schema data
+    let input = null;
+    if (containsSchemaData(scores)) {
+      input = scores;
+    } else if (containsSchemaData(ysqScores)) {
+      input = ysqScores;
+    } else if (initialSide === 'schemas' && scores) {
+      input = scores;
+    }
+
+    let map = extractScoreMap(input, false);
+    if (Object.keys(map).length > 0) return map;
+
+    // 2. Calculate directly from rawAnswers if provided
+    if (rawAnswers && (initialSide === 'schemas' || containsSchemaData(scores))) {
+      const fromAnswers = calculateYsqFromAnswers(rawAnswers);
+      if (fromAnswers && Object.keys(fromAnswers).length > 0) return fromAnswers;
+    }
+
+    // 3. Check localStorage for completed or in-progress YSQ
+    try {
+      const savedCompleted = localStorage.getItem('schemaApp_completed_ysq');
+      const savedProgress = localStorage.getItem('schemaApp_progress_ysq');
+      const raw = savedCompleted || savedProgress;
+      if (raw) {
+        const answers = JSON.parse(raw);
+        const fromSaved = calculateYsqFromAnswers(answers);
+        if (fromSaved && Object.keys(fromSaved).length > 0) return fromSaved;
+      }
+    } catch (e) {
+      // ignore
+    }
+
+    // 4. Default demo fallback if empty
+    return DEFAULT_YSQ_SCORES;
+  }, [scores, ysqScores, rawAnswers, initialSide]);
+
+  // Normalize Modi Scores (exact scores matching report)
+  const normalizedModiScores = useMemo(() => {
+    // 1. Direct scores prop if containing mode data
+    let input = null;
+    if (containsModeData(scores)) {
+      input = scores;
+    } else if (initialSide === 'modi' && scores && !containsSchemaData(scores)) {
+      input = scores;
+    }
+
+    let map = extractScoreMap(input, true);
+    if (Object.keys(map).length > 0) return map;
+
+    // 2. Calculate directly from rawAnswers if provided
+    if (rawAnswers && (initialSide === 'modi' || containsModeData(scores))) {
+      const fromAnswers = calculateSmiFromAnswers(rawAnswers);
+      if (fromAnswers && Object.keys(fromAnswers).length > 0) return fromAnswers;
+    }
+
+    // 3. Check localStorage for completed or in-progress SMI or modusweb scores
+    try {
+      const savedCompleted = localStorage.getItem('schemaApp_completed_smi');
+      const savedProgress = localStorage.getItem('schemaApp_progress_smi');
+      const raw = savedCompleted || savedProgress;
+      if (raw) {
+        const answers = JSON.parse(raw);
+        const fromSaved = calculateSmiFromAnswers(answers);
+        if (fromSaved && Object.keys(fromSaved).length > 0) return fromSaved;
+      }
+
+      const savedModusWebScores = localStorage.getItem('schemaApp_modusweb_scores');
+      if (savedModusWebScores) {
+        const parsed = JSON.parse(savedModusWebScores);
+        const extracted = extractScoreMap(parsed, true);
+        if (Object.keys(extracted).length > 0) return extracted;
+      }
+    } catch (e) {
+      // ignore
+    }
+
+    // 4. Default demo fallback
+    return DEFAULT_SMI_SCORES;
+  }, [scores, rawAnswers, initialSide]);
+
+  // Card details helper with exact score included
   const getCardDetails = useCallback((item, side) => {
     if (!item) return null;
 
@@ -192,6 +429,10 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       resolved = MODES_INFO.find(x => x.id === item || x.title === item || x.abbr === item)
               || SCHEMAS_INFO.find(x => x.id === item || x.title === item || x.abbr === item);
     }
+
+    const currentScoresMap = side === 'modi' ? normalizedModiScores : normalizedSchemaScores;
+    const scoreVal = getScoreForItem(currentScoresMap, resolved || item);
+
     if (!resolved) {
       return {
         id: item,
@@ -199,7 +440,8 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
         title: item,
         description: schemaDescriptions[item] || '',
         src: side === 'schemas' ? getSchemaImage(item) : getModeImage(item),
-        color: getCardColor(side === 'schemas' ? 'schema' : 'mode', item, item)
+        color: getCardColor(side === 'schemas' ? 'schema' : 'mode', item, item),
+        scoreVal
       };
     }
 
@@ -218,6 +460,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
         description,
         src,
         color,
+        scoreVal,
         imageStyle: { transform: 'scale(1.1)' }
       };
     } else {
@@ -234,12 +477,13 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
         description,
         src,
         color,
+        scoreVal,
         imageStyle: {
           transform: title === 'Kwetsbaarheid voor ziekte en gevaar' ? 'scale(1.4)' : 'scale(1)'
         }
       };
     }
-  }, []);
+  }, [normalizedModiScores, normalizedSchemaScores]);
 
   const activeCardDetails = useMemo(() => {
     if (!hoveredNode) return null;
@@ -299,100 +543,6 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
     };
   }, []);
-
-  // Normalize Modi Scores
-  const normalizedModiScores = useMemo(() => {
-    const map = {};
-    const input = initialSide === 'schemas' ? null : scores;
-    if (Array.isArray(input)) {
-      input.forEach(s => {
-        const canonical = SMI_KEY_TO_ID[s.id] || s.id;
-        const val = parseFloat(s.mean);
-        if (!isNaN(val)) map[canonical] = val;
-      });
-    } else if (input && typeof input === 'object') {
-      Object.entries(input).forEach(([k, v]) => {
-        const canonical = SMI_KEY_TO_ID[k] || k;
-        const val = parseFloat(v);
-        if (!isNaN(val)) map[canonical] = val;
-      });
-    }
-
-    if (Object.keys(map).length === 0) {
-      try {
-        const savedSmi = localStorage.getItem('schemaApp_progress_smi');
-        if (savedSmi) {
-          const answers = JSON.parse(savedSmi);
-          Object.entries(smiScoring).forEach(([sKey, qList]) => {
-            let sum = 0;
-            let count = 0;
-            qList.forEach(qId => {
-              if (answers[qId] !== undefined) {
-                sum += answers[qId];
-                count++;
-              }
-            });
-            if (count > 0) {
-              const canonical = SMI_KEY_TO_ID[sKey] || sKey;
-              map[canonical] = parseFloat((sum / count).toFixed(1));
-            }
-          });
-        }
-      } catch (e) {
-        // ignore
-      }
-    }
-
-    if (Object.keys(map).length === 0) {
-      return DEFAULT_SMI_SCORES;
-    }
-    return map;
-  }, [scores, initialSide]);
-
-  // Normalize YSQ Schema Scores
-  const normalizedSchemaScores = useMemo(() => {
-    const map = {};
-    const input = initialSide === 'schemas' ? scores : ysqScores;
-    
-    if (Array.isArray(input)) {
-      input.forEach(s => {
-        const val = parseFloat(s.mean);
-        if (!isNaN(val)) map[s.id] = val;
-      });
-    } else if (input && typeof input === 'object') {
-      Object.entries(input).forEach(([k, v]) => {
-        const val = parseFloat(v);
-        if (!isNaN(val)) map[k] = val;
-      });
-    } else {
-      // Check localStorage for completed YSQ questionnaire
-      try {
-        const savedYsq = localStorage.getItem('schemaApp_progress_ysq');
-        if (savedYsq) {
-          const answers = JSON.parse(savedYsq);
-          Object.entries(ysqScoring).forEach(([sKey, qList]) => {
-            let sum = 0;
-            let count = 0;
-            qList.forEach(qId => {
-              if (answers[qId] !== undefined) {
-                sum += answers[qId];
-                count++;
-              }
-            });
-            if (count > 0) map[sKey] = parseFloat((sum / count).toFixed(1));
-          });
-        }
-      } catch (e) {
-        // fallback
-      }
-    }
-
-    // Default demo fallback if empty
-    if (Object.keys(map).length === 0) {
-      return DEFAULT_YSQ_SCORES;
-    }
-    return map;
-  }, [scores, ysqScores, initialSide]);
 
   // Active items based on current side
   const currentItems = activeSide === 'modi' ? MODES_INFO : SCHEMAS_INFO;
@@ -526,7 +676,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       const cosA = Math.cos(angle);
       const sinA = Math.sin(angle);
 
-      const scoreVal = currentScores[item.id] !== undefined ? currentScores[item.id] : 0;
+      const scoreVal = getScoreForItem(currentScores, item);
       const ratio = Math.min(Math.max(scoreVal / 6, 0.08), 1);
 
       const elevation = scoreVal * 25; // 0 to 150px height
@@ -644,7 +794,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       const ballX = cx + R_BALL * cosA;
       const ballY = cy + R_BALL * sinA;
 
-      const scoreVal = currentScores[item.id] !== undefined ? currentScores[item.id] : 0;
+      const scoreVal = getScoreForItem(currentScores, item);
       const ratio = Math.min(Math.max(scoreVal / 6, 0), 1);
       const ptX = cx + (R_MAX * ratio) * cosA;
       const ptY = cy + (R_MAX * ratio) * sinA;
@@ -1029,7 +1179,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                       opacity={0.92}
                       style={{ userSelect: 'none' }}
                     >
-                      {m.scoreVal.toFixed(1)}
+                      {formatScore(m.scoreVal)}
                     </text>
                   )}
                 </g>
@@ -1128,7 +1278,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                       opacity={0.92}
                       style={{ userSelect: 'none' }}
                     >
-                      {m.scoreVal.toFixed(1)}
+                      {formatScore(m.scoreVal)}
                     </text>
                   )}
                 </g>
@@ -1156,9 +1306,10 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
             pointerEvents: 'auto'
           }}
         >
-          {/* Flip Toggle Pills */}
+          {/* Flip Toggle Pills & Score Indicator */}
           <div style={{
             display: 'flex',
+            alignItems: 'center',
             gap: '6px',
             marginBottom: '8px',
             background: 'rgba(15, 23, 42, 0.88)',
@@ -1210,6 +1361,23 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
             >
               Achterkant (Theorie)
             </button>
+            {activeCardDetails.scoreVal > 0 && (
+              <span style={{
+                background: 'rgba(255, 255, 255, 0.18)',
+                color: '#ffffff',
+                padding: '4px 10px',
+                borderRadius: '12px',
+                fontSize: '0.78rem',
+                fontWeight: 'bold',
+                marginLeft: '2px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px',
+                border: '1px solid rgba(255, 255, 255, 0.25)'
+              }}>
+                Score: {formatScore(activeCardDetails.scoreVal)}
+              </span>
+            )}
           </div>
 
           {/* Interactive 3D Card */}
