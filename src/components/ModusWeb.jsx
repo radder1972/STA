@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Share2, MousePointer2, Trash2, Upload, Activity } from 'lucide-react';
+import { Share2, MousePointer2, Trash2, Upload, Activity, RotateCcw } from 'lucide-react';
 import smiScoring from '../data/smi-scoring.json';
 import SchemaCard from './SchemaCard';
 
@@ -55,43 +55,26 @@ const LIGHT_CATEGORY_COLORS = {
 
 const RADAR_ORDER = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
 
-
-
 const getAbbreviation = (id) => {
   const map = {
-    'gv': 'GV', 'bk': 'BK', 'kk': 'KK', 'rk': 'RK', 'boos_k': 'WK', 'ik': 'IK', 'ok': 'OK',
+    'gv': 'GV', 'bk': 'BK', 'kk': 'KK', 'rk': 'RK', 'boos_k': 'WK', 'wk': 'WK', 'ik': 'IK', 'ok': 'OK',
     'wi': 'WI', 'ob': 'OB', 'oz': 'OZ', 'zh': 'ZH', 'pa': 'PA', 'so': 'SO', 'vo': 'VO',
     'woc': 'WOC', 'poc': 'POC', 'bob': 'BOB'
   };
   return map[id] || id.toUpperCase();
 };
 
-const formatTitle = (title) => {
-  if (title === 'Pest en aanval') return <><span style={{display: 'block'}}>Pest en</span><span style={{display: 'block'}}>aanval</span></>;
-  if (title === 'Zelfverheerlijker') return <span style={{display: 'block'}}>Zelfverheerlijker</span>;
-  if (title.includes(' ')) {
-    const parts = title.split(' ');
-    return (
-      <>
-        <span style={{display: 'block'}}>{parts[0]}</span>
-        <span style={{display: 'block'}}>{parts.slice(1).join(' ')}</span>
-      </>
-    );
-  }
-  return <span style={{display: 'block'}}>{title}</span>;
-};
-
 export default function ModusWeb() {
-  const [interactionMode, setInteractionMode] = useState('size');
+  const [interactionMode, setInteractionMode] = useState('connect'); // 'connect' or 'size'
   const [sizes, setSizes] = useState({});
   const [connections, setConnections] = useState([]);
   const [connectingFrom, setConnectingFrom] = useState(null);
   
   const [radarScores, setRadarScores] = useState({});
-  
   const [hoveredNode, setHoveredNode] = useState(null);
   const [popupFlipped, setPopupFlipped] = useState(false);
-  const [showRadar, setShowRadar] = useState(false);
+  const [showRadar, setShowRadar] = useState(true);
+  const [isClientDataActive, setIsClientDataActive] = useState(false);
   
   const containerRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -124,8 +107,52 @@ export default function ModusWeb() {
     };
   }, [sizes, showRadar]);
 
+  // Load scores from localStorage or default SMI demo data
   useEffect(() => {
-    calculateScores(DEFAULT_SMI_DATA);
+    const savedSmiData = localStorage.getItem('schemaApp_modusweb_smi');
+    const savedScores = localStorage.getItem('schemaApp_modusweb_scores');
+    const initialView = localStorage.getItem('schemaApp_modusweb_initial_view');
+
+    if (savedSmiData) {
+      try {
+        const parsed = JSON.parse(savedSmiData);
+        calculateScores(parsed, initialView ? initialView === 'radar' : true);
+        setIsClientDataActive(true);
+        if (initialView === 'graph') {
+          setShowRadar(false);
+          localStorage.removeItem('schemaApp_modusweb_initial_view');
+        }
+        return;
+      } catch (e) {
+        console.error('Fout bij laden van opgeslagen SMI-antwoorden', e);
+      }
+    }
+
+    if (savedScores) {
+      try {
+        const parsedScores = JSON.parse(savedScores);
+        setRadarScores(parsedScores);
+        const newSizes = {};
+        Object.entries(parsedScores).forEach(([mId, sc]) => {
+          if (sc >= 4.5) newSizes[mId] = 4;
+          else if (sc >= 3.5) newSizes[mId] = 3;
+          else if (sc >= 2.5) newSizes[mId] = 2;
+          else newSizes[mId] = 1;
+        });
+        setSizes(newSizes);
+        setShowRadar(initialView !== 'graph');
+        setIsClientDataActive(true);
+        if (initialView === 'graph') {
+          localStorage.removeItem('schemaApp_modusweb_initial_view');
+        }
+        return;
+      } catch (e) {
+        console.error('Fout bij laden van opgeslagen scores', e);
+      }
+    }
+
+    // Default fallback
+    calculateScores(DEFAULT_SMI_DATA, true);
   }, []);
 
   const handleFileUpload = (e) => {
@@ -150,13 +177,14 @@ export default function ModusWeb() {
         }
       }
       
-      calculateScores(importedSmi);
+      calculateScores(importedSmi, true);
+      setIsClientDataActive(true);
       e.target.value = ''; // Reset
     };
     reader.readAsText(file);
   };
 
-  const calculateScores = (smiData) => {
+  const calculateScores = (smiData, shouldShowRadar = true) => {
     const newSizes = { ...sizes };
     const rScores = {};
 
@@ -177,7 +205,7 @@ export default function ModusWeb() {
         });
         mean = count > 0 ? (sum / count) : 0;
       } else {
-        mean = 0; // Not a standard SMI mode
+        mean = 0;
       }
       
       if (mean > 0) {
@@ -192,8 +220,7 @@ export default function ModusWeb() {
 
     setSizes(newSizes);
     setRadarScores(rScores);
-    setShowRadar(true);
-    setInteractionMode('size');
+    setShowRadar(shouldShowRadar);
   };
 
   const handleNodeClick = (modeId) => {
@@ -220,26 +247,36 @@ export default function ModusWeb() {
   };
 
   const getNodeScale = (sizeIndex, modeId) => {
-    if (showRadar) {
-      const score = radarScores[modeId] || 0;
-      if (score === 0) return 0.65;
+    const score = radarScores[modeId];
+    if (score !== undefined && score > 0) {
       return 0.6 + (score * 0.25);
     }
-    return 0.9 + (sizeIndex * 0.25);
+    return 0.9 + ((sizeIndex || 1) * 0.25);
   };
 
-const clearAll = () => {
-    if (window.confirm("Wil je alle pijlen, bolgroottes en import-data wissen?")) {
+  const clearAll = () => {
+    if (window.confirm("Wil je alle getekende pijlen, bolgroottes en geïmporteerde data wissen?")) {
       setSizes({});
       setConnections([]);
       setConnectingFrom(null);
       setRadarScores({});
       setShowRadar(false);
-      setShowBlijeKind(false);
+      setIsClientDataActive(false);
+      localStorage.removeItem('schemaApp_modusweb_smi');
+      localStorage.removeItem('schemaApp_modusweb_scores');
+      localStorage.removeItem('schemaApp_modusweb_initial_view');
     }
   };
 
-    // Calculate angle based on the official 14 modes for the background grid
+  const restoreDefaultDemo = () => {
+    localStorage.removeItem('schemaApp_modusweb_smi');
+    localStorage.removeItem('schemaApp_modusweb_scores');
+    localStorage.removeItem('schemaApp_modusweb_initial_view');
+    setIsClientDataActive(false);
+    calculateScores(DEFAULT_SMI_DATA, true);
+  };
+
+  // 14 modes for the official circular radar grid
   const modesForGrid = MODES
     .filter(m => {
       const trueBase14 = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
@@ -247,12 +284,12 @@ const clearAll = () => {
     })
     .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
     
-  const modesForData = modesForGrid; // Make sure EVERY label has a point on the blue polygon
+  const modesForData = modesForGrid;
 
   const getModePosition = (modeId) => {
     if (!showRadar) {
       const m = MODES.find(m => m.id === modeId);
-      return { x: m.x, y: m.y };
+      return m ? { x: m.x, y: m.y } : { x: 50, y: 50 };
     }
     
     const index = modesForGrid.findIndex(m => m.id === modeId);
@@ -260,14 +297,14 @@ const clearAll = () => {
     
     const angleDeg = -90 + (index * (360 / modesForGrid.length));
     const angleRad = (angleDeg * Math.PI) / 180;
-    const CIRCLE_RADIUS = 30; // 30% radius for small balls
+    const CIRCLE_RADIUS = 30; // 30% radius for circular radar orbit
     return {
       x: 50 + CIRCLE_RADIUS * Math.cos(angleRad),
       y: 50 + CIRCLE_RADIUS * Math.sin(angleRad)
     };
   };
 
-  // --- Custom Radar SVG Logic ---
+  // Dimensions
   const w = containerRef.current ? containerRef.current.clientWidth : 800;
   const h = containerRef.current ? containerRef.current.clientHeight : 650;
   const cx = w / 2;
@@ -275,20 +312,16 @@ const clearAll = () => {
   
   const getRadarPoint = (modeId, scoreVal) => {
     const pos = getModePosition(modeId);
-    
-    // Convert percentage x/y to pixels
     const pxBase = (pos.x * w) / 100;
     const pyBase = (pos.y * h) / 100;
     
-    // Scale distance based on score (0 to 6)
     const ratio = Math.min(Math.max(scoreVal / 6, 0), 1);
     const px = cx + (pxBase - cx) * ratio;
     const py = cy + (pyBase - cy) * ratio;
     return `${px},${py}`;
   };
 
-  // Generate polygon points for the actual data (excluding modes with no score)
-
+  // Generate polygon points for actual data
   const dataPolygonPoints = modesForData.map(m => getRadarPoint(m.id, radarScores[m.id] || 0)).join(' ');
 
   // Generate background grid polygons (levels 2, 4, 6)
@@ -297,7 +330,7 @@ const clearAll = () => {
   const gridPoints2 = modesForGrid.map(m => getRadarPoint(m.id, 2)).join(' ');
 
   return (
-    <div className="modus-web-container" style={{ display: 'flex', flexDirection: 'column', minHeight: '80vh', background: '#f8fafc', padding: '1rem', fontFamily: 'inherit' }}>
+    <div className="modus-web-container" style={{ display: 'flex', flexDirection: 'column', minHeight: '82vh', background: '#f8fafc', padding: '1rem', fontFamily: 'inherit' }}>
       
       {/* Toolbar */}
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', background: 'white', padding: '1rem 1.5rem', borderRadius: '12px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)', marginBottom: '1rem', gap: '1rem' }}>
@@ -305,16 +338,144 @@ const clearAll = () => {
           <h2 style={{ margin: 0, fontSize: '1.25rem', color: '#1e293b', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Share2 size={24} color="#3b82f6" /> Casusconceptualisatie (Modus Web)
           </h2>
-          <p style={{ margin: '4px 0 0 0', fontSize: '0.85rem', color: '#64748b' }}>Teken het patroon of importeer SMI testdata om direct het Spinnenweb te genereren.</p>
+          <p style={{ margin: '4px 0 0 0', fontSize: '0.85rem', color: '#64748b' }}>
+            Wissel tussen het Spinnenweb (radar) en de Graph-weergave (casusconceptualisatie met relatiepijlen).
+          </p>
         </div>
         
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+        {/* Controls */}
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
           
+          {/* Main View Switcher: Radar vs Graph */}
+          <div style={{ display: 'flex', background: '#f1f5f9', padding: '3px', borderRadius: '8px', border: '1px solid #e2e8f0', gap: '3px' }}>
+            <button 
+              onClick={() => { setShowRadar(true); setConnectingFrom(null); }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '0.45rem 0.85rem',
+                borderRadius: '6px',
+                border: 'none',
+                background: showRadar ? '#3b82f6' : 'transparent',
+                color: showRadar ? 'white' : '#475569',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                fontSize: '0.85rem',
+                boxShadow: showRadar ? '0 2px 4px rgba(59, 130, 246, 0.2)' : 'none',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <Activity size={16} /> Spinnenweb (Radar)
+            </button>
+            <button 
+              onClick={() => setShowRadar(false)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '0.45rem 0.85rem',
+                borderRadius: '6px',
+                border: 'none',
+                background: !showRadar ? '#3b82f6' : 'transparent',
+                color: !showRadar ? 'white' : '#475569',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                fontSize: '0.85rem',
+                boxShadow: !showRadar ? '0 2px 4px rgba(59, 130, 246, 0.2)' : 'none',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <Share2 size={16} /> Casusconceptualisatie (Graph)
+            </button>
+          </div>
+
+          {/* Graph interaction tools (only active when in Graph mode) */}
+          {!showRadar && (
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+              <div style={{ width: '1px', height: '24px', background: '#e2e8f0' }} />
+              <button 
+                onClick={() => { setInteractionMode('connect'); setConnectingFrom(null); }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '0.45rem 0.8rem',
+                  borderRadius: '7px',
+                  border: '1px solid ' + (interactionMode === 'connect' ? '#3b82f6' : '#cbd5e1'),
+                  background: interactionMode === 'connect' ? '#eff6ff' : 'white',
+                  color: interactionMode === 'connect' ? '#1d4ed8' : '#475569',
+                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                  fontSize: '0.85rem'
+                }}
+                title="Pijlen trekken tussen modi"
+              >
+                <Share2 size={15} /> Pijlen verbinden
+              </button>
+              <button 
+                onClick={() => { setInteractionMode('size'); setConnectingFrom(null); }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '0.45rem 0.8rem',
+                  borderRadius: '7px',
+                  border: '1px solid ' + (interactionMode === 'size' ? '#3b82f6' : '#cbd5e1'),
+                  background: interactionMode === 'size' ? '#eff6ff' : 'white',
+                  color: interactionMode === 'size' ? '#1d4ed8' : '#475569',
+                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                  fontSize: '0.85rem'
+                }}
+                title="Bolgrootte handmatig aanpassen"
+              >
+                <MousePointer2 size={15} /> Bolgrootte
+              </button>
+              {connections.length > 0 && (
+                <button 
+                  onClick={() => setConnections([])}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    padding: '0.45rem 0.75rem',
+                    borderRadius: '7px',
+                    border: '1px solid #fecaca',
+                    background: '#fff1f2',
+                    color: '#e11d48',
+                    cursor: 'pointer',
+                    fontWeight: '600',
+                    fontSize: '0.8rem'
+                  }}
+                  title="Wis alle getekende pijlen"
+                >
+                  Pijlen wissen ({connections.length})
+                </button>
+              )}
+            </div>
+          )}
+
+          {/* Client data indicator */}
+          {isClientDataActive && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#eff6ff', border: '1px solid #bfdbfe', padding: '5px 12px', borderRadius: '8px', fontSize: '0.85rem', color: '#1e40af' }}>
+              <span style={{ fontWeight: 'bold' }}>Cliënt-data actief</span>
+              <button 
+                onClick={restoreDefaultDemo}
+                style={{ background: 'transparent', border: 'none', color: '#3b82f6', cursor: 'pointer', fontSize: '0.8rem', textDecoration: 'underline', padding: 0, display: 'flex', alignItems: 'center', gap: '4px' }}
+                title="Herstel voorbeelddata"
+              >
+                <RotateCcw size={12} /> Voorbeelddata
+              </button>
+            </div>
+          )}
+
+          {/* Import CSV */}
           <button 
             onClick={() => fileInputRef.current?.click()}
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid #10b981', background: '#ecfdf5', color: '#047857', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.9rem' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0.45rem 0.9rem', borderRadius: '8px', border: '1px solid #10b981', background: '#ecfdf5', color: '#047857', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.85rem' }}
           >
-            <Upload size={16} /> Importeer CSV (SMI)
+            <Upload size={15} /> Importeer CSV (SMI)
           </button>
           <input 
             type="file" 
@@ -324,12 +485,13 @@ const clearAll = () => {
             style={{ display: 'none' }} 
           />
 
+          {/* Clear all */}
           <button 
             onClick={clearAll}
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: 'white', color: '#ef4444', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.9rem', marginLeft: '0.5rem' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '0.45rem 0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: 'white', color: '#ef4444', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.85rem' }}
             title="Wis alles"
           >
-            <Trash2 size={16} />
+            <Trash2 size={15} />
           </button>
         </div>
       </div>
@@ -337,8 +499,40 @@ const clearAll = () => {
       {/* Canvas */}
       <div ref={containerRef} style={{ flex: 1, position: 'relative', background: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', overflow: 'hidden', minHeight: '650px', display: 'flex' }}>
         
-        
-        {/* Subcategory Background Labels */}
+        {/* Floating Instruction Banner in Graph Mode */}
+        {!showRadar && (
+          <div style={{
+            position: 'absolute',
+            top: '12px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            background: 'rgba(255, 255, 255, 0.95)',
+            border: '1px solid #cbd5e1',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+            borderRadius: '20px',
+            padding: '5px 16px',
+            fontSize: '0.82rem',
+            color: connectingFrom ? '#2563eb' : '#475569',
+            fontWeight: connectingFrom ? 'bold' : 'normal',
+            pointerEvents: 'none',
+            zIndex: 10,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}>
+            {interactionMode === 'connect' ? (
+              connectingFrom ? (
+                <>Klik op een tweede modus om de pijl te voltooien (of klik nogmaals op dezelfde om te annuleren).</>
+              ) : (
+                <>Klik op een modus en daarna op een andere modus om een cycluspijl te trekken.</>
+              )
+            ) : (
+              <>Klik op een modus om de bolgrootte handmatig aan te passen.</>
+            )}
+          </div>
+        )}
+
+        {/* Subcategory Background Labels (in Graph mode) */}
         {!showRadar && (
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}>
             {/* Overcompensatie */}
@@ -380,9 +574,9 @@ const clearAll = () => {
           {showRadar && Object.keys(radarScores).length > 0 && Object.keys(nodePositions).length > 0 && (
             <g className="custom-radar">
               {/* Grid Background Polygons */}
-              <polygon points={gridPoints6} fill="none" stroke="#e2e8f0" strokeWidth="1" />
-              <polygon points={gridPoints4} fill="none" stroke="#e2e8f0" strokeWidth="1" />
-              <polygon points={gridPoints2} fill="none" stroke="#e2e8f0" strokeWidth="1" />
+              <polygon points={gridPoints6} fill="none" stroke="#e2e8f0" strokeWidth="1.2" />
+              <polygon points={gridPoints4} fill="none" stroke="#e2e8f0" strokeWidth="1.2" />
+              <polygon points={gridPoints2} fill="none" stroke="#e2e8f0" strokeWidth="1.2" />
               
               {/* Axes lines from center to nodes */}
               {modesForGrid.map(m => {
@@ -411,7 +605,7 @@ const clearAll = () => {
             </g>
           )}
 
-          {/* Wavy center line (decorative) - Only show if not drawing spider web */}
+          {/* Wavy center line (decorative) - Only show in Graph mode */}
           {!showRadar && (
              <path d="M 50% 15% Q 45% 30% 50% 50% T 50% 85%" fill="transparent" stroke="#e2e8f0" strokeWidth="2" strokeDasharray="6,6" />
           )}
@@ -431,19 +625,20 @@ const clearAll = () => {
             const dx = p2.x - p1.x;
             const dy = p2.y - p1.y;
             const dist = Math.sqrt(dx*dx + dy*dy);
-            
-            const targetSize = sizes[conn.to] || 1;
-            const radiusEstimates = { 1: 50, 2: 65, 3: 80, 4: 100 };
-            const targetRadius = radiusEstimates[targetSize] || 50;
-            
-            const startRadius = radiusEstimates[sizes[conn.from] || 1] || 50;
-            const sX = p1.x + (dx/dist)*startRadius;
-            const sY = p1.y + (dy/dist)*startRadius;
+            if (dist < 10) return null;
 
-            const rX = p2.x - (dx/dist)*(targetRadius + 5);
-            const rY = p2.y - (dy/dist)*(targetRadius + 5);
+            const scale1 = getNodeScale(sizes[conn.from] || 1, conn.from);
+            const scale2 = getNodeScale(sizes[conn.to] || 1, conn.to);
+            const startRadius = 21 * scale1;
+            const targetRadius = 21 * scale2;
 
-            if (dist < startRadius + targetRadius) return null; 
+            const sX = p1.x + (dx/dist) * startRadius;
+            const sY = p1.y + (dy/dist) * startRadius;
+
+            const rX = p2.x - (dx/dist) * (targetRadius + 6);
+            const rY = p2.y - (dy/dist) * (targetRadius + 6);
+
+            if (dist < startRadius + targetRadius + 6) return null; 
 
             return (
               <line 
@@ -463,15 +658,19 @@ const clearAll = () => {
           const sizeIndex = sizes[mode.id] || 1;
           const scale = getNodeScale(sizeIndex, mode.id);
           const isSelected = connectingFrom === mode.id;
-          
           const pos = getModePosition(mode.id);
-          const hasScore = radarScores[mode.id] > 0;
           
           if (showRadar) {
             const trueBase14 = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
             if (!trueBase14.includes(mode.id)) return null;
           }
           
+          const hasScore = radarScores[mode.id] !== undefined;
+          const scoreVal = radarScores[mode.id];
+          const isLight = hasScore && scoreVal < 3;
+          const bg = isLight ? LIGHT_CATEGORY_COLORS[mode.category] : CATEGORY_COLORS[mode.category];
+          const textColor = (isLight || mode.category === 'coping') ? '#451a03' : 'white';
+
           return (
             <div
               key={mode.id}
@@ -483,19 +682,13 @@ const clearAll = () => {
               }}
               onMouseLeave={() => setHoveredNode(null)}
               onClick={() => handleNodeClick(mode.id)}
-              onDoubleClick={(e) => {
-                if (mode.id === 'gv' && showRadar) {
-                  e.stopPropagation();
-                  setShowBlijeKind(prev => !prev);
-                }
-              }}
               style={{
                 position: 'absolute',
                 left: `${pos.x}%`,
                 top: `${pos.y}%`,
                 transform: `translate(-50%, -50%) scale(${scale})`,
-                background: (showRadar && radarScores[mode.id] !== undefined && radarScores[mode.id] < 3) ? LIGHT_CATEGORY_COLORS[mode.category] : CATEGORY_COLORS[mode.category],
-                color: ((showRadar && radarScores[mode.id] !== undefined && radarScores[mode.id] < 3) || mode.category === 'coping') ? '#451a03' : 'white',
+                background: bg,
+                color: textColor,
                 width: '42px',
                 height: '42px',
                 display: 'flex',
@@ -506,23 +699,43 @@ const clearAll = () => {
                 fontWeight: '900',
                 fontSize: '1.1rem',
                 textAlign: 'center',
-                boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
-                border: '2px solid rgba(255,255,255,0.4)',
-                boxShadow: isSelected ? `0 0 0 3px white, 0 0 0 6px #3b82f6` : '0 4px 10px rgba(0,0,0,0.12)',
+                border: '2px solid rgba(255,255,255,0.5)',
+                boxShadow: isSelected ? `0 0 0 3px white, 0 0 0 6px #3b82f6` : '0 4px 10px rgba(0,0,0,0.14)',
                 cursor: 'pointer',
-                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                zIndex: 2,
-                maxWidth: '140px',
-                whiteSpace: 'normal',
-                lineHeight: 1.15,
+                transition: 'left 0.6s cubic-bezier(0.16, 1, 0.3, 1), top 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease, box-shadow 0.2s',
+                zIndex: isSelected ? 10 : 2,
                 userSelect: 'none'
               }}
             >
               {getAbbreviation(mode.id)}
-              {showRadar && radarScores[mode.id] !== undefined && (
-                <div style={{ fontSize: '0.65rem', opacity: 0.8, marginTop: '2px', fontWeight: 'normal' }}>
-                  {Number(radarScores[mode.id]).toFixed(1)}
+              {hasScore && (
+                <div style={{ fontSize: '0.65rem', opacity: 0.9, marginTop: '1px', fontWeight: 'bold' }}>
+                  {Number(scoreVal).toFixed(1)}
                 </div>
+              )}
+
+              {/* Title label in Graph mode */}
+              {!showRadar && (
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    marginTop: '4px',
+                    fontSize: '0.72rem',
+                    fontWeight: 'bold',
+                    color: '#1e293b',
+                    whiteSpace: 'nowrap',
+                    pointerEvents: 'none',
+                    background: 'rgba(255,255,255,0.92)',
+                    padding: '1px 6px',
+                    borderRadius: '4px',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.08)'
+                  }}
+                >
+                  {mode.title}
+                </span>
               )}
             </div>
           );

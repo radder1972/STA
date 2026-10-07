@@ -248,7 +248,7 @@ export default function SingleResult({ type, answers, onUpdateAnswer, onViewBasi
           <ScoreChart type={type} scores={calculatedScores.map(score => ({
             ...score,
             category: type === 'smi' ? smiModesMap[score.id]?.group : basisbehoeftenMap[score.id]
-          }))} onViewBasisbehoeften={onViewBasisbehoeften} onViewModiCategorieen={onViewModiCategorieen} />
+          }))} rawAnswers={answers} onViewBasisbehoeften={onViewBasisbehoeften} onViewModiCategorieen={onViewModiCategorieen} />
         </div>
 
         <div className="details-section" style={{ marginTop: '2rem', marginBottom: '2rem' }}>
