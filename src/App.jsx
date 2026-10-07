@@ -51,7 +51,7 @@ function App() {
   );
 
   const isSnelstartApp = window.location.pathname.endsWith('snelstart.html');
-  const isModusWebApp = window.location.pathname.endsWith('modusweb.html');
+  const isModusWebApp = window.location.pathname.endsWith('modusweb.html') || window.location.pathname.includes('/modusweb');
 
   const isHubApp = !isTestApp && !isTafelApp && !isKaartenApp && !isSnelstartApp && !isModusWebApp;
 
