@@ -395,7 +395,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                   {/* Inner container (56x87mm) for content positioning, without the CardInnerBorder since we drew it above */}
                   <div style={{ position: 'absolute', top: '3mm', left: '3mm', right: '3mm', bottom: '3mm', background: 'transparent', borderRadius: 0 }}>
                     {/* Binnenlijn (2px): this was originally part of CardInnerBorder, placed 6px inwards */}
-                    <div style={{ position: 'absolute', top: '6px', left: '6px', right: '6px', bottom: '6px', border: `2px solid ${cardColor}`, borderRadius: 0, boxSizing: 'border-box', pointerEvents: 'none' }}></div>
+                    <div style={{ position: 'absolute', top: '6px', left: '6px', right: '6px', bottom: '6px', border: `2px solid ${cardColor}`, borderRadius: '6px', boxSizing: 'border-box', pointerEvents: 'none' }}></div>
 
                     <div style={{ 
                       position: 'absolute', 
