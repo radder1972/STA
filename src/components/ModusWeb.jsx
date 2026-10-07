@@ -45,7 +45,7 @@ const CATEGORY_COLORS = {
   coping: '#facc15'
 };
 
-const RADAR_ORDER = ['gv', 'bk', 'kk', 'rk', 'ik', 'ok', 'boos_k', 'woc', 'poc', 'zh', 'pa', 'wi', 'ob', 'bob', 'oz', 'so', 'vo'];
+const RADAR_ORDER = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
 
 export default function ModusWeb() {
   const [interactionMode, setInteractionMode] = useState('size');
@@ -54,7 +54,7 @@ export default function ModusWeb() {
   const [connectingFrom, setConnectingFrom] = useState(null);
   
   const [radarScores, setRadarScores] = useState({});
-  const [showBlijeKind, setShowBlijeKind] = useState(false);
+  
   const [hoveredNode, setHoveredNode] = useState(null);
   const [popupFlipped, setPopupFlipped] = useState(false);
   const [showRadar, setShowRadar] = useState(false);
@@ -216,10 +216,8 @@ const clearAll = () => {
     // Calculate angle based on the official 14 modes for the background grid
   const modesForGrid = MODES
     .filter(m => {
-      const standard14 = ['woc', 'zh', 'pa', 'wi', 'ob', 'oz', 'so', 'vo', 'gv', 'kk', 'rk', 'ik', 'ok', 'boos_k'];
-      if (standard14.includes(m.id)) return true;
-      if (m.id === 'bk' && showBlijeKind) return true;
-      return false;
+      const trueBase14 = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
+      return trueBase14.includes(m.id);
     })
     .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
     
@@ -474,9 +472,8 @@ const clearAll = () => {
           const hasScore = radarScores[mode.id] > 0;
           
           if (showRadar) {
-            const standard14 = ['woc', 'zh', 'pa', 'wi', 'ob', 'oz', 'so', 'vo', 'gv', 'kk', 'rk', 'ik', 'ok', 'boos_k'];
-            if (!standard14.includes(mode.id) && mode.id !== 'bk') return null;
-            if (mode.id === 'bk' && !showBlijeKind) return null;
+            const trueBase14 = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
+            if (!trueBase14.includes(mode.id)) return null;
           }
           
           return (
