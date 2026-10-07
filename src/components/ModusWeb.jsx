@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Share2, MousePointer2, Trash2, Upload, Activity, RotateCcw } from 'lucide-react';
+import { Share2, MousePointer2, Trash2, Upload, Activity, RotateCcw, Rotate3d, Eye } from 'lucide-react';
 import smiScoring from '../data/smi-scoring.json';
 import SchemaCard from './SchemaCard';
+import SmiRadarGraph from './SmiRadarGraph';
 
 const MODES = [
   { id: 'gv', title: 'Gezonde volwassene', category: 'gezond', x: 50, y: 12 },
@@ -65,6 +66,7 @@ const getAbbreviation = (id) => {
 };
 
 export default function ModusWeb() {
+  const [viewMode, setViewMode] = useState('3d'); // '3d', '2d', or 'network'
   const [interactionMode, setInteractionMode] = useState('connect'); // 'connect' or 'size'
   const [sizes, setSizes] = useState({});
   const [connections, setConnections] = useState([]);
@@ -73,12 +75,13 @@ export default function ModusWeb() {
   const [radarScores, setRadarScores] = useState({});
   const [hoveredNode, setHoveredNode] = useState(null);
   const [popupFlipped, setPopupFlipped] = useState(false);
-  const [showRadar, setShowRadar] = useState(true);
   const [isClientDataActive, setIsClientDataActive] = useState(false);
   
   const containerRef = useRef(null);
   const fileInputRef = useRef(null);
   const [nodePositions, setNodePositions] = useState({});
+
+  const showRadar = viewMode === '2d';
 
   const updatePositions = () => {
     if (!containerRef.current) return;
@@ -105,7 +108,7 @@ export default function ModusWeb() {
       window.removeEventListener('resize', updatePositions);
       clearTimeout(timer);
     };
-  }, [sizes, showRadar]);
+  }, [sizes, viewMode]);
 
   // Load scores from localStorage or default SMI demo data
   useEffect(() => {
@@ -116,12 +119,16 @@ export default function ModusWeb() {
     if (savedSmiData) {
       try {
         const parsed = JSON.parse(savedSmiData);
-        calculateScores(parsed, initialView ? initialView === 'radar' : true);
+        calculateScores(parsed);
         setIsClientDataActive(true);
-        if (initialView === 'graph') {
-          setShowRadar(false);
-          localStorage.removeItem('schemaApp_modusweb_initial_view');
+        if (initialView === 'graph' || initialView === 'network') {
+          setViewMode('network');
+        } else if (initialView === '2d') {
+          setViewMode('2d');
+        } else {
+          setViewMode('3d');
         }
+        localStorage.removeItem('schemaApp_modusweb_initial_view');
         return;
       } catch (e) {
         console.error('Fout bij laden van opgeslagen SMI-antwoorden', e);
@@ -140,19 +147,23 @@ export default function ModusWeb() {
           else newSizes[mId] = 1;
         });
         setSizes(newSizes);
-        setShowRadar(initialView !== 'graph');
-        setIsClientDataActive(true);
-        if (initialView === 'graph') {
-          localStorage.removeItem('schemaApp_modusweb_initial_view');
+        if (initialView === 'graph' || initialView === 'network') {
+          setViewMode('network');
+        } else if (initialView === '2d') {
+          setViewMode('2d');
+        } else {
+          setViewMode('3d');
         }
+        setIsClientDataActive(true);
+        localStorage.removeItem('schemaApp_modusweb_initial_view');
         return;
       } catch (e) {
         console.error('Fout bij laden van opgeslagen scores', e);
       }
     }
 
-    // Default fallback
-    calculateScores(DEFAULT_SMI_DATA, true);
+    // Default fallback demo data
+    calculateScores(DEFAULT_SMI_DATA);
   }, []);
 
   const handleFileUpload = (e) => {
@@ -177,14 +188,14 @@ export default function ModusWeb() {
         }
       }
       
-      calculateScores(importedSmi, true);
+      calculateScores(importedSmi);
       setIsClientDataActive(true);
       e.target.value = ''; // Reset
     };
     reader.readAsText(file);
   };
 
-  const calculateScores = (smiData, shouldShowRadar = true) => {
+  const calculateScores = (smiData) => {
     const newSizes = { ...sizes };
     const rScores = {};
 
@@ -220,7 +231,6 @@ export default function ModusWeb() {
 
     setSizes(newSizes);
     setRadarScores(rScores);
-    setShowRadar(shouldShowRadar);
   };
 
   const handleNodeClick = (modeId) => {
@@ -260,7 +270,6 @@ export default function ModusWeb() {
       setConnections([]);
       setConnectingFrom(null);
       setRadarScores({});
-      setShowRadar(false);
       setIsClientDataActive(false);
       localStorage.removeItem('schemaApp_modusweb_smi');
       localStorage.removeItem('schemaApp_modusweb_scores');
@@ -273,7 +282,7 @@ export default function ModusWeb() {
     localStorage.removeItem('schemaApp_modusweb_scores');
     localStorage.removeItem('schemaApp_modusweb_initial_view');
     setIsClientDataActive(false);
-    calculateScores(DEFAULT_SMI_DATA, true);
+    calculateScores(DEFAULT_SMI_DATA);
   };
 
   // 14 modes for the official circular radar grid
@@ -287,7 +296,7 @@ export default function ModusWeb() {
   const modesForData = modesForGrid;
 
   const getModePosition = (modeId) => {
-    if (!showRadar) {
+    if (viewMode === 'network') {
       const m = MODES.find(m => m.id === modeId);
       return m ? { x: m.x, y: m.y } : { x: 50, y: 50 };
     }
@@ -339,17 +348,17 @@ export default function ModusWeb() {
             <Share2 size={24} color="#3b82f6" /> Casusconceptualisatie (Modus Web)
           </h2>
           <p style={{ margin: '4px 0 0 0', fontSize: '0.85rem', color: '#64748b' }}>
-            Wissel tussen het Spinnenweb (radar) en de Graph-weergave (casusconceptualisatie met relatiepijlen).
+            Kies tussen de interactieve 3D Graph, het 2D Spinnenweb of de Casusconceptualisatie (netwerk met cycluspijlen).
           </p>
         </div>
         
         {/* Controls */}
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
           
-          {/* Main View Switcher: Radar vs Graph */}
+          {/* Main View Switcher: 3D Graph vs 2D Radar vs Casusconceptualisatie Network */}
           <div style={{ display: 'flex', background: '#f1f5f9', padding: '3px', borderRadius: '8px', border: '1px solid #e2e8f0', gap: '3px' }}>
             <button 
-              onClick={() => { setShowRadar(true); setConnectingFrom(null); }}
+              onClick={() => { setViewMode('3d'); setConnectingFrom(null); }}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -357,19 +366,19 @@ export default function ModusWeb() {
                 padding: '0.45rem 0.85rem',
                 borderRadius: '6px',
                 border: 'none',
-                background: showRadar ? '#3b82f6' : 'transparent',
-                color: showRadar ? 'white' : '#475569',
+                background: viewMode === '3d' ? '#3b82f6' : 'transparent',
+                color: viewMode === '3d' ? 'white' : '#475569',
                 cursor: 'pointer',
                 fontWeight: 'bold',
                 fontSize: '0.85rem',
-                boxShadow: showRadar ? '0 2px 4px rgba(59, 130, 246, 0.2)' : 'none',
+                boxShadow: viewMode === '3d' ? '0 2px 5px rgba(59, 130, 246, 0.25)' : 'none',
                 transition: 'all 0.15s ease'
               }}
             >
-              <Activity size={16} /> Spinnenweb (Radar)
+              <Rotate3d size={16} /> 3D Graph (Ruimtelijk)
             </button>
             <button 
-              onClick={() => setShowRadar(false)}
+              onClick={() => { setViewMode('2d'); setConnectingFrom(null); }}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -377,21 +386,41 @@ export default function ModusWeb() {
                 padding: '0.45rem 0.85rem',
                 borderRadius: '6px',
                 border: 'none',
-                background: !showRadar ? '#3b82f6' : 'transparent',
-                color: !showRadar ? 'white' : '#475569',
+                background: viewMode === '2d' ? '#3b82f6' : 'transparent',
+                color: viewMode === '2d' ? 'white' : '#475569',
                 cursor: 'pointer',
                 fontWeight: 'bold',
                 fontSize: '0.85rem',
-                boxShadow: !showRadar ? '0 2px 4px rgba(59, 130, 246, 0.2)' : 'none',
+                boxShadow: viewMode === '2d' ? '0 2px 5px rgba(59, 130, 246, 0.25)' : 'none',
                 transition: 'all 0.15s ease'
               }}
             >
-              <Share2 size={16} /> Casusconceptualisatie (Graph)
+              <Eye size={15} /> 2D Spinnenweb
+            </button>
+            <button 
+              onClick={() => setViewMode('network')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '0.45rem 0.85rem',
+                borderRadius: '6px',
+                border: 'none',
+                background: viewMode === 'network' ? '#3b82f6' : 'transparent',
+                color: viewMode === 'network' ? 'white' : '#475569',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                fontSize: '0.85rem',
+                boxShadow: viewMode === 'network' ? '0 2px 5px rgba(59, 130, 246, 0.25)' : 'none',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <Share2 size={16} /> Casusconceptualisatie (Netwerk)
             </button>
           </div>
 
-          {/* Graph interaction tools (only active when in Graph mode) */}
-          {!showRadar && (
+          {/* Network mode interaction tools */}
+          {viewMode === 'network' && (
             <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
               <div style={{ width: '1px', height: '24px', background: '#e2e8f0' }} />
               <button 
@@ -496,251 +525,247 @@ export default function ModusWeb() {
         </div>
       </div>
 
-      {/* Canvas */}
-      <div ref={containerRef} style={{ flex: 1, position: 'relative', background: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', overflow: 'hidden', minHeight: '650px', display: 'flex' }}>
-        
-        {/* Floating Instruction Banner in Graph Mode */}
-        {!showRadar && (
-          <div style={{
-            position: 'absolute',
-            top: '12px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            background: 'rgba(255, 255, 255, 0.95)',
-            border: '1px solid #cbd5e1',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-            borderRadius: '20px',
-            padding: '5px 16px',
-            fontSize: '0.82rem',
-            color: connectingFrom ? '#2563eb' : '#475569',
-            fontWeight: connectingFrom ? 'bold' : 'normal',
-            pointerEvents: 'none',
-            zIndex: 10,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px'
-          }}>
-            {interactionMode === 'connect' ? (
-              connectingFrom ? (
-                <>Klik op een tweede modus om de pijl te voltooien (of klik nogmaals op dezelfde om te annuleren).</>
-              ) : (
-                <>Klik op een modus en daarna op een andere modus om een cycluspijl te trekken.</>
-              )
-            ) : (
-              <>Klik op een modus om de bolgrootte handmatig aan te passen.</>
-            )}
-          </div>
-        )}
+      {/* 3D Graph View */}
+      {viewMode === '3d' && (
+        <div style={{ flex: 1, background: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', padding: '1.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '650px' }}>
+          <SmiRadarGraph scores={radarScores} showAction={false} initialDimension="3d" />
+        </div>
+      )}
 
-        {/* Subcategory Background Labels (in Graph mode) */}
-        {!showRadar && (
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}>
-            {/* Overcompensatie */}
-            <div style={{ position: 'absolute', left: '4%', top: '38%', transform: 'translateY(-50%) rotate(-90deg)', transformOrigin: 'left center', fontSize: '1.4rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
-              Overcompensatie
-            </div>
-            
-            {/* Vermijding */}
-            <div style={{ position: 'absolute', left: '4%', top: '77%', transform: 'translateY(-50%) rotate(-90deg)', transformOrigin: 'left center', fontSize: '1.4rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
-              Vermijding
-            </div>
-            
-            {/* Overgave */}
-            <div style={{ position: 'absolute', left: '7%', top: '96%', transform: 'translateY(-50%)', transformOrigin: 'left center', fontSize: '1.1rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
-              Overgave
-            </div>
-            
-            {/* Oudermodi */}
-            <div style={{ position: 'absolute', right: '3%', top: '32%', transform: 'translateY(-50%) rotate(90deg)', transformOrigin: 'right center', fontSize: '1.4rem', fontWeight: '800', color: '#fecaca', opacity: 0.6, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
-              Oudermodi
-            </div>
-            
-            {/* Kindmodi */}
-            <div style={{ position: 'absolute', right: '3%', top: '75%', transform: 'translateY(-50%) rotate(90deg)', transformOrigin: 'right center', fontSize: '1.4rem', fontWeight: '800', color: '#bfdbfe', opacity: 0.6, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
-              Kindmodi
-            </div>
-          </div>
-        )}
-
-        {/* SVG Layer for EVERYTHING (Radar + Custom Lines) */}
-        <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }}>
-          <defs>
-            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9.5" refY="3.5" orient="auto">
-              <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />
-            </marker>
-          </defs>
+      {/* 2D & Network Canvas */}
+      {viewMode !== '3d' && (
+        <div ref={containerRef} style={{ flex: 1, position: 'relative', background: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', overflow: 'hidden', minHeight: '650px', display: 'flex' }}>
           
-          {/* Custom Spider Web (Radar) */}
-          {showRadar && Object.keys(radarScores).length > 0 && Object.keys(nodePositions).length > 0 && (
-            <g className="custom-radar">
-              {/* Grid Background Polygons */}
-              <polygon points={gridPoints6} fill="none" stroke="#e2e8f0" strokeWidth="1.2" />
-              <polygon points={gridPoints4} fill="none" stroke="#e2e8f0" strokeWidth="1.2" />
-              <polygon points={gridPoints2} fill="none" stroke="#e2e8f0" strokeWidth="1.2" />
-              
-              {/* Axes lines from center to nodes */}
-              {modesForGrid.map(m => {
-                const pos = getModePosition(m.id);
-                const px = (pos.x * w) / 100;
-                const py = (pos.y * h) / 100;
-                return <line key={`axis-${m.id}`} x1={cx} y1={cy} x2={px} y2={py} stroke="#f1f5f9" strokeWidth="2" />;
-              })}
-
-              {/* The Actual Data Polygon */}
-              <polygon 
-                points={dataPolygonPoints} 
-                fill="#3b82f6" 
-                fillOpacity="0.25" 
-                stroke="#3b82f6" 
-                strokeWidth="3" 
-                strokeLinejoin="round" 
-              />
-              
-              {/* Data Points */}
-              {modesForData.map(m => {
-                const score = radarScores[m.id] || 0;
-                const pt = getRadarPoint(m.id, score).split(',');
-                return <circle key={`pt-${m.id}`} cx={pt[0]} cy={pt[1]} r="7" fill={score < 3 ? LIGHT_CATEGORY_COLORS[m.category] : CATEGORY_COLORS[m.category]} stroke="white" strokeWidth="2.5" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.25))' }} />;
-              })}
-            </g>
+          {/* Floating Instruction Banner in Network Mode */}
+          {viewMode === 'network' && (
+            <div style={{
+              position: 'absolute',
+              top: '12px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              background: 'rgba(255, 255, 255, 0.95)',
+              border: '1px solid #cbd5e1',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+              borderRadius: '20px',
+              padding: '5px 16px',
+              fontSize: '0.82rem',
+              color: connectingFrom ? '#2563eb' : '#475569',
+              fontWeight: connectingFrom ? 'bold' : 'normal',
+              pointerEvents: 'none',
+              zIndex: 10,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}>
+              {interactionMode === 'connect' ? (
+                connectingFrom ? (
+                  <>Klik op een tweede modus om de cycluspijl te trekken (of klik nogmaals op dezelfde om te annuleren).</>
+                ) : (
+                  <>Klik op een beginmodus en daarna op een doelmodus om een interactiepijl te verbinden.</>
+                )
+              ) : (
+                <>Klik op een modus om de bolgrootte handmatig aan te passen.</>
+              )}
+            </div>
           )}
 
-          {/* Wavy center line (decorative) - Only show in Graph mode */}
-          {!showRadar && (
-             <path d="M 50% 15% Q 45% 30% 50% 50% T 50% 85%" fill="transparent" stroke="#e2e8f0" strokeWidth="2" strokeDasharray="6,6" />
+          {/* Subcategory Background Labels (in Network mode) */}
+          {viewMode === 'network' && (
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}>
+              <div style={{ position: 'absolute', left: '4%', top: '38%', transform: 'translateY(-50%) rotate(-90deg)', transformOrigin: 'left center', fontSize: '1.4rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
+                Overcompensatie
+              </div>
+              <div style={{ position: 'absolute', left: '4%', top: '77%', transform: 'translateY(-50%) rotate(-90deg)', transformOrigin: 'left center', fontSize: '1.4rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
+                Vermijding
+              </div>
+              <div style={{ position: 'absolute', left: '7%', top: '96%', transform: 'translateY(-50%)', transformOrigin: 'left center', fontSize: '1.1rem', fontWeight: '800', color: '#fef08a', opacity: 0.7, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
+                Overgave
+              </div>
+              <div style={{ position: 'absolute', right: '3%', top: '32%', transform: 'translateY(-50%) rotate(90deg)', transformOrigin: 'right center', fontSize: '1.4rem', fontWeight: '800', color: '#fecaca', opacity: 0.6, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
+                Oudermodi
+              </div>
+              <div style={{ position: 'absolute', right: '3%', top: '75%', transform: 'translateY(-50%) rotate(90deg)', transformOrigin: 'right center', fontSize: '1.4rem', fontWeight: '800', color: '#bfdbfe', opacity: 0.6, letterSpacing: '0.2em', textTransform: 'uppercase', lineHeight: '1.1' }}>
+                Kindmodi
+              </div>
+            </div>
           )}
 
-          {/* Connection Lines (User drawn) */}
-          {connections.map((conn, idx) => {
-            const m1 = MODES.find(m => m.id === conn.from);
-            const m2 = MODES.find(m => m.id === conn.to);
-            if (!m1 || !m2) return null;
-            if (showRadar && (!(radarScores[m1.id] > 0) || !(radarScores[m2.id] > 0))) return null;
+          {/* SVG Layer for 2D Radar & Network Lines */}
+          <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }}>
+            <defs>
+              <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9.5" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />
+              </marker>
+            </defs>
             
-            const pos1 = getModePosition(m1.id);
-            const pos2 = getModePosition(m2.id);
-            const p1 = { x: (pos1.x * w) / 100, y: (pos1.y * h) / 100 };
-            const p2 = { x: (pos2.x * w) / 100, y: (pos2.y * h) / 100 };
+            {/* 2D Spider Web */}
+            {viewMode === '2d' && Object.keys(radarScores).length > 0 && Object.keys(nodePositions).length > 0 && (
+              <g className="custom-radar">
+                <polygon points={gridPoints6} fill="none" stroke="#e2e8f0" strokeWidth="1.2" />
+                <polygon points={gridPoints4} fill="none" stroke="#e2e8f0" strokeWidth="1.2" />
+                <polygon points={gridPoints2} fill="none" stroke="#e2e8f0" strokeWidth="1.2" />
+                
+                {modesForGrid.map(m => {
+                  const pos = getModePosition(m.id);
+                  const px = (pos.x * w) / 100;
+                  const py = (pos.y * h) / 100;
+                  return <line key={`axis-${m.id}`} x1={cx} y1={cy} x2={px} y2={py} stroke="#f1f5f9" strokeWidth="2" />;
+                })}
+
+                <polygon 
+                  points={dataPolygonPoints} 
+                  fill="#3b82f6" 
+                  fillOpacity="0.25" 
+                  stroke="#3b82f6" 
+                  strokeWidth="3" 
+                  strokeLinejoin="round" 
+                />
+                
+                {modesForData.map(m => {
+                  const score = radarScores[m.id] || 0;
+                  const pt = getRadarPoint(m.id, score).split(',');
+                  return <circle key={`pt-${m.id}`} cx={pt[0]} cy={pt[1]} r="7" fill={score < 3 ? LIGHT_CATEGORY_COLORS[m.category] : CATEGORY_COLORS[m.category]} stroke="white" strokeWidth="2.5" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.25))' }} />;
+                })}
+              </g>
+            )}
+
+            {/* Wavy center line in Network mode */}
+            {viewMode === 'network' && (
+              <path d="M 50% 15% Q 45% 30% 50% 50% T 50% 85%" fill="transparent" stroke="#e2e8f0" strokeWidth="2" strokeDasharray="6,6" />
+            )}
+
+            {/* Connection Lines (User drawn in Network mode) */}
+            {connections.map((conn, idx) => {
+              const m1 = MODES.find(m => m.id === conn.from);
+              const m2 = MODES.find(m => m.id === conn.to);
+              if (!m1 || !m2) return null;
+              if (showRadar && (!(radarScores[m1.id] > 0) || !(radarScores[m2.id] > 0))) return null;
+              
+              const pos1 = getModePosition(m1.id);
+              const pos2 = getModePosition(m2.id);
+              const p1 = { x: (pos1.x * w) / 100, y: (pos1.y * h) / 100 };
+              const p2 = { x: (pos2.x * w) / 100, y: (pos2.y * h) / 100 };
+              
+              const dx = p2.x - p1.x;
+              const dy = p2.y - p1.y;
+              const dist = Math.sqrt(dx*dx + dy*dy);
+              if (dist < 10) return null;
+
+              const scale1 = getNodeScale(sizes[conn.from] || 1, conn.from);
+              const scale2 = getNodeScale(sizes[conn.to] || 1, conn.to);
+              const startRadius = 21 * scale1;
+              const targetRadius = 21 * scale2;
+
+              const sX = p1.x + (dx/dist) * startRadius;
+              const sY = p1.y + (dy/dist) * startRadius;
+
+              const rX = p2.x - (dx/dist) * (targetRadius + 6);
+              const rY = p2.y - (dy/dist) * (targetRadius + 6);
+
+              if (dist < startRadius + targetRadius + 6) return null; 
+
+              return (
+                <line 
+                  key={idx} 
+                  x1={sX} y1={sY} 
+                  x2={rX} y2={rY} 
+                  stroke="#64748b" 
+                  strokeWidth="2.5" 
+                  markerEnd="url(#arrowhead)" 
+                />
+              );
+            })}
+          </svg>
+
+          {/* Nodes */}
+          {MODES.map(mode => {
+            const sizeIndex = sizes[mode.id] || 1;
+            const scale = getNodeScale(sizeIndex, mode.id);
+            const isSelected = connectingFrom === mode.id;
+            const pos = getModePosition(mode.id);
             
-            const dx = p2.x - p1.x;
-            const dy = p2.y - p1.y;
-            const dist = Math.sqrt(dx*dx + dy*dy);
-            if (dist < 10) return null;
-
-            const scale1 = getNodeScale(sizes[conn.from] || 1, conn.from);
-            const scale2 = getNodeScale(sizes[conn.to] || 1, conn.to);
-            const startRadius = 21 * scale1;
-            const targetRadius = 21 * scale2;
-
-            const sX = p1.x + (dx/dist) * startRadius;
-            const sY = p1.y + (dy/dist) * startRadius;
-
-            const rX = p2.x - (dx/dist) * (targetRadius + 6);
-            const rY = p2.y - (dy/dist) * (targetRadius + 6);
-
-            if (dist < startRadius + targetRadius + 6) return null; 
+            if (viewMode === '2d') {
+              const trueBase14 = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
+              if (!trueBase14.includes(mode.id)) return null;
+            }
+            
+            const hasScore = radarScores[mode.id] !== undefined;
+            const scoreVal = radarScores[mode.id];
+            const isLight = hasScore && scoreVal < 3;
+            const bg = isLight ? LIGHT_CATEGORY_COLORS[mode.category] : CATEGORY_COLORS[mode.category];
+            const textColor = (isLight || mode.category === 'coping') ? '#451a03' : 'white';
 
             return (
-              <line 
-                key={idx} 
-                x1={sX} y1={sY} 
-                x2={rX} y2={rY} 
-                stroke="#64748b" 
-                strokeWidth="2.5" 
-                markerEnd="url(#arrowhead)" 
-              />
+              <div
+                key={mode.id}
+                id={`node-${mode.id}`}
+                onMouseEnter={() => {
+                  setHoveredNode(mode.title);
+                  setPopupFlipped(false);
+                  setTimeout(() => setPopupFlipped(true), 150);
+                }}
+                onMouseLeave={() => setHoveredNode(null)}
+                onClick={() => handleNodeClick(mode.id)}
+                style={{
+                  position: 'absolute',
+                  left: `${pos.x}%`,
+                  top: `${pos.y}%`,
+                  transform: `translate(-50%, -50%) scale(${scale})`,
+                  background: bg,
+                  color: textColor,
+                  width: '42px',
+                  height: '42px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '50%',
+                  fontWeight: '900',
+                  fontSize: '1.1rem',
+                  textAlign: 'center',
+                  border: '2px solid rgba(255,255,255,0.5)',
+                  boxShadow: isSelected ? `0 0 0 3px white, 0 0 0 6px #3b82f6` : '0 4px 10px rgba(0,0,0,0.14)',
+                  cursor: 'pointer',
+                  transition: 'left 0.6s cubic-bezier(0.16, 1, 0.3, 1), top 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease, box-shadow 0.2s',
+                  zIndex: isSelected ? 10 : 2,
+                  userSelect: 'none'
+                }}
+              >
+                {getAbbreviation(mode.id)}
+                {hasScore && (
+                  <div style={{ fontSize: '0.65rem', opacity: 0.9, marginTop: '1px', fontWeight: 'bold' }}>
+                    {Number(scoreVal).toFixed(1)}
+                  </div>
+                )}
+
+                {/* Title label in Network mode */}
+                {viewMode === 'network' && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: '100%',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      marginTop: '4px',
+                      fontSize: '0.72rem',
+                      fontWeight: 'bold',
+                      color: '#1e293b',
+                      whiteSpace: 'nowrap',
+                      pointerEvents: 'none',
+                      background: 'rgba(255,255,255,0.92)',
+                      padding: '1px 6px',
+                      borderRadius: '4px',
+                      boxShadow: '0 1px 3px rgba(0,0,0,0.08)'
+                    }}
+                  >
+                    {mode.title}
+                  </span>
+                )}
+              </div>
             );
           })}
-        </svg>
-
-        {/* Nodes */}
-        {MODES.map(mode => {
-          const sizeIndex = sizes[mode.id] || 1;
-          const scale = getNodeScale(sizeIndex, mode.id);
-          const isSelected = connectingFrom === mode.id;
-          const pos = getModePosition(mode.id);
-          
-          if (showRadar) {
-            const trueBase14 = ['gv', 'bk', 'kk', 'rk', 'boos_k', 'ik', 'ok', 'wi', 'ob', 'oz', 'zh', 'pa', 'so', 'vo'];
-            if (!trueBase14.includes(mode.id)) return null;
-          }
-          
-          const hasScore = radarScores[mode.id] !== undefined;
-          const scoreVal = radarScores[mode.id];
-          const isLight = hasScore && scoreVal < 3;
-          const bg = isLight ? LIGHT_CATEGORY_COLORS[mode.category] : CATEGORY_COLORS[mode.category];
-          const textColor = (isLight || mode.category === 'coping') ? '#451a03' : 'white';
-
-          return (
-            <div
-              key={mode.id}
-              id={`node-${mode.id}`}
-              onMouseEnter={() => {
-                setHoveredNode(mode.title);
-                setPopupFlipped(false);
-                setTimeout(() => setPopupFlipped(true), 150);
-              }}
-              onMouseLeave={() => setHoveredNode(null)}
-              onClick={() => handleNodeClick(mode.id)}
-              style={{
-                position: 'absolute',
-                left: `${pos.x}%`,
-                top: `${pos.y}%`,
-                transform: `translate(-50%, -50%) scale(${scale})`,
-                background: bg,
-                color: textColor,
-                width: '42px',
-                height: '42px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: '50%',
-                fontWeight: '900',
-                fontSize: '1.1rem',
-                textAlign: 'center',
-                border: '2px solid rgba(255,255,255,0.5)',
-                boxShadow: isSelected ? `0 0 0 3px white, 0 0 0 6px #3b82f6` : '0 4px 10px rgba(0,0,0,0.14)',
-                cursor: 'pointer',
-                transition: 'left 0.6s cubic-bezier(0.16, 1, 0.3, 1), top 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease, box-shadow 0.2s',
-                zIndex: isSelected ? 10 : 2,
-                userSelect: 'none'
-              }}
-            >
-              {getAbbreviation(mode.id)}
-              {hasScore && (
-                <div style={{ fontSize: '0.65rem', opacity: 0.9, marginTop: '1px', fontWeight: 'bold' }}>
-                  {Number(scoreVal).toFixed(1)}
-                </div>
-              )}
-
-              {/* Title label in Graph mode */}
-              {!showRadar && (
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: '100%',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    marginTop: '4px',
-                    fontSize: '0.72rem',
-                    fontWeight: 'bold',
-                    color: '#1e293b',
-                    whiteSpace: 'nowrap',
-                    pointerEvents: 'none',
-                    background: 'rgba(255,255,255,0.92)',
-                    padding: '1px 6px',
-                    borderRadius: '4px',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.08)'
-                  }}
-                >
-                  {mode.title}
-                </span>
-              )}
-            </div>
-          );
-        })}
-      </div>
+        </div>
+      )}
 
       {hoveredNode && (
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 9999, pointerEvents: 'none', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))' }}>
