@@ -514,7 +514,7 @@ const clearAll = () => {
               {getAbbreviation(mode.id)}
               {showRadar && radarScores[mode.id] !== undefined && (
                 <div style={{ fontSize: '0.65rem', opacity: 0.8, marginTop: '2px', fontWeight: 'normal' }}>
-                  {radarScores[mode.id]}
+                  {Number(radarScores[mode.id]).toFixed(1)}
                 </div>
               )}
             </div>
