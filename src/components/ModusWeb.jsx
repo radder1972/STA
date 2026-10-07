@@ -236,7 +236,7 @@ const clearAll = () => {
     
     const angleDeg = -90 + (index * (360 / modesForGrid.length));
     const angleRad = (angleDeg * Math.PI) / 180;
-    const CIRCLE_RADIUS = 42; // 42% radius for pills (outside web)
+    const CIRCLE_RADIUS = 35; // 35% radius for pills
     return {
       x: 50 + CIRCLE_RADIUS * Math.cos(angleRad),
       y: 50 + CIRCLE_RADIUS * Math.sin(angleRad)
