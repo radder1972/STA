@@ -523,7 +523,7 @@ const clearAll = () => {
       </div>
 
       {hoveredNode && (
-        <div style={{ position: 'fixed', right: '30px', bottom: '30px', zIndex: 9999, pointerEvents: 'none', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.3))' }}>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 9999, pointerEvents: 'none', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))' }}>
           <SchemaCard title={hoveredNode} isFlipped={popupFlipped} />
         </div>
       )}
