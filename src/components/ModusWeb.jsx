@@ -182,7 +182,14 @@ export default function ModusWeb() {
     }
   };
 
-  const getNodeScale = (sizeIndex) => {
+  const getNodeScale = (sizeIndex, modeId) => {
+    // If we have an exact score from the radar, calculate a continuous, precise scale!
+    if (showRadar && radarScores[modeId] > 0) {
+      const score = radarScores[modeId];
+      // Score 1 -> scale 0.9, Score 3 -> scale 1.1, Score 5 -> scale 1.3, Score 6 -> scale 1.4
+      return 0.9 + (score - 1) * 0.1;
+    }
+    // Manual fallback for click sizes
     switch(sizeIndex) {
       case 2: return 1.15;
       case 3: return 1.35;
@@ -217,7 +224,7 @@ const clearAll = () => {
     
     const angleDeg = -90 + (index * (360 / validModesForRadar.length));
     const angleRad = (angleDeg * Math.PI) / 180;
-    const CIRCLE_RADIUS = 38; // 38% radius
+    const CIRCLE_RADIUS = 28; // 38% radius
     return {
       x: 50 + CIRCLE_RADIUS * Math.cos(angleRad),
       y: 50 + CIRCLE_RADIUS * Math.sin(angleRad)
