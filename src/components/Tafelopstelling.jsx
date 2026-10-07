@@ -441,6 +441,28 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
       setShowJoker(false);
     }
   }, [selectedMode]);
+
+  // Listen to Speelbot card suggestions
+  useEffect(() => {
+    const handleSelectCard = (e) => {
+      const cardName = e.detail.cardName;
+      const nameLower = cardName.toLowerCase();
+      
+      const findCard = (arr, title) => arr.find(c => c.title.toLowerCase() === title);
+      
+      let foundCard = findCard(baseModeCards, nameLower) || findCard(extensionModeCards, nameLower);
+      if (foundCard) { setSelectedMode(foundCard); return; }
+      
+      foundCard = findCard(baseSchemaCards, nameLower) || findCard(extensionSchemaCards, nameLower);
+      if (foundCard) { setSelectedSchema(foundCard); return; }
+      
+      foundCard = findCard(baseNeedCards, nameLower) || findCard(extensionNeedCards, nameLower);
+      if (foundCard) { setSelectedNeed(foundCard); return; }
+    };
+    
+    window.addEventListener('tafel:selectCard', handleSelectCard);
+    return () => window.removeEventListener('tafel:selectCard', handleSelectCard);
+  }, []);
   const [selectedNeed, setSelectedNeed] = useState(null);
   const [gvNotes, setGvNotes] = useState('');
   const [analysisText, setAnalysisText] = useState('');
