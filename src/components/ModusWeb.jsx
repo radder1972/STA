@@ -45,7 +45,7 @@ const CATEGORY_COLORS = {
   coping: '#facc15'
 };
 
-const RADAR_ORDER = ['woc', 'poc', 'zh', 'pa', 'wi', 'ob', 'bob', 'oz', 'so', 'vo', 'gv', 'bk', 'kk', 'rk', 'ik', 'ok', 'boos_k'];
+const RADAR_ORDER = ['gv', 'bk', 'kk', 'rk', 'ik', 'ok', 'boos_k', 'woc', 'poc', 'zh', 'pa', 'wi', 'ob', 'bob', 'oz', 'so', 'vo'];
 
 export default function ModusWeb() {
   const [interactionMode, setInteractionMode] = useState('size');
