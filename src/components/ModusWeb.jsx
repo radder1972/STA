@@ -217,13 +217,17 @@ const clearAll = () => {
       return { x: m.x, y: m.y };
     }
     
-    // Calculate angle based ONLY on modes that actually have a score!
-    const validModesForRadar = MODES
+    // Calculate angle based on the official 14 modes for the background grid
+    const modesForGrid = MODES
       .filter(m => {
-        if (showRadar && m.id === 'bk' && !showBlijeKind) return false;
-        return radarScores[m.id] > 0;
+        const standard14 = ['woc', 'zh', 'pa', 'wi', 'ob', 'oz', 'so', 'vo', 'gv', 'kk', 'rk', 'ik', 'ok', 'boos_k'];
+        if (standard14.includes(m.id)) return true;
+        if (m.id === 'bk' && showBlijeKind) return true;
+        return false;
       })
       .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
+      
+    const modesForData = modesForGrid.filter(m => radarScores[m.id] > 0 || (m.id === 'bk' && showBlijeKind));
       
     const index = validModesForRadar.findIndex(m => m.id === modeId);
     if (index === -1) return { x: 50, y: 50 };
@@ -265,12 +269,12 @@ const clearAll = () => {
         return radarScores[m.id] > 0;
       })
       .sort((a, b) => RADAR_ORDER.indexOf(a.id) - RADAR_ORDER.indexOf(b.id));
-  const dataPolygonPoints = validModesForRadar.map(m => getRadarPoint(m.id, radarScores[m.id])).join(' ');
+  const dataPolygonPoints = modesForData.map(m => getRadarPoint(m.id, radarScores[m.id] || 0)).join(' ');
 
   // Generate background grid polygons (levels 2, 4, 6)
-  const gridPoints6 = validModesForRadar.map(m => getRadarPoint(m.id, 6)).join(' ');
-  const gridPoints4 = validModesForRadar.map(m => getRadarPoint(m.id, 4)).join(' ');
-  const gridPoints2 = validModesForRadar.map(m => getRadarPoint(m.id, 2)).join(' ');
+  const gridPoints6 = modesForGrid.map(m => getRadarPoint(m.id, 6)).join(' ');
+  const gridPoints4 = modesForGrid.map(m => getRadarPoint(m.id, 4)).join(' ');
+  const gridPoints2 = modesForGrid.map(m => getRadarPoint(m.id, 2)).join(' ');
 
   return (
     <div className="modus-web-container" style={{ display: 'flex', flexDirection: 'column', minHeight: '80vh', background: '#f8fafc', padding: '1rem', fontFamily: 'inherit' }}>
@@ -385,7 +389,7 @@ const clearAll = () => {
               <polygon points={gridPoints2} fill="none" stroke="#e2e8f0" strokeWidth="1" />
               
               {/* Axes lines from center to nodes */}
-              {validModesForRadar.map(m => {
+              {modesForGrid.map(m => {
                 const pos = getModePosition(m.id);
                 const px = (pos.x * w) / 100;
                 const py = (pos.y * h) / 100;
@@ -403,11 +407,11 @@ const clearAll = () => {
               />
               
               {/* Data Points */}
-              {validModesForRadar.map(m => {
+              {modesForData.map(m => {
                 const pos = getModePosition(m.id);
                 const pxBase = (pos.x * w) / 100;
                 const pyBase = (pos.y * h) / 100;
-                const score = radarScores[m.id];
+                const score = radarScores[m.id] || 0;
                 const ratio = Math.min(Math.max(score / 6, 0), 1);
                 const px = cx + (pxBase - cx) * ratio;
                 const py = cy + (pyBase - cy) * ratio;
@@ -471,8 +475,12 @@ const clearAll = () => {
           
           const pos = getModePosition(mode.id);
           const hasScore = radarScores[mode.id] > 0;
-          if (showRadar && !hasScore) return null; // Hide unmeasured modes in radar view
-          if (showRadar && mode.id === 'bk' && !showBlijeKind) return null; // Easter egg hidden
+          
+          if (showRadar) {
+            const standard14 = ['woc', 'zh', 'pa', 'wi', 'ob', 'oz', 'so', 'vo', 'gv', 'kk', 'rk', 'ik', 'ok', 'boos_k'];
+            if (!standard14.includes(mode.id) && mode.id !== 'bk') return null;
+            if (mode.id === 'bk' && !showBlijeKind) return null;
+          }
           
           return (
             <div
