@@ -133,11 +133,11 @@ const CLINICAL_DYNAMICS = [
     id: 'dyn-gv',
     title: 'De Regierol van de Gezonde Volwassene (Therapeutische Hefboom)',
     schemaIds: [],
-    modeIds: ['gv', 'kk', 'ok', 'vo'],
+    modeIds: ['gv', 'kk', 'ok', 'vo', 'oz'],
     schemaAbbrs: [],
-    modeAbbrs: ['GV (3.20)', 'KK (4.10)', 'OK (5.00)', 'VO (4.00)'],
+    modeAbbrs: ['GV (3.20)', 'KK (4.10)', 'OK (5.00)', 'VO (4.00)', 'OZ (4.50)'],
     isTherapeutic: true,
-    summary: 'Met een score van 3.20 bezit de cliënt al een gezond fundament. In de schematherapie fungeert de Gezonde Volwassene (GV) als regisseur om: 1) Het Kwetsbare Kind (KK: 4.10) te koesteren en veiligheid te bieden, 2) Het Ongedisciplineerde Kind (OK: 5.00) empathisch doch resoluut te begrenzen, en 3) De Veeleisende Ouder (VO: 4.00) het zwijgen op te leggen en te vervangen door milde, realistische maatstaven.'
+    summary: 'Met een score van 3.20 bezit de cliënt al een gezond fundament. In de schematherapie fungeert de Gezonde Volwassene (GV) als regisseur om: 1) Het Kwetsbare Kind (KK: 4.10) te koesteren en veiligheid te bieden, 2) Het Ongedisciplineerde Kind (OK: 5.00) empathisch doch resoluut te begrenzen, 3) De Veeleisende Ouder (VO: 4.00) het zwijgen op te leggen en te relativeren, en 4) De Onthechte Zelfsusser (OZ: 4.50) empathisch te confronteren en verdovend gedrag te vervangen door gezonde zelfzorg.'
   }
 ];
 
@@ -1365,7 +1365,8 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     const targets = [
       { id: 'kk', label: 'Koesteren & Geruststellen', color: '#10b981' },
       { id: 'ok', label: 'Begrenzen & Structureren', color: '#10b981' },
-      { id: 'vo', label: 'Kritiek begrenzen & Relativeren', color: '#10b981' }
+      { id: 'vo', label: 'Kritiek begrenzen & Relativeren', color: '#10b981' },
+      { id: 'oz', label: 'Verdoving doorbreken & Gezonde zelfzorg', color: '#10b981' }
     ];
 
     return targets.map(t => {
@@ -1527,7 +1528,8 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     const targets = [
       { id: 'kk', label: 'Koesteren & Geruststellen', color: '#10b981' },
       { id: 'ok', label: 'Begrenzen & Structureren', color: '#10b981' },
-      { id: 'vo', label: 'Kritiek begrenzen & Relativeren', color: '#10b981' }
+      { id: 'vo', label: 'Kritiek begrenzen & Relativeren', color: '#10b981' },
+      { id: 'oz', label: 'Verdoving doorbreken & Gezonde zelfzorg', color: '#10b981' }
     ];
 
     return targets.map(t => {
