@@ -2365,19 +2365,24 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
               })}
 
               {/* Vertical 3D Pillars rising from floor up to the score peaks */}
-              {items3D.map(m => (
-                <line
-                  key={`pillar-${m.itemType}-${m.id}`}
-                  x1={m.projGround.screenX}
-                  y1={m.projGround.screenY}
-                  x2={m.projPeak.screenX}
-                  y2={m.projPeak.screenY}
-                  stroke={m.bg}
-                  strokeWidth="2"
-                  strokeDasharray={m.scoreVal < 2 ? "2 2" : "none"}
-                  opacity="0.75"
-                />
-              ))}
+              {items3D.map(m => {
+                const isHovered = hoveredNode && (hoveredNode.id === m.id || hoveredNode.abbr === m.abbr);
+                const isColored = m.scoreVal > 3 || isHovered;
+                const pillarColor = isColored ? (m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')) : '#cbd5e1';
+                return (
+                  <line
+                    key={`pillar-${m.itemType}-${m.id}`}
+                    x1={m.projGround.screenX}
+                    y1={m.projGround.screenY}
+                    x2={m.projPeak.screenX}
+                    y2={m.projPeak.screenY}
+                    stroke={pillarColor}
+                    strokeWidth="2"
+                    strokeDasharray={m.scoreVal < 2 ? "2 2" : "none"}
+                    opacity={isColored ? "0.75" : "0.35"}
+                  />
+                );
+              })}
 
               {/* Shaded 3D Facets (Crystal mountain canopies) */}
               {facets.map(({ pts, intensity, idx, color }) => (
@@ -2446,27 +2451,32 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
               )}
 
               {/* Glowing 3D Score Vertex Dots */}
-              {items3D.map(m => (
-                <g key={`dot-${m.itemType}-${m.id}`}>
-                  <circle
-                    cx={m.projPeak.screenX}
-                    cy={m.projPeak.screenY}
-                    r={5.5 * m.projPeak.scale}
-                    fill={m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')}
-                    stroke="#ffffff"
-                    strokeWidth="2.2"
-                    filter={`url(#${dotShadowId})`}
-                    style={{ filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.25))' }}
-                  />
-                  <circle
-                    cx={m.projPeak.screenX}
-                    cy={m.projPeak.screenY}
-                    r={5.5 * m.projPeak.scale}
-                    fill={`url(#${sphereLightId})`}
-                    pointerEvents="none"
-                  />
-                </g>
-              ))}
+              {items3D.map(m => {
+                const isHovered = hoveredNode && (hoveredNode.id === m.id || hoveredNode.abbr === m.abbr);
+                const isColored = m.scoreVal > 3 || isHovered;
+                const dotBg = isColored ? (m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')) : '#cbd5e1';
+                return (
+                  <g key={`dot-${m.itemType}-${m.id}`}>
+                    <circle
+                      cx={m.projPeak.screenX}
+                      cy={m.projPeak.screenY}
+                      r={5.5 * m.projPeak.scale}
+                      fill={dotBg}
+                      stroke="#ffffff"
+                      strokeWidth="2.2"
+                      filter={`url(#${dotShadowId})`}
+                      style={{ filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.25))' }}
+                    />
+                    <circle
+                      cx={m.projPeak.screenX}
+                      cy={m.projPeak.screenY}
+                      r={5.5 * m.projPeak.scale}
+                      fill={`url(#${sphereLightId})`}
+                      pointerEvents="none"
+                    />
+                  </g>
+                );
+              })}
 
               {/* 3D Correlation Links between Schemas and Modi (Flowing Energy from Schema Trigger to Mode Reaction) */}
               {activeSide === 'both' && correlationLinks3D.map(link => (
@@ -2525,6 +2535,9 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                     (m.id === 'wk' && activeDynamic.modeIds.includes('boos_k'))
                   ))
                 );
+                const isColored = m.scoreVal > 3 || isHovered || isLinked || isInActiveDynamic;
+                const ballFill = isColored ? (m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')) : '#cbd5e1';
+                const textColor = isColored ? m.textColor : '#334155';
                 const ringStroke = (activeDynamic && activeDynamic.id === 'dyn-gv') ? '#10b981' : '#f59e0b';
 
                 return (
@@ -2569,10 +2582,13 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                     {/* Clean Solid Ball without white stroke */}
                     <circle
                       r={m.ballRadius}
-                      fill={m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')}
+                      fill={ballFill}
                       stroke="none"
                       filter={`url(#${ballShadowId})`}
-                      style={{ filter: 'drop-shadow(0 3px 5px rgba(0,0,0,0.22))' }}
+                      style={{
+                        filter: 'drop-shadow(0 3px 5px rgba(0,0,0,0.22))',
+                        transition: 'fill 0.2s ease'
+                      }}
                     />
 
                     {/* 3D Sphere Shading Highlight */}
@@ -2586,10 +2602,10 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                     <text
                       textAnchor="middle"
                       y={m.scoreVal > 0 ? -1 : 5}
-                      fill={m.textColor}
+                      fill={textColor}
                       fontWeight="900"
                       fontSize={Math.max(m.itemType === 'mode' ? 10.5 : 9.2, m.ballRadius * 0.58)}
-                      style={{ userSelect: 'none', letterSpacing: '0.3px' }}
+                      style={{ userSelect: 'none', letterSpacing: '0.3px', transition: 'fill 0.2s ease' }}
                     >
                       {m.abbr}
                     </text>
@@ -2599,11 +2615,11 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                       <text
                         textAnchor="middle"
                         y={m.ballRadius * 0.52}
-                        fill={m.textColor}
+                        fill={textColor}
                         fontWeight="bold"
                         fontSize={Math.max(m.itemType === 'mode' ? 8 : 7.2, m.ballRadius * 0.38)}
-                        opacity={0.92}
-                        style={{ userSelect: 'none' }}
+                        opacity={isColored ? 0.92 : 0.85}
+                        style={{ userSelect: 'none', transition: 'fill 0.2s ease' }}
                       >
                         {formatScore(m.scoreVal)}
                       </text>
@@ -2733,19 +2749,24 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
               )}
 
               {/* Vertex dots */}
-              {items2D.map(m => (
-                <circle
-                  key={`pt-2d-${m.itemType}-${m.id}`}
-                  cx={m.ptX}
-                  cy={m.ptY}
-                  r="6"
-                  fill={m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')}
-                  stroke="#ffffff"
-                  strokeWidth="2.2"
-                  filter={`url(#${dotShadowId})`}
-                  style={{ filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.25))' }}
-                />
-              ))}
+              {items2D.map(m => {
+                const isHovered = hoveredNode && (hoveredNode.id === m.id || hoveredNode.abbr === m.abbr);
+                const isColored = m.scoreVal > 3 || isHovered;
+                const dotBg = isColored ? (m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')) : '#cbd5e1';
+                return (
+                  <circle
+                    key={`pt-2d-${m.itemType}-${m.id}`}
+                    cx={m.ptX}
+                    cy={m.ptY}
+                    r="6"
+                    fill={dotBg}
+                    stroke="#ffffff"
+                    strokeWidth="2.2"
+                    filter={`url(#${dotShadowId})`}
+                    style={{ filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.25))' }}
+                  />
+                );
+              })}
 
               {/* Outer Balls (NO WHITE BORDER) */}
               {items2D.map(m => {
@@ -2760,6 +2781,9 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                     (m.id === 'wk' && activeDynamic.modeIds.includes('boos_k'))
                   ))
                 );
+                const isColored = m.scoreVal > 3 || isHovered || isLinked || isInActiveDynamic;
+                const ballFill = isColored ? (m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')) : '#cbd5e1';
+                const textColor = isColored ? m.textColor : '#334155';
                 const ringStroke = (activeDynamic && activeDynamic.id === 'dyn-gv') ? '#10b981' : '#f59e0b';
 
                 return (
@@ -2803,18 +2827,21 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
 
                     <circle
                       r={m.ballRadius}
-                      fill={m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')}
+                      fill={ballFill}
                       stroke="none"
                       filter={`url(#${ballShadowId})`}
-                      style={{ filter: 'drop-shadow(0 3px 5px rgba(0,0,0,0.18))' }}
+                      style={{
+                        filter: 'drop-shadow(0 3px 5px rgba(0,0,0,0.18))',
+                        transition: 'fill 0.2s ease'
+                      }}
                     />
                     <text
                       textAnchor="middle"
                       y={m.scoreVal > 0 ? -1 : 5}
-                      fill={m.textColor}
+                      fill={textColor}
                       fontWeight="900"
                       fontSize={Math.max(m.itemType === 'mode' ? 10.5 : 9.5, m.ballRadius * 0.58)}
-                      style={{ userSelect: 'none', letterSpacing: '0.4px' }}
+                      style={{ userSelect: 'none', letterSpacing: '0.4px', transition: 'fill 0.2s ease' }}
                     >
                       {m.abbr}
                     </text>
@@ -2822,11 +2849,11 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                       <text
                         textAnchor="middle"
                         y={m.ballRadius * 0.52}
-                        fill={m.textColor}
+                        fill={textColor}
                         fontWeight="bold"
                         fontSize={Math.max(m.itemType === 'mode' ? 8.2 : 7.6, m.ballRadius * 0.38)}
-                        opacity={0.92}
-                        style={{ userSelect: 'none' }}
+                        opacity={isColored ? 0.92 : 0.85}
+                        style={{ userSelect: 'none', transition: 'fill 0.2s ease' }}
                       >
                         {formatScore(m.scoreVal)}
                       </text>
