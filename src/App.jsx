@@ -52,85 +52,116 @@ function App() {
     window.location.pathname.includes('/spel')
   );
 
-  const isSnelstartApp = window.location.pathname.endsWith('snelstart.html');
-  const isModusWebApp = window.location.pathname.endsWith('modusweb.html') || window.location.pathname.includes('/modusweb');
+  const isSnelstartApp = typeof window !== 'undefined' && (
+    window.location.pathname.endsWith('snelstart.html') || 
+    window.location.pathname.includes('/snelstart')
+  );
+  const isModusWebApp = typeof window !== 'undefined' && (
+    window.location.pathname.endsWith('modusweb.html') || 
+    window.location.pathname.includes('/modusweb')
+  );
 
   const isHubApp = !isTestApp && !isTafelApp && !isKaartenApp && !isSnelstartApp && !isModusWebApp;
 
+  const normalizeHash = (rawHash) => {
+    if (!rawHash) return '';
+    return rawHash
+      .replace(/^#\/?/, '')
+      .replace(/\.html(\?.*)?$/, '')
+      .trim()
+      .toLowerCase();
+  };
+
   const [currentView, setCurrentView] = useState(() => {
-    const hash = window.location.hash.replace('#', '')
-    if (hash === 'verantwoording') return 'verantwoording'
-    if (hash === 'drukproef') return 'drukproef';
-    if (hash === 'modusweb') return 'modusweb';
-    if (isSnelstartApp) return 'snelstart'
-    if (isModusWebApp) return 'modusweb'
+    const cleanHash = normalizeHash(window.location.hash);
+    if (cleanHash === 'verantwoording') return 'verantwoording';
+    if (cleanHash === 'drukproef') return 'drukproef';
+    
+    if (cleanHash === 'modusweb' || cleanHash === 'modus-web') {
+      if (!isModusWebApp) {
+        window.location.href = 'modusweb.html';
+      }
+      return 'modusweb';
+    }
+    if (cleanHash === 'snelstart') {
+      if (!isSnelstartApp) {
+        window.location.href = 'snelstart.html';
+      }
+      return 'snelstart';
+    }
+
+    if (isSnelstartApp) return 'snelstart';
+    if (isModusWebApp) return 'modusweb';
 
     if (isHubApp) {
-      if (hash === 'test' || hash === 'zelftest') {
-        window.location.href = 'test.html'
-        return 'hub'
+      if (cleanHash === 'test' || cleanHash === 'zelftest') {
+        window.location.href = 'test.html';
+        return 'hub';
       }
-      if (['kaarten', 'spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(hash)) {
-        window.location.href = `kaarten.html#${hash}`
-        return 'hub'
+      if (['kaarten', 'spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(cleanHash)) {
+        window.location.href = `kaarten.html#${cleanHash}`;
+        return 'hub';
       }
-      if (hash === 'tafelopstelling' || hash === 'tafel') {
-        window.location.href = 'tafel.html'
-        return 'hub'
+      if (cleanHash === 'tafelopstelling' || cleanHash === 'tafel') {
+        window.location.href = 'tafel.html';
+        return 'hub';
       }
-      return 'hub'
+      return 'hub';
     }
     if (isTafelApp) {
-      if (['kaarten', 'spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(hash)) {
-        window.location.href = `kaarten.html#${hash}`
-        return 'tafelopstelling'
+      if (['kaarten', 'spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(cleanHash)) {
+        window.location.href = `kaarten.html#${cleanHash}`;
+        return 'tafelopstelling';
       }
-      if (hash === 'home' || hash === 'hub') {
-        window.location.href = 'index.html'
-        return 'tafelopstelling'
+      if (cleanHash === 'home' || cleanHash === 'hub') {
+        window.location.href = 'index.html';
+        return 'tafelopstelling';
       }
-      if (hash === 'test' || hash === 'zelftest') {
-        window.location.href = 'test.html'
-        return 'tafelopstelling'
+      if (cleanHash === 'test' || cleanHash === 'zelftest') {
+        window.location.href = 'test.html';
+        return 'tafelopstelling';
       }
-      return 'tafelopstelling'
+      return 'tafelopstelling';
     }
     if (isKaartenApp) {
-      if (hash === 'tafelopstelling' || hash === 'tafel') {
-        window.location.href = 'tafel.html'
-        return 'game-portal'
+      if (cleanHash === 'tafelopstelling' || cleanHash === 'tafel') {
+        window.location.href = 'tafel.html';
+        return 'game-portal';
       }
-      if (hash === 'home' || hash === 'hub') {
-        window.location.href = 'index.html'
-        return 'game-portal'
+      if (cleanHash === 'home' || cleanHash === 'hub') {
+        window.location.href = 'index.html';
+        return 'game-portal';
       }
-      if (hash === 'test' || hash === 'zelftest') {
-        window.location.href = 'test.html'
-        return 'game-portal'
+      if (cleanHash === 'test' || cleanHash === 'zelftest') {
+        window.location.href = 'test.html';
+        return 'game-portal';
       }
-      if (hash === 'spelregels') return 'game-rules'
-      if (hash === 'theoriekaarten' || hash === 'kaarten') return 'kaartenoverzicht'
-      if (hash === 'print-shop') return 'print-shop'
-      if (hash === 'bestel-kaarten') return 'order-cards'
-      if (hash === 'over') return 'about'
-      return 'game-portal'
+      if (cleanHash === 'spelregels') return 'game-rules';
+      if (cleanHash === 'theoriekaarten' || cleanHash === 'kaarten') return 'kaartenoverzicht';
+      if (cleanHash === 'print-shop') return 'print-shop';
+      if (cleanHash === 'bestel-kaarten') return 'order-cards';
+      if (cleanHash === 'over') return 'about';
+      return 'game-portal';
     }
     // isTestApp (test.html)
-    if (hash === 'hub' || hash === 'home-hub') {
-      window.location.href = 'index.html'
-      return 'home'
+    if (cleanHash === 'hub' || cleanHash === 'home-hub' || cleanHash === 'home') {
+      window.location.href = 'index.html';
+      return 'home';
     }
-    if (hash === 'tafelopstelling' || hash === 'tafel') {
-      window.location.href = 'tafel.html'
-      return 'home'
+    if (cleanHash === 'tafelopstelling' || cleanHash === 'tafel') {
+      window.location.href = 'tafel.html';
+      return 'home';
     }
-    if (['kaarten', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(hash)) {
-      window.location.href = `kaarten.html#${hash}`
-      return 'home'
+    if (['kaarten', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(cleanHash)) {
+      window.location.href = `kaarten.html#${cleanHash}`;
+      return 'home';
     }
-    return 'home'
+    if (cleanHash === 'results') return 'results';
+    else if (cleanHash === 'basisbehoeften') return 'basisbehoeften';
+    else if (cleanHash === 'modicategorieen') return 'modicategorieen';
+    return 'home';
   })
-  const [aboutTab, setAboutTab] = useState(() => window.location.hash.replace('#', '') === 'verantwoording' ? 'verantwoording' : 'suite')
+  const [aboutTab, setAboutTab] = useState(() => normalizeHash(window.location.hash) === 'verantwoording' ? 'verantwoording' : 'suite')
   const [currentQuestionnaire, setCurrentQuestionnaire] = useState(null)
   const [completedTests, setCompletedTests] = useState(() => {
     let ysq = null;
@@ -163,92 +194,106 @@ function App() {
     document.documentElement.setAttribute('data-theme', 'light')
     
     const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '')
-      if (hash === 'drukproef') {
-        setCurrentView('drukproef')
-        return
+      const cleanHash = normalizeHash(window.location.hash);
+      if (cleanHash === 'drukproef') {
+        setCurrentView('drukproef');
+        return;
       }
-      if (hash === 'verantwoording') {
-        setAboutTab('verantwoording')
-        setCurrentView('verantwoording')
-        return
+      if (cleanHash === 'verantwoording') {
+        setAboutTab('verantwoording');
+        setCurrentView('verantwoording');
+        return;
+      }
+      if (cleanHash === 'modusweb' || cleanHash === 'modus-web') {
+        if (!isModusWebApp) {
+          window.location.href = 'modusweb.html';
+        }
+        setCurrentView('modusweb');
+        return;
+      }
+      if (cleanHash === 'snelstart') {
+        if (!isSnelstartApp) {
+          window.location.href = 'snelstart.html';
+        }
+        setCurrentView('snelstart');
+        return;
       }
       if (isHubApp) {
-        if (hash === 'test' || hash === 'zelftest') {
-          window.location.href = 'test.html'
-          return
+        if (cleanHash === 'test' || cleanHash === 'zelftest') {
+          window.location.href = 'test.html';
+          return;
         }
-        if (['kaarten', 'spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(hash)) {
-          window.location.href = `kaarten.html#${hash}`
-          return
+        if (['kaarten', 'spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(cleanHash)) {
+          window.location.href = `kaarten.html#${cleanHash}`;
+          return;
         }
-        if (hash === 'tafelopstelling' || hash === 'tafel') {
-          window.location.href = 'tafel.html'
-          return
+        if (cleanHash === 'tafelopstelling' || cleanHash === 'tafel') {
+          window.location.href = 'tafel.html';
+          return;
         }
-        setCurrentView('hub')
-        return
+        setCurrentView('hub');
+        return;
       }
       if (isTafelApp) {
-        if (['kaarten', 'spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(hash)) {
-          window.location.href = `kaarten.html#${hash}`
-          return
+        if (['kaarten', 'spelportaal', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spel'].includes(cleanHash)) {
+          window.location.href = `kaarten.html#${cleanHash}`;
+          return;
         }
-        if (hash === 'home' || hash === 'hub') {
-          window.location.href = 'index.html'
-          return
+        if (cleanHash === 'home' || cleanHash === 'hub') {
+          window.location.href = 'index.html';
+          return;
         }
-        if (hash === 'zelftest' || hash === 'test') {
-          window.location.href = 'test.html'
-          return
+        if (cleanHash === 'zelftest' || cleanHash === 'test') {
+          window.location.href = 'test.html';
+          return;
         }
-        setCurrentView('tafelopstelling')
-        return
+        setCurrentView('tafelopstelling');
+        return;
       }
       if (isKaartenApp) {
-        if (hash === 'tafelopstelling' || hash === 'tafel') {
-          window.location.href = 'tafel.html'
-          return
+        if (cleanHash === 'tafelopstelling' || cleanHash === 'tafel') {
+          window.location.href = 'tafel.html';
+          return;
         }
-        if (hash === 'home' || hash === 'hub') {
-          window.location.href = 'index.html'
-          return
+        if (cleanHash === 'home' || cleanHash === 'hub') {
+          window.location.href = 'index.html';
+          return;
         }
-        if (hash === 'zelftest' || hash === 'test') {
-          window.location.href = 'test.html'
-          return
+        if (cleanHash === 'zelftest' || cleanHash === 'test') {
+          window.location.href = 'test.html';
+          return;
         }
-        if (hash === 'spelportaal' || hash === 'spel' || hash === 'kaarten-home') setCurrentView('game-portal')
-        else if (hash === 'spelregels') setCurrentView('game-rules')
-        else if (hash === 'theoriekaarten' || hash === 'kaarten') setCurrentView('kaartenoverzicht')
-        else if (hash === 'print-shop') setCurrentView('print-shop')
-        else if (hash === 'bestel-kaarten') setCurrentView('order-cards')
-        else if (hash === 'over') setCurrentView('about')
-        else setCurrentView('game-portal')
-        return
+        if (cleanHash === 'spelportaal' || cleanHash === 'spel' || cleanHash === 'kaarten-home') setCurrentView('game-portal');
+        else if (cleanHash === 'spelregels') setCurrentView('game-rules');
+        else if (cleanHash === 'theoriekaarten' || cleanHash === 'kaarten') setCurrentView('kaartenoverzicht');
+        else if (cleanHash === 'print-shop') setCurrentView('print-shop');
+        else if (cleanHash === 'bestel-kaarten') setCurrentView('order-cards');
+        else if (cleanHash === 'over') setCurrentView('about');
+        else setCurrentView('game-portal');
+        return;
       }
       // isTestApp
-      if (hash === 'hub' || hash === 'home-hub') {
-        window.location.href = 'index.html'
-        return
+      if (cleanHash === 'hub' || cleanHash === 'home-hub' || cleanHash === 'home') {
+        window.location.href = 'index.html';
+        return;
       }
-      if (hash === 'tafelopstelling' || hash === 'tafel') {
-        window.location.href = 'tafel.html'
-        return
+      if (cleanHash === 'tafelopstelling' || cleanHash === 'tafel') {
+        window.location.href = 'tafel.html';
+        return;
       }
-      if (['kaarten', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(hash)) {
-        window.location.href = `kaarten.html#${hash}`
-        return
+      if (['kaarten', 'spelregels', 'theoriekaarten', 'print-shop', 'bestel-kaarten', 'over', 'spelportaal', 'spel'].includes(cleanHash)) {
+        window.location.href = `kaarten.html#${cleanHash}`;
+        return;
       }
-      if (hash === 'results') setCurrentView('results')
-      else if (hash === 'basisbehoeften') setCurrentView('basisbehoeften')
-      else if (hash === 'modicategorieen') setCurrentView('modicategorieen')
-      else setCurrentView('home')
+      if (cleanHash === 'results') setCurrentView('results');
+      else if (cleanHash === 'basisbehoeften') setCurrentView('basisbehoeften');
+      else if (cleanHash === 'modicategorieen') setCurrentView('modicategorieen');
+      else setCurrentView('home');
     }
     
     window.addEventListener('hashchange', handleHashChange)
     return () => window.removeEventListener('hashchange', handleHashChange)
-  }, [isKaartenApp, isTafelApp, isTestApp, isHubApp])
+  }, [isKaartenApp, isTafelApp, isTestApp, isHubApp, isModusWebApp, isSnelstartApp])
 
   useEffect(() => {
     let hash = ''
@@ -260,6 +305,8 @@ function App() {
     else if (currentView === 'about') { hash = 'over' }
     else if (currentView === 'verantwoording') { hash = 'verantwoording'; window.scrollTo(0, 0) }
     else if (currentView === 'drukproef') { hash = 'drukproef' }
+    else if (currentView === 'modusweb' && !isModusWebApp) { hash = 'modusweb' }
+    else if (currentView === 'snelstart' && !isSnelstartApp) { hash = 'snelstart' }
     
     // Dynamic document title
     if (isHubApp) {
@@ -268,13 +315,23 @@ function App() {
       document.title = 'Schematherapie Tafelopstelling'
     } else if (isKaartenApp) {
       document.title = 'Schematherapie Kaarten'
+    } else if (isModusWebApp || currentView === 'modusweb') {
+      document.title = 'Modus Web - Casusconceptualisatie'
+    } else if (isSnelstartApp || currentView === 'snelstart') {
+      document.title = 'Schematherapie Suite - Snelstartgids'
     } else {
       document.title = 'Schematherapie Zelftest - YSQ-S3 & SMI Vragenlijsten'
     }
 
     const faviconLink = document.querySelector("link[rel~='icon']")
     if (faviconLink) {
-      faviconLink.href = isHubApp ? './favicon-hub.svg' : (isTafelApp ? './favicon-tafel.svg' : (isKaartenApp ? './favicon-game.svg' : './favicon-test.svg'))
+      faviconLink.href = isHubApp 
+        ? './favicon-hub.svg' 
+        : (isTafelApp 
+          ? './favicon-tafel.svg' 
+          : (isKaartenApp 
+            ? './favicon-game.svg' 
+            : (isModusWebApp || currentView === 'modusweb' ? './favicon-hub.svg' : './favicon-test.svg')))
     }
     
     if (hash) {
@@ -286,7 +343,7 @@ function App() {
         window.history.pushState(null, '', window.location.pathname + window.location.search)
       }
     }
-  }, [currentView, isKaartenApp, isTafelApp, isHubApp])
+  }, [currentView, isKaartenApp, isTafelApp, isHubApp, isModusWebApp, isSnelstartApp])
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark'

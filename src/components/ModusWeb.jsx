@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { Share2, MousePointer2, Trash2, Upload, Activity, RotateCcw, Rotate3d, Eye } from 'lucide-react';
+import { Share2, MousePointer2, Trash2, Upload, Activity, RotateCcw, Rotate3d, Eye, ArrowLeft } from 'lucide-react';
 import smiScoring from '../data/smi-scoring.json';
 import SchemaCard from './SchemaCard';
 import SmiRadarGraph from './SmiRadarGraph';
@@ -431,13 +431,38 @@ export default function ModusWeb() {
       
       {/* Toolbar */}
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', background: 'white', padding: '1rem 1.5rem', borderRadius: '12px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)', marginBottom: '1rem', gap: '1rem' }}>
-        <div>
-          <h2 style={{ margin: 0, fontSize: '1.25rem', color: '#1e293b', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Share2 size={24} color="#3b82f6" /> Casusconceptualisatie (Modus Web)
-          </h2>
-          <p style={{ margin: '4px 0 0 0', fontSize: '0.85rem', color: '#64748b' }}>
-            Kies tussen de interactieve 3D Graph, het 2D Spinnenweb of de Casusconceptualisatie (netwerk met cycluspijlen).
-          </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          <a
+            href="index.html"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '0.45rem 0.85rem',
+              borderRadius: '8px',
+              border: '1px solid #cbd5e1',
+              background: '#f8fafc',
+              color: '#475569',
+              textDecoration: 'none',
+              fontWeight: '600',
+              fontSize: '0.82rem',
+              cursor: 'pointer',
+              transition: 'all 0.15s ease'
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = '#f1f5f9'; e.currentTarget.style.borderColor = '#94a3b8'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = '#f8fafc'; e.currentTarget.style.borderColor = '#cbd5e1'; }}
+            title="Terug naar Suite Startpagina"
+          >
+            <ArrowLeft size={15} /> Startpagina
+          </a>
+          <div>
+            <h2 style={{ margin: 0, fontSize: '1.25rem', color: '#1e293b', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Share2 size={24} color="#3b82f6" /> Casusconceptualisatie (Modus Web)
+            </h2>
+            <p style={{ margin: '4px 0 0 0', fontSize: '0.85rem', color: '#64748b' }}>
+              Kies tussen de interactieve 3D Graph, het 2D Spinnenweb of de Casusconceptualisatie (netwerk met cycluspijlen).
+            </p>
+          </div>
         </div>
         
         {/* Controls */}
