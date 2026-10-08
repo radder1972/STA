@@ -3228,30 +3228,30 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                               Therapeutische Hefboom
                             </span>
                           )}
-                          {/* Schema Badges */}
+                          {/* Schema Badges (Groen, conform radar) */}
                           {dyn.schemaAbbrs.map(sch => (
                             <span key={sch} style={{
                               fontSize: '0.72rem',
                               fontWeight: 700,
                               padding: '2px 7px',
                               borderRadius: '6px',
-                              background: '#dbeafe',
-                              color: '#1d4ed8',
-                              border: '1px solid #bfdbfe'
+                              background: '#ecfdf5',
+                              color: '#047857',
+                              border: '1px solid #a7f3d0'
                             }}>
                               Schema: {sch}
                             </span>
                           ))}
-                          {/* Mode Badges */}
+                          {/* Mode Badges (Blauw, conform radar) */}
                           {dyn.modeAbbrs.map(md => (
                             <span key={md} style={{
                               fontSize: '0.72rem',
                               fontWeight: 700,
                               padding: '2px 7px',
                               borderRadius: '6px',
-                              background: dyn.isTherapeutic ? '#d1fae5' : '#fef3c7',
-                              color: dyn.isTherapeutic ? '#065f46' : '#b45309',
-                              border: dyn.isTherapeutic ? '1px solid #a7f3d0' : '1px solid #fde68a'
+                              background: dyn.isTherapeutic ? '#ecfdf5' : '#eff6ff',
+                              color: dyn.isTherapeutic ? '#047857' : '#1d4ed8',
+                              border: dyn.isTherapeutic ? '1px solid #a7f3d0' : '1px solid #bfdbfe'
                             }}>
                               Modus: {md}
                             </span>
