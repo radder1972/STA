@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SingleResult from './SingleResult'
 import CombinedAnalysis from './CombinedAnalysis'
+import SmiRadarGraph from './SmiRadarGraph'
 import { DownloadIcon, RefreshIcon, ArrowLeftIcon, PlatformBadge } from './Icons'
 import ysqData from '../data/ysq-s3.json'
 import smiData from '../data/smi.json'
@@ -77,29 +78,42 @@ export default function Results({ completedTests, onRestart, onBack, onUpdateAns
 
 
       {/* 3. The View Toggles */}
-      {hasYsq && hasSmi && (
+      {(hasYsq || hasSmi) && (
         <div className="tabs-container no-print" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem' }}>
-          <div style={{ display: 'flex', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px' }}>
+          <div style={{ display: 'flex', background: 'rgba(0,0,0,0.1)', padding: '6px', borderRadius: '12px', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {hasYsq && (
+              <button 
+                className={`btn ${activeTab === 'ysq' ? 'btn-gradient' : 'btn-outline'}`}
+                onClick={() => setActiveTab('ysq')}
+                style={{ margin: 0, border: 'none' }}
+              >
+                YSQ (Schema's)
+              </button>
+            )}
+            {hasSmi && (
+              <button 
+                className={`btn ${activeTab === 'smi' ? 'btn-gradient' : 'btn-outline'}`}
+                onClick={() => setActiveTab('smi')}
+                style={{ margin: 0, border: 'none' }}
+              >
+                SMI (Modi)
+              </button>
+            )}
+            {hasYsq && hasSmi && (
+              <button 
+                className={`btn ${activeTab === 'combined' ? 'btn-gradient' : 'btn-outline'}`}
+                onClick={() => setActiveTab('combined')}
+                style={{ margin: 0, border: 'none' }}
+              >
+                Analyse
+              </button>
+            )}
             <button 
-              className={`btn ${activeTab === 'ysq' ? 'btn-gradient' : 'btn-outline'}`}
-              onClick={() => setActiveTab('ysq')}
+              className={`btn ${activeTab === '3d' ? 'btn-gradient' : 'btn-outline'}`}
+              onClick={() => setActiveTab('3d')}
               style={{ margin: 0, border: 'none' }}
             >
-              YSQ (Schema's)
-            </button>
-            <button 
-              className={`btn ${activeTab === 'smi' ? 'btn-gradient' : 'btn-outline'}`}
-              onClick={() => setActiveTab('smi')}
-              style={{ margin: 0, border: 'none' }}
-            >
-              SMI (Modi)
-            </button>
-            <button 
-              className={`btn ${activeTab === 'combined' ? 'btn-gradient' : 'btn-outline'}`}
-              onClick={() => setActiveTab('combined')}
-              style={{ margin: 0, border: 'none' }}
-            >
-              Analyse
+              3D Modus
             </button>
           </div>
         </div>
@@ -127,6 +141,27 @@ export default function Results({ completedTests, onRestart, onBack, onUpdateAns
             <CombinedAnalysis ysqAnswers={completedTests.ysq} smiAnswers={completedTests.smi} />
           </div>
         )}
+
+        <div className={activeTab === '3d' ? 'print-visible' : 'print-only'} style={{ pageBreakBefore: 'always', marginTop: activeTab === '3d' ? '0' : '4rem' }}>
+          <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+            <div className="glass-panel" style={{ padding: '1.75rem', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center', position: 'relative' }}>
+              <h2 style={{ marginBottom: '0.4rem', fontSize: '1.4rem' }}>
+                {hasYsq && hasSmi ? "3D Modus & Schema Radar" : (hasSmi ? "3D Modus Radar" : "3D Schema Radar")}
+              </h2>
+              <p className="no-print" style={{ fontSize: '0.95rem', lineHeight: '1.6', color: 'var(--text-muted)', maxWidth: '680px', margin: '0 auto 1.5rem auto' }}>
+                Draai de interactieve 3D-visualisatie met de muis of vinger om de gemoedstoestanden, schema-wortels en therapeutische hefbomen ruimtelijk te analyseren.
+              </p>
+              <SmiRadarGraph 
+                scores={completedTests.smi}
+                ysqScores={completedTests.ysq}
+                rawAnswers={completedTests.smi || completedTests.ysq}
+                initialSide={hasYsq && hasSmi ? 'both' : (hasSmi ? 'modi' : 'schemas')}
+                initialDimension="3d"
+                showAction={true}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

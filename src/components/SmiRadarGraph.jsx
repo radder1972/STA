@@ -621,11 +621,11 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     let map = extractScoreMap(input, false);
     if (Object.keys(map).length > 0) return map;
 
-    // 2. Calculate directly from rawAnswers if provided
-    if (rawAnswers && (initialSide === 'schemas' || containsSchemaData(scores))) {
-      const fromAnswers = calculateYsqFromAnswers(rawAnswers);
-      if (fromAnswers && Object.keys(fromAnswers).length > 0) return fromAnswers;
-    }
+    // 2. Calculate directly from ysqScores, rawAnswers, or scores if provided as question answers
+    const fromYsqAnswers = calculateYsqFromAnswers(ysqScores) || 
+                           calculateYsqFromAnswers(rawAnswers) || 
+                           calculateYsqFromAnswers(scores);
+    if (fromYsqAnswers && Object.keys(fromYsqAnswers).length > 0) return fromYsqAnswers;
 
     // 3. Check localStorage for completed or in-progress YSQ
     try {
@@ -658,11 +658,9 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     let map = extractScoreMap(input, true);
     if (Object.keys(map).length > 0) return map;
 
-    // 2. Calculate directly from rawAnswers if provided
-    if (rawAnswers && (initialSide === 'modi' || containsModeData(scores))) {
-      const fromAnswers = calculateSmiFromAnswers(rawAnswers);
-      if (fromAnswers && Object.keys(fromAnswers).length > 0) return fromAnswers;
-    }
+    // 2. Calculate directly from scores or rawAnswers if provided as question answers
+    const fromSmiAnswers = calculateSmiFromAnswers(scores) || calculateSmiFromAnswers(rawAnswers);
+    if (fromSmiAnswers && Object.keys(fromSmiAnswers).length > 0) return fromSmiAnswers;
 
     // 3. Check localStorage for completed or in-progress SMI or modusweb scores
     try {
