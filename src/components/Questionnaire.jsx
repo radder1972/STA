@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, DownloadIcon, AlertTriangleIcon, ClipboardIcon, BrainIcon } from './Icons'
+import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, DownloadIcon, AlertTriangleIcon, ClipboardIcon, BrainIcon, RefreshIcon } from './Icons'
 import ysqData from '../data/ysq-s3.json'
 import smiData from '../data/smi.json'
 
@@ -235,12 +235,32 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
     );
   }
 
+  const handleResetQuestionnaire = () => {
+    if (window.confirm("Weet u zeker dat u alle ingevulde antwoorden voor deze vragenlijst wilt wissen en helemaal opnieuw wilt beginnen?")) {
+      setAnswers({});
+      setCurrentIndex(0);
+      try {
+        localStorage.removeItem(`schemaApp_progress_${type}`);
+        localStorage.removeItem(`schemaApp_completed_${type}`);
+      } catch (e) {}
+    }
+  };
+
   return (
     <div className="q-container">
       <div className="q-header">
-        <button className="btn btn-outline" onClick={onCancel}>
-          <ArrowLeftIcon size={18} /> Cancel
-        </button>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <button className="btn btn-outline" onClick={onCancel}>
+            <ArrowLeftIcon size={18} /> Terug
+          </button>
+          <button 
+            className="btn btn-outline" 
+            onClick={handleResetQuestionnaire}
+            title="Alle antwoorden wissen en opnieuw beginnen"
+          >
+            <RefreshIcon size={18} /> Opnieuw
+          </button>
+        </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="text-gradient" onDoubleClick={() => {
             const dummyAnswers = {};
@@ -274,8 +294,8 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
           style={hasReachedEnd && answers[question.id] === undefined ? { border: '2px solid var(--accent, #6366f1)', boxShadow: '0 0 15px rgba(99, 102, 241, 0.4)' } : {}}
         >
           {hasReachedEnd && answers[question.id] === undefined && (
-            <div style={{ color: 'var(--accent, #6366f1)', fontWeight: 'bold', marginBottom: '1rem', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
-              ⚠️ Overgeslagen vraag
+            <div style={{ color: 'var(--accent, #6366f1)', fontWeight: 'bold', marginBottom: '1rem', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <AlertTriangleIcon size={16} /> Overgeslagen vraag
             </div>
           )}
           <h3>{question.text}</h3>

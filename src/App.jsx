@@ -21,8 +21,6 @@ import TafelNavbar from './components/TafelNavbar'
 import Snelstartgids from './components/Snelstartgids'
 import ysqData from './data/ysq-s3.json'
 import smiData from './data/smi.json'
-import defaultYsqAnswers from './data/default-ysq-answers.json'
-import defaultSmiAnswers from './data/default-smi-answers.json'
 import packageJson from '../package.json'
 import GameNavbar from './components/GameNavbar'
 
@@ -173,22 +171,11 @@ function App() {
       if (savedSmi) smi = JSON.parse(savedSmi);
     } catch (e) {}
     return {
-      ysq: ysq || defaultYsqAnswers,
-      smi: smi || defaultSmiAnswers
+      ysq,
+      smi
     };
   })
   const [theme, setTheme] = useState('light')
-
-  useEffect(() => {
-    try {
-      if (!localStorage.getItem('schemaApp_completed_ysq')) {
-        localStorage.setItem('schemaApp_completed_ysq', JSON.stringify(defaultYsqAnswers));
-      }
-      if (!localStorage.getItem('schemaApp_completed_smi')) {
-        localStorage.setItem('schemaApp_completed_smi', JSON.stringify(defaultSmiAnswers));
-      }
-    } catch (e) {}
-  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'light')
@@ -351,7 +338,14 @@ function App() {
     document.documentElement.setAttribute('data-theme', newTheme)
   }
 
-  const handleStart = (type) => {
+  const handleStart = (type, mode = 'new') => {
+    if (mode === 'new') {
+      try {
+        localStorage.removeItem(`schemaApp_progress_${type}`)
+        localStorage.removeItem(`schemaApp_completed_${type}`)
+      } catch (e) {}
+      setCompletedTests(prev => ({ ...prev, [type]: null }))
+    }
     setCurrentQuestionnaire(type)
     setCurrentView('questionnaire')
   }
@@ -390,6 +384,14 @@ function App() {
   }
 
   const handleRestart = () => {
+    try {
+      localStorage.removeItem('schemaApp_completed_ysq')
+      localStorage.removeItem('schemaApp_completed_smi')
+      localStorage.removeItem('schemaApp_progress_ysq')
+      localStorage.removeItem('schemaApp_progress_smi')
+      localStorage.removeItem('schemaApp_modusweb_smi')
+      localStorage.removeItem('schemaApp_modusweb_scores')
+    } catch (e) {}
     setCurrentView('home')
     setCurrentQuestionnaire(null)
     setCompletedTests({ ysq: null, smi: null })
@@ -447,7 +449,10 @@ function App() {
           initialAnswers={completedTests[currentQuestionnaire]}
           completedTests={completedTests}
           onFinish={handleFinish} 
-          onCancel={handleRestart} 
+          onCancel={() => {
+            setCurrentView('home');
+            setCurrentQuestionnaire(null);
+          }} 
         />
       )}
       {currentView === 'results' && (

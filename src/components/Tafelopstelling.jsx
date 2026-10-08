@@ -2,8 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { ArrowLeftIcon, CpuChipIcon, AlertTriangleIcon, CheckIcon, WandIcon, ArrowDownIcon, PlayingCardsIcon, CardsIcon, SparklesIcon, UploadIcon, FileTextIcon, ClipboardIcon, LightbulbIcon, HandIcon, ThreeSparklesLogo } from './Icons';
 import { Printer, Sparkle } from 'lucide-react';
-import defaultYsqAnswers from '../data/default-ysq-answers.json';
-import defaultSmiAnswers from '../data/default-smi-answers.json';
 
 const DSP_COLORS = ['#059669', '#10b981', '#3b82f6', '#0ea5e9', '#8b5cf6', '#f59e0b'];
 
@@ -444,8 +442,8 @@ export default function Tafelopstelling({ onBack, completedTests: initialComplet
       if (savedSmi) smi = JSON.parse(savedSmi);
     } catch (e) {}
     return {
-      ysq: ysq || defaultYsqAnswers,
-      smi: smi || defaultSmiAnswers
+      ysq,
+      smi
     };
   });
   const [situationText, setSituationText] = useState('');

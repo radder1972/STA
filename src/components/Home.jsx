@@ -154,12 +154,41 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
       </div>
       
       <div className="home-cards">
-        <div className={`card glass-panel ${isYsqDone ? 'completed-card' : ''}`} onClick={() => onStart('ysq')} style={{ display: 'flex', flexDirection: 'column' }}>
+        <div 
+          className={`card glass-panel ${isYsqDone ? 'completed-card' : ''}`} 
+          onClick={() => { if (!isYsqDone) onStart('ysq', 'new'); }} 
+          style={{ display: 'flex', flexDirection: 'column', cursor: isYsqDone ? 'default' : 'pointer' }}
+        >
           <ClipboardIcon size={48} useGradient={!isYsqDone} color={isYsqDone ? 'var(--success, #10b981)' : 'currentColor'} style={{ margin: '0 auto 1rem', display: 'block' }} />
           <h2>YSQ S3 {isYsqDone && <CheckIcon size={24} color="var(--success, #10b981)" style={{display: 'inline', verticalAlign: 'middle'}} />}</h2>
           <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Young Schema Questionnaire</p>
           <div style={{ fontSize: '1rem', color: 'var(--text-main)', lineHeight: '1.6', textAlign: 'left', marginTop: '1rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-            {isYsqDone ? <span style={{ display: 'block' }}>U heeft deze vragenlijst reeds ingevuld! Klik om eventueel opnieuw te beginnen.</span> : (
+            {isYsqDone ? (
+              <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+                <span style={{ display: 'block', color: 'var(--success, #10b981)', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  U heeft deze vragenlijst voltooid ({Object.keys(completedTests.ysq || {}).length} vragen ingevuld).
+                </span>
+                <span style={{ display: 'block', marginBottom: '1.25rem', color: 'var(--text-muted)' }}>
+                  Start een geheel schone test voor een nieuwe afname, of bekijk/wijzig de reeds ingevulde antwoorden.
+                </span>
+                <div style={{ marginTop: 'auto', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                  <button 
+                    className="btn btn-outline"
+                    onClick={(e) => { e.stopPropagation(); onStart('ysq', 'new'); }}
+                    style={{ flex: 1, padding: '10px 14px', fontSize: '0.92rem', whiteSpace: 'nowrap' }}
+                  >
+                    Nieuwe test starten
+                  </button>
+                  <button 
+                    className="btn btn-outline"
+                    onClick={(e) => { e.stopPropagation(); onStart('ysq', 'resume'); }}
+                    style={{ flex: 1, padding: '10px 14px', fontSize: '0.92rem', whiteSpace: 'nowrap' }}
+                  >
+                    Antwoorden inzien
+                  </button>
+                </div>
+              </div>
+            ) : (
               <>
                 <span 
                   onClick={(e) => { e.stopPropagation(); setYsqExpanded(!ysqExpanded); }}
@@ -180,17 +209,56 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                     </span>
                   </div>
                 )}
+
+                <div style={{ marginTop: 'auto', paddingTop: '1.25rem' }}>
+                  <button 
+                    className="btn btn-gradient"
+                    onClick={(e) => { e.stopPropagation(); onStart('ysq', 'new'); }}
+                    style={{ width: '100%', color: 'white', padding: '10px 16px', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                  >
+                    Start Vragenlijst <ArrowRightIcon size={18} />
+                  </button>
+                </div>
               </>
             )}
           </div>
         </div>
         
-        <div className={`card glass-panel ${isSmiDone ? 'completed-card' : ''}`} onClick={() => onStart('smi')} style={{ display: 'flex', flexDirection: 'column' }}>
+        <div 
+          className={`card glass-panel ${isSmiDone ? 'completed-card' : ''}`} 
+          onClick={() => { if (!isSmiDone) onStart('smi', 'new'); }} 
+          style={{ display: 'flex', flexDirection: 'column', cursor: isSmiDone ? 'default' : 'pointer' }}
+        >
           <BrainIcon size={48} useGradient={!isSmiDone} color={isSmiDone ? 'var(--success, #10b981)' : 'currentColor'} style={{ margin: '0 auto 1rem', display: 'block' }} />
           <h2>SMI {isSmiDone && <CheckIcon size={24} color="var(--success, #10b981)" style={{display: 'inline', verticalAlign: 'middle'}} />}</h2>
           <p style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Schema Mode Inventory</p>
           <div style={{ fontSize: '1rem', color: 'var(--text-main)', lineHeight: '1.6', textAlign: 'left', marginTop: '1rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-             {isSmiDone ? <span style={{ display: 'block' }}>U heeft deze vragenlijst reeds ingevuld! Klik om eventueel opnieuw te beginnen.</span> : (
+             {isSmiDone ? (
+              <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+                <span style={{ display: 'block', color: 'var(--success, #10b981)', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  U heeft deze vragenlijst voltooid ({Object.keys(completedTests.smi || {}).length} vragen ingevuld).
+                </span>
+                <span style={{ display: 'block', marginBottom: '1.25rem', color: 'var(--text-muted)' }}>
+                  Start een geheel schone test voor een nieuwe afname, of bekijk/wijzig de reeds ingevulde antwoorden.
+                </span>
+                <div style={{ marginTop: 'auto', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                  <button 
+                    className="btn btn-outline"
+                    onClick={(e) => { e.stopPropagation(); onStart('smi', 'new'); }}
+                    style={{ flex: 1, padding: '10px 14px', fontSize: '0.92rem', whiteSpace: 'nowrap' }}
+                  >
+                    Nieuwe test starten
+                  </button>
+                  <button 
+                    className="btn btn-outline"
+                    onClick={(e) => { e.stopPropagation(); onStart('smi', 'resume'); }}
+                    style={{ flex: 1, padding: '10px 14px', fontSize: '0.92rem', whiteSpace: 'nowrap' }}
+                  >
+                    Antwoorden inzien
+                  </button>
+                </div>
+              </div>
+             ) : (
               <>
                 <span 
                   onClick={(e) => { e.stopPropagation(); setSmiExpanded(!smiExpanded); }}
@@ -210,6 +278,16 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
                     </span>
                   </div>
                 )}
+
+                <div style={{ marginTop: 'auto', paddingTop: '1.25rem' }}>
+                  <button 
+                    className="btn btn-gradient"
+                    onClick={(e) => { e.stopPropagation(); onStart('smi', 'new'); }}
+                    style={{ width: '100%', color: 'white', padding: '10px 16px', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                  >
+                    Start Vragenlijst <ArrowRightIcon size={18} />
+                  </button>
+                </div>
               </>
              )}
           </div>

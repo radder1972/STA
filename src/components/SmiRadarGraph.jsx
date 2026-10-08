@@ -655,8 +655,11 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       // ignore
     }
 
-    // 4. Default demo fallback if empty
-    return DEFAULT_YSQ_SCORES;
+    // 4. Default demo fallback only if completely standalone without any props
+    if (!scores && !ysqScores && !rawAnswers) {
+      return DEFAULT_YSQ_SCORES;
+    }
+    return {};
   }, [scores, ysqScores, rawAnswers, initialSide]);
 
   // Normalize Modi Scores (exact scores matching report)
@@ -697,8 +700,11 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       // ignore
     }
 
-    // 4. Default demo fallback
-    return DEFAULT_SMI_SCORES;
+    // 4. Default demo fallback only if completely standalone without any props
+    if (!scores && !rawAnswers) {
+      return DEFAULT_SMI_SCORES;
+    }
+    return {};
   }, [scores, rawAnswers, initialSide]);
 
   // Helper to test if an item is a theoretical link partner of the currently hovered node
