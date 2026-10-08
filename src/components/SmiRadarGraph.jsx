@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useRef, useEffect, useCallback, useId } from 'react';
 import { Share2, Rotate3d, Eye, Play, Pause, ZoomIn, ZoomOut, Coins, X, BookOpen, ChevronDown, ChevronUp, Search, HelpCircle, ArrowLeftRight } from 'lucide-react';
 import SchemaCard from './SchemaCard';
 import ysqScoring from '../data/ysq-scoring.json';
@@ -276,9 +276,16 @@ function getScoreForItem(scoresMap, item) {
   return 0;
 }
 
+// Check if an object contains raw questionnaire answers (e.g. { "1": 4, "2": 5, ... })
+function isRawQuestionnaireAnswers(obj) {
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return false;
+  const keys = Object.keys(obj);
+  return keys.length > 0 && keys.every(k => /^\d+$/.test(k));
+}
+
 // Check if an array or object contains YSQ schema items
 function containsSchemaData(data) {
-  if (!data) return false;
+  if (!data || isRawQuestionnaireAnswers(data)) return false;
   if (Array.isArray(data)) {
     return data.some(s => s && (
       SCHEMAS_INFO.some(si => si.id === s.id || si.title === s.name || si.title === s.id || si.title === s.title)
@@ -293,7 +300,7 @@ function containsSchemaData(data) {
 
 // Check if an array or object contains SMI mode items
 function containsModeData(data) {
-  if (!data) return false;
+  if (!data || isRawQuestionnaireAnswers(data)) return false;
   if (Array.isArray(data)) {
     return data.some(s => s && (
       MODES_INFO.some(mi => mi.id === s.id || mi.title === s.name || mi.title === s.id || mi.title === s.title || SMI_KEY_TO_ID[s.id] || SMI_KEY_TO_ID[s.name])
@@ -309,7 +316,7 @@ function containsModeData(data) {
 // Extract scores into a standardized lookup map
 function extractScoreMap(input, isMode) {
   const map = {};
-  if (!input) return map;
+  if (!input || isRawQuestionnaireAnswers(input)) return map;
 
   if (Array.isArray(input)) {
     input.forEach(s => {
@@ -319,7 +326,7 @@ function extractScoreMap(input, isMode) {
       if (isNaN(val)) return;
 
       const rawId = s.id || s.name || s.title;
-      if (!rawId) return;
+      if (!rawId || /^\d+$/.test(rawId)) return;
 
       if (isMode) {
         const canonical = SMI_KEY_TO_ID[rawId] || rawId;
@@ -335,6 +342,7 @@ function extractScoreMap(input, isMode) {
     });
   } else if (typeof input === 'object') {
     Object.entries(input).forEach(([k, v]) => {
+      if (/^\d+$/.test(k)) return; // Skip numeric question IDs
       const rawVal = typeof v === 'object' && v !== null ? (v.mean !== undefined ? v.mean : v.score) : v;
       const val = parseFloat(rawVal);
       if (isNaN(val)) return;
@@ -416,6 +424,12 @@ const SuiteSparkle = ({ size = 24, color = 'currentColor' }) => (
 );
 
 export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenModusWeb, showAction = true, initialDimension = '3d', initialSide = 'modi' }) {
+  const reactId = useId();
+  const uid = useMemo(() => reactId.replace(/[^a-zA-Z0-9_-]/g, '_'), [reactId]);
+  const ballShadowId = `radar3dBallShadow_${uid}`;
+  const dotShadowId = `radar3dDotShadow_${uid}`;
+  const sphereLightId = `sphereLight_${uid}`;
+
   const [activeSide, setActiveSide] = useState(initialSide); // 'modi' or 'schemas'
   const [ringOrientation, setRingOrientation] = useState('modi-inner'); // 'modi-inner' (default: modi binnen, schema's buiten) or 'schemas-inner' (klassiek: schema's binnen, modi buiten)
   const isModiInner = ringOrientation === 'modi-inner';
@@ -614,7 +628,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       input = scores;
     } else if (containsSchemaData(ysqScores)) {
       input = ysqScores;
-    } else if (initialSide === 'schemas' && scores) {
+    } else if (initialSide === 'schemas' && scores && !isRawQuestionnaireAnswers(scores) && !containsModeData(scores)) {
       input = scores;
     }
 
@@ -651,7 +665,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     let input = null;
     if (containsModeData(scores)) {
       input = scores;
-    } else if (initialSide === 'modi' && scores && !containsSchemaData(scores)) {
+    } else if (initialSide === 'modi' && scores && !isRawQuestionnaireAnswers(scores) && !containsSchemaData(scores)) {
       input = scores;
     }
 
@@ -1009,10 +1023,11 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       const projBall = project3D(ballX, ballY, ballZ, pitchRad, yawRad, zoom, cx, cy);
 
       const scale = scoreVal === 0 ? 0.7 : 0.6 + scoreVal * 0.25;
-      const ballRadius = Math.max(isDual && !isOuter ? 11 : 13, baseRadius * scale * (viewDimension === '3d' ? projBall.scale : 1));
+      const safeProjScale = (typeof projBall?.scale === 'number' && !isNaN(projBall.scale) && projBall.scale > 0) ? projBall.scale : 1;
+      const ballRadius = Math.max(isDual && !isOuter ? 11 : 13, baseRadius * scale * (viewDimension === '3d' ? safeProjScale : 1));
 
       const categoryKey = item.domain;
-      const bg = scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey];
+      const bg = (scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey]) || '#10b981';
       const textColor = (scoreVal < 3.0 || isCopingOrDomain(item)) ? '#451a03' : '#ffffff';
 
       return {
@@ -1088,10 +1103,11 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       const projBall = project3D(ballX, ballY, ballZ, pitchRad, yawRad, zoom, cx, cy);
 
       const scale = scoreVal === 0 ? 0.7 : 0.6 + scoreVal * 0.25;
-      const ballRadius = Math.max(isDual && !isOuter ? 11 : 13, baseRadius * scale * (viewDimension === '3d' ? projBall.scale : 1));
+      const safeProjScale = (typeof projBall?.scale === 'number' && !isNaN(projBall.scale) && projBall.scale > 0) ? projBall.scale : 1;
+      const ballRadius = Math.max(isDual && !isOuter ? 11 : 13, baseRadius * scale * (viewDimension === '3d' ? safeProjScale : 1));
 
       const categoryKey = item.category;
-      const bg = scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey];
+      const bg = (scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey]) || '#3b82f6';
       const textColor = (scoreVal < 3.0 || isCopingOrDomain(item)) ? '#451a03' : '#ffffff';
 
       return {
@@ -1423,7 +1439,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       const ballRadius = Math.max(isDual && !isOuter ? 11 : 13, baseRadius * scale);
 
       const categoryKey = item.domain;
-      const bg = scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey];
+      const bg = (scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey]) || '#10b981';
       const textColor = (scoreVal < 3.0 || isCopingOrDomain(item)) ? '#451a03' : '#ffffff';
 
       return { ...item, itemType: 'schema', scoreVal, ballX, ballY, ptX, ptY, ballRadius, bg, textColor, cosA, sinA };
@@ -1460,7 +1476,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       const ballRadius = Math.max(isDual && !isOuter ? 11 : 13, baseRadius * scale);
 
       const categoryKey = item.category;
-      const bg = scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey];
+      const bg = (scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey]) || '#3b82f6';
       const textColor = (scoreVal < 3.0 || isCopingOrDomain(item)) ? '#451a03' : '#ffffff';
 
       return { ...item, itemType: 'mode', scoreVal, ballX, ballY, ptX, ptY, ballRadius, bg, textColor, cosA, sinA };
@@ -2220,13 +2236,13 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
           style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }}
         >
           <defs>
-            <filter id="radar3dBallShadow" x="-40%" y="-40%" width="180%" height="180%">
+            <filter id={ballShadowId} x="-40%" y="-40%" width="180%" height="180%">
               <feDropShadow dx="0" dy="5" stdDeviation="5" floodOpacity="0.2" />
             </filter>
-            <filter id="radar3dDotShadow" x="-40%" y="-40%" width="180%" height="180%">
+            <filter id={dotShadowId} x="-40%" y="-40%" width="180%" height="180%">
               <feDropShadow dx="0" dy="3" stdDeviation="3" floodOpacity="0.3" />
             </filter>
-            <radialGradient id="sphereLight" cx="35%" cy="30%" r="70%">
+            <radialGradient id={sphereLightId} cx="35%" cy="30%" r="70%">
               <stop offset="0%" stopColor="#ffffff" stopOpacity="0.45" />
               <stop offset="70%" stopColor="#ffffff" stopOpacity="0" />
               <stop offset="100%" stopColor="#000000" stopOpacity="0.2" />
@@ -2412,7 +2428,8 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                   fill="#10b981"
                   stroke="#ffffff"
                   strokeWidth="1.5"
-                  filter="url(#radar3dDotShadow)"
+                  filter={`url(#${dotShadowId})`}
+                  style={{ filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.25))' }}
                 />
               )}
               {projApexModi && (
@@ -2423,7 +2440,8 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                   fill="#3b82f6"
                   stroke="#ffffff"
                   strokeWidth="1.5"
-                  filter="url(#radar3dDotShadow)"
+                  filter={`url(#${dotShadowId})`}
+                  style={{ filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.25))' }}
                 />
               )}
 
@@ -2434,16 +2452,18 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                     cx={m.projPeak.screenX}
                     cy={m.projPeak.screenY}
                     r={5.5 * m.projPeak.scale}
-                    fill={m.bg}
+                    fill={m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')}
                     stroke="#ffffff"
                     strokeWidth="2.2"
-                    filter="url(#radar3dDotShadow)"
+                    filter={`url(#${dotShadowId})`}
+                    style={{ filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.25))' }}
                   />
                   <circle
                     cx={m.projPeak.screenX}
                     cy={m.projPeak.screenY}
                     r={5.5 * m.projPeak.scale}
-                    fill="url(#sphereLight)"
+                    fill={`url(#${sphereLightId})`}
+                    pointerEvents="none"
                   />
                 </g>
               ))}
@@ -2549,15 +2569,17 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                     {/* Clean Solid Ball without white stroke */}
                     <circle
                       r={m.ballRadius}
-                      fill={m.bg}
+                      fill={m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')}
                       stroke="none"
-                      filter="url(#radar3dBallShadow)"
+                      filter={`url(#${ballShadowId})`}
+                      style={{ filter: 'drop-shadow(0 3px 5px rgba(0,0,0,0.22))' }}
                     />
 
                     {/* 3D Sphere Shading Highlight */}
                     <circle
                       r={m.ballRadius}
-                      fill="url(#sphereLight)"
+                      fill={`url(#${sphereLightId})`}
+                      pointerEvents="none"
                     />
 
                     {/* Abbreviation (e.g. GV, OK, VE, WA) */}
@@ -2717,10 +2739,11 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                   cx={m.ptX}
                   cy={m.ptY}
                   r="6"
-                  fill={m.bg}
+                  fill={m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')}
                   stroke="#ffffff"
                   strokeWidth="2.2"
-                  filter="url(#radar3dDotShadow)"
+                  filter={`url(#${dotShadowId})`}
+                  style={{ filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.25))' }}
                 />
               ))}
 
@@ -2780,9 +2803,10 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
 
                     <circle
                       r={m.ballRadius}
-                      fill={m.bg}
+                      fill={m.bg || (m.itemType === 'mode' ? '#3b82f6' : '#10b981')}
                       stroke="none"
-                      filter="url(#radar3dBallShadow)"
+                      filter={`url(#${ballShadowId})`}
+                      style={{ filter: 'drop-shadow(0 3px 5px rgba(0,0,0,0.18))' }}
                     />
                     <text
                       textAnchor="middle"
@@ -2842,9 +2866,10 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                       rx="8"
                       ry="8"
                       fill="#0f172a"
-                      stroke={activeBall.bg}
+                      stroke={activeBall.bg || '#3b82f6'}
                       strokeWidth="1.8"
-                      filter="url(#radar3dBallShadow)"
+                      filter={`url(#${ballShadowId})`}
+                      style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }}
                     />
                     {/* Abbreviation badge */}
                     <rect

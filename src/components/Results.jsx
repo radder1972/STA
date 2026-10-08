@@ -1,15 +1,58 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import SingleResult from './SingleResult'
 import CombinedAnalysis from './CombinedAnalysis'
 import SmiRadarGraph from './SmiRadarGraph'
 import { DownloadIcon, RefreshIcon, ArrowLeftIcon, PlatformBadge } from './Icons'
 import ysqData from '../data/ysq-s3.json'
 import smiData from '../data/smi.json'
+import ysqScoring from '../data/ysq-scoring.json'
+import smiScoring from '../data/smi-scoring.json'
 
 export default function Results({ completedTests, onRestart, onBack, onUpdateAnswer, onViewBasisbehoeften, onViewModiCategorieen }) {
   const hasYsq = !!completedTests.ysq;
   const hasSmi = !!completedTests.smi;
   
+  // Pre-calculate exact mean score maps for YSQ and SMI so SmiRadarGraph receives resolved scores directly
+  const smiScoresMap = useMemo(() => {
+    if (!completedTests?.smi) return null;
+    const map = {};
+    Object.entries(smiScoring).forEach(([key, items]) => {
+      let sum = 0;
+      let count = 0;
+      items.forEach(qId => {
+        const val = completedTests.smi[qId];
+        if (val !== undefined) {
+          sum += Number(val);
+          count++;
+        }
+      });
+      if (count > 0) {
+        map[key] = Math.round((sum / count) * 100) / 100;
+      }
+    });
+    return map;
+  }, [completedTests]);
+
+  const ysqScoresMap = useMemo(() => {
+    if (!completedTests?.ysq) return null;
+    const map = {};
+    Object.entries(ysqScoring).forEach(([key, items]) => {
+      let sum = 0;
+      let count = 0;
+      items.forEach(qId => {
+        const val = completedTests.ysq[qId];
+        if (val !== undefined) {
+          sum += Number(val);
+          count++;
+        }
+      });
+      if (count > 0) {
+        map[key] = Math.round((sum / count) * 100) / 100;
+      }
+    });
+    return map;
+  }, [completedTests]);
+
   // Default to YSQ if it exists, otherwise SMI
   const [activeTab, setActiveTab] = useState(hasYsq ? 'ysq' : 'smi');
 
@@ -152,8 +195,8 @@ export default function Results({ completedTests, onRestart, onBack, onUpdateAns
                 Draai de interactieve 3D-visualisatie met de muis of vinger om de gemoedstoestanden, schema-wortels en therapeutische hefbomen ruimtelijk te analyseren.
               </p>
               <SmiRadarGraph 
-                scores={completedTests.smi}
-                ysqScores={completedTests.ysq}
+                scores={smiScoresMap || completedTests.smi}
+                ysqScores={ysqScoresMap || completedTests.ysq}
                 rawAnswers={completedTests.smi || completedTests.ysq}
                 initialSide={hasYsq && hasSmi ? 'both' : (hasSmi ? 'modi' : 'schemas')}
                 initialDimension="3d"
