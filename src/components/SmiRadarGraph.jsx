@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { Share2, Rotate3d, Eye, Play, Pause, RotateCcw, ZoomIn, ZoomOut, Coins, X, BookOpen, ChevronDown, ChevronUp, Sparkles, Search, HelpCircle } from 'lucide-react';
+import { Share2, Rotate3d, Eye, Play, Pause, ZoomIn, ZoomOut, Coins, X, BookOpen, ChevronDown, ChevronUp, Search, HelpCircle, ArrowLeftRight } from 'lucide-react';
 import SchemaCard from './SchemaCard';
 import ysqScoring from '../data/ysq-scoring.json';
 import smiScoring from '../data/smi-scoring.json';
@@ -417,6 +417,8 @@ const SuiteSparkle = ({ size = 24, color = 'currentColor' }) => (
 
 export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenModusWeb, showAction = true, initialDimension = '3d', initialSide = 'modi' }) {
   const [activeSide, setActiveSide] = useState(initialSide); // 'modi' or 'schemas'
+  const [ringOrientation, setRingOrientation] = useState('modi-inner'); // 'modi-inner' (default: modi binnen, schema's buiten) or 'schemas-inner' (klassiek: schema's binnen, modi buiten)
+  const isModiInner = ringOrientation === 'modi-inner';
   const [viewDimension, setViewDimension] = useState(initialDimension); // '2d' or '3d'
   const [hoveredNode, setHoveredNode] = useState(null);
   const [popupFlipped, setPopupFlipped] = useState(false);
@@ -964,16 +966,18 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
   const pitchRad = (pitch * Math.PI) / 180;
   const yawRad = (yaw * Math.PI) / 180;
 
-  // 1. Calculate 3D points for Schemas (Outer ring in dual mode, or full ring in single mode)
+  // 1. Calculate 3D points for Schemas (Outer or Inner ring in dual mode, or full ring in single mode)
   const schemaItems3D = useMemo(() => {
     const n = SCHEMAS_INFO.length; // 18
     const isDual = activeSide === 'both';
+    const isOuter = isDual && isModiInner;
     const rBase = 192;
-    const rSpan = 56; // 192 to 248
+    const rSpan = 56;
+    const rMaxInner = 110;
     const rMaxSingle = 180;
-    const rBall = isDual ? 282 : 252;
-    const elevFactor = isDual ? 26 : 25;
-    const baseRadius = isDual ? 18.5 : 18;
+    const rBall = isDual ? (isOuter ? 282 : 160) : 252;
+    const elevFactor = isDual ? (isOuter ? 26 : 18) : 25;
+    const baseRadius = isDual ? (isOuter ? 18.5 : 13.5) : 18;
 
     return SCHEMAS_INFO.map((item, idx) => {
       const angle = -Math.PI / 2 + idx * ((2 * Math.PI) / n);
@@ -984,7 +988,9 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       const ratio = Math.min(Math.max(scoreVal / 6, 0.08), 1);
 
       const elevation = scoreVal * elevFactor;
-      const peakRadius = isDual ? (rBase + ratio * rSpan) : (rMaxSingle * ratio);
+      const peakRadius = isDual
+        ? (isOuter ? (rBase + ratio * rSpan) : (rMaxInner * ratio))
+        : (rMaxSingle * ratio);
       const peakX = peakRadius * cosA;
       const peakZ = peakRadius * sinA;
       const peakY = -elevation;
@@ -992,12 +998,12 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       const groundX = peakRadius * cosA;
       const groundZ = peakRadius * sinA;
 
-      const baseFloorX = (isDual ? rBase : 0) * cosA;
-      const baseFloorZ = (isDual ? rBase : 0) * sinA;
+      const baseFloorX = (isDual && isOuter ? rBase : 0) * cosA;
+      const baseFloorZ = (isDual && isOuter ? rBase : 0) * sinA;
 
       const ballX = rBall * cosA;
       const ballZ = rBall * sinA;
-      const ballY = -(scoreVal * 10);
+      const ballY = -(scoreVal * (isDual && !isOuter ? 7 : 10));
 
       const projPeak = project3D(peakX, peakY, peakZ, pitchRad, yawRad, zoom, cx, cy);
       const projGround = project3D(groundX, 0, groundZ, pitchRad, yawRad, zoom, cx, cy);
@@ -1005,7 +1011,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       const projBall = project3D(ballX, ballY, ballZ, pitchRad, yawRad, zoom, cx, cy);
 
       const scale = scoreVal === 0 ? 0.7 : 0.6 + scoreVal * 0.25;
-      const ballRadius = Math.max(13, baseRadius * scale * (viewDimension === '3d' ? projBall.scale : 1));
+      const ballRadius = Math.max(isDual && !isOuter ? 11 : 13, baseRadius * scale * (viewDimension === '3d' ? projBall.scale : 1));
 
       const categoryKey = item.domain;
       const bg = scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey];
@@ -1037,16 +1043,20 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
         elevation
       };
     });
-  }, [normalizedSchemaScores, activeSide, pitchRad, yawRad, zoom, cx, cy, viewDimension]);
+  }, [normalizedSchemaScores, activeSide, isModiInner, pitchRad, yawRad, zoom, cx, cy, viewDimension]);
 
-  // 2. Calculate 3D points for Modi (Inner ring in dual mode, or full ring in single mode)
+  // 2. Calculate 3D points for Modi (Inner or Outer ring in dual mode, or full ring in single mode)
   const modiItems3D = useMemo(() => {
     const n = MODES_INFO.length; // 14
     const isDual = activeSide === 'both';
-    const rMax = isDual ? 110 : 180;
-    const rBall = isDual ? 160 : 252;
-    const elevFactor = isDual ? 18 : 25;
-    const baseRadius = isDual ? 14 : 21;
+    const isOuter = isDual && !isModiInner;
+    const rBase = 192;
+    const rSpan = 56;
+    const rMaxInner = 110;
+    const rMaxSingle = 180;
+    const rBall = isDual ? (isOuter ? 282 : 160) : 252;
+    const elevFactor = isDual ? (isOuter ? 26 : 18) : 25;
+    const baseRadius = isDual ? (isOuter ? 19.5 : 14) : 21;
 
     return MODES_INFO.map((item, idx) => {
       const angle = -Math.PI / 2 + idx * ((2 * Math.PI) / n);
@@ -1057,19 +1067,22 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       const ratio = Math.min(Math.max(scoreVal / 6, 0.08), 1);
 
       const elevation = scoreVal * elevFactor;
-      const peakX = rMax * ratio * cosA;
-      const peakZ = rMax * ratio * sinA;
+      const peakRadius = isDual
+        ? (isOuter ? (rBase + ratio * rSpan) : (rMaxInner * ratio))
+        : (rMaxSingle * ratio);
+      const peakX = peakRadius * cosA;
+      const peakZ = peakRadius * sinA;
       const peakY = -elevation;
 
-      const groundX = rMax * ratio * cosA;
-      const groundZ = rMax * ratio * sinA;
+      const groundX = peakRadius * cosA;
+      const groundZ = peakRadius * sinA;
 
-      const baseFloorX = 0;
-      const baseFloorZ = 0;
+      const baseFloorX = (isDual && isOuter ? rBase : 0) * cosA;
+      const baseFloorZ = (isDual && isOuter ? rBase : 0) * sinA;
 
       const ballX = rBall * cosA;
       const ballZ = rBall * sinA;
-      const ballY = -(scoreVal * (isDual ? 7 : 10));
+      const ballY = -(scoreVal * (isDual && !isOuter ? 7 : 10));
 
       const projPeak = project3D(peakX, peakY, peakZ, pitchRad, yawRad, zoom, cx, cy);
       const projGround = project3D(groundX, 0, groundZ, pitchRad, yawRad, zoom, cx, cy);
@@ -1077,7 +1090,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       const projBall = project3D(ballX, ballY, ballZ, pitchRad, yawRad, zoom, cx, cy);
 
       const scale = scoreVal === 0 ? 0.7 : 0.6 + scoreVal * 0.25;
-      const ballRadius = Math.max(isDual ? 11 : 13, baseRadius * scale * (viewDimension === '3d' ? projBall.scale : 1));
+      const ballRadius = Math.max(isDual && !isOuter ? 11 : 13, baseRadius * scale * (viewDimension === '3d' ? projBall.scale : 1));
 
       const categoryKey = item.category;
       const bg = scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey];
@@ -1109,7 +1122,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
         elevation
       };
     });
-  }, [normalizedModiScores, activeSide, pitchRad, yawRad, zoom, cx, cy, viewDimension]);
+  }, [normalizedModiScores, activeSide, isModiInner, pitchRad, yawRad, zoom, cx, cy, viewDimension]);
 
   // Combined 3D items for active side
   const items3D = useMemo(() => {
@@ -1119,137 +1132,118 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     return activeSide === 'modi' ? modiItems3D : schemaItems3D;
   }, [activeSide, schemaItems3D, modiItems3D]);
 
-  // 3. Facets calculation (Combined crystal canopies: Inner Modi, Outer Schemas)
+  // 3. Facets calculation (Combined crystal canopies according to ringOrientation)
   const { facets, projApexSchema, projApexModi } = useMemo(() => {
     const lightDir = normalize([0.4, -0.9, 0.45]);
     const facetList = [];
 
-    // Inner Modi Canopy (Sapphire Blue)
-    if (activeSide === 'both' || activeSide === 'modi') {
-      const nModi = modiItems3D.length;
-      const avgElevModi = modiItems3D.reduce((sum, m) => sum + m.elevation, 0) / nModi;
-      const apexHeightModi = -(avgElevModi * 1.15 + (activeSide === 'both' ? 14 : 15));
-      const pApexModi = project3D(0, apexHeightModi, 0, pitchRad, yawRad, zoom, cx, cy);
-      const modiColor = '59, 130, 246'; // sapphire blue
+    // Inner Canopy (central peak apex)
+    const innerItems = activeSide === 'both'
+      ? (isModiInner ? modiItems3D : schemaItems3D)
+      : (activeSide === 'modi' ? modiItems3D : schemaItems3D);
+    const innerColor = activeSide === 'both'
+      ? (isModiInner ? '59, 130, 246' : '16, 185, 129')
+      : (activeSide === 'modi' ? '59, 130, 246' : '16, 185, 129');
+    const innerType = activeSide === 'both'
+      ? (isModiInner ? 'modi' : 'schema')
+      : (activeSide === 'modi' ? 'modi' : 'schema');
 
-      for (let i = 0; i < nModi; i++) {
-        const nextIdx = (i + 1) % nModi;
-        const m1 = modiItems3D[i];
-        const m2 = modiItems3D[nextIdx];
+    let pApex = null;
+    if (activeSide === 'both' || activeSide === 'modi' || activeSide === 'schemas') {
+      const nInner = innerItems.length;
+      const avgElev = innerItems.reduce((sum, m) => sum + m.elevation, 0) / nInner;
+      const apexHeight = -(avgElev * 1.15 + (activeSide === 'both' ? 14 : 15));
+      pApex = project3D(0, apexHeight, 0, pitchRad, yawRad, zoom, cx, cy);
 
-        const v1 = [m1.peakX, m1.peakY - apexHeightModi, m1.peakZ];
-        const v2 = [m2.peakX, m2.peakY - apexHeightModi, m2.peakZ];
+      for (let i = 0; i < nInner; i++) {
+        const nextIdx = (i + 1) % nInner;
+        const m1 = innerItems[i];
+        const m2 = innerItems[nextIdx];
+
+        const v1 = [m1.peakX, m1.peakY - apexHeight, m1.peakZ];
+        const v2 = [m2.peakX, m2.peakY - apexHeight, m2.peakZ];
         const norm = normalize(crossProduct(v1, v2));
 
         const lightDot = Math.abs(dot(norm, lightDir));
         const intensity = Math.max(0.18, Math.min(0.85, lightDot * 0.6 + 0.25));
-        const avgDepth = (pApexModi.depth + m1.projPeak.depth + m2.projPeak.depth) / 3;
+        const avgDepth = (pApex.depth + m1.projPeak.depth + m2.projPeak.depth) / 3;
 
         facetList.push({
-          pts: `${pApexModi.screenX.toFixed(1)},${pApexModi.screenY.toFixed(1)} ${m1.projPeak.screenX.toFixed(1)},${m1.projPeak.screenY.toFixed(1)} ${m2.projPeak.screenX.toFixed(1)},${m2.projPeak.screenY.toFixed(1)}`,
+          pts: `${pApex.screenX.toFixed(1)},${pApex.screenY.toFixed(1)} ${m1.projPeak.screenX.toFixed(1)},${m1.projPeak.screenY.toFixed(1)} ${m2.projPeak.screenX.toFixed(1)},${m2.projPeak.screenY.toFixed(1)}`,
           intensity,
           avgDepth,
-          idx: `modi-${i}`,
-          color: modiColor
+          idx: `${innerType}-${i}`,
+          color: innerColor
         });
-      }
-
-      if (activeSide === 'modi') {
-        facetList.sort((a, b) => b.avgDepth - a.avgDepth);
-        return { facets: facetList, projApexSchema: null, projApexModi: pApexModi };
       }
     }
 
-    // Outer Schemas Canopy / Ridge (Emerald)
-    if (activeSide === 'both' || activeSide === 'schemas') {
-      const nSchema = schemaItems3D.length;
-      const schemaColor = '16, 185, 129'; // emerald
+    // Outer Ridge in dual mode (surrounding caldera mountain ridge)
+    if (activeSide === 'both') {
+      const outerItems = isModiInner ? schemaItems3D : modiItems3D;
+      const outerColor = isModiInner ? '16, 185, 129' : '59, 130, 246';
+      const outerType = isModiInner ? 'schema' : 'modi';
+      const nOuter = outerItems.length;
 
-      if (activeSide === 'both') {
-        // In dual mode, outer schemas form a crystalline caldera / mountain ridge surrounding the inner modi center
-        for (let i = 0; i < nSchema; i++) {
-          const nextIdx = (i + 1) % nSchema;
-          const m1 = schemaItems3D[i];
-          const m2 = schemaItems3D[nextIdx];
+      for (let i = 0; i < nOuter; i++) {
+        const nextIdx = (i + 1) % nOuter;
+        const m1 = outerItems[i];
+        const m2 = outerItems[nextIdx];
 
-          // Triangle 1: Base1 -> Peak1 -> Peak2
-          const v1 = [m1.peakX - m1.baseFloorX, m1.peakY, m1.peakZ - m1.baseFloorZ];
-          const v2 = [m2.peakX - m1.baseFloorX, m2.peakY, m2.peakZ - m1.baseFloorZ];
-          const norm1 = normalize(crossProduct(v1, v2));
-          const lightDot1 = Math.abs(dot(norm1, lightDir));
-          const intensity1 = Math.max(0.16, Math.min(0.80, lightDot1 * 0.55 + 0.22));
-          const avgDepth1 = (m1.projBaseFloor.depth + m1.projPeak.depth + m2.projPeak.depth) / 3;
+        // Triangle 1: Base1 -> Peak1 -> Peak2
+        const v1 = [m1.peakX - m1.baseFloorX, m1.peakY, m1.peakZ - m1.baseFloorZ];
+        const v2 = [m2.peakX - m1.baseFloorX, m2.peakY, m2.peakZ - m1.baseFloorZ];
+        const norm1 = normalize(crossProduct(v1, v2));
+        const lightDot1 = Math.abs(dot(norm1, lightDir));
+        const intensity1 = Math.max(0.16, Math.min(0.80, lightDot1 * 0.55 + 0.22));
+        const avgDepth1 = (m1.projBaseFloor.depth + m1.projPeak.depth + m2.projPeak.depth) / 3;
 
-          facetList.push({
-            pts: `${m1.projBaseFloor.screenX.toFixed(1)},${m1.projBaseFloor.screenY.toFixed(1)} ${m1.projPeak.screenX.toFixed(1)},${m1.projPeak.screenY.toFixed(1)} ${m2.projPeak.screenX.toFixed(1)},${m2.projPeak.screenY.toFixed(1)}`,
-            intensity: intensity1,
-            avgDepth: avgDepth1,
-            idx: `schema-a-${i}`,
-            color: schemaColor
-          });
+        facetList.push({
+          pts: `${m1.projBaseFloor.screenX.toFixed(1)},${m1.projBaseFloor.screenY.toFixed(1)} ${m1.projPeak.screenX.toFixed(1)},${m1.projPeak.screenY.toFixed(1)} ${m2.projPeak.screenX.toFixed(1)},${m2.projPeak.screenY.toFixed(1)}`,
+          intensity: intensity1,
+          avgDepth: avgDepth1,
+          idx: `${outerType}-a-${i}`,
+          color: outerColor
+        });
 
-          // Triangle 2: Base1 -> Peak2 -> Base2
-          const v3 = [m2.peakX - m1.baseFloorX, m2.peakY, m2.peakZ - m1.baseFloorZ];
-          const v4 = [m2.baseFloorX - m1.baseFloorX, 0, m2.baseFloorZ - m1.baseFloorZ];
-          const norm2 = normalize(crossProduct(v3, v4));
-          const lightDot2 = Math.abs(dot(norm2, lightDir));
-          const intensity2 = Math.max(0.14, Math.min(0.75, lightDot2 * 0.55 + 0.20));
-          const avgDepth2 = (m1.projBaseFloor.depth + m2.projPeak.depth + m2.projBaseFloor.depth) / 3;
+        // Triangle 2: Base1 -> Peak2 -> Base2
+        const v3 = [m2.peakX - m1.baseFloorX, m2.peakY, m2.peakZ - m1.baseFloorZ];
+        const v4 = [m2.baseFloorX - m1.baseFloorX, 0, m2.baseFloorZ - m1.baseFloorZ];
+        const norm2 = normalize(crossProduct(v3, v4));
+        const lightDot2 = Math.abs(dot(norm2, lightDir));
+        const intensity2 = Math.max(0.14, Math.min(0.75, lightDot2 * 0.55 + 0.20));
+        const avgDepth2 = (m1.projBaseFloor.depth + m2.projPeak.depth + m2.projBaseFloor.depth) / 3;
 
-          facetList.push({
-            pts: `${m1.projBaseFloor.screenX.toFixed(1)},${m1.projBaseFloor.screenY.toFixed(1)} ${m2.projPeak.screenX.toFixed(1)},${m2.projPeak.screenY.toFixed(1)} ${m2.projBaseFloor.screenX.toFixed(1)},${m2.projBaseFloor.screenY.toFixed(1)}`,
-            intensity: intensity2,
-            avgDepth: avgDepth2,
-            idx: `schema-b-${i}`,
-            color: schemaColor
-          });
-        }
-      } else {
-        // In single schema mode, classic single peak canopy
-        const avgElevSchema = schemaItems3D.reduce((sum, m) => sum + m.elevation, 0) / nSchema;
-        const apexHeightSchema = -(avgElevSchema * 1.15 + 14);
-        const pApexSchema = project3D(0, apexHeightSchema, 0, pitchRad, yawRad, zoom, cx, cy);
-
-        for (let i = 0; i < nSchema; i++) {
-          const nextIdx = (i + 1) % nSchema;
-          const m1 = schemaItems3D[i];
-          const m2 = schemaItems3D[nextIdx];
-
-          const v1 = [m1.peakX, m1.peakY - apexHeightSchema, m1.peakZ];
-          const v2 = [m2.peakX, m2.peakY - apexHeightSchema, m2.peakZ];
-          const norm = normalize(crossProduct(v1, v2));
-
-          const lightDot = Math.abs(dot(norm, lightDir));
-          const intensity = Math.max(0.18, Math.min(0.85, lightDot * 0.6 + 0.25));
-          const avgDepth = (pApexSchema.depth + m1.projPeak.depth + m2.projPeak.depth) / 3;
-
-          facetList.push({
-            pts: `${pApexSchema.screenX.toFixed(1)},${pApexSchema.screenY.toFixed(1)} ${m1.projPeak.screenX.toFixed(1)},${m1.projPeak.screenY.toFixed(1)} ${m2.projPeak.screenX.toFixed(1)},${m2.projPeak.screenY.toFixed(1)}`,
-            intensity,
-            avgDepth,
-            idx: `schema-${i}`,
-            color: schemaColor
-          });
-        }
-        facetList.sort((a, b) => b.avgDepth - a.avgDepth);
-        return { facets: facetList, projApexSchema: pApexSchema, projApexModi: null };
+        facetList.push({
+          pts: `${m1.projBaseFloor.screenX.toFixed(1)},${m1.projBaseFloor.screenY.toFixed(1)} ${m2.projPeak.screenX.toFixed(1)},${m2.projPeak.screenY.toFixed(1)} ${m2.projBaseFloor.screenX.toFixed(1)},${m2.projBaseFloor.screenY.toFixed(1)}`,
+          intensity: intensity2,
+          avgDepth: avgDepth2,
+          idx: `${outerType}-b-${i}`,
+          color: outerColor
+        });
       }
     }
 
     facetList.sort((a, b) => b.avgDepth - a.avgDepth);
-    const avgElevModi = modiItems3D.reduce((sum, m) => sum + m.elevation, 0) / modiItems3D.length;
-    const pApexModi = project3D(0, -(avgElevModi * 1.15 + 14), 0, pitchRad, yawRad, zoom, cx, cy);
-    return { facets: facetList, projApexSchema: null, projApexModi: pApexModi };
-  }, [activeSide, schemaItems3D, modiItems3D, pitchRad, yawRad, zoom, cx, cy]);
+
+    return {
+      facets: facetList,
+      projApexSchema: (activeSide === 'schemas' || (activeSide === 'both' && !isModiInner)) ? pApex : null,
+      projApexModi: (activeSide === 'modi' || (activeSide === 'both' && isModiInner)) ? pApex : null
+    };
+  }, [activeSide, schemaItems3D, modiItems3D, isModiInner, pitchRad, yawRad, zoom, cx, cy]);
 
   // 4. Concentric 3D Floor Grid Polygons
   const floorGridRings = useMemo(() => {
     if (activeSide === 'both') {
-      // Inner Modi Grid (levels 2, 4, 6)
+      const innerTargetItems = isModiInner ? modiItems3D : schemaItems3D;
+      const outerTargetItems = isModiInner ? schemaItems3D : modiItems3D;
+
+      // Inner Grid (levels 2, 4, 6)
       const innerRings = [2, 4, 6].map(lvl => {
         const r = 110 * (lvl / 6);
         const pts = [];
-        const n = modiItems3D.length;
+        const n = innerTargetItems.length;
         for (let i = 0; i < n; i++) {
           const angle = -Math.PI / 2 + i * ((2 * Math.PI) / n);
           const p = project3D(r * Math.cos(angle), 0, r * Math.sin(angle), pitchRad, yawRad, zoom, cx, cy);
@@ -1258,11 +1252,11 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
         return { key: `inner-${lvl}`, lvl, pts: pts.join(' '), color: '#cbd5e1' };
       });
 
-      // Outer Schemas Grid (levels 2, 4, 6)
+      // Outer Grid (levels 2, 4, 6)
       const outerRings = [2, 4, 6].map(lvl => {
         const r = 192 + (lvl / 6) * 56;
         const pts = [];
-        const n = schemaItems3D.length;
+        const n = outerTargetItems.length;
         for (let i = 0; i < n; i++) {
           const angle = -Math.PI / 2 + i * ((2 * Math.PI) / n);
           const p = project3D(r * Math.cos(angle), 0, r * Math.sin(angle), pitchRad, yawRad, zoom, cx, cy);
@@ -1287,7 +1281,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       }
       return { key: `single-${lvl}`, lvl, pts: pts.join(' '), color: '#e2e8f0' };
     });
-  }, [activeSide, schemaItems3D, modiItems3D, pitchRad, yawRad, zoom, cx, cy]);
+  }, [activeSide, schemaItems3D, modiItems3D, isModiInner, pitchRad, yawRad, zoom, cx, cy]);
 
   // 3D Demarcation Ring between inner Schemas and outer Modi in dual mode
   const dividerRing3D = useMemo(() => {
@@ -1399,15 +1393,17 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
     return [...items3D].sort((a, b) => b.projBall.depth - a.projBall.depth);
   }, [items3D]);
 
-  // 7. 2D Classic Static Data (Dual Concentric & Single: Inner Modi, Outer Schemas)
+  // 7. 2D Classic Static Data (Dual Concentric & Single according to ringOrientation)
   const schemaItems2D = useMemo(() => {
     const n = SCHEMAS_INFO.length;
     const isDual = activeSide === 'both';
+    const isOuter = isDual && isModiInner;
     const rBase = 192;
     const rSpan = 56;
+    const rMaxInner = 110;
     const rMaxSingle = 180;
-    const rBall = isDual ? 282 : 252;
-    const baseRadius = isDual ? 18.5 : 18;
+    const rBall = isDual ? (isOuter ? 282 : 160) : 252;
+    const baseRadius = isDual ? (isOuter ? 18.5 : 13.5) : 18;
 
     return SCHEMAS_INFO.map((item, idx) => {
       const angle = -Math.PI / 2 + idx * ((2 * Math.PI) / n);
@@ -1418,12 +1414,14 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
 
       const scoreVal = getScoreForItem(normalizedSchemaScores, item);
       const ratio = Math.min(Math.max(scoreVal / 6, 0), 1);
-      const ptRadius = isDual ? (rBase + ratio * rSpan) : (rMaxSingle * ratio);
+      const ptRadius = isDual
+        ? (isOuter ? (rBase + ratio * rSpan) : (rMaxInner * ratio))
+        : (rMaxSingle * ratio);
       const ptX = cx + ptRadius * cosA;
       const ptY = cy + ptRadius * sinA;
 
       const scale = scoreVal === 0 ? 0.7 : 0.6 + scoreVal * 0.25;
-      const ballRadius = Math.max(13, baseRadius * scale);
+      const ballRadius = Math.max(isDual && !isOuter ? 11 : 13, baseRadius * scale);
 
       const categoryKey = item.domain;
       const bg = scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey];
@@ -1431,14 +1429,18 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
 
       return { ...item, itemType: 'schema', scoreVal, ballX, ballY, ptX, ptY, ballRadius, bg, textColor, cosA, sinA };
     });
-  }, [normalizedSchemaScores, activeSide, cx, cy]);
+  }, [normalizedSchemaScores, activeSide, isModiInner, cx, cy]);
 
   const modiItems2D = useMemo(() => {
     const n = MODES_INFO.length;
     const isDual = activeSide === 'both';
-    const rMax = isDual ? 110 : 180;
-    const rBall = isDual ? 160 : 252;
-    const baseRadius = isDual ? 14 : 21;
+    const isOuter = isDual && !isModiInner;
+    const rBase = 192;
+    const rSpan = 56;
+    const rMaxInner = 110;
+    const rMaxSingle = 180;
+    const rBall = isDual ? (isOuter ? 282 : 160) : 252;
+    const baseRadius = isDual ? (isOuter ? 19.5 : 14) : 21;
 
     return MODES_INFO.map((item, idx) => {
       const angle = -Math.PI / 2 + idx * ((2 * Math.PI) / n);
@@ -1449,11 +1451,14 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
 
       const scoreVal = getScoreForItem(normalizedModiScores, item);
       const ratio = Math.min(Math.max(scoreVal / 6, 0), 1);
-      const ptX = cx + (rMax * ratio) * cosA;
-      const ptY = cy + (rMax * ratio) * sinA;
+      const ptRadius = isDual
+        ? (isOuter ? (rBase + ratio * rSpan) : (rMaxInner * ratio))
+        : (rMaxSingle * ratio);
+      const ptX = cx + ptRadius * cosA;
+      const ptY = cy + ptRadius * sinA;
 
       const scale = scoreVal === 0 ? 0.7 : 0.6 + scoreVal * 0.25;
-      const ballRadius = Math.max(isDual ? 11 : 13, baseRadius * scale);
+      const ballRadius = Math.max(isDual && !isOuter ? 11 : 13, baseRadius * scale);
 
       const categoryKey = item.category;
       const bg = scoreVal < 3.0 ? LIGHT_CATEGORY_COLORS[categoryKey] : CATEGORY_COLORS[categoryKey];
@@ -1461,7 +1466,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
 
       return { ...item, itemType: 'mode', scoreVal, ballX, ballY, ptX, ptY, ballRadius, bg, textColor, cosA, sinA };
     });
-  }, [normalizedModiScores, activeSide, cx, cy]);
+  }, [normalizedModiScores, activeSide, isModiInner, cx, cy]);
 
   const items2D = useMemo(() => {
     if (activeSide === 'both') {
@@ -1549,15 +1554,18 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
 
   const gridLevels2D = useMemo(() => {
     if (activeSide === 'both') {
+      const innerTarget = isModiInner ? modiItems2D : schemaItems2D;
+      const outerTarget = isModiInner ? schemaItems2D : modiItems2D;
+
       const inner = [2, 4, 6].map(lvl => {
         const ratio = lvl / 6;
-        const pts = modiItems2D.map(m => `${(cx + 110 * ratio * m.cosA).toFixed(1)},${(cy + 110 * ratio * m.sinA).toFixed(1)}`).join(' ');
+        const pts = innerTarget.map(m => `${(cx + 110 * ratio * m.cosA).toFixed(1)},${(cy + 110 * ratio * m.sinA).toFixed(1)}`).join(' ');
         return { key: `2d-inner-${lvl}`, lvl, pts, color: '#cbd5e1' };
       });
       const outer = [2, 4, 6].map(lvl => {
         const ratio = lvl / 6;
         const r = 192 + ratio * 56;
-        const pts = schemaItems2D.map(m => `${(cx + r * m.cosA).toFixed(1)},${(cy + r * m.sinA).toFixed(1)}`).join(' ');
+        const pts = outerTarget.map(m => `${(cx + r * m.cosA).toFixed(1)},${(cy + r * m.sinA).toFixed(1)}`).join(' ');
         return { key: `2d-outer-${lvl}`, lvl, pts, color: '#e2e8f0' };
       });
       return [...inner, ...outer];
@@ -1569,7 +1577,7 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
       const pts = current2D.map(m => `${(cx + 180 * ratio * m.cosA).toFixed(1)},${(cy + 180 * ratio * m.sinA).toFixed(1)}`).join(' ');
       return { key: `2d-single-${lvl}`, lvl, pts, color: '#e2e8f0' };
     });
-  }, [activeSide, schemaItems2D, modiItems2D, cx, cy]);
+  }, [activeSide, schemaItems2D, modiItems2D, isModiInner, cx, cy]);
 
   // Active hovered ball with real-time coordinates and metadata for instant floating tooltip & HUD
   const activeBall = useMemo(() => {
@@ -1811,12 +1819,37 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
                 padding: '4px 14px', borderRadius: '20px', border: '1px solid #cbd5e1',
                 display: 'inline-flex', alignItems: 'center', gap: '8px'
               }}>
-                <span style={{ display: 'inline-block', width: '9px', height: '9px', borderRadius: '50%', background: '#3b82f6' }}></span>
-                Binnenring: 14 Modi (Actuele expressie)
+                <span style={{ display: 'inline-block', width: '9px', height: '9px', borderRadius: '50%', background: isModiInner ? '#3b82f6' : '#10b981' }}></span>
+                {isModiInner ? "Binnenring: 14 Modi (Actuele expressie)" : "Binnenring: 18 Schema's (Diepe wortels)"}
                 <span style={{ color: '#94a3b8' }}>•</span>
-                <span style={{ display: 'inline-block', width: '9px', height: '9px', borderRadius: '50%', background: '#10b981' }}></span>
-                Buitenring: 18 Schema's (Diepe wortels)
+                <span style={{ display: 'inline-block', width: '9px', height: '9px', borderRadius: '50%', background: isModiInner ? '#10b981' : '#3b82f6' }}></span>
+                {isModiInner ? "Buitenring: 18 Schema's (Diepe wortels)" : "Buitenring: 14 Modi (Actuele expressie)"}
               </span>
+
+              {/* Ring Orientation Toggle Switch */}
+              <button
+                type="button"
+                onClick={() => setRingOrientation(prev => prev === 'modi-inner' ? 'schemas-inner' : 'modi-inner')}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  background: '#ffffff',
+                  border: '1px solid #cbd5e1',
+                  color: '#1e293b',
+                  padding: '4px 12px',
+                  borderRadius: '16px',
+                  fontSize: '0.76rem',
+                  fontWeight: '700',
+                  cursor: 'pointer',
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+                  transition: 'all 0.15s ease'
+                }}
+                title="Wissel de binnenste en buitenste ring om (Modi binnen ↔ Schema's binnen)"
+              >
+                <ArrowLeftRight size={13} color="#0284c7" />
+                <span>Ringen wisselen</span>
+              </button>
 
               {/* Threshold Filter Toggle */}
               <div style={{ display: 'inline-flex', background: '#e2e8f0', padding: '2px', borderRadius: '16px', gap: '2px', fontSize: '0.74rem' }}>
@@ -2300,17 +2333,20 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
               )}
 
               {/* Radial axes from center to points on the floor */}
-              {items3D.map(m => (
-                <line
-                  key={`axis-${m.itemType}-${m.id}`}
-                  x1={m.itemType === 'schema' && activeSide === 'both' ? m.projBaseFloor.screenX : projCenter.screenX}
-                  y1={m.itemType === 'schema' && activeSide === 'both' ? m.projBaseFloor.screenY : projCenter.screenY}
-                  x2={m.projBall.screenX}
-                  y2={m.projBall.screenY}
-                  stroke="#f1f5f9"
-                  strokeWidth="1.6"
-                />
-              ))}
+              {items3D.map(m => {
+                const isOuter = activeSide === 'both' && (isModiInner ? m.itemType === 'schema' : m.itemType === 'mode');
+                return (
+                  <line
+                    key={`axis-${m.itemType}-${m.id}`}
+                    x1={isOuter ? m.projBaseFloor.screenX : projCenter.screenX}
+                    y1={isOuter ? m.projBaseFloor.screenY : projCenter.screenY}
+                    x2={m.projBall.screenX}
+                    y2={m.projBall.screenY}
+                    stroke="#f1f5f9"
+                    strokeWidth="1.6"
+                  />
+                );
+              })}
 
               {/* Vertical 3D Pillars rising from floor up to the score peaks */}
               {items3D.map(m => (
@@ -2584,17 +2620,20 @@ export default function SmiRadarGraph({ scores, ysqScores, rawAnswers, onOpenMod
               )}
 
               {/* Radial axes */}
-              {items2D.map(m => (
-                <line
-                  key={`axis-2d-${m.itemType}-${m.id}`}
-                  x1={m.itemType === 'schema' && activeSide === 'both' ? (cx + 192 * m.cosA) : cx}
-                  y1={m.itemType === 'schema' && activeSide === 'both' ? (cy + 192 * m.sinA) : cy}
-                  x2={m.ballX}
-                  y2={m.ballY}
-                  stroke="#f1f5f9"
-                  strokeWidth="2"
-                />
-              ))}
+              {items2D.map(m => {
+                const isOuter = activeSide === 'both' && (isModiInner ? m.itemType === 'schema' : m.itemType === 'mode');
+                return (
+                  <line
+                    key={`axis-2d-${m.itemType}-${m.id}`}
+                    x1={isOuter ? (cx + 192 * m.cosA) : cx}
+                    y1={isOuter ? (cy + 192 * m.sinA) : cy}
+                    x2={m.ballX}
+                    y2={m.ballY}
+                    stroke="#f1f5f9"
+                    strokeWidth="2"
+                  />
+                );
+              })}
 
               {/* 2D Correlation Links (Flowing Energy from Schema Trigger to Mode Reaction) */}
               {activeSide === 'both' && correlationLinks2D.map(link => (
