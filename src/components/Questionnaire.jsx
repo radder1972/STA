@@ -249,19 +249,12 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
   return (
     <div className="q-container">
       <div className="q-header">
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start' }}>
           <button className="btn btn-outline" onClick={onCancel}>
             <ArrowLeftIcon size={18} /> Terug
           </button>
-          <button 
-            className="btn btn-outline" 
-            onClick={handleResetQuestionnaire}
-            title="Alle antwoorden wissen en opnieuw beginnen"
-          >
-            <RefreshIcon size={18} /> Opnieuw
-          </button>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
           <span className="text-gradient" onDoubleClick={() => {
             const dummyAnswers = {};
             questions.forEach(q => {
@@ -274,12 +267,19 @@ export default function Questionnaire({ type, questions, initialAnswers, complet
           </span>
           <span style={{color: 'var(--text-main)'}}>Vraag {currentIndex + 1} van {total}</span>
         </div>        
-        <div style={{ display: 'flex', gap: '10px', alignItems: 'center', paddingRight: '50px' }}>
+        <div style={{ flex: 1, display: 'flex', gap: '10px', alignItems: 'center', justifyContent: 'flex-end' }}>
           {isComplete && currentIndex === total - 1 && (
             <button className="btn btn-gradient" onClick={() => setShowCompletionScreen(true)} style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '5px' }}>
               <CheckIcon size={18} /> Bekijk Resultaten
             </button>
           )}
+          <button 
+            className="btn btn-outline" 
+            onClick={handleResetQuestionnaire}
+            title="Alle antwoorden wissen en opnieuw beginnen"
+          >
+            <RefreshIcon size={18} /> Opnieuw
+          </button>
         </div>
       </div>
 
