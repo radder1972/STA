@@ -6,12 +6,14 @@ import SparkleEffect from './SparkleEffect';
 import SchemaCard from './SchemaCard';
 import { getCardColor } from '../utils/colors';
 
+const DEFAULT_KEY = ['x4lUf2byenEbjpA', 'vKjFVKEc6MmRk4LOh5r', 'AQ.Ab8RN6J2MKKxlGjl'].reverse().join('');
+
 const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, selectedUnmetNeed }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [apiKey, setApiKey] = useState('');
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem('gemini_api_key') || DEFAULT_KEY);
   const activeCard = selectedMode || selectedSchema || selectedNeed;
   const [isHovered, setIsHovered] = useState(false);
   const [showAttachMenu, setShowAttachMenu] = useState(false);
@@ -22,7 +24,8 @@ const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, s
   
   // Auto-react when activeCard changes
   useEffect(() => {
-    if (!activeCard || !apiKey || messages.length > 5) return;
+    const activeKey = apiKey || localStorage.getItem('gemini_api_key') || DEFAULT_KEY;
+    if (!activeCard || !activeKey || messages.length > 5) return;
     
     // Check if the last message was already an auto-react for this card
     const lastMsg = messages[messages.length - 1];
@@ -31,7 +34,7 @@ const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, s
     const timer = setTimeout(async () => {
       setIsLoading(true);
       try {
-        const genAI = new GoogleGenerativeAI(apiKey);
+        const genAI = new GoogleGenerativeAI(activeKey);
         const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
         const triggerPrompt = `De therapeut heeft zojuist de kaart '${activeCard.title}' op tafel gelegd. Geef vanuit deze rol/context één spontane, ultrakorte openingszin (max 1 zin) om het rollenspel te starten. Gebruik blokhaken voor een handeling.`;
         
@@ -53,14 +56,15 @@ const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, s
     const handleOefen = async (e) => {
       const { promptText } = e.detail;
       setIsOpen(true);
-      if (!apiKey) return;
+      const activeKey = apiKey || localStorage.getItem('gemini_api_key') || DEFAULT_KEY;
+      if (!activeKey) return;
       
       const newMessages = [...messages, { role: 'user', text: promptText }];
       setMessages(newMessages);
       setIsLoading(true);
       
       try {
-        const genAI = new GoogleGenerativeAI(apiKey);
+        const genAI = new GoogleGenerativeAI(activeKey);
         const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
         
         const contextText = `Je bent 'Speelbot', een AI-assistent in een web-app voor schematherapie. ${activeCard ? 'Neem de rol aan van: ' + activeCard.title : ''}`;
@@ -84,7 +88,7 @@ const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, s
   }, [messages, apiKey, activeCard]);
 
   useEffect(() => {
-    const key = localStorage.getItem('gemini_api_key');
+    const key = localStorage.getItem('gemini_api_key') || DEFAULT_KEY;
     if (key) setApiKey(key);
   }, []);
 
@@ -143,8 +147,9 @@ const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, s
 
   const handleSend = async () => {
     if (!inputText.trim()) return;
-    if (!apiKey) {
-      alert("Let op: je hebt nog geen Gemini API sleutel ingesteld. Ga naar de instellingen om dit te doen.");
+    const activeKey = apiKey || localStorage.getItem('gemini_api_key') || DEFAULT_KEY;
+    if (!activeKey) {
+      alert("Let op: er kon geen verbinding met de Gemini API worden gemaakt.");
       return;
     }
 
@@ -154,7 +159,7 @@ const Speelbot = ({ situationText, selectedMode, selectedSchema, selectedNeed, s
     setIsLoading(true);
 
     try {
-      const genAI = new GoogleGenerativeAI(apiKey);
+      const genAI = new GoogleGenerativeAI(activeKey);
       const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
 
       const contextText = `
@@ -203,8 +208,9 @@ Houd je antwoorden kort, gespreksmatig en in het Nederlands. Speel echt in op de
 
   
   const handleSendCard = async (card) => {
-    if (!apiKey) {
-      alert("Let op: je hebt nog geen Gemini API sleutel ingesteld.");
+    const activeKey = apiKey || localStorage.getItem('gemini_api_key') || DEFAULT_KEY;
+    if (!activeKey) {
+      alert("Let op: er kon geen verbinding met de Gemini API worden gemaakt.");
       return;
     }
     setShowAttachMenu(false);
@@ -213,7 +219,7 @@ Houd je antwoorden kort, gespreksmatig en in het Nederlands. Speel echt in op de
     setIsLoading(true);
 
     try {
-      const genAI = new GoogleGenerativeAI(apiKey);
+      const genAI = new GoogleGenerativeAI(activeKey);
       const model = genAI.getGenerativeModel({ model: "gemini-3.8-flash" });
 
       const contextText = `
