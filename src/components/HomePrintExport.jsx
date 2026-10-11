@@ -20,8 +20,9 @@ import {
 
 export default function HomePrintExport({ onBack, onViewPrintShop }) {
   const [deckSelection, setDeckSelection] = useState('all'); // 'all', 'vst', 'base'
-  const [cardFormat, setCardFormat] = useState('standard'); // 'standard' (58x88mm) or 'a7' (74x105mm)
-  const [layoutMode, setLayoutMode] = useState('same'); // 'same' (1-op-1 uitlijning voor knippen & plakken / scherm) of 'mirrored' (duplex)
+  const [cardFormat, setCardFormat] = useState('a7'); // 'standard' (58x88mm) or 'a7' (70x100mm)
+  const [layoutMode, setLayoutMode] = useState('duplex'); // 'duplex' (automatisch dubbelzijdig) of 'same' (enkelzijdig knippen & plakken)
+  const [duplexBinding, setDuplexBinding] = useState('book'); // 'book' (Aanbevolen: korte zijde bij liggend, lange zijde bij staand) of 'calendar' (alternatief)
 
   const isA7 = cardFormat === 'a7';
   const cardsPerPage = isA7 ? 8 : 9;
@@ -84,8 +85,10 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
     style: c.style || { transform: 'scale(0.75)' }
   }));
 
-  // 7. Classical Modi (14)
-  const classicalModi = Object.keys(modeImages).map(path => {
+  // 7. Classical Modi (13)
+  const classicalModi = Object.keys(modeImages)
+    .filter(path => !path.endsWith('/bk.png'))
+    .map(path => {
     const filename = path.split('/').pop().replace('.png', '');
     const title = smiModesMap[filename] || filename;
     return { 
@@ -187,23 +190,22 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             page-break-after: always;
             break-after: page;
             width: ${isA7 ? '297mm' : '210mm'} !important;
-            min-height: ${isA7 ? '205mm' : '290mm'} !important;
-            height: ${isA7 ? '210mm' : 'auto'} !important;
+            min-height: ${isA7 ? '210mm' : '297mm'} !important;
+            height: ${isA7 ? '210mm' : '297mm'} !important;
             margin: 0 !important;
-            padding-top: ${isA7 ? '4.5mm' : '11mm'} !important;
-            padding-bottom: 0 !important;
-            padding-left: ${isA7 ? '4.5mm' : '13mm'} !important;
-            padding-right: 0 !important;
+            padding: ${isA7 ? '4.5mm' : '11.5mm 13mm'} !important;
             box-shadow: none !important;
             border: none !important;
-            display: block !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
             box-sizing: border-box !important;
           }
           /* Force exact sizing for A4 to prevent scaling */
           .a4-page-content {
             width: ${isA7 ? '288mm' : '184mm'} !important; 
             height: ${isA7 ? '201mm' : '274mm'} !important; 
-            margin: 0 !important;
+            margin: 0 auto !important;
           }
         }
       `}</style>
@@ -229,7 +231,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
       </div>
 
       {/* Printhulp Box met geïntegreerde instellingen */}
-      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '820px', margin: '0 auto 2.5rem auto', padding: '2.5rem 3rem', borderRadius: '24px' }}>
+      <div className="no-print glass-panel" style={{ width: '100%', maxWidth: '840px', margin: '0 auto 2.5rem auto', padding: '2.25rem 2.75rem', borderRadius: '24px' }}>
         <div className="inner-box" style={{ display: 'flex', flexDirection: 'column', gap: '1.35rem', margin: 0 }}>
           
           <h3 className="box-heading" style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -237,11 +239,17 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
           </h3>
 
           <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
-            Met deze weergave print je de kaarten direct op A4-papier (inkjet of laserprinter). {isA7 ? 'Gekozen: A7-formaat (70×100 mm, 8 kaarten per vel A4 liggend in een 4x2 grid) voor maximaal papierrendement (slechts 7 vellen A4 voor alle 55 kaarten) en ontspannen leesbare teksten.' : 'Gekozen: Speelkaartformaat (58x88 mm, 9 kaarten per vel in een 3x3 grid) voor een compact en handzaam deck.'} {layoutMode === 'same' ? 'De kaarten staan op voor- en achterkant op exact dezelfde plek (ideaal voor wie losse vellen afdrukt om uit te knippen en op elkaar te plakken).' : 'De achterkanten zijn horizontaal gespiegeld voor automatische dubbelzijdige invoer via de lange zijde.'}
+            Met deze weergave print je de kaarten direct op A4-papier (inkjet of laserprinter).{' '}
+            {isA7 
+              ? 'Gekozen: A7-formaat (70×100 mm, 8 kaarten per vel A4 liggend in een 4x2 grid). Slechts 7 vellen A4 voor alle 55 kaarten met comfortabel grote afbeeldingen en teksten.' 
+              : 'Gekozen: Speelkaartformaat (58×88 mm, 9 kaarten per vel A4 staand in een 3x3 grid) voor een compact deck.'}{' '}
+            {layoutMode === 'duplex' 
+              ? 'De achterkanten zijn gespiegeld zodat de voor- en achterkant van elke kaart exact op elkaar aansluiten bij dubbelzijdig printen.' 
+              : 'De kaarten staan op voor- en achterkant op exact dezelfde positie (geschikt om losse vellen af te drukken en op elkaar te plakken).'}
           </p>
 
           {/* Instellingen Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem', padding: '1.25rem', background: 'rgba(0,0,0,0.03)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem', padding: '1.25rem', background: 'rgba(0,0,0,0.03)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
             
             {/* Setting 1: Kaartenset Keuze */}
             <div>
@@ -322,27 +330,6 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
                 <button
                   type="button"
-                  onClick={() => setCardFormat('standard')}
-                  style={{
-                    padding: '8px 6px',
-                    borderRadius: '8px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    background: cardFormat === 'standard' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
-                    color: cardFormat === 'standard' ? 'white' : 'var(--text-main)',
-                    fontWeight: cardFormat === 'standard' ? 'bold' : 'normal',
-                    fontSize: '0.86rem',
-                    textAlign: 'center',
-                    boxShadow: cardFormat === 'standard' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
-                    transition: 'all 0.15s ease'
-                  }}
-                >
-                  <div>Speelkaart</div>
-                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>58×88 mm • 9/vel</div>
-                </button>
-
-                <button
-                  type="button"
                   onClick={() => setCardFormat('a7')}
                   style={{
                     padding: '8px 6px',
@@ -359,17 +346,59 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                   }}
                 >
                   <div>A7 Formaat</div>
-                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>70×100 mm • 8/vel</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>70×100 mm • 8/vel (Liggend)</div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setCardFormat('standard')}
+                  style={{
+                    padding: '8px 6px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: cardFormat === 'standard' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
+                    color: cardFormat === 'standard' ? 'white' : 'var(--text-main)',
+                    fontWeight: cardFormat === 'standard' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: cardFormat === 'standard' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>Speelkaart</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>58×88 mm • 9/vel (Staand)</div>
                 </button>
               </div>
             </div>
 
-            {/* Setting 3: Uitlijning achterkant */}
+            {/* Setting 3: Afdrukmodus (Dubbelzijdig vs Enkelzijdig) */}
             <div>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
-                <Files size={17} color="#0ea5e9" /> Uitlijning achterzijde
+                <Files size={17} color="#0ea5e9" /> Afdrukmodus
               </label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
+                <button
+                  type="button"
+                  onClick={() => setLayoutMode('duplex')}
+                  style={{
+                    padding: '8px 6px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: layoutMode === 'duplex' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
+                    color: layoutMode === 'duplex' ? 'white' : 'var(--text-main)',
+                    fontWeight: layoutMode === 'duplex' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: layoutMode === 'duplex' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>Dubbelzijdig</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>{isA7 ? 'Omdraaien korte zijde' : 'Omdraaien lange zijde'}</div>
+                </button>
+
                 <button
                   type="button"
                   onClick={() => setLayoutMode('same')}
@@ -387,33 +416,85 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                     transition: 'all 0.15s ease'
                   }}
                 >
-                  <div>Zelfde positie</div>
+                  <div>Enkelzijdig</div>
                   <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>Knippen & plakken</div>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setLayoutMode('mirrored')}
-                  style={{
-                    padding: '8px 6px',
-                    borderRadius: '8px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    background: layoutMode === 'mirrored' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
-                    color: layoutMode === 'mirrored' ? 'white' : 'var(--text-main)',
-                    fontWeight: layoutMode === 'mirrored' ? 'bold' : 'normal',
-                    fontSize: '0.86rem',
-                    textAlign: 'center',
-                    boxShadow: layoutMode === 'mirrored' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
-                    transition: 'all 0.15s ease'
-                  }}
-                >
-                  <div>Gespiegeld</div>
-                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>Duplex lange zijde</div>
                 </button>
               </div>
             </div>
+
+            {/* Setting 4: Printer-omslagrichting (alleen bij duplex) */}
+            {layoutMode === 'duplex' && (
+              <div>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
+                  <Files size={17} color="#0ea5e9" /> Duplex omslag in printer
+                </label>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
+                  <button
+                    type="button"
+                    onClick={() => setDuplexBinding('book')}
+                    style={{
+                      padding: '8px 6px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      background: duplexBinding === 'book' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
+                      color: duplexBinding === 'book' ? 'white' : 'var(--text-main)',
+                      fontWeight: duplexBinding === 'book' ? 'bold' : 'normal',
+                      fontSize: '0.86rem',
+                      textAlign: 'center',
+                      boxShadow: duplexBinding === 'book' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    <div>{isA7 ? 'Korte zijde' : 'Lange zijde'}</div>
+                    <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>Boekvorm (Aanbevolen)</div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setDuplexBinding('calendar')}
+                    style={{
+                      padding: '8px 6px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      background: duplexBinding === 'calendar' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
+                      color: duplexBinding === 'calendar' ? 'white' : 'var(--text-main)',
+                      fontWeight: duplexBinding === 'calendar' ? 'bold' : 'normal',
+                      fontSize: '0.86rem',
+                      textAlign: 'center',
+                      boxShadow: duplexBinding === 'calendar' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    <div>{isA7 ? 'Lange zijde' : 'Korte zijde'}</div>
+                    <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>Kalendervorm (Alternatief)</div>
+                  </button>
+                </div>
+              </div>
+            )}
+
           </div>
+
+          {/* Duplex Highlight Notice */}
+          {layoutMode === 'duplex' && (
+            <div style={{ padding: '0.9rem 1.15rem', background: '#eff6ff', border: '1.5px solid #93c5fd', borderRadius: '14px', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+              <Info size={22} color="#2563eb" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <div style={{ fontSize: '0.88rem', color: '#1e3a8a', lineHeight: '1.5' }}>
+                <strong>Belangrijk voor het dubbelzijdig printen ({isA7 ? 'A4 Liggend / Landscape' : 'A4 Staand / Portrait'}):</strong><br />
+                Selecteer in het printvenster (onder <em>Dubbelzijdig</em> / <em>Twee-zijdig afdrukken</em>):{' '}
+                <strong style={{ color: '#1d4ed8', background: '#dbeafe', padding: '2px 8px', borderRadius: '6px' }}>
+                  {isA7 
+                    ? (duplexBinding === 'book' ? 'Omdraaien over de KORTE zijde (Flip on short edge)' : 'Omdraaien over de LANGE zijde (Flip on long edge)') 
+                    : (duplexBinding === 'book' ? 'Omdraaien over de LANGE zijde (Flip on long edge)' : 'Omdraaien over de KORTE zijde (Flip on short edge)')
+                  }
+                </strong>.<br />
+                <span style={{ fontSize: '0.82rem', opacity: 0.9 }}>
+                  Hierdoor vallen de voorkant en achterkant van elke kaart exact op elkaar bij het omdraaien.
+                </span>
+              </div>
+            </div>
+          )}
 
           {/* Main Action Button */}
           <button 
@@ -447,28 +528,34 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
               <FileText size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
-                <strong>Papierformaat:</strong> A4 Staand (Portrait)
+                <strong>Papierformaat & Stand:</strong> {isA7 ? 'A4 Liggend (Landscape) • 297 × 210 mm' : 'A4 Staand (Portrait) • 210 × 297 mm'}
               </p>
             </div>
             
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
               <Maximize size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
-                <strong>Schaal & Marges:</strong> Schaal op 100% (of Standaard). Marges op <strong>Geen</strong> (essentieel voor uitlijning!)
+                <strong>Schaal & Marges:</strong> Schaal op 100% (of 'Aanpassen aan pagina' uitschakelen). Marges op <strong>Geen</strong> (essentieel voor uitlijning!)
               </p>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
               <Files size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
-                <strong>{layoutMode === 'mirrored' ? 'Dubbelzijdig:' : 'Afdrukmodus:'}</strong> {layoutMode === 'mirrored' ? 'Omdraaien over de lange zijde (Long edge binding)' : 'Enkelzijdig printen (vellen los afdrukken, knippen & op elkaar plakken)'}
+                <strong>{layoutMode === 'duplex' ? 'Dubbelzijdig afdrukken:' : 'Afdrukmodus:'}</strong>{' '}
+                {layoutMode === 'duplex' 
+                  ? (isA7 
+                      ? (duplexBinding === 'book' ? 'Omdraaien over de KORTE zijde (Flip on short edge)' : 'Omdraaien over de LANGE zijde (Flip on long edge)') 
+                      : (duplexBinding === 'book' ? 'Omdraaien over de LANGE zijde (Flip on long edge)' : 'Omdraaien over de KORTE zijde (Flip on short edge)'))
+                  : 'Enkelzijdig printen (vellen los afdrukken, knippen & op elkaar plakken)'
+                }
               </p>
             </div>
             
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
               <ImageIcon size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
-                <strong>Achtergrondafbeeldingen:</strong> AAN
+                <strong>Achtergrondafbeeldingen:</strong> AAN (noodzakelijk voor kaartkleuren en kaders)
               </p>
             </div>
           </div>
@@ -485,19 +572,44 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             frontChunk.push(chunk[i] || null);
           }
 
-          // Reorder the back page according to layoutMode
+          // Reorder the back page according to layoutMode and duplexBinding
           const backChunk = [];
-          if (layoutMode === 'mirrored') {
-            for (let row = 0; row < rows; row++) {
-              for (let col = 0; col < cols; col++) {
-                const originalIndex = row * cols + (cols - 1 - col);
-                backChunk.push(chunk[originalIndex] || null);
+          for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+              let originalIndex;
+              if (layoutMode === 'duplex') {
+                if (isA7) {
+                  // A7 Landscape (4 cols x 2 rows)
+                  if (duplexBinding === 'book') {
+                    // Omdraaien over korte zijde (Flip on short edge / Boekvorm):
+                    // Rijen blijven hetzelfde, kolommen spiegelen horizontaal (0<->3, 1<->2)
+                    originalIndex = row * cols + (cols - 1 - col);
+                  } else {
+                    // Omdraaien over lange zijde (Flip on long edge / Kalendervorm):
+                    // Rijen wisselen om (0<->1), kolommen blijven gelijk
+                    originalIndex = (rows - 1 - row) * cols + col;
+                  }
+                } else {
+                  // Speelkaart Portrait (3 cols x 3 rows)
+                  if (duplexBinding === 'book') {
+                    // Omdraaien over lange zijde (Flip on long edge / Boekvorm):
+                    // Rijen blijven hetzelfde, kolommen spiegelen horizontaal (0<->2, 1 blijft 1)
+                    originalIndex = row * cols + (cols - 1 - col);
+                  } else {
+                    // Omdraaien over korte zijde (Flip on short edge / Kalendervorm):
+                    // Rijen wisselen om (0<->2, 1 blijft 1), kolommen blijven gelijk
+                    originalIndex = (rows - 1 - row) * cols + col;
+                  }
+                }
+              } else {
+                // 'same': 1-op-1 positie voor knippen & plakken
+                originalIndex = row * cols + col;
               }
-            }
-          } else {
-            // 'same': exact identical positions on front and back
-            for (let i = 0; i < cardsPerPage; i++) {
-              backChunk.push(chunk[i] || null);
+
+              backChunk.push({
+                card: chunk[originalIndex] || null,
+                frontSlotNum: chunk[originalIndex] ? originalIndex + 1 : null
+              });
             }
           }
 
@@ -512,15 +624,20 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
               </div>
 
               {/* PAGE: FRONTS */}
-              <div className="a4-page" style={{ width: isA7 ? '297mm' : '210mm', height: isA7 ? '210mm' : '297mm', background: 'white', padding: isA7 ? '4.5mm' : '10mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
-                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: isA7 ? 'repeat(4, 70.5mm)' : 'repeat(3, 58mm)', gridTemplateRows: isA7 ? 'repeat(2, 99.5mm)' : 'repeat(3, 88mm)', gap: isA7 ? '2mm' : '5mm', justifyContent: 'center', alignContent: 'center', height: '100%' }}>
+              <div className="a4-page" style={{ width: isA7 ? '297mm' : '210mm', height: isA7 ? '210mm' : '297mm', background: 'white', padding: isA7 ? '4.5mm' : '11.5mm 13mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
+                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: isA7 ? 'repeat(4, 70.5mm)' : 'repeat(3, 58mm)', gridTemplateRows: isA7 ? 'repeat(2, 99.5mm)' : 'repeat(3, 88mm)', gap: isA7 ? '2mm' : '5mm', justifyContent: 'center', alignContent: 'center', height: '100%', margin: '0 auto' }}>
                   {frontChunk.map((card, i) => {
                     const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'white';
                     return (
                     <div key={`front-${i}`} style={{ width: isA7 ? '70.5mm' : '58mm', height: isA7 ? '99.5mm' : '88mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', position: 'relative', background: card ? `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)` : 'transparent', borderRadius: 0, overflow: 'hidden', visibility: card ? 'visible' : 'hidden' }}>
                       {card && (
                         <>
-                          <CardInnerBorder color={cardColor} outerColor="white" />
+                          {/* Preview helper: Slot number */}
+                          <div className="no-print" style={{ position: 'absolute', top: '3px', left: '5px', padding: '2px 5px', background: 'rgba(0,0,0,0.06)', borderRadius: '4px', fontSize: '0.62rem', fontWeight: '700', color: '#475569', zIndex: 40, lineHeight: 1 }}>
+                            Vak #{i + 1}
+                          </div>
+
+                          <CardInnerBorder color={cardColor} outerColor="white" radius="0" />
                           <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: isA7 ? '1.5mm' : '1mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                             {/* Header (Badge) */}
                             {card.type && getCardTypeLetter(card.type) && (
@@ -562,31 +679,43 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
               {/* PAGE INDICATOR (PREVIEW ONLY) */}
               <div className="no-print" style={{ width: isA7 ? '297mm' : '210mm', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '1rem 0 -1.25rem 0', padding: '0 4px', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
                 <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>Vel {chunkIdx + 1} van {chunks.length} • Achterkanten ({isA7 ? 'A7 Formaat • 8/vel' : 'Speelkaart • 9/vel'})</span>
-                <span style={{ fontSize: '0.82rem', background: 'rgba(0,0,0,0.06)', padding: '2px 8px', borderRadius: 0 }}>
-                  {layoutMode === 'same' ? 'Zelfde positie als voorkant' : 'Horizontaal gespiegeld (duplex)'}
+                <span style={{ fontSize: '0.82rem', background: 'rgba(0,0,0,0.06)', padding: '2px 8px', borderRadius: '4px' }}>
+                  {layoutMode === 'same' 
+                    ? 'Zelfde positie als voorkant (knippen & plakken)' 
+                    : (isA7 
+                        ? (duplexBinding === 'book' ? 'Horizontaal gespiegeld (duplex korte zijde)' : 'Verticaal gespiegeld (duplex lange zijde)')
+                        : (duplexBinding === 'book' ? 'Horizontaal gespiegeld (duplex lange zijde)' : 'Verticaal gespiegeld (duplex korte zijde)'))
+                  }
                 </span>
               </div>
 
               {/* PAGE: BACKS */}
-              <div className="a4-page" style={{ width: isA7 ? '297mm' : '210mm', height: isA7 ? '210mm' : '297mm', background: 'white', padding: isA7 ? '4.5mm' : '10mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
-                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: isA7 ? 'repeat(4, 70.5mm)' : 'repeat(3, 58mm)', gridTemplateRows: isA7 ? 'repeat(2, 99.5mm)' : 'repeat(3, 88mm)', gap: isA7 ? '2mm' : '5mm', justifyContent: 'center', alignContent: 'center', height: '100%' }}>
-                  {backChunk.map((card, i) => {
+              <div className="a4-page" style={{ width: isA7 ? '297mm' : '210mm', height: isA7 ? '210mm' : '297mm', background: 'white', padding: isA7 ? '4.5mm' : '11.5mm 13mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
+                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: isA7 ? 'repeat(4, 70.5mm)' : 'repeat(3, 58mm)', gridTemplateRows: isA7 ? 'repeat(2, 99.5mm)' : 'repeat(3, 88mm)', gap: isA7 ? '2mm' : '5mm', justifyContent: 'center', alignContent: 'center', height: '100%', margin: '0 auto' }}>
+                  {backChunk.map((slotItem, i) => {
+                    const card = slotItem.card;
                     const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'white';
-                    const descFontSize = isA7 ? '0.90rem' : '0.80rem';
-                    const descLineHeight = isA7 ? '1.38' : '1.35';
+                    const descFontSize = isA7 ? '0.88rem' : '0.80rem';
+                    const descLineHeight = isA7 ? '1.36' : '1.35';
 
                     return (
                     <div key={`back-${i}`} style={{ width: isA7 ? '70.5mm' : '58mm', height: isA7 ? '99.5mm' : '88mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative', background: 'white', borderRadius: 0, overflow: 'hidden' }}>
                       {card && (
                         <>
-                          <CardInnerBorder color={cardColor} radius="0" />
+                          {/* Preview helper: Front slot match */}
+                          <div className="no-print" style={{ position: 'absolute', top: '3px', left: '5px', right: '5px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '2px 5px', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '4px', fontSize: '0.60rem', fontWeight: '700', color: '#15803d', zIndex: 40, lineHeight: 1 }}>
+                            <span>{layoutMode === 'duplex' ? '🔄 Duplex' : '📋 Los vel'}</span>
+                            <span>Achterzijde van Vak #{slotItem.frontSlotNum}</span>
+                          </div>
+
+                          <CardInnerBorder color={cardColor} outerColor="white" radius="0" />
                           <div style={{ 
                             position: 'absolute', 
                             top: 0, 
                             left: 0, 
                             right: 0, 
                             bottom: 0, 
-                            padding: isA7 ? '6.5mm 7.5mm' : '6.5mm 8mm', 
+                            padding: isA7 ? '6.5mm 7mm 4mm 7mm' : '6.5mm 8mm', 
                             display: 'flex', 
                             flexDirection: 'column', 
                             alignItems: 'center', 
@@ -595,7 +724,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                           }}>
                             <h4 style={{ 
                               margin: 0, 
-                              fontSize: isA7 ? '0.98rem' : '0.85rem', 
+                              fontSize: isA7 ? '0.96rem' : '0.85rem', 
                               color: 'black', 
                               textAlign: 'center', 
                               width: '100%', 
@@ -626,7 +755,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                               lineHeight: descLineHeight, 
                               color: '#111', 
                               margin: '0', 
-                              paddingBottom: isA7 ? '6.5mm' : '6mm',
+                              paddingBottom: isA7 ? '5.5mm' : '6mm',
                               textAlign: 'center', 
                               flexShrink: 0, 
                               zIndex: 1 
@@ -636,7 +765,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
                             <div style={{
                               position: 'absolute',
-                              bottom: isA7 ? '3.5mm' : '3mm',
+                              bottom: isA7 ? '3mm' : '3mm',
                               left: 0,
                               right: 0,
                               display: 'flex',

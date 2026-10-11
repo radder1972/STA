@@ -87,8 +87,10 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
     style: c.style || { transform: 'scale(0.75)' }
   }));
 
-  // 7. Classical Modi (14)
-  const classicalModi = Object.keys(modeImages).map(path => {
+  // 7. Classical Modi (13)
+  const classicalModi = Object.keys(modeImages)
+    .filter(path => !path.endsWith('/bk.png'))
+    .map(path => {
     const filename = path.split('/').pop().replace('.png', '');
     const title = smiModesMap[filename] || filename;
     return { 
