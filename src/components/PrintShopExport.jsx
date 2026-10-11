@@ -405,7 +405,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
         {activeCards.map((card, idx) => {
           const cardColor = card.color || getCardColor(card.type, card.id);
           const descFontSize = isA7 ? '0.96rem' : '0.80rem';
-          const descLineHeight = isA7 ? '1.45' : '1.35';
+          const descLineHeight = isA7 ? '1.46' : '1.35';
 
           return (
             <React.Fragment key={idx}>
@@ -466,7 +466,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                       left: 0, 
                       right: 0, 
                       bottom: 0, 
-                      padding: isA7 ? '7.5mm 9mm' : '6.5mm 8mm', 
+                      padding: isA7 ? '8.5mm 10mm 5mm 10mm' : '6.5mm 8mm', 
                       display: 'flex', 
                       flexDirection: 'column', 
                       alignItems: 'center', 
@@ -475,7 +475,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                     }}>
                       <h4 style={{ 
                         margin: 0, 
-                        fontSize: isA7 ? '1.05rem' : '0.85rem', 
+                        fontSize: isA7 ? '1.08rem' : '0.85rem', 
                         color: 'black', 
                         textAlign: 'center', 
                         width: '100%', 
@@ -494,9 +494,9 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                       </h4>
                       <div style={{ 
                         width: '100%', 
-                        height: '2px', 
+                        height: isA7 ? '2.5px' : '2px', 
                         backgroundColor: cardColor, 
-                        margin: isA7 ? '3mm 0' : '2.5mm 0', 
+                        margin: isA7 ? '3.2mm 0' : '2.5mm 0', 
                         flexShrink: 0, 
                         zIndex: 1 
                       }} />

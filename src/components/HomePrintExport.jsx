@@ -884,8 +884,8 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                   {backChunk.map((slotItem, i) => {
                     const card = slotItem.card;
                     const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'white';
-                    const descFontSize = isA7 ? '0.88rem' : '0.80rem';
-                    const descLineHeight = isA7 ? '1.36' : '1.35';
+                    const descFontSize = isA7 ? '0.94rem' : '0.80rem';
+                    const descLineHeight = isA7 ? '1.44' : '1.35';
 
                     return (
                     <div key={`back-${i}`} style={{ width: isA7 ? '70.5mm' : '58mm', height: isA7 ? '99.5mm' : '88mm', border: card ? (backBorderMode === 'border' ? '1px dashed #ccc' : 'none') : 'none', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative', background: 'white', borderRadius: 0, overflow: 'hidden' }}>
@@ -906,7 +906,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                             left: 0, 
                             right: 0, 
                             bottom: 0, 
-                            padding: isA7 ? (backBorderMode === 'clean' ? '7mm 7.5mm 4.5mm 7.5mm' : '6.5mm 7mm 4mm 7mm') : (backBorderMode === 'clean' ? '7mm 8mm 5mm 8mm' : '6.5mm 8mm'), 
+                            padding: isA7 ? (backBorderMode === 'clean' ? '7.5mm 9mm 5mm 9mm' : '7mm 8.5mm 4.5mm 8.5mm') : (backBorderMode === 'clean' ? '7mm 8mm 5mm 8mm' : '6.5mm 8mm'), 
                             display: 'flex', 
                             flexDirection: 'column', 
                             alignItems: 'center', 
@@ -915,7 +915,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                           }}>
                             <h4 style={{ 
                               margin: 0, 
-                              fontSize: isA7 ? '0.96rem' : '0.85rem', 
+                              fontSize: isA7 ? '1.04rem' : '0.85rem', 
                               color: 'black', 
                               textAlign: 'center', 
                               width: '100%', 
@@ -924,7 +924,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                               letterSpacing: '-0.2px',
                               flexShrink: 0,
                               zIndex: 1,
-                              height: isA7 ? '9.5mm' : '8.5mm',
+                              height: isA7 ? '10mm' : '8.5mm',
                               display: 'flex',
                               flexDirection: 'column',
                               alignItems: 'center',
@@ -934,9 +934,9 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                             </h4>
                             <div style={{ 
                               width: '100%', 
-                              height: '2px', 
+                              height: isA7 ? '2.5px' : '2px', 
                               backgroundColor: cardColor, 
-                              margin: isA7 ? '2.5mm 0' : '2.5mm 0', 
+                              margin: isA7 ? '2.8mm 0' : '2.5mm 0', 
                               flexShrink: 0, 
                               zIndex: 1 
                             }} />
@@ -946,7 +946,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                               lineHeight: descLineHeight, 
                               color: '#111', 
                               margin: '0', 
-                              paddingBottom: isA7 ? '5.5mm' : '6mm',
+                              paddingBottom: isA7 ? '6mm' : '6mm',
                               textAlign: 'center', 
                               flexShrink: 0, 
                               zIndex: 1 
@@ -956,7 +956,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
                             <div style={{
                               position: 'absolute',
-                              bottom: isA7 ? '3mm' : '3mm',
+                              bottom: isA7 ? '3.5mm' : '3mm',
                               left: 0,
                               right: 0,
                               display: 'flex',
@@ -971,13 +971,13 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                                 background: '#f4f4f5',
                                 border: '1px solid #e4e4e7',
                                 borderRadius: '999px',
-                                padding: isA7 ? '2.5px 6px' : '2px 5px',
+                                padding: isA7 ? '2.5px 7px' : '2px 5px',
                                 WebkitPrintColorAdjust: 'exact',
                                 printColorAdjust: 'exact'
                               }}>
                                 <ThreeSparklesLogo size={isA7 ? 9 : 8} theme="test" />
                                 <span style={{ 
-                                  fontSize: isA7 ? '0.44rem' : '0.4rem', 
+                                  fontSize: isA7 ? '0.46rem' : '0.4rem', 
                                   fontWeight: 700, 
                                   color: '#52525b',
                                   lineHeight: 1,
