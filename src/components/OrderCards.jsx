@@ -200,7 +200,7 @@ export default function OrderCards({ onBack }) {
         '100% Afgestemd op VSt (2021) behandelrichtlijnen van Arntz et al.',
         'Slimme B/S/M type-badges bovenaan elke kaart voor direct sorteren op tafel',
         'Minimalistische poppetjes-illustraties met zachte pastel-gradiënt randen',
-        'Handzaam speelkaartformaat (63.5 x 88.9 mm) met luxe matte afwerking',
+        'Royaal A7 praktijkformaat (74 x 105 mm) voor optimale leesbaarheid en impact op tafel',
         'Brievenbuspost € 3,95 in NL & BE (vandaag besteld = binnen 1-2 werkdagen in huis)'
       ],
       cards: completeCards
@@ -219,7 +219,7 @@ export default function OrderCards({ onBack }) {
         '43 theoriekaarten volgens de beproefde Young- & Arntz-theorie',
         '18 schema\'s, 14 modi, 6 modi-categorieën en 5 basisbehoeften',
         'Consistente domein-kleurcodering voor directe visuele herkenning op tafel',
-        'Handzaam speelkaartformaat (63.5 x 88.9 mm) met afgeronde hoeken',
+        'Royaal A7 praktijkformaat (74 x 105 mm) met luxe matte afwerking',
         'Luxe matte afwerking, vuilafstotend en krasvast'
       ],
       cards: baseCards

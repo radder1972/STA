@@ -20,7 +20,7 @@ import {
 
 export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
   const [deckSelection, setDeckSelection] = useState('all'); // 'all', 'vst', 'base'
-  const [cardFormat, setCardFormat] = useState('standard'); // 'standard' (58x88mm) or 'a7' (74x105mm)
+  const [cardFormat, setCardFormat] = useState('a7'); // 'a7' (74x105mm) or 'standard' (58x88mm)
 
   const isA7 = cardFormat === 'a7';
 
