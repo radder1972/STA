@@ -1014,6 +1014,12 @@ body.print-shop-export-mode {
     min-width: 64mm !important;
     min-height: 94mm !important;
   }
+  body.print-shop-export-mode .print-shop-page.a7 {
+    width: 80mm !important;
+    height: 111mm !important;
+    min-width: 80mm !important;
+    min-height: 111mm !important;
+  }
 }
 
 /* Screen styles for previewing */
@@ -1024,6 +1030,10 @@ body.print-shop-export-mode {
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+.print-shop-page.a7 {
+  width: 80mm;
+  height: 111mm;
 }
 
 .hide-scrollbar::-webkit-scrollbar {

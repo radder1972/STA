@@ -20,7 +20,13 @@ import {
 
 export default function HomePrintExport({ onBack, onViewPrintShop }) {
   const [deckSelection, setDeckSelection] = useState('all'); // 'all', 'vst', 'base'
+  const [cardFormat, setCardFormat] = useState('standard'); // 'standard' (58x88mm) or 'a7' (74x105mm)
   const [layoutMode, setLayoutMode] = useState('same'); // 'same' (1-op-1 uitlijning voor knippen & plakken / scherm) of 'mirrored' (duplex)
+
+  const isA7 = cardFormat === 'a7';
+  const cardsPerPage = isA7 ? 4 : 9;
+  const cols = isA7 ? 2 : 3;
+  const rows = isA7 ? 2 : 3;
 
   // 1. Classical Basisbehoeften (5)
   const classicalBasisbehoeften = basisbehoeftenData.map(c => ({
@@ -143,10 +149,10 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
   // Determine active cards based on user selection
   const activeCards = deckSelection === 'vst' ? vstCards : (deckSelection === 'base' ? baseCards : allCards);
 
-  // Chunk cards into groups of 9 (3x3 grid for A4)
+  // Chunk cards into groups based on format (9 for standard, 4 for A7)
   const chunks = [];
-  for (let i = 0; i < activeCards.length; i += 9) {
-    chunks.push(activeCards.slice(i, i + 9));
+  for (let i = 0; i < activeCards.length; i += cardsPerPage) {
+    chunks.push(activeCards.slice(i, i + cardsPerPage));
   }
 
   const handlePrint = () => {
@@ -154,9 +160,11 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
   };
 
   const getDeckSubline = () => {
-    if (deckSelection === 'vst') return 'Uitbreidingsset • 12 kaarten • 2 vellen A4';
-    if (deckSelection === 'base') return 'Basisset • 43 kaarten • 5 vellen A4';
-    return 'Volledige set • 55 kaarten • 7 vellen A4';
+    const sheetCount = chunks.length;
+    const formatName = isA7 ? 'A7 Formaat • 4/vel' : 'Speelkaart • 9/vel';
+    if (deckSelection === 'vst') return `Uitbreidingsset • 12 kaarten • ${sheetCount} vellen A4 (${formatName})`;
+    if (deckSelection === 'base') return `Basisset • 43 kaarten • ${sheetCount} vellen A4 (${formatName})`;
+    return `Volledige set • 55 kaarten • ${sheetCount} vellen A4 (${formatName})`;
   };
 
   return (
@@ -182,9 +190,9 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             min-height: 290mm !important;
             height: auto !important;
             margin: 0 !important;
-            padding-top: 11mm !important;
+            padding-top: ${isA7 ? '38.5mm' : '11mm'} !important;
             padding-bottom: 0 !important;
-            padding-left: 13mm !important;
+            padding-left: ${isA7 ? '26mm' : '13mm'} !important;
             padding-right: 0 !important;
             box-shadow: none !important;
             border: none !important;
@@ -193,8 +201,8 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
           }
           /* Force exact sizing for A4 to prevent scaling */
           .a4-page-content {
-            width: 184mm !important; 
-            height: 274mm !important; 
+            width: ${isA7 ? '158mm' : '184mm'} !important; 
+            height: ${isA7 ? '220mm' : '274mm'} !important; 
             margin: 0 !important;
           }
         }
@@ -229,11 +237,11 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
           </h3>
 
           <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
-            Met deze weergave print je de kaarten direct op A4-papier (inkjet of laserprinter). De kaarten staan in een 3x3 grid (9 kaarten per vel). {layoutMode === 'same' ? 'De kaarten staan op voor- en achterkant op exact dezelfde plek (ideaal voor wie losse vellen afdrukt om uit te knippen en op elkaar te plakken).' : 'De achterkanten zijn horizontaal gespiegeld voor automatische dubbelzijdige invoer via de lange zijde.'}
+            Met deze weergave print je de kaarten direct op A4-papier (inkjet of laserprinter). {isA7 ? 'Gekozen: A7-formaat (74x105 mm, 4 kaarten per vel A4) met royale snijmarge en extra grote, ontspannen leesbare teksten.' : 'Gekozen: Speelkaartformaat (58x88 mm, 9 kaarten per vel in een 3x3 grid) voor een compact en handzaam deck.'} {layoutMode === 'same' ? 'De kaarten staan op voor- en achterkant op exact dezelfde plek (ideaal voor wie losse vellen afdrukt om uit te knippen en op elkaar te plakken).' : 'De achterkanten zijn horizontaal gespiegeld voor automatische dubbelzijdige invoer via de lange zijde.'}
           </p>
 
           {/* Instellingen Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', padding: '1.25rem', background: 'rgba(0,0,0,0.03)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem', padding: '1.25rem', background: 'rgba(0,0,0,0.03)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
             
             {/* Setting 1: Kaartenset Keuze */}
             <div>
@@ -306,7 +314,57 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
               </div>
             </div>
 
-            {/* Setting 2: Uitlijning achterkant */}
+            {/* Setting 2: Kaartformaat Keuze */}
+            <div>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
+                <Maximize size={17} color="#0ea5e9" /> Kaartformaat
+              </label>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
+                <button
+                  type="button"
+                  onClick={() => setCardFormat('standard')}
+                  style={{
+                    padding: '8px 6px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: cardFormat === 'standard' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
+                    color: cardFormat === 'standard' ? 'white' : 'var(--text-main)',
+                    fontWeight: cardFormat === 'standard' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: cardFormat === 'standard' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>Speelkaart</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>58×88 mm • 9/vel</div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setCardFormat('a7')}
+                  style={{
+                    padding: '8px 6px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: cardFormat === 'a7' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
+                    color: cardFormat === 'a7' ? 'white' : 'var(--text-main)',
+                    fontWeight: cardFormat === 'a7' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: cardFormat === 'a7' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>A7 Formaat</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>74×105 mm • 4/vel</div>
+                </button>
+              </div>
+            </div>
+
+            {/* Setting 3: Uitlijning achterkant */}
             <div>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
                 <Files size={17} color="#0ea5e9" /> Uitlijning achterzijde
@@ -421,25 +479,24 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
       {/* Pages Container */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
         {chunks.map((chunk, chunkIdx) => {
-          // Both front and back pages must have exactly 9 slots (3x3) so empty rows on the last page
-          // don't cause vertical misalignment between front and back
+          // Fill slots up to cardsPerPage so empty slots on the last page maintain consistent grid structure
           const frontChunk = [];
-          for (let i = 0; i < 9; i++) {
+          for (let i = 0; i < cardsPerPage; i++) {
             frontChunk.push(chunk[i] || null);
           }
 
           // Reorder the back page according to layoutMode
           const backChunk = [];
           if (layoutMode === 'mirrored') {
-            for (let row = 0; row < 3; row++) {
-              for (let col = 0; col < 3; col++) {
-                const originalIndex = row * 3 + (2 - col);
-                backChunk.push(chunk[originalIndex] || null); // null for empty slots on last page
+            for (let row = 0; row < rows; row++) {
+              for (let col = 0; col < cols; col++) {
+                const originalIndex = row * cols + (cols - 1 - col);
+                backChunk.push(chunk[originalIndex] || null);
               }
             }
           } else {
             // 'same': exact identical positions on front and back
-            for (let i = 0; i < 9; i++) {
+            for (let i = 0; i < cardsPerPage; i++) {
               backChunk.push(chunk[i] || null);
             }
           }
@@ -450,33 +507,33 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
             <React.Fragment key={chunkIdx}>
               {/* PAGE INDICATOR (PREVIEW ONLY) */}
               <div className="no-print" style={{ width: '210mm', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '1rem 0 -1.25rem 0', padding: '0 4px', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
-                <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>Vel {chunkIdx + 1} van {chunks.length} • Voorkanten</span>
+                <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>Vel {chunkIdx + 1} van {chunks.length} • Voorkanten ({isA7 ? 'A7 Formaat' : 'Speelkaart'})</span>
                 <span>{cardCount} {cardCount === 1 ? 'kaart' : 'kaarten'}</span>
               </div>
 
               {/* PAGE: FRONTS */}
-              <div className="a4-page" style={{ width: '210mm', height: '297mm', background: 'white', padding: '10mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
-                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 58mm)', gridTemplateRows: 'repeat(3, 88mm)', gap: '5mm', justifyContent: 'center', alignContent: 'start', height: '100%' }}>
+              <div className="a4-page" style={{ width: '210mm', height: '297mm', background: 'white', padding: isA7 ? '38.5mm 26mm' : '10mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
+                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: isA7 ? 'repeat(2, 74mm)' : 'repeat(3, 58mm)', gridTemplateRows: isA7 ? 'repeat(2, 105mm)' : 'repeat(3, 88mm)', gap: isA7 ? '10mm' : '5mm', justifyContent: 'center', alignContent: isA7 ? 'center' : 'start', height: '100%' }}>
                   {frontChunk.map((card, i) => {
                     const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'white';
                     return (
-                    <div key={`front-${i}`} style={{ width: '58mm', height: '88mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', position: 'relative', background: card ? `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)` : 'transparent', borderRadius: 0, overflow: 'hidden', visibility: card ? 'visible' : 'hidden' }}>
+                    <div key={`front-${i}`} style={{ width: isA7 ? '74mm' : '58mm', height: isA7 ? '105mm' : '88mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', position: 'relative', background: card ? `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)` : 'transparent', borderRadius: 0, overflow: 'hidden', visibility: card ? 'visible' : 'hidden' }}>
                       {card && (
                         <>
                           <CardInnerBorder color={cardColor} outerColor="white" />
-                          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '1mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: isA7 ? '2mm' : '1mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                             {/* Header (Badge) */}
                             {card.type && getCardTypeLetter(card.type) && (
-                              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color: cardColor, lineHeight: 1.1, zIndex: 10, marginTop: card.src ? '7mm' : '11mm' }}>
-                                <span style={{ fontSize: card.src ? '14px' : '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: card.src ? '9mm' : '12mm', height: card.src ? '9mm' : '12mm', borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: '1.5mm', boxSizing: 'border-box' }}>{getCardTypeLetter(card.type)}</span>
-                                <span style={{ fontSize: card.src ? '11px' : '13px', marginTop: '1mm', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black', fontWeight: 'bold' }}>{formatCardTypeLabel(getCardTypeLabel(card.type, card.title, card.id))}</span>
+                              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color: cardColor, lineHeight: 1.1, zIndex: 10, marginTop: card.src ? (isA7 ? '9mm' : '7mm') : (isA7 ? '13mm' : '11mm') }}>
+                                <span style={{ fontSize: card.src ? (isA7 ? '16px' : '14px') : (isA7 ? '21px' : '18px'), display: 'flex', alignItems: 'center', justifyContent: 'center', width: card.src ? (isA7 ? '11mm' : '9mm') : (isA7 ? '14mm' : '12mm'), height: card.src ? (isA7 ? '11mm' : '9mm') : (isA7 ? '14mm' : '12mm'), borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: isA7 ? '2mm' : '1.5mm', boxSizing: 'border-box' }}>{getCardTypeLetter(card.type)}</span>
+                                <span style={{ fontSize: card.src ? (isA7 ? '12.5px' : '11px') : (isA7 ? '15px' : '13px'), marginTop: '1mm', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black', fontWeight: 'bold' }}>{formatCardTypeLabel(getCardTypeLabel(card.type, card.title, card.id))}</span>
                                 {getCardTypeLabel(card.type, card.title, card.id) === 'Copingmodus' && getCopingStyle(card.title, card.id) && (
-                                  <span style={{ fontSize: card.src ? '9.5px' : '11.5px', textTransform: 'uppercase', letterSpacing: '0.6px', color: 'black', fontWeight: '600', marginTop: '1.5mm', opacity: 0.9 }}>
+                                  <span style={{ fontSize: card.src ? (isA7 ? '11px' : '9.5px') : (isA7 ? '13px' : '11.5px'), textTransform: 'uppercase', letterSpacing: '0.6px', color: 'black', fontWeight: '600', marginTop: isA7 ? '2mm' : '1.5mm', opacity: 0.9 }}>
                                     {getCopingStyle(card.title, card.id)}
                                   </span>
                                 )}
                                 {isForensicMode(card.title, card.id) && (
-                                  <span style={{ fontSize: card.src ? '9px' : '11px', textTransform: 'uppercase', letterSpacing: '0.8px', color: 'black', fontWeight: 'bold', marginTop: '2.5mm', opacity: 0.85 }}>
+                                  <span style={{ fontSize: card.src ? (isA7 ? '10.5px' : '9px') : (isA7 ? '12px' : '11px'), textTransform: 'uppercase', letterSpacing: '0.8px', color: 'black', fontWeight: 'bold', marginTop: isA7 ? '3mm' : '2.5mm', opacity: 0.85 }}>
                                     FORENSISCH
                                   </span>
                                 )}
@@ -485,12 +542,12 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
                             {/* Image Container */}
                             <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: 0, width: '100%' }}>
-                              {card.src && <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.18)', imageRendering: '-webkit-optimize-contrast', ...card.style }} />}
+                              {card.src && <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: isA7 ? 'scale(1.22)' : 'scale(1.18)', imageRendering: '-webkit-optimize-contrast', ...card.style }} />}
                             </div>
 
                             {/* Footer (Title) */}
                             {card.title && (
-                              <div style={{ textAlign: 'center', fontSize: '0.85rem', fontWeight: 'bold', color: 'black', margin: '2mm 0 6mm 0', lineHeight: '1.2', height: '10mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
+                              <div style={{ textAlign: 'center', fontSize: isA7 ? '1.02rem' : '0.85rem', fontWeight: 'bold', color: 'black', margin: isA7 ? '2.5mm 0 7mm 0' : '2mm 0 6mm 0', lineHeight: '1.2', height: isA7 ? '12mm' : '10mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
                                 {formatCardTitle(card.title)}
                               </div>
                             )}
@@ -504,22 +561,22 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
               {/* PAGE INDICATOR (PREVIEW ONLY) */}
               <div className="no-print" style={{ width: '210mm', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '1rem 0 -1.25rem 0', padding: '0 4px', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
-                <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>Vel {chunkIdx + 1} van {chunks.length} • Achterkanten</span>
+                <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>Vel {chunkIdx + 1} van {chunks.length} • Achterkanten ({isA7 ? 'A7 Formaat' : 'Speelkaart'})</span>
                 <span style={{ fontSize: '0.82rem', background: 'rgba(0,0,0,0.06)', padding: '2px 8px', borderRadius: 0 }}>
                   {layoutMode === 'same' ? 'Zelfde positie als voorkant' : 'Horizontaal gespiegeld (duplex)'}
                 </span>
               </div>
 
               {/* PAGE: BACKS */}
-              <div className="a4-page" style={{ width: '210mm', height: '297mm', background: 'white', padding: '10mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
-                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 58mm)', gridTemplateRows: 'repeat(3, 88mm)', gap: '5mm', justifyContent: 'center', alignContent: 'start', height: '100%' }}>
+              <div className="a4-page" style={{ width: '210mm', height: '297mm', background: 'white', padding: isA7 ? '38.5mm 26mm' : '10mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
+                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: isA7 ? 'repeat(2, 74mm)' : 'repeat(3, 58mm)', gridTemplateRows: isA7 ? 'repeat(2, 105mm)' : 'repeat(3, 88mm)', gap: isA7 ? '10mm' : '5mm', justifyContent: 'center', alignContent: isA7 ? 'center' : 'start', height: '100%' }}>
                   {backChunk.map((card, i) => {
                     const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'white';
-                    const descFontSize = '0.80rem';
-                    const descLineHeight = '1.35';
+                    const descFontSize = isA7 ? '0.96rem' : '0.80rem';
+                    const descLineHeight = isA7 ? '1.45' : '1.35';
 
                     return (
-                    <div key={`back-${i}`} style={{ width: '58mm', height: '88mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative', background: 'white', borderRadius: 0, overflow: 'hidden' }}>
+                    <div key={`back-${i}`} style={{ width: isA7 ? '74mm' : '58mm', height: isA7 ? '105mm' : '88mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative', background: 'white', borderRadius: 0, overflow: 'hidden' }}>
                       {card && (
                         <>
                           <CardInnerBorder color={cardColor} radius="0" />
@@ -529,7 +586,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                             left: 0, 
                             right: 0, 
                             bottom: 0, 
-                            padding: '6.5mm 8mm', 
+                            padding: isA7 ? '7.5mm 9mm' : '6.5mm 8mm', 
                             display: 'flex', 
                             flexDirection: 'column', 
                             alignItems: 'center', 
@@ -538,7 +595,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                           }}>
                             <h4 style={{ 
                               margin: 0, 
-                              fontSize: '0.85rem', 
+                              fontSize: isA7 ? '1.05rem' : '0.85rem', 
                               color: 'black', 
                               textAlign: 'center', 
                               width: '100%', 
@@ -547,7 +604,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                               letterSpacing: '-0.2px',
                               flexShrink: 0,
                               zIndex: 1,
-                              height: '8.5mm',
+                              height: isA7 ? '11mm' : '8.5mm',
                               display: 'flex',
                               flexDirection: 'column',
                               alignItems: 'center',
@@ -559,7 +616,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                               width: '100%', 
                               height: '2px', 
                               backgroundColor: cardColor, 
-                              margin: '2.5mm 0', 
+                              margin: isA7 ? '3mm 0' : '2.5mm 0', 
                               flexShrink: 0, 
                               zIndex: 1 
                             }} />
@@ -569,7 +626,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                               lineHeight: descLineHeight, 
                               color: '#111', 
                               margin: '0', 
-                              paddingBottom: '6mm',
+                              paddingBottom: isA7 ? '7mm' : '6mm',
                               textAlign: 'center', 
                               flexShrink: 0, 
                               zIndex: 1 
@@ -579,7 +636,7 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
                             <div style={{
                               position: 'absolute',
-                              bottom: '3mm',
+                              bottom: isA7 ? '4mm' : '3mm',
                               left: 0,
                               right: 0,
                               display: 'flex',
@@ -594,13 +651,13 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                                 background: '#f4f4f5',
                                 border: '1px solid #e4e4e7',
                                 borderRadius: '999px',
-                                padding: '2px 5px',
+                                padding: isA7 ? '3px 7px' : '2px 5px',
                                 WebkitPrintColorAdjust: 'exact',
                                 printColorAdjust: 'exact'
                               }}>
-                                <ThreeSparklesLogo size={8} theme="test" />
+                                <ThreeSparklesLogo size={isA7 ? 10 : 8} theme="test" />
                                 <span style={{ 
-                                  fontSize: '0.4rem', 
+                                  fontSize: isA7 ? '0.48rem' : '0.4rem', 
                                   fontWeight: 700, 
                                   color: '#52525b',
                                   lineHeight: 1,

@@ -20,6 +20,9 @@ import {
 
 export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
   const [deckSelection, setDeckSelection] = useState('all'); // 'all', 'vst', 'base'
+  const [cardFormat, setCardFormat] = useState('standard'); // 'standard' (58x88mm) or 'a7' (74x105mm)
+
+  const isA7 = cardFormat === 'a7';
 
   useEffect(() => {
     document.body.classList.add('print-shop-export-mode');
@@ -154,9 +157,10 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
   };
 
   const getDeckSubline = () => {
-    if (deckSelection === 'vst') return 'Uitbreidingsset • 12 kaarten • 24 pagina\'s';
-    if (deckSelection === 'base') return 'Basisset • 43 kaarten • 86 pagina\'s';
-    return 'Volledige set • 55 kaarten • 110 pagina\'s';
+    const formatLabel = isA7 ? 'A7 Formaat (74×105 mm)' : 'Speelkaart (58×88 mm)';
+    if (deckSelection === 'vst') return `Uitbreidingsset • 12 kaarten • 24 pagina's (${formatLabel})`;
+    if (deckSelection === 'base') return `Basisset • 43 kaarten • 86 pagina's (${formatLabel})`;
+    return `Volledige set • 55 kaarten • 110 pagina's (${formatLabel})`;
   };
 
   return (
@@ -164,7 +168,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
       <style>{`
         @media print {
           @page {
-            size: 62mm 93mm;
+            size: ${isA7 ? '80mm 111mm' : '64mm 94mm'};
             margin: 0;
           }
           body {
@@ -209,77 +213,134 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
             <Info size={26} color="#0ea5e9" /> Printhulp voor Drukkerijen
           </h3>
           <p style={{ color: 'var(--text-main)', lineHeight: '1.6', margin: 0 }}>
-            Deze weergave is geoptimaliseerd voor professionele drukkerijen. Het papierformaat voor de PDF is ingesteld op <strong>Kaartformaat (64x94mm inclusief 3mm afloop rondom)</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 58x88mm worden zonder witte randjes. Klik op de knop hieronder en kies "Opslaan als PDF" in Chrome.
+            {isA7 ? (
+              <>Deze weergave is geoptimaliseerd voor professionele drukkerijen op <strong>A7 Formaat (74x105mm)</strong>. Het PDF-papierformaat is ingesteld op <strong>80x111mm inclusief 3mm afloop rondom</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 74x105mm worden zonder witte randjes.</>
+            ) : (
+              <>Deze weergave is geoptimaliseerd voor professionele drukkerijen op <strong>Speelkaartformaat (58x88mm)</strong>. Het PDF-papierformaat is ingesteld op <strong>64x94mm inclusief 3mm afloop rondom</strong>. Na het printen snijdt de drukker er rondom 3mm af, zodat de kaarten exact 58x88mm worden zonder witte randjes.</>
+            )} Klik op de knop hieronder en kies "Opslaan als PDF" in Chrome.
           </p>
 
-          {/* Kaartenset Keuze */}
-          <div style={{ padding: '1.25rem', background: 'rgba(0,0,0,0.03)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
-              <Layers size={17} color="#0ea5e9" /> Kaartenset voor de drukker
-            </label>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
-              <button
-                type="button"
-                onClick={() => setDeckSelection('all')}
-                style={{
-                  padding: '8px 4px',
-                  borderRadius: '8px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: deckSelection === 'all' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
-                  color: deckSelection === 'all' ? 'white' : 'var(--text-main)',
-                  fontWeight: deckSelection === 'all' ? 'bold' : 'normal',
-                  fontSize: '0.86rem',
-                  textAlign: 'center',
-                  boxShadow: deckSelection === 'all' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                <div>Volledig</div>
-                <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>55 kaarten • 110 p.</div>
-              </button>
+          {/* Instellingen Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem' }}>
+            {/* Kaartenset Keuze */}
+            <div style={{ padding: '1.25rem', background: 'rgba(0,0,0,0.03)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
+                <Layers size={17} color="#0ea5e9" /> Kaartenset voor de drukker
+              </label>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
+                <button
+                  type="button"
+                  onClick={() => setDeckSelection('all')}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: deckSelection === 'all' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
+                    color: deckSelection === 'all' ? 'white' : 'var(--text-main)',
+                    fontWeight: deckSelection === 'all' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: deckSelection === 'all' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>Volledig</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>55 kaarten • 110 p.</div>
+                </button>
 
-              <button
-                type="button"
-                onClick={() => setDeckSelection('vst')}
-                style={{
-                  padding: '8px 4px',
-                  borderRadius: '8px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: deckSelection === 'vst' ? '#ea580c' : 'transparent',
-                  color: deckSelection === 'vst' ? 'white' : 'var(--text-main)',
-                  fontWeight: deckSelection === 'vst' ? 'bold' : 'normal',
-                  fontSize: '0.86rem',
-                  textAlign: 'center',
-                  boxShadow: deckSelection === 'vst' ? '0 2px 8px rgba(234, 88, 12, 0.35)' : 'none',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                <div>Uitbreiding</div>
-                <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>12 kaarten • 24 p.</div>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setDeckSelection('vst')}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: deckSelection === 'vst' ? '#ea580c' : 'transparent',
+                    color: deckSelection === 'vst' ? 'white' : 'var(--text-main)',
+                    fontWeight: deckSelection === 'vst' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: deckSelection === 'vst' ? '0 2px 8px rgba(234, 88, 12, 0.35)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>Uitbreiding</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>12 kaarten • 24 p.</div>
+                </button>
 
-              <button
-                type="button"
-                onClick={() => setDeckSelection('base')}
-                style={{
-                  padding: '8px 4px',
-                  borderRadius: '8px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: deckSelection === 'base' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
-                  color: deckSelection === 'base' ? 'white' : 'var(--text-main)',
-                  fontWeight: deckSelection === 'base' ? 'bold' : 'normal',
-                  fontSize: '0.86rem',
-                  textAlign: 'center',
-                  boxShadow: deckSelection === 'base' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                <div>Basisdeck</div>
-                <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>43 kaarten • 86 p.</div>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setDeckSelection('base')}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: deckSelection === 'base' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
+                    color: deckSelection === 'base' ? 'white' : 'var(--text-main)',
+                    fontWeight: deckSelection === 'base' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: deckSelection === 'base' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>Basisdeck</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>43 kaarten • 86 p.</div>
+                </button>
+              </div>
+            </div>
+
+            {/* Kaartformaat Keuze */}
+            <div style={{ padding: '1.25rem', background: 'rgba(0,0,0,0.03)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.92rem', fontWeight: '600', color: 'var(--text-main)', marginBottom: '8px' }}>
+                <Maximize size={17} color="#0ea5e9" /> Formaat voor drukkerij
+              </label>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px', background: 'rgba(0,0,0,0.06)', padding: '5px', borderRadius: '12px' }}>
+                <button
+                  type="button"
+                  onClick={() => setCardFormat('standard')}
+                  style={{
+                    padding: '8px 6px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: cardFormat === 'standard' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
+                    color: cardFormat === 'standard' ? 'white' : 'var(--text-main)',
+                    fontWeight: cardFormat === 'standard' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: cardFormat === 'standard' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>Speelkaart</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>58×88 mm (64×94 mm)</div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setCardFormat('a7')}
+                  style={{
+                    padding: '8px 6px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: cardFormat === 'a7' ? 'linear-gradient(to right, #64748b, #3b82f6)' : 'transparent',
+                    color: cardFormat === 'a7' ? 'white' : 'var(--text-main)',
+                    fontWeight: cardFormat === 'a7' ? 'bold' : 'normal',
+                    fontSize: '0.86rem',
+                    textAlign: 'center',
+                    boxShadow: cardFormat === 'a7' ? '0 2px 8px rgba(59, 130, 246, 0.25)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  <div>A7 Formaat</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.85 }}>74×105 mm (80×111 mm)</div>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -315,7 +376,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
               <FileText size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
-                <strong>Papierformaat:</strong> Aangepast (wordt automatisch door de browser ingesteld op 64x94mm)
+                <strong>Papierformaat:</strong> Aangepast (wordt automatisch door de browser ingesteld op {isA7 ? '80x111mm' : '64x94mm'})
               </p>
             </div>
             
@@ -341,29 +402,29 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
       <div className="print-shop-pages" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
         {activeCards.map((card, idx) => {
           const cardColor = card.color || getCardColor(card.type, card.id);
-          const descFontSize = '0.80rem';
-          const descLineHeight = '1.35';
+          const descFontSize = isA7 ? '0.96rem' : '0.80rem';
+          const descLineHeight = isA7 ? '1.45' : '1.35';
 
           return (
             <React.Fragment key={idx}>
               {/* VOORKANT */}
-              <div className="print-shop-page card-front">
+              <div className={`print-shop-page card-front ${isA7 ? 'a7' : ''}`}>
                 <div className="print-shop-bleed" style={{ background: 'white', position: 'relative', width: '100%', height: '100%' }}>
                   <div style={{ position: 'absolute', top: '3mm', left: '3mm', right: '3mm', bottom: '3mm', background: `radial-gradient(circle at center, white 30%, ${cardColor}50 130%)`, borderRadius: 0 }}>
                     <CardInnerBorder color={cardColor} outerColor="white" radius="0" />
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: '1mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: isA7 ? '2mm' : '1mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                       {/* Header (Badge) */}
                       {card.type && getCardTypeLetter(card.type) && (
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color: cardColor, lineHeight: 1.1, zIndex: 10, marginTop: card.src ? '7mm' : '11mm' }}>
-                          <span style={{ fontSize: card.src ? '14px' : '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: card.src ? '9mm' : '12mm', height: card.src ? '9mm' : '12mm', borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: '1.5mm', boxSizing: 'border-box' }}>{getCardTypeLetter(card.type)}</span>
-                          <span style={{ fontSize: card.src ? '11px' : '13px', marginTop: '1mm', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black', fontWeight: 'bold' }}>{formatCardTypeLabel(getCardTypeLabel(card.type, card.title, card.id))}</span>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: '900', color: cardColor, lineHeight: 1.1, zIndex: 10, marginTop: card.src ? (isA7 ? '9mm' : '7mm') : (isA7 ? '13mm' : '11mm') }}>
+                          <span style={{ fontSize: card.src ? (isA7 ? '16px' : '14px') : (isA7 ? '21px' : '18px'), display: 'flex', alignItems: 'center', justifyContent: 'center', width: card.src ? (isA7 ? '11mm' : '9mm') : (isA7 ? '14mm' : '12mm'), height: card.src ? (isA7 ? '11mm' : '9mm') : (isA7 ? '14mm' : '12mm'), borderRadius: '50%', backgroundColor: 'black', color: 'white', marginBottom: isA7 ? '2mm' : '1.5mm', boxSizing: 'border-box' }}>{getCardTypeLetter(card.type)}</span>
+                          <span style={{ fontSize: card.src ? (isA7 ? '12.5px' : '11px') : (isA7 ? '15px' : '13px'), marginTop: '1mm', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'black', fontWeight: 'bold' }}>{formatCardTypeLabel(getCardTypeLabel(card.type, card.title, card.id))}</span>
                           {getCardTypeLabel(card.type, card.title, card.id) === 'Copingmodus' && getCopingStyle(card.title, card.id) && (
-                            <span style={{ fontSize: card.src ? '9.5px' : '11.5px', textTransform: 'uppercase', letterSpacing: '0.6px', color: 'black', fontWeight: '600', marginTop: '1.5mm', opacity: 0.9 }}>
+                            <span style={{ fontSize: card.src ? (isA7 ? '11px' : '9.5px') : (isA7 ? '13px' : '11.5px'), textTransform: 'uppercase', letterSpacing: '0.6px', color: 'black', fontWeight: '600', marginTop: isA7 ? '2mm' : '1.5mm', opacity: 0.9 }}>
                               {getCopingStyle(card.title, card.id)}
                             </span>
                           )}
                           {isForensicMode(card.title, card.id) && (
-                            <span style={{ fontSize: card.src ? '9px' : '11px', textTransform: 'uppercase', letterSpacing: '0.8px', color: 'black', fontWeight: 'bold', marginTop: '2.5mm', opacity: 0.85 }}>
+                            <span style={{ fontSize: card.src ? (isA7 ? '10.5px' : '9px') : (isA7 ? '12px' : '11px'), textTransform: 'uppercase', letterSpacing: '0.8px', color: 'black', fontWeight: 'bold', marginTop: isA7 ? '3mm' : '2.5mm', opacity: 0.85 }}>
                               FORENSISCH
                             </span>
                           )}
@@ -372,12 +433,12 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
 
                       {/* Image Container */}
                       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: 0, width: '100%' }}>
-                        {card.src && <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.18)', imageRendering: '-webkit-optimize-contrast', ...card.style }} />}
+                        {card.src && <img src={card.src} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain', transform: isA7 ? 'scale(1.22)' : 'scale(1.18)', imageRendering: '-webkit-optimize-contrast', ...card.style }} />}
                       </div>
 
                       {/* Footer (Title) */}
                       {card.title && (
-                        <div style={{ textAlign: 'center', fontSize: '0.85rem', fontWeight: 'bold', color: 'black', margin: '2mm 0 6mm 0', lineHeight: '1.2', height: '10mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
+                        <div style={{ textAlign: 'center', fontSize: isA7 ? '1.02rem' : '0.85rem', fontWeight: 'bold', color: 'black', margin: isA7 ? '2.5mm 0 7mm 0' : '2mm 0 6mm 0', lineHeight: '1.2', height: isA7 ? '12mm' : '10mm', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
                           {formatCardTitle(card.title)}
                         </div>
                       )}
@@ -387,12 +448,12 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
               </div>
 
               {/* ACHTERKANT */}
-              <div className="print-shop-page card-back" style={{ background: 'white' }}>
+              <div className={`print-shop-page card-back ${isA7 ? 'a7' : ''}`} style={{ background: 'white' }}>
                 <div className="print-shop-bleed" style={{ position: 'relative', width: '100%', height: '100%' }}>
                   {/* Bleeding border for the back: covers the 3mm bleed area AND the 6px inner border */}
                   <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, border: `calc(3mm + 6px) solid ${cardColor.startsWith('#') ? cardColor + '25' : 'rgba(0,0,0,0.03)'}`, boxSizing: 'border-box' }}></div>
                   
-                  {/* Inner container (58x88mm) for content positioning, without the CardInnerBorder since we drew it above */}
+                  {/* Inner container (58x88mm or 74x105mm) for content positioning, without the CardInnerBorder since we drew it above */}
                   <div style={{ position: 'absolute', top: '3mm', left: '3mm', right: '3mm', bottom: '3mm', background: 'transparent', borderRadius: 0 }}>
                     {/* Binnenlijn (2px): this was originally part of CardInnerBorder, placed 6px inwards */}
                     <div style={{ position: 'absolute', top: '6px', left: '6px', right: '6px', bottom: '6px', border: `2px solid ${cardColor}`, borderRadius: '6px', boxSizing: 'border-box', pointerEvents: 'none' }}></div>
@@ -403,7 +464,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                       left: 0, 
                       right: 0, 
                       bottom: 0, 
-                      padding: '6.5mm 8mm', 
+                      padding: isA7 ? '7.5mm 9mm' : '6.5mm 8mm', 
                       display: 'flex', 
                       flexDirection: 'column', 
                       alignItems: 'center', 
@@ -412,7 +473,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                     }}>
                       <h4 style={{ 
                         margin: 0, 
-                        fontSize: '0.85rem', 
+                        fontSize: isA7 ? '1.05rem' : '0.85rem', 
                         color: 'black', 
                         textAlign: 'center', 
                         width: '100%', 
@@ -421,7 +482,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                         letterSpacing: '-0.2px',
                         flexShrink: 0,
                         zIndex: 1,
-                        height: '8.5mm',
+                        height: isA7 ? '11mm' : '8.5mm',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -433,7 +494,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                         width: '100%', 
                         height: '2px', 
                         backgroundColor: cardColor, 
-                        margin: '2.5mm 0', 
+                        margin: isA7 ? '3mm 0' : '2.5mm 0', 
                         flexShrink: 0, 
                         zIndex: 1 
                       }} />
@@ -442,8 +503,8 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                         fontWeight: 'normal', 
                         lineHeight: descLineHeight, 
                         color: '#111', 
-                        margin: '0',
-                        paddingBottom: '6mm', 
+                        margin: '0', 
+                        paddingBottom: isA7 ? '7mm' : '6mm',
                         textAlign: 'center', 
                         flexShrink: 0, 
                         zIndex: 1 
@@ -453,7 +514,7 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
 
                       <div style={{
                         position: 'absolute',
-                        bottom: '3mm',
+                        bottom: isA7 ? '4mm' : '3mm',
                         left: 0,
                         right: 0,
                         display: 'flex',
@@ -468,13 +529,13 @@ export default function PrintShopExport({ onBack, onViewHomePrintExport }) {
                           background: '#f4f4f5',
                           border: '1px solid #e4e4e7',
                           borderRadius: '999px',
-                          padding: '2px 5px',
+                          padding: isA7 ? '3px 7px' : '2px 5px',
                           WebkitPrintColorAdjust: 'exact',
                           printColorAdjust: 'exact'
                         }}>
-                          <ThreeSparklesLogo size={8} theme="test" />
+                          <ThreeSparklesLogo size={isA7 ? 10 : 8} theme="test" />
                           <span style={{ 
-                            fontSize: '0.4rem', 
+                            fontSize: isA7 ? '0.48rem' : '0.4rem', 
                             fontWeight: 700, 
                             color: '#52525b',
                             lineHeight: 1,
