@@ -83,7 +83,7 @@ export const vstModiData = [
     description: 'In deze modus voel je je vrij, geliefd, tevreden, beschermd, begrepen, veilig, gewaardeerd en verbonden met anderen. Je kunt spontaan reageren, je bent ondernemend, optimistisch en speels, zoals een gelukkig klein kind.',
     color: '#34d399',
     isVst: true,
-    style: { transform: 'scale(0.66)' }
+    style: { transform: 'scale(1.35)' }
   },
   {
     id: 'vst_m_bb',
