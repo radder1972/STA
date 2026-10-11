@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PrinterIcon, ThreeSparklesLogo } from './Icons';
-import { FileText, Maximize, Image as ImageIcon, Info, Files, Sparkles, Layers, Package } from 'lucide-react';
+import { FileText, Maximize, Image as ImageIcon, Info, Files, Sparkles, Layers, Package, RotateCcw, Plus, Minus } from 'lucide-react';
 import { getCardColor, CardInnerBorder } from '../utils/colors';
 import { schemaImages, modeImages } from '../utils/images';
 import { formatCardTitle, formatCardTypeLabel, getCardTypeLetter, getCardTypeLabel, getCopingStyle, isForensicMode } from './SchemaCard';
@@ -23,6 +23,9 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
   const [cardFormat, setCardFormat] = useState('a7'); // 'standard' (58x88mm) or 'a7' (70x100mm)
   const [layoutMode, setLayoutMode] = useState('duplex'); // 'duplex' (automatisch dubbelzijdig) of 'same' (enkelzijdig knippen & plakken)
   const [duplexBinding, setDuplexBinding] = useState('book'); // 'book' (Aanbevolen: korte zijde bij liggend, lange zijde bij staand) of 'calendar' (alternatief)
+  const [backOffsetX, setBackOffsetX] = useState(0); // Horizontale fijn-afstelling in mm (-10 tot +10)
+  const [backOffsetY, setBackOffsetY] = useState(0); // Verticale fijn-afstelling in mm (-10 tot +10)
+  const [backBorderMode, setBackBorderMode] = useState('clean'); // 'clean' (vergevingsgezind zonder buitenrand) of 'border' (met buitenkader)
 
   const isA7 = cardFormat === 'a7';
   const cardsPerPage = isA7 ? 8 : 9;
@@ -476,6 +479,169 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
           </div>
 
+          {/* Printer-kalibratie & Marge-correctie */}
+          <div style={{ marginTop: '0.25rem', padding: '1.25rem 1.4rem', background: 'rgba(14, 165, 233, 0.05)', borderRadius: '18px', border: '1.5px solid rgba(14, 165, 233, 0.22)' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '8px', marginBottom: '0.85rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Maximize size={18} color="#0ea5e9" />
+                <span style={{ fontSize: '0.96rem', fontWeight: '700', color: 'var(--text-main)' }}>
+                  Printer-kalibratie & Marge-correctie
+                </span>
+                <span style={{ fontSize: '0.74rem', background: '#e0f2fe', color: '#0369a1', padding: '2px 8px', borderRadius: '999px', fontWeight: '700' }}>
+                  Fijn-afstelling
+                </span>
+              </div>
+              {(backOffsetX !== 0 || backOffsetY !== 0 || backBorderMode !== 'clean') && (
+                <button
+                  type="button"
+                  onClick={() => { setBackOffsetX(0); setBackOffsetY(0); setBackBorderMode('clean'); }}
+                  style={{ background: 'none', border: 'none', color: '#ef4444', fontSize: '0.78rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', padding: '2px 6px', fontWeight: '600' }}
+                >
+                  <RotateCcw size={13} /> Reset naar standaard (0 mm)
+                </button>
+              )}
+            </div>
+
+            <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: '0 0 1rem 0' }}>
+              Vrijwel elke thuisprinter trekt papier bij dubbelzijdig printen 1 tot 3 mm scheef door mechanische rol-tolerantie. Met de twee onderstaande opties sluiten jouw kaarten altijd 100% strak aan:
+            </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+              
+              {/* Optie 1: Rand op achterzijde */}
+              <div style={{ background: 'white', padding: '1.1rem', borderRadius: '14px', border: '1px solid var(--border-color)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span>1. Rand op achterzijde</span>
+                  <span style={{ fontSize: '0.72rem', color: '#0284c7', fontWeight: 'normal' }}>
+                    {backBorderMode === 'clean' ? '✨ Aanbevolen' : ''}
+                  </span>
+                </label>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
+                  <button
+                    type="button"
+                    onClick={() => setBackBorderMode('clean')}
+                    style={{
+                      padding: '8px 6px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      background: backBorderMode === 'clean' ? 'linear-gradient(to right, #0284c7, #0ea5e9)' : 'rgba(0,0,0,0.05)',
+                      color: backBorderMode === 'clean' ? 'white' : 'var(--text-main)',
+                      fontWeight: backBorderMode === 'clean' ? 'bold' : 'normal',
+                      fontSize: '0.82rem',
+                      textAlign: 'center',
+                      boxShadow: backBorderMode === 'clean' ? '0 2px 6px rgba(14, 165, 233, 0.3)' : 'none',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    <div>Vergevingsgezind</div>
+                    <div style={{ fontSize: '0.68rem', opacity: 0.9 }}>Geen strak buitenkader</div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setBackBorderMode('border')}
+                    style={{
+                      padding: '8px 6px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      background: backBorderMode === 'border' ? 'linear-gradient(to right, #0284c7, #0ea5e9)' : 'rgba(0,0,0,0.05)',
+                      color: backBorderMode === 'border' ? 'white' : 'var(--text-main)',
+                      fontWeight: backBorderMode === 'border' ? 'bold' : 'normal',
+                      fontSize: '0.82rem',
+                      textAlign: 'center',
+                      boxShadow: backBorderMode === 'border' ? '0 2px 6px rgba(14, 165, 233, 0.3)' : 'none',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    <div>Met buitenkader</div>
+                    <div style={{ fontSize: '0.68rem', opacity: 0.9 }}>Klassieke gekleurde rand</div>
+                  </button>
+                </div>
+                <span style={{ fontSize: '0.75rem', color: '#64748b', lineHeight: '1.35', marginTop: '2px' }}>
+                  {backBorderMode === 'clean' 
+                    ? '💡 Omdat de achterkant geen strak kader heeft vlakbij de rand, valt 1 tot 3 mm printerverschuiving helemaal niet op bij het uitsnijden!' 
+                    : '⚠️ Let op: Bij een fysieke printerafwijking kan de gekleurde kaderlijn aan één kant dicht op de snijrand komen.'}
+                </span>
+              </div>
+
+              {/* Optie 2: Millimeter verschuiving regelaars */}
+              <div style={{ background: 'white', padding: '1.1rem', borderRadius: '14px', border: '1px solid var(--border-color)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <label style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span>2. Achterkant fijn-afstellen (in mm)</span>
+                  <span style={{ fontSize: '0.72rem', color: (backOffsetX !== 0 || backOffsetY !== 0) ? '#0284c7' : '#94a3b8', fontWeight: '600' }}>
+                    {(backOffsetX !== 0 || backOffsetY !== 0) ? 'Actief' : '0.0 mm'}
+                  </span>
+                </label>
+
+                {/* Horizontaal X */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px' }}>
+                  <span style={{ fontSize: '0.80rem', color: 'var(--text-main)', minWidth: '95px', fontWeight: '500' }}>
+                    Horizontaal (X):
+                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    <button
+                      type="button"
+                      onClick={() => setBackOffsetX(prev => Math.max(-10, Math.round((prev - 0.5) * 10) / 10))}
+                      style={{ width: '28px', height: '28px', borderRadius: '6px', border: '1px solid #cbd5e1', background: '#f8fafc', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      title="0.5 mm naar links"
+                    >
+                      <Minus size={13} />
+                    </button>
+                    <span style={{ minWidth: '55px', textAlign: 'center', fontSize: '0.86rem', fontWeight: '700', color: backOffsetX !== 0 ? '#0284c7' : 'var(--text-main)' }}>
+                      {backOffsetX > 0 ? `+${backOffsetX.toFixed(1)}` : backOffsetX.toFixed(1)} mm
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setBackOffsetX(prev => Math.min(10, Math.round((prev + 0.5) * 10) / 10))}
+                      style={{ width: '28px', height: '28px', borderRadius: '6px', border: '1px solid #cbd5e1', background: '#f8fafc', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      title="0.5 mm naar rechts"
+                    >
+                      <Plus size={13} />
+                    </button>
+                  </div>
+                  <span style={{ fontSize: '0.70rem', color: '#64748b', minWidth: '60px', textAlign: 'right' }}>
+                    {backOffsetX < 0 ? '← naar links' : (backOffsetX > 0 ? 'naar rechts →' : 'gecentreerd')}
+                  </span>
+                </div>
+
+                {/* Verticaal Y */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px' }}>
+                  <span style={{ fontSize: '0.80rem', color: 'var(--text-main)', minWidth: '95px', fontWeight: '500' }}>
+                    Verticaal (Y):
+                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    <button
+                      type="button"
+                      onClick={() => setBackOffsetY(prev => Math.max(-10, Math.round((prev - 0.5) * 10) / 10))}
+                      style={{ width: '28px', height: '28px', borderRadius: '6px', border: '1px solid #cbd5e1', background: '#f8fafc', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      title="0.5 mm naar boven"
+                    >
+                      <Minus size={13} />
+                    </button>
+                    <span style={{ minWidth: '55px', textAlign: 'center', fontSize: '0.86rem', fontWeight: '700', color: backOffsetY !== 0 ? '#0284c7' : 'var(--text-main)' }}>
+                      {backOffsetY > 0 ? `+${backOffsetY.toFixed(1)}` : backOffsetY.toFixed(1)} mm
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setBackOffsetY(prev => Math.min(10, Math.round((prev + 0.5) * 10) / 10))}
+                      style={{ width: '28px', height: '28px', borderRadius: '6px', border: '1px solid #cbd5e1', background: '#f8fafc', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      title="0.5 mm naar beneden"
+                    >
+                      <Plus size={13} />
+                    </button>
+                  </div>
+                  <span style={{ fontSize: '0.70rem', color: '#64748b', minWidth: '60px', textAlign: 'right' }}>
+                    {backOffsetY < 0 ? '↑ naar boven' : (backOffsetY > 0 ? 'naar beneden ↓' : 'gecentreerd')}
+                  </span>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
           {/* Duplex Highlight Notice */}
           {layoutMode === 'duplex' && (
             <div style={{ padding: '0.9rem 1.15rem', background: '#eff6ff', border: '1.5px solid #93c5fd', borderRadius: '14px', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
@@ -556,6 +722,13 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
               <ImageIcon size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
               <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
                 <strong>Achtergrondafbeeldingen:</strong> AAN (noodzakelijk voor kaartkleuren en kaders)
+              </p>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+              <Layers size={20} color="#0ea5e9" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <p style={{ margin: 0, color: 'var(--text-main)', lineHeight: '1.5' }}>
+                <strong>Snij-tip:</strong> Snijd de kaarten altijd uit vanaf de <u>voorkant</u> van het vel (langs de stippellijnen). Met de optie <em>Vergevingsgezind</em> sluit de achterkant altijd strak en naadloos aan.
               </p>
             </div>
           </div>
@@ -691,7 +864,23 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
 
               {/* PAGE: BACKS */}
               <div className="a4-page" style={{ width: isA7 ? '297mm' : '210mm', height: isA7 ? '210mm' : '297mm', background: 'white', padding: isA7 ? '4.5mm' : '11.5mm 13mm', boxSizing: 'border-box', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
-                <div className="a4-page-content" style={{ display: 'grid', gridTemplateColumns: isA7 ? 'repeat(4, 70.5mm)' : 'repeat(3, 58mm)', gridTemplateRows: isA7 ? 'repeat(2, 99.5mm)' : 'repeat(3, 88mm)', gap: isA7 ? '2mm' : '5mm', justifyContent: 'center', alignContent: 'center', height: '100%', margin: '0 auto' }}>
+                <div 
+                  className="a4-page-content" 
+                  style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: isA7 ? 'repeat(4, 70.5mm)' : 'repeat(3, 58mm)', 
+                    gridTemplateRows: isA7 ? 'repeat(2, 99.5mm)' : 'repeat(3, 88mm)', 
+                    gap: isA7 ? '2mm' : '5mm', 
+                    justifyContent: 'center', 
+                    alignContent: 'center', 
+                    height: '100%', 
+                    margin: '0 auto',
+                    position: 'relative',
+                    left: `${backOffsetX}mm`,
+                    top: `${backOffsetY}mm`,
+                    transition: 'left 0.1s ease, top 0.1s ease'
+                  }}
+                >
                   {backChunk.map((slotItem, i) => {
                     const card = slotItem.card;
                     const cardColor = card ? (card.color || getCardColor(card.type, card.id)) : 'white';
@@ -699,23 +888,25 @@ export default function HomePrintExport({ onBack, onViewPrintShop }) {
                     const descLineHeight = isA7 ? '1.36' : '1.35';
 
                     return (
-                    <div key={`back-${i}`} style={{ width: isA7 ? '70.5mm' : '58mm', height: isA7 ? '99.5mm' : '88mm', border: card ? '1px dashed #ccc' : 'none', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative', background: 'white', borderRadius: 0, overflow: 'hidden' }}>
+                    <div key={`back-${i}`} style={{ width: isA7 ? '70.5mm' : '58mm', height: isA7 ? '99.5mm' : '88mm', border: card ? (backBorderMode === 'border' ? '1px dashed #ccc' : 'none') : 'none', boxSizing: 'border-box', visibility: card ? 'visible' : 'hidden', position: 'relative', background: 'white', borderRadius: 0, overflow: 'hidden' }}>
                       {card && (
                         <>
-                          {/* Preview helper: Front slot match */}
+                          {/* Preview helper: Front slot match & active offset */}
                           <div className="no-print" style={{ position: 'absolute', top: '3px', left: '5px', right: '5px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '2px 5px', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '4px', fontSize: '0.60rem', fontWeight: '700', color: '#15803d', zIndex: 40, lineHeight: 1 }}>
                             <span>{layoutMode === 'duplex' ? '🔄 Duplex' : '📋 Los vel'}</span>
-                            <span>Achterzijde van Vak #{slotItem.frontSlotNum}</span>
+                            <span>Achterzijde van Vak #{slotItem.frontSlotNum} {(backOffsetX !== 0 || backOffsetY !== 0) ? `(${backOffsetX > 0 ? '+' : ''}${backOffsetX}mm X, ${backOffsetY > 0 ? '+' : ''}${backOffsetY}mm Y)` : ''}</span>
                           </div>
 
-                          <CardInnerBorder color={cardColor} outerColor="white" radius="0" />
+                          {backBorderMode === 'border' && (
+                            <CardInnerBorder color={cardColor} outerColor="white" radius="0" />
+                          )}
                           <div style={{ 
                             position: 'absolute', 
                             top: 0, 
                             left: 0, 
                             right: 0, 
                             bottom: 0, 
-                            padding: isA7 ? '6.5mm 7mm 4mm 7mm' : '6.5mm 8mm', 
+                            padding: isA7 ? (backBorderMode === 'clean' ? '7mm 7.5mm 4.5mm 7.5mm' : '6.5mm 7mm 4mm 7mm') : (backBorderMode === 'clean' ? '7mm 8mm 5mm 8mm' : '6.5mm 8mm'), 
                             display: 'flex', 
                             flexDirection: 'column', 
                             alignItems: 'center', 
