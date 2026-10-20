@@ -45,9 +45,15 @@ import {
 } from './Icons';
 import SchemaCard from './SchemaCard';
 import { schemaDescriptions } from '../data/descriptions';
+import { getModeImage } from '../utils/images';
 import imgGv from '../assets/images/modes/gv.png';
 import imgBk from '../assets/images/vst/blije_kind.png';
 import imgKk from '../assets/images/modes/kk.png';
+import imgBozeBeschermer from '../assets/images/vst/boze_beschermer.png';
+import imgPerfectionistischeOvercontroleerder from '../assets/images/vst/perfectionistische_overcontroleerder.png';
+import imgBedrogManipulatie from '../assets/images/vst/bedrog_en_manipulatie.png';
+import imgAandachtErkenningzoeker from '../assets/images/vst/aandacht_erkenningzoeker.png';
+import imgRoofdier from '../assets/images/vst/roofdier.png';
 
 const CATEGORIZED_MODES = {
   'Functionele modi (Gezond)': [
@@ -82,6 +88,37 @@ const CATEGORIZED_MODES = {
     'Straffende ouder',
     'Veeleisende ouder'
   ]
+};
+
+const MODE_DETAILS_MAP = {
+  'Gezonde volwassene': { id: 'gv', src: imgGv },
+  'Blije kind': { id: 'vst_m_bk', src: imgBk },
+  'Kwetsbare kind': { id: 'kk', src: imgKk },
+  'Boze kind': { id: 'wk', src: getModeImage('wk') },
+  'Razende kind': { id: 'rk', src: getModeImage('rk') },
+  'Impulsieve kind': { id: 'ik', src: getModeImage('ik') },
+  'Ongedisciplineerde kind': { id: 'ok', src: getModeImage('ok') },
+  'Willoze inschikkelijke': { id: 'wi', src: getModeImage('wi') },
+  'Onthechte beschermer': { id: 'ob', src: getModeImage('ob') },
+  'Onthechte zelfsusser': { id: 'oz', src: getModeImage('oz') },
+  'Boze beschermer': { id: 'vst_m_bb', src: imgBozeBeschermer },
+  'Zelfverheerlijker': { id: 'zh', src: getModeImage('zh') },
+  'Pest en aanval': { id: 'pa', src: getModeImage('pa') },
+  'Perfectionistische overcontroleerder': { id: 'vst_m_po', src: imgPerfectionistischeOvercontroleerder },
+  'Wantrouwende overcontroleerder': { id: 'woc', src: getModeImage('woc') },
+  'Bedrog en manipulatie': { id: 'vst_m_bm', src: imgBedrogManipulatie },
+  'Aandacht- en erkenningzoeker': { id: 'vst_m_ae', src: imgAandachtErkenningzoeker },
+  'Roofdier': { id: 'vst_m_rd', src: imgRoofdier },
+  'Straffende ouder': { id: 'so', src: getModeImage('so') },
+  'Veeleisende ouder': { id: 'vo', src: getModeImage('vo') }
+};
+
+const getModusCardInfo = (modusName) => {
+  const item = MODE_DETAILS_MAP[modusName];
+  const id = item?.id || 'kk';
+  const src = item?.src || getModeImage(id) || imgKk;
+  const description = schemaDescriptions[modusName] || '';
+  return { id, src, description };
 };
 
 const STORAGE_KEY = 'schematherapie_werkbladen_v1';
@@ -777,12 +814,12 @@ export default function Werkbladen({ onBack }) {
                   )}
                 </div>
 
-                {/* Vraag 1: Selecteer Modus & Aantal keer */}
+                {/* Vraag 1: Selecteer Modus & Aantal keer + Kaart */}
                 <div style={{ 
                   background: 'var(--card-bg)', 
                   border: '1px solid var(--border-color)', 
-                  borderRadius: '14px', 
-                  padding: '1.25rem', 
+                  borderRadius: '16px', 
+                  padding: '1.25rem 1.5rem', 
                   marginBottom: '1.25rem' 
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem' }}>
@@ -806,75 +843,133 @@ export default function Werkbladen({ onBack }) {
                     </label>
                   </div>
 
-                  <div style={{ paddingLeft: '34px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem', alignItems: 'flex-end' }}>
-                    <div>
-                      <span style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '6px', fontWeight: '500' }}>
-                        Selecteer de modus:
-                      </span>
-                      <select
-                        className="screen-only-input"
-                        value={item.modus}
-                        onChange={(e) => handleUpdateModus(item.id, 'modus', e.target.value)}
-                        style={{ 
-                          width: '100%', 
-                          padding: '11px 42px 11px 14px', 
-                          borderRadius: '10px', 
-                          border: '1px solid var(--border-color)', 
-                          background: 'var(--bg-color)', 
-                          color: 'var(--text-main)', 
-                          fontSize: '0.95rem', 
-                          fontWeight: '400',
-                          appearance: 'none',
-                          WebkitAppearance: 'none',
-                          MozAppearance: 'none',
-                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237c3aed' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
-                          backgroundRepeat: 'no-repeat',
-                          backgroundPosition: 'right 14px center',
-                          backgroundSize: '16px 16px',
-                          cursor: 'pointer',
-                          boxSizing: 'border-box'
-                        }}
-                      >
-                        {Object.entries(CATEGORIZED_MODES).map(([group, list]) => (
-                          <optgroup key={group} label={group}>
-                            {list.map(mName => (
-                              <option key={mName} value={mName}>{mName}</option>
-                            ))}
-                          </optgroup>
-                        ))}
-                      </select>
-                      <div className="print-only-inline" style={{ padding: '8px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontWeight: '700', color: '#7c3aed', background: '#faf5ff' }}>
-                        {item.modus}
-                      </div>
-                    </div>
+                  {(() => {
+                    const cardInfo = getModusCardInfo(item.modus);
+                    return (
+                      <div style={{ paddingLeft: '34px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+                        {/* Invoervelden links */}
+                        <div style={{ flex: '1 1 240px', minWidth: '220px', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                          <div>
+                            <span style={{ display: 'block', fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '6px', fontWeight: '600' }}>
+                              Selecteer de modus:
+                            </span>
+                            <select
+                              className="screen-only-input"
+                              value={item.modus}
+                              onChange={(e) => handleUpdateModus(item.id, 'modus', e.target.value)}
+                              style={{ 
+                                width: '100%', 
+                                maxWidth: '320px',
+                                padding: '10px 38px 10px 14px', 
+                                borderRadius: '10px', 
+                                border: '1px solid var(--border-color)', 
+                                background: 'var(--bg-color)', 
+                                color: 'var(--text-main)', 
+                                fontSize: '0.95rem', 
+                                fontWeight: '500',
+                                appearance: 'none',
+                                WebkitAppearance: 'none',
+                                MozAppearance: 'none',
+                                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237c3aed' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'right 14px center',
+                                backgroundSize: '16px 16px',
+                                cursor: 'pointer',
+                                boxSizing: 'border-box'
+                              }}
+                            >
+                              {Object.entries(CATEGORIZED_MODES).map(([group, list]) => (
+                                <optgroup key={group} label={group}>
+                                  {list.map(mName => (
+                                    <option key={mName} value={mName}>{mName}</option>
+                                  ))}
+                                </optgroup>
+                              ))}
+                            </select>
+                            <div className="print-only-inline" style={{ padding: '8px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontWeight: '700', color: '#7c3aed', background: '#faf5ff' }}>
+                              {item.modus}
+                            </div>
+                          </div>
 
-                    <div>
-                      <span style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '6px', fontWeight: '500' }}>
-                        Frequentie in afgelopen week:
-                      </span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <input
-                          type="number"
-                          min="0"
-                          placeholder="bv. 4"
-                          value={item.aantalKeer}
-                          onChange={(e) => handleUpdateModus(item.id, 'aantalKeer', e.target.value)}
-                          style={{ 
-                            width: '110px', 
-                            padding: '11px 14px', 
-                            borderRadius: '10px', 
-                            border: '1px solid var(--border-color)', 
-                            background: 'var(--bg-color)', 
-                            color: 'var(--text-main)', 
-                            fontSize: '1rem',
-                            fontWeight: '500',
-                            boxSizing: 'border-box'
-                          }}
-                        />
-                        <span style={{ fontSize: '0.92rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>keer deze week</span>
+                          <div>
+                            <span style={{ display: 'block', fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '6px', fontWeight: '600' }}>
+                              Frequentie in afgelopen week:
+                            </span>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                              <input
+                                type="number"
+                                min="0"
+                                placeholder="bv. 4"
+                                value={item.aantalKeer}
+                                onChange={(e) => handleUpdateModus(item.id, 'aantalKeer', e.target.value)}
+                                style={{ 
+                                  width: '95px', 
+                                  padding: '7px 12px', 
+                                  borderRadius: '9px', 
+                                  border: '1px solid var(--border-color)', 
+                                  background: 'var(--bg-color)', 
+                                  color: 'var(--text-main)', 
+                                  fontSize: '1.05rem', 
+                                  fontWeight: '700',
+                                  boxSizing: 'border-box'
+                                }}
+                              />
+                              <span style={{ fontSize: '0.92rem', color: 'var(--text-main)', whiteSpace: 'nowrap' }}>keer deze week</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Kaartweergave rechts */}
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+                          <div 
+                            style={{ 
+                              cursor: 'pointer', 
+                              borderRadius: '12px', 
+                              boxShadow: '0 5px 14px rgba(124, 58, 237, 0.16)',
+                              transition: 'transform 0.2s ease'
+                            }}
+                            title={`Klik om de kaart ${item.modus} te openen en om te draaien`}
+                          >
+                            <SchemaCard
+                              id={cardInfo.id}
+                              type="mode"
+                              title={item.modus}
+                              description={cardInfo.description}
+                              src={cardInfo.src}
+                              width="118px"
+                              height="168px"
+                              zoomOnClick={true}
+                              flipOnClick={false}
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            className="no-print"
+                            onClick={(e) => {
+                              const cardEl = e.currentTarget.parentElement?.querySelector('.card-scene');
+                              if (cardEl) cardEl.click();
+                            }}
+                            style={{ 
+                              background: 'rgba(124, 58, 237, 0.08)', 
+                              border: '1px solid rgba(124, 58, 237, 0.22)', 
+                              color: '#7c3aed', 
+                              fontSize: '0.76rem', 
+                              fontWeight: '700', 
+                              padding: '3px 10px', 
+                              borderRadius: '9999px',
+                              display: 'inline-flex', 
+                              alignItems: 'center', 
+                              gap: '5px', 
+                              cursor: 'pointer' 
+                            }}
+                            title="Klik om uitleg te lezen"
+                          >
+                            <Eye size={12} /> Bekijk uitleg
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  </div>
+                    );
+                  })()}
                 </div>
 
                 {/* Vraag 2: Verandering t.o.v. vorige beoordeling */}
@@ -1103,6 +1198,10 @@ export default function Werkbladen({ onBack }) {
                 <button
                   type="button"
                   className="no-print"
+                  onClick={(e) => {
+                    const cardEl = e.currentTarget.parentElement?.querySelector('.card-scene');
+                    if (cardEl) cardEl.click();
+                  }}
                   style={{ 
                     background: 'rgba(124, 58, 237, 0.08)', 
                     border: '1px solid rgba(124, 58, 237, 0.22)', 
@@ -1220,6 +1319,10 @@ export default function Werkbladen({ onBack }) {
                 <button
                   type="button"
                   className="no-print"
+                  onClick={(e) => {
+                    const cardEl = e.currentTarget.parentElement?.querySelector('.card-scene');
+                    if (cardEl) cardEl.click();
+                  }}
                   style={{ 
                     background: 'rgba(124, 58, 237, 0.08)', 
                     border: '1px solid rgba(124, 58, 237, 0.22)', 
@@ -1337,6 +1440,10 @@ export default function Werkbladen({ onBack }) {
                 <button
                   type="button"
                   className="no-print"
+                  onClick={(e) => {
+                    const cardEl = e.currentTarget.parentElement?.querySelector('.card-scene');
+                    if (cardEl) cardEl.click();
+                  }}
                   style={{ 
                     background: 'rgba(124, 58, 237, 0.08)', 
                     border: '1px solid rgba(124, 58, 237, 0.22)', 
