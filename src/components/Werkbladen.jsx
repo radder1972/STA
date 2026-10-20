@@ -187,7 +187,7 @@ export default function Werkbladen({ onBack }) {
   const [samenvatting, setSamenvatting] = useState('');
   const [vasthouden, setVasthouden] = useState('');
   const [huiswerk, setHuiswerk] = useState('');
-  const [formulierenGebruikt, setFormulierenGebruikt] = useState(['Formulier 1 (Sessieverslag)']);
+  const [formulierenGebruikt, setFormulierenGebruikt] = useState(['Huiswerkformulier 1: Samenvatting']);
 
   // Form 2: Modi
   const [modiItems, setModiItems] = useState([
@@ -249,6 +249,12 @@ export default function Werkbladen({ onBack }) {
 
   const handleUpdateModus = (id, field, value) => {
     setModiItems(prev => prev.map(m => m.id === id ? { ...m, [field]: value } : m));
+  };
+
+  const handleToggleFormulier = (name) => {
+    setFormulierenGebruikt(prev => 
+      prev.includes(name) ? prev.filter(f => f !== name) : [...prev, name]
+    );
   };
 
   const handleSaveSession = () => {
@@ -623,6 +629,60 @@ export default function Werkbladen({ onBack }) {
             />
             <div className="print-only-block" style={{ padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', minHeight: '60px' }}>
               {huiswerk || <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>Geen huiswerkopdrachten ingevuld.</span>}
+            </div>
+          </div>
+
+          {/* Gebruikte formulieren voor deze sessie (subtiel & compact) */}
+          <div style={{ marginBottom: '2.5rem', paddingTop: '0.5rem' }}>
+            <span style={{ display: 'block', fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '10px' }}>
+              Gebruikte formulieren voor de afgelopen sessie:
+            </span>
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+              {[
+                { id: 'f1', label: 'Huiswerkformulier 1: Samenvatting' },
+                { id: 'f2', label: 'Huiswerkformulier 2: Modusverandering' },
+                { id: 'f3', label: 'Huiswerkformulier 3: Gezonde volwassene en kind' }
+              ].map(f => {
+                const isSelected = formulierenGebruikt.includes(f.label);
+                return (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => handleToggleFormulier(f.label)}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      padding: '7px 14px',
+                      borderRadius: '9999px',
+                      background: isSelected ? 'rgba(124, 58, 237, 0.1)' : 'var(--bg-color)',
+                      border: isSelected ? '1px solid #7c3aed' : '1px solid var(--border-color)',
+                      color: isSelected ? '#7c3aed' : 'var(--text-muted)',
+                      fontSize: '0.88rem',
+                      fontWeight: isSelected ? '700' : '500',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    <span style={{
+                      width: '14px',
+                      height: '14px',
+                      borderRadius: '3px',
+                      border: isSelected ? '1px solid #7c3aed' : '1px solid #cbd5e1',
+                      background: isSelected ? '#7c3aed' : 'var(--card-bg)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'white',
+                      fontSize: '10px',
+                      lineHeight: 1
+                    }}>
+                      {isSelected ? '✓' : ''}
+                    </span>
+                    <span>{f.label}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
