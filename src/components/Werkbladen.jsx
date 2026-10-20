@@ -885,47 +885,47 @@ export default function Werkbladen({ onBack }) {
                   padding: '1.25rem', 
                   marginBottom: '1.25rem' 
                 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <span style={{ 
-                        width: '24px', 
-                        height: '24px', 
-                        borderRadius: '50%', 
-                        background: '#7c3aed', 
-                        color: 'white', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center', 
-                        fontWeight: '800', 
-                        fontSize: '0.82rem',
-                        flexShrink: 0 
-                      }}>
-                        2
-                      </span>
-                      <label style={{ fontSize: '0.98rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>
-                        Verandering t.o.v. de vorige beoordeling (frequentie &amp; intensiteit):
-                      </label>
-                    </div>
-                    <div style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      padding: '4px 14px',
-                      borderRadius: '8px',
-                      background: 'rgba(124, 58, 237, 0.1)',
-                      border: '1px solid rgba(124, 58, 237, 0.25)',
-                      color: '#7c3aed',
-                      fontWeight: '800',
-                      fontSize: '0.95rem'
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                    <span style={{ 
+                      width: '24px', 
+                      height: '24px', 
+                      borderRadius: '50%', 
+                      background: '#7c3aed', 
+                      color: 'white', 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center', 
+                      fontWeight: '800', 
+                      fontSize: '0.82rem',
+                      flexShrink: 0 
                     }}>
-                      {item.verbeteringVorige}% verbetering
-                    </div>
+                      2
+                    </span>
+                    <label style={{ fontSize: '0.98rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>
+                      Verandering t.o.v. de vorige beoordeling (frequentie &amp; intensiteit):
+                    </label>
                   </div>
 
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 12px 34px', lineHeight: '1.4' }}>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 10px 34px', lineHeight: '1.4' }}>
                     Welke verbetering heb je waargenomen in vergelijking met de vorige beoordeling (0% = geen verbetering, 100% = maximaal verbeterd).
                   </p>
 
                   <div style={{ paddingLeft: '34px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '6px' }}>
+                      <div style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        padding: '3px 12px',
+                        borderRadius: '8px',
+                        background: 'rgba(124, 58, 237, 0.1)',
+                        border: '1px solid rgba(124, 58, 237, 0.25)',
+                        color: '#7c3aed',
+                        fontWeight: '800',
+                        fontSize: '0.92rem'
+                      }}>
+                        {item.verbeteringVorige}% verbetering
+                      </div>
+                    </div>
                     <input
                       type="range"
                       min="0"
@@ -950,47 +950,47 @@ export default function Werkbladen({ onBack }) {
                   borderRadius: '14px', 
                   padding: '1.25rem' 
                 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <span style={{ 
-                        width: '24px', 
-                        height: '24px', 
-                        borderRadius: '50%', 
-                        background: '#7c3aed', 
-                        color: 'white', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center', 
-                        fontWeight: '800', 
-                        fontSize: '0.82rem',
-                        flexShrink: 0 
-                      }}>
-                        3
-                      </span>
-                      <label style={{ fontSize: '0.98rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>
-                        Verandering t.o.v. het begin van de therapie:
-                      </label>
-                    </div>
-                    <div style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      padding: '4px 14px',
-                      borderRadius: '8px',
-                      background: 'rgba(124, 58, 237, 0.1)',
-                      border: '1px solid rgba(124, 58, 237, 0.25)',
-                      color: '#7c3aed',
-                      fontWeight: '800',
-                      fontSize: '0.95rem'
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                    <span style={{ 
+                      width: '24px', 
+                      height: '24px', 
+                      borderRadius: '50%', 
+                      background: '#7c3aed', 
+                      color: 'white', 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center', 
+                      fontWeight: '800', 
+                      fontSize: '0.82rem',
+                      flexShrink: 0 
                     }}>
-                      {item.verbeteringBegin}% verbetering
-                    </div>
+                      3
+                    </span>
+                    <label style={{ fontSize: '0.98rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>
+                      Verandering t.o.v. het begin van de therapie:
+                    </label>
                   </div>
 
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 12px 34px', lineHeight: '1.4' }}>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 10px 34px', lineHeight: '1.4' }}>
                     Welke verbetering heb je waargenomen in vergelijking met het begin van de therapie (0% = geen verbetering, 100% = maximaal verbeterd).
                   </p>
 
                   <div style={{ paddingLeft: '34px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '6px' }}>
+                      <div style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        padding: '3px 12px',
+                        borderRadius: '8px',
+                        background: 'rgba(124, 58, 237, 0.1)',
+                        border: '1px solid rgba(124, 58, 237, 0.25)',
+                        color: '#7c3aed',
+                        fontWeight: '800',
+                        fontSize: '0.92rem'
+                      }}>
+                        {item.verbeteringBegin}% verbetering
+                      </div>
+                    </div>
                     <input
                       type="range"
                       min="0"
@@ -1041,45 +1041,45 @@ export default function Werkbladen({ onBack }) {
       {/* TAB 3: PAGINA 22 - GEZONDE VOLWASSENE EN HET BLIJE KIND (DELEN)           */}
       {/* ========================================================================= */}
       {activeTab === 'form3' && (
-        <div className="glass-panel" style={{ padding: '2.5rem', borderRadius: '24px', marginBottom: '2.5rem' }}>
+        <div className="glass-panel form3-container" style={{ padding: '1.75rem 2rem', borderRadius: '24px', marginBottom: '2.5rem' }}>
           
           {/* Header van Formulier 3 */}
-          <div style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
-            <div style={{ fontSize: '0.92rem', fontWeight: '700', color: '#7c3aed', marginBottom: '4px' }}>
+          <div className="form3-header" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '0.75rem', marginBottom: '1rem' }}>
+            <div style={{ fontSize: '0.88rem', fontWeight: '700', color: '#7c3aed', marginBottom: '4px' }}>
               Huiswerkformulier 3
             </div>
-            <h2 style={{ fontSize: '1.85rem', fontWeight: '800', color: 'var(--text-main)', margin: '0' }}>
+            <h2 style={{ fontSize: '1.65rem', fontWeight: '800', color: 'var(--text-main)', margin: '0' }}>
               Gezonde volwassene en het blije kind
             </h2>
           </div>
 
           {/* Waarom dit helpt - licht paars */}
-          <div style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '1.25rem 1.5rem', borderRadius: '16px', borderLeft: '4px solid #7c3aed', marginBottom: '2rem' }}>
-            <p style={{ margin: 0, fontSize: '0.98rem', lineHeight: '1.6', color: 'var(--text-main)' }}>
+          <div className="form3-waarom" style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '0.75rem 1.25rem', borderRadius: '12px', borderLeft: '4px solid #7c3aed', marginBottom: '1rem' }}>
+            <p style={{ margin: 0, fontSize: '0.88rem', lineHeight: '1.45', color: 'var(--text-main)' }}>
               <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Vraag jezelf af hoe vaak je vanuit de <strong>Gezonde volwassene</strong> en/of het <strong>Blije kind</strong> hebt gereageerd de afgelopen week. Vraag je ook af in welke mate dit een verandering is ten opzichte van het begin van de therapie. Klik op de kaarten om de achterliggende theorie en omschrijving te raadplegen.
             </p>
           </div>
 
           {/* Vraag 1: Gezonde Volwassene */}
-          <div style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '18px', padding: '1.75rem', marginBottom: '1.75rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.25rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.85rem' }}>
-              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Shield size={20} />
+          <div className="form3-box" style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '14px', padding: '1rem 1.25rem', marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.75rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>
+              <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Shield size={16} />
               </div>
               <div>
-                <h3 style={{ margin: 0, fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '800' }}>1. Gezonde volwassene</h3>
-                <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>Functionele modus &amp; innerlijke regisseur</span>
+                <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '800' }}>1. Gezonde volwassene</h3>
+                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Functionele modus &amp; innerlijke regisseur</span>
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center', flexWrap: 'wrap' }}>
               {/* Kaart Box 1 */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
                 <div 
                   style={{ 
                     cursor: 'pointer', 
-                    borderRadius: '12px', 
-                    boxShadow: '0 6px 16px rgba(124, 58, 237, 0.18)',
+                    borderRadius: '10px', 
+                    boxShadow: '0 4px 12px rgba(124, 58, 237, 0.15)',
                     transition: 'transform 0.2s ease'
                   }}
                   title="Klik om de kaart Gezonde volwassene te openen en om te draaien"
@@ -1090,8 +1090,8 @@ export default function Werkbladen({ onBack }) {
                     title="Gezonde volwassene"
                     description={schemaDescriptions['Gezonde volwassene']}
                     src={imgGv}
-                    width="120px"
-                    height="170px"
+                    width="76px"
+                    height="108px"
                     zoomOnClick={true}
                     flipOnClick={false}
                   />
@@ -1100,12 +1100,12 @@ export default function Werkbladen({ onBack }) {
                   type="button"
                   className="no-print"
                   style={{ 
-                    background: 'rgba(124, 58, 237, 0.1)', 
-                    border: '1px solid rgba(124, 58, 237, 0.25)', 
+                    background: 'rgba(124, 58, 237, 0.08)', 
+                    border: '1px solid rgba(124, 58, 237, 0.2)', 
                     color: '#7c3aed', 
-                    fontSize: '0.78rem', 
+                    fontSize: '0.72rem', 
                     fontWeight: '700', 
-                    padding: '4px 10px', 
+                    padding: '2px 8px', 
                     borderRadius: '9999px',
                     display: 'inline-flex', 
                     alignItems: 'center', 
@@ -1114,14 +1114,14 @@ export default function Werkbladen({ onBack }) {
                   }}
                   title="Klik om theorie te lezen"
                 >
-                  <Eye size={12} /> Klik voor theorie
+                  <Eye size={11} /> Bekijk theorie
                 </button>
               </div>
 
               {/* Vragen Box 1 */}
-              <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.95rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', lineHeight: '1.4' }}>
+                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: '700', marginBottom: '4px', color: 'var(--text-main)', lineHeight: '1.3' }}>
                     1a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
                   </label>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1131,18 +1131,30 @@ export default function Werkbladen({ onBack }) {
                       placeholder="bv. 5"
                       value={gvKeer}
                       onChange={(e) => setGvKeer(e.target.value)}
-                      style={{ width: '120px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: '700' }}
+                      style={{ width: '85px', padding: '5px 10px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '0.98rem', fontWeight: '700' }}
                     />
-                    <span style={{ fontSize: '0.95rem', color: 'var(--text-main)' }}>keer in de modus van <strong>Gezonde volwassene</strong> gezeten.</span>
+                    <span style={{ fontSize: '0.88rem', color: 'var(--text-main)' }}>keer in de modus van <strong>Gezonde volwassene</strong> gezeten.</span>
                   </div>
                 </div>
 
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                    <label style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.4' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                    <label style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.3' }}>
                       1b. Positieve verandering t.o.v. begin van de therapie:
                     </label>
-                    <span style={{ fontSize: '1.15rem', fontWeight: '800', color: '#7c3aed' }}>{gvVerbetering}%</span>
+                    <div style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '2px 10px',
+                      borderRadius: '6px',
+                      background: 'rgba(124, 58, 237, 0.1)',
+                      border: '1px solid rgba(124, 58, 237, 0.25)',
+                      color: '#7c3aed',
+                      fontWeight: '800',
+                      fontSize: '0.88rem'
+                    }}>
+                      {gvVerbetering}% verbetering
+                    </div>
                   </div>
                   <input
                     type="range"
@@ -1151,10 +1163,12 @@ export default function Werkbladen({ onBack }) {
                     step="5"
                     value={gvVerbetering}
                     onChange={(e) => setGvVerbetering(Number(e.target.value))}
-                    style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer' }}
+                    style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer', margin: '4px 0' }}
                   />
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                    (0% = geen positieve verandering, 100% = maximale positieve verandering)
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.74rem', color: 'var(--text-muted)' }}>
+                    <span>0% (Geen verandering)</span>
+                    <span>50% (Matig verbeterd)</span>
+                    <span>100% (Maximale verandering)</span>
                   </div>
                 </div>
               </div>
@@ -1162,25 +1176,25 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Vraag 2: Het Blije Kind */}
-          <div style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '18px', padding: '1.75rem', marginBottom: '1.75rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.25rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.85rem' }}>
-              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Smile size={20} />
+          <div className="form3-box" style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '14px', padding: '1rem 1.25rem', marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.75rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>
+              <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Smile size={16} />
               </div>
               <div>
-                <h3 style={{ margin: 0, fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '800' }}>2. Het Blije kind</h3>
-                <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>Functionele kindmodus &amp; spontaniteit, vreugde en spel</span>
+                <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '800' }}>2. Het Blije kind</h3>
+                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Functionele kindmodus &amp; spontaniteit, vreugde en spel</span>
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center', flexWrap: 'wrap' }}>
               {/* Kaart Box 2 */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
                 <div 
                   style={{ 
                     cursor: 'pointer', 
-                    borderRadius: '12px', 
-                    boxShadow: '0 6px 16px rgba(124, 58, 237, 0.18)',
+                    borderRadius: '10px', 
+                    boxShadow: '0 4px 12px rgba(124, 58, 237, 0.15)',
                     transition: 'transform 0.2s ease'
                   }}
                   title="Klik om de kaart Blije kind te openen en om te draaien"
@@ -1191,8 +1205,8 @@ export default function Werkbladen({ onBack }) {
                     title="Blije kind"
                     description={schemaDescriptions['Blije kind']}
                     src={imgBk}
-                    width="120px"
-                    height="170px"
+                    width="76px"
+                    height="108px"
                     zoomOnClick={true}
                     flipOnClick={false}
                   />
@@ -1201,12 +1215,12 @@ export default function Werkbladen({ onBack }) {
                   type="button"
                   className="no-print"
                   style={{ 
-                    background: 'rgba(124, 58, 237, 0.1)', 
-                    border: '1px solid rgba(124, 58, 237, 0.25)', 
+                    background: 'rgba(124, 58, 237, 0.08)', 
+                    border: '1px solid rgba(124, 58, 237, 0.2)', 
                     color: '#7c3aed', 
-                    fontSize: '0.78rem', 
+                    fontSize: '0.72rem', 
                     fontWeight: '700', 
-                    padding: '4px 10px', 
+                    padding: '2px 8px', 
                     borderRadius: '9999px',
                     display: 'inline-flex', 
                     alignItems: 'center', 
@@ -1215,14 +1229,14 @@ export default function Werkbladen({ onBack }) {
                   }}
                   title="Klik om theorie te lezen"
                 >
-                  <Eye size={12} /> Klik voor theorie
+                  <Eye size={11} /> Bekijk theorie
                 </button>
               </div>
 
               {/* Vragen Box 2 */}
-              <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.95rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', lineHeight: '1.4' }}>
+                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: '700', marginBottom: '4px', color: 'var(--text-main)', lineHeight: '1.3' }}>
                     2a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
                   </label>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1232,18 +1246,30 @@ export default function Werkbladen({ onBack }) {
                       placeholder="bv. 3"
                       value={bkKeer}
                       onChange={(e) => setBkKeer(e.target.value)}
-                      style={{ width: '120px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: '700' }}
+                      style={{ width: '85px', padding: '5px 10px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '0.98rem', fontWeight: '700' }}
                     />
-                    <span style={{ fontSize: '0.95rem', color: 'var(--text-main)' }}>keer in de modus van <strong>het Blije kind</strong> gezeten.</span>
+                    <span style={{ fontSize: '0.88rem', color: 'var(--text-main)' }}>keer in de modus van <strong>het Blije kind</strong> gezeten.</span>
                   </div>
                 </div>
 
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                    <label style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.4' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                    <label style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.3' }}>
                       2b. Positieve verandering t.o.v. begin van de therapie:
                     </label>
-                    <span style={{ fontSize: '1.15rem', fontWeight: '800', color: '#7c3aed' }}>{bkVerbetering}%</span>
+                    <div style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '2px 10px',
+                      borderRadius: '6px',
+                      background: 'rgba(124, 58, 237, 0.1)',
+                      border: '1px solid rgba(124, 58, 237, 0.25)',
+                      color: '#7c3aed',
+                      fontWeight: '800',
+                      fontSize: '0.88rem'
+                    }}>
+                      {bkVerbetering}% verbetering
+                    </div>
                   </div>
                   <input
                     type="range"
@@ -1252,10 +1278,12 @@ export default function Werkbladen({ onBack }) {
                     step="5"
                     value={bkVerbetering}
                     onChange={(e) => setBkVerbetering(Number(e.target.value))}
-                    style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer' }}
+                    style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer', margin: '4px 0' }}
                   />
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                    (0% = geen positieve verandering, 100% = maximale positieve verandering)
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.74rem', color: 'var(--text-muted)' }}>
+                    <span>0% (Geen verandering)</span>
+                    <span>50% (Matig verbeterd)</span>
+                    <span>100% (Maximale verandering)</span>
                   </div>
                 </div>
               </div>
@@ -1263,25 +1291,25 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Vraag 3: Kwetsbare Kind */}
-          <div style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '18px', padding: '1.75rem', marginBottom: '2.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.25rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.85rem' }}>
-              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Heart size={20} />
+          <div className="form3-box" style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '14px', padding: '1rem 1.25rem', marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.75rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>
+              <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Heart size={16} />
               </div>
               <div>
-                <h3 style={{ margin: 0, fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '800' }}>3. Zorg voor het Kwetsbare kind</h3>
-                <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>Aandacht, emotionele veiligheid en troost voor de basisbehoeften</span>
+                <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '800' }}>3. Zorg voor het Kwetsbare kind</h3>
+                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Aandacht, emotionele veiligheid en troost voor de basisbehoeften</span>
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center', flexWrap: 'wrap' }}>
               {/* Kaart Box 3 */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
                 <div 
                   style={{ 
                     cursor: 'pointer', 
-                    borderRadius: '12px', 
-                    boxShadow: '0 6px 16px rgba(124, 58, 237, 0.18)',
+                    borderRadius: '10px', 
+                    boxShadow: '0 4px 12px rgba(124, 58, 237, 0.15)',
                     transition: 'transform 0.2s ease'
                   }}
                   title="Klik om de kaart Kwetsbare kind te openen en om te draaien"
@@ -1292,8 +1320,8 @@ export default function Werkbladen({ onBack }) {
                     title="Kwetsbare kind"
                     description={schemaDescriptions['Kwetsbare kind']}
                     src={imgKk}
-                    width="120px"
-                    height="170px"
+                    width="76px"
+                    height="108px"
                     zoomOnClick={true}
                     flipOnClick={false}
                   />
@@ -1302,12 +1330,12 @@ export default function Werkbladen({ onBack }) {
                   type="button"
                   className="no-print"
                   style={{ 
-                    background: 'rgba(124, 58, 237, 0.1)', 
-                    border: '1px solid rgba(124, 58, 237, 0.25)', 
+                    background: 'rgba(124, 58, 237, 0.08)', 
+                    border: '1px solid rgba(124, 58, 237, 0.2)', 
                     color: '#7c3aed', 
-                    fontSize: '0.78rem', 
+                    fontSize: '0.72rem', 
                     fontWeight: '700', 
-                    padding: '4px 10px', 
+                    padding: '2px 8px', 
                     borderRadius: '9999px',
                     display: 'inline-flex', 
                     alignItems: 'center', 
@@ -1316,14 +1344,14 @@ export default function Werkbladen({ onBack }) {
                   }}
                   title="Klik om theorie te lezen"
                 >
-                  <Eye size={12} /> Klik voor theorie
+                  <Eye size={11} /> Bekijk theorie
                 </button>
               </div>
 
               {/* Vragen Box 3 */}
-              <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.95rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', lineHeight: '1.4' }}>
+                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: '700', marginBottom: '4px', color: 'var(--text-main)', lineHeight: '1.3' }}>
                     3a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
                   </label>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1333,18 +1361,30 @@ export default function Werkbladen({ onBack }) {
                       placeholder="bv. 4"
                       value={kkKeer}
                       onChange={(e) => setKkKeer(e.target.value)}
-                      style={{ width: '120px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: '700' }}
+                      style={{ width: '85px', padding: '5px 10px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '0.98rem', fontWeight: '700' }}
                     />
-                    <span style={{ fontSize: '0.92rem', color: 'var(--text-main)' }}>keer naar mijn <strong>Kwetsbare kind</strong> geluisterd, zonder oordeel en rekening houdend met mijn emotionele kernbehoefte.</span>
+                    <span style={{ fontSize: '0.88rem', color: 'var(--text-main)' }}>keer naar mijn <strong>Kwetsbare kind</strong> geluisterd, zonder oordeel en rekening houdend met mijn behoeften.</span>
                   </div>
                 </div>
 
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                    <label style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.4' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                    <label style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.3' }}>
                       3b. Positieve verandering t.o.v. begin van de therapie:
                     </label>
-                    <span style={{ fontSize: '1.15rem', fontWeight: '800', color: '#7c3aed' }}>{kkVerbetering}%</span>
+                    <div style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '2px 10px',
+                      borderRadius: '6px',
+                      background: 'rgba(124, 58, 237, 0.1)',
+                      border: '1px solid rgba(124, 58, 237, 0.25)',
+                      color: '#7c3aed',
+                      fontWeight: '800',
+                      fontSize: '0.88rem'
+                    }}>
+                      {kkVerbetering}% verbetering
+                    </div>
                   </div>
                   <input
                     type="range"
@@ -1353,10 +1393,12 @@ export default function Werkbladen({ onBack }) {
                     step="5"
                     value={kkVerbetering}
                     onChange={(e) => setKkVerbetering(Number(e.target.value))}
-                    style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer' }}
+                    style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer', margin: '4px 0' }}
                   />
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                    (0% = geen positieve verandering, 100% = maximale positieve verandering)
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.74rem', color: 'var(--text-muted)' }}>
+                    <span>0% (Geen verandering)</span>
+                    <span>50% (Matig verbeterd)</span>
+                    <span>100% (Maximale verandering)</span>
                   </div>
                 </div>
               </div>
@@ -1364,7 +1406,7 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Bottom Bar Form 3 */}
-          <div className="no-print" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', borderTop: '1px solid var(--border-color)', paddingTop: '1.25rem' }}>
             <button
               onClick={handleSaveSession}
               className="btn btn-gradient"
@@ -1674,6 +1716,27 @@ export default function Werkbladen({ onBack }) {
             accent-color: #7c3aed !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
+          }
+          .form3-container {
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+          .form3-header {
+            padding-bottom: 4px !important;
+            margin-bottom: 6px !important;
+          }
+          .form3-waarom {
+            padding: 6px 10px !important;
+            margin-bottom: 8px !important;
+            font-size: 0.8rem !important;
+            line-height: 1.35 !important;
+          }
+          .form3-box {
+            padding: 8px 12px !important;
+            margin-bottom: 8px !important;
+            border-radius: 10px !important;
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
           }
         }
       `}</style>
