@@ -141,11 +141,11 @@ export default function Werkbladen({ onBack }) {
   const [activeTab, setActiveTab] = useState('form1'); // 'form1', 'form2', 'form3'
 
   // Formulier 1 data
-  const [datum, setDatum] = useState(() => new Date().toISOString().split('T')[0]);
+  const [datum, setDatum] = useState('');
   const [samenvatting, setSamenvatting] = useState('');
   const [vasthouden, setVasthouden] = useState('');
   const [huiswerk, setHuiswerk] = useState('');
-  const [formulierenGebruikt, setFormulierenGebruikt] = useState(['Huiswerkformulier 1: Samenvatting']);
+  const [formulierenGebruikt, setFormulierenGebruikt] = useState([]);
 
   // Formulier 2 data: Modi
   const [modiItems, setModiItems] = useState([
@@ -650,9 +650,9 @@ export default function Werkbladen({ onBack }) {
                             </span>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                               <input
+                                className="screen-only-input"
                                 type="number"
                                 min="0"
-                                placeholder="bv. 4"
                                 value={item.aantalKeer}
                                 onChange={(e) => handleUpdateModus(item.id, 'aantalKeer', e.target.value)}
                                 style={{ 
@@ -667,6 +667,9 @@ export default function Werkbladen({ onBack }) {
                                   boxSizing: 'border-box'
                                 }}
                               />
+                              <span className="print-only-inline" style={{ minWidth: '45px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
+                                {item.aantalKeer || '\u00A0\u00A0\u00A0\u00A0'}
+                              </span>
                               <span style={{ fontSize: '0.92rem', color: 'var(--text-main)', whiteSpace: 'nowrap' }}>keer deze week</span>
                             </div>
                           </div>
@@ -759,7 +762,7 @@ export default function Werkbladen({ onBack }) {
                   </p>
 
                   <div style={{ paddingLeft: '34px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '8px' }}>
+                    <div className="screen-only-input" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '8px' }}>
                       <div style={{
                         display: 'inline-flex',
                         alignItems: 'center',
@@ -777,6 +780,7 @@ export default function Werkbladen({ onBack }) {
                       </div>
                     </div>
                     <input
+                      className="screen-only-input"
                       type="range"
                       min="0"
                       max="100"
@@ -785,10 +789,22 @@ export default function Werkbladen({ onBack }) {
                       onChange={(e) => handleUpdateModus(item.id, 'verbeteringVorige', Number(e.target.value))}
                       style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer' }}
                     />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '6px', fontWeight: '500' }}>
+                    <div className="screen-only-input" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '6px', fontWeight: '500' }}>
                       <span>0% (Geen verbetering)</span>
                       <span>50% (Matig verbeterd)</span>
                       <span>100% (Maximaal verbeterd)</span>
+                    </div>
+
+                    {/* Print weergave voor vraag 2 */}
+                    <div className="print-only-block" style={{ marginTop: '2px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem' }}>
+                        <span style={{ minWidth: '55px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
+                          {item.verbeteringVorige > 0 ? `${item.verbeteringVorige}%` : '\u00A0\u00A0\u00A0\u00A0\u00A0'}
+                        </span>
+                        <span style={{ color: '#64748b' }}>
+                          (0% = geen verbetering, 50% = matig, 100% = maximaal)
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -826,7 +842,7 @@ export default function Werkbladen({ onBack }) {
                   </p>
 
                   <div style={{ paddingLeft: '34px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '8px' }}>
+                    <div className="screen-only-input" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '8px' }}>
                       <div style={{
                         display: 'inline-flex',
                         alignItems: 'center',
@@ -844,6 +860,7 @@ export default function Werkbladen({ onBack }) {
                       </div>
                     </div>
                     <input
+                      className="screen-only-input"
                       type="range"
                       min="0"
                       max="100"
@@ -852,10 +869,22 @@ export default function Werkbladen({ onBack }) {
                       onChange={(e) => handleUpdateModus(item.id, 'verbeteringBegin', Number(e.target.value))}
                       style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer' }}
                     />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '6px', fontWeight: '500' }}>
+                    <div className="screen-only-input" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '6px', fontWeight: '500' }}>
                       <span>0% (Geen verbetering)</span>
                       <span>50% (Matig verbeterd)</span>
                       <span>100% (Maximaal verbeterd)</span>
+                    </div>
+
+                    {/* Print weergave voor vraag 3 */}
+                    <div className="print-only-block" style={{ marginTop: '2px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem' }}>
+                        <span style={{ minWidth: '55px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
+                          {item.verbeteringBegin > 0 ? `${item.verbeteringBegin}%` : '\u00A0\u00A0\u00A0\u00A0\u00A0'}
+                        </span>
+                        <span style={{ color: '#64748b' }}>
+                          (0% = geen verandering, 50% = matig, 100% = maximaal)
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -938,8 +967,8 @@ export default function Werkbladen({ onBack }) {
                 <div 
                   style={{ 
                     cursor: 'pointer', 
-                    borderRadius: '12px', 
-                    boxShadow: '0 5px 14px rgba(124, 58, 237, 0.16)',
+                    borderRadius: '8px', 
+                    boxShadow: 'none',
                     transition: 'transform 0.2s ease'
                   }}
                   title="Klik om de kaart Gezonde volwassene te openen en om te draaien"
@@ -950,8 +979,8 @@ export default function Werkbladen({ onBack }) {
                     title="Gezonde volwassene"
                     description={schemaDescriptions['Gezonde volwassene']}
                     src={imgGv}
-                    width="118px"
-                    height="168px"
+                    width="104px"
+                    height="146px"
                     zoomOnClick={true}
                     flipOnClick={false}
                   />
@@ -983,26 +1012,29 @@ export default function Werkbladen({ onBack }) {
               </div>
 
               {/* Vragen Box 1 */}
-              <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)', lineHeight: '1.35' }}>
                     1a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
                   </label>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <input
+                      className="screen-only-input"
                       type="number"
                       min="0"
-                      placeholder="bv. 5"
                       value={gvKeer}
                       onChange={(e) => setGvKeer(e.target.value)}
                       style={{ width: '95px', padding: '7px 12px', borderRadius: '9px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.05rem', fontWeight: '700' }}
                     />
+                    <span className="print-only-inline" style={{ minWidth: '45px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
+                      {gvKeer || '\u00A0\u00A0\u00A0\u00A0'}
+                    </span>
                     <span style={{ fontSize: '0.92rem', color: 'var(--text-main)' }}>keer in de modus van <strong>Gezonde volwassene</strong> gezeten.</span>
                   </div>
                 </div>
 
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                  <div className="screen-only-input" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px', marginBottom: '8px', flexWrap: 'wrap' }}>
                     <label style={{ fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.35', flex: '1 1 200px', margin: 0 }}>
                       1b. Positieve verandering t.o.v. begin van de therapie:
                     </label>
@@ -1023,6 +1055,7 @@ export default function Werkbladen({ onBack }) {
                     </div>
                   </div>
                   <input
+                    className="screen-only-input"
                     type="range"
                     min="0"
                     max="100"
@@ -1031,10 +1064,25 @@ export default function Werkbladen({ onBack }) {
                     onChange={(e) => setGvVerbetering(Number(e.target.value))}
                     style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer', margin: '4px 0' }}
                   />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                  <div className="screen-only-input" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                     <span>0% (Geen verandering)</span>
                     <span>50% (Matig verbeterd)</span>
                     <span>100% (Maximale verandering)</span>
+                  </div>
+
+                  {/* Print-only weergave voor 1b */}
+                  <div className="print-only-block" style={{ marginTop: '2px' }}>
+                    <div style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '3px' }}>
+                      1b. Positieve verandering t.o.v. begin van de therapie:
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem' }}>
+                      <span style={{ minWidth: '55px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
+                        {gvVerbetering > 0 ? `${gvVerbetering}%` : '\u00A0\u00A0\u00A0\u00A0\u00A0'}
+                      </span>
+                      <span style={{ color: '#64748b' }}>
+                        (0% = geen verandering, 50% = matig, 100% = maximaal)
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1059,8 +1107,8 @@ export default function Werkbladen({ onBack }) {
                 <div 
                   style={{ 
                     cursor: 'pointer', 
-                    borderRadius: '12px', 
-                    boxShadow: '0 5px 14px rgba(124, 58, 237, 0.16)',
+                    borderRadius: '8px', 
+                    boxShadow: 'none',
                     transition: 'transform 0.2s ease'
                   }}
                   title="Klik om de kaart Blije kind te openen en om te draaien"
@@ -1071,8 +1119,8 @@ export default function Werkbladen({ onBack }) {
                     title="Blije kind"
                     description={schemaDescriptions['Blije kind']}
                     src={imgBk}
-                    width="118px"
-                    height="168px"
+                    width="104px"
+                    height="146px"
                     zoomOnClick={true}
                     flipOnClick={false}
                   />
@@ -1104,26 +1152,29 @@ export default function Werkbladen({ onBack }) {
               </div>
 
               {/* Vragen Box 2 */}
-              <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)', lineHeight: '1.35' }}>
                     2a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
                   </label>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <input
+                      className="screen-only-input"
                       type="number"
                       min="0"
-                      placeholder="bv. 3"
                       value={bkKeer}
                       onChange={(e) => setBkKeer(e.target.value)}
                       style={{ width: '95px', padding: '7px 12px', borderRadius: '9px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.05rem', fontWeight: '700' }}
                     />
+                    <span className="print-only-inline" style={{ minWidth: '45px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
+                      {bkKeer || '\u00A0\u00A0\u00A0\u00A0'}
+                    </span>
                     <span style={{ fontSize: '0.92rem', color: 'var(--text-main)' }}>keer in de modus van <strong>het Blije kind</strong> gezeten.</span>
                   </div>
                 </div>
 
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                  <div className="screen-only-input" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px', marginBottom: '8px', flexWrap: 'wrap' }}>
                     <label style={{ fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.35', flex: '1 1 200px', margin: 0 }}>
                       2b. Positieve verandering t.o.v. begin van de therapie:
                     </label>
@@ -1144,6 +1195,7 @@ export default function Werkbladen({ onBack }) {
                     </div>
                   </div>
                   <input
+                    className="screen-only-input"
                     type="range"
                     min="0"
                     max="100"
@@ -1152,10 +1204,25 @@ export default function Werkbladen({ onBack }) {
                     onChange={(e) => setBkVerbetering(Number(e.target.value))}
                     style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer', margin: '4px 0' }}
                   />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                  <div className="screen-only-input" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                     <span>0% (Geen verandering)</span>
                     <span>50% (Matig verbeterd)</span>
                     <span>100% (Maximale verandering)</span>
+                  </div>
+
+                  {/* Print-only weergave voor 2b */}
+                  <div className="print-only-block" style={{ marginTop: '2px' }}>
+                    <div style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '3px' }}>
+                      2b. Positieve verandering t.o.v. begin van de therapie:
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem' }}>
+                      <span style={{ minWidth: '55px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
+                        {bkVerbetering > 0 ? `${bkVerbetering}%` : '\u00A0\u00A0\u00A0\u00A0\u00A0'}
+                      </span>
+                      <span style={{ color: '#64748b' }}>
+                        (0% = geen verandering, 50% = matig, 100% = maximaal)
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1180,8 +1247,8 @@ export default function Werkbladen({ onBack }) {
                 <div 
                   style={{ 
                     cursor: 'pointer', 
-                    borderRadius: '12px', 
-                    boxShadow: '0 5px 14px rgba(124, 58, 237, 0.16)',
+                    borderRadius: '8px', 
+                    boxShadow: 'none',
                     transition: 'transform 0.2s ease'
                   }}
                   title="Klik om de kaart Kwetsbare kind te openen en om te draaien"
@@ -1192,8 +1259,8 @@ export default function Werkbladen({ onBack }) {
                     title="Kwetsbare kind"
                     description={schemaDescriptions['Kwetsbare kind']}
                     src={imgKk}
-                    width="118px"
-                    height="168px"
+                    width="104px"
+                    height="146px"
                     zoomOnClick={true}
                     flipOnClick={false}
                   />
@@ -1225,26 +1292,29 @@ export default function Werkbladen({ onBack }) {
               </div>
 
               {/* Vragen Box 3 */}
-              <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)', lineHeight: '1.35' }}>
                     3a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
                   </label>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <input
+                      className="screen-only-input"
                       type="number"
                       min="0"
-                      placeholder="bv. 4"
                       value={kkKeer}
                       onChange={(e) => setKkKeer(e.target.value)}
                       style={{ width: '95px', padding: '7px 12px', borderRadius: '9px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.05rem', fontWeight: '700' }}
                     />
+                    <span className="print-only-inline" style={{ minWidth: '45px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
+                      {kkKeer || '\u00A0\u00A0\u00A0\u00A0'}
+                    </span>
                     <span style={{ fontSize: '0.92rem', color: 'var(--text-main)' }}>keer naar mijn <strong>Kwetsbare kind</strong> geluisterd, zonder oordeel en rekening houdend met mijn behoeften.</span>
                   </div>
                 </div>
 
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                  <div className="screen-only-input" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px', marginBottom: '8px', flexWrap: 'wrap' }}>
                     <label style={{ fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.35', flex: '1 1 200px', margin: 0 }}>
                       3b. Positieve verandering t.o.v. begin van de therapie:
                     </label>
@@ -1265,6 +1335,7 @@ export default function Werkbladen({ onBack }) {
                     </div>
                   </div>
                   <input
+                    className="screen-only-input"
                     type="range"
                     min="0"
                     max="100"
@@ -1273,10 +1344,25 @@ export default function Werkbladen({ onBack }) {
                     onChange={(e) => setKkVerbetering(Number(e.target.value))}
                     style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer', margin: '4px 0' }}
                   />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                  <div className="screen-only-input" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                     <span>0% (Geen verandering)</span>
                     <span>50% (Matig verbeterd)</span>
                     <span>100% (Maximale verandering)</span>
+                  </div>
+
+                  {/* Print-only weergave voor 3b */}
+                  <div className="print-only-block" style={{ marginTop: '2px' }}>
+                    <div style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '3px' }}>
+                      3b. Positieve verandering t.o.v. begin van de therapie:
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem' }}>
+                      <span style={{ minWidth: '55px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
+                        {kkVerbetering > 0 ? `${kkVerbetering}%` : '\u00A0\u00A0\u00A0\u00A0\u00A0'}
+                      </span>
+                      <span style={{ color: '#64748b' }}>
+                        (0% = geen verandering, 50% = matig, 100% = maximaal)
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1302,6 +1388,30 @@ export default function Werkbladen({ onBack }) {
       {/* PRINT STYLESHEET: SCHOON EN DIRECT AFDRUKKEN VAN HET ACTIEVE WERKBLAD    */}
       {/* ========================================================================= */}
       <style>{`
+        /* Geen dubbel kader achter of om afbeeldingen van kaarten */
+        .card-scene img,
+        .schema-img img,
+        .playing-card img {
+          filter: none !important;
+          -webkit-filter: none !important;
+          box-shadow: none !important;
+        }
+        /* Verwijder de binnenste dubbele rand van CardInnerBorder in werkbladen */
+        .card-face-front [class*="hover-border-"] > div,
+        .card-inner-border div {
+          display: none !important;
+        }
+        .card-face-front [class*="hover-border-"] {
+          border: 1.5px solid rgba(124, 58, 237, 0.25) !important;
+          box-shadow: none !important;
+        }
+        .card-scene {
+          box-shadow: none !important;
+          filter: none !important;
+        }
+        .playing-card, .schema-img {
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+        }
         @media screen {
           .print-only-block,
           .print-only-inline {
@@ -1318,6 +1428,16 @@ export default function Werkbladen({ onBack }) {
           }
           .print-only-inline {
             display: inline-block !important;
+          }
+          .playing-card, .schema-img {
+            box-shadow: none !important;
+            border: 1px solid #cbd5e1 !important;
+          }
+          .card-face-back {
+            display: none !important;
+          }
+          .card-flip-container {
+            transform: none !important;
           }
           @page {
             size: A4 portrait;
@@ -1465,27 +1585,40 @@ export default function Werkbladen({ onBack }) {
           .form2-p-desc {
             display: none !important;
           }
-          /* Formulier 3: Compacte styling op 1 A4 */
+          /* Formulier 3: Compacte styling gegarandeerd passend op 1 A4 */
           .form3-container {
             padding: 0 !important;
             margin: 0 !important;
-          }
-          .form3-header {
-            padding-bottom: 4px !important;
-            margin-bottom: 6px !important;
-          }
-          .form3-waarom {
-            padding: 6px 10px !important;
-            margin-bottom: 8px !important;
-            font-size: 0.8rem !important;
-            line-height: 1.35 !important;
-          }
-          .form3-box {
-            padding: 8px 12px !important;
-            margin-bottom: 8px !important;
-            border-radius: 10px !important;
             page-break-inside: avoid !important;
             break-inside: avoid !important;
+          }
+          .form3-header {
+            padding-bottom: 2px !important;
+            margin-bottom: 4px !important;
+          }
+          .form3-header h2 {
+            font-size: 1.4rem !important;
+            margin: 0 !important;
+          }
+          .form3-waarom {
+            padding: 4px 10px !important;
+            margin-bottom: 6px !important;
+            font-size: 0.78rem !important;
+            line-height: 1.3 !important;
+          }
+          .form3-box {
+            padding: 6px 10px !important;
+            margin-bottom: 6px !important;
+            border-radius: 8px !important;
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+          }
+          .form3-box .card-scene {
+            width: 75px !important;
+            height: 106px !important;
+          }
+          .form3-box h3 {
+            font-size: 1rem !important;
           }
         }
       `}</style>
