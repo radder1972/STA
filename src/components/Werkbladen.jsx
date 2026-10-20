@@ -40,7 +40,8 @@ import {
   SessieverslagIcon, 
   ModusveranderingIcon, 
   GezondeKantenIcon, 
-  VoortgangIcon 
+  VoortgangIcon,
+  CheckIcon 
 } from './Icons';
 import SchemaCard from './SchemaCard';
 import { schemaDescriptions } from '../data/descriptions';
@@ -653,35 +654,41 @@ export default function Werkbladen({ onBack }) {
                       width: '100%',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '10px',
-                      padding: '9px 16px',
+                      gap: '12px',
+                      padding: '10px 16px',
                       borderRadius: '9999px',
-                      background: isSelected ? 'rgba(124, 58, 237, 0.1)' : 'var(--bg-color)',
-                      border: isSelected ? '1px solid #7c3aed' : '1px solid var(--border-color)',
-                      color: isSelected ? '#7c3aed' : 'var(--text-muted)',
-                      fontSize: '0.9rem',
+                      background: isSelected ? 'rgba(124, 58, 237, 0.08)' : 'var(--bg-color)',
+                      border: isSelected ? '1.5px solid #7c3aed' : '1px solid var(--border-color)',
+                      color: isSelected ? '#6d28d9' : 'var(--text-muted)',
+                      fontSize: '0.92rem',
                       fontWeight: isSelected ? '700' : '500',
                       cursor: 'pointer',
-                      transition: 'all 0.15s ease',
+                      transition: 'all 0.2s ease',
                       boxSizing: 'border-box',
-                      textAlign: 'left'
+                      textAlign: 'left',
+                      boxShadow: isSelected ? '0 2px 8px rgba(124, 58, 237, 0.12)' : 'none'
                     }}
                   >
                     <span style={{
-                      width: '16px',
-                      height: '16px',
-                      borderRadius: '4px',
-                      border: isSelected ? '1px solid #7c3aed' : '1px solid #cbd5e1',
-                      background: isSelected ? '#7c3aed' : 'var(--card-bg)',
+                      width: '20px',
+                      height: '20px',
+                      borderRadius: '6px',
+                      border: isSelected ? '1.5px solid #7c3aed' : '1.5px solid var(--border-color, #cbd5e1)',
+                      background: isSelected ? 'linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)' : 'var(--card-bg, #ffffff)',
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: 'white',
-                      fontSize: '11px',
-                      lineHeight: 1,
+                      boxShadow: isSelected ? '0 2px 6px rgba(124, 58, 237, 0.35)' : 'none',
+                      transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                       flexShrink: 0
                     }}>
-                      {isSelected ? '✓' : ''}
+                      {isSelected && (
+                        <CheckIcon 
+                          size={13} 
+                          strokeWidth={2.8} 
+                          color="#ffffff" 
+                        />
+                      )}
                     </span>
                     <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{f.label}</span>
                   </button>
