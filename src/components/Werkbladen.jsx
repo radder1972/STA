@@ -770,10 +770,10 @@ export default function Werkbladen({ onBack }) {
       {/* TAB 2: FORMULIER 2 - MODUSVERANDERING BIJHOUDEN (PAGINA 20)              */}
       {/* ========================================================================= */}
       {activeTab === 'form2' && (
-        <div className="glass-panel" style={{ padding: '2.5rem', borderRadius: '24px', marginBottom: '2.5rem' }}>
+        <div className="glass-panel form2-container" style={{ padding: '2.5rem', borderRadius: '24px', marginBottom: '2.5rem' }}>
           
           {/* Header van Formulier 2 */}
-          <div style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
+          <div className="form2-header" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
             <div style={{ fontSize: '0.92rem', fontWeight: '700', color: '#7c3aed', marginBottom: '4px' }}>
               Huiswerkformulier 2
             </div>
@@ -783,7 +783,7 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Waarom dit helpt - licht paars */}
-          <div style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '1.25rem 1.5rem', borderRadius: '16px', borderLeft: '4px solid #7c3aed', marginBottom: '2rem' }}>
+          <div className="form2-waarom" style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '1.25rem 1.5rem', borderRadius: '16px', borderLeft: '4px solid #7c3aed', marginBottom: '2rem' }}>
             <p style={{ margin: 0, fontSize: '0.98rem', lineHeight: '1.6', color: 'var(--text-main)' }}>
               <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Hierna staan de vragen die je kunnen helpen bij het in kaart brengen van de verandering in de kracht van je modi. Schrijf iedere week per modus op hoe vaak je in de modus zat en wat de verandering is ten opzichte van je vorige beoordelingen.
             </p>
@@ -805,7 +805,7 @@ export default function Werkbladen({ onBack }) {
                 }}
               >
                 {/* Header van Modusregistratie */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.85rem' }}>
+                <div className="form2-card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.85rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span style={{ 
                       padding: '4px 12px', 
@@ -834,7 +834,7 @@ export default function Werkbladen({ onBack }) {
                 </div>
 
                 {/* Vraag 1: Selecteer Modus & Aantal keer + Kaart */}
-                <div style={{ 
+                <div className="form2-box form2-box-q1" style={{ 
                   background: 'var(--card-bg)', 
                   border: '1px solid var(--border-color)', 
                   borderRadius: '16px', 
@@ -992,7 +992,7 @@ export default function Werkbladen({ onBack }) {
                 </div>
 
                 {/* Vraag 2: Verandering t.o.v. vorige beoordeling */}
-                <div style={{ 
+                <div className="form2-box form2-box-q2" style={{ 
                   background: 'var(--card-bg)', 
                   border: '1px solid var(--border-color)', 
                   borderRadius: '14px', 
@@ -1020,7 +1020,7 @@ export default function Werkbladen({ onBack }) {
                     </label>
                   </div>
 
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 10px 34px', lineHeight: '1.4' }}>
+                  <p className="form2-p-desc" style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 10px 34px', lineHeight: '1.4' }}>
                     Welke verbetering heb je waargenomen in vergelijking met de vorige beoordeling (0% = geen verbetering, 100% = maximaal verbeterd).
                   </p>
 
@@ -1060,7 +1060,7 @@ export default function Werkbladen({ onBack }) {
                 </div>
 
                 {/* Vraag 3: Verandering t.o.v. het begin van de therapie */}
-                <div style={{ 
+                <div className="form2-box form2-box-q3" style={{ 
                   background: 'var(--card-bg)', 
                   border: '1px solid var(--border-color)', 
                   borderRadius: '14px', 
@@ -1087,7 +1087,7 @@ export default function Werkbladen({ onBack }) {
                     </label>
                   </div>
 
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 10px 34px', lineHeight: '1.4' }}>
+                  <p className="form2-p-desc" style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 10px 34px', lineHeight: '1.4' }}>
                     Welke verbetering heb je waargenomen in vergelijking met het begin van de therapie (0% = geen verbetering, 100% = maximaal verbeterd).
                   </p>
 
@@ -1907,12 +1907,52 @@ export default function Werkbladen({ onBack }) {
             border: none !important;
             box-shadow: none !important;
           }
-          /* Formulier 2: Modus cards overzichtelijk en geen split */
-          .form2-modus-card {
-            padding: 10px 14px !important;
-            margin-bottom: 12px !important;
+          /* Formulier 2: Compacte styling gegarandeerd passend op 1 A4 */
+          .form2-container {
+            padding: 0 !important;
+            margin: 0 !important;
             page-break-inside: avoid !important;
             break-inside: avoid !important;
+          }
+          .form2-header {
+            padding-bottom: 4px !important;
+            margin-bottom: 8px !important;
+          }
+          .form2-header h2 {
+            font-size: 1.45rem !important;
+            margin: 0 !important;
+          }
+          .form2-waarom {
+            padding: 6px 12px !important;
+            margin-bottom: 8px !important;
+            font-size: 0.8rem !important;
+            line-height: 1.35 !important;
+          }
+          .form2-modus-card {
+            padding: 8px 12px !important;
+            margin-bottom: 0 !important;
+            border-radius: 12px !important;
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+          }
+          .form2-card-header {
+            margin-bottom: 6px !important;
+            padding-bottom: 4px !important;
+          }
+          .form2-box {
+            padding: 6px 10px !important;
+            margin-bottom: 6px !important;
+            border-radius: 10px !important;
+          }
+          .form2-box-q1 {
+            padding: 6px 10px !important;
+          }
+          .form2-box-q1 .card-scene {
+            width: 100px !important;
+            height: 142px !important;
+          }
+          .form2-p-desc {
+            display: none !important;
           }
           /* Formulier 3: Compacte styling op 1 A4 */
           .form3-container {
