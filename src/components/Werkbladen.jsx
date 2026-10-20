@@ -547,47 +547,49 @@ export default function Werkbladen({ onBack }) {
       {activeTab === 'form1' && (
         <div className="glass-panel" style={{ padding: '2.5rem', borderRadius: '24px', marginBottom: '2.5rem' }}>
           
-          {/* Header Strip van Formulier 1 */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1.5rem', marginBottom: '2rem' }}>
-            <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: '800', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
-                Huiswerkopdrachten voor de volgende sessie • invullen huiswerkformulier 1 en 2
-              </div>
-              <h2 style={{ fontSize: '1.85rem', fontWeight: '800', color: 'var(--text-main)', margin: '0 0 4px 0' }}>
-                HUISWERKFORMULIER 1: Een samenvatting schrijven
-              </h2>
-              <div style={{ fontSize: '0.95rem', color: '#0ea5e9', fontWeight: '700' }}>
-                Delen
-              </div>
+          {/* Header van Formulier 1 */}
+          <div style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
+            <div style={{ fontSize: '0.92rem', fontWeight: '700', color: '#7c3aed', marginBottom: '4px' }}>
+              Huiswerkopdrachten: Huiswerkformulier 1
             </div>
-            <div style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '8px 14px', borderRadius: '8px', border: '1px dashed rgba(124, 58, 237, 0.3)', fontSize: '0.82rem', color: '#7c3aed', fontWeight: '600' }}>
-              (s.v.p. downloaden en 18 keer kopiëren; het formulier wordt bij elke sessie gebruikt)
-            </div>
+            <h2 style={{ fontSize: '1.85rem', fontWeight: '800', color: 'var(--text-main)', margin: '0' }}>
+              Een samenvatting schrijven
+            </h2>
           </div>
 
-          {/* Doel / Toelichting */}
-          <div style={{ background: 'rgba(14, 165, 233, 0.06)', padding: '1.25rem 1.5rem', borderRadius: '16px', borderLeft: '4px solid #0ea5e9', marginBottom: '2rem' }}>
+          {/* Waarom dit helpt - licht paars */}
+          <div style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '1.25rem 1.5rem', borderRadius: '16px', borderLeft: '4px solid #7c3aed', marginBottom: '2rem' }}>
             <p style={{ margin: 0, fontSize: '0.98rem', lineHeight: '1.6', color: 'var(--text-main)' }}>
-              <strong>Waarom dit helpt:</strong> Schrijf in je eigen woorden een korte samenvatting van de laatste therapiesessie. Als je een sessie in eigen woorden opschrijft, blijft namelijk beter in je hoofd zitten wat belangrijk was. Het helpt je om de belangrijkste onderwerpen eruit te lichten en uit te leggen wat je ervan geleerd hebt.
+              <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Schrijf in je eigen woorden een korte samenvatting van de laatste therapiesessie. Als je een sessie in eigen woorden opschrijft, blijft namelijk beter in je hoofd zitten wat belangrijk was. Het helpt je om de belangrijkste onderwerpen eruit te lichten en uit te leggen wat je ervan geleerd hebt.
             </p>
           </div>
 
-          {/* Sessie tellers */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '2rem', background: 'var(--bg-color)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)' }}>
+          {/* Sessie tellers - strak en gelijkmatig uitgelijnd */}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', 
+            gap: '1.25rem', 
+            marginBottom: '2rem', 
+            background: 'var(--bg-color)', 
+            padding: '1.5rem', 
+            borderRadius: '16px', 
+            border: '1px solid var(--border-color)',
+            alignItems: 'stretch'
+          }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <label style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', minHeight: '2.4rem', display: 'flex', alignItems: 'flex-end' }}>
                 Datum van de sessie:
               </label>
               <input
                 type="date"
                 value={datum}
                 onChange={(e) => setDatum(e.target.value)}
-                style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem' }}
+                style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', height: '44px', boxSizing: 'border-box' }}
               />
             </div>
 
-            <div>
-              <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <label style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', minHeight: '2.4rem', display: 'flex', alignItems: 'flex-end' }}>
                 Hoeveel sessies heb ik tot nu toe gehad:
               </label>
               <input
@@ -596,12 +598,12 @@ export default function Werkbladen({ onBack }) {
                 placeholder="bv. 4"
                 value={sessiesGehad}
                 onChange={(e) => setSessiesGehad(e.target.value)}
-                style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem' }}
+                style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', height: '44px', boxSizing: 'border-box' }}
               />
             </div>
 
-            <div>
-              <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <label style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', minHeight: '2.4rem', display: 'flex', alignItems: 'flex-end' }}>
                 Hoeveel sessies kan ik nog maximaal krijgen:
               </label>
               <input
@@ -610,7 +612,7 @@ export default function Werkbladen({ onBack }) {
                 placeholder="bv. 16"
                 value={sessiesMax}
                 onChange={(e) => setSessiesMax(e.target.value)}
-                style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem' }}
+                style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', height: '44px', boxSizing: 'border-box' }}
               />
             </div>
           </div>
@@ -618,7 +620,7 @@ export default function Werkbladen({ onBack }) {
           {/* Vraag 1: Korte samenvatting */}
           <div style={{ marginBottom: '1.8rem' }}>
             <label style={{ display: 'block', fontSize: '1.05rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)' }}>
-              Korte samenvatting van de sessie datum {datum ? `(${datum})` : ''}:
+              Korte samenvatting van de sessie {datum ? `(${datum})` : ''}:
             </label>
             <textarea
               rows={4}
@@ -733,28 +735,20 @@ export default function Werkbladen({ onBack }) {
       {activeTab === 'form2' && (
         <div className="glass-panel" style={{ padding: '2.5rem', borderRadius: '24px', marginBottom: '2.5rem' }}>
           
-          {/* Header Formulier 2 */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1.5rem', marginBottom: '2rem' }}>
-            <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: '800', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
-                Wekelijkse kwantitatieve &amp; kwalitatieve monitoring
-              </div>
-              <h2 style={{ fontSize: '1.85rem', fontWeight: '800', color: 'var(--text-main)', margin: '0 0 4px 0' }}>
-                HUISWERKFORMULIER 2: Het bijhouden van je modusverandering
-              </h2>
-              <div style={{ fontSize: '0.95rem', color: '#0ea5e9', fontWeight: '700' }}>
-                Delen
-              </div>
+          {/* Header van Formulier 2 */}
+          <div style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
+            <div style={{ fontSize: '0.92rem', fontWeight: '700', color: '#7c3aed', marginBottom: '4px' }}>
+              Huiswerkopdrachten: Huiswerkformulier 2
             </div>
-            <div style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '8px 14px', borderRadius: '8px', border: '1px dashed rgba(124, 58, 237, 0.3)', fontSize: '0.82rem', color: '#7c3aed', fontWeight: '600' }}>
-              (s.v.p. downloaden en 18 keer kopiëren; het formulier wordt bij elke sessie gebruikt)
-            </div>
+            <h2 style={{ fontSize: '1.85rem', fontWeight: '800', color: 'var(--text-main)', margin: '0' }}>
+              Het bijhouden van je modusverandering
+            </h2>
           </div>
 
-          {/* Doel / Toelichting */}
-          <div style={{ background: 'rgba(124, 58, 237, 0.06)', padding: '1.25rem 1.5rem', borderRadius: '16px', borderLeft: '4px solid #7c3aed', marginBottom: '2rem' }}>
+          {/* Waarom dit helpt - licht paars */}
+          <div style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '1.25rem 1.5rem', borderRadius: '16px', borderLeft: '4px solid #7c3aed', marginBottom: '2rem' }}>
             <p style={{ margin: 0, fontSize: '0.98rem', lineHeight: '1.6', color: 'var(--text-main)' }}>
-              <strong>Instructie:</strong> Hierna staan de vragen die je kunnen helpen bij het in kaart brengen van de verandering in de kracht van je modi. Schrijf iedere week per modus op hoe vaak je in de modus zat en wat de verandering is ten opzichte van je vorige beoordelingen.
+              <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Hierna staan de vragen die je kunnen helpen bij het in kaart brengen van de verandering in de kracht van je modi. Schrijf iedere week per modus op hoe vaak je in de modus zat en wat de verandering is ten opzichte van je vorige beoordelingen.
             </p>
           </div>
 
@@ -929,28 +923,20 @@ export default function Werkbladen({ onBack }) {
       {activeTab === 'form3' && (
         <div className="glass-panel" style={{ padding: '2.5rem', borderRadius: '24px', marginBottom: '2.5rem' }}>
           
-          {/* Header Pagina 22 */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1.5rem', marginBottom: '2rem' }}>
-            <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: '800', color: '#10b981', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
-                Functionele &amp; Kindmodi Evaluatie
-              </div>
-              <h2 style={{ fontSize: '1.85rem', fontWeight: '800', color: 'var(--text-main)', margin: '0 0 4px 0' }}>
-                Gezonde volwassene en het Blije kind
-              </h2>
-              <div style={{ fontSize: '0.95rem', color: '#0ea5e9', fontWeight: '700' }}>
-                Delen
-              </div>
+          {/* Header van Formulier 3 */}
+          <div style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
+            <div style={{ fontSize: '0.92rem', fontWeight: '700', color: '#059669', marginBottom: '4px' }}>
+              Huiswerkopdrachten: Evaluatie
             </div>
-            <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '6px 14px', borderRadius: '9999px', color: '#10b981', fontWeight: '800', fontSize: '0.9rem' }}>
-              Pagina 22
-            </div>
+            <h2 style={{ fontSize: '1.85rem', fontWeight: '800', color: 'var(--text-main)', margin: '0' }}>
+              Gezonde volwassene en het blije kind
+            </h2>
           </div>
 
-          {/* Doel / Toelichting */}
-          <div style={{ background: 'rgba(16, 185, 129, 0.08)', padding: '1.25rem 1.5rem', borderRadius: '16px', borderLeft: '4px solid #10b981', marginBottom: '2rem' }}>
-            <p style={{ margin: 0, fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-main)' }}>
-              Vraag jezelf af hoe vaak je vanuit de <strong>Gezonde volwassene</strong> en/of het <strong>Blije kind</strong> hebt gereageerd de afgelopen week. Vraag je ook af in welke mate dit een verandering is ten opzichte van het begin van de therapie.
+          {/* Waarom dit helpt - licht paars */}
+          <div style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '1.25rem 1.5rem', borderRadius: '16px', borderLeft: '4px solid #7c3aed', marginBottom: '2rem' }}>
+            <p style={{ margin: 0, fontSize: '0.98rem', lineHeight: '1.6', color: 'var(--text-main)' }}>
+              <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Vraag jezelf af hoe vaak je vanuit de <strong>Gezonde volwassene</strong> en/of het <strong>Blije kind</strong> hebt gereageerd de afgelopen week. Vraag je ook af in welke mate dit een verandering is ten opzichte van het begin van de therapie.
             </p>
           </div>
 
@@ -1419,31 +1405,31 @@ export default function Werkbladen({ onBack }) {
         {(printSelection === 'all' || printSelection === 'form1') && (
           <div className="page-sheet" style={{ background: '#ffffff', color: '#111827', padding: '24px', borderRadius: '12px', border: '1px solid #cbd5e1', marginBottom: '2rem' }}>
             <div style={{ textAlign: 'left', marginBottom: '1.25rem' }}>
-              <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#334155' }}>
-                Huiswerkopdrachten voor de volgende sessie • invullen huiswerkformulier 1 en 2.
+              <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#7c3aed', marginBottom: '2px' }}>
+                Huiswerkopdrachten: Huiswerkformulier 1
               </div>
-              <h1 style={{ fontSize: '1.5rem', fontWeight: '800', margin: '4px 0', textTransform: 'uppercase', letterSpacing: '-0.01em' }}>
-                HUISWERKFORMULIER 1
-              </h1>
-              <h2 style={{ fontSize: '1.2rem', fontWeight: '700', margin: '2px 0 6px 0', color: '#0f172a' }}>
+              <h1 style={{ fontSize: '1.6rem', fontWeight: '800', margin: '2px 0 8px 0', color: '#0f172a' }}>
                 Een samenvatting schrijven
-              </h2>
-              <div style={{ fontSize: '0.95rem', fontWeight: '700', color: '#0284c7' }}>
-                Delen
-              </div>
-              <div style={{ fontSize: '0.8rem', fontStyle: 'italic', color: '#475569', marginTop: '4px' }}>
-                (s.v.p. downloaden en 18 keer kopiëren; het formulier wordt bij elke sessie gebruikt)
-              </div>
+              </h1>
             </div>
 
-            <div style={{ fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1.5rem', borderLeft: '3px solid #64748b', paddingLeft: '12px' }}>
-              Schrijf in je eigen woorden een korte samenvatting van de laatste therapiesessie. Als je een sessie in eigen woorden opschrijft, blijft namelijk beter in je hoofd zitten wat belangrijk was. Het helpt je om de belangrijkste onderwerpen eruit te lichten en uit te leggen wat je ervan geleerd hebt.
+            <div style={{ fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1.25rem', background: '#faf5ff', borderLeft: '4px solid #7c3aed', padding: '10px 14px', borderRadius: '8px', color: '#334155' }}>
+              <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Schrijf in je eigen woorden een korte samenvatting van de laatste therapiesessie. Als je een sessie in eigen woorden opschrijft, blijft namelijk beter in je hoofd zitten wat belangrijk was. Het helpt je om de belangrijkste onderwerpen eruit te lichten en uit te leggen wat je ervan geleerd hebt.
             </div>
 
-            <div style={{ fontSize: '0.92rem', marginBottom: '1.25rem', lineHeight: '2' }}>
-              <div>Hoeveel sessies heb ik tot nu toe gehad: <strong>{printMode === 'ingevuld' && sessiesGehad ? sessiesGehad : '_________________________'}</strong></div>
-              <div>Hoeveel sessies kan ik nog maximaal krijgen: <strong>{printMode === 'ingevuld' && sessiesMax ? sessiesMax : '_________________________'}</strong></div>
-              <div>Korte samenvatting van de sessie datum: <strong>{printMode === 'ingevuld' && datum ? datum : '_________________________'}</strong></div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.25rem', background: '#f8fafc', padding: '12px 16px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '0.9rem' }}>
+              <div>
+                <span style={{ color: '#64748b' }}>Datum van de sessie:</span><br />
+                <strong style={{ fontSize: '0.95rem' }}>{printMode === 'ingevuld' && datum ? datum : '_____________________'}</strong>
+              </div>
+              <div>
+                <span style={{ color: '#64748b' }}>Sessies tot nu toe gehad:</span><br />
+                <strong style={{ fontSize: '0.95rem' }}>{printMode === 'ingevuld' && sessiesGehad ? sessiesGehad : '_____________________'}</strong>
+              </div>
+              <div>
+                <span style={{ color: '#64748b' }}>Sessies nog maximaal:</span><br />
+                <strong style={{ fontSize: '0.95rem' }}>{printMode === 'ingevuld' && sessiesMax ? sessiesMax : '_____________________'}</strong>
+              </div>
             </div>
 
             <div style={{ marginBottom: '1.5rem' }}>
@@ -1508,22 +1494,16 @@ export default function Werkbladen({ onBack }) {
         {(printSelection === 'all' || printSelection === 'form2') && (
           <div className="page-sheet" style={{ background: '#ffffff', color: '#111827', padding: '24px', borderRadius: '12px', border: '1px solid #cbd5e1', marginBottom: '2rem' }}>
             <div style={{ textAlign: 'left', marginBottom: '1.25rem' }}>
-              <h1 style={{ fontSize: '1.5rem', fontWeight: '800', margin: '4px 0', textTransform: 'uppercase', letterSpacing: '-0.01em' }}>
-                HUISWERKFORMULIER 2
-              </h1>
-              <h2 style={{ fontSize: '1.2rem', fontWeight: '700', margin: '2px 0 6px 0', color: '#0f172a' }}>
+              <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#7c3aed', marginBottom: '2px' }}>
+                Huiswerkopdrachten: Huiswerkformulier 2
+              </div>
+              <h1 style={{ fontSize: '1.6rem', fontWeight: '800', margin: '2px 0 8px 0', color: '#0f172a' }}>
                 Het bijhouden van je modusverandering
-              </h2>
-              <div style={{ fontSize: '0.95rem', fontWeight: '700', color: '#0284c7' }}>
-                Delen
-              </div>
-              <div style={{ fontSize: '0.8rem', fontStyle: 'italic', color: '#475569', marginTop: '4px' }}>
-                (s.v.p. downloaden en 18 keer kopiëren; het formulier wordt bij elke sessie gebruikt)
-              </div>
+              </h1>
             </div>
 
-            <div style={{ fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1.5rem', borderLeft: '3px solid #64748b', paddingLeft: '12px' }}>
-              Hierna staan de vragen die je kunnen helpen bij het in kaart brengen van de verandering in de kracht van je modi. Schrijf iedere week per modus op hoe vaak je in de modus zat en wat de verandering is ten opzichte van je vorige beoordelingen.
+            <div style={{ fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1.5rem', background: '#faf5ff', borderLeft: '4px solid #7c3aed', padding: '10px 14px', borderRadius: '8px', color: '#334155' }}>
+              <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Hierna staan de vragen die je kunnen helpen bij het in kaart brengen van de verandering in de kracht van je modi. Schrijf iedere week per modus op hoe vaak je in de modus zat en wat de verandering is ten opzichte van je vorige beoordelingen.
             </div>
 
             {/* Ingevuld or Blanco block */}
@@ -1570,16 +1550,16 @@ export default function Werkbladen({ onBack }) {
         {(printSelection === 'all' || printSelection === 'form3') && (
           <div className="page-sheet" style={{ background: '#ffffff', color: '#111827', padding: '24px', borderRadius: '12px', border: '1px solid #cbd5e1', marginBottom: '2rem' }}>
             <div style={{ textAlign: 'left', marginBottom: '1.25rem' }}>
-              <h1 style={{ fontSize: '1.5rem', fontWeight: '800', margin: '4px 0' }}>
-                Gezonde volwassene en het Blije kind
-              </h1>
-              <div style={{ fontSize: '1.05rem', fontWeight: '700', color: '#0284c7' }}>
-                Delen
+              <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#059669', marginBottom: '2px' }}>
+                Huiswerkopdrachten: Evaluatie
               </div>
+              <h1 style={{ fontSize: '1.6rem', fontWeight: '800', margin: '2px 0 8px 0', color: '#0f172a' }}>
+                Gezonde volwassene en het blije kind
+              </h1>
             </div>
 
-            <div style={{ fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
-              Vraag jezelf af hoe vaak je vanuit de Gezonde volwassene en/of het Blije kind hebt gereageerd de afgelopen week. Vraag je ook af in welke mate dit een verandering is ten opzichte van het begin van de therapie.
+            <div style={{ fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1.5rem', background: '#faf5ff', borderLeft: '4px solid #7c3aed', padding: '10px 14px', borderRadius: '8px', color: '#334155' }}>
+              <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Vraag jezelf af hoe vaak je vanuit de Gezonde volwassene en/of het Blije kind hebt gereageerd de afgelopen week. Vraag je ook af in welke mate dit een verandering is ten opzichte van het begin van de therapie.
             </div>
 
             {/* Vraag 1 */}
