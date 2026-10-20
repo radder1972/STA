@@ -33,7 +33,14 @@ import {
   BarChart,
   Bar
 } from 'recharts';
-import { PlatformBadge } from './Icons';
+import { 
+  PlatformBadge, 
+  WerkbladenIcon, 
+  SessieverslagIcon, 
+  ModusveranderingIcon, 
+  GezondeKantenIcon, 
+  VoortgangIcon 
+} from './Icons';
 
 const CATEGORIZED_MODES = {
   'Functionele modi (Gezond)': [
@@ -389,7 +396,7 @@ export default function Werkbladen({ onBack }) {
       {/* Screen Header */}
       <div className="no-print" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '9999px', background: 'rgba(124, 58, 237, 0.1)', color: '#7c3aed', fontWeight: '700', fontSize: '0.85rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          <Sparkles size={16} /> Schematherapie Behandel- &amp; Huiswerkmodule
+          <WerkbladenIcon size={18} useWerkbladenGradient={true} /> Schematherapie Behandel- &amp; Huiswerkmodule
         </div>
         <h1 style={{ fontSize: '2.5rem', fontWeight: '800', margin: '0 0 0.8rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>
           Werkbladen &amp; Voortgang
@@ -457,7 +464,7 @@ export default function Werkbladen({ onBack }) {
             transition: 'all 0.2s ease'
           }}
         >
-          <FileText size={16} />
+          <SessieverslagIcon size={17} color={activeTab === 'form1' ? '#7c3aed' : 'currentColor'} />
           <span>Sessieverslag</span>
         </button>
 
@@ -481,7 +488,7 @@ export default function Werkbladen({ onBack }) {
             transition: 'all 0.2s ease'
           }}
         >
-          <Activity size={16} />
+          <ModusveranderingIcon size={17} color={activeTab === 'form2' ? '#7c3aed' : 'currentColor'} />
           <span>Modusverandering</span>
         </button>
 
@@ -505,7 +512,7 @@ export default function Werkbladen({ onBack }) {
             transition: 'all 0.2s ease'
           }}
         >
-          <Smile size={16} color="#059669" />
+          <GezondeKantenIcon size={17} color={activeTab === 'form3' ? '#059669' : 'currentColor'} />
           <span>Gezonde kanten</span>
         </button>
 
@@ -529,7 +536,7 @@ export default function Werkbladen({ onBack }) {
             transition: 'all 0.2s ease'
           }}
         >
-          <TrendingUp size={16} color="#0284c7" />
+          <VoortgangIcon size={17} color={activeTab === 'history' ? '#0284c7' : 'currentColor'} />
           <span>Voortgang</span>
         </button>
       </div>

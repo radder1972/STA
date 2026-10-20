@@ -14,7 +14,9 @@ import {
   InfoIcon,
   PlatformBadge,
   SparklesIcon,
-  ThreeSparklesLogo
+  ThreeSparklesLogo,
+  WerkbladenIcon,
+  ModusWebIcon
 } from './Icons';
 import SparkleEffect from './SparkleEffect';
 import packageJson from '../../package.json';
@@ -670,24 +672,58 @@ export default function StartHub() {
         marginBottom: "3rem" 
       }}>
         {/* Modus Web */}
-        <div style={{ textAlign: "center", padding: "1.75rem", background: "white", borderRadius: "20px", border: "1px dashed #cbd5e1", display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <div>
-            <h3 style={{ margin: "0 0 0.5rem 0", color: "#334155", fontSize: '1.2rem' }}>🕸️ Modus Web (Casusconceptualisatie)</h3>
-            <p style={{ margin: "0 0 1.25rem 0", color: "#64748b", fontSize: "0.95rem", lineHeight: '1.5' }}>Teken de moduscyclus van je cliënt en importeer een SMI CSV voor een interactief Spinnenweb.</p>
+        <div style={{ textAlign: "center", padding: "2rem", background: "white", borderRadius: "20px", border: "1px dashed #cbd5e1", display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ width: '100%' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '0.8rem', justifyContent: 'center' }}>
+              <div style={{
+                width: '46px',
+                height: '46px',
+                borderRadius: '14px',
+                background: 'rgba(59, 130, 246, 0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#3b82f6',
+                flexShrink: 0
+              }}>
+                <ModusWebIcon size={26} useGameGradient={true} />
+              </div>
+              <h3 style={{ margin: 0, color: '#334155', fontSize: '1.25rem', fontWeight: '800' }}>Modus Web</h3>
+            </div>
+            <p style={{ margin: "0 auto 1.25rem auto", color: "#64748b", fontSize: "0.95rem", lineHeight: '1.5', maxWidth: '380px' }}>
+              Teken de moduscyclus van je cliënt en importeer een SMI CSV voor een interactief Spinnenweb (Casusconceptualisatie).
+            </p>
           </div>
           <div>
-            <a href="modusweb.html" style={{ display: "inline-block", background: "#3b82f6", color: "white", padding: "10px 22px", borderRadius: "10px", textDecoration: "none", fontWeight: "bold", fontSize: '0.95rem' }}>Open Modus Web</a>
+            <a href="modusweb.html" style={{ display: "inline-block", background: "#3b82f6", color: "white", padding: "10px 24px", borderRadius: "10px", textDecoration: "none", fontWeight: "bold", fontSize: '0.95rem', boxShadow: '0 4px 14px rgba(59, 130, 246, 0.25)' }}>Open Modus Web</a>
           </div>
         </div>
 
         {/* Werkbladen & Voortgang */}
-        <div style={{ textAlign: "center", padding: "1.75rem", background: "white", borderRadius: "20px", border: "1px dashed #a855f7", display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: '0 4px 20px rgba(124, 58, 237, 0.05)' }}>
-          <div>
-            <h3 style={{ margin: "0 0 0.5rem 0", color: "#7c3aed", fontSize: '1.2rem' }}>📝 Werkbladen &amp; Voortgang</h3>
-            <p style={{ margin: "0 0 1.25rem 0", color: "#64748b", fontSize: "0.95rem", lineHeight: '1.5' }}>Sessieverslag (p.19), Modusregistratie (p.20) en Gezonde Kanten (p.22). Digitaal bijhouden, grafisch volgen of blanco printen (A4).</p>
+        <div style={{ textAlign: "center", padding: "2rem", background: "white", borderRadius: "20px", border: "1px dashed #c084fc", display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 4px 20px rgba(124, 58, 237, 0.05)' }}>
+          <div style={{ width: '100%' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '0.8rem', justifyContent: 'center' }}>
+              <div style={{
+                width: '46px',
+                height: '46px',
+                borderRadius: '14px',
+                background: 'rgba(124, 58, 237, 0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#7c3aed',
+                flexShrink: 0
+              }}>
+                <WerkbladenIcon size={26} useWerkbladenGradient={true} />
+              </div>
+              <h3 style={{ margin: 0, color: '#7c3aed', fontSize: '1.25rem', fontWeight: '800' }}>Werkbladen &amp; Voortgang</h3>
+            </div>
+            <p style={{ margin: "0 auto 1.25rem auto", color: "#64748b", fontSize: "0.95rem", lineHeight: '1.5', maxWidth: '380px' }}>
+              Sessieverslag (p.19), Modusregistratie (p.20) en Gezonde Kanten (p.22). Digitaal bijhouden, grafisch volgen of blanco printen (A4).
+            </p>
           </div>
           <div>
-            <a href="werkbladen.html" style={{ display: "inline-block", background: "linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)", color: "white", padding: "10px 22px", borderRadius: "10px", textDecoration: "none", fontWeight: "bold", fontSize: '0.95rem', boxShadow: '0 4px 14px rgba(124, 58, 237, 0.25)' }}>Open Werkbladen</a>
+            <a href="werkbladen.html" style={{ display: "inline-block", background: "linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)", color: "white", padding: "10px 24px", borderRadius: "10px", textDecoration: "none", fontWeight: "bold", fontSize: '0.95rem', boxShadow: '0 4px 14px rgba(124, 58, 237, 0.25)' }}>Open Werkbladen</a>
           </div>
         </div>
       </div>

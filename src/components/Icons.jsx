@@ -1,13 +1,13 @@
 import React from 'react';
 
-const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5, color="currentColor", useGradient = false, useGameGradient = false, useTafelGradient = false, ...rest }) => (
+const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5, color="currentColor", useGradient = false, useGameGradient = false, useTafelGradient = false, useWerkbladenGradient = false, ...rest }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     width={size}
     height={size}
     fill="none"
-    stroke={useTafelGradient ? "url(#tafelGrad)" : (useGameGradient ? "url(#gameGrad)" : (useGradient ? "url(#blueGreenGrad)" : color))}
+    stroke={useWerkbladenGradient ? "url(#werkbladenGrad)" : (useTafelGradient ? "url(#tafelGrad)" : (useGameGradient ? "url(#gameGrad)" : (useGradient ? "url(#blueGreenGrad)" : color)))}
     strokeWidth={strokeWidth}
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -27,6 +27,10 @@ const IconBase = ({ children, size = 24, className = '', strokeWidth = 1.5, colo
       <linearGradient id="tafelGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
         <stop offset="0%" stopColor="#059669" />
         <stop offset="100%" stopColor="#10b981" />
+      </linearGradient>
+      <linearGradient id="werkbladenGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#7c3aed" />
+        <stop offset="100%" stopColor="#a855f7" />
       </linearGradient>
     </defs>
     {children}
@@ -514,6 +518,75 @@ export const HandIcon = (props) => (
     <path d="M14 10V4a2 2 0 0 0-4 0v6" />
     <path d="M10 10.5V6a2 2 0 0 0-4 0v8" />
     <path d="M18 8a2 2 0 0 1 2 2v4a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" fill={props.useTafelGradient ? "url(#tafelGrad)" : (props.useGameGradient ? "url(#gameGrad)" : "currentColor")} fillOpacity="0.15" />
+  </IconBase>
+);
+
+// Werkbladen & Voortgang Icons
+export const WerkbladenIcon = (props) => (
+  <IconBase {...props}>
+    <rect x="4" y="5" width="13" height="16" rx="2" fill="currentColor" fillOpacity="0.1" strokeDasharray="2 2" strokeWidth="1.2" />
+    <path d="M7 2h7l5 5v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="currentColor" fillOpacity={props.useWerkbladenGradient ? 0.16 : 0.15} strokeWidth="1.8" />
+    <path d="M14 2v5a1 1 0 0 0 1 1h4" strokeWidth="1.4" />
+    <circle cx="8.5" cy="11.5" r="1" fill="currentColor" />
+    <line x1="11.5" y1="11.5" x2="16" y2="11.5" strokeWidth="1.8" />
+    <circle cx="8.5" cy="15.5" r="1" fill="currentColor" />
+    <line x1="11.5" y1="15.5" x2="16" y2="15.5" strokeWidth="1.8" />
+    <path d="M15 19.5l3.5-3.5" strokeWidth="2" strokeLinecap="round" />
+  </IconBase>
+);
+
+export const ModusWebIcon = (props) => (
+  <IconBase {...props}>
+    <circle cx="12" cy="12" r="9" fill="currentColor" fillOpacity="0.08" strokeWidth="1.4" />
+    <circle cx="12" cy="12" r="4.5" fill="currentColor" fillOpacity="0.18" strokeWidth="1.4" />
+    <circle cx="12" cy="12" r="2" fill="currentColor" />
+    <line x1="12" y1="3" x2="12" y2="21" strokeWidth="1.2" />
+    <line x1="3" y1="12" x2="21" y2="12" strokeWidth="1.2" />
+    <line x1="5.6" y1="5.6" x2="18.4" y2="18.4" strokeWidth="1.2" strokeDasharray="2 2" />
+    <line x1="18.4" y1="5.6" x2="5.6" y2="18.4" strokeWidth="1.2" strokeDasharray="2 2" />
+    <circle cx="12" cy="5" r="1.5" fill="currentColor" />
+    <circle cx="19" cy="12" r="1.5" fill="currentColor" />
+    <circle cx="12" cy="19" r="1.5" fill="currentColor" />
+    <circle cx="5" cy="12" r="1.5" fill="currentColor" />
+  </IconBase>
+);
+
+export const SessieverslagIcon = (props) => (
+  <IconBase {...props}>
+    <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z" fill="currentColor" fillOpacity="0.12" strokeWidth="1.6" />
+    <line x1="7" y1="7" x2="17" y2="7" strokeWidth="1.8" />
+    <line x1="7" y1="11" x2="17" y2="11" strokeWidth="1.8" />
+    <line x1="7" y1="15" x2="12" y2="15" strokeWidth="1.8" />
+    <path d="M15 17.5l4-4" strokeWidth="2.2" strokeLinecap="round" />
+  </IconBase>
+);
+
+export const ModusveranderingIcon = (props) => (
+  <IconBase {...props}>
+    <circle cx="12" cy="12" r="9" fill="currentColor" fillOpacity="0.1" strokeWidth="1.6" />
+    <path d="M3 12h3l2-3.5 3 7 2.5-5 1.5 2.5 2-1H21" strokeWidth="1.8" strokeLinejoin="round" strokeLinecap="round" />
+    <circle cx="14" cy="7" r="1" fill="currentColor" />
+  </IconBase>
+);
+
+export const GezondeKantenIcon = (props) => (
+  <IconBase {...props}>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="currentColor" fillOpacity="0.18" strokeWidth="1.6" />
+    <circle cx="9" cy="9.5" r="1.2" fill="currentColor" />
+    <circle cx="15" cy="9.5" r="1.2" fill="currentColor" />
+    <path d="M9 13.5c1 1.2 2 1.8 3 1.8s2-.6 3-1.8" strokeWidth="1.8" strokeLinecap="round" />
+  </IconBase>
+);
+
+export const VoortgangIcon = (props) => (
+  <IconBase {...props}>
+    <rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor" fillOpacity="0.1" strokeWidth="1.6" />
+    <path d="M6 16l4-5 3 3 5-7" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    <polyline points="14 7 18 7 18 11" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="6" cy="16" r="1.5" fill="currentColor" />
+    <circle cx="10" cy="11" r="1.5" fill="currentColor" />
+    <circle cx="13" cy="14" r="1.5" fill="currentColor" />
+    <circle cx="18" cy="7" r="1.5" fill="currentColor" />
   </IconBase>
 );
 
