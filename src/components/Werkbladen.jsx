@@ -589,9 +589,9 @@ export default function Werkbladen({ onBack }) {
               placeholder="Welke onderwerpen kwamen aan bod? Welke modi of schema's werden getriggerd en besproken?"
               value={samenvatting}
               onChange={(e) => setSamenvatting(e.target.value)}
-              style={{ width: '100%', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical' }}
+              style={{ width: '100%', height: '115px', minHeight: '115px', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical', boxSizing: 'border-box' }}
             />
-            <div className="print-only-block" style={{ padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', minHeight: '60px' }}>
+            <div className="print-only-block" style={{ height: '115px', minHeight: '115px', padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', boxSizing: 'border-box' }}>
               {samenvatting || <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>Geen samenvatting ingevuld.</span>}
             </div>
           </div>
@@ -603,13 +603,13 @@ export default function Werkbladen({ onBack }) {
             </label>
             <textarea
               className="screen-only-input"
-              rows={3}
+              rows={4}
               placeholder="Het belangrijkste inzicht, de helpende stem van de Gezonde Volwassene, of de troost voor het Kwetsbare Kind..."
               value={vasthouden}
               onChange={(e) => setVasthouden(e.target.value)}
-              style={{ width: '100%', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical' }}
+              style={{ width: '100%', height: '115px', minHeight: '115px', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical', boxSizing: 'border-box' }}
             />
-            <div className="print-only-block" style={{ padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', minHeight: '60px' }}>
+            <div className="print-only-block" style={{ height: '115px', minHeight: '115px', padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', boxSizing: 'border-box' }}>
               {vasthouden || <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>Niet ingevuld.</span>}
             </div>
           </div>
@@ -621,23 +621,23 @@ export default function Werkbladen({ onBack }) {
             </label>
             <textarea
               className="screen-only-input"
-              rows={3}
+              rows={4}
               placeholder="Concrete oefeningen voor komende week: bv. gedragsexperiment, flashcard lezen, modusregistratie bijhouden..."
               value={huiswerk}
               onChange={(e) => setHuiswerk(e.target.value)}
-              style={{ width: '100%', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical' }}
+              style={{ width: '100%', height: '115px', minHeight: '115px', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical', boxSizing: 'border-box' }}
             />
-            <div className="print-only-block" style={{ padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', minHeight: '60px' }}>
+            <div className="print-only-block" style={{ height: '115px', minHeight: '115px', padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', boxSizing: 'border-box' }}>
               {huiswerk || <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>Geen huiswerkopdrachten ingevuld.</span>}
             </div>
           </div>
 
-          {/* Gebruikte formulieren voor deze sessie (subtiel & compact) */}
+          {/* Gebruikte formulieren voor deze sessie (netjes onder elkaar en even lang) */}
           <div style={{ marginBottom: '2.5rem', paddingTop: '0.5rem' }}>
             <span style={{ display: 'block', fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '10px' }}>
               Gebruikte formulieren voor de afgelopen sessie:
             </span>
-            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxWidth: '440px' }}>
               {[
                 { id: 'f1', label: 'Huiswerkformulier 1: Samenvatting' },
                 { id: 'f2', label: 'Huiswerkformulier 2: Modusverandering' },
@@ -650,36 +650,40 @@ export default function Werkbladen({ onBack }) {
                     type="button"
                     onClick={() => handleToggleFormulier(f.label)}
                     style={{
-                      display: 'inline-flex',
+                      width: '100%',
+                      display: 'flex',
                       alignItems: 'center',
-                      gap: '8px',
-                      padding: '7px 14px',
+                      gap: '10px',
+                      padding: '9px 16px',
                       borderRadius: '9999px',
                       background: isSelected ? 'rgba(124, 58, 237, 0.1)' : 'var(--bg-color)',
                       border: isSelected ? '1px solid #7c3aed' : '1px solid var(--border-color)',
                       color: isSelected ? '#7c3aed' : 'var(--text-muted)',
-                      fontSize: '0.88rem',
+                      fontSize: '0.9rem',
                       fontWeight: isSelected ? '700' : '500',
                       cursor: 'pointer',
-                      transition: 'all 0.15s ease'
+                      transition: 'all 0.15s ease',
+                      boxSizing: 'border-box',
+                      textAlign: 'left'
                     }}
                   >
                     <span style={{
-                      width: '14px',
-                      height: '14px',
-                      borderRadius: '3px',
+                      width: '16px',
+                      height: '16px',
+                      borderRadius: '4px',
                       border: isSelected ? '1px solid #7c3aed' : '1px solid #cbd5e1',
                       background: isSelected ? '#7c3aed' : 'var(--card-bg)',
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       color: 'white',
-                      fontSize: '10px',
-                      lineHeight: 1
+                      fontSize: '11px',
+                      lineHeight: 1,
+                      flexShrink: 0
                     }}>
                       {isSelected ? '✓' : ''}
                     </span>
-                    <span>{f.label}</span>
+                    <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{f.label}</span>
                   </button>
                 );
               })}
@@ -1627,7 +1631,7 @@ export default function Werkbladen({ onBack }) {
           }
           @page {
             size: A4 portrait;
-            margin: 12mm 15mm 15mm 15mm;
+            margin: 22mm 22mm 22mm 22mm;
           }
           html, body {
             background: #ffffff !important;
@@ -1638,16 +1642,19 @@ export default function Werkbladen({ onBack }) {
             print-color-adjust: exact !important;
           }
           .view-container {
-            max-width: 100% !important;
-            padding: 0 !important;
-            margin: 0 !important;
+            max-width: 170mm !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 8mm 12mm !important;
+            box-sizing: border-box !important;
           }
           .glass-panel {
             background: #ffffff !important;
             box-shadow: none !important;
             border: none !important;
             padding: 0 !important;
-            margin: 0 !important;
+            margin: 0 auto !important;
+            width: 100% !important;
           }
           input, textarea, select {
             border: 1px solid #cbd5e1 !important;
