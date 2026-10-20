@@ -251,12 +251,6 @@ export default function Werkbladen({ onBack }) {
     setModiItems(prev => prev.map(m => m.id === id ? { ...m, [field]: value } : m));
   };
 
-  const handleToggleFormulier = (name) => {
-    setFormulierenGebruikt(prev => 
-      prev.includes(name) ? prev.filter(f => f !== name) : [...prev, name]
-    );
-  };
-
   const handleSaveSession = () => {
     const nextSessionNum = sessiesGehad ? parseInt(sessiesGehad, 10) : (savedSessions.length + 1);
     const newSession = {
@@ -541,7 +535,7 @@ export default function Werkbladen({ onBack }) {
           {/* Header van Formulier 1 */}
           <div style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
             <div style={{ fontSize: '0.92rem', fontWeight: '700', color: '#7c3aed', marginBottom: '4px' }}>
-              Huiswerkopdrachten: Huiswerkformulier 1
+              Huiswerkformulier 1
             </div>
             <h2 style={{ fontSize: '1.85rem', fontWeight: '800', color: 'var(--text-main)', margin: '0' }}>
               Een samenvatting schrijven
@@ -555,57 +549,27 @@ export default function Werkbladen({ onBack }) {
             </p>
           </div>
 
-          {/* Sessie tellers - strak en gelijkmatig uitgelijnd */}
+          {/* Datum van de sessie */}
           <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', 
-            gap: '1.25rem', 
             marginBottom: '2rem', 
             background: 'var(--bg-color)', 
-            padding: '1.5rem', 
+            padding: '1.25rem 1.5rem', 
             borderRadius: '16px', 
             border: '1px solid var(--border-color)',
-            alignItems: 'stretch'
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+            flexWrap: 'wrap'
           }}>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <label style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', minHeight: '2.4rem', display: 'flex', alignItems: 'flex-end' }}>
-                Datum van de sessie:
-              </label>
-              <input
-                type="date"
-                value={datum}
-                onChange={(e) => setDatum(e.target.value)}
-                style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', height: '44px', boxSizing: 'border-box' }}
-              />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <label style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', minHeight: '2.4rem', display: 'flex', alignItems: 'flex-end' }}>
-                Hoeveel sessies heb ik tot nu toe gehad:
-              </label>
-              <input
-                type="number"
-                min="1"
-                placeholder="bv. 4"
-                value={sessiesGehad}
-                onChange={(e) => setSessiesGehad(e.target.value)}
-                style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', height: '44px', boxSizing: 'border-box' }}
-              />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <label style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', minHeight: '2.4rem', display: 'flex', alignItems: 'flex-end' }}>
-                Hoeveel sessies kan ik nog maximaal krijgen:
-              </label>
-              <input
-                type="number"
-                min="0"
-                placeholder="bv. 16"
-                value={sessiesMax}
-                onChange={(e) => setSessiesMax(e.target.value)}
-                style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', height: '44px', boxSizing: 'border-box' }}
-              />
-            </div>
+            <label style={{ fontSize: '0.98rem', fontWeight: '700', color: 'var(--text-main)', margin: 0, whiteSpace: 'nowrap' }}>
+              Datum van de sessie:
+            </label>
+            <input
+              type="date"
+              value={datum}
+              onChange={(e) => setDatum(e.target.value)}
+              style={{ width: '220px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', height: '44px', boxSizing: 'border-box' }}
+            />
           </div>
 
           {/* Vraag 1: Korte samenvatting */}
@@ -662,71 +626,15 @@ export default function Werkbladen({ onBack }) {
             </div>
           </div>
 
-          {/* Vraag 4: Welke formulieren gebruikt */}
-          <div style={{ marginBottom: '2.5rem' }}>
-            <label style={{ display: 'block', fontSize: '1.05rem', fontWeight: '700', marginBottom: '10px', color: 'var(--text-main)' }}>
-              Geef aan welke huiswerkformulieren je voor de afgelopen sessie hebt gebruikt:
-            </label>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '10px' }}>
-              {[
-                'Formulier 1 (Sessieverslag)',
-                'Formulier 2 (Modusregistratie)',
-                'Pagina 22 (GV & Blije Kind)',
-                'G-schema / Modusdagboek',
-                'Flashcard / Oefenkaart',
-                'Imaginaire rescripting log'
-              ].map(fName => {
-                const isSelected = formulierenGebruikt.includes(fName);
-                return (
-                  <div
-                    key={fName}
-                    onClick={() => handleToggleFormulier(fName)}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '10px',
-                      padding: '10px 14px',
-                      borderRadius: '10px',
-                      background: isSelected ? 'rgba(124, 58, 237, 0.1)' : 'var(--bg-color)',
-                      border: isSelected ? '1px solid #7c3aed' : '1px solid var(--border-color)',
-                      cursor: 'pointer',
-                      fontSize: '0.92rem',
-                      fontWeight: isSelected ? '700' : '500',
-                      color: isSelected ? '#7c3aed' : 'var(--text-main)',
-                      transition: 'all 0.15s ease'
-                    }}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={isSelected}
-                      readOnly
-                      style={{ accentColor: '#7c3aed', width: '16px', height: '16px' }}
-                    />
-                    <span>{fName}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
           {/* Bottom Bar Form 1 */}
-          <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem', marginTop: '2.5rem' }}>
             <button
-              onClick={handleTriggerPrint}
-              className="btn btn-outline"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              onClick={() => setActiveTab('form2')}
+              className="btn btn-gradient"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'white' }}
             >
-              <Printer size={16} /> Druk Formulier 1 af (A4)
+              Volgende: Modusverandering <ChevronRight size={16} />
             </button>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button
-                onClick={() => setActiveTab('form2')}
-                className="btn btn-gradient"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'white' }}
-              >
-                Volgende: Modusverandering <ChevronRight size={16} />
-              </button>
-            </div>
           </div>
 
         </div>
@@ -741,7 +649,7 @@ export default function Werkbladen({ onBack }) {
           {/* Header van Formulier 2 */}
           <div style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
             <div style={{ fontSize: '0.92rem', fontWeight: '700', color: '#7c3aed', marginBottom: '4px' }}>
-              Huiswerkopdrachten: Huiswerkformulier 2
+              Huiswerkformulier 2
             </div>
             <h2 style={{ fontSize: '1.85rem', fontWeight: '800', color: 'var(--text-main)', margin: '0' }}>
               Het bijhouden van je modusverandering
@@ -1045,23 +953,14 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Bottom Bar Form 2 */}
-          <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
             <button
-              onClick={handleTriggerPrint}
-              className="btn btn-outline"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              onClick={() => setActiveTab('form3')}
+              className="btn btn-gradient"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'white' }}
             >
-              <Printer size={16} /> Druk Formulier 2 af (A4)
+              Volgende: Gezonde kanten <ChevronRight size={16} />
             </button>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button
-                onClick={() => setActiveTab('form3')}
-                className="btn btn-gradient"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'white' }}
-              >
-                Volgende: Gezonde kanten <ChevronRight size={16} />
-              </button>
-            </div>
           </div>
 
         </div>
@@ -1076,7 +975,7 @@ export default function Werkbladen({ onBack }) {
           {/* Header van Formulier 3 */}
           <div style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
             <div style={{ fontSize: '0.92rem', fontWeight: '700', color: '#7c3aed', marginBottom: '4px' }}>
-              Huiswerkopdrachten: Huiswerkformulier 3
+              Huiswerkformulier 3
             </div>
             <h2 style={{ fontSize: '1.85rem', fontWeight: '800', color: 'var(--text-main)', margin: '0' }}>
               Gezonde volwassene en het blije kind
@@ -1394,23 +1293,14 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Bottom Bar Form 3 */}
-          <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
             <button
-              onClick={handleTriggerPrint}
-              className="btn btn-outline"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              onClick={handleSaveSession}
+              className="btn btn-gradient"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'white' }}
             >
-              <Printer size={16} /> Druk Formulier 3 af (A4)
+              <Save size={16} /> Sla sessie op &amp; bekijk voortgang
             </button>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button
-                onClick={handleSaveSession}
-                className="btn btn-gradient"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'white' }}
-              >
-                <Save size={16} /> Sla sessie op &amp; bekijk voortgang
-              </button>
-            </div>
           </div>
 
         </div>
