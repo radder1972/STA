@@ -1,46 +1,20 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState } from 'react';
 import { 
-  FileText, 
-  TrendingUp, 
-  Calendar, 
   Plus, 
   Trash2, 
-  Save, 
   Printer, 
-  Download, 
-  Upload, 
-  RotateCcw, 
-  Sparkles, 
-  CheckCircle2, 
-  Smile, 
-  Heart, 
-  Shield, 
-  Activity, 
-  Info,
   ChevronRight,
-  ListPlus,
-  BookOpen,
-  Eye
+  Eye,
+  Shield,
+  Smile,
+  Heart
 } from 'lucide-react';
-import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  BarChart,
-  Bar
-} from 'recharts';
 import { 
   PlatformBadge, 
   WerkbladenIcon, 
   SessieverslagIcon, 
   ModusveranderingIcon, 
   GezondeKantenIcon, 
-  VoortgangIcon,
   CheckIcon 
 } from './Icons';
 import SchemaCard from './SchemaCard';
@@ -121,152 +95,70 @@ const getModusCardInfo = (modusName) => {
   return { id, src, description };
 };
 
-const STORAGE_KEY = 'schematherapie_werkbladen_v1';
+const activePill = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0.45rem',
+  padding: '0.5rem 1.15rem',
+  borderRadius: '9999px',
+  border: 'none',
+  background: 'linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)',
+  color: 'white',
+  fontWeight: '600',
+  fontSize: '0.9rem',
+  whiteSpace: 'nowrap',
+  boxShadow: '0 4px 12px rgba(124, 58, 237, 0.25)',
+  cursor: 'pointer',
+  transition: 'all 0.2s ease'
+};
 
-const SAMPLE_HISTORY = [
-  {
-    id: 'sample_sessie_1',
-    datum: '2026-09-15',
-    sessieNummer: 1,
-    sessiesMax: 20,
-    samenvatting: 'Eerste probleeminventarisatie en psycho-educatie over het schemamodel. We hebben gekeken naar situaties waarin de Onthechte Beschermer en Straffende Ouder opkomen.',
-    vasthouden: 'Dat mijn afstandelijke reactie een overlevingsmodus is en geen karakterfout.',
-    huiswerk: 'Formulier 1 en 2 invullen bij stressmomenten op het werk.',
-    formulierenGebruikt: ['Formulier 1 (Sessieverslag)', 'Formulier 2 (Modusregistratie)'],
-    modi: [
-      { id: 'm1', modus: 'Onthechte beschermer', aantalKeer: 12, verbeteringVorige: 0, verbeteringBegin: 5 },
-      { id: 'm2', modus: 'Straffende ouder', aantalKeer: 8, verbeteringVorige: 0, verbeteringBegin: 0 }
-    ],
-    gezondeKanten: {
-      gv_keer: 2,
-      gv_verbetering: 10,
-      bk_keer: 1,
-      bk_verbetering: 5,
-      kk_keer: 1,
-      kk_verbetering: 10
-    }
-  },
-  {
-    id: 'sample_sessie_2',
-    datum: '2026-09-22',
-    sessieNummer: 2,
-    sessiesMax: 20,
-    samenvatting: 'Focus op het Kwetsbare Kind dat onder de Onthechte Beschermer schuilt. Meer herkenning van lichamelijke spanning in de buik.',
-    vasthouden: 'Even pas op de plaats maken en diep ademhalen vóórdat ik dichtklap.',
-    huiswerk: 'Elke avond 5 minuten voelen wat het Kwetsbare Kind nodig heeft.',
-    formulierenGebruikt: ['Formulier 1 (Sessieverslag)', 'Formulier 2 (Modusregistratie)', 'Pagina 22 (GV & BK)'],
-    modi: [
-      { id: 'm1', modus: 'Onthechte beschermer', aantalKeer: 9, verbeteringVorige: 25, verbeteringBegin: 25 },
-      { id: 'm2', modus: 'Straffende ouder', aantalKeer: 6, verbeteringVorige: 20, verbeteringBegin: 20 }
-    ],
-    gezondeKanten: {
-      gv_keer: 4,
-      gv_verbetering: 25,
-      bk_keer: 2,
-      bk_verbetering: 15,
-      kk_keer: 3,
-      kk_verbetering: 25
-    }
-  },
-  {
-    id: 'sample_sessie_3',
-    datum: '2026-09-29',
-    sessieNummer: 3,
-    sessiesMax: 20,
-    samenvatting: 'Imaginaire rescripting gedaan rond een oude afwijzingsherinnering. De Gezonde Volwassene heeft grenzen gesteld naar de veeleisende stem.',
-    vasthouden: 'Ik mag fouten maken zonder dat ik meteen waardeloos ben.',
-    huiswerk: 'Actief ruimte maken voor een speelse activiteit voor het Blije Kind.',
-    formulierenGebruikt: ['Formulier 1 (Sessieverslag)', 'Formulier 2 (Modusregistratie)', 'Pagina 22 (GV & BK)'],
-    modi: [
-      { id: 'm1', modus: 'Onthechte beschermer', aantalKeer: 5, verbeteringVorige: 45, verbeteringBegin: 55 },
-      { id: 'm2', modus: 'Straffende ouder', aantalKeer: 4, verbeteringVorige: 35, verbeteringBegin: 45 }
-    ],
-    gezondeKanten: {
-      gv_keer: 7,
-      gv_verbetering: 50,
-      bk_keer: 4,
-      bk_verbetering: 40,
-      kk_keer: 5,
-      kk_verbetering: 50
-    }
-  },
-  {
-    id: 'sample_sessie_4',
-    datum: '2026-10-06',
-    sessieNummer: 4,
-    sessiesMax: 20,
-    samenvatting: 'Grote doorbraak op het werk: grens aangegeven naar leidinggevende vanuit de Gezonde Volwassene zónder te vluchten in overcompensatie.',
-    vasthouden: 'Mijn behoeften doen ertoe. Als ik rustig blijf, luistert men.',
-    huiswerk: 'Blijven monitoren met de werkbladen en in het weekend wandelen in de natuur.',
-    formulierenGebruikt: ['Formulier 1 (Sessieverslag)', 'Formulier 2 (Modusregistratie)', 'Pagina 22 (GV & BK)'],
-    modi: [
-      { id: 'm1', modus: 'Onthechte beschermer', aantalKeer: 3, verbeteringVorige: 60, verbeteringBegin: 70 },
-      { id: 'm2', modus: 'Straffende ouder', aantalKeer: 2, verbeteringVorige: 55, verbeteringBegin: 70 }
-    ],
-    gezondeKanten: {
-      gv_keer: 10,
-      gv_verbetering: 75,
-      bk_keer: 6,
-      bk_verbetering: 60,
-      kk_keer: 6,
-      kk_verbetering: 70
-    }
-  }
-];
+const idlePill = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0.45rem',
+  padding: '0.5rem 1.15rem',
+  borderRadius: '9999px',
+  border: 'none',
+  background: 'transparent',
+  color: 'var(--text-muted)',
+  fontWeight: '500',
+  cursor: 'pointer',
+  transition: 'all 0.2s ease',
+  whiteSpace: 'nowrap',
+  fontSize: '0.9rem'
+};
+
+const hoverIn = (e) => {
+  e.currentTarget.style.background = 'var(--hover-bg, rgba(0,0,0,0.05))';
+  e.currentTarget.style.color = 'var(--text-main)';
+};
+const hoverOut = (e) => {
+  e.currentTarget.style.background = 'transparent';
+  e.currentTarget.style.color = 'var(--text-muted)';
+};
 
 export default function Werkbladen({ onBack }) {
-  const [activeTab, setActiveTab] = useState('form1'); // 'form1', 'form2', 'form3', 'history', 'print'
-  const [notification, setNotification] = useState('');
+  const [activeTab, setActiveTab] = useState('form1'); // 'form1', 'form2', 'form3'
 
-  // Draft form data
+  // Formulier 1 data
   const [datum, setDatum] = useState(() => new Date().toISOString().split('T')[0]);
-  const [sessiesGehad, setSessiesGehad] = useState('');
-  const [sessiesMax, setSessiesMax] = useState('');
   const [samenvatting, setSamenvatting] = useState('');
   const [vasthouden, setVasthouden] = useState('');
   const [huiswerk, setHuiswerk] = useState('');
   const [formulierenGebruikt, setFormulierenGebruikt] = useState(['Huiswerkformulier 1: Samenvatting']);
 
-  // Form 2: Modi
+  // Formulier 2 data: Modi
   const [modiItems, setModiItems] = useState([
     { id: 1, modus: 'Kwetsbare kind', aantalKeer: '', verbeteringVorige: 0, verbeteringBegin: 0 }
   ]);
 
-  // Form 3 (Pagina 22): Gezonde Volwassene & Blije Kind
+  // Formulier 3 data: Gezonde Volwassene & Blije Kind
   const [gvKeer, setGvKeer] = useState('');
   const [gvVerbetering, setGvVerbetering] = useState(0);
   const [bkKeer, setBkKeer] = useState('');
   const [bkVerbetering, setBkVerbetering] = useState(0);
   const [kkKeer, setKkKeer] = useState('');
   const [kkVerbetering, setKkVerbetering] = useState(0);
-
-  // History list
-  const [savedSessions, setSavedSessions] = useState(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-      }
-    } catch (e) {
-      console.error(e);
-    }
-    return [];
-  });
-
-  // Persist sessions
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(savedSessions));
-    } catch (e) {
-      console.error(e);
-    }
-  }, [savedSessions]);
-
-  const showToast = (msg) => {
-    setNotification(msg);
-    setTimeout(() => setNotification(''), 3500);
-  };
 
   const handleAddModus = () => {
     setModiItems(prev => [
@@ -295,105 +187,6 @@ export default function Werkbladen({ onBack }) {
     );
   };
 
-  const handleSaveSession = () => {
-    const nextSessionNum = sessiesGehad ? parseInt(sessiesGehad, 10) : (savedSessions.length + 1);
-    const newSession = {
-      id: 'sessie_' + Date.now(),
-      datum: datum || new Date().toISOString().split('T')[0],
-      sessieNummer: nextSessionNum,
-      sessiesMax: sessiesMax ? parseInt(sessiesMax, 10) : undefined,
-      samenvatting,
-      vasthouden,
-      huiswerk,
-      formulierenGebruikt,
-      modi: modiItems.map(m => ({
-        ...m,
-        aantalKeer: m.aantalKeer !== '' ? Number(m.aantalKeer) : 0,
-        verbeteringVorige: Number(m.verbeteringVorige) || 0,
-        verbeteringBegin: Number(m.verbeteringBegin) || 0
-      })),
-      gezondeKanten: {
-        gv_keer: gvKeer !== '' ? Number(gvKeer) : 0,
-        gv_verbetering: Number(gvVerbetering) || 0,
-        bk_keer: bkKeer !== '' ? Number(bkKeer) : 0,
-        bk_verbetering: Number(bkVerbetering) || 0,
-        kk_keer: kkKeer !== '' ? Number(kkKeer) : 0,
-        kk_verbetering: Number(kkVerbetering) || 0
-      }
-    };
-
-    setSavedSessions(prev => [...prev, newSession]);
-    showToast(`✅ Sessie ${nextSessionNum} succesvol opgeslagen in je geschiedenis!`);
-    setActiveTab('history');
-  };
-
-  const handleLoadSampleData = () => {
-    if (savedSessions.length > 0) {
-      if (!window.confirm("Let op: Dit voegt 4 voorbeeld-sessies toe aan je huidige geschiedenis. Wil je doorgaan?")) {
-        return;
-      }
-    }
-    setSavedSessions(SAMPLE_HISTORY);
-    showToast("✨ 4 voorbeeld-sessies succesvol ingeladen!");
-  };
-
-  const handleClearHistory = () => {
-    if (window.confirm("Weet je zeker dat je alle opgeslagen sessies wilt wissen? Dit kan niet ongedaan worden gemaakt.")) {
-      setSavedSessions([]);
-      showToast("Geschiedenis gewist.");
-    }
-  };
-
-  const handleExportJSON = () => {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(savedSessions, null, 2));
-    const downloadAnchor = document.createElement('a');
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `schematherapie_werkbladen_geschiedenis_${new Date().toISOString().split('T')[0]}.json`);
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
-    showToast("💾 Geschiedenis geëxporteerd als JSON!");
-  };
-
-  const handleImportJSON = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      try {
-        const parsed = JSON.parse(event.target.result);
-        if (Array.isArray(parsed)) {
-          setSavedSessions(parsed);
-          showToast(`✅ ${parsed.length} sessies succesvol geïmporteerd!`);
-        } else {
-          alert("Het bestand bevat geen geldige sessie-array.");
-        }
-      } catch (err) {
-        alert("Fout bij het lezen van het JSON-bestand: " + err.message);
-      }
-    };
-    reader.readAsText(file);
-    e.target.value = '';
-  };
-
-  // Chart data calculation
-  const chartData = useMemo(() => {
-    if (!savedSessions || savedSessions.length === 0) return [];
-    return savedSessions.map(s => {
-      return {
-        name: `Sessie ${s.sessieNummer}`,
-        datum: s.datum,
-        gv_verbetering: s.gezondeKanten?.gv_verbetering ?? 0,
-        bk_verbetering: s.gezondeKanten?.bk_verbetering ?? 0,
-        kk_verbetering: s.gezondeKanten?.kk_verbetering ?? 0,
-        gv_keer: s.gezondeKanten?.gv_keer ?? 0,
-        bk_keer: s.gezondeKanten?.bk_keer ?? 0,
-        kk_keer: s.gezondeKanten?.kk_keer ?? 0,
-        coping_keer: s.modi?.reduce((sum, m) => sum + (Number(m.aantalKeer) || 0), 0) ?? 0
-      };
-    });
-  }, [savedSessions]);
-
   const handleTriggerPrint = () => {
     window.print();
   };
@@ -406,168 +199,101 @@ export default function Werkbladen({ onBack }) {
         <PlatformBadge theme="werkbladen" marginBottom="1.5rem" href="index.html" />
       </div>
 
-      {/* Toast Notification */}
-      {notification && (
-        <div style={{
-          position: 'fixed',
-          top: '20px',
-          right: '20px',
-          background: '#0f172a',
-          color: '#ffffff',
-          padding: '12px 24px',
-          borderRadius: '12px',
-          boxShadow: '0 10px 25px rgba(0,0,0,0.25)',
-          zIndex: 9999,
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px',
-          fontSize: '0.95rem',
-          fontWeight: '600',
-          border: '1px solid rgba(255,255,255,0.15)'
-        }}>
-          {notification}
-        </div>
-      )}
-
       {/* Screen Header */}
-      <div className="no-print" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+      <div className="no-print" style={{ textAlign: 'center', marginBottom: '2rem' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '9999px', background: 'rgba(124, 58, 237, 0.1)', color: '#7c3aed', fontWeight: '700', fontSize: '0.85rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
           <WerkbladenIcon size={18} useWerkbladenGradient={true} /> Schematherapie Behandel- &amp; Huiswerkmodule
         </div>
         <h1 style={{ fontSize: '2.5rem', fontWeight: '800', margin: '0 0 0.8rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>
-          Werkbladen &amp; Voortgang
+          Werkbladen
         </h1>
-        <p style={{ maxWidth: '780px', margin: '0 auto', color: 'var(--text-muted)', fontSize: '1.1rem', lineHeight: '1.6' }}>
-          Officiële registratie- en evaluatieformulieren voor in de spreekkamer. Schrijf sessiesamenvattingen, breng wekelijks je modusverandering in kaart en stimuleer de Gezonde Volwassene en het Blije Kind.
+        <p style={{ maxWidth: '780px', margin: '0 auto', color: 'var(--text-muted)', fontSize: '1.05rem', lineHeight: '1.6' }}>
+          Registratie- en evaluatieformulieren. Schrijf sessiesamenvattingen, breng wekelijks je modusverandering in kaart en stimuleer de Gezonde Volwassene en het Blije Kind.
         </p>
-
-        {/* Quick Action Buttons Header */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '1.5rem', flexWrap: 'wrap' }}>
-          <button 
-            onClick={handleTriggerPrint}
-            className="btn btn-outline"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 20px', fontSize: '0.92rem' }}
-            title="Druk het actieve formulier direct netjes af op A4"
-          >
-            <Printer size={16} /> Dit Formulier Afdrukken (A4)
-          </button>
-          <button 
-            onClick={handleSaveSession}
-            className="btn btn-gradient"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 20px', fontSize: '0.92rem', color: 'white' }}
-          >
-            <Save size={16} /> Sessie Opslaan
-          </button>
-        </div>
       </div>
 
-      {/* Tabs Navigation */}
-      <div className="no-print" style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-        gap: '6px',
-        padding: '6px',
-        background: 'rgba(0,0,0,0.04)',
-        borderRadius: '16px',
-        marginBottom: '2rem',
-        width: '100%',
-        boxSizing: 'border-box'
+      {/* Submenu onder de kop: in lijn met de rest van de suite */}
+      <div className="tabs-container no-print" style={{
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: '2.5rem',
+        width: '100%'
       }}>
-        <button
-          onClick={() => setActiveTab('form1')}
-          style={{
-            padding: '10px 8px',
-            borderRadius: '12px',
-            border: 'none',
-            background: activeTab === 'form1' ? '#ffffff' : 'transparent',
-            color: activeTab === 'form1' ? '#7c3aed' : 'var(--text-muted)',
-            fontWeight: activeTab === 'form1' ? '700' : '600',
-            fontSize: '0.92rem',
-            boxShadow: activeTab === 'form1' ? '0 4px 12px rgba(0,0,0,0.08)' : 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '6px',
-            whiteSpace: 'nowrap',
-            transition: 'all 0.2s ease'
-          }}
-        >
-          <SessieverslagIcon size={17} color={activeTab === 'form1' ? '#7c3aed' : 'currentColor'} />
-          <span>Sessieverslag</span>
-        </button>
+        <div style={{
+          background: 'var(--bg-color)',
+          border: '1px solid var(--border-color)',
+          padding: '0.45rem',
+          borderRadius: '9999px',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.4rem',
+          boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)',
+          maxWidth: '100%',
+          overflowX: 'auto'
+        }}>
+          {/* Tab 1: Sessieverslag */}
+          <button
+            onClick={() => setActiveTab('form1')}
+            style={activeTab === 'form1' ? activePill : idlePill}
+            onMouseOver={activeTab === 'form1' ? undefined : hoverIn}
+            onMouseOut={activeTab === 'form1' ? undefined : hoverOut}
+          >
+            <SessieverslagIcon size={17} color={activeTab === 'form1' ? '#ffffff' : 'currentColor'} />
+            <span>Sessieverslag</span>
+          </button>
 
-        <button
-          onClick={() => setActiveTab('form2')}
-          style={{
-            padding: '10px 8px',
-            borderRadius: '12px',
-            border: 'none',
-            background: activeTab === 'form2' ? '#ffffff' : 'transparent',
-            color: activeTab === 'form2' ? '#7c3aed' : 'var(--text-muted)',
-            fontWeight: activeTab === 'form2' ? '700' : '600',
-            fontSize: '0.92rem',
-            boxShadow: activeTab === 'form2' ? '0 4px 12px rgba(0,0,0,0.08)' : 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '6px',
-            whiteSpace: 'nowrap',
-            transition: 'all 0.2s ease'
-          }}
-        >
-          <ModusveranderingIcon size={17} color={activeTab === 'form2' ? '#7c3aed' : 'currentColor'} />
-          <span>Modusverandering</span>
-        </button>
+          {/* Tab 2: Modusverandering */}
+          <button
+            onClick={() => setActiveTab('form2')}
+            style={activeTab === 'form2' ? activePill : idlePill}
+            onMouseOver={activeTab === 'form2' ? undefined : hoverIn}
+            onMouseOut={activeTab === 'form2' ? undefined : hoverOut}
+          >
+            <ModusveranderingIcon size={17} color={activeTab === 'form2' ? '#ffffff' : 'currentColor'} />
+            <span>Modusverandering</span>
+          </button>
 
-        <button
-          onClick={() => setActiveTab('form3')}
-          style={{
-            padding: '10px 8px',
-            borderRadius: '12px',
-            border: 'none',
-            background: activeTab === 'form3' ? '#ffffff' : 'transparent',
-            color: activeTab === 'form3' ? '#7c3aed' : 'var(--text-muted)',
-            fontWeight: activeTab === 'form3' ? '700' : '600',
-            fontSize: '0.92rem',
-            boxShadow: activeTab === 'form3' ? '0 4px 12px rgba(0,0,0,0.08)' : 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '6px',
-            whiteSpace: 'nowrap',
-            transition: 'all 0.2s ease'
-          }}
-        >
-          <GezondeKantenIcon size={17} color={activeTab === 'form3' ? '#7c3aed' : 'currentColor'} />
-          <span>Gezonde kanten</span>
-        </button>
+          {/* Tab 3: Gezonde kanten */}
+          <button
+            onClick={() => setActiveTab('form3')}
+            style={activeTab === 'form3' ? activePill : idlePill}
+            onMouseOver={activeTab === 'form3' ? undefined : hoverIn}
+            onMouseOut={activeTab === 'form3' ? undefined : hoverOut}
+          >
+            <GezondeKantenIcon size={17} color={activeTab === 'form3' ? '#ffffff' : 'currentColor'} />
+            <span>Gezonde kanten</span>
+          </button>
 
-        <button
-          onClick={() => setActiveTab('history')}
-          style={{
-            padding: '10px 8px',
-            borderRadius: '12px',
-            border: 'none',
-            background: activeTab === 'history' ? '#ffffff' : 'transparent',
-            color: activeTab === 'history' ? '#0284c7' : 'var(--text-muted)',
-            fontWeight: activeTab === 'history' ? '700' : '600',
-            fontSize: '0.92rem',
-            boxShadow: activeTab === 'history' ? '0 4px 12px rgba(0,0,0,0.08)' : 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '6px',
-            whiteSpace: 'nowrap',
-            transition: 'all 0.2s ease'
-          }}
-        >
-          <VoortgangIcon size={17} color={activeTab === 'history' ? '#0284c7' : 'currentColor'} />
-          <span>Voortgang</span>
-        </button>
+          {/* Scheidingslijn */}
+          <div style={{ width: '1px', height: '20px', background: 'var(--border-color)', margin: '0 2px' }} />
+
+          {/* Print actie */}
+          <button
+            onClick={handleTriggerPrint}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              padding: '0.5rem 1rem',
+              borderRadius: '9999px',
+              border: 'none',
+              background: 'transparent',
+              color: 'var(--text-main)',
+              fontWeight: '500',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              whiteSpace: 'nowrap',
+              fontSize: '0.9rem'
+            }}
+            onMouseOver={(e) => { e.currentTarget.style.background = 'var(--hover-bg, rgba(0,0,0,0.05))'; }}
+            onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; }}
+            title="Druk het actieve formulier direct netjes af op A4"
+          >
+            <Printer size={16} color="currentColor" />
+            <span>Printen</span>
+          </button>
+        </div>
       </div>
 
       {/* ========================================================================= */}
@@ -753,7 +479,15 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Bottom Bar Form 1 */}
-          <div className="no-print" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem', marginTop: '2.5rem' }}>
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem', marginTop: '2.5rem' }}>
+            <button
+              onClick={handleTriggerPrint}
+              className="btn btn-outline"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              title="Druk dit formulier direct netjes af op A4"
+            >
+              <Printer size={16} /> Dit Formulier Afdrukken (A4)
+            </button>
             <button
               onClick={() => setActiveTab('form2')}
               className="btn btn-gradient"
@@ -1142,7 +876,15 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Bottom Bar Form 2 */}
-          <div className="no-print" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
+            <button
+              onClick={handleTriggerPrint}
+              className="btn btn-outline"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              title="Druk dit formulier direct netjes af op A4"
+            >
+              <Printer size={16} /> Dit Formulier Afdrukken (A4)
+            </button>
             <button
               onClick={() => setActiveTab('form3')}
               className="btn btn-gradient"
@@ -1544,251 +1286,14 @@ export default function Werkbladen({ onBack }) {
           {/* Bottom Bar Form 3 */}
           <div className="no-print" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', borderTop: '1px solid var(--border-color)', paddingTop: '1.25rem' }}>
             <button
-              onClick={handleSaveSession}
-              className="btn btn-gradient"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'white' }}
+              onClick={handleTriggerPrint}
+              className="btn btn-outline"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              title="Druk dit formulier direct netjes af op A4"
             >
-              <Save size={16} /> Sla sessie op &amp; bekijk voortgang
+              <Printer size={16} /> Dit Formulier Afdrukken (A4)
             </button>
           </div>
-
-        </div>
-      )}
-
-      {/* ========================================================================= */}
-      {/* TAB 4: VOORTGANG GRAFIEK & GESCHIEDENIS                                   */}
-      {/* ========================================================================= */}
-      {activeTab === 'history' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginBottom: '3rem' }}>
-          
-          {/* Top Actions for History */}
-          <div className="glass-panel" style={{ padding: '1.5rem 2rem', borderRadius: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-            <div>
-              <h2 style={{ fontSize: '1.5rem', fontWeight: '800', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
-                Voortgang &amp; Historie
-              </h2>
-              <div style={{ fontSize: '0.92rem', color: 'var(--text-muted)' }}>
-                {savedSessions.length === 0 ? 'Nog geen opgeslagen sessies.' : `${savedSessions.length} opgeslagen registraties in je browser.`}
-              </div>
-            </div>
-
-            <div className="no-print" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-              {savedSessions.length === 0 && (
-                <button
-                  onClick={handleLoadSampleData}
-                  className="btn btn-outline"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', fontSize: '0.88rem' }}
-                >
-                  <Sparkles size={16} color="#7c3aed" /> Laad 4 voorbeeld-sessies
-                </button>
-              )}
-              {savedSessions.length > 0 && (
-                <>
-                  <button
-                    onClick={handleExportJSON}
-                    className="btn btn-outline"
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', fontSize: '0.88rem' }}
-                    title="Exporteer als back-up"
-                  >
-                    <Download size={16} /> Exporteer JSON
-                  </button>
-                  <button
-                    onClick={handleClearHistory}
-                    className="btn btn-outline"
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', fontSize: '0.88rem', color: '#ef4444' }}
-                  >
-                    <Trash2 size={16} /> Wis alles
-                  </button>
-                </>
-              )}
-              <label className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', fontSize: '0.88rem', cursor: 'pointer' }}>
-                <Upload size={16} /> Importeer JSON
-                <input type="file" accept=".json" onChange={handleImportJSON} style={{ display: 'none' }} />
-              </label>
-            </div>
-          </div>
-
-          {/* Charts container */}
-          {savedSessions.length > 0 ? (
-            <>
-              {/* Stat Cards */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.25rem' }}>
-                <div className="glass-panel" style={{ padding: '1.25rem', borderRadius: '16px', borderLeft: '4px solid #10b981' }}>
-                  <div style={{ fontSize: '0.82rem', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
-                    Gezonde Volwassene
-                  </div>
-                  <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#10b981', margin: '4px 0' }}>
-                    {savedSessions[savedSessions.length - 1]?.gezondeKanten?.gv_verbetering ?? 0}%
-                  </div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                    Verbetering t.o.v. start (laatste sessie)
-                  </div>
-                </div>
-
-                <div className="glass-panel" style={{ padding: '1.25rem', borderRadius: '16px', borderLeft: '4px solid #f59e0b' }}>
-                  <div style={{ fontSize: '0.82rem', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
-                    Blije Kind
-                  </div>
-                  <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#f59e0b', margin: '4px 0' }}>
-                    {savedSessions[savedSessions.length - 1]?.gezondeKanten?.bk_verbetering ?? 0}%
-                  </div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                    Ruimte voor speelsheid &amp; plezier
-                  </div>
-                </div>
-
-                <div className="glass-panel" style={{ padding: '1.25rem', borderRadius: '16px', borderLeft: '4px solid #0ea5e9' }}>
-                  <div style={{ fontSize: '0.82rem', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
-                    Kwetsbare Kind
-                  </div>
-                  <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#0ea5e9', margin: '4px 0' }}>
-                    {savedSessions[savedSessions.length - 1]?.gezondeKanten?.kk_verbetering ?? 0}%
-                  </div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                    Zorg &amp; luisteren naar emotionele behoeften
-                  </div>
-                </div>
-
-                <div className="glass-panel" style={{ padding: '1.25rem', borderRadius: '16px', borderLeft: '4px solid #7c3aed' }}>
-                  <div style={{ fontSize: '0.82rem', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
-                    Geregistreerde Sessies
-                  </div>
-                  <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#7c3aed', margin: '4px 0' }}>
-                    {savedSessions.length}
-                  </div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                    Totaal wekelijkse metingen
-                  </div>
-                </div>
-              </div>
-
-              {/* Line Chart: Percentage Verbetering over Tijd */}
-              <div className="glass-panel" style={{ padding: '2rem', borderRadius: '24px' }}>
-                <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <TrendingUp size={20} color="#10b981" />
-                  Groei van Gezonde Modi &amp; Zorg (% verbetering t.o.v. start)
-                </h3>
-                <p style={{ margin: '0 0 1.5rem 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                  Visualisatie van de scores op Pagina 22 (Gezonde Volwassene, Blije Kind en Kwetsbare Kind) over opeenvolgende sessies.
-                </p>
-
-                <div style={{ width: '100%', height: 320 }}>
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={chartData} margin={{ top: 10, right: 30, left: -10, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.08)" />
-                      <XAxis dataKey="name" stroke="var(--text-muted)" fontSize={12} />
-                      <YAxis domain={[0, 100]} stroke="var(--text-muted)" fontSize={12} unit="%" />
-                      <Tooltip 
-                        contentStyle={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '10px' }}
-                        formatter={(val) => [`${val}%`, '']}
-                      />
-                      <Legend verticalAlign="top" height={36} />
-                      <Line type="monotone" dataKey="gv_verbetering" name="Gezonde volwassene (%)" stroke="#10b981" strokeWidth={3} dot={{ r: 5 }} />
-                      <Line type="monotone" dataKey="bk_verbetering" name="Blije kind (%)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 5 }} />
-                      <Line type="monotone" dataKey="kk_verbetering" name="Kwetsbare kind (%)" stroke="#0ea5e9" strokeWidth={3} dot={{ r: 5 }} />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-
-              {/* Bar Chart: Aandachtsmomenten (Frequentie per week) */}
-              <div className="glass-panel" style={{ padding: '2rem', borderRadius: '24px' }}>
-                <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Activity size={20} color="#7c3aed" />
-                  Wekelijkse Frequentie (Keer met aandacht in modus)
-                </h3>
-                <p style={{ margin: '0 0 1.5rem 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                  Aantal keer per week dat er met aandacht in de Gezonde Volwassene of het Blije Kind is gezeten, t.o.v. copingactiviteit.
-                </p>
-
-                <div style={{ width: '100%', height: 280 }}>
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={chartData} margin={{ top: 10, right: 30, left: -10, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.08)" />
-                      <XAxis dataKey="name" stroke="var(--text-muted)" fontSize={12} />
-                      <YAxis stroke="var(--text-muted)" fontSize={12} allowDecimals={false} />
-                      <Tooltip 
-                        contentStyle={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '10px' }}
-                        formatter={(val) => [`${val} keer`, '']}
-                      />
-                      <Legend verticalAlign="top" height={36} />
-                      <Bar dataKey="gv_keer" name="Gezonde volwassene (keer)" fill="#10b981" radius={[4, 4, 0, 0]} />
-                      <Bar dataKey="bk_keer" name="Blije kind (keer)" fill="#f59e0b" radius={[4, 4, 0, 0]} />
-                      <Bar dataKey="coping_keer" name="Copingmodi (keer)" fill="#f43f5e" radius={[4, 4, 0, 0]} />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-
-              {/* History Timeline */}
-              <div className="glass-panel" style={{ padding: '2rem', borderRadius: '24px' }}>
-                <h3 style={{ margin: '0 0 1.5rem 0', fontSize: '1.25rem', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Calendar size={20} color="#0ea5e9" />
-                  Sessielijst &amp; Notities
-                </h3>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  {savedSessions.slice().reverse().map(s => (
-                    <div 
-                      key={s.id} 
-                      style={{ 
-                        background: 'var(--bg-color)', 
-                        border: '1px solid var(--border-color)', 
-                        borderRadius: '16px', 
-                        padding: '1.5rem' 
-                      }}
-                    >
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '0.75rem' }}>
-                        <div>
-                          <strong style={{ fontSize: '1.15rem', color: 'var(--text-main)' }}>Sessie {s.sessieNummer}</strong>
-                          <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginLeft: '10px' }}>({s.datum})</span>
-                        </div>
-                        <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                          <span style={{ padding: '4px 10px', borderRadius: '9999px', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', fontSize: '0.8rem', fontWeight: '700' }}>
-                            GV: +{s.gezondeKanten?.gv_verbetering ?? 0}%
-                          </span>
-                          <span style={{ padding: '4px 10px', borderRadius: '9999px', background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b', fontSize: '0.8rem', fontWeight: '700' }}>
-                            BK: +{s.gezondeKanten?.bk_verbetering ?? 0}%
-                          </span>
-                        </div>
-                      </div>
-
-                      {s.samenvatting && (
-                        <div style={{ fontSize: '0.92rem', marginBottom: '8px', color: 'var(--text-main)', lineHeight: '1.5' }}>
-                          <strong>Samenvatting:</strong> {s.samenvatting}
-                        </div>
-                      )}
-                      {s.vasthouden && (
-                        <div style={{ fontSize: '0.92rem', marginBottom: '8px', color: '#0ea5e9', lineHeight: '1.5' }}>
-                          <strong>Vasthouden:</strong> {s.vasthouden}
-                        </div>
-                      )}
-                      {s.huiswerk && (
-                        <div style={{ fontSize: '0.92rem', color: '#7c3aed', lineHeight: '1.5' }}>
-                          <strong>Huiswerk:</strong> {s.huiswerk}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </>
-          ) : (
-            <div className="glass-panel" style={{ padding: '4rem 2rem', textAlign: 'center', borderRadius: '24px' }}>
-              <BookOpen size={48} color="#94a3b8" style={{ margin: '0 auto 1rem auto' }} />
-              <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>Nog geen sessies geregistreerd</h3>
-              <p style={{ maxWidth: '500px', margin: '0 auto 1.5rem auto', color: 'var(--text-muted)', fontSize: '0.95rem' }}>
-                Vul Formulier 1, 2 of Pagina 22 in en klik op "Sessie Opslaan" om je voortgang over tijd te volgen in deze interactieve grafiek.
-              </p>
-              <button
-                onClick={handleLoadSampleData}
-                className="btn btn-gradient"
-                style={{ color: 'white', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
-              >
-                <Sparkles size={18} /> Laad 4 voorbeeld-sessies ter demonstratie
-              </button>
-            </div>
-          )}
 
         </div>
       )}

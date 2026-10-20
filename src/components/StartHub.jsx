@@ -699,7 +699,7 @@ export default function StartHub() {
           </div>
         </div>
 
-        {/* Werkbladen & Voortgang */}
+        {/* Werkbladen */}
         <div style={{ textAlign: "center", padding: "2rem", background: "white", borderRadius: "20px", border: "1px dashed #c084fc", display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 4px 20px rgba(124, 58, 237, 0.05)' }}>
           <div style={{ width: '100%' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '0.8rem', justifyContent: 'center' }}>
@@ -716,10 +716,10 @@ export default function StartHub() {
               }}>
                 <WerkbladenIcon size={26} useWerkbladenGradient={true} />
               </div>
-              <h3 style={{ margin: 0, color: '#7c3aed', fontSize: '1.25rem', fontWeight: '800' }}>Werkbladen &amp; Voortgang</h3>
+              <h3 style={{ margin: 0, color: '#7c3aed', fontSize: '1.25rem', fontWeight: '800' }}>Werkbladen</h3>
             </div>
             <p style={{ margin: "0 auto 1.25rem auto", color: "#64748b", fontSize: "0.95rem", lineHeight: '1.5', maxWidth: '380px' }}>
-              Sessieverslag (p.19), Modusregistratie (p.20) en Gezonde Kanten (p.22). Digitaal bijhouden, grafisch volgen of blanco printen (A4).
+              Sessieverslag (p.19), Modusregistratie (p.20) en Gezonde Kanten (p.22). Digitaal invullen of direct blanco printen (A4).
             </p>
           </div>
           <div>
