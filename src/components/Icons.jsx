@@ -281,6 +281,13 @@ export const PlatformBadge = ({ isCurrent = false, theme = 'hub', marginBottom =
       border: 'rgba(2, 132, 199, 0.3)',
       hoverBg: 'linear-gradient(to right, rgba(71, 85, 105, 0.16), rgba(2, 132, 199, 0.16), rgba(5, 150, 105, 0.16))',
       hoverShadow: 'rgba(2, 132, 199, 0.22)'
+    },
+    werkbladen: {
+      color: '#7c3aed',
+      bg: 'rgba(124, 58, 237, 0.08)',
+      border: 'rgba(124, 58, 237, 0.28)',
+      hoverBg: 'rgba(124, 58, 237, 0.16)',
+      hoverShadow: 'rgba(124, 58, 237, 0.22)'
     }
   };
 
@@ -380,6 +387,7 @@ export const ThreeSparklesLogo = ({ size = 26, theme = 'tafel', style = {} }) =>
     kaarten: ['#0284c7', '#0ea5e9'],
     spel: ['#0ea5e9', '#2563eb'],
     test: ['#475569', '#64748b'],
+    werkbladen: ['#7c3aed', '#a855f7'],
     hub: ['#475569', '#0284c7', '#059669'], orange: ['#ea580c', '#f59e0b'], white: ['#ffffff', '#ffffff']
   };
   const colors = themeColors[theme] || themeColors.tafel;

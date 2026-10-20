@@ -374,6 +374,13 @@ export default function Home({ onStart, completedTests, onViewResults, onImport,
           >
             <PlayingCardsIcon size={18} color="white" /> Tafelopstelling
           </a>
+          <a 
+            href="werkbladen.html"
+            className="btn btn-outline" 
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px', fontSize: '1rem', textDecoration: 'none' }}
+          >
+            <ScrollText size={18} /> Werkbladen
+          </a>
         </div>
       </div>
 

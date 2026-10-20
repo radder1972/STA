@@ -15,6 +15,7 @@ import OrderCards from './components/OrderCards'
 import PrintProof from './components/PrintProof'
 import About from './components/About'
 import ModusWeb from './components/ModusWeb'
+import Werkbladen from './components/Werkbladen'
 
 import Tafelopstelling from './components/Tafelopstelling'
 import TafelNavbar from './components/TafelNavbar'
@@ -58,8 +59,12 @@ function App() {
     window.location.pathname.endsWith('modusweb.html') || 
     window.location.pathname.includes('/modusweb')
   );
+  const isWerkbladenApp = typeof window !== 'undefined' && (
+    window.location.pathname.endsWith('werkbladen.html') || 
+    window.location.pathname.includes('/werkbladen')
+  );
 
-  const isHubApp = !isTestApp && !isTafelApp && !isKaartenApp && !isSnelstartApp && !isModusWebApp;
+  const isHubApp = !isTestApp && !isTafelApp && !isKaartenApp && !isSnelstartApp && !isModusWebApp && !isWerkbladenApp;
 
   const normalizeHash = (rawHash) => {
     if (!rawHash) return '';
@@ -87,9 +92,16 @@ function App() {
       }
       return 'snelstart';
     }
+    if (cleanHash === 'werkbladen' || cleanHash === 'huiswerk' || cleanHash === 'voortgang') {
+      if (!isWerkbladenApp) {
+        window.location.href = 'werkbladen.html';
+      }
+      return 'werkbladen';
+    }
 
     if (isSnelstartApp) return 'snelstart';
     if (isModusWebApp) return 'modusweb';
+    if (isWerkbladenApp) return 'werkbladen';
 
     if (isHubApp) {
       if (cleanHash === 'test' || cleanHash === 'zelftest') {
@@ -203,6 +215,13 @@ function App() {
           window.location.href = 'snelstart.html';
         }
         setCurrentView('snelstart');
+        return;
+      }
+      if (cleanHash === 'werkbladen' || cleanHash === 'huiswerk' || cleanHash === 'voortgang') {
+        if (!isWerkbladenApp) {
+          window.location.href = 'werkbladen.html';
+        }
+        setCurrentView('werkbladen');
         return;
       }
       if (isHubApp) {
@@ -516,6 +535,9 @@ function App() {
       )}
       {currentView === 'modusweb' && (
         <ModusWeb />
+      )}
+      {currentView === 'werkbladen' && (
+        <Werkbladen onBack={() => { window.location.href = 'index.html' }} />
       )}
 
       {currentView === 'drukproef' && (

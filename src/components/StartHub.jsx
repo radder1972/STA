@@ -660,10 +660,36 @@ export default function StartHub() {
         </div>
       </div>
 
-      <div style={{ marginTop: "2rem", marginBottom: "3rem", textAlign: "center", padding: "1.5rem", background: "white", borderRadius: "16px", border: "1px dashed #cbd5e1", width: "100%", maxWidth: "1200px" }}>
-        <h3 style={{ margin: "0 0 0.5rem 0", color: "#334155" }}>✨ Nieuw: Modus Web (Casusconceptualisatie)</h3>
-        <p style={{ margin: "0 0 1rem 0", color: "#64748b", fontSize: "0.95rem" }}>Teken de moduscyclus van je cliënt en importeer een SMI CSV voor een interactief Spinnenweb.</p>
-        <a href="modusweb.html" style={{ display: "inline-block", background: "#3b82f6", color: "white", padding: "10px 20px", borderRadius: "8px", textDecoration: "none", fontWeight: "bold" }}>Open Modus Web</a>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+        gap: '1.5rem', 
+        width: '100%', 
+        maxWidth: '1200px', 
+        marginTop: "1rem",
+        marginBottom: "3rem" 
+      }}>
+        {/* Modus Web */}
+        <div style={{ textAlign: "center", padding: "1.75rem", background: "white", borderRadius: "20px", border: "1px dashed #cbd5e1", display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div>
+            <h3 style={{ margin: "0 0 0.5rem 0", color: "#334155", fontSize: '1.2rem' }}>🕸️ Modus Web (Casusconceptualisatie)</h3>
+            <p style={{ margin: "0 0 1.25rem 0", color: "#64748b", fontSize: "0.95rem", lineHeight: '1.5' }}>Teken de moduscyclus van je cliënt en importeer een SMI CSV voor een interactief Spinnenweb.</p>
+          </div>
+          <div>
+            <a href="modusweb.html" style={{ display: "inline-block", background: "#3b82f6", color: "white", padding: "10px 22px", borderRadius: "10px", textDecoration: "none", fontWeight: "bold", fontSize: '0.95rem' }}>Open Modus Web</a>
+          </div>
+        </div>
+
+        {/* Werkbladen & Voortgang */}
+        <div style={{ textAlign: "center", padding: "1.75rem", background: "white", borderRadius: "20px", border: "1px dashed #a855f7", display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: '0 4px 20px rgba(124, 58, 237, 0.05)' }}>
+          <div>
+            <h3 style={{ margin: "0 0 0.5rem 0", color: "#7c3aed", fontSize: '1.2rem' }}>📝 Werkbladen &amp; Voortgang</h3>
+            <p style={{ margin: "0 0 1.25rem 0", color: "#64748b", fontSize: "0.95rem", lineHeight: '1.5' }}>Sessieverslag (p.19), Modusregistratie (p.20) en Gezonde Kanten (p.22). Digitaal bijhouden, grafisch volgen of blanco printen (A4).</p>
+          </div>
+          <div>
+            <a href="werkbladen.html" style={{ display: "inline-block", background: "linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)", color: "white", padding: "10px 22px", borderRadius: "10px", textDecoration: "none", fontWeight: "bold", fontSize: '0.95rem', boxShadow: '0 4px 14px rgba(124, 58, 237, 0.25)' }}>Open Werkbladen</a>
+          </div>
+        </div>
       </div>
 
       {/* Version Footer */}
