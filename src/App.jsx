@@ -437,7 +437,7 @@ function App() {
   }
 
   return (
-    <div className={(isHubApp || isWerkbladenApp) ? "hub-wrapper" : "app-container"} style={(isHubApp || isWerkbladenApp) ? { maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' } : { position: 'relative' }}>
+    <div className={isHubApp ? "hub-wrapper" : "app-container"} style={isHubApp ? { maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' } : { position: 'relative' }}>
       {currentView === 'hub' && (
         <StartHub />
       )}

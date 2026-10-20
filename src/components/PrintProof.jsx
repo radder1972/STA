@@ -19,7 +19,7 @@ export default function PrintProof() {
     
     const downloadLink = document.createElement('a');
     downloadLink.href = svgUrl;
-    downloadLink.download = 'schematherapie-doosje-plano-v4.2.9.svg';
+    downloadLink.download = 'schematherapie-doosje-plano-v4.2.10.svg';
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -114,7 +114,7 @@ export default function PrintProof() {
                 <line x1="0" y1="840" x2="150" y2="820" class="cut" />
                 <line x1="0" y1="0" x2="0" y2="840" class="cut" />
                 <text x="75" y="420" class="text-body" style="font-size:20px; opacity:0.5; text-anchor:middle;" transform="rotate(-90 75,420)">Plakrand</text>
-                <text x="75" y="750" class="text-body" text-anchor="middle" style="font-size: 14px; opacity: 0.5;" transform="rotate(-90 75,750)">Versie 4.2.9</text>
+                <text x="75" y="750" class="text-body" text-anchor="middle" style="font-size: 14px; opacity: 0.5;" transform="rotate(-90 75,750)">Versie 4.2.10</text>
                 
                 <rect x="150" y="0" width="180" height="840" class="fold" />
                 <path d="M 150,0 L 150,-100 L 290,-100 L 330,0 Z" class="cut" />
