@@ -766,17 +766,29 @@ export default function Werkbladen({ onBack }) {
                 style={{ 
                   background: 'var(--bg-color)', 
                   border: '1px solid var(--border-color)', 
-                  borderRadius: '16px', 
+                  borderRadius: '18px', 
                   padding: '1.75rem',
-                  position: 'relative'
+                  position: 'relative',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
                 }}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.75rem' }}>
+                {/* Header van Modusregistratie */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.85rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span style={{ width: '28px', height: '28px', borderRadius: '50%', background: '#7c3aed', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '800', fontSize: '0.85rem' }}>
-                      {index + 1}
+                    <span style={{ 
+                      padding: '4px 12px', 
+                      borderRadius: '8px', 
+                      background: 'rgba(124, 58, 237, 0.1)', 
+                      color: '#7c3aed', 
+                      fontWeight: '800', 
+                      fontSize: '0.92rem',
+                      letterSpacing: '0.02em'
+                    }}>
+                      Modusregistratie #{index + 1}
                     </span>
-                    <strong style={{ fontSize: '1.1rem', color: 'var(--text-main)' }}>Modusregistratie #{index + 1}</strong>
+                    <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                      ({item.modus})
+                    </span>
                   </div>
                   {modiItems.length > 1 && (
                     <button
@@ -789,99 +801,229 @@ export default function Werkbladen({ onBack }) {
                 </div>
 
                 {/* Vraag 1: Selecteer Modus & Aantal keer */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', marginBottom: '1.5rem' }}>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.95rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)' }}>
-                      1. Hoe vaak zat je deze week in de modus van:
+                <div style={{ 
+                  background: 'var(--card-bg)', 
+                  border: '1px solid var(--border-color)', 
+                  borderRadius: '14px', 
+                  padding: '1.25rem', 
+                  marginBottom: '1.25rem' 
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem' }}>
+                    <span style={{ 
+                      width: '24px', 
+                      height: '24px', 
+                      borderRadius: '50%', 
+                      background: '#7c3aed', 
+                      color: 'white', 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center', 
+                      fontWeight: '800', 
+                      fontSize: '0.82rem',
+                      flexShrink: 0 
+                    }}>
+                      1
+                    </span>
+                    <label style={{ fontSize: '0.98rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>
+                      Hoe vaak zat je deze week in de modus van:
                     </label>
-                    <select
-                      value={item.modus}
-                      onChange={(e) => handleUpdateModus(item.id, 'modus', e.target.value)}
-                      style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '0.98rem', fontWeight: '600' }}
-                    >
-                      {Object.entries(CATEGORIZED_MODES).map(([group, list]) => (
-                        <optgroup key={group} label={group}>
-                          {list.map(mName => (
-                            <option key={mName} value={mName}>{mName}</option>
-                          ))}
-                        </optgroup>
-                      ))}
-                    </select>
                   </div>
 
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.95rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)' }}>
-                      Aantal keer in deze modus:
-                    </label>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <input
-                        type="number"
-                        min="0"
-                        placeholder="bv. 4"
-                        value={item.aantalKeer}
-                        onChange={(e) => handleUpdateModus(item.id, 'aantalKeer', e.target.value)}
-                        style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem' }}
-                      />
-                      <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>keer deze week</span>
+                  <div style={{ paddingLeft: '34px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem', alignItems: 'flex-end' }}>
+                    <div>
+                      <span style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '6px', fontWeight: '500' }}>
+                        Selecteer de modus:
+                      </span>
+                      <select
+                        value={item.modus}
+                        onChange={(e) => handleUpdateModus(item.id, 'modus', e.target.value)}
+                        style={{ 
+                          width: '100%', 
+                          padding: '11px 42px 11px 14px', 
+                          borderRadius: '10px', 
+                          border: '1px solid var(--border-color)', 
+                          background: 'var(--bg-color)', 
+                          color: 'var(--text-main)', 
+                          fontSize: '0.95rem', 
+                          fontWeight: '400',
+                          appearance: 'none',
+                          WebkitAppearance: 'none',
+                          MozAppearance: 'none',
+                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237c3aed' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'right 14px center',
+                          backgroundSize: '16px 16px',
+                          cursor: 'pointer',
+                          boxSizing: 'border-box'
+                        }}
+                      >
+                        {Object.entries(CATEGORIZED_MODES).map(([group, list]) => (
+                          <optgroup key={group} label={group}>
+                            {list.map(mName => (
+                              <option key={mName} value={mName}>{mName}</option>
+                            ))}
+                          </optgroup>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <span style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '6px', fontWeight: '500' }}>
+                        Frequentie in afgelopen week:
+                      </span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <input
+                          type="number"
+                          min="0"
+                          placeholder="bv. 4"
+                          value={item.aantalKeer}
+                          onChange={(e) => handleUpdateModus(item.id, 'aantalKeer', e.target.value)}
+                          style={{ 
+                            width: '110px', 
+                            padding: '11px 14px', 
+                            borderRadius: '10px', 
+                            border: '1px solid var(--border-color)', 
+                            background: 'var(--bg-color)', 
+                            color: 'var(--text-main)', 
+                            fontSize: '1rem',
+                            fontWeight: '500',
+                            boxSizing: 'border-box'
+                          }}
+                        />
+                        <span style={{ fontSize: '0.92rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>keer deze week</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Vraag 2: Verandering t.o.v. vorige beoordeling */}
-                <div style={{ marginBottom: '1.5rem', background: 'rgba(0,0,0,0.02)', padding: '1.25rem', borderRadius: '12px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                    <label style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)' }}>
-                      2. Verandering t.o.v. de vorige beoordeling (frequentie &amp; intensiteit):
-                    </label>
-                    <span style={{ fontSize: '1.1rem', fontWeight: '800', color: item.verbeteringVorige > 50 ? '#10b981' : item.verbeteringVorige > 20 ? '#0ea5e9' : '#64748b' }}>
+                <div style={{ 
+                  background: 'var(--card-bg)', 
+                  border: '1px solid var(--border-color)', 
+                  borderRadius: '14px', 
+                  padding: '1.25rem', 
+                  marginBottom: '1.25rem' 
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ 
+                        width: '24px', 
+                        height: '24px', 
+                        borderRadius: '50%', 
+                        background: '#7c3aed', 
+                        color: 'white', 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center', 
+                        fontWeight: '800', 
+                        fontSize: '0.82rem',
+                        flexShrink: 0 
+                      }}>
+                        2
+                      </span>
+                      <label style={{ fontSize: '0.98rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>
+                        Verandering t.o.v. de vorige beoordeling (frequentie &amp; intensiteit):
+                      </label>
+                    </div>
+                    <div style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '4px 14px',
+                      borderRadius: '8px',
+                      background: 'rgba(124, 58, 237, 0.1)',
+                      border: '1px solid rgba(124, 58, 237, 0.25)',
+                      color: '#7c3aed',
+                      fontWeight: '800',
+                      fontSize: '0.95rem'
+                    }}>
                       {item.verbeteringVorige}% verbetering
-                    </span>
+                    </div>
                   </div>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 10px 0' }}>
+
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 12px 34px', lineHeight: '1.4' }}>
                     Welke verbetering heb je waargenomen in vergelijking met de vorige beoordeling (0% = geen verbetering, 100% = maximaal verbeterd).
                   </p>
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    step="5"
-                    value={item.verbeteringVorige}
-                    onChange={(e) => handleUpdateModus(item.id, 'verbeteringVorige', Number(e.target.value))}
-                    style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer' }}
-                  />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                    <span>0% (Geen verbetering)</span>
-                    <span>50% (Matig verbeterd)</span>
-                    <span>100% (Maximaal verbeterd)</span>
+
+                  <div style={{ paddingLeft: '34px' }}>
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      step="5"
+                      value={item.verbeteringVorige}
+                      onChange={(e) => handleUpdateModus(item.id, 'verbeteringVorige', Number(e.target.value))}
+                      style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer' }}
+                    />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '6px', fontWeight: '500' }}>
+                      <span>0% (Geen verbetering)</span>
+                      <span>50% (Matig verbeterd)</span>
+                      <span>100% (Maximaal verbeterd)</span>
+                    </div>
                   </div>
                 </div>
 
                 {/* Vraag 3: Verandering t.o.v. het begin van de therapie */}
-                <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1.25rem', borderRadius: '12px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                    <label style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)' }}>
-                      3. Verandering t.o.v. het begin van de therapie:
-                    </label>
-                    <span style={{ fontSize: '1.1rem', fontWeight: '800', color: item.verbeteringBegin > 50 ? '#10b981' : item.verbeteringBegin > 20 ? '#0ea5e9' : '#64748b' }}>
+                <div style={{ 
+                  background: 'var(--card-bg)', 
+                  border: '1px solid var(--border-color)', 
+                  borderRadius: '14px', 
+                  padding: '1.25rem' 
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ 
+                        width: '24px', 
+                        height: '24px', 
+                        borderRadius: '50%', 
+                        background: '#7c3aed', 
+                        color: 'white', 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center', 
+                        fontWeight: '800', 
+                        fontSize: '0.82rem',
+                        flexShrink: 0 
+                      }}>
+                        3
+                      </span>
+                      <label style={{ fontSize: '0.98rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>
+                        Verandering t.o.v. het begin van de therapie:
+                      </label>
+                    </div>
+                    <div style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '4px 14px',
+                      borderRadius: '8px',
+                      background: 'rgba(124, 58, 237, 0.1)',
+                      border: '1px solid rgba(124, 58, 237, 0.25)',
+                      color: '#7c3aed',
+                      fontWeight: '800',
+                      fontSize: '0.95rem'
+                    }}>
                       {item.verbeteringBegin}% verbetering
-                    </span>
+                    </div>
                   </div>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 10px 0' }}>
-                    Welke verbetering heb je waargenomen in vergelijking met de start van de therapie (0% = geen verbetering, 100% = maximaal verbeterd).
+
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 12px 34px', lineHeight: '1.4' }}>
+                    Welke verbetering heb je waargenomen in vergelijking met het begin van de therapie (0% = geen verbetering, 100% = maximaal verbeterd).
                   </p>
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    step="5"
-                    value={item.verbeteringBegin}
-                    onChange={(e) => handleUpdateModus(item.id, 'verbeteringBegin', Number(e.target.value))}
-                    style={{ width: '100%', accentColor: '#10b981', cursor: 'pointer' }}
-                  />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                    <span>0% (Geen verbetering)</span>
-                    <span>50% (Duidelijke afname)</span>
-                    <span>100% (Modus volledig onder controle)</span>
+
+                  <div style={{ paddingLeft: '34px' }}>
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      step="5"
+                      value={item.verbeteringBegin}
+                      onChange={(e) => handleUpdateModus(item.id, 'verbeteringBegin', Number(e.target.value))}
+                      style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer' }}
+                    />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '6px', fontWeight: '500' }}>
+                      <span>0% (Geen verbetering)</span>
+                      <span>50% (Matig verbeterd)</span>
+                      <span>100% (Maximaal verbeterd)</span>
+                    </div>
                   </div>
                 </div>
 
@@ -1706,8 +1848,8 @@ export default function Werkbladen({ onBack }) {
         {(printSelection === 'all' || printSelection === 'form3') && (
           <div className="page-sheet" style={{ background: '#ffffff', color: '#111827', padding: '24px', borderRadius: '12px', border: '1px solid #cbd5e1', marginBottom: '2rem' }}>
             <div style={{ textAlign: 'left', marginBottom: '1.25rem' }}>
-              <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#059669', marginBottom: '2px' }}>
-                Huiswerkopdrachten: Evaluatie
+              <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#7c3aed', marginBottom: '2px' }}>
+                Huiswerkopdrachten: Huiswerkformulier 3
               </div>
               <h1 style={{ fontSize: '1.6rem', fontWeight: '800', margin: '2px 0 8px 0', color: '#0f172a' }}>
                 Gezonde volwassene en het blije kind
