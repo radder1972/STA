@@ -911,17 +911,19 @@ export default function Werkbladen({ onBack }) {
                   </p>
 
                   <div style={{ paddingLeft: '34px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '6px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '8px' }}>
                       <div style={{
                         display: 'inline-flex',
                         alignItems: 'center',
-                        padding: '3px 12px',
+                        padding: '4px 14px',
                         borderRadius: '8px',
                         background: 'rgba(124, 58, 237, 0.1)',
                         border: '1px solid rgba(124, 58, 237, 0.25)',
                         color: '#7c3aed',
                         fontWeight: '800',
-                        fontSize: '0.92rem'
+                        fontSize: '0.92rem',
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0
                       }}>
                         {item.verbeteringVorige}% verbetering
                       </div>
@@ -976,17 +978,19 @@ export default function Werkbladen({ onBack }) {
                   </p>
 
                   <div style={{ paddingLeft: '34px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '6px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '8px' }}>
                       <div style={{
                         display: 'inline-flex',
                         alignItems: 'center',
-                        padding: '3px 12px',
+                        padding: '4px 14px',
                         borderRadius: '8px',
                         background: 'rgba(124, 58, 237, 0.1)',
                         border: '1px solid rgba(124, 58, 237, 0.25)',
                         color: '#7c3aed',
                         fontWeight: '800',
-                        fontSize: '0.92rem'
+                        fontSize: '0.92rem',
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0
                       }}>
                         {item.verbeteringBegin}% verbetering
                       </div>
@@ -1138,20 +1142,22 @@ export default function Werkbladen({ onBack }) {
                 </div>
 
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                    <label style={{ fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.35' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                    <label style={{ fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.35', flex: '1 1 200px', margin: 0 }}>
                       1b. Positieve verandering t.o.v. begin van de therapie:
                     </label>
                     <div style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      padding: '3px 12px',
+                      padding: '4px 14px',
                       borderRadius: '8px',
                       background: 'rgba(124, 58, 237, 0.1)',
                       border: '1px solid rgba(124, 58, 237, 0.25)',
                       color: '#7c3aed',
                       fontWeight: '800',
-                      fontSize: '0.92rem'
+                      fontSize: '0.92rem',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0
                     }}>
                       {gvVerbetering}% verbetering
                     </div>
@@ -1253,20 +1259,22 @@ export default function Werkbladen({ onBack }) {
                 </div>
 
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                    <label style={{ fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.35' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                    <label style={{ fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.35', flex: '1 1 200px', margin: 0 }}>
                       2b. Positieve verandering t.o.v. begin van de therapie:
                     </label>
                     <div style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      padding: '3px 12px',
+                      padding: '4px 14px',
                       borderRadius: '8px',
                       background: 'rgba(124, 58, 237, 0.1)',
                       border: '1px solid rgba(124, 58, 237, 0.25)',
                       color: '#7c3aed',
                       fontWeight: '800',
-                      fontSize: '0.92rem'
+                      fontSize: '0.92rem',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0
                     }}>
                       {bkVerbetering}% verbetering
                     </div>
@@ -1368,20 +1376,22 @@ export default function Werkbladen({ onBack }) {
                 </div>
 
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                    <label style={{ fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.35' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                    <label style={{ fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.35', flex: '1 1 200px', margin: 0 }}>
                       3b. Positieve verandering t.o.v. begin van de therapie:
                     </label>
                     <div style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      padding: '3px 12px',
+                      padding: '4px 14px',
                       borderRadius: '8px',
                       background: 'rgba(124, 58, 237, 0.1)',
                       border: '1px solid rgba(124, 58, 237, 0.25)',
                       color: '#7c3aed',
                       fontWeight: '800',
-                      fontSize: '0.92rem'
+                      fontSize: '0.92rem',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0
                     }}>
                       {kkVerbetering}% verbetering
                     </div>
