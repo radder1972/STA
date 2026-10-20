@@ -609,11 +609,15 @@ export default function Werkbladen({ onBack }) {
               Datum van de sessie:
             </label>
             <input
+              className="screen-only-input"
               type="date"
               value={datum}
               onChange={(e) => setDatum(e.target.value)}
               style={{ width: '220px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', height: '44px', boxSizing: 'border-box' }}
             />
+            <div className="print-only-inline" style={{ minWidth: '180px', padding: '8px 12px', border: '1px solid #cbd5e1', borderRadius: '8px', background: '#fff', fontSize: '0.95rem', fontWeight: '600' }}>
+              {datum || ''}
+            </div>
           </div>
 
           {/* Vraag 1: Korte samenvatting */}
@@ -630,7 +634,7 @@ export default function Werkbladen({ onBack }) {
               style={{ width: '100%', height: '115px', minHeight: '115px', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical', boxSizing: 'border-box' }}
             />
             <div className="print-only-block" style={{ height: '115px', minHeight: '115px', padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', boxSizing: 'border-box' }}>
-              {samenvatting || <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>Geen samenvatting ingevuld.</span>}
+              {samenvatting || ''}
             </div>
           </div>
 
@@ -648,7 +652,7 @@ export default function Werkbladen({ onBack }) {
               style={{ width: '100%', height: '115px', minHeight: '115px', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical', boxSizing: 'border-box' }}
             />
             <div className="print-only-block" style={{ height: '115px', minHeight: '115px', padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', boxSizing: 'border-box' }}>
-              {vasthouden || <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>Niet ingevuld.</span>}
+              {vasthouden || ''}
             </div>
           </div>
 
@@ -666,7 +670,7 @@ export default function Werkbladen({ onBack }) {
               style={{ width: '100%', height: '115px', minHeight: '115px', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical', boxSizing: 'border-box' }}
             />
             <div className="print-only-block" style={{ height: '115px', minHeight: '115px', padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', boxSizing: 'border-box' }}>
-              {huiswerk || <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>Geen huiswerkopdrachten ingevuld.</span>}
+              {huiswerk || ''}
             </div>
           </div>
 
@@ -1812,7 +1816,7 @@ export default function Werkbladen({ onBack }) {
           }
           @page {
             size: A4 portrait;
-            margin: 18mm 18mm 18mm 18mm;
+            margin: 0mm;
           }
           html, body {
             background: #ffffff !important;
@@ -1823,10 +1827,10 @@ export default function Werkbladen({ onBack }) {
             print-color-adjust: exact !important;
           }
           .view-container {
-            max-width: 100% !important;
             width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
+            max-width: 210mm !important;
+            margin: 0 auto !important;
+            padding: 28mm 22mm 20mm 22mm !important;
             box-sizing: border-box !important;
           }
           .glass-panel {
