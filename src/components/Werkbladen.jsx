@@ -724,7 +724,7 @@ export default function Werkbladen({ onBack }) {
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      boxShadow: isSelected ? '0 2px 6px rgba(124, 58, 237, 0.35)' : 'none',
+                      boxShadow: 'none',
                       transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                       flexShrink: 0
                     }}>
@@ -1908,6 +1908,10 @@ export default function Werkbladen({ onBack }) {
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
+          }
+          .form1-checkbox-item span {
+            box-shadow: none !important;
+            filter: none !important;
           }
           /* Formulier 2: Compacte styling gegarandeerd passend op 1 A4 */
           .form2-container {
