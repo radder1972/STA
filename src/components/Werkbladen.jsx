@@ -574,10 +574,10 @@ export default function Werkbladen({ onBack }) {
       {/* TAB 1: FORMULIER 1 - EEN SAMENVATTING SCHRIJVEN (PAGINA 19)              */}
       {/* ========================================================================= */}
       {activeTab === 'form1' && (
-        <div className="glass-panel" style={{ padding: '2.5rem', borderRadius: '24px', marginBottom: '2.5rem' }}>
+        <div className="glass-panel form1-container" style={{ padding: '2.5rem', borderRadius: '24px', marginBottom: '2.5rem' }}>
           
           {/* Header van Formulier 1 */}
-          <div style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
+          <div className="form1-header" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
             <div style={{ fontSize: '0.92rem', fontWeight: '700', color: '#7c3aed', marginBottom: '4px' }}>
               Huiswerkformulier 1
             </div>
@@ -587,14 +587,14 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Waarom dit helpt - licht paars */}
-          <div style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '1.25rem 1.5rem', borderRadius: '16px', borderLeft: '4px solid #7c3aed', marginBottom: '2rem' }}>
+          <div className="form1-waarom" style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '1.25rem 1.5rem', borderRadius: '16px', borderLeft: '4px solid #7c3aed', marginBottom: '2rem' }}>
             <p style={{ margin: 0, fontSize: '0.98rem', lineHeight: '1.6', color: 'var(--text-main)' }}>
               <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Schrijf in je eigen woorden een korte samenvatting van de laatste therapiesessie. Als je een sessie in eigen woorden opschrijft, blijft namelijk beter in je hoofd zitten wat belangrijk was. Het helpt je om de belangrijkste onderwerpen eruit te lichten en uit te leggen wat je ervan geleerd hebt.
             </p>
           </div>
 
           {/* Datum van de sessie */}
-          <div style={{ 
+          <div className="form1-datum" style={{ 
             marginBottom: '2rem', 
             background: 'var(--bg-color)', 
             padding: '1.25rem 1.5rem', 
@@ -617,7 +617,7 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Vraag 1: Korte samenvatting */}
-          <div style={{ marginBottom: '1.8rem' }}>
+          <div className="form1-vraag" style={{ marginBottom: '1.8rem' }}>
             <label style={{ display: 'block', fontSize: '1.05rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)' }}>
               Korte samenvatting van de sessie {datum ? `(${datum})` : ''}:
             </label>
@@ -635,7 +635,7 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Vraag 2: Wat ik hiervan vast wil houden */}
-          <div style={{ marginBottom: '1.8rem' }}>
+          <div className="form1-vraag" style={{ marginBottom: '1.8rem' }}>
             <label style={{ display: 'block', fontSize: '1.05rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)' }}>
               Wat ik hiervan vast wil houden is:
             </label>
@@ -653,7 +653,7 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Vraag 3: Wat is mijn huiswerk */}
-          <div style={{ marginBottom: '1.8rem' }}>
+          <div className="form1-vraag" style={{ marginBottom: '1.8rem' }}>
             <label style={{ display: 'block', fontSize: '1.05rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)' }}>
               Wat is mijn huiswerk:
             </label>
@@ -670,9 +670,9 @@ export default function Werkbladen({ onBack }) {
             </div>
           </div>
 
-          {/* Gebruikte formulieren voor deze sessie (netjes onder elkaar en even lang) */}
-          <div style={{ marginBottom: '2.5rem', paddingTop: '0.5rem' }}>
-            <span style={{ display: 'block', fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '10px' }}>
+          {/* Gebruikte formulieren voor deze sessie (strakke checklist zonder storende gekleurde box onder tekst/vinkje) */}
+          <div className="form1-formulieren" style={{ marginBottom: '2.5rem', paddingTop: '0.5rem' }}>
+            <span className="form1-formulieren-title" style={{ display: 'block', fontSize: '0.92rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '10px' }}>
               Gebruikte formulieren voor de afgelopen sessie:
             </span>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxWidth: '440px' }}>
@@ -683,27 +683,32 @@ export default function Werkbladen({ onBack }) {
               ].map(f => {
                 const isSelected = formulierenGebruikt.includes(f.label);
                 return (
-                  <button
+                  <div
                     key={f.id}
-                    type="button"
                     onClick={() => handleToggleFormulier(f.label)}
+                    className="form1-checkbox-item"
+                    role="checkbox"
+                    aria-checked={isSelected}
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === ' ' || e.key === 'Enter') {
+                        e.preventDefault();
+                        handleToggleFormulier(f.label);
+                      }
+                    }}
                     style={{
                       width: '100%',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '12px',
-                      padding: '10px 16px',
-                      borderRadius: '9999px',
-                      background: isSelected ? 'rgba(124, 58, 237, 0.08)' : 'var(--bg-color)',
-                      border: isSelected ? '1.5px solid #7c3aed' : '1px solid var(--border-color)',
-                      color: isSelected ? '#6d28d9' : 'var(--text-muted)',
-                      fontSize: '0.92rem',
-                      fontWeight: isSelected ? '700' : '500',
+                      padding: '6px 4px',
+                      background: 'transparent',
+                      border: 'none',
                       cursor: 'pointer',
-                      transition: 'all 0.2s ease',
+                      transition: 'all 0.15s ease',
                       boxSizing: 'border-box',
                       textAlign: 'left',
-                      boxShadow: isSelected ? '0 2px 8px rgba(124, 58, 237, 0.12)' : 'none'
+                      userSelect: 'none'
                     }}
                   >
                     <span style={{
@@ -711,7 +716,7 @@ export default function Werkbladen({ onBack }) {
                       height: '20px',
                       borderRadius: '6px',
                       border: isSelected ? '1.5px solid #7c3aed' : '1.5px solid var(--border-color, #cbd5e1)',
-                      background: isSelected ? 'linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)' : 'var(--card-bg, #ffffff)',
+                      background: isSelected ? 'linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)' : '#ffffff',
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -727,8 +732,17 @@ export default function Werkbladen({ onBack }) {
                         />
                       )}
                     </span>
-                    <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{f.label}</span>
-                  </button>
+                    <span style={{ 
+                      fontSize: '0.92rem', 
+                      color: isSelected ? '#7c3aed' : 'var(--text-main)', 
+                      fontWeight: isSelected ? '700' : '500',
+                      whiteSpace: 'nowrap', 
+                      overflow: 'hidden', 
+                      textOverflow: 'ellipsis' 
+                    }}>
+                      {f.label}
+                    </span>
+                  </div>
                 );
               })}
             </div>
@@ -776,6 +790,7 @@ export default function Werkbladen({ onBack }) {
             {modiItems.map((item, index) => (
               <div 
                 key={item.id} 
+                className="form2-modus-card"
                 style={{ 
                   background: 'var(--bg-color)', 
                   border: '1px solid var(--border-color)', 
@@ -1797,7 +1812,7 @@ export default function Werkbladen({ onBack }) {
           }
           @page {
             size: A4 portrait;
-            margin: 22mm 22mm 22mm 22mm;
+            margin: 18mm 18mm 18mm 18mm;
           }
           html, body {
             background: #ffffff !important;
@@ -1808,10 +1823,10 @@ export default function Werkbladen({ onBack }) {
             print-color-adjust: exact !important;
           }
           .view-container {
-            max-width: 170mm !important;
+            max-width: 100% !important;
             width: 100% !important;
-            margin: 0 auto !important;
-            padding: 8mm 12mm !important;
+            margin: 0 !important;
+            padding: 0 !important;
             box-sizing: border-box !important;
           }
           .glass-panel {
@@ -1819,7 +1834,7 @@ export default function Werkbladen({ onBack }) {
             box-shadow: none !important;
             border: none !important;
             padding: 0 !important;
-            margin: 0 auto !important;
+            margin: 0 !important;
             width: 100% !important;
           }
           input, textarea, select {
@@ -1834,6 +1849,68 @@ export default function Werkbladen({ onBack }) {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
           }
+          /* Formulier 1: Compact en gegarandeerd passend op 1 A4 */
+          .form1-container {
+            padding: 0 !important;
+            margin: 0 !important;
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+          }
+          .form1-header {
+            padding-bottom: 6px !important;
+            margin-bottom: 10px !important;
+          }
+          .form1-header h2 {
+            font-size: 1.5rem !important;
+            margin: 0 !important;
+          }
+          .form1-waarom {
+            padding: 8px 12px !important;
+            margin-bottom: 10px !important;
+            font-size: 0.84rem !important;
+            line-height: 1.38 !important;
+          }
+          .form1-datum {
+            padding: 6px 12px !important;
+            margin-bottom: 10px !important;
+            font-size: 0.88rem !important;
+          }
+          .form1-vraag {
+            margin-bottom: 10px !important;
+          }
+          .form1-vraag label {
+            font-size: 0.88rem !important;
+            margin-bottom: 4px !important;
+          }
+          .form1-vraag .print-only-block {
+            height: 85px !important;
+            min-height: 85px !important;
+            padding: 8px 12px !important;
+            font-size: 0.88rem !important;
+            line-height: 1.4 !important;
+          }
+          .form1-formulieren {
+            margin-bottom: 0 !important;
+            padding-top: 2px !important;
+          }
+          .form1-formulieren-title {
+            font-size: 0.86rem !important;
+            margin-bottom: 4px !important;
+          }
+          .form1-checkbox-item {
+            padding: 3px 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+          }
+          /* Formulier 2: Modus cards overzichtelijk en geen split */
+          .form2-modus-card {
+            padding: 10px 14px !important;
+            margin-bottom: 12px !important;
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+          }
+          /* Formulier 3: Compacte styling op 1 A4 */
           .form3-container {
             padding: 0 !important;
             margin: 0 !important;

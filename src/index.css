@@ -486,7 +486,7 @@ p {
 }
 
 @page {
-  margin: 30mm 15mm 15mm 15mm; /* Groot stuk top margin, rest is standaard */
+  margin: 18mm;
   size: A4;
 }
 
