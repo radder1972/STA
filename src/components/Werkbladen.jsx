@@ -627,13 +627,13 @@ export default function Werkbladen({ onBack }) {
             </label>
             <textarea
               className="screen-only-input"
-              rows={4}
+              rows={5}
               placeholder="Welke onderwerpen kwamen aan bod? Welke modi of schema's werden getriggerd en besproken?"
               value={samenvatting}
               onChange={(e) => setSamenvatting(e.target.value)}
-              style={{ width: '100%', height: '115px', minHeight: '115px', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical', boxSizing: 'border-box' }}
+              style={{ width: '100%', height: '140px', minHeight: '140px', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical', boxSizing: 'border-box' }}
             />
-            <div className="print-only-block" style={{ height: '115px', minHeight: '115px', padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', boxSizing: 'border-box' }}>
+            <div className="print-only-block" style={{ height: '148px', minHeight: '148px', padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', boxSizing: 'border-box' }}>
               {samenvatting || ''}
             </div>
           </div>
@@ -645,13 +645,13 @@ export default function Werkbladen({ onBack }) {
             </label>
             <textarea
               className="screen-only-input"
-              rows={4}
+              rows={5}
               placeholder="Het belangrijkste inzicht, de helpende stem van de Gezonde Volwassene, of de troost voor het Kwetsbare Kind..."
               value={vasthouden}
               onChange={(e) => setVasthouden(e.target.value)}
-              style={{ width: '100%', height: '115px', minHeight: '115px', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical', boxSizing: 'border-box' }}
+              style={{ width: '100%', height: '140px', minHeight: '140px', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical', boxSizing: 'border-box' }}
             />
-            <div className="print-only-block" style={{ height: '115px', minHeight: '115px', padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', boxSizing: 'border-box' }}>
+            <div className="print-only-block" style={{ height: '148px', minHeight: '148px', padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', boxSizing: 'border-box' }}>
               {vasthouden || ''}
             </div>
           </div>
@@ -663,13 +663,13 @@ export default function Werkbladen({ onBack }) {
             </label>
             <textarea
               className="screen-only-input"
-              rows={4}
+              rows={5}
               placeholder="Concrete oefeningen voor komende week: bv. gedragsexperiment, flashcard lezen, modusregistratie bijhouden..."
               value={huiswerk}
               onChange={(e) => setHuiswerk(e.target.value)}
-              style={{ width: '100%', height: '115px', minHeight: '115px', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical', boxSizing: 'border-box' }}
+              style={{ width: '100%', height: '140px', minHeight: '140px', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical', boxSizing: 'border-box' }}
             />
-            <div className="print-only-block" style={{ height: '115px', minHeight: '115px', padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', boxSizing: 'border-box' }}>
+            <div className="print-only-block" style={{ height: '148px', minHeight: '148px', padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', boxSizing: 'border-box' }}>
               {huiswerk || ''}
             </div>
           </div>
@@ -1865,44 +1865,46 @@ export default function Werkbladen({ onBack }) {
             margin-bottom: 10px !important;
           }
           .form1-header h2 {
-            font-size: 1.5rem !important;
+            font-size: 1.55rem !important;
             margin: 0 !important;
           }
           .form1-waarom {
-            padding: 8px 12px !important;
+            padding: 8px 14px !important;
             margin-bottom: 10px !important;
-            font-size: 0.84rem !important;
-            line-height: 1.38 !important;
+            font-size: 0.86rem !important;
+            line-height: 1.4 !important;
           }
           .form1-datum {
-            padding: 6px 12px !important;
+            padding: 6px 14px !important;
             margin-bottom: 10px !important;
-            font-size: 0.88rem !important;
+            font-size: 0.9rem !important;
           }
           .form1-vraag {
             margin-bottom: 10px !important;
           }
           .form1-vraag label {
-            font-size: 0.88rem !important;
+            font-size: 0.92rem !important;
             margin-bottom: 4px !important;
           }
           .form1-vraag .print-only-block {
-            height: 85px !important;
-            min-height: 85px !important;
-            padding: 8px 12px !important;
-            font-size: 0.88rem !important;
-            line-height: 1.4 !important;
+            height: 148px !important;
+            min-height: 148px !important;
+            max-height: 148px !important;
+            padding: 10px 14px !important;
+            font-size: 0.95rem !important;
+            line-height: 1.45 !important;
+            box-sizing: border-box !important;
           }
           .form1-formulieren {
             margin-bottom: 0 !important;
-            padding-top: 2px !important;
+            padding-top: 4px !important;
           }
           .form1-formulieren-title {
-            font-size: 0.86rem !important;
-            margin-bottom: 4px !important;
+            font-size: 0.88rem !important;
+            margin-bottom: 6px !important;
           }
           .form1-checkbox-item {
-            padding: 3px 0 !important;
+            padding: 2px 0 !important;
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
