@@ -427,109 +427,110 @@ export default function Werkbladen({ onBack }) {
 
       {/* Tabs Navigation */}
       <div className="no-print" style={{
-        display: 'flex',
-        gap: '8px',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+        gap: '6px',
         padding: '6px',
         background: 'rgba(0,0,0,0.04)',
         borderRadius: '16px',
         marginBottom: '2rem',
-        overflowX: 'auto',
-        maxWidth: '100%'
+        width: '100%',
+        boxSizing: 'border-box'
       }}>
         <button
           onClick={() => setActiveTab('form1')}
           style={{
-            flex: '1 0 auto',
-            padding: '12px 18px',
+            padding: '10px 8px',
             borderRadius: '12px',
             border: 'none',
             background: activeTab === 'form1' ? '#ffffff' : 'transparent',
             color: activeTab === 'form1' ? '#7c3aed' : 'var(--text-muted)',
             fontWeight: activeTab === 'form1' ? '700' : '600',
-            fontSize: '0.95rem',
+            fontSize: '0.92rem',
             boxShadow: activeTab === 'form1' ? '0 4px 12px rgba(0,0,0,0.08)' : 'none',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '8px',
+            gap: '6px',
+            whiteSpace: 'nowrap',
             transition: 'all 0.2s ease'
           }}
         >
-          <FileText size={18} />
-          <span>1. Sessieverslag (p.19)</span>
+          <FileText size={16} />
+          <span>Sessieverslag</span>
         </button>
 
         <button
           onClick={() => setActiveTab('form2')}
           style={{
-            flex: '1 0 auto',
-            padding: '12px 18px',
+            padding: '10px 8px',
             borderRadius: '12px',
             border: 'none',
             background: activeTab === 'form2' ? '#ffffff' : 'transparent',
             color: activeTab === 'form2' ? '#7c3aed' : 'var(--text-muted)',
             fontWeight: activeTab === 'form2' ? '700' : '600',
-            fontSize: '0.95rem',
+            fontSize: '0.92rem',
             boxShadow: activeTab === 'form2' ? '0 4px 12px rgba(0,0,0,0.08)' : 'none',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '8px',
+            gap: '6px',
+            whiteSpace: 'nowrap',
             transition: 'all 0.2s ease'
           }}
         >
-          <Activity size={18} />
-          <span>2. Modusverandering (p.20)</span>
+          <Activity size={16} />
+          <span>Modusverandering</span>
         </button>
 
         <button
           onClick={() => setActiveTab('form3')}
           style={{
-            flex: '1 0 auto',
-            padding: '12px 18px',
+            padding: '10px 8px',
             borderRadius: '12px',
             border: 'none',
             background: activeTab === 'form3' ? '#ffffff' : 'transparent',
             color: activeTab === 'form3' ? '#059669' : 'var(--text-muted)',
             fontWeight: activeTab === 'form3' ? '700' : '600',
-            fontSize: '0.95rem',
+            fontSize: '0.92rem',
             boxShadow: activeTab === 'form3' ? '0 4px 12px rgba(0,0,0,0.08)' : 'none',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '8px',
+            gap: '6px',
+            whiteSpace: 'nowrap',
             transition: 'all 0.2s ease'
           }}
         >
-          <Smile size={18} color="#059669" />
-          <span>3. Gezonde Kanten (p.22)</span>
+          <Smile size={16} color="#059669" />
+          <span>Gezonde kanten</span>
         </button>
 
         <button
           onClick={() => setActiveTab('history')}
           style={{
-            flex: '1 0 auto',
-            padding: '12px 18px',
+            padding: '10px 8px',
             borderRadius: '12px',
             border: 'none',
             background: activeTab === 'history' ? '#ffffff' : 'transparent',
             color: activeTab === 'history' ? '#0284c7' : 'var(--text-muted)',
             fontWeight: activeTab === 'history' ? '700' : '600',
-            fontSize: '0.95rem',
+            fontSize: '0.92rem',
             boxShadow: activeTab === 'history' ? '0 4px 12px rgba(0,0,0,0.08)' : 'none',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '8px',
+            gap: '6px',
+            whiteSpace: 'nowrap',
             transition: 'all 0.2s ease'
           }}
         >
-          <TrendingUp size={18} color="#0284c7" />
-          <span>Voortgangsgrafiek ({savedSessions.length})</span>
+          <TrendingUp size={16} color="#0284c7" />
+          <span>Voortgang</span>
         </button>
       </div>
 
@@ -711,7 +712,7 @@ export default function Werkbladen({ onBack }) {
                 className="btn btn-gradient"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'white' }}
               >
-                Volgende: Modusverandering (Formulier 2) <ChevronRight size={16} />
+                Volgende: Modusverandering <ChevronRight size={16} />
               </button>
             </div>
           </div>
@@ -907,7 +908,7 @@ export default function Werkbladen({ onBack }) {
                 className="btn btn-gradient"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'white' }}
               >
-                Volgende: Gezonde Kanten (Pagina 22) <ChevronRight size={16} />
+                Volgende: Gezonde kanten <ChevronRight size={16} />
               </button>
             </div>
           </div>
@@ -1103,7 +1104,7 @@ export default function Werkbladen({ onBack }) {
               className="btn btn-outline"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
-              <Printer size={16} /> Druk Pagina 22 af (A4)
+              <Printer size={16} /> Druk Gezonde kanten af (A4)
             </button>
             <div style={{ display: 'flex', gap: '10px' }}>
               <button
@@ -1111,7 +1112,7 @@ export default function Werkbladen({ onBack }) {
                 className="btn btn-gradient"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'white' }}
               >
-                <Save size={16} /> Sla deze sessie op &amp; bekijk grafiek
+                <Save size={16} /> Sla sessie op &amp; bekijk voortgang
               </button>
             </div>
           </div>
