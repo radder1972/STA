@@ -216,10 +216,6 @@ export default function Werkbladen({ onBack }) {
     return [];
   });
 
-  // Print settings
-  const [printMode, setPrintMode] = useState('ingevuld'); // 'ingevuld' or 'blanco'
-  const [printSelection, setPrintSelection] = useState('all'); // 'all', 'form1', 'form2', 'form3'
-
   // Persist sessions
   useEffect(() => {
     try {
@@ -360,12 +356,8 @@ export default function Werkbladen({ onBack }) {
     });
   }, [savedSessions]);
 
-  const handleTriggerPrint = (mode = 'ingevuld', selection = 'all') => {
-    setPrintMode(mode);
-    setPrintSelection(selection);
-    setTimeout(() => {
-      window.print();
-    }, 150);
+  const handleTriggerPrint = () => {
+    window.print();
   };
 
   return (
@@ -414,19 +406,12 @@ export default function Werkbladen({ onBack }) {
         {/* Quick Action Buttons Header */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '1.5rem', flexWrap: 'wrap' }}>
           <button 
-            onClick={() => handleTriggerPrint('blanco', 'all')}
+            onClick={handleTriggerPrint}
             className="btn btn-outline"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 18px', fontSize: '0.92rem' }}
-            title="Druk blanco formulieren af om 18x te kopiëren voor cliënten"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 20px', fontSize: '0.92rem' }}
+            title="Druk het actieve formulier direct netjes af op A4"
           >
-            <Printer size={16} /> Blanco Werkbladen Printen (A4)
-          </button>
-          <button 
-            onClick={() => handleTriggerPrint('ingevuld', 'all')}
-            className="btn btn-outline"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 18px', fontSize: '0.92rem' }}
-          >
-            <Printer size={16} /> Ingevulde Formulieren Printen
+            <Printer size={16} /> Dit Formulier Afdrukken (A4)
           </button>
           <button 
             onClick={handleSaveSession}
@@ -629,12 +614,16 @@ export default function Werkbladen({ onBack }) {
               Korte samenvatting van de sessie {datum ? `(${datum})` : ''}:
             </label>
             <textarea
+              className="screen-only-input"
               rows={4}
               placeholder="Welke onderwerpen kwamen aan bod? Welke modi of schema's werden getriggerd en besproken?"
               value={samenvatting}
               onChange={(e) => setSamenvatting(e.target.value)}
               style={{ width: '100%', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical' }}
             />
+            <div className="print-only-block" style={{ padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', minHeight: '60px' }}>
+              {samenvatting || <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>Geen samenvatting ingevuld.</span>}
+            </div>
           </div>
 
           {/* Vraag 2: Wat ik hiervan vast wil houden */}
@@ -643,12 +632,16 @@ export default function Werkbladen({ onBack }) {
               Wat ik hiervan vast wil houden is:
             </label>
             <textarea
+              className="screen-only-input"
               rows={3}
               placeholder="Het belangrijkste inzicht, de helpende stem van de Gezonde Volwassene, of de troost voor het Kwetsbare Kind..."
               value={vasthouden}
               onChange={(e) => setVasthouden(e.target.value)}
               style={{ width: '100%', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical' }}
             />
+            <div className="print-only-block" style={{ padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', minHeight: '60px' }}>
+              {vasthouden || <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>Niet ingevuld.</span>}
+            </div>
           </div>
 
           {/* Vraag 3: Wat is mijn huiswerk */}
@@ -657,12 +650,16 @@ export default function Werkbladen({ onBack }) {
               Wat is mijn huiswerk:
             </label>
             <textarea
+              className="screen-only-input"
               rows={3}
               placeholder="Concrete oefeningen voor komende week: bv. gedragsexperiment, flashcard lezen, modusregistratie bijhouden..."
               value={huiswerk}
               onChange={(e) => setHuiswerk(e.target.value)}
               style={{ width: '100%', padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1rem', lineHeight: '1.6', resize: 'vertical' }}
             />
+            <div className="print-only-block" style={{ padding: '12px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', background: '#fff', minHeight: '60px' }}>
+              {huiswerk || <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>Geen huiswerkopdrachten ingevuld.</span>}
+            </div>
           </div>
 
           {/* Vraag 4: Welke formulieren gebruikt */}
@@ -713,13 +710,13 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Bottom Bar Form 1 */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
             <button
-              onClick={() => handleTriggerPrint('ingevuld', 'form1')}
+              onClick={handleTriggerPrint}
               className="btn btn-outline"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
-              <Printer size={16} /> Druk dit formulier af (A4)
+              <Printer size={16} /> Druk Formulier 1 af (A4)
             </button>
             <div style={{ display: 'flex', gap: '10px' }}>
               <button
@@ -793,6 +790,7 @@ export default function Werkbladen({ onBack }) {
                   {modiItems.length > 1 && (
                     <button
                       onClick={() => handleRemoveModus(item.id)}
+                      className="no-print"
                       style={{ background: 'transparent', border: 'none', color: '#ef4444', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.85rem', fontWeight: '600' }}
                     >
                       <Trash2 size={16} /> Verwijder
@@ -835,6 +833,7 @@ export default function Werkbladen({ onBack }) {
                         Selecteer de modus:
                       </span>
                       <select
+                        className="screen-only-input"
                         value={item.modus}
                         onChange={(e) => handleUpdateModus(item.id, 'modus', e.target.value)}
                         style={{ 
@@ -865,6 +864,9 @@ export default function Werkbladen({ onBack }) {
                           </optgroup>
                         ))}
                       </select>
+                      <div className="print-only-inline" style={{ padding: '8px 14px', border: '1px solid #cbd5e1', borderRadius: '10px', fontWeight: '700', color: '#7c3aed', background: '#faf5ff' }}>
+                        {item.modus}
+                      </div>
                     </div>
 
                     <div>
@@ -1032,7 +1034,7 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Add Modus Button */}
-          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+          <div className="no-print" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
             <button
               onClick={handleAddModus}
               className="btn btn-outline"
@@ -1043,9 +1045,9 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Bottom Bar Form 2 */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
             <button
-              onClick={() => handleTriggerPrint('ingevuld', 'form2')}
+              onClick={handleTriggerPrint}
               className="btn btn-outline"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
@@ -1126,6 +1128,7 @@ export default function Werkbladen({ onBack }) {
                 </div>
                 <button
                   type="button"
+                  className="no-print"
                   style={{ 
                     background: 'rgba(124, 58, 237, 0.1)', 
                     border: '1px solid rgba(124, 58, 237, 0.25)', 
@@ -1226,6 +1229,7 @@ export default function Werkbladen({ onBack }) {
                 </div>
                 <button
                   type="button"
+                  className="no-print"
                   style={{ 
                     background: 'rgba(124, 58, 237, 0.1)', 
                     border: '1px solid rgba(124, 58, 237, 0.25)', 
@@ -1326,6 +1330,7 @@ export default function Werkbladen({ onBack }) {
                 </div>
                 <button
                   type="button"
+                  className="no-print"
                   style={{ 
                     background: 'rgba(124, 58, 237, 0.1)', 
                     border: '1px solid rgba(124, 58, 237, 0.25)', 
@@ -1389,13 +1394,13 @@ export default function Werkbladen({ onBack }) {
           </div>
 
           {/* Bottom Bar Form 3 */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
             <button
-              onClick={() => handleTriggerPrint('ingevuld', 'form3')}
+              onClick={handleTriggerPrint}
               className="btn btn-outline"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
-              <Printer size={16} /> Druk Gezonde kanten af (A4)
+              <Printer size={16} /> Druk Formulier 3 af (A4)
             </button>
             <div style={{ display: 'flex', gap: '10px' }}>
               <button
@@ -1428,7 +1433,7 @@ export default function Werkbladen({ onBack }) {
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+            <div className="no-print" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
               {savedSessions.length === 0 && (
                 <button
                   onClick={handleLoadSampleData}
@@ -1650,261 +1655,64 @@ export default function Werkbladen({ onBack }) {
       )}
 
       {/* ========================================================================= */}
-      {/* PRINT-LAYOUTS: ZOWEL OP HET SCHERM ALS VOOR HET DAADWERKELIJKE AFDRUKKEN  */}
+      {/* PRINT STYLESHEET: SCHOON EN DIRECT AFDRUKKEN VAN HET ACTIEVE WERKBLAD    */}
       {/* ========================================================================= */}
-      <div className={activeTab === 'print' ? 'print-preview-container' : 'only-print'}>
-        <style>{`
-          @media screen {
-            .only-print {
-              display: none !important;
-            }
+      <style>{`
+        @media screen {
+          .print-only-block,
+          .print-only-inline {
+            display: none !important;
           }
-          @media print {
-            .no-print {
-              display: none !important;
-            }
-            .only-print {
-              display: block !important;
-            }
-            body {
-              background: #ffffff !important;
-              color: #000000 !important;
-              margin: 0 !important;
-              padding: 0 !important;
-            }
-            .view-container {
-              max-width: 100% !important;
-              padding: 0 !important;
-              margin: 0 !important;
-            }
-            .page-sheet {
-              width: 100% !important;
-              min-height: 297mm !important;
-              padding: 18mm 20mm !important;
-              box-sizing: border-box !important;
-              page-break-after: always !important;
-              break-after: page !important;
-              background: #ffffff !important;
-              color: #000000 !important;
-              font-family: inherit !important;
-            }
-            .ruled-line {
-              border-bottom: 1px solid #94a3b8 !important;
-              height: 28px !important;
-              width: 100% !important;
-              margin-bottom: 6px !important;
-            }
+        }
+        @media print {
+          .no-print,
+          .screen-only-input {
+            display: none !important;
           }
-        `}</style>
-
-        {/* ===================================================================== */}
-        {/* PRINT PAGE 19: HUISWERKFORMULIER 1 - EEN SAMENVATTING SCHRIJVEN       */}
-        {/* ===================================================================== */}
-        {(printSelection === 'all' || printSelection === 'form1') && (
-          <div className="page-sheet" style={{ background: '#ffffff', color: '#111827', padding: '24px', borderRadius: '12px', border: '1px solid #cbd5e1', marginBottom: '2rem' }}>
-            <div style={{ textAlign: 'left', marginBottom: '1.25rem' }}>
-              <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#7c3aed', marginBottom: '2px' }}>
-                Huiswerkopdrachten: Huiswerkformulier 1
-              </div>
-              <h1 style={{ fontSize: '1.6rem', fontWeight: '800', margin: '2px 0 8px 0', color: '#0f172a' }}>
-                Een samenvatting schrijven
-              </h1>
-            </div>
-
-            <div style={{ fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1.25rem', background: '#faf5ff', borderLeft: '4px solid #7c3aed', padding: '10px 14px', borderRadius: '8px', color: '#334155' }}>
-              <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Schrijf in je eigen woorden een korte samenvatting van de laatste therapiesessie. Als je een sessie in eigen woorden opschrijft, blijft namelijk beter in je hoofd zitten wat belangrijk was. Het helpt je om de belangrijkste onderwerpen eruit te lichten en uit te leggen wat je ervan geleerd hebt.
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.25rem', background: '#f8fafc', padding: '12px 16px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '0.9rem' }}>
-              <div>
-                <span style={{ color: '#64748b' }}>Datum van de sessie:</span><br />
-                <strong style={{ fontSize: '0.95rem' }}>{printMode === 'ingevuld' && datum ? datum : '_____________________'}</strong>
-              </div>
-              <div>
-                <span style={{ color: '#64748b' }}>Sessies tot nu toe gehad:</span><br />
-                <strong style={{ fontSize: '0.95rem' }}>{printMode === 'ingevuld' && sessiesGehad ? sessiesGehad : '_____________________'}</strong>
-              </div>
-              <div>
-                <span style={{ color: '#64748b' }}>Sessies nog maximaal:</span><br />
-                <strong style={{ fontSize: '0.95rem' }}>{printMode === 'ingevuld' && sessiesMax ? sessiesMax : '_____________________'}</strong>
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ minHeight: printMode === 'ingevuld' && samenvatting ? 'auto' : '100px', fontSize: '0.95rem', lineHeight: '1.7', whiteSpace: 'pre-wrap', border: '1px solid #e2e8f0', padding: '10px', borderRadius: '6px' }}>
-                {printMode === 'ingevuld' && samenvatting ? samenvatting : (
-                  <>
-                    <div style={{ borderBottom: '1px dotted #94a3b8', height: '24px' }} />
-                    <div style={{ borderBottom: '1px dotted #94a3b8', height: '24px' }} />
-                    <div style={{ borderBottom: '1px dotted #94a3b8', height: '24px' }} />
-                    <div style={{ borderBottom: '1px dotted #94a3b8', height: '24px' }} />
-                  </>
-                )}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontWeight: '700', fontSize: '0.95rem', marginBottom: '4px' }}>Wat ik hiervan vast wil houden is:</div>
-              <div style={{ minHeight: printMode === 'ingevuld' && vasthouden ? 'auto' : '80px', fontSize: '0.95rem', lineHeight: '1.7', whiteSpace: 'pre-wrap', border: '1px solid #e2e8f0', padding: '10px', borderRadius: '6px' }}>
-                {printMode === 'ingevuld' && vasthouden ? vasthouden : (
-                  <>
-                    <div style={{ borderBottom: '1px dotted #94a3b8', height: '24px' }} />
-                    <div style={{ borderBottom: '1px dotted #94a3b8', height: '24px' }} />
-                    <div style={{ borderBottom: '1px dotted #94a3b8', height: '24px' }} />
-                  </>
-                )}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontWeight: '700', fontSize: '0.95rem', marginBottom: '4px' }}>Wat is mijn huiswerk:</div>
-              <div style={{ minHeight: printMode === 'ingevuld' && huiswerk ? 'auto' : '80px', fontSize: '0.95rem', lineHeight: '1.7', whiteSpace: 'pre-wrap', border: '1px solid #e2e8f0', padding: '10px', borderRadius: '6px' }}>
-                {printMode === 'ingevuld' && huiswerk ? huiswerk : (
-                  <>
-                    <div style={{ borderBottom: '1px dotted #94a3b8', height: '24px' }} />
-                    <div style={{ borderBottom: '1px dotted #94a3b8', height: '24px' }} />
-                    <div style={{ borderBottom: '1px dotted #94a3b8', height: '24px' }} />
-                  </>
-                )}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '1rem', fontSize: '0.9rem' }}>
-              <div style={{ fontWeight: '700', marginBottom: '4px' }}>Geef aan welke huiswerkformulieren je voor de afgelopen sessie hebt gebruikt:</div>
-              <div style={{ fontSize: '0.9rem', color: '#1e293b' }}>
-                {printMode === 'ingevuld' && formulierenGebruikt.length > 0 ? (
-                  formulierenGebruikt.join(', ')
-                ) : (
-                  '_____________________________________________________________________________________'
-                )}
-              </div>
-            </div>
-
-            <div style={{ textAlign: 'right', fontSize: '0.85rem', color: '#64748b', marginTop: '2rem' }}>
-              19
-            </div>
-          </div>
-        )}
-
-        {/* ===================================================================== */}
-        {/* PRINT PAGE 20: HUISWERKFORMULIER 2 - MODUSVERANDERING                 */}
-        {/* ===================================================================== */}
-        {(printSelection === 'all' || printSelection === 'form2') && (
-          <div className="page-sheet" style={{ background: '#ffffff', color: '#111827', padding: '24px', borderRadius: '12px', border: '1px solid #cbd5e1', marginBottom: '2rem' }}>
-            <div style={{ textAlign: 'left', marginBottom: '1.25rem' }}>
-              <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#7c3aed', marginBottom: '2px' }}>
-                Huiswerkopdrachten: Huiswerkformulier 2
-              </div>
-              <h1 style={{ fontSize: '1.6rem', fontWeight: '800', margin: '2px 0 8px 0', color: '#0f172a' }}>
-                Het bijhouden van je modusverandering
-              </h1>
-            </div>
-
-            <div style={{ fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1.5rem', background: '#faf5ff', borderLeft: '4px solid #7c3aed', padding: '10px 14px', borderRadius: '8px', color: '#334155' }}>
-              <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Hierna staan de vragen die je kunnen helpen bij het in kaart brengen van de verandering in de kracht van je modi. Schrijf iedere week per modus op hoe vaak je in de modus zat en wat de verandering is ten opzichte van je vorige beoordelingen.
-            </div>
-
-            {/* Ingevuld or Blanco block */}
-            {(printMode === 'ingevuld' ? modiItems : [1, 2]).map((item, idx) => (
-              <div key={idx} style={{ marginBottom: '2rem', paddingBottom: '1.5rem', borderBottom: '1px dashed #cbd5e1' }}>
-                <div style={{ fontSize: '0.95rem', marginBottom: '8px' }}>
-                  1. Hoe vaak zat je deze week in de modus van (vul hier de modus in): <strong>{printMode === 'ingevuld' ? item.modus : '____________________________________'}</strong>
-                </div>
-                <div style={{ fontSize: '0.95rem', marginBottom: '12px', paddingLeft: '16px' }}>
-                  Aantal keer in de modus: <strong>{printMode === 'ingevuld' && item.aantalKeer ? `${item.aantalKeer} keer` : '__________________'}</strong>
-                </div>
-
-                <div style={{ fontSize: '0.92rem', marginBottom: '6px' }}>
-                  2. Verandering van de mate (frequentie en intensiteit) waarin je in de modus zat; ten opzichte van de vorige beoordeling:
-                </div>
-                <div style={{ fontSize: '0.85rem', color: '#475569', paddingLeft: '16px', marginBottom: '6px' }}>
-                  Welke verbetering heb je waargenomen in vergelijking met de vorige beoordeling (geef in procenten aan hoeveel het is verbeterd. 0% staat voor geen verbetering en 100% staat voor maximaal verbeterd).
-                </div>
-                <div style={{ fontSize: '0.95rem', paddingLeft: '16px', marginBottom: '12px' }}>
-                  % verbetering: <strong>{printMode === 'ingevuld' ? `${item.verbeteringVorige}%` : '__________________ %'}</strong>
-                </div>
-
-                <div style={{ fontSize: '0.92rem', marginBottom: '6px' }}>
-                  3. Verandering van de mate (frequentie en intensiteit) waarin je in de modus zat ten opzichte van het begin van de therapie:
-                </div>
-                <div style={{ fontSize: '0.85rem', color: '#475569', paddingLeft: '16px', marginBottom: '6px' }}>
-                  Welke verbetering heb je waargenomen in vergelijking met de vorige beoordeling (geef in procenten aan hoeveel het is verbeterd. 0% staat voor geen verbetering en 100% staat voor maximaal verbeterd).
-                </div>
-                <div style={{ fontSize: '0.95rem', paddingLeft: '16px' }}>
-                  % verbetering: <strong>{printMode === 'ingevuld' ? `${item.verbeteringBegin}%` : '__________________ %'}</strong>
-                </div>
-              </div>
-            ))}
-
-            <div style={{ textAlign: 'right', fontSize: '0.85rem', color: '#64748b', marginTop: '2rem' }}>
-              20
-            </div>
-          </div>
-        )}
-
-        {/* ===================================================================== */}
-        {/* PRINT PAGE 22: GEZONDE VOLWASSENE EN HET BLIJE KIND                   */}
-        {/* ===================================================================== */}
-        {(printSelection === 'all' || printSelection === 'form3') && (
-          <div className="page-sheet" style={{ background: '#ffffff', color: '#111827', padding: '24px', borderRadius: '12px', border: '1px solid #cbd5e1', marginBottom: '2rem' }}>
-            <div style={{ textAlign: 'left', marginBottom: '1.25rem' }}>
-              <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#7c3aed', marginBottom: '2px' }}>
-                Huiswerkopdrachten: Huiswerkformulier 3
-              </div>
-              <h1 style={{ fontSize: '1.6rem', fontWeight: '800', margin: '2px 0 8px 0', color: '#0f172a' }}>
-                Gezonde volwassene en het blije kind
-              </h1>
-            </div>
-
-            <div style={{ fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1.5rem', background: '#faf5ff', borderLeft: '4px solid #7c3aed', padding: '10px 14px', borderRadius: '8px', color: '#334155' }}>
-              <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Vraag jezelf af hoe vaak je vanuit de Gezonde volwassene en/of het Blije kind hebt gereageerd de afgelopen week. Vraag je ook af in welke mate dit een verandering is ten opzichte van het begin van de therapie.
-            </div>
-
-            {/* Vraag 1 */}
-            <div style={{ marginBottom: '1.8rem' }}>
-              <div style={{ fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '6px' }}>
-                1a. De afgelopen week heb ik <em>met aandacht</em> ongeveer <strong>{printMode === 'ingevuld' && gvKeer ? gvKeer : '_______'}</strong> keer in de modus van Gezonde volwassene gezeten.
-              </div>
-              <div style={{ fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '6px' }}>
-                1b. Dit is een positieve verandering ten opzichte van het begin van de therapie van <strong>{printMode === 'ingevuld' && gvVerbetering ? `${gvVerbetering}%` : '_______%'}</strong>.
-              </div>
-              <div style={{ fontSize: '0.85rem', fontStyle: 'italic', color: '#475569', paddingLeft: '16px' }}>
-                Welke positieve verandering heb je waargenomen in vergelijking met de vorige beoordeling (geef in procenten aan hoeveel het positief is veranderd. 0% staat voor geen positieve verandering en 100% staat voor maximale positieve verandering).
-              </div>
-            </div>
-
-            {/* Vraag 2 */}
-            <div style={{ marginBottom: '1.8rem' }}>
-              <div style={{ fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '6px' }}>
-                2a. De afgelopen week heb ik <em>met aandacht</em> ongeveer <strong>{printMode === 'ingevuld' && bkKeer ? bkKeer : '_______'}</strong> keer in de modus van het Blije kind gezeten.
-              </div>
-              <div style={{ fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '6px' }}>
-                2b. Dit is een positieve verandering ten opzichte van het begin van de therapie van <strong>{printMode === 'ingevuld' && bkVerbetering ? `${bkVerbetering}%` : '_______%'}</strong>.
-              </div>
-              <div style={{ fontSize: '0.85rem', fontStyle: 'italic', color: '#475569', paddingLeft: '16px' }}>
-                Welke positieve verandering heb je waargenomen in vergelijking met de vorige beoordeling (geef in procenten aan hoeveel het positief is veranderd. 0% staat voor geen positieve verandering en 100% staat voor maximale positieve verandering).
-              </div>
-            </div>
-
-            {/* Vraag 3 */}
-            <div style={{ marginBottom: '1.8rem' }}>
-              <div style={{ fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '6px' }}>
-                3a. De afgelopen week heb ik <em>met aandacht</em> ongeveer <strong>{printMode === 'ingevuld' && kkKeer ? kkKeer : '_______'}</strong> keer naar mijn Kwetsbare kind geluisterd, zonder oordeel en rekening houdend met mijn emotionele kernbehoefte.
-              </div>
-              <div style={{ fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '6px' }}>
-                3b. Dit is een positieve verandering ten opzichte van het begin van de therapie van <strong>{printMode === 'ingevuld' && kkVerbetering ? `${kkVerbetering}%` : '_______%'}</strong>.
-              </div>
-              <div style={{ fontSize: '0.85rem', fontStyle: 'italic', color: '#475569', paddingLeft: '16px' }}>
-                Welke positieve verandering heb je waargenomen in vergelijking met de vorige beoordeling (geef in procenten aan hoeveel het positief is veranderd. 0% staat voor geen positieve verandering en 100% staat voor maximale positieve verandering)
-              </div>
-            </div>
-
-            <div style={{ textAlign: 'right', fontSize: '0.85rem', color: '#64748b', marginTop: '3rem' }}>
-              22
-            </div>
-          </div>
-        )}
-      </div>
+          .print-only-block {
+            display: block !important;
+          }
+          .print-only-inline {
+            display: inline-block !important;
+          }
+          @page {
+            size: A4 portrait;
+            margin: 12mm 15mm 15mm 15mm;
+          }
+          html, body {
+            background: #ffffff !important;
+            color: #0f172a !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          .view-container {
+            max-width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+          .glass-panel {
+            background: #ffffff !important;
+            box-shadow: none !important;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+          input, textarea, select {
+            border: 1px solid #cbd5e1 !important;
+            background: #ffffff !important;
+            color: #0f172a !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          input[type="range"] {
+            accent-color: #7c3aed !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+        }
+      `}</style>
 
     </div>
   );
