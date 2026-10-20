@@ -1094,8 +1094,8 @@ export default function Werkbladen({ onBack }) {
                     title="Gezonde volwassene"
                     description={schemaDescriptions['Gezonde volwassene']}
                     src={imgGv}
-                    width="100px"
-                    height="142px"
+                    width="118px"
+                    height="168px"
                     zoomOnClick={true}
                     flipOnClick={false}
                   />
@@ -1211,8 +1211,8 @@ export default function Werkbladen({ onBack }) {
                     title="Blije kind"
                     description={schemaDescriptions['Blije kind']}
                     src={imgBk}
-                    width="100px"
-                    height="142px"
+                    width="118px"
+                    height="168px"
                     zoomOnClick={true}
                     flipOnClick={false}
                   />
@@ -1328,8 +1328,8 @@ export default function Werkbladen({ onBack }) {
                     title="Kwetsbare kind"
                     description={schemaDescriptions['Kwetsbare kind']}
                     src={imgKk}
-                    width="100px"
-                    height="142px"
+                    width="118px"
+                    height="168px"
                     zoomOnClick={true}
                     flipOnClick={false}
                   />
