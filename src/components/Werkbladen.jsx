@@ -19,7 +19,8 @@ import {
   Info,
   ChevronRight,
   ListPlus,
-  BookOpen
+  BookOpen,
+  Eye
 } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -41,6 +42,11 @@ import {
   GezondeKantenIcon, 
   VoortgangIcon 
 } from './Icons';
+import SchemaCard from './SchemaCard';
+import { schemaDescriptions } from '../data/descriptions';
+import imgGv from '../assets/images/modes/gv.png';
+import imgBk from '../assets/images/vst/blije_kind.png';
+import imgKk from '../assets/images/modes/kk.png';
 
 const CATEGORIZED_MODES = {
   'Functionele modi (Gezond)': [
@@ -499,7 +505,7 @@ export default function Werkbladen({ onBack }) {
             borderRadius: '12px',
             border: 'none',
             background: activeTab === 'form3' ? '#ffffff' : 'transparent',
-            color: activeTab === 'form3' ? '#059669' : 'var(--text-muted)',
+            color: activeTab === 'form3' ? '#7c3aed' : 'var(--text-muted)',
             fontWeight: activeTab === 'form3' ? '700' : '600',
             fontSize: '0.92rem',
             boxShadow: activeTab === 'form3' ? '0 4px 12px rgba(0,0,0,0.08)' : 'none',
@@ -512,7 +518,7 @@ export default function Werkbladen({ onBack }) {
             transition: 'all 0.2s ease'
           }}
         >
-          <GezondeKantenIcon size={17} color={activeTab === 'form3' ? '#059669' : 'currentColor'} />
+          <GezondeKantenIcon size={17} color={activeTab === 'form3' ? '#7c3aed' : 'currentColor'} />
           <span>Gezonde kanten</span>
         </button>
 
@@ -925,8 +931,8 @@ export default function Werkbladen({ onBack }) {
           
           {/* Header van Formulier 3 */}
           <div style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
-            <div style={{ fontSize: '0.92rem', fontWeight: '700', color: '#059669', marginBottom: '4px' }}>
-              Huiswerkopdrachten: Evaluatie
+            <div style={{ fontSize: '0.92rem', fontWeight: '700', color: '#7c3aed', marginBottom: '4px' }}>
+              Huiswerkopdrachten: Huiswerkformulier 3
             </div>
             <h2 style={{ fontSize: '1.85rem', fontWeight: '800', color: 'var(--text-main)', margin: '0' }}>
               Gezonde volwassene en het blije kind
@@ -936,105 +942,205 @@ export default function Werkbladen({ onBack }) {
           {/* Waarom dit helpt - licht paars */}
           <div style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '1.25rem 1.5rem', borderRadius: '16px', borderLeft: '4px solid #7c3aed', marginBottom: '2rem' }}>
             <p style={{ margin: 0, fontSize: '0.98rem', lineHeight: '1.6', color: 'var(--text-main)' }}>
-              <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Vraag jezelf af hoe vaak je vanuit de <strong>Gezonde volwassene</strong> en/of het <strong>Blije kind</strong> hebt gereageerd de afgelopen week. Vraag je ook af in welke mate dit een verandering is ten opzichte van het begin van de therapie.
+              <strong style={{ color: '#7c3aed' }}>Waarom dit helpt:</strong> Vraag jezelf af hoe vaak je vanuit de <strong>Gezonde volwassene</strong> en/of het <strong>Blije kind</strong> hebt gereageerd de afgelopen week. Vraag je ook af in welke mate dit een verandering is ten opzichte van het begin van de therapie. Klik op de kaarten om de achterliggende theorie en omschrijving te raadplegen.
             </p>
           </div>
 
           {/* Vraag 1: Gezonde Volwassene */}
-          <div style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '18px', padding: '1.75rem', marginBottom: '1.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem' }}>
-              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(16, 185, 129, 0.15)', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '18px', padding: '1.75rem', marginBottom: '1.75rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.25rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.85rem' }}>
+              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Shield size={20} />
               </div>
-              <h3 style={{ margin: 0, fontSize: '1.25rem', color: 'var(--text-main)' }}>1. Gezonde volwassene</h3>
+              <div>
+                <h3 style={{ margin: 0, fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '800' }}>1. Gezonde volwassene</h3>
+                <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>Functionele modus &amp; innerlijke regisseur</span>
+              </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem', marginBottom: '1.25rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.95rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', lineHeight: '1.4' }}>
-                  1a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
-                </label>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <input
-                    type="number"
-                    min="0"
-                    placeholder="bv. 5"
-                    value={gvKeer}
-                    onChange={(e) => setGvKeer(e.target.value)}
-                    style={{ width: '120px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: '700' }}
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              {/* Kaart Box 1 */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+                <div 
+                  style={{ 
+                    cursor: 'pointer', 
+                    borderRadius: '12px', 
+                    boxShadow: '0 6px 16px rgba(124, 58, 237, 0.18)',
+                    transition: 'transform 0.2s ease'
+                  }}
+                  title="Klik om de kaart Gezonde volwassene te openen en om te draaien"
+                >
+                  <SchemaCard
+                    id="gv"
+                    type="mode"
+                    title="Gezonde volwassene"
+                    description={schemaDescriptions['Gezonde volwassene']}
+                    src={imgGv}
+                    width="120px"
+                    height="170px"
+                    zoomOnClick={true}
+                    flipOnClick={false}
                   />
-                  <span style={{ fontSize: '0.95rem', color: 'var(--text-main)' }}>keer in de modus van <strong>Gezonde volwassene</strong> gezeten.</span>
                 </div>
+                <button
+                  type="button"
+                  style={{ 
+                    background: 'rgba(124, 58, 237, 0.1)', 
+                    border: '1px solid rgba(124, 58, 237, 0.25)', 
+                    color: '#7c3aed', 
+                    fontSize: '0.78rem', 
+                    fontWeight: '700', 
+                    padding: '4px 10px', 
+                    borderRadius: '9999px',
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    gap: '4px', 
+                    cursor: 'pointer' 
+                  }}
+                  title="Klik om theorie te lezen"
+                >
+                  <Eye size={12} /> Klik voor theorie
+                </button>
               </div>
 
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                  <label style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.4' }}>
-                    1b. Positieve verandering t.o.v. begin van de therapie:
+              {/* Vragen Box 1 */}
+              <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.95rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', lineHeight: '1.4' }}>
+                    1a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
                   </label>
-                  <span style={{ fontSize: '1.15rem', fontWeight: '800', color: '#10b981' }}>{gvVerbetering}%</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <input
+                      type="number"
+                      min="0"
+                      placeholder="bv. 5"
+                      value={gvKeer}
+                      onChange={(e) => setGvKeer(e.target.value)}
+                      style={{ width: '120px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: '700' }}
+                    />
+                    <span style={{ fontSize: '0.95rem', color: 'var(--text-main)' }}>keer in de modus van <strong>Gezonde volwassene</strong> gezeten.</span>
+                  </div>
                 </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  step="5"
-                  value={gvVerbetering}
-                  onChange={(e) => setGvVerbetering(Number(e.target.value))}
-                  style={{ width: '100%', accentColor: '#10b981', cursor: 'pointer' }}
-                />
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                  (0% = geen positieve verandering, 100% = maximale positieve verandering)
+
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <label style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.4' }}>
+                      1b. Positieve verandering t.o.v. begin van de therapie:
+                    </label>
+                    <span style={{ fontSize: '1.15rem', fontWeight: '800', color: '#7c3aed' }}>{gvVerbetering}%</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="5"
+                    value={gvVerbetering}
+                    onChange={(e) => setGvVerbetering(Number(e.target.value))}
+                    style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer' }}
+                  />
+                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+                    (0% = geen positieve verandering, 100% = maximale positieve verandering)
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Vraag 2: Het Blije Kind */}
-          <div style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '18px', padding: '1.75rem', marginBottom: '1.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem' }}>
-              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(245, 158, 11, 0.15)', color: '#f59e0b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '18px', padding: '1.75rem', marginBottom: '1.75rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.25rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.85rem' }}>
+              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Smile size={20} />
               </div>
-              <h3 style={{ margin: 0, fontSize: '1.25rem', color: 'var(--text-main)' }}>2. Het Blije kind</h3>
+              <div>
+                <h3 style={{ margin: 0, fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '800' }}>2. Het Blije kind</h3>
+                <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>Functionele kindmodus &amp; spontaniteit, vreugde en spel</span>
+              </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem', marginBottom: '1.25rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.95rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', lineHeight: '1.4' }}>
-                  2a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
-                </label>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <input
-                    type="number"
-                    min="0"
-                    placeholder="bv. 3"
-                    value={bkKeer}
-                    onChange={(e) => setBkKeer(e.target.value)}
-                    style={{ width: '120px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: '700' }}
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              {/* Kaart Box 2 */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+                <div 
+                  style={{ 
+                    cursor: 'pointer', 
+                    borderRadius: '12px', 
+                    boxShadow: '0 6px 16px rgba(124, 58, 237, 0.18)',
+                    transition: 'transform 0.2s ease'
+                  }}
+                  title="Klik om de kaart Blije kind te openen en om te draaien"
+                >
+                  <SchemaCard
+                    id="vst_m_bk"
+                    type="mode"
+                    title="Blije kind"
+                    description={schemaDescriptions['Blije kind']}
+                    src={imgBk}
+                    width="120px"
+                    height="170px"
+                    zoomOnClick={true}
+                    flipOnClick={false}
                   />
-                  <span style={{ fontSize: '0.95rem', color: 'var(--text-main)' }}>keer in de modus van <strong>het Blije kind</strong> gezeten.</span>
                 </div>
+                <button
+                  type="button"
+                  style={{ 
+                    background: 'rgba(124, 58, 237, 0.1)', 
+                    border: '1px solid rgba(124, 58, 237, 0.25)', 
+                    color: '#7c3aed', 
+                    fontSize: '0.78rem', 
+                    fontWeight: '700', 
+                    padding: '4px 10px', 
+                    borderRadius: '9999px',
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    gap: '4px', 
+                    cursor: 'pointer' 
+                  }}
+                  title="Klik om theorie te lezen"
+                >
+                  <Eye size={12} /> Klik voor theorie
+                </button>
               </div>
 
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                  <label style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.4' }}>
-                    2b. Positieve verandering t.o.v. begin van de therapie:
+              {/* Vragen Box 2 */}
+              <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.95rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', lineHeight: '1.4' }}>
+                    2a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
                   </label>
-                  <span style={{ fontSize: '1.15rem', fontWeight: '800', color: '#f59e0b' }}>{bkVerbetering}%</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <input
+                      type="number"
+                      min="0"
+                      placeholder="bv. 3"
+                      value={bkKeer}
+                      onChange={(e) => setBkKeer(e.target.value)}
+                      style={{ width: '120px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: '700' }}
+                    />
+                    <span style={{ fontSize: '0.95rem', color: 'var(--text-main)' }}>keer in de modus van <strong>het Blije kind</strong> gezeten.</span>
+                  </div>
                 </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  step="5"
-                  value={bkVerbetering}
-                  onChange={(e) => setBkVerbetering(Number(e.target.value))}
-                  style={{ width: '100%', accentColor: '#f59e0b', cursor: 'pointer' }}
-                />
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                  (0% = geen positieve verandering, 100% = maximale positieve verandering)
+
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <label style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.4' }}>
+                      2b. Positieve verandering t.o.v. begin van de therapie:
+                    </label>
+                    <span style={{ fontSize: '1.15rem', fontWeight: '800', color: '#7c3aed' }}>{bkVerbetering}%</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="5"
+                    value={bkVerbetering}
+                    onChange={(e) => setBkVerbetering(Number(e.target.value))}
+                    style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer' }}
+                  />
+                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+                    (0% = geen positieve verandering, 100% = maximale positieve verandering)
+                  </div>
                 </div>
               </div>
             </div>
@@ -1042,49 +1148,99 @@ export default function Werkbladen({ onBack }) {
 
           {/* Vraag 3: Kwetsbare Kind */}
           <div style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '18px', padding: '1.75rem', marginBottom: '2.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem' }}>
-              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(14, 165, 233, 0.15)', color: '#0ea5e9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.25rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.85rem' }}>
+              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Heart size={20} />
               </div>
-              <h3 style={{ margin: 0, fontSize: '1.25rem', color: 'var(--text-main)' }}>3. Zorg voor het Kwetsbare kind</h3>
+              <div>
+                <h3 style={{ margin: 0, fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: '800' }}>3. Zorg voor het Kwetsbare kind</h3>
+                <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>Aandacht, emotionele veiligheid en troost voor de basisbehoeften</span>
+              </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem', marginBottom: '1.25rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.95rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', lineHeight: '1.4' }}>
-                  3a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
-                </label>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <input
-                    type="number"
-                    min="0"
-                    placeholder="bv. 4"
-                    value={kkKeer}
-                    onChange={(e) => setKkKeer(e.target.value)}
-                    style={{ width: '120px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: '700' }}
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              {/* Kaart Box 3 */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+                <div 
+                  style={{ 
+                    cursor: 'pointer', 
+                    borderRadius: '12px', 
+                    boxShadow: '0 6px 16px rgba(124, 58, 237, 0.18)',
+                    transition: 'transform 0.2s ease'
+                  }}
+                  title="Klik om de kaart Kwetsbare kind te openen en om te draaien"
+                >
+                  <SchemaCard
+                    id="kk"
+                    type="mode"
+                    title="Kwetsbare kind"
+                    description={schemaDescriptions['Kwetsbare kind']}
+                    src={imgKk}
+                    width="120px"
+                    height="170px"
+                    zoomOnClick={true}
+                    flipOnClick={false}
                   />
-                  <span style={{ fontSize: '0.92rem', color: 'var(--text-main)' }}>keer naar mijn <strong>Kwetsbare kind</strong> geluisterd, zonder oordeel en rekening houdend met mijn emotionele kernbehoefte.</span>
                 </div>
+                <button
+                  type="button"
+                  style={{ 
+                    background: 'rgba(124, 58, 237, 0.1)', 
+                    border: '1px solid rgba(124, 58, 237, 0.25)', 
+                    color: '#7c3aed', 
+                    fontSize: '0.78rem', 
+                    fontWeight: '700', 
+                    padding: '4px 10px', 
+                    borderRadius: '9999px',
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    gap: '4px', 
+                    cursor: 'pointer' 
+                  }}
+                  title="Klik om theorie te lezen"
+                >
+                  <Eye size={12} /> Klik voor theorie
+                </button>
               </div>
 
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                  <label style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.4' }}>
-                    3b. Positieve verandering t.o.v. begin van de therapie:
+              {/* Vragen Box 3 */}
+              <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.95rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)', lineHeight: '1.4' }}>
+                    3a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
                   </label>
-                  <span style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0ea5e9' }}>{kkVerbetering}%</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <input
+                      type="number"
+                      min="0"
+                      placeholder="bv. 4"
+                      value={kkKeer}
+                      onChange={(e) => setKkKeer(e.target.value)}
+                      style={{ width: '120px', padding: '10px 14px', borderRadius: '10px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.1rem', fontWeight: '700' }}
+                    />
+                    <span style={{ fontSize: '0.92rem', color: 'var(--text-main)' }}>keer naar mijn <strong>Kwetsbare kind</strong> geluisterd, zonder oordeel en rekening houdend met mijn emotionele kernbehoefte.</span>
+                  </div>
                 </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  step="5"
-                  value={kkVerbetering}
-                  onChange={(e) => setKkVerbetering(Number(e.target.value))}
-                  style={{ width: '100%', accentColor: '#0ea5e9', cursor: 'pointer' }}
-                />
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                  (0% = geen positieve verandering, 100% = maximale positieve verandering)
+
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <label style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)', lineHeight: '1.4' }}>
+                      3b. Positieve verandering t.o.v. begin van de therapie:
+                    </label>
+                    <span style={{ fontSize: '1.15rem', fontWeight: '800', color: '#7c3aed' }}>{kkVerbetering}%</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="5"
+                    value={kkVerbetering}
+                    onChange={(e) => setKkVerbetering(Number(e.target.value))}
+                    style={{ width: '100%', accentColor: '#7c3aed', cursor: 'pointer' }}
+                  />
+                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+                    (0% = geen positieve verandering, 100% = maximale positieve verandering)
+                  </div>
                 </div>
               </div>
             </div>
