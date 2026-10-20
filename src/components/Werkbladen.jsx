@@ -399,7 +399,7 @@ export default function Werkbladen({ onBack }) {
   };
 
   return (
-    <div className="view-container" style={{ minHeight: '100vh', padding: '1.5rem 1rem', maxWidth: '1100px', margin: '0 auto' }}>
+    <div className="view-container" style={{ minHeight: '100vh', padding: '2rem 1.5rem', maxWidth: '1200px', margin: '0 auto' }}>
       
       {/* Platform Badge */}
       <div className="no-print" style={{ display: 'flex', justifyContent: 'center' }}>
