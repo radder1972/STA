@@ -1006,8 +1006,8 @@ export default function Werkbladen({ onBack }) {
                     title="Gezonde volwassene"
                     description={schemaDescriptions['Gezonde volwassene']}
                     src={imgGv}
-                    width="104px"
-                    height="146px"
+                    width="126px"
+                    height="178px"
                     zoomOnClick={true}
                     flipOnClick={false}
                   />
@@ -1146,8 +1146,8 @@ export default function Werkbladen({ onBack }) {
                     title="Blije kind"
                     description={schemaDescriptions['Blije kind']}
                     src={imgBk}
-                    width="104px"
-                    height="146px"
+                    width="126px"
+                    height="178px"
                     zoomOnClick={true}
                     flipOnClick={false}
                   />
@@ -1286,8 +1286,8 @@ export default function Werkbladen({ onBack }) {
                     title="Kwetsbare kind"
                     description={schemaDescriptions['Kwetsbare kind']}
                     src={imgKk}
-                    width="104px"
-                    height="146px"
+                    width="126px"
+                    height="178px"
                     zoomOnClick={true}
                     flipOnClick={false}
                   />
@@ -1692,8 +1692,8 @@ export default function Werkbladen({ onBack }) {
             border: 1.5px solid #cbd5e1 !important;
             background: #ffffff !important;
             border-radius: 14px !important;
-            padding: 11px 16px !important;
-            margin-bottom: 10px !important;
+            padding: 10px 16px !important;
+            margin-bottom: 8px !important;
             page-break-inside: avoid !important;
             break-inside: avoid !important;
             box-shadow: none !important;
@@ -1724,8 +1724,8 @@ export default function Werkbladen({ onBack }) {
             align-items: center !important;
           }
           .form3-box .card-scene {
-            width: 104px !important;
-            height: 146px !important;
+            width: 126px !important;
+            height: 178px !important;
             flex-shrink: 0 !important;
           }
           .form3-print-input {
