@@ -263,6 +263,12 @@ p {
   -webkit-text-fill-color: transparent;
 }
 
+.text-gradient-werkbladen {
+  background: linear-gradient(to right, #7c3aed, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .text-gradient-hub {
   background: linear-gradient(to right, #475569 0%, #0284c7 50%, #059669 100%);
   -webkit-background-clip: text;
@@ -795,7 +801,7 @@ p {
   }
   
   /* Fix text-gradient rendering glitches in PDF */
-  .text-gradient, .card h2 {
+  .text-gradient, .text-gradient-tafel, .text-gradient-werkbladen, .card h2 {
     background: none !important;
     -webkit-background-clip: initial !important;
     -webkit-text-fill-color: initial !important;

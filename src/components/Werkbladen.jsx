@@ -15,7 +15,8 @@ import {
   SessieverslagIcon, 
   ModusveranderingIcon, 
   GezondeKantenIcon, 
-  CheckIcon 
+  CheckIcon,
+  ThreeSparklesLogo
 } from './Icons';
 import SchemaCard from './SchemaCard';
 import { schemaDescriptions } from '../data/descriptions';
@@ -194,106 +195,132 @@ export default function Werkbladen({ onBack }) {
   return (
     <div className="view-container" style={{ minHeight: '100vh', padding: '0 0 2rem 0', maxWidth: '100%', margin: '0 auto' }}>
       
-      {/* Platform Badge */}
-      <div className="no-print" style={{ display: 'flex', justifyContent: 'center' }}>
-        <PlatformBadge theme="werkbladen" marginBottom="1.5rem" href="index.html" />
-      </div>
-
-      {/* Screen Header */}
-      <div className="no-print" style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '9999px', background: 'rgba(124, 58, 237, 0.1)', color: '#7c3aed', fontWeight: '700', fontSize: '0.85rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          <WerkbladenIcon size={18} useWerkbladenGradient={true} /> Schematherapie Behandel- &amp; Huiswerkmodule
-        </div>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: '800', margin: '0 0 0.8rem 0', color: 'var(--text-main)', lineHeight: '1.2' }}>
-          Werkbladen
-        </h1>
-        <p style={{ maxWidth: '780px', margin: '0 auto', color: 'var(--text-muted)', fontSize: '1.05rem', lineHeight: '1.6' }}>
-          Registratie- en evaluatieformulieren. Schrijf sessiesamenvattingen, breng wekelijks je modusverandering in kaart en stimuleer de Gezonde Volwassene en het Blije Kind.
-        </p>
-      </div>
-
-      {/* Submenu onder de kop: in lijn met de rest van de suite */}
-      <div className="tabs-container no-print" style={{
+      {/* Top Navbar in Tafel-stijl */}
+      <div className="no-print" style={{
         display: 'flex',
-        justifyContent: 'center',
-        marginBottom: '2.5rem',
-        width: '100%'
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%',
+        maxWidth: '950px',
+        margin: '0 auto 2rem auto',
+        position: 'relative'
       }}>
+        {/* Top Platform Return Badge with right-aligned logo */}
+        <PlatformBadge theme="werkbladen" marginBottom="1.5rem" href="index.html" />
+
         <div style={{
           background: 'var(--bg-color)',
           border: '1px solid var(--border-color)',
-          padding: '0.45rem',
-          borderRadius: '9999px',
-          display: 'inline-flex',
-          alignItems: 'center',
+          padding: '0.5rem',
+          display: 'flex',
           justifyContent: 'center',
-          gap: '0.4rem',
           boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)',
-          maxWidth: '100%',
-          overflowX: 'auto'
+          borderRadius: '16px',
+          width: '100%',
+          position: 'relative',
+          zIndex: 1
         }}>
-          {/* Tab 1: Sessieverslag */}
-          <button
-            onClick={() => setActiveTab('form1')}
-            style={activeTab === 'form1' ? activePill : idlePill}
-            onMouseOver={activeTab === 'form1' ? undefined : hoverIn}
-            onMouseOut={activeTab === 'form1' ? undefined : hoverOut}
-          >
-            <SessieverslagIcon size={17} color={activeTab === 'form1' ? '#ffffff' : 'currentColor'} />
-            <span>Sessieverslag</span>
-          </button>
+          {/* Draped 3 Sparkles Logo on Right Side of Navbar */}
+          <div style={{
+            position: 'absolute',
+            right: '16px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+            pointerEvents: 'none',
+            opacity: 0.88
+          }}>
+            <ThreeSparklesLogo size={22} theme="werkbladen" />
+          </div>
 
-          {/* Tab 2: Modusverandering */}
-          <button
-            onClick={() => setActiveTab('form2')}
-            style={activeTab === 'form2' ? activePill : idlePill}
-            onMouseOver={activeTab === 'form2' ? undefined : hoverIn}
-            onMouseOut={activeTab === 'form2' ? undefined : hoverOut}
-          >
-            <ModusveranderingIcon size={17} color={activeTab === 'form2' ? '#ffffff' : 'currentColor'} />
-            <span>Modusverandering</span>
-          </button>
-
-          {/* Tab 3: Gezonde kanten */}
-          <button
-            onClick={() => setActiveTab('form3')}
-            style={activeTab === 'form3' ? activePill : idlePill}
-            onMouseOver={activeTab === 'form3' ? undefined : hoverIn}
-            onMouseOut={activeTab === 'form3' ? undefined : hoverOut}
-          >
-            <GezondeKantenIcon size={17} color={activeTab === 'form3' ? '#ffffff' : 'currentColor'} />
-            <span>Gezonde kanten</span>
-          </button>
-
-          {/* Scheidingslijn */}
-          <div style={{ width: '1px', height: '20px', background: 'var(--border-color)', margin: '0 2px' }} />
-
-          {/* Print actie */}
-          <button
-            onClick={handleTriggerPrint}
+          <div 
+            className="hide-scrollbar"
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              padding: '0.5rem 1rem',
-              borderRadius: '9999px',
-              border: 'none',
-              background: 'transparent',
-              color: 'var(--text-main)',
-              fontWeight: '500',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-              whiteSpace: 'nowrap',
-              fontSize: '0.9rem'
+              display: 'flex',
+              gap: '0.5rem',
+              overflowX: 'visible',
+              maxWidth: '100%',
+              padding: '0.25rem',
+              alignItems: 'center'
             }}
-            onMouseOver={(e) => { e.currentTarget.style.background = 'var(--hover-bg, rgba(0,0,0,0.05))'; }}
-            onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; }}
-            title="Druk het actieve formulier direct netjes af op A4"
           >
-            <Printer size={16} color="currentColor" />
-            <span>Printen</span>
-          </button>
+            {/* Tab 1: Sessieverslag */}
+            <button
+              onClick={() => setActiveTab('form1')}
+              style={activeTab === 'form1' ? activePill : idlePill}
+              onMouseOver={activeTab === 'form1' ? undefined : hoverIn}
+              onMouseOut={activeTab === 'form1' ? undefined : hoverOut}
+            >
+              <SessieverslagIcon size={17} color={activeTab === 'form1' ? '#ffffff' : 'currentColor'} />
+              <span>Sessieverslag</span>
+            </button>
+
+            {/* Tab 2: Modusverandering */}
+            <button
+              onClick={() => setActiveTab('form2')}
+              style={activeTab === 'form2' ? activePill : idlePill}
+              onMouseOver={activeTab === 'form2' ? undefined : hoverIn}
+              onMouseOut={activeTab === 'form2' ? undefined : hoverOut}
+            >
+              <ModusveranderingIcon size={17} color={activeTab === 'form2' ? '#ffffff' : 'currentColor'} />
+              <span>Modusverandering</span>
+            </button>
+
+            {/* Tab 3: Gezonde kanten */}
+            <button
+              onClick={() => setActiveTab('form3')}
+              style={activeTab === 'form3' ? activePill : idlePill}
+              onMouseOver={activeTab === 'form3' ? undefined : hoverIn}
+              onMouseOut={activeTab === 'form3' ? undefined : hoverOut}
+            >
+              <GezondeKantenIcon size={17} color={activeTab === 'form3' ? '#ffffff' : 'currentColor'} />
+              <span>Gezonde kanten</span>
+            </button>
+
+            {/* Scheidingslijn */}
+            <div style={{ width: '1px', height: '20px', background: 'var(--border-color)', margin: '0 2px' }} />
+
+            {/* Print actie */}
+            <button
+              onClick={handleTriggerPrint}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.5rem 1rem',
+                borderRadius: '9999px',
+                border: '1px solid var(--border-color)',
+                background: 'transparent',
+                color: 'var(--text-main)',
+                fontWeight: '500',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                whiteSpace: 'nowrap',
+                fontSize: '0.9rem'
+              }}
+              onMouseOver={(e) => { e.currentTarget.style.background = 'var(--hover-bg, rgba(0,0,0,0.05))'; }}
+              onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; }}
+              title="Druk het actieve formulier direct netjes af op A4"
+            >
+              <Printer size={16} color="currentColor" />
+              <span>Printen</span>
+            </button>
+          </div>
         </div>
+      </div>
+
+      {/* Screen Header in Tafel-stijl */}
+      <div className="no-print" style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', maxWidth: '950px', margin: '0 auto 3rem auto' }}>
+        <h1 className="text-gradient-werkbladen" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', fontWeight: '800', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px' }}>
+          <WerkbladenIcon size={38} useWerkbladenGradient={true} /> Werkbladen
+        </h1>
+        <h2 style={{ color: '#7c3aed', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>
+          Registratie- en evaluatieformulieren
+        </h2>
+        <p style={{ maxWidth: '780px', margin: '0.8rem auto 0 auto', color: 'var(--text-muted)', fontSize: '1.05rem', lineHeight: '1.6' }}>
+          Schrijf sessiesamenvattingen, breng wekelijks je modusverandering in kaart en stimuleer de Gezonde Volwassene en het Blije Kind.
+        </p>
       </div>
 
       {/* ========================================================================= */}
