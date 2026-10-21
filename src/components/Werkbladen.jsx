@@ -1415,29 +1415,41 @@ export default function Werkbladen({ onBack }) {
       {/* PRINT STYLESHEET: SCHOON EN DIRECT AFDRUKKEN VAN HET ACTIEVE WERKBLAD    */}
       {/* ========================================================================= */}
       <style>{`
-        /* Geen dubbel kader achter of om afbeeldingen van kaarten */
+        /* Geen dubbel kader, geen schaduw en geen rare randen rondom de kaarten */
+        .card-scene,
+        .card-flip-container {
+          box-shadow: none !important;
+          border: none !important;
+          outline: none !important;
+          filter: none !important;
+          -webkit-filter: none !important;
+        }
+        .card-face-front,
+        .card-face-back,
+        .playing-card,
+        .schema-img {
+          box-shadow: none !important;
+          border: 1px solid #cbd5e1 !important;
+          border-radius: 8px !important;
+          overflow: hidden !important;
+          background: #ffffff !important;
+        }
         .card-scene img,
         .schema-img img,
         .playing-card img {
           filter: none !important;
           -webkit-filter: none !important;
           box-shadow: none !important;
+          border: none !important;
+          outline: none !important;
+          background: transparent !important;
         }
-        /* Verwijder de binnenste dubbele rand van CardInnerBorder in werkbladen */
-        .card-face-front [class*="hover-border-"] > div,
-        .card-inner-border div {
+        /* Verwijder de hover border en glans effecten op kaarten in werkbladen */
+        [class*="hover-border-"],
+        .card-inner-border,
+        .card-face-front::before,
+        .card-face-back::before {
           display: none !important;
-        }
-        .card-face-front [class*="hover-border-"] {
-          border: 1.5px solid rgba(124, 58, 237, 0.25) !important;
-          box-shadow: none !important;
-        }
-        .card-scene {
-          box-shadow: none !important;
-          filter: none !important;
-        }
-        .playing-card, .schema-img {
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
         }
         @media screen {
           .print-only-block,
@@ -1456,9 +1468,39 @@ export default function Werkbladen({ onBack }) {
           .print-only-inline {
             display: inline-block !important;
           }
-          .playing-card, .schema-img {
+          .card-scene,
+          .card-flip-container {
+            box-shadow: none !important;
+            border: none !important;
+            outline: none !important;
+            filter: none !important;
+            -webkit-filter: none !important;
+          }
+          .card-face-front,
+          .card-face-back,
+          .playing-card,
+          .schema-img {
             box-shadow: none !important;
             border: 1px solid #cbd5e1 !important;
+            border-radius: 8px !important;
+            overflow: hidden !important;
+            background: #ffffff !important;
+          }
+          .card-scene img,
+          .schema-img img,
+          .playing-card img {
+            filter: none !important;
+            -webkit-filter: none !important;
+            box-shadow: none !important;
+            border: none !important;
+            outline: none !important;
+            background: transparent !important;
+          }
+          [class*="hover-border-"],
+          .card-inner-border,
+          .card-face-front::before,
+          .card-face-back::before {
+            display: none !important;
           }
           .card-face-back {
             display: none !important;

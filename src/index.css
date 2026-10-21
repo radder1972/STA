@@ -570,7 +570,7 @@ p {
   }
 
   .playing-card, .schema-img {
-    box-shadow: 2px 4px 8px rgba(0,0,0,0.2) !important;
+    box-shadow: none !important;
     background: white !important;
   }
   
