@@ -978,7 +978,7 @@ export default function Werkbladen({ onBack }) {
 
           {/* Vraag 1: Gezonde Volwassene */}
           <div className="form3-box" style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '16px', padding: '1.25rem 1.5rem', marginBottom: '1.25rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.85rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.6rem' }}>
+            <div className="form3-box-header" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.85rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.6rem' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '9px', background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Shield size={18} />
               </div>
@@ -988,7 +988,7 @@ export default function Werkbladen({ onBack }) {
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div className="form3-box-content" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
               {/* Kaart Box 1 */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
                 <div 
@@ -1041,7 +1041,7 @@ export default function Werkbladen({ onBack }) {
               {/* Vragen Box 1 */}
               <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)', lineHeight: '1.35' }}>
+                  <label style={{ display: 'block', fontSize: '0.96rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)', lineHeight: '1.35' }}>
                     1a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
                   </label>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1053,10 +1053,10 @@ export default function Werkbladen({ onBack }) {
                       onChange={(e) => setGvKeer(e.target.value)}
                       style={{ width: '95px', padding: '7px 12px', borderRadius: '9px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.05rem', fontWeight: '700' }}
                     />
-                    <span className="print-only-inline" style={{ minWidth: '45px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
-                      {gvKeer || '\u00A0\u00A0\u00A0\u00A0'}
+                    <span className="print-only-inline form3-print-input" style={{ minWidth: '56px', height: '32px', border: '1.5px solid #94a3b8', borderRadius: '8px', background: '#ffffff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontWeight: 'bold', fontSize: '1.05rem' }}>
+                      {gvKeer || ''}
                     </span>
-                    <span style={{ fontSize: '0.92rem', color: 'var(--text-main)' }}>keer in de modus van <strong>Gezonde volwassene</strong> gezeten.</span>
+                    <span style={{ fontSize: '0.95rem', color: 'var(--text-main)' }}>keer in de modus van <strong>Gezonde volwassene</strong> gezeten.</span>
                   </div>
                 </div>
 
@@ -1098,13 +1098,13 @@ export default function Werkbladen({ onBack }) {
                   </div>
 
                   {/* Print-only weergave voor 1b */}
-                  <div className="print-only-block" style={{ marginTop: '2px' }}>
-                    <div style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '3px' }}>
+                  <div className="print-only-block" style={{ marginTop: '4px' }}>
+                    <div style={{ fontSize: '0.94rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '5px' }}>
                       1b. Positieve verandering t.o.v. begin van de therapie:
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem' }}>
-                      <span style={{ minWidth: '55px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
-                        {gvVerbetering > 0 ? `${gvVerbetering}%` : '\u00A0\u00A0\u00A0\u00A0\u00A0'}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.9rem' }}>
+                      <span className="form3-print-input" style={{ minWidth: '66px', height: '32px', border: '1.5px solid #94a3b8', borderRadius: '8px', background: '#ffffff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontWeight: 'bold', fontSize: '1.05rem' }}>
+                        {gvVerbetering > 0 ? `${gvVerbetering}%` : ''}
                       </span>
                       <span style={{ color: '#64748b' }}>
                         (0% = geen verandering, 50% = matig, 100% = maximaal)
@@ -1118,7 +1118,7 @@ export default function Werkbladen({ onBack }) {
 
           {/* Vraag 2: Het Blije Kind */}
           <div className="form3-box" style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '16px', padding: '1.25rem 1.5rem', marginBottom: '1.25rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.85rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.6rem' }}>
+            <div className="form3-box-header" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.85rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.6rem' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '9px', background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Smile size={18} />
               </div>
@@ -1128,7 +1128,7 @@ export default function Werkbladen({ onBack }) {
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div className="form3-box-content" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
               {/* Kaart Box 2 */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
                 <div 
@@ -1181,7 +1181,7 @@ export default function Werkbladen({ onBack }) {
               {/* Vragen Box 2 */}
               <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)', lineHeight: '1.35' }}>
+                  <label style={{ display: 'block', fontSize: '0.96rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)', lineHeight: '1.35' }}>
                     2a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
                   </label>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1193,10 +1193,10 @@ export default function Werkbladen({ onBack }) {
                       onChange={(e) => setBkKeer(e.target.value)}
                       style={{ width: '95px', padding: '7px 12px', borderRadius: '9px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.05rem', fontWeight: '700' }}
                     />
-                    <span className="print-only-inline" style={{ minWidth: '45px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
-                      {bkKeer || '\u00A0\u00A0\u00A0\u00A0'}
+                    <span className="print-only-inline form3-print-input" style={{ minWidth: '56px', height: '32px', border: '1.5px solid #94a3b8', borderRadius: '8px', background: '#ffffff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontWeight: 'bold', fontSize: '1.05rem' }}>
+                      {bkKeer || ''}
                     </span>
-                    <span style={{ fontSize: '0.92rem', color: 'var(--text-main)' }}>keer in de modus van <strong>het Blije kind</strong> gezeten.</span>
+                    <span style={{ fontSize: '0.95rem', color: 'var(--text-main)' }}>keer in de modus van <strong>het Blije kind</strong> gezeten.</span>
                   </div>
                 </div>
 
@@ -1238,13 +1238,13 @@ export default function Werkbladen({ onBack }) {
                   </div>
 
                   {/* Print-only weergave voor 2b */}
-                  <div className="print-only-block" style={{ marginTop: '2px' }}>
-                    <div style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '3px' }}>
+                  <div className="print-only-block" style={{ marginTop: '4px' }}>
+                    <div style={{ fontSize: '0.94rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '5px' }}>
                       2b. Positieve verandering t.o.v. begin van de therapie:
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem' }}>
-                      <span style={{ minWidth: '55px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
-                        {bkVerbetering > 0 ? `${bkVerbetering}%` : '\u00A0\u00A0\u00A0\u00A0\u00A0'}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.9rem' }}>
+                      <span className="form3-print-input" style={{ minWidth: '66px', height: '32px', border: '1.5px solid #94a3b8', borderRadius: '8px', background: '#ffffff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontWeight: 'bold', fontSize: '1.05rem' }}>
+                        {bkVerbetering > 0 ? `${bkVerbetering}%` : ''}
                       </span>
                       <span style={{ color: '#64748b' }}>
                         (0% = geen verandering, 50% = matig, 100% = maximaal)
@@ -1258,7 +1258,7 @@ export default function Werkbladen({ onBack }) {
 
           {/* Vraag 3: Kwetsbare Kind */}
           <div className="form3-box" style={{ background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '16px', padding: '1.25rem 1.5rem', marginBottom: '1.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.85rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.6rem' }}>
+            <div className="form3-box-header" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.85rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.6rem' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '9px', background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Heart size={18} />
               </div>
@@ -1268,7 +1268,7 @@ export default function Werkbladen({ onBack }) {
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div className="form3-box-content" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
               {/* Kaart Box 3 */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
                 <div 
@@ -1321,7 +1321,7 @@ export default function Werkbladen({ onBack }) {
               {/* Vragen Box 3 */}
               <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)', lineHeight: '1.35' }}>
+                  <label style={{ display: 'block', fontSize: '0.96rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)', lineHeight: '1.35' }}>
                     3a. De afgelopen week heb ik <em>met aandacht</em> ongeveer:
                   </label>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1333,10 +1333,10 @@ export default function Werkbladen({ onBack }) {
                       onChange={(e) => setKkKeer(e.target.value)}
                       style={{ width: '95px', padding: '7px 12px', borderRadius: '9px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-main)', fontSize: '1.05rem', fontWeight: '700' }}
                     />
-                    <span className="print-only-inline" style={{ minWidth: '45px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
-                      {kkKeer || '\u00A0\u00A0\u00A0\u00A0'}
+                    <span className="print-only-inline form3-print-input" style={{ minWidth: '56px', height: '32px', border: '1.5px solid #94a3b8', borderRadius: '8px', background: '#ffffff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontWeight: 'bold', fontSize: '1.05rem' }}>
+                      {kkKeer || ''}
                     </span>
-                    <span style={{ fontSize: '0.92rem', color: 'var(--text-main)' }}>keer naar mijn <strong>Kwetsbare kind</strong> geluisterd, zonder oordeel en rekening houdend met mijn behoeften.</span>
+                    <span style={{ fontSize: '0.95rem', color: 'var(--text-main)' }}>keer naar mijn <strong>Kwetsbare kind</strong> geluisterd, zonder oordeel en rekening houdend met mijn behoeften.</span>
                   </div>
                 </div>
 
@@ -1378,13 +1378,13 @@ export default function Werkbladen({ onBack }) {
                   </div>
 
                   {/* Print-only weergave voor 3b */}
-                  <div className="print-only-block" style={{ marginTop: '2px' }}>
-                    <div style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '3px' }}>
+                  <div className="print-only-block" style={{ marginTop: '4px' }}>
+                    <div style={{ fontSize: '0.94rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '5px' }}>
                       3b. Positieve verandering t.o.v. begin van de therapie:
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem' }}>
-                      <span style={{ minWidth: '55px', borderBottom: '1.5px solid #64748b', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}>
-                        {kkVerbetering > 0 ? `${kkVerbetering}%` : '\u00A0\u00A0\u00A0\u00A0\u00A0'}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.9rem' }}>
+                      <span className="form3-print-input" style={{ minWidth: '66px', height: '32px', border: '1.5px solid #94a3b8', borderRadius: '8px', background: '#ffffff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontWeight: 'bold', fontSize: '1.05rem' }}>
+                        {kkVerbetering > 0 ? `${kkVerbetering}%` : ''}
                       </span>
                       <span style={{ color: '#64748b' }}>
                         (0% = geen verandering, 50% = matig, 100% = maximaal)
@@ -1598,9 +1598,13 @@ export default function Werkbladen({ onBack }) {
             padding-bottom: 4px !important;
           }
           .form2-box {
-            padding: 6px 10px !important;
-            margin-bottom: 6px !important;
+            border: 1.5px solid #cbd5e1 !important;
+            background: #ffffff !important;
+            padding: 7px 12px !important;
+            margin-bottom: 7px !important;
             border-radius: 10px !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
           }
           .form2-box-q1 {
             padding: 6px 10px !important;
@@ -1612,7 +1616,7 @@ export default function Werkbladen({ onBack }) {
           .form2-p-desc {
             display: none !important;
           }
-          /* Formulier 3: Compacte styling gegarandeerd passend op 1 A4 */
+          /* Formulier 3: Passend op 1 A4, maximaal groot, duidelijke boxen */
           .form3-container {
             padding: 0 !important;
             margin: 0 !important;
@@ -1620,32 +1624,74 @@ export default function Werkbladen({ onBack }) {
             break-inside: avoid !important;
           }
           .form3-header {
-            padding-bottom: 2px !important;
-            margin-bottom: 4px !important;
+            padding-bottom: 4px !important;
+            margin-bottom: 8px !important;
+            border-bottom: 1px solid #e2e8f0 !important;
           }
           .form3-header h2 {
-            font-size: 1.4rem !important;
+            font-size: 1.55rem !important;
             margin: 0 !important;
+            font-weight: 800 !important;
           }
           .form3-waarom {
-            padding: 4px 10px !important;
-            margin-bottom: 6px !important;
-            font-size: 0.78rem !important;
-            line-height: 1.3 !important;
+            background: rgba(124, 58, 237, 0.06) !important;
+            border: 1.5px solid rgba(124, 58, 237, 0.22) !important;
+            border-left: 4px solid #7c3aed !important;
+            border-radius: 12px !important;
+            padding: 8px 14px !important;
+            margin-bottom: 10px !important;
+            font-size: 0.88rem !important;
+            line-height: 1.42 !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
           }
           .form3-box {
-            padding: 6px 10px !important;
-            margin-bottom: 6px !important;
-            border-radius: 8px !important;
+            display: block !important;
+            border: 1.5px solid #cbd5e1 !important;
+            background: #ffffff !important;
+            border-radius: 14px !important;
+            padding: 11px 16px !important;
+            margin-bottom: 10px !important;
             page-break-inside: avoid !important;
             break-inside: avoid !important;
+            box-shadow: none !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          .form3-box-header {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            margin-bottom: 8px !important;
+            padding-bottom: 5px !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          .form3-box-header h3 {
+            font-size: 1.15rem !important;
+            font-weight: 800 !important;
+            margin: 0 !important;
+            color: #0f172a !important;
+          }
+          .form3-box-content {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            gap: 18px !important;
+            align-items: center !important;
           }
           .form3-box .card-scene {
-            width: 75px !important;
-            height: 106px !important;
+            width: 104px !important;
+            height: 146px !important;
+            flex-shrink: 0 !important;
           }
-          .form3-box h3 {
-            font-size: 1rem !important;
+          .form3-print-input {
+            border: 1.5px solid #94a3b8 !important;
+            background: #ffffff !important;
+            border-radius: 8px !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
           }
         }
       `}</style>
