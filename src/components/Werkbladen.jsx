@@ -315,7 +315,7 @@ export default function Werkbladen({ onBack }) {
         <h1 className="text-gradient-werkbladen" style={{ marginBottom: '0.5rem', fontSize: '2.4rem', fontWeight: '800', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px' }}>
           <WerkbladenIcon size={38} useWerkbladenGradient={true} /> Werkbladen
         </h1>
-        <h2 style={{ color: '#7c3aed', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>
+        <h2 style={{ color: '#0ea5e9', margin: 0, fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.4' }}>
           Registratie- en evaluatieformulieren
         </h2>
         <p style={{ maxWidth: '780px', margin: '0.8rem auto 0 auto', color: 'var(--text-muted)', fontSize: '1.05rem', lineHeight: '1.6' }}>

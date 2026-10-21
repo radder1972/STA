@@ -524,14 +524,10 @@ export const HandIcon = (props) => (
 // Werkbladen & Voortgang Icons
 export const WerkbladenIcon = (props) => (
   <IconBase {...props}>
-    <rect x="4" y="5" width="13" height="16" rx="2" fill="currentColor" fillOpacity="0.1" strokeDasharray="2 2" strokeWidth="1.2" />
-    <path d="M7 2h7l5 5v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="currentColor" fillOpacity={props.useWerkbladenGradient ? 0.16 : 0.15} strokeWidth="1.8" />
-    <path d="M14 2v5a1 1 0 0 0 1 1h4" strokeWidth="1.4" />
-    <circle cx="8.5" cy="11.5" r="1" fill="currentColor" />
-    <line x1="11.5" y1="11.5" x2="16" y2="11.5" strokeWidth="1.8" />
-    <circle cx="8.5" cy="15.5" r="1" fill="currentColor" />
-    <line x1="11.5" y1="15.5" x2="16" y2="15.5" strokeWidth="1.8" />
-    <path d="M15 19.5l3.5-3.5" strokeWidth="2" strokeLinecap="round" />
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" fill="currentColor" fillOpacity={props.useWerkbladenGradient ? 0.16 : 0.12} strokeWidth="1.7" />
+    <path d="M14 2v6h6" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    <line x1="8" y1="13" x2="16" y2="13" strokeWidth="1.8" strokeLinecap="round" />
+    <line x1="8" y1="17" x2="14" y2="17" strokeWidth="1.8" strokeLinecap="round" />
   </IconBase>
 );
 
